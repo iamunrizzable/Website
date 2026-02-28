@@ -210,7 +210,7 @@ export default function Home() {
             <div className="logo-section">
               <div className="logo-wrapper">
                 <div className="logo-glow"></div>
-                <img src="/logo.png" alt="Tyler J. Beasley" className="logo-img" />
+                <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
               </div>
             </div>
 
