@@ -125,7 +125,7 @@ export default function Legal() {
               <li>Provide updates or important information</li>
             </ul>
             <p>
-              We will not sell, rent, or share your contact information with unaffiliated third parties without your explicit consent.
+              We will not sell, rent, or share your contact information with unaffiliated third parties without a warrant.
             </p>
           </div>
 
