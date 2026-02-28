@@ -94,7 +94,7 @@ export default function Contact() {
             </div>
 
             <div className="footer">
-              <p>Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie">Hallie, Tyler's AI assistant</a> and not reviewed by Tyler Beasley unless escalated.</p>
+              <p>Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
               <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
               <p>© 2026 TJB Management Inc.</p>
             </div>
