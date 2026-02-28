@@ -21,7 +21,6 @@ export default function Home() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: #fff;
             overflow-x: hidden;
-            line-height: 1.6;
           }
           main {
             min-height: 100vh;
@@ -129,12 +128,11 @@ export default function Home() {
             text-align: center;
           }
           .logo-section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
           }
           .logo-wrapper {
             position: relative;
             display: inline-block;
-            margin-bottom: 30px;
           }
           .logo-glow {
             position: absolute;
@@ -152,34 +150,28 @@ export default function Home() {
             display: block;
             filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
           }
-          .bio {
-            font-size: 18px;
-            color: #ccc;
-            max-width: 700px;
-            margin: 0 auto 50px;
-            line-height: 1.8;
-          }
-          .nav-links {
+          .nav-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin-bottom: 40px;
           }
           .nav-button {
-            padding: 15px 20px;
+            padding: 20px 30px;
             background: linear-gradient(135deg, #a855f7, #ec4899);
             color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-block;
+            display: block;
           }
           .nav-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
           }
           .footer {
             margin-top: 60px;
@@ -192,10 +184,7 @@ export default function Home() {
             .logo-img {
               width: 100%;
             }
-            .bio {
-              font-size: 16px;
-            }
-            .nav-links {
+            .nav-buttons {
               grid-template-columns: 1fr;
             }
           }
@@ -211,7 +200,8 @@ export default function Home() {
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
         <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
           <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-          <a href="/socials-contact" onClick={() => setMenuOpen(false)}>Socials & Contact</a>
+          <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+          <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
           <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         </div>
 
@@ -224,14 +214,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bio">
-              <p>
-                Tyler J. Beasley. I build spaces where authenticity and accountability matter. No drama, no BS—just real people connecting on real terms. Straight to the point.
-              </p>
-            </div>
-
-            <div className="nav-links">
-              <a href="/socials-contact" className="nav-button">Socials & Contact</a>
+            <div className="nav-buttons">
+              <a href="/hallie" className="nav-button">Meet Hallie</a>
+              <a href="/contact" className="nav-button">Contact</a>
               <a href="/legal" className="nav-button">Legal & Guidelines</a>
             </div>
 
