@@ -221,7 +221,7 @@ export default function Home() {
             </div>
 
             <div className="footer">
-              <p>© 2026 TJB Management Inc. All rights reserved.</p>
+              <p>© 2026 TJB Management Inc.</p>
             </div>
           </div>
         </main>
