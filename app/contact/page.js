@@ -75,7 +75,7 @@ export default function Contact() {
         <main>
           <div className="container">
             <div className="logo-section">
-              <img src="/logo.png" alt="Tyler J. Beasley" className="logo-img" />
+              <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
             </div>
 
             <div className="contact-grid">
