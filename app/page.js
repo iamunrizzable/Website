@@ -21,6 +21,7 @@ export default function Home() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: #fff;
             overflow-x: hidden;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(236, 72, 153, 0.2);
           }
           main {
             min-height: 100vh;
