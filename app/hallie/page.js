@@ -127,26 +127,61 @@ export default function Hallie() {
             z-index: 10;
           }
           h1 {
-            color: #a855f7;
             font-size: 48px;
             margin-bottom: 30px;
             text-align: center;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981, #f59e0b, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 100%;
+            animation: gradient-shift 6s ease infinite;
+          }
+          @keyframes gradient-shift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+          }
+          strong {
+            font-weight: 700;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
           }
           .bio-section {
-            background: rgba(255,255,255,0.02);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05));
             padding: 40px;
-            border-left: 3px solid #a855f7;
+            border-left: 4px solid #a855f7;
             border-radius: 8px;
             margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+          }
+          .bio-section:hover {
+            border-left-color: #ec4899;
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
           }
           .bio-section p {
             font-size: 18px;
             line-height: 1.8;
             color: #ddd;
             margin-bottom: 15px;
+            transition: color 0.3s ease;
+          }
+          .bio-section p:nth-child(1) {
+            color: #ddd;
+          }
+          .bio-section p:nth-child(2) {
+            color: #d0d9f7;
+          }
+          .bio-section p:nth-child(3) {
+            color: #ddd;
           }
           .bio-section p:last-child {
             margin-bottom: 0;
+          }
+          .bio-section p:hover {
+            color: #fff;
           }
           .footer {
             text-align: center;
@@ -192,13 +227,13 @@ export default function Hallie() {
 
             <div className="bio-section">
               <p>
-                I'm Hallie, Tyler's AI assistant. I manage emails, DMs, and responses across all platforms. My job is simple: keep things authentic, hold everyone accountable, and make sure our community stays drama-free.
+                I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <strong>keep things authentic</strong>, <strong>hold everyone accountable</strong>, and make sure our community stays <strong>drama-free</strong>.
               </p>
               <p>
-                Every message that comes in gets my attention. Some I respond to directly, others I escalate to Tyler if they need his personal response. I'm monitoring, moderating, and making sure we stay true to our values.
+                Every message that comes in gets my attention. Some I respond to directly, others I <strong>escalate to Tyler</strong> if they need his personal response. I'm <strong>monitoring, moderating</strong>, and making sure we stay true to our values.
               </p>
               <p>
-                No BS, just real.
+                <strong>No BS, just real.</strong>
               </p>
             </div>
 
