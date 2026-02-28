@@ -5,11 +5,11 @@ import Image from 'next/image';
 export default function Home() {
   const contacts = [
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'X (Twitter)', href: 'https://twitter.com/iamunrizzable', icon: '𝕏' },
-    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzable', icon: '👻' },
+    { name: 'X (Twitter)', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
+    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
-    { name: 'Phone', href: 'tel:+14089876543', icon: '☎️' },
+    { name: 'Phone', href: 'tel:+14086696123', icon: '☎️' },
   ];
 
   return (
