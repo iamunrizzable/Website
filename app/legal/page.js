@@ -1,4 +1,10 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Legal() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <html>
       <head>
@@ -126,19 +132,19 @@ export default function Legal() {
         `}</style>
       </head>
       <body>
-        <button className="menu-button" onclick="document.getElementById('menuDropdown').classList.toggle('active')">☰ Menu</button>
-        <div id="menuDropdown" className="menu-dropdown">
-          <a href="#ai-disclaimer">AI Assistant Disclaimer</a>
-          <a href="#data-collection">Data Collection & Privacy</a>
-          <a href="#contact-info">Contact Information Use</a>
-          <a href="#basics">1. The Basics</a>
-          <a href="#account">2. Your Account</a>
-          <a href="#interactions">3. Interactions with Tyler</a>
-          <a href="#consequences">4. Consequences</a>
-          <a href="#appeals">5. Appeals</a>
-          <a href="#final-notes">6. Final Notes and Disclosures</a>
-          <a href="#changes">Changes to These Policies</a>
-          <a href="#questions">Questions or Concerns?</a>
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+        <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
+          <a href="#ai-disclaimer" onClick={() => setMenuOpen(false)}>AI Assistant Disclaimer</a>
+          <a href="#data-collection" onClick={() => setMenuOpen(false)}>Data Collection & Privacy</a>
+          <a href="#contact-info" onClick={() => setMenuOpen(false)}>Contact Information Use</a>
+          <a href="#basics" onClick={() => setMenuOpen(false)}>1. The Basics</a>
+          <a href="#account" onClick={() => setMenuOpen(false)}>2. Your Account</a>
+          <a href="#interactions" onClick={() => setMenuOpen(false)}>3. Interactions with Tyler</a>
+          <a href="#consequences" onClick={() => setMenuOpen(false)}>4. Consequences</a>
+          <a href="#appeals" onClick={() => setMenuOpen(false)}>5. Appeals</a>
+          <a href="#final-notes" onClick={() => setMenuOpen(false)}>6. Final Notes and Disclosures</a>
+          <a href="#changes" onClick={() => setMenuOpen(false)}>Changes to These Policies</a>
+          <a href="#questions" onClick={() => setMenuOpen(false)}>Questions or Concerns?</a>
         </div>
         <main>
           <a href="/" className="back-link">← Back to Home</a>
