@@ -300,7 +300,7 @@ export default function Legal() {
           <div className="section" id="final-notes">
             <h2>6. Final Notes and Disclosures</h2>
             <p>
-              We monitor all activity, by the use of Hallie, Tyler's AI assistant, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
+              We monitor all activity, by the use of <strong>Hallie, Tyler's AI assistant</strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
             </p>
             <ul>
               <li>Your IP address</li>
