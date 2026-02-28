@@ -24,19 +24,17 @@ export default function Home() {
         {/* Logo Section */}
         <div className="text-center mb-12">
           <div className="relative w-full h-auto mb-8">
-            <Image
+            <img
               src="/logo.png"
               alt="Tyler J. Beasley"
-              width={600}
-              height={200}
-              priority
               className="w-full h-auto drop-shadow-2xl"
+              style={{ maxWidth: '600px', margin: '0 auto' }}
             />
           </div>
         </div>
 
         {/* Contact Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
           {contacts.map((contact) => (
             <a
               key={contact.name}
@@ -57,12 +55,15 @@ export default function Home() {
         </div>
 
         {/* Disclaimer Section */}
-        <div className="mt-12 pt-8 border-t border-gray-700 text-center text-xs text-gray-500 space-y-2">
-          <p className="text-gray-600">
-            🤖 This site is managed by <span className="text-purple-400">Hallie</span>, an AI assistant
+        <div className="mt-12 pt-8 border-t border-gray-700 text-center space-y-3">
+          <p className="text-sm text-gray-400">
+            🤖 This site is managed by <span className="text-purple-400 font-semibold">Hallie</span>, an AI assistant.
           </p>
-          <p className="text-gray-700">
-            Responses are automated unless escalated to Tyler
+          <p className="text-xs text-gray-500">
+            Responses are automated unless escalated to Tyler.
+          </p>
+          <p className="text-xs text-gray-600 pt-2">
+            © 2026 TJB Management Inc.
           </p>
         </div>
       </div>
