@@ -1,117 +1,261 @@
-'use client';
-
 export default function Home() {
-  const contacts = [
-    { 
-      name: 'Email', 
-      href: 'mailto:tyler@tjbmanagementinc.com', 
-      icon: '✉️',
-      color: 'from-blue-600 to-blue-400',
-      glow: 'shadow-blue-500/50'
-    },
-    { 
-      name: 'X (Twitter)', 
-      href: 'https://x.com/iamunrizzable', 
-      icon: '𝕏',
-      color: 'from-gray-100 to-gray-300',
-      glow: 'shadow-gray-400/50'
-    },
-    { 
-      name: 'Snapchat', 
-      href: 'https://snapchat.com/add/iamunrizzabl3', 
-      icon: '👻',
-      color: 'from-yellow-300 to-yellow-100',
-      glow: 'shadow-yellow-400/50'
-    },
-    { 
-      name: 'Instagram', 
-      href: 'https://instagram.com/iamunrizzable', 
-      icon: '📷',
-      color: 'from-pink-500 to-rose-400',
-      glow: 'shadow-pink-500/50'
-    },
-    { 
-      name: 'TikTok', 
-      href: 'https://tiktok.com/@iamunrizzable', 
-      icon: '🎵',
-      color: 'from-black to-gray-600',
-      glow: 'shadow-black/50'
-    },
-    { 
-      name: 'Phone', 
-      href: 'tel:+14086696123', 
-      icon: '☎️',
-      color: 'from-green-500 to-emerald-400',
-      glow: 'shadow-green-500/50'
-    },
-  ];
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black relative overflow-hidden">
-      {/* Animated background orbs */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6">
-        {/* Logo Section */}
-        <div className="mb-16 text-center">
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl blur-2xl opacity-50 -z-10"></div>
-            <img
-              src="/logo.png"
-              alt="Tyler J. Beasley"
-              className="w-80 h-auto max-w-full drop-shadow-2xl relative z-10"
-              style={{ filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))' }}
-            />
-          </div>
+    <html>
+      <head>
+        <title>TJB Management Inc.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>{`
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            background: linear-gradient(135deg, #0f172a 0%, #0f1419 50%, #000 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+          }
+          main {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+          }
+          .bg-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+          }
+          .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 8s ease-in-out infinite;
+          }
+          .orb1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(168, 85, 247, 0.15);
+            top: 20%;
+            left: 10%;
+          }
+          .orb2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.1);
+            top: 40%;
+            right: 5%;
+            animation-delay: 1s;
+          }
+          .orb3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(236, 72, 153, 0.08);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 2s;
+          }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+          }
+          .container {
+            max-width: 1000px;
+            width: 100%;
+            z-index: 10;
+          }
+          .logo-section {
+            text-align: center;
+            margin-bottom: 50px;
+          }
+          .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+          }
+          .logo-glow {
+            position: absolute;
+            inset: -15px;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #3b82f6);
+            border-radius: 30px;
+            filter: blur(20px);
+            opacity: 0.4;
+            z-index: -1;
+          }
+          .logo-img {
+            width: 300px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+          }
+          .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+          }
+          .contact-card {
+            position: relative;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+          }
+          .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+          }
+          .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+          .contact-card.twitter::before { background: linear-gradient(135deg, #f3f4f6, #d1d5db); }
+          .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
+          .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
+          .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
+          .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
+          .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.3);
+          }
+          .contact-card.email:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+          }
+          .contact-card.twitter:hover {
+            box-shadow: 0 0 30px rgba(107, 114, 128, 0.4);
+          }
+          .contact-card.snapchat:hover {
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
+          }
+          .contact-card.instagram:hover {
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
+          }
+          .contact-card.tiktok:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+          }
+          .contact-card.phone:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+          }
+          .contact-icon {
+            font-size: 48px;
+            display: block;
+          }
+          .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+          }
+          .contact-name {
+            font-size: 16px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          }
+          .footer {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            max-width: 1000px;
+            width: 100%;
+            font-size: 14px;
+            color: #999;
+          }
+          .footer p {
+            margin: 8px 0;
+          }
+          .footer .hallie {
+            color: #a855f7;
+            font-weight: bold;
+          }
+          @media (max-width: 640px) {
+            .contact-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 15px;
+            }
+            .contact-card {
+              padding: 20px 15px;
+              height: 120px;
+              font-size: 14px;
+            }
+            .contact-icon {
+              font-size: 36px;
+            }
+            .logo-img {
+              width: 250px;
+            }
+            main {
+              padding: 15px;
+            }
+          }
+        `}</style>
+      </head>
+      <body>
+        <div className="bg-orbs">
+          <div className="orb orb1"></div>
+          <div className="orb orb2"></div>
+          <div className="orb orb3"></div>
         </div>
+        <main>
+          <div className="container">
+            <div className="logo-section">
+              <div className="logo-wrapper">
+                <div className="logo-glow"></div>
+                <img src="/logo.png" alt="Tyler J. Beasley" className="logo-img" />
+              </div>
+            </div>
 
-        {/* Contact Links - Grid Layout */}
-        <div className="w-full max-w-4xl mx-auto mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {contacts.map((contact) => (
-              <a
-                key={contact.name}
-                href={contact.href}
-                target={contact.name !== 'Email' && contact.name !== 'Phone' ? '_blank' : undefined}
-                rel={contact.name !== 'Email' && contact.name !== 'Phone' ? 'noopener noreferrer' : undefined}
-                className={`group relative h-32 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:${contact.glow}`}
-              >
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${contact.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                
-                {/* Animated shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                
-                {/* Border glow */}
-                <div className="absolute inset-0 border-2 border-white/20 group-hover:border-white/50 rounded-2xl transition-colors duration-300"></div>
-
-                {/* Content */}
-                <div className="relative h-full flex flex-col items-center justify-center gap-2 text-center px-4">
-                  <span className="text-5xl transition-transform duration-300 group-hover:scale-125">{contact.icon}</span>
-                  <span className="text-lg font-bold text-white drop-shadow-lg">{contact.name}</span>
-                </div>
+            <div className="contact-grid">
+              <a href="mailto:tyler@tjbmanagementinc.com" className="contact-card email">
+                <span className="contact-icon">✉️</span>
+                <span className="contact-name">Email</span>
               </a>
-            ))}
-          </div>
-        </div>
+              <a href="https://x.com/iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card twitter">
+                <span className="contact-icon">𝕏</span>
+                <span className="contact-name">X</span>
+              </a>
+              <a href="https://snapchat.com/add/iamunrizzabl3" target="_blank" rel="noopener noreferrer" className="contact-card snapchat">
+                <span className="contact-icon">👻</span>
+                <span className="contact-name">Snapchat</span>
+              </a>
+              <a href="https://instagram.com/iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card instagram">
+                <span className="contact-icon">📷</span>
+                <span className="contact-name">Instagram</span>
+              </a>
+              <a href="https://tiktok.com/@iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card tiktok">
+                <span className="contact-icon">🎵</span>
+                <span className="contact-name">TikTok</span>
+              </a>
+              <a href="tel:+14086696123" className="contact-card phone">
+                <span className="contact-icon">☎️</span>
+                <span className="contact-name">Phone</span>
+              </a>
+            </div>
 
-        {/* Footer */}
-        <div className="w-full max-w-4xl mx-auto text-center space-y-3 border-t border-white/10 pt-8">
-          <p className="text-sm text-gray-300">
-            🤖 This site is managed by <span className="text-purple-400 font-bold">Hallie</span>, an AI assistant.
-          </p>
-          <p className="text-xs text-gray-500">
-            Responses are automated unless escalated to Tyler.
-          </p>
-          <p className="text-xs text-gray-600">
-            © 2026 TJB Management Inc.
-          </p>
-        </div>
-      </div>
-    </main>
+            <div className="footer">
+              <p>🤖 This site is managed by <span className="hallie">Hallie</span>, an AI assistant.</p>
+              <p>Responses are automated unless escalated to Tyler.</p>
+              <p>© 2026 TJB Management Inc.</p>
+            </div>
+          </div>
+        </main>
+      </body>
+    </html>
   );
 }
