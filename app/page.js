@@ -11,7 +11,7 @@ export default function Home() {
             box-sizing: border-box;
           }
           body {
-            background: linear-gradient(135deg, #0f172a 0%, #0f1419 50%, #000 100%);
+            background-color: #0f172a;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: #fff;
             overflow-x: hidden;
@@ -24,6 +24,7 @@ export default function Home() {
             align-items: center;
             padding: 20px;
             position: relative;
+            background-color: #0f172a;
           }
           .bg-orbs {
             position: fixed;
