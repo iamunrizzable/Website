@@ -48,13 +48,13 @@ export default function Contact() {
           .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
           .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
           .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
-          .contact-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); }
-          .contact-card:hover { box-shadow: 0 0 30px rgba(168, 85, 247, 0.3); }
-          .contact-icon { font-size: 48px; }
-          .contact-card:hover .contact-icon { transform: scale(1.2); }
-          .contact-name { font-size: 16px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+          .contact-card:hover { transform: translateY(-12px) scale(1.02); border-color: rgba(255,255,255,0.5); box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor; filter: brightness(1.1); }
+          .contact-icon { font-size: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); transition: all 0.3s ease; }
+          .contact-card:hover .contact-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
+          .contact-name { font-size: 16px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.2); letter-spacing: 0.5px; }
           .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #999; }
-          .hallie { color: #a855f7; font-weight: bold; }
+          .hallie { color: #a855f7; font-weight: bold; cursor: pointer; text-decoration: none; }
+          .hallie:hover { text-decoration: underline; }
         `}</style>
       </head>
       <body>
@@ -94,7 +94,7 @@ export default function Contact() {
             </div>
 
             <div className="footer">
-              <p>Responses to my social media DMs and emails are automated by <span className="hallie">Hallie, Tyler's AI assistant</span> and not reviewed by Tyler Beasley unless escalated.</p>
+              <p>Responses to my social media DMs and emails are automated by <a href="/hallie" className="hallie">Hallie, Tyler's AI assistant</a> and not reviewed by Tyler Beasley unless escalated.</p>
               <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
               <p>© 2026 TJB Management Inc.</p>
             </div>
