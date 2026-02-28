@@ -11,15 +11,16 @@ export default function Legal() {
             box-sizing: border-box;
           }
           body {
-            background: linear-gradient(135deg, #0f172a 0%, #0f172a 50%, #0f172a 100%);
+            background-color: #0f172a;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #e0e0e0;
+            color: #ccc;
             line-height: 1.6;
           }
           main {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
+            background-color: #0f172a;
           }
           h1 {
             color: #fff;
@@ -55,7 +56,7 @@ export default function Legal() {
             text-decoration: underline;
           }
           .section {
-            background: rgba(255,255,255,0.03);
+            background-color: #0f172a;
             padding: 20px;
             border-left: 3px solid #a855f7;
             margin-bottom: 30px;
