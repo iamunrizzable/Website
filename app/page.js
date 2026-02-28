@@ -1,8 +1,14 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <html>
       <head>
-        <title>TJB Management Inc.</title>
+        <title>Tyler J. Beasley - TJB Management Inc.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
           * {
@@ -15,6 +21,7 @@ export default function Home() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: #fff;
             overflow-x: hidden;
+            line-height: 1.6;
           }
           main {
             min-height: 100vh;
@@ -68,14 +75,61 @@ export default function Home() {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-30px); }
           }
+          .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #a855f7;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100;
+            font-size: 16px;
+          }
+          .menu-button:hover {
+            background-color: #9333ea;
+          }
+          .menu-dropdown {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #0f172a;
+            border: 2px solid #a855f7;
+            border-radius: 5px;
+            padding: 10px 0;
+            min-width: 200px;
+            z-index: 101;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          }
+          .menu-dropdown.active {
+            display: block;
+          }
+          .menu-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #a855f7;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            transition: background-color 0.2s;
+          }
+          .menu-dropdown a:last-child {
+            border-bottom: none;
+          }
+          .menu-dropdown a:hover {
+            background-color: rgba(168, 85, 247, 0.1);
+          }
           .container {
-            max-width: 1000px;
+            max-width: 900px;
             width: 100%;
             z-index: 10;
+            text-align: center;
           }
           .logo-section {
-            text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
           }
           .logo-wrapper {
             position: relative;
@@ -92,117 +146,57 @@ export default function Home() {
             z-index: -1;
           }
           .logo-img {
-            width: 300px;
+            width: 500px;
             max-width: 100%;
             height: auto;
             display: block;
             filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
           }
-          .contact-grid {
+          .bio {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+          }
+          .nav-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
           }
-          .contact-card {
-            position: relative;
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-decoration: none;
+          .nav-button {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
             color: #fff;
-            border: 2px solid rgba(255,255,255,0.15);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            gap: 10px;
-          }
-          .contact-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-          }
-          .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-          .contact-card.twitter::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
-          .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
-          .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
-          .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
-          .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
-          .contact-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.3);
-          }
-          .contact-card.email:hover {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
-          }
-          .contact-card.twitter:hover {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
-          }
-          .contact-card.snapchat:hover {
-            box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
-          }
-          .contact-card.instagram:hover {
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
-          }
-          .contact-card.tiktok:hover {
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-          }
-          .contact-card.phone:hover {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
-          }
-          .contact-icon {
-            font-size: 48px;
-            display: block;
-          }
-          .contact-card:hover .contact-icon {
-            transform: scale(1.2);
-            transition: transform 0.3s ease;
-          }
-          .contact-name {
-            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+          }
+          .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
           }
           .footer {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 60px;
             padding-top: 30px;
-            max-width: 1000px;
-            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 14px;
-            color: #999;
-          }
-          .footer p {
-            margin: 8px 0;
-          }
-          .footer .hallie {
-            color: #a855f7;
-            font-weight: bold;
+            color: #888;
           }
           @media (max-width: 640px) {
-            .contact-grid {
-              grid-template-columns: repeat(2, 1fr);
-              gap: 15px;
-            }
-            .contact-card {
-              padding: 20px 15px;
-              height: 120px;
-              font-size: 14px;
-            }
-            .contact-icon {
-              font-size: 36px;
-            }
             .logo-img {
-              width: 250px;
+              width: 100%;
             }
-            main {
-              padding: 15px;
+            .bio {
+              font-size: 16px;
+            }
+            .nav-links {
+              grid-template-columns: 1fr;
             }
           }
         `}</style>
@@ -213,6 +207,14 @@ export default function Home() {
           <div className="orb orb2"></div>
           <div className="orb orb3"></div>
         </div>
+
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+        <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
+          <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="/socials-contact" onClick={() => setMenuOpen(false)}>Socials & Contact</a>
+          <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
+        </div>
+
         <main>
           <div className="container">
             <div className="logo-section">
@@ -222,37 +224,21 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="contact-grid">
-              <a href="mailto:tyler@tjbmanagementinc.com" className="contact-card email">
-                <span className="contact-icon">✉️</span>
-                <span className="contact-name">Email</span>
-              </a>
-              <a href="https://x.com/iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card twitter">
-                <span className="contact-icon">𝕏</span>
-                <span className="contact-name">X</span>
-              </a>
-              <a href="https://snapchat.com/add/iamunrizzabl3" target="_blank" rel="noopener noreferrer" className="contact-card snapchat">
-                <span className="contact-icon">👻</span>
-                <span className="contact-name">Snapchat</span>
-              </a>
-              <a href="https://instagram.com/iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card instagram">
-                <span className="contact-icon">📷</span>
-                <span className="contact-name">Instagram</span>
-              </a>
-              <a href="https://tiktok.com/@iamunrizzable" target="_blank" rel="noopener noreferrer" className="contact-card tiktok">
-                <span className="contact-icon">🎵</span>
-                <span className="contact-name">TikTok</span>
-              </a>
-              <a href="tel:+14086696123" className="contact-card phone">
-                <span className="contact-icon">☎️</span>
-                <span className="contact-name">Phone</span>
-              </a>
+            <div className="bio">
+              <p>
+                I'm Tyler J. Beasley, founder of TJB Management Inc. I focus on building meaningful connections, 
+                creating valuable opportunities, and maintaining a drama-free community. With a straightforward approach 
+                and genuine commitment to accountability, I work to bring people together around shared values.
+              </p>
+            </div>
+
+            <div className="nav-links">
+              <a href="/socials-contact" className="nav-button">Socials & Contact</a>
+              <a href="/legal" className="nav-button">Legal & Guidelines</a>
             </div>
 
             <div className="footer">
-              <p>Responses to my social media DMs and emails are automated by <span className="hallie">Hallie, Tyler's AI assistant</span> and not reviewed by Tyler Beasley unless escalated.</p>
-              <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
-              <p>© 2026 TJB Management Inc.</p>
+              <p>© 2026 TJB Management Inc. All rights reserved.</p>
             </div>
           </div>
         </main>
