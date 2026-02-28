@@ -45,7 +45,10 @@ export default function Legal() {
           h2:nth-of-type(5) { color: #f59e0b; }
           h2:nth-of-type(6) { color: #8b5cf6; }
           h2:nth-of-type(7) { color: #06b6d4; }
-          h2:nth-of-type(8) { color: #ec4899; }
+          h2:nth-of-type(8) { color: #f97316; }
+          h2:nth-of-type(9) { color: #ec4899; }
+          h2:nth-of-type(10) { color: #14b8a6; }
+          h2:nth-of-type(11) { color: #d946ef; }
           .logo-section { text-align: center; margin-bottom: 40px; }
           .logo-img { width: 250px; max-width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5)); }
           p {
@@ -59,6 +62,23 @@ export default function Legal() {
           li {
             margin-bottom: 8px;
             color: #ccc;
+          }
+          li:nth-child(1) { color: #a855f7; }
+          li:nth-child(2) { color: #ec4899; }
+          li:nth-child(3) { color: #3b82f6; }
+          li:nth-child(4) { color: #10b981; }
+          li:nth-child(5) { color: #f59e0b; }
+          li:nth-child(6) { color: #8b5cf6; }
+          li:nth-child(7) { color: #06b6d4; }
+          li:nth-child(8) { color: #f97316; }
+          li:nth-child(9) { color: #06b6d4; }
+          li:nth-child(10) { color: #a855f7; }
+          strong { 
+            font-weight: 700;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
           }
           .back-link {
             display: inline-block;
@@ -84,6 +104,10 @@ export default function Legal() {
           .section:nth-of-type(5) { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
           .section:nth-of-type(6) { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.05); }
           .section:nth-of-type(7) { border-left-color: #06b6d4; background: rgba(6, 182, 212, 0.05); }
+          .section:nth-of-type(8) { border-left-color: #f97316; background: rgba(249, 115, 22, 0.05); }
+          .section:nth-of-type(9) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
+          .section:nth-of-type(10) { border-left-color: #14b8a6; background: rgba(20, 184, 166, 0.05); }
+          .section:nth-of-type(11) { border-left-color: #d946ef; background: rgba(217, 70, 239, 0.05); }
           .footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -300,7 +324,7 @@ export default function Legal() {
           <div className="section" id="questions">
             <h2>Questions or Concerns?</h2>
             <p>
-              If you have questions about these policies, please contact us through one of our options on the <a href="/">main page</a>.
+              If you have questions about these policies, please contact us through one of our options on the <a href="/contact">contact page</a>.
             </p>
           </div>
 
