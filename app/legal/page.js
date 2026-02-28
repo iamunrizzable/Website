@@ -324,7 +324,7 @@ export default function Legal() {
           <div className="section" id="questions">
             <h2>Questions or Concerns?</h2>
             <p>
-              If you have questions about these policies, please contact us through one of our options on the <a href="/contact">contact page</a>.
+              If you have questions about these policies, please <a href="/contact">contact us</a>.
             </p>
           </div>
 
