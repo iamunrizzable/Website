@@ -12,7 +12,7 @@ export default function Hallie() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #ccc; line-height: 1.6; }
+          body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #ccc; line-height: 1.6; text-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(236, 72, 153, 0.2); }
           main { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0f172a; }
           h1 { color: #fff; margin-bottom: 30px; font-size: 32px; }
           h2 { color: #a855f7; margin-top: 40px; margin-bottom: 15px; font-size: 24px; }
