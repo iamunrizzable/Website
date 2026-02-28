@@ -11,7 +11,7 @@ export default function Contact() {
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻', color: 'from-yellow-300 to-yellow-100' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷', color: 'from-pink-500 to-rose-400' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵', color: 'from-black to-gray-600' },
-    { name: 'Phone', href: 'tel:+14086696123', icon: '☎️', color: 'from-green-500 to-emerald-400' },
+    { name: 'Phone', href: 'tel:+14086696123', icon: '📱', color: 'from-green-500 to-emerald-400' },
   ];
 
   return (
