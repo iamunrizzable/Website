@@ -87,7 +87,7 @@ export default function Legal() {
           <div className="section">
             <h2>AI Assistant Disclaimer</h2>
             <p>
-              This website is managed by <strong>Hallie</strong>, Tyler's AI assistant. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by Hallie</strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
+              This website is managed by <strong>Hallie, Tyler's AI assistant</strong>. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by Hallie, Tyler's AI assistant</strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
             </p>
             <p>
               Messages may be automatically categorized, filtered, or responded to based on content analysis. Only messages deemed important or requiring direct human response will be forwarded to Tyler.
@@ -121,7 +121,7 @@ export default function Legal() {
             </p>
             <ul>
               <li>Respond to inquiries and requests</li>
-              <li>Send automated responses via AI assistant</li>
+              <li>Send automated responses via Hallie, Tyler's AI assistant</li>
               <li>Provide updates or important information</li>
             </ul>
             <p>
@@ -146,7 +146,7 @@ export default function Legal() {
               <li>No impersonation of anyone (especially Tyler and his admins)</li>
               <li>Fan/parody accounts are fine if clearly marked</li>
               <li>Ban evading gets you permanently blocked and reported</li>
-              <li>Hallie (our AI) monitors all interactions for compliance</li>
+              <li>Hallie, Tyler's AI assistant, monitors all interactions for compliance</li>
             </ul>
           </div>
 
@@ -184,7 +184,7 @@ export default function Legal() {
           <div className="section">
             <h2>6. Final Notes and Disclosures</h2>
             <p>
-              We monitor all activity, by the use of AI and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
+              We monitor all activity, by the use of Hallie, Tyler's AI assistant, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
             </p>
             <ul>
               <li>Your IP address</li>
