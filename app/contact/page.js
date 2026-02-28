@@ -53,7 +53,7 @@ export default function Contact() {
           .contact-card:hover .contact-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
           .contact-name { font-size: 16px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.2); letter-spacing: 0.5px; }
           .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #999; }
-          .hallie { color: #a855f7; font-weight: bold; cursor: pointer; text-decoration: none; }
+          .hallie { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; cursor: pointer; text-decoration: none; }
           .hallie:hover { text-decoration: underline; }
         `}</style>
       </head>
