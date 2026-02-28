@@ -128,7 +128,7 @@ export default function Home() {
             z-index: -1;
           }
           .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-          .contact-card.twitter::before { background: linear-gradient(135deg, #f3f4f6, #d1d5db); }
+          .contact-card.twitter::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
           .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
           .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
           .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
@@ -141,7 +141,7 @@ export default function Home() {
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
           }
           .contact-card.twitter:hover {
-            box-shadow: 0 0 30px rgba(107, 114, 128, 0.4);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
           }
           .contact-card.snapchat:hover {
             box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
@@ -249,7 +249,7 @@ export default function Home() {
             </div>
 
             <div className="footer">
-              <p>🤖 This site is managed by <span className="hallie">Hallie</span>, an AI assistant.</p>
+              <p>This site is managed by <span className="hallie">Hallie</span>, Tyler's AI assistant.</p>
               <p>Responses are automated unless escalated to Tyler.</p>
               <p>© 2026 TJB Management Inc.</p>
             </div>
