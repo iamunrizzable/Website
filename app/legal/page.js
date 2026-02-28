@@ -56,7 +56,6 @@ export default function Legal() {
             text-decoration: underline;
           }
           .section {
-            background-color: #0f172a;
             padding: 20px;
             border-left: 3px solid #a855f7;
             margin-bottom: 30px;
@@ -108,7 +107,7 @@ export default function Legal() {
               <li>Referral source</li>
             </ul>
             <p>
-              This data is used solely for website performance optimization and security purposes. We do not share this data with third parties for any reason without your explicit consent.
+              This data is used solely for website performance optimization and security purposes. We do not share this data with third parties for any reason without a warrant.
             </p>
             <p>
               For more information about Vercel's privacy practices, visit <a href="https://vercel.com/legal/privacy-policy" target="_blank">Vercel's Privacy Policy</a>.
