@@ -39,6 +39,15 @@ export default function Legal() {
             margin-bottom: 15px;
             font-size: 20px;
           }
+          h2:nth-of-type(2) { color: #ec4899; }
+          h2:nth-of-type(3) { color: #3b82f6; }
+          h2:nth-of-type(4) { color: #10b981; }
+          h2:nth-of-type(5) { color: #f59e0b; }
+          h2:nth-of-type(6) { color: #8b5cf6; }
+          h2:nth-of-type(7) { color: #06b6d4; }
+          h2:nth-of-type(8) { color: #ec4899; }
+          .logo-section { text-align: center; margin-bottom: 40px; }
+          .logo-img { width: 250px; max-width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5)); }
           p {
             margin-bottom: 15px;
             color: #ccc;
@@ -63,10 +72,18 @@ export default function Legal() {
           }
           .section {
             padding: 20px;
-            border-left: 3px solid #a855f7;
+            border-left: 4px solid #a855f7;
             margin-bottom: 30px;
             border-radius: 5px;
+            background: rgba(168, 85, 247, 0.05);
+            transition: all 0.3s ease;
           }
+          .section:nth-of-type(2) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
+          .section:nth-of-type(3) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+          .section:nth-of-type(4) { border-left-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+          .section:nth-of-type(5) { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+          .section:nth-of-type(6) { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.05); }
+          .section:nth-of-type(7) { border-left-color: #06b6d4; background: rgba(6, 182, 212, 0.05); }
           .footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -147,6 +164,9 @@ export default function Legal() {
           <a href="#questions" onClick={() => setMenuOpen(false)}>Questions or Concerns?</a>
         </div>
         <main>
+          <div className="logo-section">
+            <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
+          </div>
           <a href="/" className="back-link">← Back to Home</a>
           
           <h1>Legal Disclaimers & Community Guidelines</h1>
