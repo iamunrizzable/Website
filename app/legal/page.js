@@ -65,7 +65,7 @@ export default function Legal() {
             color: #ccc;
           }
           li strong {
-            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #06b6d4);
+            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -73,7 +73,7 @@ export default function Legal() {
           }
           strong { 
             font-weight: 700;
-            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981);
+            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
