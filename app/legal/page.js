@@ -76,15 +76,76 @@ export default function Legal() {
           a:hover {
             text-decoration: underline;
           }
+          .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #a855f7;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100;
+            font-size: 16px;
+          }
+          .menu-button:hover {
+            background-color: #9333ea;
+          }
+          .menu-dropdown {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #0f172a;
+            border: 2px solid #a855f7;
+            border-radius: 5px;
+            padding: 10px 0;
+            min-width: 200px;
+            z-index: 101;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          }
+          .menu-dropdown.active {
+            display: block;
+          }
+          .menu-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #a855f7;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            transition: background-color 0.2s;
+          }
+          .menu-dropdown a:last-child {
+            border-bottom: none;
+          }
+          .menu-dropdown a:hover {
+            background-color: rgba(168, 85, 247, 0.1);
+          }
         `}</style>
       </head>
       <body>
+        <button className="menu-button" onclick="document.getElementById('menuDropdown').classList.toggle('active')">☰ Menu</button>
+        <div id="menuDropdown" className="menu-dropdown">
+          <a href="#ai-disclaimer">AI Assistant Disclaimer</a>
+          <a href="#data-collection">Data Collection & Privacy</a>
+          <a href="#contact-info">Contact Information Use</a>
+          <a href="#basics">1. The Basics</a>
+          <a href="#account">2. Your Account</a>
+          <a href="#interactions">3. Interactions with Tyler</a>
+          <a href="#consequences">4. Consequences</a>
+          <a href="#appeals">5. Appeals</a>
+          <a href="#final-notes">6. Final Notes and Disclosures</a>
+          <a href="#changes">Changes to These Policies</a>
+          <a href="#questions">Questions or Concerns?</a>
+        </div>
         <main>
           <a href="/" className="back-link">← Back to Home</a>
           
           <h1>Legal Disclaimers & Community Guidelines</h1>
           
-          <div className="section">
+          <div className="section" id="ai-disclaimer">
             <h2>AI Assistant Disclaimer</h2>
             <p>
               This website is managed by <strong>Hallie, Tyler's AI assistant</strong>. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by Hallie, Tyler's AI assistant</strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
@@ -94,7 +155,7 @@ export default function Legal() {
             </p>
           </div>
 
-          <div className="section">
+          <div className="section" id="data-collection">
             <h2>Data Collection & Privacy</h2>
             <p>
               This website uses <strong>Vercel Analytics</strong> to collect usage data, including:
@@ -114,7 +175,7 @@ export default function Legal() {
             </p>
           </div>
 
-          <div className="section">
+          <div className="section" id="contact-info">
             <h2>Contact Information Use</h2>
             <p>
               Contact information provided via all social media platforms and email channels (email, phone, social media) may be used to:
@@ -129,7 +190,7 @@ export default function Legal() {
             </p>
           </div>
 
-          <div className="section">
+          <div className="section" id="basics">
             <h2>1. The Basics</h2>
             <ul>
               <li>Be respectful to Tyler and his admins at all times</li>
@@ -139,7 +200,7 @@ export default function Legal() {
             </ul>
           </div>
 
-          <div className="section">
+          <div className="section" id="account">
             <h2>2. Your Account</h2>
             <ul>
               <li>Use a real photo and username</li>
@@ -150,7 +211,7 @@ export default function Legal() {
             </ul>
           </div>
 
-          <div className="section">
+          <div className="section" id="interactions">
             <h2>3. Interactions with Tyler</h2>
             <ul>
               <li>No unsolicited flirting, pickup lines, or compliments</li>
@@ -163,7 +224,7 @@ export default function Legal() {
             </ul>
           </div>
 
-          <div className="section">
+          <div className="section" id="consequences">
             <h2>4. Consequences</h2>
             <ul>
               <li><strong>1 Rep:</strong> Warning + mute</li>
@@ -173,14 +234,23 @@ export default function Legal() {
             <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
           </div>
 
-          <div className="section">
+          <div className="section" id="appeals">
             <h2>5. Appeals</h2>
             <p>
-              They may appeal via Discord in our create-a-ticket channel by creating a ticket or emailing tyler@tjbmanagementinc.com. They need to include their full username, the platform they are blocked on, what they did to get blocked, and why they would like to be unblocked.
+              To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
+            </p>
+            <ul>
+              <li>Full username</li>
+              <li>Platform they are blocked on</li>
+              <li>What they did to get blocked</li>
+              <li>Why they would like to be unblocked</li>
+            </ul>
+            <p>
+              We only overturn bans with solid evidence supporting the appeal.
             </p>
           </div>
 
-          <div className="section">
+          <div className="section" id="final-notes">
             <h2>6. Final Notes and Disclosures</h2>
             <p>
               We monitor all activity, by the use of Hallie, Tyler's AI assistant, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
@@ -194,14 +264,14 @@ export default function Legal() {
             </ul>
           </div>
 
-          <div className="section">
+          <div className="section" id="changes">
             <h2>Changes to These Policies</h2>
             <p>
               TJB Management Inc. reserves the right to update these disclaimers and guidelines at any time. Changes will be effective immediately upon posting to this page.
             </p>
           </div>
 
-          <div className="section">
+          <div className="section" id="questions">
             <h2>Questions or Concerns?</h2>
             <p>
               If you have questions about these policies, please contact us through one of our options on the <a href="/">main page</a>.
