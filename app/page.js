@@ -110,7 +110,7 @@ export default function Home() {
             border-radius: 15px;
             text-decoration: none;
             color: #fff;
-            border: 2px solid rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.15);
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
