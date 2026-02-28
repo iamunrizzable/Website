@@ -226,9 +226,7 @@ export default function Home() {
 
             <div className="bio">
               <p>
-                I'm Tyler J. Beasley, founder of TJB Management Inc. I focus on building meaningful connections, 
-                creating valuable opportunities, and maintaining a drama-free community. With a straightforward approach 
-                and genuine commitment to accountability, I work to bring people together around shared values.
+                Tyler J. Beasley. I build spaces where authenticity and accountability matter. No drama, no BS—just real people connecting on real terms. Straight to the point.
               </p>
             </div>
 
