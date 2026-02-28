@@ -63,16 +63,13 @@ export default function Legal() {
             margin-bottom: 8px;
             color: #ccc;
           }
-          li:nth-child(1) { color: #a855f7; }
-          li:nth-child(2) { color: #ec4899; }
-          li:nth-child(3) { color: #3b82f6; }
-          li:nth-child(4) { color: #10b981; }
-          li:nth-child(5) { color: #f59e0b; }
-          li:nth-child(6) { color: #8b5cf6; }
-          li:nth-child(7) { color: #06b6d4; }
-          li:nth-child(8) { color: #f97316; }
-          li:nth-child(9) { color: #06b6d4; }
-          li:nth-child(10) { color: #a855f7; }
+          li strong {
+            background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+          }
           strong { 
             font-weight: 700;
             background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981);
@@ -231,9 +228,9 @@ export default function Legal() {
               Contact information provided via all social media platforms and email channels (email, phone, social media) may be used to:
             </p>
             <ul>
-              <li>Respond to inquiries and requests</li>
-              <li>Send automated responses via Hallie, Tyler's AI assistant</li>
-              <li>Provide updates or important information</li>
+              <li><strong>Respond to inquiries and requests</strong></li>
+              <li><strong>Send automated responses via Hallie, Tyler's AI assistant</strong></li>
+              <li><strong>Provide updates or important information</strong></li>
             </ul>
             <p>
               We will not sell, rent, or share your contact information with unaffiliated third parties without a warrant.
