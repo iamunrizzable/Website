@@ -175,10 +175,9 @@ export default function Legal() {
 
           <div className="section">
             <h2>5. Appeals</h2>
-            <ul>
-              <li>File a ticket in our appeals channel</li>
-              <li>We only overturn bans with solid evidence</li>
-            </ul>
+            <p>
+              They may appeal via Discord in our create-a-ticket channel by creating a ticket or emailing tyler@tjbmanagementinc.com. They need to include their full username, the platform they are blocked on, what they did to get blocked, and why they would like to be unblocked.
+            </p>
           </div>
 
           <div className="section">
