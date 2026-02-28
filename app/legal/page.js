@@ -11,7 +11,7 @@ export default function Legal() {
             box-sizing: border-box;
           }
           body {
-            background: linear-gradient(135deg, #0f172a 0%, #0f1419 50%, #000 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #0f172a 50%, #0f172a 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: #e0e0e0;
             line-height: 1.6;
@@ -69,6 +69,13 @@ export default function Legal() {
             color: #888;
             text-align: center;
           }
+          a {
+            color: #a855f7;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
         `}</style>
       </head>
       <body>
@@ -80,7 +87,7 @@ export default function Legal() {
           <div className="section">
             <h2>AI Assistant Disclaimer</h2>
             <p>
-              This website is managed by <strong>Hallie</strong>, an AI assistant. All responses to emails, direct messages, and social media inquiries are <strong>automated and not directly reviewed by Tyler Beasley</strong> unless they are escalated as requiring his personal attention.
+              This website is managed by <strong>Hallie</strong>, Tyler's AI assistant. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by Hallie</strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
             </p>
             <p>
               Messages may be automatically categorized, filtered, or responded to based on content analysis. Only messages deemed important or requiring direct human response will be forwarded to Tyler.
@@ -100,22 +107,21 @@ export default function Legal() {
               <li>Referral source</li>
             </ul>
             <p>
-              This data is used solely for website performance optimization and security purposes. We do not share this data with third parties without consent.
+              This data is used solely for website performance optimization and security purposes. We do not share this data with third parties for any reason without your explicit consent.
             </p>
             <p>
-              For more information about Vercel's privacy practices, visit <a href="https://vercel.com/legal/privacy-policy" target="_blank" style={{color: '#a855f7'}}>Vercel's Privacy Policy</a>.
+              For more information about Vercel's privacy practices, visit <a href="https://vercel.com/legal/privacy-policy" target="_blank">Vercel's Privacy Policy</a>.
             </p>
           </div>
 
           <div className="section">
             <h2>Contact Information Use</h2>
             <p>
-              Contact information provided via this website (email, phone, social media) may be used to:
+              Contact information provided via all social media platforms and email channels (email, phone, social media) may be used to:
             </p>
             <ul>
               <li>Respond to inquiries and requests</li>
               <li>Send automated responses via AI assistant</li>
-              <li>Contact you regarding business matters</li>
               <li>Provide updates or important information</li>
             </ul>
             <p>
@@ -124,31 +130,68 @@ export default function Legal() {
           </div>
 
           <div className="section">
-            <h2>Community Guidelines</h2>
-            <p>
-              When communicating with this website or through associated channels, users agree to:
-            </p>
+            <h2>1. The Basics</h2>
             <ul>
-              <li><strong>Be Respectful:</strong> Treat all communications with professionalism and courtesy</li>
-              <li><strong>No Harassment:</strong> Do not engage in harassment, threats, or abusive behavior</li>
-              <li><strong>No Spam:</strong> Do not send unsolicited commercial messages or spam</li>
-              <li><strong>No Illegal Content:</strong> Do not share content that violates laws or regulations</li>
-              <li><strong>Intellectual Property:</strong> Respect copyrights, trademarks, and intellectual property rights</li>
-              <li><strong>Honesty:</strong> Provide truthful information in all communications</li>
+              <li>Be respectful to Tyler and his admins at all times</li>
+              <li>No harassment, threats, or stalking</li>
+              <li>No doxing or publicly sharing private info about anyone other than yourself</li>
+              <li>NSFW creators aren't welcome here</li>
             </ul>
           </div>
 
           <div className="section">
-            <h2>Limitations of Liability</h2>
+            <h2>2. Your Account</h2>
+            <ul>
+              <li>Use a real photo and username</li>
+              <li>No impersonation of anyone (especially Tyler and his admins)</li>
+              <li>Fan/parody accounts are fine if clearly marked</li>
+              <li>Ban evading gets you permanently blocked and reported</li>
+              <li>Hallie (our AI) monitors all interactions for compliance</li>
+            </ul>
+          </div>
+
+          <div className="section">
+            <h2>3. Interactions with Tyler</h2>
+            <ul>
+              <li>No unsolicited flirting, pickup lines, or compliments</li>
+              <li>Ask once for his contact — if he says no, that's it</li>
+              <li>When you message him, have an actual reason</li>
+              <li>Women under 18 can't interact with or follow Tyler</li>
+              <li>Women over 18 can only contact Tyler's work number in emergencies with prior approval</li>
+              <li>In-person meetups requested by men need explicit approval first</li>
+              <li>In person meet ups requested by women will automatically be denied</li>
+            </ul>
+          </div>
+
+          <div className="section">
+            <h2>4. Consequences</h2>
+            <ul>
+              <li><strong>1 Rep:</strong> Warning + mute</li>
+              <li><strong>2 Reps:</strong> Temporary ban</li>
+              <li><strong>3 Reps:</strong> Permanent ban + legal action if needed</li>
+            </ul>
+            <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
+          </div>
+
+          <div className="section">
+            <h2>5. Appeals</h2>
+            <ul>
+              <li>File a ticket in our appeals channel</li>
+              <li>We only overturn bans with solid evidence</li>
+            </ul>
+          </div>
+
+          <div className="section">
+            <h2>6. Final Notes and Disclosures</h2>
             <p>
-              This website and all content are provided "as is" without warranties of any kind. TJB Management Inc. is not liable for:
+              We monitor all activity, by the use of AI and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
             </p>
             <ul>
-              <li>Errors or omissions in content</li>
-              <li>Automated response accuracy or appropriateness</li>
-              <li>Delays in responding to inquiries</li>
-              <li>Loss of data or unauthorized access</li>
-              <li>Third-party actions or content</li>
+              <li>Your IP address</li>
+              <li>The patterns you use when you interact with Tyler's accounts</li>
+              <li>Hallie may use this information to track you across our social media platforms to ensure compliance</li>
+              <li>Hallie may be the one to respond to any message you send instead of Tyler giving a personal response. If and when she does, you agree that Hallie is allowed to respond to your messages, and allowed to store information you message her for review and training.</li>
+              <li>We promise to only use personal information to ensure compliance with our community guidelines and we will not share or sell your personal information with any person, business, or agency without a warrant.</li>
             </ul>
           </div>
 
@@ -162,7 +205,7 @@ export default function Legal() {
           <div className="section">
             <h2>Questions or Concerns?</h2>
             <p>
-              If you have questions about these policies, please contact us through the <a href="/" style={{color: '#a855f7'}}>contact form on our main page</a>.
+              If you have questions about these policies, please contact us through one of our options on the <a href="/">main page</a>.
             </p>
           </div>
 
