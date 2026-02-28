@@ -255,7 +255,7 @@ export default function Legal() {
               <li>No impersonation of anyone (especially Tyler and his admins)</li>
               <li>Fan/parody accounts are fine if clearly marked</li>
               <li>Ban evading gets you permanently blocked and reported</li>
-              <li>Hallie, Tyler's AI assistant, monitors all interactions for compliance</li>
+              <li><strong>Hallie, Tyler's AI assistant</strong>, monitors all interactions for compliance</li>
             </ul>
           </div>
 
