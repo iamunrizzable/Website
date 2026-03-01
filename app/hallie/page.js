@@ -23,7 +23,7 @@ export default function Hallie() {
     <>
       <style>{`
         html {
-          background: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('/bg-hallie.png') center/cover fixed !important;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png') center/cover fixed !important;
         }
         body {
           margin: 0;
@@ -58,11 +58,13 @@ export default function Hallie() {
         }
         h2:nth-of-type(2) { color: #ec4899; }
         h2:nth-of-type(3) { color: #3b82f6; }
-        .logo-section { text-align: center; margin-bottom: 40px; }
-        .logo-img { width: 250px; max-width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5)); }
         p {
           color: #a0aec0;
           margin-bottom: 15px;
+        }
+        li {
+          color: #a0aec0;
+          margin-bottom: 8px;
         }
         strong { 
           font-weight: 700;
@@ -184,9 +186,6 @@ export default function Hallie() {
       </div>
 
       <main>
-        <div className="logo-section">
-          <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
-        </div>
         <a href="/" className="back-link">← Back to Home</a>
         
         <h1>Meet Hallie</h1>
