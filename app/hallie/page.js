@@ -23,7 +23,7 @@ export default function Hallie() {
     <>
       <style>{`
         html {
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png') center/cover fixed !important;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png?t=fresh') center/cover fixed !important;
         }
         body {
           margin: 0;
