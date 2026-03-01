@@ -20,18 +20,15 @@ export default function Tyler() {
   }, []);
 
   return (
-    <html>
-      <head>
-        <title>Meet Tyler - Tyler J. Beasley</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style>{`
+    <>
+      <style>{`
           * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
           }
           body {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.jpg') center/cover fixed;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.png') center/cover fixed !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
           }
@@ -229,7 +226,6 @@ export default function Tyler() {
             <p>© 2026 TJB Management Inc. All rights reserved.</p>
           </div>
         </main>
-      </body>
-    </html>
+    </>
   );
 }
