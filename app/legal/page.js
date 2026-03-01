@@ -294,9 +294,9 @@ export default function Legal() {
             </p>
             <ul>
               <li>Full username</li>
-              <li>Platform they are blocked on</li>
-              <li>What they did to get blocked</li>
-              <li>Why they would like to be unblocked</li>
+              <li>Platform you are blocked on</li>
+              <li>What you did to get blocked</li>
+              <li>Why you want to be unblocked</li>
             </ul>
             <p>
               We only overturn bans with solid evidence supporting the appeal.
