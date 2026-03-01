@@ -31,7 +31,7 @@ export default function Legal() {
             box-sizing: border-box;
           }
           body {
-            background-color: #0f172a;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover fixed;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
           }
@@ -228,17 +228,11 @@ export default function Legal() {
       <body>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
         <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
-          <a href="#ai-disclaimer" onClick={() => setMenuOpen(false)}>AI Assistant Disclaimer</a>
-          <a href="#data-collection" onClick={() => setMenuOpen(false)}>Data Collection & Privacy</a>
-          <a href="#contact-info" onClick={() => setMenuOpen(false)}>Contact Information Use</a>
-          <a href="#basics" onClick={() => setMenuOpen(false)}>1. The Basics</a>
-          <a href="#account" onClick={() => setMenuOpen(false)}>2. Your Account</a>
-          <a href="#interactions" onClick={() => setMenuOpen(false)}>3. Interactions with Tyler</a>
-          <a href="#consequences" onClick={() => setMenuOpen(false)}>4. Consequences</a>
-          <a href="#appeals" onClick={() => setMenuOpen(false)}>5. Appeals</a>
-          <a href="#final-notes" onClick={() => setMenuOpen(false)}>6. Final Notes and Disclosures</a>
-          <a href="#changes" onClick={() => setMenuOpen(false)}>Changes to These Policies</a>
-          <a href="#questions" onClick={() => setMenuOpen(false)}>Questions or Concerns?</a>
+          <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+          <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
+          <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         </div>
         <main>
           <div className="logo-section">
