@@ -228,7 +228,19 @@ export default function Contact() {
         .menu-dropdown a:hover {
           background-color: rgba(168, 85, 247, 0.1);
         }
+        .fade-top {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 200px;
+          background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), transparent);
+          z-index: 50;
+          pointer-events: none;
+        }
       `}</style>
+
+      <div className="fade-top"></div>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
