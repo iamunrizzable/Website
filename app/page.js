@@ -24,6 +24,7 @@ export default function Home() {
           align-items: center;
           padding: 20px;
           position: relative;
+          z-index: 10;
         }
         .bg-orbs {
           position: fixed;
@@ -205,7 +206,7 @@ export default function Home() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          z-index: 5;
+          z-index: -1;
           pointer-events: none;
         }
         .watermark-glow {
