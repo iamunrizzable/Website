@@ -19,9 +19,7 @@ export default function Home() {
           body {
             background-color: #0f172a;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #fff;
             overflow-x: hidden;
-            text-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(236, 72, 153, 0.2);
           }
           main {
             min-height: 100vh;
@@ -179,7 +177,13 @@ export default function Home() {
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 14px;
-            color: #888;
+          }
+          .footer p {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
           }
           @media (max-width: 640px) {
             .logo-img {
