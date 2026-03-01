@@ -222,6 +222,7 @@ export default function Home() {
 
             <div className="nav-buttons">
               <a href="/hallie" className="nav-button">Meet Hallie</a>
+              <a href="/tyler" className="nav-button">Meet Tyler</a>
               <a href="/contact" className="nav-button">Contact</a>
               <a href="/legal" className="nav-button">Legal & Guidelines</a>
             </div>
