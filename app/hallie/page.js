@@ -16,7 +16,7 @@ export default function Hallie() {
           main { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0f172a; }
           h1 { color: #fff; margin-bottom: 30px; font-size: 32px; }
           h2 { color: #a855f7; margin-top: 40px; margin-bottom: 15px; font-size: 24px; }
-          p { margin-bottom: 15px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; }
+          p { margin-bottom: 15px; background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; }
           .back-link { display: inline-block; margin-bottom: 30px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; font-weight: 700; }
           .back-link:hover { text-decoration: underline; }
           .section { padding: 20px; border-left: 4px solid #a855f7; margin-bottom: 30px; border-radius: 5px; background: rgba(168, 85, 247, 0.05); }
