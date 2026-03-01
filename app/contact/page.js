@@ -21,7 +21,7 @@ export default function Contact() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #fff; text-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(236, 72, 153, 0.2); }
+          body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
           main { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: relative; background-color: #0f172a; }
           .bg-orbs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
           .orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: float 8s ease-in-out infinite; }
@@ -53,11 +53,11 @@ export default function Contact() {
           .contact-card:hover .contact-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
           .contact-name { font-size: 16px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.2); letter-spacing: 0.5px; }
           .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #999; }
-          .footer-text { margin-bottom: 10px; }
+          .footer-text { margin-bottom: 10px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           .hallie-link { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; text-decoration: none; cursor: pointer; }
           .hallie-link:hover { text-decoration: underline; }
-          .footer-disclaimer { font-size: 12px; color: #666; margin-top: 15px; }
-          .footer-disclaimer a { color: #a855f7; text-decoration: none; }
+          .footer-disclaimer { font-size: 12px; margin-top: 15px; background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+          .footer-disclaimer a { background: linear-gradient(90deg, #a855f7, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; text-decoration: none; }
           .footer-disclaimer a:hover { text-decoration: underline; }
         `}</style>
       </head>
