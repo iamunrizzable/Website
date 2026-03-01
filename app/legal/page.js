@@ -76,14 +76,14 @@ export default function Legal() {
             background-clip: text;
             font-weight: 700;
           }
-          li strong a {
+          strong a {
             background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-decoration: none;
           }
-          li strong a:hover {
+          strong a:hover {
             text-decoration: underline;
           }
           strong { 
@@ -211,7 +211,7 @@ export default function Legal() {
           <div className="section" id="ai-disclaimer">
             <h2>AI Assistant Disclaimer</h2>
             <p>
-              This website is managed by <strong>Hallie, Tyler's AI assistant</strong>. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by Hallie, Tyler's AI assistant</strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
+              This website is managed by <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by <a href="/hallie">Hallie, Tyler's AI assistant</a></strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
             </p>
             <p>
               Messages may be automatically categorized, filtered, or responded to based on content analysis. Only messages deemed important or requiring direct human response will be forwarded to Tyler.
