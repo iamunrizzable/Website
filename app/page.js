@@ -224,7 +224,7 @@ export default function Home() {
           width: 80vw;
           height: auto;
           filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
-          opacity: 0.6;
+          opacity: 0.15;
         }
       `}</style>
 
