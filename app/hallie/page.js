@@ -23,7 +23,7 @@ export default function Hallie() {
     <>
       <style>{`
         body {
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png') center/cover fixed !important;
+          background: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.5)), url('/bg-hallie.png') center/cover fixed !important;
         }
         @keyframes glowPulse {
           0%, 100% { 
