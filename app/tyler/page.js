@@ -28,7 +28,7 @@ export default function Tyler() {
             box-sizing: border-box;
           }
           body {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.png') center/cover fixed !important;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.jpg') center/cover fixed !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
           }
