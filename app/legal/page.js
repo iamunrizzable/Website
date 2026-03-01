@@ -22,28 +22,16 @@ export default function Legal() {
   return (
     <>
       <style>{`
-        body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 100vw;
-          height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-          background-repeat: no-repeat;
-          z-index: -2;
-          pointer-events: none;
-        }
         body {
           margin: 0;
           padding: 0;
-          background: transparent;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
+          background-size: cover;
+          background-position: center center;
+          background-attachment: fixed;
+          background-repeat: no-repeat;
         }
+        
         @keyframes glowPulse {
           0%, 100% { 
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
@@ -52,6 +40,7 @@ export default function Legal() {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
+        
         main {
           max-width: 900px;
           margin: 0 auto;
@@ -59,12 +48,14 @@ export default function Legal() {
           position: relative;
           z-index: 10;
         }
+        
         h1 {
           color: #fff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
         }
+        
         h2 {
           color: #a855f7;
           margin-top: 40px;
@@ -72,14 +63,17 @@ export default function Legal() {
           font-size: 20px;
           animation: glowPulse 3s ease-in-out infinite;
         }
+        
         p {
           color: #a0aec0;
           margin-bottom: 15px;
         }
+        
         li {
           color: #a0aec0;
           margin-bottom: 8px;
         }
+        
         strong { 
           font-weight: 700;
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
@@ -87,6 +81,7 @@ export default function Legal() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+        
         strong a {
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
           -webkit-background-clip: text;
@@ -94,9 +89,11 @@ export default function Legal() {
           background-clip: text;
           text-decoration: none;
         }
+        
         strong a:hover {
           text-decoration: underline;
         }
+        
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
@@ -104,9 +101,11 @@ export default function Legal() {
           text-decoration: none;
           font-weight: 500;
         }
+        
         .back-link:hover {
           text-decoration: underline;
         }
+        
         .section {
           padding: 20px;
           border-left: 4px solid #a855f7;
@@ -117,14 +116,17 @@ export default function Legal() {
           opacity: 0;
           transform: translateY(20px);
         }
+        
         .section.visible {
           opacity: 1;
           transform: translateY(0);
         }
+        
         ul {
           margin-left: 20px;
           margin-bottom: 15px;
         }
+        
         .footer {
           margin-top: 60px;
           padding-top: 20px;
@@ -133,13 +135,16 @@ export default function Legal() {
           color: #8b9dc3;
           text-align: center;
         }
+        
         a {
           color: #a855f7;
           text-decoration: none;
         }
+        
         a:hover {
           text-decoration: underline;
         }
+        
         .menu-button {
           position: fixed;
           top: 20px;
@@ -155,11 +160,13 @@ export default function Legal() {
           font-size: 16px;
           transition: all 0.3s ease;
         }
+        
         .menu-button:hover {
           background-color: #9333ea;
           transform: scale(1.05);
           box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
         }
+        
         .menu-dropdown {
           display: none;
           position: fixed;
@@ -173,9 +180,11 @@ export default function Legal() {
           z-index: 101;
           box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
+        
         .menu-dropdown.active {
           display: block;
         }
+        
         .menu-dropdown a {
           display: block;
           padding: 10px 20px;
@@ -184,12 +193,15 @@ export default function Legal() {
           border-bottom: 1px solid rgba(168, 85, 247, 0.2);
           transition: background-color 0.2s;
         }
+        
         .menu-dropdown a:last-child {
           border-bottom: none;
         }
+        
         .menu-dropdown a:hover {
           background-color: rgba(168, 85, 247, 0.1);
         }
+        
         .fade-top {
           position: fixed;
           top: 0;
@@ -200,6 +212,7 @@ export default function Legal() {
           z-index: 50;
           pointer-events: none;
         }
+        
         .watermark {
           position: fixed;
           top: 50%;
@@ -208,6 +221,7 @@ export default function Legal() {
           z-index: -1;
           pointer-events: none;
         }
+        
         .watermark-glow {
           position: absolute;
           inset: -40px;
@@ -216,6 +230,7 @@ export default function Legal() {
           filter: blur(40px);
           animation: glowPulse 4s ease-in-out infinite;
         }
+        
         .watermark-img {
           position: relative;
           z-index: 1;
