@@ -19,9 +19,13 @@ export default function Legal() {
           body {
             background-color: #0f172a;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #ccc;
             line-height: 1.6;
-            text-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(236, 72, 153, 0.2);
+          }
+          p {
+            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
           }
           main {
             max-width: 900px;
