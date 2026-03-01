@@ -22,8 +22,13 @@ export default function Legal() {
   return (
     <>
       <style>{`
-        body {
+        html {
           background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover fixed !important;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          background: transparent;
         }
         @keyframes glowPulse {
           0%, 100% { 
