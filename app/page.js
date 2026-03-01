@@ -8,8 +8,16 @@ export default function Home() {
   return (
     <>
       <style>{`
-        html {
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover fixed !important;
+        body::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover no-repeat;
+          z-index: -2;
+          pointer-events: none;
         }
         body {
           margin: 0;
