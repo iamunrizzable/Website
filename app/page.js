@@ -17,7 +17,7 @@ export default function Home() {
             box-sizing: border-box;
           }
           body {
-            background-color: #0f172a;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover fixed;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow-x: hidden;
           }
@@ -206,6 +206,7 @@ export default function Home() {
         <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
           <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
           <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+          <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
           <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
           <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         </div>
