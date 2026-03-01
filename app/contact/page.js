@@ -21,7 +21,7 @@ export default function Contact() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>{`
           * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+          body { background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover fixed; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
           .contact-name { font-size: 16px; font-weight: 700; letter-spacing: 0.5px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           main { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: relative; background-color: #0f172a; }
           .bg-orbs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
@@ -73,6 +73,7 @@ export default function Contact() {
         <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
           <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
           <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+          <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
           <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
           <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         </div>
