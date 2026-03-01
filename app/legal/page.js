@@ -121,6 +121,13 @@ export default function Legal() {
           .section:nth-of-type(9) { border-left-color: #f97316; background: rgba(249, 115, 22, 0.08); }
           .section:nth-of-type(10) { border-left-color: #06b6d4; background: rgba(6, 182, 212, 0.08); }
           .section:nth-of-type(11) { border-left-color: #ec0016; background: rgba(236, 0, 22, 0.08); }
+          #final-notes li {
+            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+          }
           .footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -316,7 +323,7 @@ export default function Legal() {
           <div className="section" id="final-notes">
             <h2>6. Final Notes and Disclosures</h2>
             <p>
-              We monitor all activity, by the use of <strong>Hallie, Tyler's AI assistant</strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
+              We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
             </p>
             <ul>
               <li>Your IP address</li>
