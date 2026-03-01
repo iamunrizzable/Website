@@ -22,14 +22,13 @@ export default function Tyler() {
   return (
     <>
       <style>{`
-        html, body {
-          height: 100%;
-          min-height: 100vh;
+        html {
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.jpg?t=fresh') center/cover fixed !important;
         }
         body {
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.jpg?t=fresh') center/cover fixed !important;
           margin: 0;
           padding: 0;
+          background: transparent;
         }
         @keyframes glowPulse {
           0%, 100% { 
