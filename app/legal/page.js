@@ -21,12 +21,20 @@ export default function Legal() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
           }
-          p, li, .footer, a {
-            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 500;
+          p {
+            color: #a0aec0;
+            margin-bottom: 15px;
+          }
+          li {
+            color: #a0aec0;
+            margin-bottom: 8px;
+          }
+          .footer {
+            color: #8b9dc3;
+          }
+          a {
+            color: #a855f7;
+            text-decoration: none;
           }
           main {
             max-width: 900px;
@@ -57,17 +65,9 @@ export default function Legal() {
           h2:nth-of-type(11) { color: #ec0016; }
           .logo-section { text-align: center; margin-bottom: 40px; }
           .logo-img { width: 250px; max-width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5)); }
-          p {
-            margin-bottom: 15px;
-            color: #ccc;
-          }
           ul {
             margin-left: 20px;
             margin-bottom: 15px;
-          }
-          li {
-            margin-bottom: 8px;
-            color: #ccc;
           }
           li strong {
             background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
