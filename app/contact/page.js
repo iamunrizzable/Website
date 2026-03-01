@@ -22,6 +22,7 @@ export default function Contact() {
         <style>{`
           * { margin: 0; padding: 0; box-sizing: border-box; }
           body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+          .contact-name { font-size: 16px; font-weight: 700; letter-spacing: 0.5px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           main { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; position: relative; background-color: #0f172a; }
           .bg-orbs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
           .orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: float 8s ease-in-out infinite; }
@@ -51,7 +52,7 @@ export default function Contact() {
           .contact-card:hover { transform: translateY(-12px) scale(1.02); border-color: rgba(255,255,255,0.5); box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor; filter: brightness(1.1); }
           .contact-icon { font-size: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); transition: all 0.3s ease; }
           .contact-card:hover .contact-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
-          .contact-name { font-size: 16px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.2); letter-spacing: 0.5px; }
+          .contact-name { font-size: 16px; font-weight: 700; letter-spacing: 0.5px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #999; }
           .footer-text { margin-bottom: 10px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           .hallie-link { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; text-decoration: none; cursor: pointer; }
