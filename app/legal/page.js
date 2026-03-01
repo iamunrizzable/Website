@@ -42,6 +42,8 @@ export default function Legal() {
           max-width: 900px;
           margin: 0 auto;
           padding: 40px 20px;
+          position: relative;
+          z-index: 10;
         }
         h1 {
           color: #fff;
@@ -189,7 +191,7 @@ export default function Legal() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          z-index: 5;
+          z-index: -1;
           pointer-events: none;
         }
         .watermark-glow {
