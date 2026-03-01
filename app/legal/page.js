@@ -27,9 +27,15 @@ export default function Legal() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') center/cover no-repeat;
+          right: 0;
+          bottom: 0;
+          width: 100vw;
+          height: 100vh;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          background-repeat: no-repeat;
           z-index: -2;
           pointer-events: none;
         }
