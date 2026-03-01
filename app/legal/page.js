@@ -245,7 +245,7 @@ export default function Legal() {
             </p>
             <ul>
               <li><strong>Respond to inquiries and requests</strong></li>
-              <li><strong><a href="/hallie">Send automated responses via Hallie, Tyler's AI assistant</a></strong></li>
+              <li>Send automated responses via <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong></li>
               <li><strong>Provide updates or important information</strong></li>
             </ul>
             <p>
