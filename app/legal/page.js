@@ -380,7 +380,6 @@ export default function Legal() {
             <p>© 2026 TJB Management Inc. All rights reserved.</p>
           </div>
         </main>
-      </body>
-    </html>
+    </>
   );
 }
