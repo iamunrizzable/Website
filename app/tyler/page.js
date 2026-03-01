@@ -183,9 +183,8 @@ export default function Tyler() {
             background-color: rgba(168, 85, 247, 0.1);
           }
         `}</style>
-      </head>
-      <body>
-        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+
+      <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
         <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
           <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
           <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
