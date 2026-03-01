@@ -76,6 +76,16 @@ export default function Legal() {
             background-clip: text;
             font-weight: 700;
           }
+          li strong a {
+            background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+          }
+          li strong a:hover {
+            text-decoration: underline;
+          }
           strong { 
             font-weight: 700;
             background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
@@ -235,7 +245,7 @@ export default function Legal() {
             </p>
             <ul>
               <li><strong>Respond to inquiries and requests</strong></li>
-              <li><strong>Send automated responses via Hallie, Tyler's AI assistant</strong></li>
+              <li><strong><a href="/hallie">Send automated responses via Hallie, Tyler's AI assistant</a></strong></li>
               <li><strong>Provide updates or important information</strong></li>
             </ul>
             <p>
