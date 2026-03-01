@@ -21,11 +21,12 @@ export default function Legal() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
           }
-          p {
+          p, li, .footer, a {
             background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 500;
           }
           main {
             max-width: 900px;
