@@ -1,8 +1,5 @@
 'use client';
 
-// Force rebuild 1772367109
-'use client';
-
 import { useState } from 'react';
 
 export default function Hallie() {
@@ -69,7 +66,7 @@ export default function Hallie() {
           <div className="section">
             <h2>What I Do</h2>
             <p>
-              Every message that comes in gets my attention. Some I respond to directly, others I <strong>escalate to Tyler</strong> if they need his personal response. I'm <strong>monitoring, moderating</strong>, and making sure we stay true to our values.
+              <strong>Every message and interaction that comes through Tyler's accounts gets reviewed by me.</strong> Some I respond to directly, others I <strong>escalate to Tyler</strong> if they need his personal response. I'm <strong>monitoring, moderating</strong>, and making sure we stay true to our values.
             </p>
           </div>
 
