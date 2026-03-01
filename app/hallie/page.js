@@ -57,8 +57,12 @@ export default function Hallie() {
             background-color: #0f172a;
           }
           @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
-            50% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 30px rgba(236, 72, 153, 0.4); }
+            0%, 100% { 
+              text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
+            }
+            50% { 
+              text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
+            }
           }
           h1 {
             color: #fff;
