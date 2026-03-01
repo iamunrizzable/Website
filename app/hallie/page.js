@@ -15,19 +15,19 @@ export default function Hallie() {
           body { background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
           main { max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #0f172a; }
           h1 { color: #fff; margin-bottom: 30px; font-size: 32px; }
-          h2 { color: #06b6d4; margin-top: 40px; margin-bottom: 15px; font-size: 24px; }
-          p { margin-bottom: 15px; background: linear-gradient(90deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; }
-          .back-link { display: inline-block; margin-bottom: 30px; background: linear-gradient(90deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; font-weight: 700; }
+          h2 { color: #a855f7; margin-top: 40px; margin-bottom: 15px; font-size: 24px; }
+          p { margin-bottom: 15px; background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500; }
+          .back-link { display: inline-block; margin-bottom: 30px; background: linear-gradient(90deg, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; font-weight: 700; }
           .back-link:hover { text-decoration: underline; }
-          .section { padding: 20px; border-left: 4px solid #06b6d4; margin-bottom: 30px; border-radius: 5px; background: rgba(6, 182, 212, 0.05); }
-          .section:nth-of-type(1) { border-left-color: #06b6d4; background: rgba(6, 182, 212, 0.05); }
-          .section:nth-of-type(2) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
-          .section h2:nth-of-type(1) { color: #06b6d4; }
-          .section:nth-of-type(2) h2 { color: #3b82f6; }
-          strong { font-weight: 700; background: linear-gradient(90deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+          .section { padding: 20px; border-left: 4px solid #a855f7; margin-bottom: 30px; border-radius: 5px; background: rgba(168, 85, 247, 0.05); }
+          .section:nth-of-type(1) { border-left-color: #a855f7; background: rgba(168, 85, 247, 0.05); }
+          .section:nth-of-type(2) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
+          .section h2:nth-of-type(1) { color: #a855f7; }
+          .section:nth-of-type(2) h2 { color: #ec4899; }
+          strong { font-weight: 700; background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
           .logo-section { text-align: center; margin-bottom: 40px; }
           .logo-img { width: 250px; max-width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5)); }
-          .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; background: linear-gradient(90deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; }
+          .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; }
           .menu-button { position: fixed; top: 20px; right: 20px; background-color: #a855f7; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px; }
           .menu-button:hover { background-color: #9333ea; }
           .menu-dropdown { display: none; position: fixed; top: 60px; right: 20px; background-color: #0f172a; border: 2px solid #a855f7; border-radius: 5px; padding: 10px 0; min-width: 200px; z-index: 101; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
