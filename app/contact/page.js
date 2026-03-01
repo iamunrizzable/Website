@@ -53,8 +53,12 @@ export default function Contact() {
           .contact-card:hover .contact-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
           .contact-name { font-size: 16px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.2); letter-spacing: 0.5px; }
           .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #999; }
-          .hallie { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; cursor: pointer; text-decoration: none; }
-          .hallie:hover { text-decoration: underline; }
+          .footer-text { margin-bottom: 10px; }
+          .hallie-link { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; text-decoration: none; cursor: pointer; }
+          .hallie-link:hover { text-decoration: underline; }
+          .footer-disclaimer { font-size: 12px; color: #666; margin-top: 15px; }
+          .footer-disclaimer a { color: #a855f7; text-decoration: none; }
+          .footer-disclaimer a:hover { text-decoration: underline; }
         `}</style>
       </head>
       <body>
@@ -94,8 +98,8 @@ export default function Contact() {
             </div>
 
             <div className="footer">
-              <p>Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
-              <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
+              <p className="footer-text">Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
+              <p className="footer-disclaimer">This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal">legal disclaimers and guidelines</a>.</p>
               <p>© 2026 TJB Management Inc.</p>
             </div>
           </div>
