@@ -5,6 +5,20 @@ import { useState } from 'react';
 export default function Legal() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  React.useEffect(() => {
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <html>
       <head>
@@ -109,7 +123,13 @@ export default function Legal() {
             margin-bottom: 30px;
             border-radius: 5px;
             background: rgba(168, 85, 247, 0.05);
-            transition: all 0.3s ease;
+            transition: all 0.6s ease;
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          .section.visible {
+            opacity: 1;
+            transform: translateY(0);
           }
           .section:nth-of-type(2) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
           .section:nth-of-type(3) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
@@ -156,9 +176,12 @@ export default function Legal() {
             font-weight: bold;
             z-index: 100;
             font-size: 16px;
+            transition: all 0.3s ease;
           }
           .menu-button:hover {
             background-color: #9333ea;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
           }
           .menu-dropdown {
             display: none;
