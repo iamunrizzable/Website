@@ -22,7 +22,18 @@ export default function Hallie() {
   return (
     <>
       <style>{`
-        html {
+        body::before {
+          content: "";
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png") center/cover no-repeat;
+          z-index: -2;
+          pointer-events: none;
+        }
+        body {
           background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png') center/cover fixed !important;
         }
         body {
