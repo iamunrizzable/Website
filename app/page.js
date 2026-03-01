@@ -190,7 +190,19 @@ export default function Home() {
             grid-template-columns: 1fr;
           }
         }
+        .fade-top {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 200px;
+          background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), transparent);
+          z-index: 50;
+          pointer-events: none;
+        }
       `}</style>
+
+      <div className="fade-top"></div>
 
       <div className="bg-orbs">
         <div className="orb orb1"></div>
