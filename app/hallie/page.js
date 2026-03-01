@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Hallie() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -56,16 +56,22 @@ export default function Hallie() {
             padding: 40px 20px;
             background-color: #0f172a;
           }
+          @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+            50% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 30px rgba(236, 72, 153, 0.4); }
+          }
           h1 {
             color: #fff;
             margin-bottom: 30px;
             font-size: 32px;
+            animation: glowPulse 3s ease-in-out infinite;
           }
           h2 {
             color: #a855f7;
             margin-top: 40px;
             margin-bottom: 15px;
             font-size: 20px;
+            animation: glowPulse 3s ease-in-out infinite;
           }
           h2:nth-of-type(2) { color: #ec4899; }
           h2:nth-of-type(3) { color: #3b82f6; }
