@@ -25,14 +25,15 @@ export default function Legal() {
         body {
           margin: 0;
           padding: 0;
-          position: relative;
+          background-color: #0f172a;
         }
         
-        body::before {
-          content: '';
+        .bg-fixed {
           position: fixed;
           top: 0;
           left: 0;
+          right: 0;
+          bottom: 0;
           width: 100vw;
           height: 100vh;
           background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
@@ -41,6 +42,7 @@ export default function Legal() {
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
+          will-change: transform;
         }
         
         @keyframes glowPulse {
@@ -252,6 +254,8 @@ export default function Legal() {
           opacity: 0.15;
         }
       `}</style>
+
+      <div className="bg-fixed"></div>
 
       <div className="fade-top"></div>
 
