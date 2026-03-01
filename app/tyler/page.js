@@ -27,7 +27,7 @@ export default function Tyler() {
           min-height: 100vh;
         }
         body {
-          background: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('/bg-tyler.jpg?t=fresh') center/cover fixed !important;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-tyler.jpg?t=fresh') center/cover fixed !important;
           margin: 0;
           padding: 0;
         }
@@ -99,7 +99,7 @@ export default function Tyler() {
           border-left: 4px solid #a855f7;
           margin-bottom: 30px;
           border-radius: 5px;
-          background: transparent;
+          background: rgba(168, 85, 247, 0.05);
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
@@ -108,8 +108,8 @@ export default function Tyler() {
           opacity: 1;
           transform: translateY(0);
         }
-        .section:nth-of-type(2) { border-left-color: #ec4899; }
-        .section:nth-of-type(3) { border-left-color: #3b82f6; }
+        .section:nth-of-type(2) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
+        .section:nth-of-type(3) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
         .footer {
           margin-top: 60px;
           padding-top: 20px;
