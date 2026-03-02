@@ -30,8 +30,8 @@ export default function Legal() {
           width: 100vw;
           height: 100vh;
           background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-home.png");
-          background-size: cover;
-          background-position: center 60%;
+          background-size: contain;
+          background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
