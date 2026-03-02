@@ -36,10 +36,9 @@ export default function Legal() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-size: contain;
-          background-position: center center;
+          background-size: cover;
+          background-position: center 60%;
           background-repeat: no-repeat;
-          background-color: #000000;
           z-index: -3;
           pointer-events: none;
           margin: 0;
