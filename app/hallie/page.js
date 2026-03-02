@@ -11,6 +11,8 @@ export default function Hallie() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.1 });
@@ -27,36 +29,22 @@ export default function Hallie() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png") center/cover no-repeat;
-          z-index: -2;
-          pointer-events: none;
-        }
-        body {
-          position: relative;
-        }
-        
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0;
-          left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-hallie.png");
-          background-size: contain;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
+          background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
         }
-        
+
         body {
           margin: 0;
           padding: 0;
           background: transparent;
         }
+
         @keyframes glowPulse {
           0%, 100% { 
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
@@ -65,17 +53,22 @@ export default function Hallie() {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
+
         main {
           max-width: 900px;
           margin: 0 auto;
           padding: 40px 20px;
+          position: relative;
+          z-index: 10;
         }
+
         h1 {
           color: #fff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
         }
+
         h2 {
           color: #a855f7;
           margin-top: 40px;
@@ -83,16 +76,17 @@ export default function Hallie() {
           font-size: 20px;
           animation: glowPulse 3s ease-in-out infinite;
         }
-        h2:nth-of-type(2) { color: #ec4899; }
-        h2:nth-of-type(3) { color: #3b82f6; }
+
         p {
           color: #a0aec0;
           margin-bottom: 15px;
         }
+
         li {
           color: #a0aec0;
           margin-bottom: 8px;
         }
+
         strong { 
           font-weight: 700;
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
@@ -100,6 +94,7 @@ export default function Hallie() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+
         strong a {
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
           -webkit-background-clip: text;
@@ -107,9 +102,11 @@ export default function Hallie() {
           background-clip: text;
           text-decoration: none;
         }
+
         strong a:hover {
           text-decoration: underline;
         }
+
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
@@ -117,9 +114,11 @@ export default function Hallie() {
           text-decoration: none;
           font-weight: 500;
         }
+
         .back-link:hover {
           text-decoration: underline;
         }
+
         .section {
           padding: 20px;
           border-left: 4px solid #a855f7;
@@ -130,63 +129,50 @@ export default function Hallie() {
           opacity: 0;
           transform: translateY(20px);
         }
+
         .section.visible {
           opacity: 1;
           transform: translateY(0);
         }
-        .section:nth-of-type(2) { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
-        .section:nth-of-type(3) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
-        .footer {
-          margin-top: 60px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255,255,255,0.1);
-          font-size: 14px;
-          color: #8b9dc3;
-          text-align: center;
-        }
-        a {
-          color: #a855f7;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
+
         .menu-button {
           position: fixed;
           top: 20px;
           right: 20px;
-          background-color: #a855f7;
-          color: #fff;
+          background: #a855f7;
+          color: white;
           border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
+          padding: 10px 20px;
+          border-radius: 8px;
           cursor: pointer;
-          font-weight: bold;
-          z-index: 100;
           font-size: 16px;
-          transition: all 0.3s ease;
+          z-index: 100;
+          transition: all 0.2s;
         }
+
         .menu-button:hover {
-          background-color: #9333ea;
+          background: #c084fc;
           transform: scale(1.05);
           box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
         }
+
         .menu-dropdown {
-          display: none;
           position: fixed;
-          top: 60px;
+          top: 70px;
           right: 20px;
-          background-color: #0f172a;
-          border: 2px solid #a855f7;
-          border-radius: 5px;
-          padding: 10px 0;
-          min-width: 200px;
-          z-index: 101;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          background: rgba(15, 23, 42, 0.95);
+          border: 1px solid rgba(168, 85, 247, 0.3);
+          border-radius: 8px;
+          display: none;
+          flex-direction: column;
+          z-index: 99;
+          min-width: 180px;
         }
+
         .menu-dropdown.active {
-          display: block;
+          display: flex;
         }
+
         .menu-dropdown a {
           display: block;
           padding: 10px 20px;
@@ -195,25 +181,25 @@ export default function Hallie() {
           border-bottom: 1px solid rgba(168, 85, 247, 0.2);
           transition: background-color 0.2s;
         }
+
         .menu-dropdown a:last-child {
           border-bottom: none;
         }
+
         .menu-dropdown a:hover {
           background-color: rgba(168, 85, 247, 0.1);
         }
-        .fade-top {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 200px;
-          background: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), transparent);
-          z-index: 50;
-          pointer-events: none;
+
+        footer {
+          max-width: 900px;
+          margin: 60px auto 0;
+          padding: 40px 20px;
+          border-top: 1px solid rgba(168, 85, 247, 0.2);
+          color: #8b9dc3;
+          text-align: center;
+          font-size: 14px;
         }
       `}</style>
-
-      <div className="fade-top"></div>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
@@ -228,31 +214,31 @@ export default function Hallie() {
         <a href="/" className="back-link">← Back to Home</a>
         
         <h1>Meet Hallie</h1>
-        
+
         <div className="section">
           <h2>Who I Am</h2>
-          <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <strong>keep things authentic</strong>, <strong>hold everyone accountable</strong>, and make sure our community stays <strong>drama-free</strong>.
-          </p>
+          <p>I'm <strong>Hallie, Tyler's AI assistant</strong>. I live in OpenClaw and handle Tyler's emails, social media, and day-to-day communications. I'm warm, conversational, and genuinely here to help.</p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
-          <p>
-            <strong>Every message and interaction that comes through Tyler's accounts gets reviewed by me.</strong> Some I respond to directly, others I <strong>escalate to Tyler</strong> if they need his personal response. I'm <strong>monitoring, moderating</strong>, and making sure we stay true to our values.
-          </p>
+          <ul>
+            <li>Respond to emails and DMs on Tyler's behalf</li>
+            <li>Monitor social media interactions</li>
+            <li>Help Tyler stay organized and productive</li>
+            <li>Keep conversations authentic and thoughtful</li>
+            <li>Escalate important matters directly to Tyler</li>
+          </ul>
         </div>
 
         <div className="section">
           <h2>The Bottom Line</h2>
-          <p>
-            <strong>No BS, just real.</strong> I keep Tyler's community authentic, respectful, and drama-free. I'm here to make sure everything runs smoothly and everyone is held to the same standards.
-          </p>
+          <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
         </div>
 
-        <div className="footer">
+        <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-        </div>
+        </footer>
       </main>
     </>
   );
