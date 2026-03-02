@@ -6,21 +6,18 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const navButtons = document.querySelector('.nav-buttons');
-    if (!navButtons) return;
-
+    const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const buttons = entry.target.querySelectorAll('.nav-button');
         if (entry.isIntersecting) {
-          buttons.forEach(btn => btn.classList.add('visible'));
+          entry.target.classList.add('visible');
         } else {
-          buttons.forEach(btn => btn.classList.remove('visible'));
+          entry.target.classList.remove('visible');
         }
       });
-    }, { threshold: [0, 1] });
-
-    observer.observe(navButtons);
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
@@ -49,20 +46,24 @@ export default function Home() {
         }
 
         main {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          max-width: 900px;
+          margin: 0 auto;
           padding: 40px 20px;
           position: relative;
           z-index: 10;
-          max-width: 900px;
-          margin: 0 auto;
-          min-height: auto;
         }
 
         .logo-section {
           margin-bottom: 60px;
           text-align: center;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.6s ease;
+        }
+
+        .logo-section.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .logo-img {
@@ -78,7 +79,15 @@ export default function Home() {
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 20px;
           width: 100%;
-          margin-bottom: 40px;
+          margin-bottom: 60px;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.6s ease;
+        }
+
+        .nav-buttons.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .nav-button {
@@ -91,15 +100,8 @@ export default function Home() {
           font-weight: 600;
           font-size: 16px;
           cursor: pointer;
-          transition: all 0.6s ease;
+          transition: all 0.3s ease;
           display: block;
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        .nav-button.visible {
-          opacity: 1;
-          transform: translateY(0);
         }
 
         .nav-button:hover {
@@ -110,9 +112,16 @@ export default function Home() {
         .footer {
           margin-top: 60px;
           padding-top: 30px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
           text-align: center;
           font-size: 14px;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.6s ease;
+        }
+
+        .footer.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .footer p {
@@ -199,18 +208,18 @@ export default function Home() {
       </div>
 
       <main>
-        <div className="logo-section">
+        <div className="logo-section section">
           <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
         </div>
 
-        <div className="nav-buttons">
+        <div className="nav-buttons section">
           <a href="/hallie" className="nav-button">Meet Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
           <a href="/contact" className="nav-button">Contact</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
         </div>
 
-        <div className="footer">
+        <div className="footer section">
           <p>© 2026 TJB Management Inc.</p>
         </div>
       </main>
