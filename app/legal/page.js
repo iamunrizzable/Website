@@ -230,7 +230,7 @@ export default function Legal() {
       `}</style>
 
       <div className="bg-watermark" style={{
-        backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url(/bg-home.png)',
+        backgroundImage: 'url(/bg-home.png)',
       }}></div>
 
       <div className="fade-top"></div>
