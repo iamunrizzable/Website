@@ -36,6 +36,7 @@ export default function Legal() {
           left: 0;
           width: 100vw;
           height: 100vh;
+          background-color: rgba(15, 23, 42, 0.75);
           background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
