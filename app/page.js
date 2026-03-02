@@ -8,21 +8,27 @@ export default function Home() {
   useEffect(() => {
     const navButtons = document.querySelector('.nav-buttons');
     if (!navButtons) return;
+
+    const handleScroll = () => {
+      const rect = navButtons.getBoundingClientRect();
+      // If top of nav-buttons is above the viewport, fade out
+      if (rect.top < 0) {
+        navButtons.querySelectorAll('.nav-button').forEach(btn => {
+          btn.classList.remove('visible');
+        });
+      } else {
+        // Otherwise, show them
+        navButtons.querySelectorAll('.nav-button').forEach(btn => {
+          btn.classList.add('visible');
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const buttons = entry.target.querySelectorAll('.nav-button');
-          buttons.forEach(btn => btn.classList.add('visible'));
-        } else {
-          const buttons = entry.target.querySelectorAll('.nav-button');
-          buttons.forEach(btn => btn.classList.remove('visible'));
-        }
-      });
-    }, { threshold: 0 });
-    
-    observer.observe(navButtons);
-    return () => observer.disconnect();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
