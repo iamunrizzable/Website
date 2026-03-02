@@ -215,24 +215,13 @@ export default function Legal() {
           background-color: rgba(168, 85, 247, 0.1);
         }
         
-        .fade-top {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 150px;
-          background-color: #000;
-          z-index: 9999;
-          pointer-events: none;
-        }
-
       `}</style>
 
       <div className="bg-watermark" style={{
         backgroundImage: 'url(/bg-home.png)',
       }}></div>
 
-      <div className="fade-top"></div>
+
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
