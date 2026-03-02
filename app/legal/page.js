@@ -19,6 +19,19 @@ export default function Legal() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const bgElement = document.querySelector('.bg-fixed');
+    if (!bgElement) return;
+
+    const handleScroll = () => {
+      // Move background up by scroll amount to keep it visually locked
+      bgElement.style.transform = `translateY(${window.scrollY}px)`;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -29,22 +42,21 @@ export default function Legal() {
         }
         
         .bg-fixed {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png') !important;
-          background-size: cover !important;
-          background-position: center !important;
-          background-attachment: fixed !important;
-          background-repeat: no-repeat !important;
-          z-index: -3 !important;
-          pointer-events: none !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          border: none !important;
-          transform: none !important;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          z-index: -3;
+          pointer-events: none;
+          margin: 0;
+          padding: 0;
+          border: none;
+          will-change: transform;
         }
         
         @keyframes glowPulse {
