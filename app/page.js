@@ -6,18 +6,22 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const buttons = document.querySelectorAll('.nav-button');
+    const navButtons = document.querySelector('.nav-buttons');
+    if (!navButtons) return;
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          const buttons = entry.target.querySelectorAll('.nav-button');
+          buttons.forEach(btn => btn.classList.add('visible'));
         } else {
-          entry.target.classList.remove('visible');
+          const buttons = entry.target.querySelectorAll('.nav-button');
+          buttons.forEach(btn => btn.classList.remove('visible'));
         }
       });
     }, { threshold: 0 });
     
-    buttons.forEach(button => observer.observe(button));
+    observer.observe(navButtons);
     return () => observer.disconnect();
   }, []);
 
