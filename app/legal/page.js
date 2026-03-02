@@ -19,32 +19,30 @@ export default function Legal() {
     return () => observer.disconnect();
   }, []);
 
-
-
   return (
     <>
       <style>{`
-        body {
-          margin: 0;
-          padding: 0;
-          background-color: transparent;
-        }
-        
-        .bg-watermark {
+        body::before {
+          content: "";
           position: fixed;
           top: 0;
           left: 0;
           width: 100vw;
           height: 100vh;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-home.png");
           background-size: cover;
           background-position: center 60%;
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
-          margin: 0;
-          padding: 0;
         }
         
+        body {
+          margin: 0;
+          padding: 0;
+          background: transparent;
+        }
+
         @keyframes glowPulse {
           0%, 100% { 
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
@@ -53,7 +51,7 @@ export default function Legal() {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
-        
+
         main {
           max-width: 900px;
           margin: 0 auto;
@@ -61,14 +59,14 @@ export default function Legal() {
           position: relative;
           z-index: 10;
         }
-        
+
         h1 {
           color: #fff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
         }
-        
+
         h2 {
           color: #a855f7;
           margin-top: 40px;
@@ -76,17 +74,17 @@ export default function Legal() {
           font-size: 20px;
           animation: glowPulse 3s ease-in-out infinite;
         }
-        
+
         p {
           color: #a0aec0;
           margin-bottom: 15px;
         }
-        
+
         li {
           color: #a0aec0;
           margin-bottom: 8px;
         }
-        
+
         strong { 
           font-weight: 700;
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
@@ -94,7 +92,7 @@ export default function Legal() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-        
+
         strong a {
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
           -webkit-background-clip: text;
@@ -102,11 +100,11 @@ export default function Legal() {
           background-clip: text;
           text-decoration: none;
         }
-        
+
         strong a:hover {
           text-decoration: underline;
         }
-        
+
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
@@ -114,11 +112,11 @@ export default function Legal() {
           text-decoration: none;
           font-weight: 500;
         }
-        
+
         .back-link:hover {
           text-decoration: underline;
         }
-        
+
         .section {
           padding: 20px;
           border-left: 4px solid #a855f7;
@@ -129,75 +127,50 @@ export default function Legal() {
           opacity: 0;
           transform: translateY(20px);
         }
-        
+
         .section.visible {
           opacity: 1;
           transform: translateY(0);
         }
-        
-        ul {
-          margin-left: 20px;
-          margin-bottom: 15px;
-        }
-        
-        .footer {
-          margin-top: 60px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255,255,255,0.1);
-          font-size: 14px;
-          color: #8b9dc3;
-          text-align: center;
-        }
-        
-        a {
-          color: #a855f7;
-          text-decoration: none;
-        }
-        
-        a:hover {
-          text-decoration: underline;
-        }
-        
+
         .menu-button {
           position: fixed;
           top: 20px;
           right: 20px;
-          background-color: #a855f7;
-          color: #fff;
+          background: #a855f7;
+          color: white;
           border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
+          padding: 10px 20px;
+          border-radius: 8px;
           cursor: pointer;
-          font-weight: bold;
-          z-index: 100;
           font-size: 16px;
-          transition: all 0.3s ease;
+          z-index: 100;
+          transition: all 0.2s;
         }
-        
+
         .menu-button:hover {
-          background-color: #9333ea;
+          background: #c084fc;
           transform: scale(1.05);
           box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
         }
-        
+
         .menu-dropdown {
-          display: none;
           position: fixed;
-          top: 60px;
+          top: 70px;
           right: 20px;
-          background-color: #0f172a;
-          border: 2px solid #a855f7;
-          border-radius: 5px;
-          padding: 10px 0;
-          min-width: 200px;
-          z-index: 101;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          background: rgba(15, 23, 42, 0.95);
+          border: 1px solid rgba(168, 85, 247, 0.3);
+          border-radius: 8px;
+          display: none;
+          flex-direction: column;
+          z-index: 99;
+          min-width: 180px;
         }
-        
+
         .menu-dropdown.active {
-          display: block;
+          display: flex;
         }
-        
+
         .menu-dropdown a {
           display: block;
           padding: 10px 20px;
@@ -206,22 +179,25 @@ export default function Legal() {
           border-bottom: 1px solid rgba(168, 85, 247, 0.2);
           transition: background-color 0.2s;
         }
-        
+
         .menu-dropdown a:last-child {
           border-bottom: none;
         }
-        
+
         .menu-dropdown a:hover {
           background-color: rgba(168, 85, 247, 0.1);
         }
-        
+
+        footer {
+          max-width: 900px;
+          margin: 60px auto 0;
+          padding: 40px 20px;
+          border-top: 1px solid rgba(168, 85, 247, 0.2);
+          color: #8b9dc3;
+          text-align: center;
+          font-size: 14px;
+        }
       `}</style>
-
-      <div className="bg-watermark" style={{
-        backgroundImage: 'url(/bg-home.png)',
-      }}></div>
-
-
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
@@ -305,35 +281,22 @@ export default function Legal() {
         <div className="section">
           <h2>6. Final Notes and Disclosures</h2>
           <p>
-            We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and consent to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of your personal information. Information we collect is:
+            We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
           </p>
+          <p><strong>Information we collect is:</strong></p>
           <ul>
-            <li>Your IP address</li>
-            <li>The patterns you use when you interact with Tyler's accounts</li>
-            <li>Hallie may use this information to track you across our social media platforms to ensure compliance</li>
-            <li>Hallie may be the one to respond to any message you send instead of Tyler giving a personal response. If and when she does, you agree that Hallie is allowed to respond to your messages, and allowed to store information you message her for review and training.</li>
-            <li>We promise to only use personal information to ensure compliance with our community guidelines and we will not share or sell your personal information with any person, business, or agency without a warrant.</li>
+            <li>Messages and direct interactions</li>
+            <li>Account information and profile data</li>
+            <li>IP addresses (via Vercel Analytics)</li>
+            <li>Interaction patterns and activity logs</li>
           </ul>
+          <p>We promise to only use personal information to ensure compliance with our community guidelines and will not share or sell your personal information with any person, business, or agency without a warrant.</p>
         </div>
 
-        <div className="section">
-          <h2>Changes to These Policies</h2>
-          <p>
-            TJB Management Inc. reserves the right to update these disclaimers and guidelines at any time. Changes will be effective immediately upon posting to this page.
-          </p>
-        </div>
-
-        <div className="section">
-          <h2>Questions or Concerns?</h2>
-          <p>
-            If you have questions about these policies, please contact us.
-          </p>
-        </div>
-
-        <div className="footer">
+        <footer>
           <p>Last Updated: February 28, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-        </div>
+        </footer>
       </main>
     </>
   );
