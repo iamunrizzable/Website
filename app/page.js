@@ -15,7 +15,7 @@ export default function Home() {
           entry.target.classList.remove('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0 });
     
     buttons.forEach(button => observer.observe(button));
     return () => observer.disconnect();
