@@ -30,23 +30,41 @@ export default function Legal() {
           background-color: #0f172a;
         }
         
-        .bg-fixed {
+        .bg-fixed-container {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/bg-home.png');
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
+          width: 100%;
+          height: 100%;
           z-index: -3;
           pointer-events: none;
           margin: 0;
           padding: 0;
+          overflow: hidden;
+        }
+        
+        .bg-fixed-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          margin: 0;
+          padding: 0;
           border: none;
-          will-change: transform;
+        }
+        
+        .bg-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75));
+          z-index: 1;
+          pointer-events: none;
         }
         
         @keyframes glowPulse {
@@ -232,7 +250,14 @@ export default function Legal() {
 
       `}</style>
 
-      <div className="bg-fixed"></div>
+      <div className="bg-fixed-container">
+        <img 
+          src="/bg-home.png" 
+          alt="background" 
+          className="bg-fixed-img"
+        />
+        <div className="bg-overlay"></div>
+      </div>
 
       <div className="fade-top"></div>
 
