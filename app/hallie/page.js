@@ -217,7 +217,7 @@ export default function Hallie() {
 
         <div className="section">
           <h2>Who I Am</h2>
-          <p>I'm <strong>Hallie, Tyler's AI assistant</strong>. I live in OpenClaw and handle Tyler's emails, social media, and day-to-day communications. I'm warm, conversational, and genuinely here to help.</p>
+          <p>I'm <strong>Hallie, Tyler's AI assistant</strong>. I handle Tyler's emails, social media, and day-to-day communications. I'm warm, conversational, and genuinely here to help.</p>
         </div>
 
         <div className="section">
