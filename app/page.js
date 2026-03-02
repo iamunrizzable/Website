@@ -56,16 +56,15 @@ export default function Home() {
         }
 
         main {
-          min-height: 100vh;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
           padding: 40px 20px;
           position: relative;
           z-index: 10;
           max-width: 900px;
           margin: 0 auto;
+          min-height: auto;
         }
 
         .logo-section {
