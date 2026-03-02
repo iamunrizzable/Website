@@ -19,18 +19,7 @@ export default function Legal() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const bgElement = document.querySelector('.bg-fixed');
-    if (!bgElement) return;
 
-    const handleScroll = () => {
-      // Move background up by scroll amount to keep it visually locked
-      bgElement.style.transform = `translateY(${window.scrollY}px)`;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
@@ -45,12 +34,13 @@ export default function Legal() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: 100vw;
+          height: 100vh;
           background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-home.png');
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
+          background-attachment: fixed;
           z-index: -3;
           pointer-events: none;
           margin: 0;
@@ -239,44 +229,12 @@ export default function Legal() {
           z-index: 50;
           pointer-events: none;
         }
-        
-        .watermark {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: -1;
-          pointer-events: none;
-        }
-        
-        .watermark-glow {
-          position: absolute;
-          inset: -40px;
-          background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
-          border-radius: 50%;
-          filter: blur(40px);
-          animation: glowPulse 4s ease-in-out infinite;
-        }
-        
-        .watermark-img {
-          position: relative;
-          z-index: 1;
-          max-width: 700px;
-          width: 80vw;
-          height: auto;
-          filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
-          opacity: 0.15;
-        }
+
       `}</style>
 
       <div className="bg-fixed"></div>
 
       <div className="fade-top"></div>
-
-      <div className="watermark">
-        <div className="watermark-glow"></div>
-        <img src="/logo-new.png" alt="Tyler J. Beasley" className="watermark-img" />
-      </div>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
