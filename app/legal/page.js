@@ -37,8 +37,8 @@ export default function Legal() {
           width: 100vw;
           height: 100vh;
           background-color: rgba(15, 23, 42, 0.75);
-          background-size: contain;
-          background-position: center center;
+          background-size: cover;
+          background-position: center bottom;
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
