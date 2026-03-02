@@ -11,6 +11,8 @@ export default function Tyler() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.1 });
@@ -44,8 +46,8 @@ export default function Tyler() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-tyler.jpg");
-          background-size: contain;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.jpg");
+          background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
