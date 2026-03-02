@@ -39,7 +39,7 @@ export default function Legal() {
           background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
-          background-color: #0f172a;
+          background-color: #000000;
           z-index: -3;
           pointer-events: none;
           margin: 0;
