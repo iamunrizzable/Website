@@ -219,10 +219,10 @@ export default function Legal() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 300px;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, transparent 100%);
-          z-index: 999;
+          width: 100vw;
+          height: 150px;
+          background-color: #000;
+          z-index: 9999;
           pointer-events: none;
         }
 
