@@ -44,30 +44,8 @@ export default function Hallie() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          z-index: -3;
-          pointer-events: none;
-        }
-        
-        body {
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('/bg-hallie.png') center/cover fixed !important;
-        }
-        body {
-          position: relative;
-        }
-        
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
-          background-size: cover;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-hallie.png");
+          background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
