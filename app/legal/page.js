@@ -27,7 +27,7 @@ export default function Legal() {
         body {
           margin: 0;
           padding: 0;
-          background-color: #0f172a;
+          background-color: transparent;
         }
         
         .bg-watermark {
