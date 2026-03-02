@@ -220,9 +220,9 @@ export default function Legal() {
           top: 0;
           left: 0;
           width: 100%;
-          height: 200px;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
-          z-index: 50;
+          height: 300px;
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, transparent 100%);
+          z-index: 999;
           pointer-events: none;
         }
 
