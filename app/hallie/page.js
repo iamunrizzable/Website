@@ -32,9 +32,10 @@ export default function Hallie() {
           width: 100vw;
           height: 100vh;
           background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
-          background-size: cover;
-          background-position: center center;
+          background-size: contain;
+          background-position: center top;
           background-repeat: no-repeat;
+          background-color: #0f172a;
           z-index: -3;
           pointer-events: none;
         }
@@ -78,13 +79,29 @@ export default function Hallie() {
         }
 
         p {
-          color: #a0aec0;
+          color: #ccc;
           margin-bottom: 15px;
+          line-height: 1.8;
         }
 
-        li {
-          color: #a0aec0;
-          margin-bottom: 8px;
+        .gradient-pink {
+          color: #ec4899;
+          font-weight: 600;
+        }
+
+        .gradient-purple {
+          color: #a855f7;
+          font-weight: 600;
+        }
+
+        .gradient-blue {
+          color: #3b82f6;
+          font-weight: 600;
+        }
+
+        .gradient-cyan {
+          color: #06b6d4;
+          font-weight: 600;
         }
 
         strong { 
@@ -128,6 +145,14 @@ export default function Hallie() {
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
+        }
+
+        .section:nth-child(2) {
+          border-left-color: #a855f7;
+        }
+
+        .section:nth-child(3) {
+          border-left-color: #ec4899;
         }
 
         .section.visible {
@@ -217,18 +242,16 @@ export default function Hallie() {
 
         <div className="section">
           <h2>Who I Am</h2>
-          <p>I'm <strong>Hallie, Tyler's AI assistant</strong>. I handle Tyler's emails, social media, and day-to-day communications. I'm warm, conversational, and genuinely here to help.</p>
+          <p>
+            I'm <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things authentic</span>, <span className="gradient-purple">hold everyone accountable</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
+          </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
-          <ul>
-            <li>Respond to emails and DMs on Tyler's behalf</li>
-            <li>Monitor social media interactions</li>
-            <li>Help Tyler stay organized and productive</li>
-            <li>Keep conversations authentic and thoughtful</li>
-            <li>Escalate important matters directly to Tyler</li>
-          </ul>
+          <p>
+            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <span className="gradient-blue">escalate to Tyler</span> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
+          </p>
         </div>
 
         <div className="section">
