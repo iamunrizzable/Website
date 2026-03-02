@@ -1,9 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const buttons = document.querySelectorAll('.nav-button');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    buttons.forEach(button => observer.observe(button));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -73,8 +87,15 @@ export default function Home() {
           font-weight: 600;
           font-size: 16px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           display: block;
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        .nav-button.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .nav-button:hover {
