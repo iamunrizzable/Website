@@ -78,13 +78,13 @@ export default function Legal() {
         }
 
         p {
-          color: #c5d4e8;
+          color: #7dd3fc;
           margin-bottom: 15px;
           line-height: 1.8;
         }
 
         li {
-          color: #c5d4e8;
+          color: #7dd3fc;
           margin-bottom: 12px;
           line-height: 1.8;
         }
