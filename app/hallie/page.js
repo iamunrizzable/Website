@@ -63,7 +63,7 @@ export default function Hallie() {
         }
 
         h1 {
-          color: #fff;
+          color: #d4a5ff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
@@ -77,7 +77,7 @@ export default function Hallie() {
         }
 
         h2 {
-          color: #a855f7;
+          color: #d4a5ff;
           margin-top: 40px;
           margin-bottom: 15px;
           font-size: 20px;
@@ -127,6 +127,15 @@ export default function Hallie() {
         }
 
         strong a:hover {
+          text-decoration: underline;
+        }
+
+        a {
+          color: #3b82f6;
+          text-decoration: none;
+        }
+
+        a:hover {
           text-decoration: underline;
         }
 
@@ -252,7 +261,7 @@ export default function Hallie() {
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <span className="gradient-blue">escalate to Tyler</span> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
+            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <a href="/tyler"><span className="gradient-blue">escalate to Tyler</span></a> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
           </p>
         </div>
 
