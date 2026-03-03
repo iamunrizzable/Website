@@ -73,7 +73,7 @@ export default function Tyler() {
           padding: 40px 20px;
         }
         h1 {
-          color: #fff;
+          color: #d4a5ff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
@@ -158,7 +158,7 @@ export default function Tyler() {
           top: 20px;
           right: 20px;
           background-color: #a855f7;
-          color: #fff;
+          color: #d4a5ff;
           border: none;
           padding: 10px 15px;
           border-radius: 5px;
