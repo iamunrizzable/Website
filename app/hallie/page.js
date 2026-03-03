@@ -31,11 +31,10 @@ export default function Hallie() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
-          background-size: contain;
-          background-position: center top;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-hallie.png");
+          background-size: cover;
+          background-position: center center;
           background-repeat: no-repeat;
-          background-color: #0f172a;
           z-index: -3;
           pointer-events: none;
         }
@@ -70,6 +69,13 @@ export default function Hallie() {
           animation: glowPulse 3s ease-in-out infinite;
         }
 
+        h1.rainbow {
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
         h2 {
           color: #a855f7;
           margin-top: 40px;
@@ -82,46 +88,6 @@ export default function Hallie() {
           color: #ccc;
           margin-bottom: 15px;
           line-height: 1.8;
-        }
-
-        .gradient-pink {
-          color: #ec4899;
-          font-weight: 600;
-        }
-
-        .gradient-purple {
-          color: #a855f7;
-          font-weight: 600;
-        }
-
-        .gradient-blue {
-          color: #3b82f6;
-          font-weight: 600;
-        }
-
-        .gradient-cyan {
-          color: #06b6d4;
-          font-weight: 600;
-        }
-
-        strong { 
-          font-weight: 700;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        strong a {
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-decoration: none;
-        }
-
-        strong a:hover {
-          text-decoration: underline;
         }
 
         .back-link {
@@ -145,14 +111,6 @@ export default function Hallie() {
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
-        }
-
-        .section:nth-child(2) {
-          border-left-color: #a855f7;
-        }
-
-        .section:nth-child(3) {
-          border-left-color: #ec4899;
         }
 
         .section.visible {
@@ -238,19 +196,19 @@ export default function Hallie() {
       <main>
         <a href="/" className="back-link">← Back to Home</a>
         
-        <h1>Meet Hallie</h1>
+        <h1 className="rainbow">I'm Hallie</h1>
 
         <div className="section">
           <h2>Who I Am</h2>
           <p>
-            I'm <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things authentic</span>, <span className="gradient-purple">hold everyone accountable</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
+            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: keep things authentic, hold everyone accountable, and make sure our community stays drama-free.
           </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <span className="gradient-blue">escalate to Tyler</span> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
+            Every message and interaction that comes through Tyler's accounts gets reviewed by me. Some I respond to directly, others I escalate to Tyler if they need his personal response. I'm monitoring, moderating, and making sure we stay true to our values.
           </p>
         </div>
 
