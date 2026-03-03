@@ -66,7 +66,7 @@ export default function Contact() {
         body {
           margin: 0;
           padding: 0;
-          background: transparent;
+          background: rgba(168, 85, 247, 0.12);
         }
         @keyframes glowPulse {
           0%, 100% { 
