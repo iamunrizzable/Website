@@ -265,7 +265,25 @@ export default function Legal() {
         </div>
 
         <div className="section">
-          <h2>4. Consequences</h2>
+          <h2>4. Anti-Stalking & Suspicious Behavior</h2>
+          <p>
+            We actively monitor for suspicious account behavior patterns to protect Tyler and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
+          </p>
+          <ul>
+            <li><span className="rainbow">New accounts created immediately before or after viewing Tyler's profile</span></li>
+            <li><span className="rainbow">Multiple accounts viewing from the same IP address or device</span></li>
+            <li><span className="rainbow">Accounts with no profile picture, minimal account history, or generic usernames</span></li>
+            <li><span className="rainbow">Repeated viewing of Tyler's profile (5+ times) with zero interaction or engagement</span></li>
+            <li><span className="rainbow">Account behavior patterns matching known coordinated attack accounts</span></li>
+            <li><span className="rainbow">Any form of stalking, harassment, or investigation of Tyler or community members</span></li>
+          </ul>
+          <p>
+            <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors these patterns continuously and alerts Tyler to suspicious accounts for review. Blocking decisions are made at Tyler's discretion based on behavioral evidence.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>6. Consequences</h2>
           <ul>
             <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
             <li><span className="rainbow"><strong>2 Reps:</strong> Temporary ban</span></li>
@@ -275,7 +293,7 @@ export default function Legal() {
         </div>
 
         <div className="section">
-          <h2>5. Appeals</h2>
+          <h2>7. Appeals</h2>
           <p>
             To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
           </p>
@@ -289,7 +307,7 @@ export default function Legal() {
         </div>
 
         <div className="section">
-          <h2>6. Final Notes and Disclosures</h2>
+          <h2>8. Final Notes and Disclosures</h2>
           <p>
             We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
           </p>
