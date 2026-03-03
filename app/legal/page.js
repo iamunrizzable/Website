@@ -63,7 +63,7 @@ export default function Legal() {
         }
 
         h1 {
-          color: #fff;
+          color: #d4a5ff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
