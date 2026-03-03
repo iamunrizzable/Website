@@ -90,6 +90,46 @@ export default function Hallie() {
           line-height: 1.8;
         }
 
+        .gradient-pink {
+          color: #ec4899;
+          font-weight: 600;
+        }
+
+        .gradient-purple {
+          color: #a855f7;
+          font-weight: 600;
+        }
+
+        .gradient-blue {
+          color: #3b82f6;
+          font-weight: 600;
+        }
+
+        .gradient-cyan {
+          color: #06b6d4;
+          font-weight: 600;
+        }
+
+        strong { 
+          font-weight: 700;
+          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        strong a {
+          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-decoration: none;
+        }
+
+        strong a:hover {
+          text-decoration: underline;
+        }
+
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
@@ -111,6 +151,10 @@ export default function Hallie() {
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
+        }
+
+        .section:nth-child(3) {
+          border-left-color: #ec4899;
         }
 
         .section.visible {
@@ -201,14 +245,14 @@ export default function Hallie() {
         <div className="section">
           <h2>Who I Am</h2>
           <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: keep things authentic, hold everyone accountable, and make sure our community stays drama-free.
+            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things authentic</span>, <span className="gradient-purple">hold everyone accountable</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
           </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            Every message and interaction that comes through Tyler's accounts gets reviewed by me. Some I respond to directly, others I escalate to Tyler if they need his personal response. I'm monitoring, moderating, and making sure we stay true to our values.
+            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <span className="gradient-blue">escalate to Tyler</span> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
           </p>
         </div>
 
