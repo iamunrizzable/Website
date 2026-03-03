@@ -84,7 +84,7 @@ export default function Contact() {
           z-index: 10;
         }
         h1 {
-          color: #fff;
+          color: #d4a5ff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
@@ -110,7 +110,7 @@ export default function Contact() {
           padding: 30px 20px;
           border-radius: 15px;
           text-decoration: none;
-          color: #fff;
+          color: #d4a5ff;
           border: 2px solid rgba(255,255,255,0.15);
           overflow: hidden;
           transition: all 0.3s ease;
@@ -214,7 +214,7 @@ export default function Contact() {
           top: 20px;
           right: 20px;
           background-color: #a855f7;
-          color: #fff;
+          color: #d4a5ff;
           border: none;
           padding: 10px 15px;
           border-radius: 5px;
