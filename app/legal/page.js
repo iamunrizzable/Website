@@ -259,10 +259,8 @@ export default function Legal() {
             <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
-            <li><span className="rainbow">Women under 18 can't interact with or follow Tyler</span></li>
-            <li><span className="rainbow">Women over 18 can only contact Tyler's work number in emergencies with prior approval</span></li>
             <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><span className="rainbow">In person meet ups requested by women will automatically be denied</span></li>
+            <li><span className="rainbow"><strong>Important:</strong> Tyler does not respond directly to messages from women. If you are a woman and contact Tyler, <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, will respond on his behalf. This is transparent and by design.</span></li>
           </ul>
         </div>
 
@@ -306,7 +304,7 @@ export default function Legal() {
         </div>
 
         <footer>
-          <p>Last Updated: February 28, 2026</p>
+          <p>Last Updated: March 3, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
       </main>
