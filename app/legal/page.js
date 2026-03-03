@@ -38,7 +38,7 @@ export default function Legal() {
           z-index: -3;
           pointer-events: none;
         }
-        
+
         body {
           margin: 0;
           padding: 0;
@@ -78,18 +78,20 @@ export default function Legal() {
         }
 
         p {
-          color: #a0aec0;
+          color: #ccc;
           margin-bottom: 15px;
+          line-height: 1.8;
         }
 
         li {
-          color: #a0aec0;
-          margin-bottom: 8px;
+          color: #ccc;
+          margin-bottom: 12px;
+          line-height: 1.8;
         }
 
         strong { 
           font-weight: 700;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -105,6 +107,14 @@ export default function Legal() {
 
         strong a:hover {
           text-decoration: underline;
+        }
+
+        .rainbow {
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-weight: 700;
         }
 
         .back-link {
@@ -225,43 +235,43 @@ export default function Legal() {
         <div className="section">
           <h2>1. The Basics</h2>
           <ul>
-            <li>Be respectful to Tyler and his admins at all times</li>
-            <li>No harassment, threats, or stalking</li>
-            <li>No doxing or publicly sharing private info about anyone other than yourself</li>
-            <li>NSFW creators aren't welcome here</li>
+            <li><span className="rainbow">Be respectful to Tyler and his admins at all times</span></li>
+            <li><span className="rainbow">No harassment, threats, or stalking</span></li>
+            <li><span className="rainbow">No doxing or publicly sharing private info about anyone other than yourself</span></li>
+            <li><span className="rainbow">NSFW creators aren't welcome here</span></li>
           </ul>
         </div>
 
         <div className="section">
           <h2>2. Your Account</h2>
           <ul>
-            <li>Use a real photo and username</li>
-            <li>No impersonation of anyone (especially Tyler and his admins)</li>
-            <li>Fan/parody accounts are fine if clearly marked</li>
-            <li>Ban evading gets you permanently blocked and reported</li>
-            <li><strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors all interactions for compliance</li>
+            <li><span className="rainbow">Use a real photo and username</span></li>
+            <li><span className="rainbow">No impersonation of anyone (especially Tyler and his admins)</span></li>
+            <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
+            <li><span className="rainbow">Ban evading gets you permanently blocked and reported</span></li>
+            <li><span className="rainbow"><strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors all interactions for compliance</span></li>
           </ul>
         </div>
 
         <div className="section">
           <h2>3. Interactions with Tyler</h2>
           <ul>
-            <li>No unsolicited flirting, pickup lines, or compliments</li>
-            <li>Ask once for his contact — if he says no, that's it</li>
-            <li>When you message him, have an actual reason</li>
-            <li>Women under 18 can't interact with or follow Tyler</li>
-            <li>Women over 18 can only contact Tyler's work number in emergencies with prior approval</li>
-            <li>In-person meetups requested by men need explicit approval first</li>
-            <li>In person meet ups requested by women will automatically be denied</li>
+            <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
+            <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
+            <li><span className="rainbow">When you message him, have an actual reason</span></li>
+            <li><span className="rainbow">Women under 18 can't interact with or follow Tyler</span></li>
+            <li><span className="rainbow">Women over 18 can only contact Tyler's work number in emergencies with prior approval</span></li>
+            <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
+            <li><span className="rainbow">In person meet ups requested by women will automatically be denied</span></li>
           </ul>
         </div>
 
         <div className="section">
           <h2>4. Consequences</h2>
           <ul>
-            <li><strong>1 Rep:</strong> Warning + mute</li>
-            <li><strong>2 Reps:</strong> Temporary ban</li>
-            <li><strong>3 Reps:</strong> Permanent ban + legal action if needed</li>
+            <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
+            <li><span className="rainbow"><strong>2 Reps:</strong> Temporary ban</span></li>
+            <li><span className="rainbow"><strong>3 Reps:</strong> Permanent ban + legal action if needed</span></li>
           </ul>
           <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
         </div>
@@ -272,10 +282,10 @@ export default function Legal() {
             To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
           </p>
           <ul>
-            <li>Full username</li>
-            <li>Platform you are blocked on</li>
-            <li>What you did to get blocked</li>
-            <li>Why you want to be unblocked</li>
+            <li><span className="rainbow">Full username</span></li>
+            <li><span className="rainbow">Platform you are blocked on</span></li>
+            <li><span className="rainbow">What you did to get blocked</span></li>
+            <li><span className="rainbow">Why you want to be unblocked</span></li>
           </ul>
           <p>We only overturn bans with solid evidence supporting the appeal.</p>
         </div>
@@ -287,10 +297,10 @@ export default function Legal() {
           </p>
           <p><strong>Information we collect is:</strong></p>
           <ul>
-            <li>Messages and direct interactions</li>
-            <li>Account information and profile data</li>
-            <li>IP addresses (via Vercel Analytics)</li>
-            <li>Interaction patterns and activity logs</li>
+            <li><span className="rainbow">Messages and direct interactions</span></li>
+            <li><span className="rainbow">Account information and profile data</span></li>
+            <li><span className="rainbow">IP addresses (via Vercel Analytics)</span></li>
+            <li><span className="rainbow">Interaction patterns and activity logs</span></li>
           </ul>
           <p>We promise to only use personal information to ensure compliance with our community guidelines and will not share or sell your personal information with any person, business, or agency without a warrant.</p>
         </div>
