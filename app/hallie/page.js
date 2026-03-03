@@ -43,7 +43,7 @@ export default function Hallie() {
         body {
           margin: 0;
           padding: 0;
-          background: rgba(168, 85, 247, 0.12);
+          background: transparent;
         }
 
         @keyframes glowPulse {
@@ -157,7 +157,7 @@ export default function Hallie() {
           border-left: 8px solid #a855f7;
           margin-bottom: 30px;
           border-radius: 5px;
-          background: rgba(168, 85, 247, 0.12);
+          background: transparent;
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
