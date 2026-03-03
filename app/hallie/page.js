@@ -33,6 +33,7 @@ export default function Hallie() {
           height: 100vh;
           background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-hallie.png");
           background-size: cover;
+          background-attachment: fixed;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
@@ -42,7 +43,7 @@ export default function Hallie() {
         body {
           margin: 0;
           padding: 0;
-          background: transparent;
+          background: rgba(168, 85, 247, 0.12);
         }
 
         @keyframes glowPulse {
@@ -153,10 +154,10 @@ export default function Hallie() {
 
         .section {
           padding: 20px;
-          border-left: 4px solid #a855f7;
+          border-left: 8px solid #a855f7;
           margin-bottom: 30px;
           border-radius: 5px;
-          background: transparent;
+          background: rgba(168, 85, 247, 0.12);
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
