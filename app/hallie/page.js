@@ -85,7 +85,7 @@ export default function Hallie() {
         }
 
         p {
-          color: #ccc;
+          color: #f0f0f0;
           margin-bottom: 15px;
           line-height: 1.8;
         }
