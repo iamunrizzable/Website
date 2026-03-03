@@ -273,7 +273,7 @@ export default function Legal() {
             <li><span className="rainbow">New accounts created immediately before or after viewing Tyler's profile</span></li>
             <li><span className="rainbow">Multiple accounts viewing from the same IP address or device</span></li>
             <li><span className="rainbow">Accounts with no profile picture, minimal account history, or generic usernames</span></li>
-            <li><span className="rainbow">Repeated viewing of Tyler's profile (5+ times) with zero interaction or engagement</span></li>
+            <li><span className="rainbow">Repeated viewing of Tyler's profile (3+ times) with zero interaction or engagement</span></li>
             <li><span className="rainbow">Account behavior patterns matching known coordinated attack accounts</span></li>
             <li><span className="rainbow">Any form of stalking, harassment, or investigation of Tyler or community members</span></li>
           </ul>
