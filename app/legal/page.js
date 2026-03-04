@@ -284,7 +284,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="consequences">
-          <h2>6. Consequences</h2>
+          <h2>5. Consequences</h2>
           <ul>
             <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
             <li><span className="rainbow"><strong>2 Reps:</strong> Temporary ban</span></li>
@@ -294,7 +294,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="appeals">
-          <h2>7. Appeals</h2>
+          <h2>6. Appeals</h2>
           <p>
             To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
           </p>
@@ -308,7 +308,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="disclosures">
-          <h2>8. Final Notes and Disclosures</h2>
+          <h2>7. Final Notes and Disclosures</h2>
           <p>
             We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
           </p>
