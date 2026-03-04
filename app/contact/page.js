@@ -24,6 +24,7 @@ export default function Contact() {
   const contacts = [
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
+    { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
@@ -138,6 +139,7 @@ export default function Contact() {
         .contact-card:nth-child(4) { animation-delay: 0.4s; }
         .contact-card:nth-child(5) { animation-delay: 0.5s; }
         .contact-card:nth-child(6) { animation-delay: 0.6s; }
+        .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card::before {
           content: '';
           position: absolute;
@@ -146,6 +148,7 @@ export default function Contact() {
         }
         .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
         .contact-card.x::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+        .contact-card.discord::before { background: linear-gradient(135deg, #5865f2, #4752c4); }
         .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
         .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
         .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
