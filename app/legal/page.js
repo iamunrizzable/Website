@@ -232,7 +232,7 @@ export default function Legal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="basics">
           <h2>1. The Basics</h2>
           <ul>
             <li><span className="rainbow">Be respectful to Tyler and his admins at all times</span></li>
@@ -253,7 +253,7 @@ export default function Legal() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="interactions">
           <h2>3. Interactions with Tyler</h2>
           <ul>
             <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
@@ -264,7 +264,7 @@ export default function Legal() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="anti-stalking">
           <h2>4. Anti-Stalking & Suspicious Behavior</h2>
           <p>
             We actively monitor for suspicious account behavior patterns to protect Tyler and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
@@ -282,7 +282,7 @@ export default function Legal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="consequences">
           <h2>6. Consequences</h2>
           <ul>
             <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
@@ -292,7 +292,7 @@ export default function Legal() {
           <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
         </div>
 
-        <div className="section">
+        <div className="section" id="appeals">
           <h2>7. Appeals</h2>
           <p>
             To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
@@ -306,7 +306,7 @@ export default function Legal() {
           <p>We only overturn bans with solid evidence supporting the appeal.</p>
         </div>
 
-        <div className="section">
+        <div className="section" id="disclosures">
           <h2>8. Final Notes and Disclosures</h2>
           <p>
             We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
