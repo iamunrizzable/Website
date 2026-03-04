@@ -222,7 +222,7 @@ export default function Tyler() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
-        <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>I'm Tyler</a>
         <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
@@ -230,7 +230,7 @@ export default function Tyler() {
       <main>
         <a href="/" className="back-link">← Back to Home</a>
         
-        <h1>Meet Tyler</h1>
+        <h1>I'm Tyler</h1>
         
         <div className="section">
           <h2>Who I Am</h2>
