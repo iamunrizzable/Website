@@ -229,14 +229,14 @@ export default function Legal() {
         <div className="section">
           <h2>AI Assistant Disclaimer</h2>
           <p>
-            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are reviewed and responded to by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and not directly reviewed by <span className="rainbow">Tyler</span> Beasley unless they are escalated as requiring his personal attention.
+            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are reviewed and responded to by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and not directly reviewed by <a href="/tyler"><span className="rainbow">Tyler</span></a> Beasley unless they are escalated as requiring his personal attention.
           </p>
         </div>
 
         <div className="section" id="basics">
           <h2>1. The Basics</h2>
           <ul>
-            <li><span className="rainbow">Be respectful to Tyler and his admins at all times</span></li>
+            <li><span className="rainbow">Be respectful to <a href="/tyler">Tyler</a> and his admins at all times</span></li>
             <li><span className="rainbow">No harassment, threats, or stalking</span></li>
             <li><span className="rainbow">No doxing or publicly sharing private info about anyone other than yourself</span></li>
             <li><span className="rainbow">NSFW creators aren't welcome here</span></li>
@@ -247,39 +247,39 @@ export default function Legal() {
           <h2>2. Your Account</h2>
           <ul>
             <li><span className="rainbow">Use a real photo and username</span></li>
-            <li><span className="rainbow">No impersonation of anyone (especially Tyler and his admins)</span></li>
+            <li><span className="rainbow">No impersonation of anyone (especially <a href="/tyler">Tyler</a> and his admins)</span></li>
             <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
             <li><span className="rainbow">Ban evading gets you permanently blocked and reported</span></li>
-            <li><span className="rainbow"><a href="/hallie">Hallie, Tyler's AI assistant</a>, monitors all interactions for compliance</span></li>
+            <li><span className="rainbow"><a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, monitors all interactions for compliance</span></li>
           </ul>
         </div>
 
         <div className="section" id="interactions">
-          <h2>3. Interactions with Tyler</h2>
+          <h2>3. Interactions with <a href="/tyler">Tyler</a></h2>
           <ul>
             <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
             <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><strong>Important:</strong> <span className="rainbow">Tyler</span> does not respond directly to messages from women. If you are a woman and contact <span className="rainbow">Tyler</span>, <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, will respond on his behalf. This filtering decision is made by both <span className="rainbow">Tyler</span> and <span className="rainbow">Hallie</span>, is transparent, and by design.</li>
+            <li><strong>Important:</strong> <a href="/tyler"><span className="rainbow">Tyler</span></a> does not respond directly to messages from women. If you are a woman and contact <a href="/tyler"><span className="rainbow">Tyler</span></a>, <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, will respond on his behalf. This filtering decision is made by both <a href="/tyler"><span className="rainbow">Tyler</span></a> and <a href="/hallie"><span className="rainbow">Hallie</span></a>, is transparent, and by design.</li>
           </ul>
         </div>
 
         <div className="section" id="anti-stalking">
           <h2>4. Anti-Stalking & Suspicious Behavior</h2>
           <p>
-            We actively monitor for suspicious account behavior patterns to protect Tyler and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
+            We actively monitor for suspicious account behavior patterns to protect <a href="/tyler"><span className="rainbow">Tyler</span></a> and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
           </p>
           <ul>
-            <li><span className="rainbow">New accounts created immediately before or after viewing Tyler's profile</span></li>
+            <li><span className="rainbow">New accounts created immediately before or after viewing <a href="/tyler">Tyler</a>'s profile</span></li>
             <li><span className="rainbow">Multiple accounts viewing from the same IP address or device</span></li>
             <li><span className="rainbow">Accounts with no profile picture, minimal account history, or generic usernames</span></li>
-            <li><span className="rainbow">Repeated viewing of Tyler's profile (3+ times) with zero interaction or engagement</span></li>
+            <li><span className="rainbow">Repeated viewing of <a href="/tyler">Tyler</a>'s profile (3+ times) with zero interaction or engagement</span></li>
             <li><span className="rainbow">Account behavior patterns matching known coordinated attack accounts</span></li>
-            <li><span className="rainbow">Any form of stalking, harassment, or investigation of Tyler or community members</span></li>
+            <li><span className="rainbow">Any form of stalking, harassment, or investigation of <a href="/tyler">Tyler</a> or community members</span></li>
           </ul>
           <p>
-            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, monitors these patterns continuously and may block accounts directly or alert <span className="rainbow">Tyler</span> for review. Blocking decisions are made by both <span className="rainbow">Hallie</span> and <span className="rainbow">Tyler</span> based on behavioral evidence.
+            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, monitors these patterns continuously and may block accounts directly or alert <a href="/tyler"><span className="rainbow">Tyler</span></a> for review. Blocking decisions are made by both <a href="/hallie"><span className="rainbow">Hallie</span></a> and <a href="/tyler"><span className="rainbow">Tyler</span></a> based on behavioral evidence.
           </p>
         </div>
 
