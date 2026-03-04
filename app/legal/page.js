@@ -261,7 +261,7 @@ export default function Legal() {
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
             <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><span className="rainbow"><strong>Important:</strong> Tyler does not respond directly to messages from women. If you are a woman and contact Tyler, <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, will respond on his behalf. This is transparent and by design.</span></li>
+            <li><span className="rainbow"><strong>Important:</strong> Tyler does not respond directly to messages from women. If you are a woman and contact Tyler, <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, will respond on his behalf. This filtering decision is made by both Tyler and Hallie, is transparent, and by design.</span></li>
           </ul>
         </div>
 
@@ -279,7 +279,7 @@ export default function Legal() {
             <li><span className="rainbow">Any form of stalking, harassment, or investigation of Tyler or community members</span></li>
           </ul>
           <p>
-            <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors these patterns continuously and alerts Tyler to suspicious accounts for review. Blocking decisions are made at Tyler's discretion based on behavioral evidence.
+            <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors these patterns continuously and may block accounts directly or alert Tyler for review. Blocking decisions are made by both <strong><a href="/hallie">Hallie</a></strong> and Tyler based on behavioral evidence.
           </p>
         </div>
 
@@ -323,7 +323,7 @@ export default function Legal() {
         </div>
 
         <footer>
-          <p>Last Updated: March 3, 2026</p>
+          <p>Last Updated: March 4, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
       </main>
