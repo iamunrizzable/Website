@@ -213,11 +213,12 @@ export default function Legal() {
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
-        <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
-        <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
-        <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
+        <a href="#basics" onClick={() => setMenuOpen(false)}>The Basics</a>
+        <a href="#interactions" onClick={() => setMenuOpen(false)}>Interactions with Tyler</a>
+        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>Anti-Stalking & Suspicious Behavior</a>
+        <a href="#consequences" onClick={() => setMenuOpen(false)}>Consequences</a>
+        <a href="#appeals" onClick={() => setMenuOpen(false)}>Appeals</a>
+        <a href="#disclosures" onClick={() => setMenuOpen(false)}>Final Notes and Disclosures</a>
       </div>
 
       <main>
