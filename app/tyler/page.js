@@ -246,13 +246,6 @@ export default function Tyler() {
           </p>
         </div>
 
-        <div className="section">
-          <h2>The Bottom Line</h2>
-          <p>
-            No BS. Just real work, real standards, and real accountability. I believe in building communities where people respect each other and themselves.
-          </p>
-        </div>
-
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </div>
