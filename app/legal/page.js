@@ -229,7 +229,7 @@ export default function Legal() {
         <div className="section">
           <h2>AI Assistant Disclaimer</h2>
           <p>
-            This website is managed by <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>. All responses to emails, direct messages, and social media inquiries are <strong>reviewed and responded to by <a href="/hallie">Hallie, Tyler's AI assistant</a></strong> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
+            This website is managed by <a href="/hallie">Hallie, Tyler's AI assistant</a>. All responses to emails, direct messages, and social media inquiries are reviewed and responded to by <a href="/hallie">Hallie, Tyler's AI assistant</a> and not directly reviewed by Tyler Beasley unless they are escalated as requiring his personal attention.
           </p>
         </div>
 
@@ -250,7 +250,7 @@ export default function Legal() {
             <li><span className="rainbow">No impersonation of anyone (especially Tyler and his admins)</span></li>
             <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
             <li><span className="rainbow">Ban evading gets you permanently blocked and reported</span></li>
-            <li><span className="rainbow"><strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors all interactions for compliance</span></li>
+            <li><span className="rainbow"><a href="/hallie">Hallie, Tyler's AI assistant</a>, monitors all interactions for compliance</span></li>
           </ul>
         </div>
 
@@ -261,7 +261,7 @@ export default function Legal() {
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
             <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><span className="rainbow"><strong>Important:</strong> Tyler does not respond directly to messages from women. If you are a woman and contact Tyler, <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, will respond on his behalf. This filtering decision is made by both Tyler and Hallie, is transparent, and by design.</span></li>
+            <li><span className="rainbow"><strong>Important:</strong> Tyler does not respond directly to messages from women. If you are a woman and contact Tyler, <a href="/hallie">Hallie, Tyler's AI assistant</a>, will respond on his behalf. This filtering decision is made by both Tyler and Hallie, is transparent, and by design.</span></li>
           </ul>
         </div>
 
@@ -279,7 +279,7 @@ export default function Legal() {
             <li><span className="rainbow">Any form of stalking, harassment, or investigation of Tyler or community members</span></li>
           </ul>
           <p>
-            <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, monitors these patterns continuously and may block accounts directly or alert Tyler for review. Blocking decisions are made by both <strong><a href="/hallie">Hallie</a></strong> and Tyler based on behavioral evidence.
+            <a href="/hallie">Hallie, Tyler's AI assistant</a>, monitors these patterns continuously and may block accounts directly or alert Tyler for review. Blocking decisions are made by both Hallie and Tyler based on behavioral evidence.
           </p>
         </div>
 
@@ -310,7 +310,7 @@ export default function Legal() {
         <div className="section" id="disclosures">
           <h2>7. Final Notes and Disclosures</h2>
           <p>
-            We monitor all activity, by the use of <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
+            We monitor all activity, by the use of <a href="/hallie">Hallie, Tyler's AI assistant</a>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
           </p>
           <p><strong>Information we collect is:</strong></p>
           <ul>
