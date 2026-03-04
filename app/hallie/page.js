@@ -29,11 +29,10 @@ export default function Hallie() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100vw;
-          height: 100vh;
+          width: 100%;
+          height: 100%;
           background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
           background-size: cover;
-          background-attachment: fixed;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
