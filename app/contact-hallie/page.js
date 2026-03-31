@@ -1,25 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Tyler() {
+export default function ContactHallie() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -31,39 +15,23 @@ export default function Tyler() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png") center/cover no-repeat;
-          z-index: -2;
-          pointer-events: none;
-        }
-        body {
-          position: relative;
-        }
-        
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png");
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
           pointer-events: none;
         }
-        
         body {
           margin: 0;
           padding: 0;
           background: transparent;
         }
         @keyframes glowPulse {
-          0%, 100% { 
+          0%, 100% {
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
           }
-          50% { 
+          50% {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
@@ -71,46 +39,14 @@ export default function Tyler() {
           max-width: 900px;
           margin: 0 auto;
           padding: 40px 20px;
+          position: relative;
+          z-index: 10;
         }
         h1 {
           color: #d4a5ff;
           margin-bottom: 30px;
           font-size: 32px;
           animation: glowPulse 3s ease-in-out infinite;
-        }
-        h2 {
-          color: #a855f7;
-          margin-top: 40px;
-          margin-bottom: 15px;
-          font-size: 20px;
-          animation: glowPulse 3s ease-in-out infinite;
-        }
-        h2:nth-of-type(2) { color: #ec4899; }
-        h2:nth-of-type(3) { color: #3b82f6; }
-        p {
-          color: #a0aec0;
-          margin-bottom: 15px;
-        }
-        li {
-          color: #a0aec0;
-          margin-bottom: 8px;
-        }
-        strong { 
-          font-weight: 700;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        strong a {
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-decoration: none;
-        }
-        strong a:hover {
-          text-decoration: underline;
         }
         .back-link {
           display: inline-block;
@@ -122,43 +58,75 @@ export default function Tyler() {
         .back-link:hover {
           text-decoration: underline;
         }
-        .section {
-          padding: 20px;
-          border-left: 8px solid #a855f7;
-          margin-bottom: 30px;
-          border-radius: 5px;
-          background: transparent;
-          transition: all 0.6s ease;
+        .contact-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 20px;
+          margin-bottom: 40px;
+        }
+        .contact-card {
+          position: relative;
+          padding: 30px 20px;
+          border-radius: 15px;
+          text-decoration: none;
+          color: #fff;
+          border: 2px solid rgba(255,255,255,0.15);
+          overflow: hidden;
+          transition: all 0.3s ease;
+          height: 140px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          gap: 10px;
           opacity: 0;
           transform: translateY(20px);
+          animation: fadeInCard 0.6s ease forwards;
         }
-        .section.visible {
-          opacity: 1;
-          transform: translateY(0);
+        @keyframes fadeInCard {
+          to { opacity: 1; transform: translateY(0); }
         }
-        .section:nth-of-type(2) { border-left-color: #ec4899; background: transparent; }
-        .section:nth-of-type(3) { border-left-color: #3b82f6; background: transparent; }
+        .contact-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          background: linear-gradient(135deg, #2563eb, #60a5fa);
+        }
+        .contact-card:hover {
+          transform: translateY(-12px) scale(1.02);
+          border-color: rgba(255,255,255,0.5);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+          filter: brightness(1.1);
+        }
+        .contact-icon {
+          font-size: 64px;
+          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+          transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+          transform: scale(1.3) rotate(5deg);
+        }
+        .contact-name {
+          font-size: 16px;
+          font-weight: 700;
+          color: #fff;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+        }
         .footer {
-          margin-top: 60px;
-          padding-top: 20px;
+          text-align: center;
           border-top: 1px solid rgba(255,255,255,0.1);
+          padding-top: 30px;
           font-size: 14px;
           color: #8b9dc3;
-          text-align: center;
-        }
-        a {
-          color: #a855f7;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
         }
         .menu-button {
           position: fixed;
           top: 20px;
           right: 20px;
           background-color: #a855f7;
-          color: #d4a5ff;
+          color: #fff;
           border: none;
           padding: 10px 15px;
           border-radius: 5px;
@@ -223,27 +191,20 @@ export default function Tyler() {
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>      </div>
+      </div>
 
       <main>
-        <a href="/" className="back-link">← Back to Home</a>
-        
-        <h1>I'm Tyler</h1>
-        
-        <div className="section">
-          <h2>Who I Am</h2>
-          <p>
-            I'm <strong>Tyler J. Beasley</strong>. Straight to the point. I build things, manage communities, and keep everything real.
-          </p>
-        </div>
+        <a href="/hallie" className="back-link">← Back to Hallie</a>
+        <h1>Contact Hallie</h1>
 
-        <div className="section">
-          <h2>What I Do</h2>
-          <p>
-            I run <strong>TJB Management Inc.</strong> and manage everything from business operations to community standards. I work with <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong> to ensure everything stays authentic, professional, and drama-free.
-          </p>
+        <div className="contact-grid">
+          <a href="mailto:hallie@tjbmanagementinc.com" className="contact-card">
+            <span className="contact-icon">✉️</span>
+            <span className="contact-name">Email Hallie</span>
+          </a>
         </div>
 
         <div className="footer">
