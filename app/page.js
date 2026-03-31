@@ -204,6 +204,7 @@ export default function Home() {
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -217,6 +218,7 @@ export default function Home() {
           <a href="/tyler" className="nav-button">Meet Tyler</a>
           <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
+          <a href="/swave-social" className="nav-button">Swave Social</a>
         </div>
 
         <div className="footer section">

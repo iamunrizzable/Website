@@ -213,6 +213,7 @@ export default function Legal() {
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
         <a href="#basics" onClick={() => setMenuOpen(false)}>The Basics</a>
         <a href="#interactions" onClick={() => setMenuOpen(false)}>Interactions with Tyler</a>
         <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>Anti-Stalking & Suspicious Behavior</a>
