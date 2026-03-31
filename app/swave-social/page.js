@@ -6,7 +6,7 @@ export default function SwaveSocial() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Apply to Join Swave Social', href: 'https://web-ttp2.us.tiktok.com/tcn/scout_creators?use_spark=1&agency_scout_source=qr_code_leads&ShareLinkID=7618569674959339533', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
@@ -223,8 +223,8 @@ export default function SwaveSocial() {
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name === 'Swave Social Contact Form' ? '_blank' : undefined}
-              rel={contact.name === 'Swave Social Contact Form' ? 'noopener noreferrer' : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
               className="contact-card"
             >
               <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
