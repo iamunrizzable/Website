@@ -29,7 +29,7 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'Apply to Join Swave Social', href: 'https://web-ttp2.us.tiktok.com/tcn/scout_creators?use_spark=1&agency_scout_source=qr_code_leads&ShareLinkID=7618569674959339533', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
