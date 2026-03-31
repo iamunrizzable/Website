@@ -53,12 +53,18 @@ export default function SwaveSocial() {
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
-          color: #a855f7;
+          color: #fff;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 700;
+          font-size: 18px;
+          background: rgba(168, 85, 247, 0.4);
+          padding: 10px 18px;
+          border-radius: 8px;
+          border: 2px solid #a855f7;
         }
         .back-link:hover {
-          text-decoration: underline;
+          background: rgba(168, 85, 247, 0.6);
+          text-decoration: none;
         }
         .contact-grid {
           display: grid;
@@ -209,7 +215,7 @@ export default function SwaveSocial() {
       </div>
 
       <main>
-        <a href="/contact-tyler" className="back-link">← Back to Contact</a>
+        <a href="/contact-tyler" className="back-link">← Back to Contact Tyler</a>
         <h1>Swave Social</h1>
 
         <div className="contact-grid">
