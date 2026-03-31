@@ -340,7 +340,6 @@ export default function Contact() {
               href={contact.href}
               target={contact.name !== 'Email' && contact.name !== 'Phone' ? '_blank' : undefined}
               rel={contact.name !== 'Email' && contact.name !== 'Phone' ? 'noopener noreferrer' : undefined}
-              onClick={contact.name === 'Apply to Join Swave Social' ? (e) => { e.preventDefault(); window.open(contact.href, '_blank', 'noopener,noreferrer'); } : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
               {contact.iconSrc
