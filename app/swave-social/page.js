@@ -123,10 +123,8 @@ export default function SwaveSocial() {
           font-size: 16px;
           font-weight: 700;
           letter-spacing: 0.5px;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #fff;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.6);
         }
         .footer {
           text-align: center;
