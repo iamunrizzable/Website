@@ -327,7 +327,7 @@ export default function Contact() {
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>      </div>
 
