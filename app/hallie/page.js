@@ -271,6 +271,8 @@ export default function Hallie() {
           <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
         </div>
 
+        <a href="/contact-hallie" className="back-link">Contact Hallie →</a>
+
         <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
