@@ -148,8 +148,9 @@ export default function SwaveSocial() {
           text-align: center;
           border-top: 1px solid rgba(255,255,255,0.1);
           padding-top: 30px;
-          font-size: 14px;
+          font-size: 12px;
           color: #8b9dc3;
+          line-height: 1.8;
         }
         .menu-button {
           position: fixed;
@@ -250,6 +251,9 @@ export default function SwaveSocial() {
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>Swave Social and the Swave Social logo, Discord server, and contact form are the property of Swave Social. All rights reserved.</p>
+          <p>TikTok and the TikTok logo are the property of ByteDance Ltd. All rights reserved.</p>
+          <p>TJB Management Inc. is not affiliated with or endorsed by Swave Social or TikTok.</p>
         </div>
       </main>
     </>
