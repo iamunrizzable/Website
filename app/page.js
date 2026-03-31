@@ -203,7 +203,7 @@ export default function Home() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
-        <a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -215,7 +215,7 @@ export default function Home() {
         <div className="nav-buttons section">
           <a href="/hallie" className="nav-button">Meet Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
-          <a href="/contact" className="nav-button">Contact</a>
+          <a href="/contact-tyler" className="nav-button">Contact</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
         </div>
 
