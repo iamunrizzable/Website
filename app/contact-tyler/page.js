@@ -339,8 +339,8 @@ export default function Contact() {
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? '_blank' : undefined}
-              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? 'noopener noreferrer' : undefined}
+              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' ? '_blank' : undefined}
+              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
               {contact.iconSrc
