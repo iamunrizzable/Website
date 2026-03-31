@@ -215,7 +215,7 @@ export default function Home() {
         <div className="nav-buttons section">
           <a href="/hallie" className="nav-button">Meet Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
-          <a href="/contact-tyler" className="nav-button">Contact</a>
+          <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
         </div>
 
