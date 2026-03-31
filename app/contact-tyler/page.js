@@ -333,7 +333,7 @@ export default function Contact() {
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
-        <h1>Contact</h1>
+        <h1>Contact Tyler</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
