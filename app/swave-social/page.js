@@ -252,7 +252,7 @@ export default function SwaveSocial() {
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>Swave Social and the Swave Social logo, Discord server, and contact form are the property of Swave Social. All rights reserved.</p>
-          <p>TikTok and the TikTok logo are the property of ByteDance Ltd. All rights reserved.</p>
+          <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
           <p>TJB Management Inc. is not affiliated with or endorsed by Swave Social or TikTok.</p>
         </div>
       </main>
