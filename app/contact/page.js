@@ -29,6 +29,7 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
+    { name: 'Apply to Join Swave Social', href: 'https://web-ttp2.us.tiktok.com/tcn/scout_creators?use_spark=1&agency_scout_source=qr_code_leads&ShareLinkID=7618569674959339533', icon: '🌊' },
   ];
 
   return (
@@ -140,6 +141,7 @@ export default function Contact() {
         .contact-card:nth-child(5) { animation-delay: 0.5s; }
         .contact-card:nth-child(6) { animation-delay: 0.6s; }
         .contact-card:nth-child(7) { animation-delay: 0.7s; }
+        .contact-card:nth-child(8) { animation-delay: 0.8s; }
         .contact-card::before {
           content: '';
           position: absolute;
@@ -153,6 +155,7 @@ export default function Contact() {
         .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
         .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
         .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
+        .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
