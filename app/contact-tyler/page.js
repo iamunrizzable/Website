@@ -30,6 +30,7 @@ export default function Contact() {
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social Application', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
@@ -142,6 +143,7 @@ export default function Contact() {
         .contact-card:nth-child(6) { animation-delay: 0.6s; }
         .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card:nth-child(8) { animation-delay: 0.8s; }
+        .contact-card:nth-child(9) { animation-delay: 0.9s; }
         .contact-card::before {
           content: '';
           position: absolute;
