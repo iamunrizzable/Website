@@ -1,35 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Contact() {
+export default function SwaveSocial() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
   const contacts = [
-    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
-    { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
-    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
-    { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
-    { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
-    { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'Swave Social', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
@@ -47,34 +25,15 @@ export default function Contact() {
           pointer-events: none;
         }
         body {
-          position: relative;
-        }
-        
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png");
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          z-index: -3;
-          pointer-events: none;
-        }
-        
-        body {
           margin: 0;
           padding: 0;
           background: transparent;
         }
         @keyframes glowPulse {
-          0%, 100% { 
+          0%, 100% {
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
           }
-          50% { 
+          50% {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
@@ -136,41 +95,18 @@ export default function Contact() {
         }
         .contact-card:nth-child(1) { animation-delay: 0.1s; }
         .contact-card:nth-child(2) { animation-delay: 0.2s; }
-        .contact-card:nth-child(3) { animation-delay: 0.3s; }
-        .contact-card:nth-child(4) { animation-delay: 0.4s; }
-        .contact-card:nth-child(5) { animation-delay: 0.5s; }
-        .contact-card:nth-child(6) { animation-delay: 0.6s; }
-        .contact-card:nth-child(7) { animation-delay: 0.7s; }
-        .contact-card:nth-child(8) { animation-delay: 0.8s; }
-        .contact-card:nth-child(9) { animation-delay: 0.9s; }
         .contact-card::before {
           content: '';
           position: absolute;
           inset: 0;
           z-index: -1;
+          background: linear-gradient(135deg, #0ea5e9, #6366f1);
         }
-        .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-        .contact-card.x::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
-        .contact-card.discord::before { background: linear-gradient(135deg, #5865f2, #4752c4); }
-        .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
-        .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
-        .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
-        .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
-        .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
           box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor;
           filter: brightness(1.1);
-        }
-        .contact-icon {
-          font-size: 64px;
-          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-          transition: all 0.3s ease;
-        }
-        .contact-card:hover .contact-icon {
-          transform: scale(1.3) rotate(5deg);
-          filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
         }
         .contact-icon-img {
           width: 64px;
@@ -198,34 +134,6 @@ export default function Contact() {
           padding-top: 30px;
           font-size: 14px;
           color: #8b9dc3;
-        }
-        .footer-text {
-          margin-bottom: 10px;
-          color: #a0aec0;
-        }
-        .hallie-link {
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          font-weight: bold;
-          text-decoration: none;
-          cursor: pointer;
-        }
-        .hallie-link:hover {
-          text-decoration: underline;
-        }
-        .footer-disclaimer {
-          font-size: 12px;
-          margin-top: 15px;
-          color: #a0aec0;
-        }
-        .footer-disclaimer a {
-          color: #a855f7;
-          text-decoration: none;
-        }
-        .footer-disclaimer a:hover {
-          text-decoration: underline;
         }
         .menu-button {
           position: fixed;
@@ -287,39 +195,9 @@ export default function Contact() {
           z-index: 50;
           pointer-events: none;
         }
-        .watermark {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: -1;
-          pointer-events: none;
-        }
-        .watermark-glow {
-          position: absolute;
-          inset: -40px;
-          background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
-          border-radius: 50%;
-          filter: blur(40px);
-          animation: glowPulse 4s ease-in-out infinite;
-        }
-        .watermark-img {
-          position: relative;
-          z-index: 1;
-          max-width: 700px;
-          width: 80vw;
-          height: auto;
-          filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
-          opacity: 0.15;
-        }
       `}</style>
 
       <div className="fade-top"></div>
-
-      <div className="watermark">
-        <div className="watermark-glow"></div>
-        <img src="/logo-new.png" alt="Tyler J. Beasley" className="watermark-img" />
-      </div>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
@@ -327,35 +205,31 @@ export default function Contact() {
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
       <main>
-        <a href="/" className="back-link">← Back to Home</a>
-        <h1>Contact</h1>
+        <a href="/contact-tyler" className="back-link">← Back to Contact</a>
+        <h1>Swave Social</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? '_blank' : undefined}
-              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? 'noopener noreferrer' : undefined}
-              className={`contact-card ${contact.name.toLowerCase()}`}
+              target={contact.name === 'Swave Social Contact Form' ? '_blank' : undefined}
+              rel={contact.name === 'Swave Social Contact Form' ? 'noopener noreferrer' : undefined}
+              className="contact-card"
             >
-              {contact.iconSrc
-                ? <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
-                : <span className="contact-icon">{contact.icon}</span>
-              }
+              <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
               <span className="contact-name">{contact.name}</span>
             </a>
           ))}
         </div>
 
         <div className="footer">
-          <p className="footer-text">Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
-          <p className="footer-disclaimer">This site uses Vercel Analytics. For more, see our <a href="/legal">legal guidelines</a>.</p>
-          <p>© 2026 TJB Management Inc.</p>
+          <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </div>
       </main>
     </>
