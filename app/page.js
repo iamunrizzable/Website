@@ -202,6 +202,7 @@ export default function Home() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
         <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
@@ -215,6 +216,7 @@ export default function Home() {
 
         <div className="nav-buttons section">
           <a href="/hallie" className="nav-button">Meet Hallie</a>
+          <a href="/contact-hallie" className="nav-button">Contact Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
           <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
