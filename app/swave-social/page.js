@@ -8,6 +8,7 @@ export default function SwaveSocial() {
   const contacts = [
     { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social Discord', href: 'https://discord.gg/TdMztsxy5Q', icon: '💬', iconSrc: null },
   ];
 
   return (
@@ -108,11 +109,22 @@ export default function SwaveSocial() {
           z-index: -1;
           background: linear-gradient(135deg, #0ea5e9, #6366f1);
         }
+        .contact-card.discord::before {
+          background: linear-gradient(135deg, #5865f2, #4752c4);
+        }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
           box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor;
           filter: brightness(1.1);
+        }
+        .contact-icon {
+          font-size: 64px;
+          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+          transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+          transform: scale(1.3) rotate(5deg);
         }
         .contact-icon-img {
           width: 64px;
@@ -225,9 +237,12 @@ export default function SwaveSocial() {
               href={contact.href}
               target={contact.name === 'Apply to Join Swave Social' ? undefined : '_self'}
               rel={undefined}
-              className="contact-card"
+              className={`contact-card${contact.name === 'Swave Social Discord' ? ' discord' : ''}`}
             >
-              <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
+              {contact.iconSrc
+                ? <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
+                : <span className="contact-icon">{contact.icon}</span>
+              }
               <span className="contact-name">{contact.name}</span>
             </a>
           ))}
