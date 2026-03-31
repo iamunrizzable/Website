@@ -229,20 +229,23 @@ export default function Tyler() {
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
-        
-        <h1>I'm Tyler</h1>
-        
+
+        <h1>Tyler J. Beasley</h1>
+
         <div className="section">
-          <h2>Who I Am</h2>
+          <h2>Straight to the point.</h2>
           <p>
-            I'm <strong>Tyler J. Beasley</strong>. Straight to the point. I build things, manage communities, and keep everything real.
+            I build things, manage communities, and keep everything real.
           </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            I run <strong>TJB Management Inc.</strong> and manage everything from business operations to community standards. I work with <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong> to ensure everything stays authentic, professional, and drama-free.
+            I'm a Creator Manager at <strong>Swave Social Talent</strong>, where I help livestreamers and TikTok creators turn their passion into full-time income. From optimizing live streams and community growth to handling bans and creator issues, I make sure creators stay protected and continue growing on the platform.
+          </p>
+          <p>
+            I run point on everything from strategy and monetization to handling bans with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>, I keep things authentic, drama-free, and focused on real results.
           </p>
         </div>
 
