@@ -29,7 +29,7 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'Apply to Join Swave Social', href: 'https://web-ttp2.us.tiktok.com/tcn/scout_creators?use_spark=1&agency_scout_source=qr_code_leads&ShareLinkID=7618569674959339533', icon: '🌊' },
+    { name: 'Apply to Join Swave Social', href: 'https://web-ttp2.us.tiktok.com/tcn/scout_creators?use_spark=1&agency_scout_source=qr_code_leads&ShareLinkID=7618569674959339533', icon: null, iconSrc: '/swave-logo.png' },
   ];
 
   return (
@@ -168,6 +168,17 @@ export default function Contact() {
           transition: all 0.3s ease;
         }
         .contact-card:hover .contact-icon {
+          transform: scale(1.3) rotate(5deg);
+          filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+        }
+        .contact-icon-img {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+          border-radius: 12px;
+          transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon-img {
           transform: scale(1.3) rotate(5deg);
           filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
         }
@@ -331,7 +342,10 @@ export default function Contact() {
               rel={contact.name !== 'Email' && contact.name !== 'Phone' ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
-              <span className="contact-icon">{contact.icon}</span>
+              {contact.iconSrc
+                ? <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
+                : <span className="contact-icon">{contact.icon}</span>
+              }
               <span className="contact-name">{contact.name}</span>
             </a>
           ))}
