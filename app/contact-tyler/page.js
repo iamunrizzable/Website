@@ -356,7 +356,8 @@ export default function Contact() {
         <div className="footer">
           <p className="footer-text">Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
           <p className="footer-disclaimer">This site uses Vercel Analytics. For more, see our <a href="/legal">legal guidelines</a>.</p>
-          <p>© 2026 TJB Management Inc.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
+          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
         </div>
       </main>
     </>

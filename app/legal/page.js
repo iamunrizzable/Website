@@ -324,7 +324,8 @@ export default function Legal() {
 
         <footer>
           <p>Last Updated: March 4, 2026</p>
-          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
+          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
         </footer>
       </main>
     </>
