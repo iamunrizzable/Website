@@ -29,6 +29,7 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
+    { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
     { name: 'Swave Social', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
@@ -157,6 +158,7 @@ export default function Contact() {
         .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
         .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
         .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+        .contact-card.tiktok-cheaper-coins-recharge::before { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
