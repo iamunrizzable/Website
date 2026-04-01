@@ -250,11 +250,11 @@ export default function SwaveSocial() {
         </div>
 
         <div className="footer">
-          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
+          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
           <p>Swave Social and the Swave Social logo, Discord server, and contact form are the property of Swave Social. All rights reserved.</p>
           <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
           <p>TJB Management Inc. is not affiliated with or endorsed by Swave Social or TikTok.</p>
-          <p>Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
         </div>
       </main>
     </>
