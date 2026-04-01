@@ -254,7 +254,6 @@ export default function SwaveSocial() {
           <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
           <p>Swave Social and the Swave Social logo, Discord server, and contact form are the property of Swave Social. All rights reserved.</p>
           <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
-          <p>TJB Management Inc. is not affiliated with or endorsed by Swave Social or TikTok.</p>
         </div>
       </main>
     </>
