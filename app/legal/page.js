@@ -314,7 +314,7 @@ export default function Legal() {
           <ul>
             <li><span className="rainbow">Maintaining a close association with individuals we have previously blocked</span></li>
             <li><span className="rainbow">Attempting to inquire about the status or details of an account you do not own or manage</span></li>
-            <li><span className="rainbow">Requesting that we take enforcement action against another user's account</span></li>
+            <li><span className="rainbow">Requesting that we change enforcement action on another user's account</span></li>
           </ul>
           <p>All enforcement decisions made under this policy are at our sole discretion and are not subject to appeal.</p>
         </div>
