@@ -218,6 +218,7 @@ export default function Legal() {
         <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>Anti-Stalking & Suspicious Behavior</a>
         <a href="#consequences" onClick={() => setMenuOpen(false)}>Consequences</a>
         <a href="#appeals" onClick={() => setMenuOpen(false)}>Appeals</a>
+        <a href="#affiliation-policy" onClick={() => setMenuOpen(false)}>Account Affiliation Policy</a>
         <a href="#disclosures" onClick={() => setMenuOpen(false)}>Final Notes and Disclosures</a>
       </div>
 
@@ -307,8 +308,19 @@ export default function Legal() {
           <p>We only overturn bans with solid evidence supporting the appeal.</p>
         </div>
 
+        <div className="section" id="affiliation-policy">
+          <h2>7. Account Affiliation Policy</h2>
+          <p>At our discretion, we may block your account for any of the following:</p>
+          <ul>
+            <li><span className="rainbow">Closely affiliating with people we have blocked</span></li>
+            <li><span className="rainbow">Attempting to inquire about anyone else's account that you do not own or manage</span></li>
+            <li><span className="rainbow">Asking us to take adverse action on anyone else's account</span></li>
+          </ul>
+          <p>Enforcement actions under this policy are made at our sole discretion.</p>
+        </div>
+
         <div className="section" id="disclosures">
-          <h2>7. Final Notes and Disclosures</h2>
+          <h2>8. Final Notes and Disclosures</h2>
           <p>
             We monitor all activity, by the use of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
           </p>
