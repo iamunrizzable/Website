@@ -224,118 +224,118 @@ export default function Legal() {
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
-        
+
         <h1>Legal Disclaimers & Community Guidelines</h1>
 
         <div className="section">
           <h2>AI Assistant Disclaimer</h2>
           <p>
-            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are reviewed and responded to by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and not directly reviewed by <a href="/tyler"><span className="rainbow">Tyler</span></a> Beasley unless they are escalated as requiring his personal attention.
+            This website is operated with the assistance of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All inbound emails, direct messages, and social media inquiries are handled by <a href="/hallie"><span className="rainbow">Hallie</span></a> on <a href="/tyler"><span className="rainbow">Tyler</span></a>'s behalf. Messages are only escalated to <a href="/tyler"><span className="rainbow">Tyler</span></a> directly when they require his personal attention.
           </p>
         </div>
 
         <div className="section" id="basics">
           <h2>1. The Basics</h2>
           <ul>
-            <li><span className="rainbow">Be respectful to <a href="/tyler">Tyler</a> and his admins at all times</span></li>
-            <li><span className="rainbow">No harassment, threats, or stalking</span></li>
-            <li><span className="rainbow">No doxing or publicly sharing private info about anyone other than yourself</span></li>
-            <li><span className="rainbow">NSFW creators aren't welcome here</span></li>
+            <li><span className="rainbow">Treat <a href="/tyler">Tyler</a> and his team with respect at all times</span></li>
+            <li><span className="rainbow">Harassment, threats, and stalking of any kind will not be tolerated</span></li>
+            <li><span className="rainbow">Do not dox or publicly share anyone's private information</span></li>
+            <li><span className="rainbow">NSFW content and creators are not welcome in this community</span></li>
           </ul>
         </div>
 
         <div className="section">
           <h2>2. Your Account</h2>
           <ul>
-            <li><span className="rainbow">Use a real photo and username</span></li>
-            <li><span className="rainbow">No impersonation of anyone (especially <a href="/tyler">Tyler</a> and his admins)</span></li>
-            <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
-            <li><span className="rainbow">Ban evading gets you permanently blocked and reported</span></li>
-            <li><span className="rainbow"><a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, monitors all interactions for compliance</span></li>
+            <li><span className="rainbow">Use a real profile photo and a genuine username</span></li>
+            <li><span className="rainbow">Impersonating <a href="/tyler">Tyler</a>, his team, or anyone else is strictly prohibited</span></li>
+            <li><span className="rainbow">Fan or parody accounts are permitted only if clearly labeled as such</span></li>
+            <li><span className="rainbow">Attempting to evade a ban will result in a permanent block and a report to the platform</span></li>
+            <li><span className="rainbow">All interactions are monitored by <a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, for guideline compliance</span></li>
           </ul>
         </div>
 
         <div className="section" id="interactions">
           <h2>3. Interactions with <a href="/tyler">Tyler</a></h2>
           <ul>
-            <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
-            <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
-            <li><span className="rainbow">When you message him, have an actual reason</span></li>
-            <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><strong>Important:</strong> <a href="/tyler"><span className="rainbow">Tyler</span></a> does not respond directly to messages from women. If you are a woman and contact <a href="/tyler"><span className="rainbow">Tyler</span></a>, <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, will respond on his behalf. This filtering decision is made by both <a href="/tyler"><span className="rainbow">Tyler</span></a> and <a href="/hallie"><span className="rainbow">Hallie</span></a>, is transparent, and by design.</li>
+            <li><span className="rainbow">Unsolicited flirting, pickup lines, and personal compliments are not appropriate</span></li>
+            <li><span className="rainbow">If you ask for his contact and he declines, that answer is final — do not ask again</span></li>
+            <li><span className="rainbow">Only reach out if you have a clear, legitimate reason to do so</span></li>
+            <li><span className="rainbow">Any request for an in-person meetup from a male must receive explicit prior approval</span></li>
+            <li><strong>Important:</strong> <a href="/tyler"><span className="rainbow">Tyler</span></a> does not personally respond to messages from women. If you are a woman reaching out to <a href="/tyler"><span className="rainbow">Tyler</span></a>, <a href="/hallie"><span className="rainbow">Hallie</span></a> will respond on his behalf. This is a deliberate, transparent policy agreed upon by both <a href="/tyler"><span className="rainbow">Tyler</span></a> and <a href="/hallie"><span className="rainbow">Hallie</span></a>.</li>
           </ul>
         </div>
 
         <div className="section" id="anti-stalking">
           <h2>4. Anti-Stalking & Suspicious Behavior</h2>
           <p>
-            We actively monitor for suspicious account behavior patterns to protect <a href="/tyler"><span className="rainbow">Tyler</span></a> and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
+            We continuously monitor for behavioral patterns that may pose a risk to <a href="/tyler"><span className="rainbow">Tyler</span></a> or our community. The following may result in an immediate block at our discretion:
           </p>
           <ul>
-            <li><span className="rainbow">New accounts created immediately before or after viewing <a href="/tyler">Tyler</a>'s profile</span></li>
-            <li><span className="rainbow">Multiple accounts viewing from the same IP address or device</span></li>
-            <li><span className="rainbow">Accounts with no profile picture, minimal account history, or generic usernames</span></li>
-            <li><span className="rainbow">Repeated viewing of <a href="/tyler">Tyler</a>'s profile (3+ times) with zero interaction or engagement</span></li>
-            <li><span className="rainbow">Account behavior patterns matching known coordinated attack accounts</span></li>
-            <li><span className="rainbow">Any form of stalking, harassment, or investigation of <a href="/tyler">Tyler</a> or community members</span></li>
+            <li><span className="rainbow">Accounts created shortly before or after viewing <a href="/tyler">Tyler</a>'s profile</span></li>
+            <li><span className="rainbow">Multiple accounts accessing from the same IP address or device</span></li>
+            <li><span className="rainbow">Accounts with no profile photo, limited history, or obviously generic usernames</span></li>
+            <li><span className="rainbow">Repeatedly viewing <a href="/tyler">Tyler</a>'s profile (3 or more times) without any genuine engagement</span></li>
+            <li><span className="rainbow">Behavior patterns consistent with known coordinated or bot-driven accounts</span></li>
+            <li><span className="rainbow">Any form of stalking, harassment, or unsolicited investigation into <a href="/tyler">Tyler</a> or community members</span></li>
           </ul>
           <p>
-            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, monitors these patterns continuously and may block accounts directly or alert <a href="/tyler"><span className="rainbow">Tyler</span></a> for review. Blocking decisions are made by both <a href="/hallie"><span className="rainbow">Hallie</span></a> and <a href="/tyler"><span className="rainbow">Tyler</span></a> based on behavioral evidence.
+            <a href="/hallie"><span className="rainbow">Hallie</span></a> monitors these signals in real time and may act independently or flag activity for <a href="/tyler"><span className="rainbow">Tyler</span></a>'s review. All enforcement decisions are based on observable behavioral evidence.
           </p>
         </div>
 
         <div className="section" id="consequences">
           <h2>5. Consequences</h2>
           <ul>
-            <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
-            <li><span className="rainbow"><strong>2 Reps:</strong> Temporary ban</span></li>
-            <li><span className="rainbow"><strong>3 Reps:</strong> Permanent ban + legal action if needed</span></li>
+            <li><span className="rainbow"><strong>1st Offense:</strong> Formal warning and mute</span></li>
+            <li><span className="rainbow"><strong>2nd Offense:</strong> Temporary ban</span></li>
+            <li><span className="rainbow"><strong>3rd Offense:</strong> Permanent ban, with legal action pursued if warranted</span></li>
           </ul>
-          <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
+          <p>Associates of banned users who are found to be defending the violation or assisting in ban evasion may also be blocked.</p>
         </div>
 
         <div className="section" id="appeals">
           <h2>6. Appeals</h2>
           <p>
-            To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
+            If you believe a block or ban was issued in error, you may submit an appeal by opening a ticket in our Discord server or by emailing tyler@tjbmanagementinc.com. All appeals must include the following:
           </p>
           <ul>
-            <li><span className="rainbow">Full username</span></li>
-            <li><span className="rainbow">Platform you are blocked on</span></li>
-            <li><span className="rainbow">What you did to get blocked</span></li>
-            <li><span className="rainbow">Why you want to be unblocked</span></li>
+            <li><span className="rainbow">Your full username</span></li>
+            <li><span className="rainbow">The platform on which you were blocked</span></li>
+            <li><span className="rainbow">A clear explanation of what led to the block</span></li>
+            <li><span className="rainbow">Your reason for requesting reinstatement</span></li>
           </ul>
-          <p>We only overturn bans with solid evidence supporting the appeal.</p>
+          <p>Appeals are only granted when supported by clear and credible evidence. Decisions are final.</p>
         </div>
 
         <div className="section" id="affiliation-policy">
           <h2>7. Account Affiliation Policy</h2>
-          <p>At our discretion, we may block your account for any of the following:</p>
+          <p>We reserve the right to block any account at our discretion for the following reasons:</p>
           <ul>
-            <li><span className="rainbow">Closely affiliating with people we have blocked</span></li>
-            <li><span className="rainbow">Attempting to inquire about anyone else's account that you do not own or manage</span></li>
-            <li><span className="rainbow">Asking us to take adverse action on anyone else's account</span></li>
+            <li><span className="rainbow">Maintaining a close association with individuals we have previously blocked</span></li>
+            <li><span className="rainbow">Attempting to inquire about the status or details of an account you do not own or manage</span></li>
+            <li><span className="rainbow">Requesting that we take enforcement action against another user's account</span></li>
           </ul>
-          <p>Enforcement actions under this policy are made at our sole discretion.</p>
+          <p>All enforcement decisions made under this policy are at our sole discretion and are not subject to appeal.</p>
         </div>
 
         <div className="section" id="disclosures">
           <h2>8. Final Notes and Disclosures</h2>
           <p>
-            We monitor all activity, by the use of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
+            All activity across our platforms is monitored through a combination of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human oversight. We reserve the right to escalate matters to law enforcement where appropriate. By engaging with this website or any of our social media accounts, you acknowledge and agree to these guidelines, including our use of AI-assisted moderation and the collection of data outlined below.
           </p>
-          <p><strong>Information we collect is:</strong></p>
+          <p><strong>Information we may collect includes:</strong></p>
           <ul>
             <li><span className="rainbow">Messages and direct interactions</span></li>
             <li><span className="rainbow">Account information and profile data</span></li>
-            <li><span className="rainbow">IP addresses (via Vercel Analytics)</span></li>
-            <li><span className="rainbow">Interaction patterns and activity logs</span></li>
+            <li><span className="rainbow">IP addresses (collected via Vercel Analytics)</span></li>
+            <li><span className="rainbow">Behavioral patterns and activity logs</span></li>
           </ul>
-          <p>We promise to only use personal information to ensure compliance with our community guidelines and will not share or sell your personal information with any person, business, or agency without a warrant.</p>
+          <p>All collected information is used solely to enforce our community guidelines. We will never sell or share your personal data with any individual, company, or agency unless compelled to do so by a valid legal warrant.</p>
         </div>
 
         <footer>
-          <p>Last Updated: March 4, 2026</p>
+          <p>Last Updated: April 2, 2026</p>
           <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
           <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
         </footer>
