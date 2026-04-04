@@ -316,7 +316,7 @@ export default function Legal() {
             <li><span className="rainbow">Attempting to inquire about the status or details of an account you do not own or manage</span></li>
             <li><span className="rainbow">Requesting that we change enforcement action on another user's account</span></li>
           </ul>
-          <p>All enforcement decisions made under this policy are at our sole discretion and are not subject to appeal.</p>
+          <p>All enforcement decisions made under this policy are at our sole discretion.</p>
         </div>
 
         <div className="section" id="disclosures">
