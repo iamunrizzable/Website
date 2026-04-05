@@ -214,30 +214,25 @@ export default function Legal() {
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="#basics" onClick={() => setMenuOpen(false)}>1. Community Standards</a>
-        <a href="#interactions" onClick={() => setMenuOpen(false)}>3. Engaging with Tyler</a>
-        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>4. Safety & Threat Detection</a>
-        <a href="#consequences" onClick={() => setMenuOpen(false)}>5. Enforcement & Penalties</a>
-        <a href="#appeals" onClick={() => setMenuOpen(false)}>6. Appeal Process</a>
-        <a href="#affiliation-policy" onClick={() => setMenuOpen(false)}>7. Affiliation & Association</a>
-        <a href="#false-allegations" onClick={() => setMenuOpen(false)}>8. False Allegations</a>
-        <a href="#content-spam" onClick={() => setMenuOpen(false)}>9. Content & Spam</a>
-        <a href="#minors" onClick={() => setMenuOpen(false)}>10. Minors Policy</a>
-        <a href="#intellectual-property" onClick={() => setMenuOpen(false)}>11. Intellectual Property</a>
-        <a href="#modifications" onClick={() => setMenuOpen(false)}>12. Right to Modify</a>
-        <a href="#disclosures" onClick={() => setMenuOpen(false)}>13. Privacy & Disclosures</a>
+        <a href="#interactions" onClick={() => setMenuOpen(false)}>2. Engaging with Tyler</a>
+        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>3. Safety & Threat Detection</a>
+        <a href="#content-spam" onClick={() => setMenuOpen(false)}>4. Content & Spam</a>
+        <a href="#false-allegations" onClick={() => setMenuOpen(false)}>5. False Allegations</a>
+        <a href="#affiliation-policy" onClick={() => setMenuOpen(false)}>6. Affiliation & Association</a>
+        <a href="#account-requirements" onClick={() => setMenuOpen(false)}>7. Account Requirements</a>
+        <a href="#minors" onClick={() => setMenuOpen(false)}>8. Minors Policy</a>
+        <a href="#consequences" onClick={() => setMenuOpen(false)}>9. Enforcement & Penalties</a>
+        <a href="#appeals" onClick={() => setMenuOpen(false)}>10. Appeal Process</a>
+        <a href="#ai-disclaimer" onClick={() => setMenuOpen(false)}>11. AI Assistant Disclaimer</a>
+        <a href="#intellectual-property" onClick={() => setMenuOpen(false)}>12. Intellectual Property</a>
+        <a href="#modifications" onClick={() => setMenuOpen(false)}>13. Right to Modify</a>
+        <a href="#disclosures" onClick={() => setMenuOpen(false)}>14. Privacy & Disclosures</a>
       </div>
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
 
         <h1>Legal Disclaimers & Community Guidelines</h1>
-
-        <div className="section">
-          <h2>AI Assistant Disclaimer</h2>
-          <p>
-            This website is operated with the assistance of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All inbound emails, direct messages, and social media inquiries are handled by <a href="/hallie"><span className="rainbow">Hallie</span></a> on <a href="/tyler"><span className="rainbow">Tyler</span></a>'s behalf. Messages are only escalated to <a href="/tyler"><span className="rainbow">Tyler</span></a> directly when they require his personal attention.
-          </p>
-        </div>
 
         <div className="section" id="basics">
           <h2>1. Community Standards</h2>
@@ -249,19 +244,8 @@ export default function Legal() {
           </ul>
         </div>
 
-        <div className="section">
-          <h2>2. Account Requirements</h2>
-          <ul>
-            <li><span className="rainbow">Use a real profile photo and a genuine username</span></li>
-            <li><span className="rainbow">Impersonating <a href="/tyler">Tyler</a>, his team, or anyone else is strictly prohibited</span></li>
-            <li><span className="rainbow">Fan or parody accounts are permitted only if clearly labeled as such</span></li>
-            <li><span className="rainbow">Attempting to evade a ban will result in a permanent block and a report to the platform</span></li>
-            <li><span className="rainbow">All interactions are monitored by <a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, for guideline compliance</span></li>
-          </ul>
-        </div>
-
         <div className="section" id="interactions">
-          <h2>3. Engaging with <a href="/tyler">Tyler</a></h2>
+          <h2>2. Engaging with <a href="/tyler">Tyler</a></h2>
           <ul>
             <li><span className="rainbow">Unsolicited flirting, pickup lines, and personal compliments are not appropriate</span></li>
             <li><span className="rainbow">If you ask for his contact and he declines, that answer is final — do not ask again</span></li>
@@ -272,7 +256,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="anti-stalking">
-          <h2>4. Safety & Threat Detection</h2>
+          <h2>3. Safety & Threat Detection</h2>
           <p>
             We continuously monitor for behavioral patterns that may pose a risk to <a href="/tyler"><span className="rainbow">Tyler</span></a> or our community. The following may result in an immediate block at our discretion:
           </p>
@@ -289,43 +273,17 @@ export default function Legal() {
           </p>
         </div>
 
-        <div className="section" id="consequences">
-          <h2>5. Enforcement & Penalties</h2>
+        <div className="section" id="content-spam">
+          <h2>4. Content & Spam Policy</h2>
           <ul>
-            <li><span className="rainbow"><strong>1st Offense:</strong> Formal warning and mute</span></li>
-            <li><span className="rainbow"><strong>2nd Offense:</strong> Temporary ban</span></li>
-            <li><span className="rainbow"><strong>3rd Offense:</strong> Permanent ban, with legal action pursued if warranted</span></li>
+            <li><span className="rainbow">Spam, unsolicited self-promotion, and advertising in DMs or comments are strictly prohibited</span></li>
+            <li><span className="rainbow">Do not send repeated or bulk messages to Tyler or any member of his team</span></li>
+            <li><span className="rainbow">Posting misleading, manipulative, or low-quality content intended to bait engagement will result in removal and a block</span></li>
           </ul>
-          <p>Associates of banned users who are found to be defending the violation or assisting in ban evasion may also be blocked.</p>
-        </div>
-
-        <div className="section" id="appeals">
-          <h2>6. Appeal Process</h2>
-          <p>
-            If you believe a block or ban was issued in error, you may submit an appeal by opening a ticket in our Discord server or by emailing tyler@tjbmanagementinc.com. All appeals must include the following:
-          </p>
-          <ul>
-            <li><span className="rainbow">Your full username</span></li>
-            <li><span className="rainbow">The platform on which you were blocked</span></li>
-            <li><span className="rainbow">A clear explanation of what led to the block</span></li>
-            <li><span className="rainbow">Your reason for requesting reinstatement</span></li>
-          </ul>
-          <p>Appeals are only granted when supported by clear and credible evidence. Decisions are final.</p>
-        </div>
-
-        <div className="section" id="affiliation-policy">
-          <h2>7. Affiliation & Association Policy</h2>
-          <p>We reserve the right to block any account at our discretion for the following reasons:</p>
-          <ul>
-            <li><span className="rainbow">Maintaining a close association with individuals we have previously blocked</span></li>
-            <li><span className="rainbow">Attempting to inquire about the status or details of an account you do not own or manage</span></li>
-            <li><span className="rainbow">Requesting that we change enforcement action on another user's account</span></li>
-          </ul>
-          <p>All enforcement decisions made under this policy are at our sole discretion.</p>
         </div>
 
         <div className="section" id="false-allegations">
-          <h2>8. False Allegations Policy</h2>
+          <h2>5. False Allegations Policy</h2>
           <p>
             Making false, defamatory, or misleading allegations against <a href="/tyler"><span className="rainbow">Tyler</span></a>, his moderators, or any of his affiliates is a serious violation of these guidelines and will not be tolerated under any circumstances.
           </p>
@@ -338,38 +296,82 @@ export default function Legal() {
           <p>If you have a legitimate concern or grievance, the proper channel is through the <a href="#appeals"><span className="rainbow">Appeal Process</span></a> or by emailing tyler@tjbmanagementinc.com directly.</p>
         </div>
 
-        <div className="section" id="content-spam">
-          <h2>9. Content & Spam Policy</h2>
+        <div className="section" id="affiliation-policy">
+          <h2>6. Affiliation & Association Policy</h2>
+          <p>We reserve the right to block any account at our discretion for the following reasons:</p>
           <ul>
-            <li><span className="rainbow">Spam, unsolicited self-promotion, and advertising in DMs or comments are strictly prohibited</span></li>
-            <li><span className="rainbow">Do not send repeated or bulk messages to Tyler or any member of his team</span></li>
-            <li><span className="rainbow">Posting misleading, manipulative, or low-quality content intended to bait engagement will result in removal and a block</span></li>
+            <li><span className="rainbow">Maintaining a close association with individuals we have previously blocked</span></li>
+            <li><span className="rainbow">Attempting to inquire about the status or details of an account you do not own or manage</span></li>
+            <li><span className="rainbow">Requesting that we change enforcement action on another user's account</span></li>
+          </ul>
+          <p>All enforcement decisions made under this policy are at our sole discretion.</p>
+        </div>
+
+        <div className="section" id="account-requirements">
+          <h2>7. Account Requirements</h2>
+          <ul>
+            <li><span className="rainbow">Use a real profile photo and a genuine username</span></li>
+            <li><span className="rainbow">Impersonating <a href="/tyler">Tyler</a>, his team, or anyone else is strictly prohibited</span></li>
+            <li><span className="rainbow">Fan or parody accounts are permitted only if clearly labeled as such</span></li>
+            <li><span className="rainbow">Attempting to evade a ban will result in a permanent block and a report to the platform</span></li>
+            <li><span className="rainbow">All interactions are monitored by <a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, for guideline compliance</span></li>
           </ul>
         </div>
 
         <div className="section" id="minors">
-          <h2>10. Minors Policy</h2>
+          <h2>8. Minors Policy</h2>
           <p>
             This community is intended for individuals aged 18 and older. Anyone found to be under the age of 18 will be immediately blocked and reported to the relevant platform. By engaging with <a href="/tyler"><span className="rainbow">Tyler</span></a> or this website, you confirm that you are at least 18 years of age.
           </p>
         </div>
 
+        <div className="section" id="consequences">
+          <h2>9. Enforcement & Penalties</h2>
+          <ul>
+            <li><span className="rainbow"><strong>1st Offense:</strong> Formal warning and mute</span></li>
+            <li><span className="rainbow"><strong>2nd Offense:</strong> Temporary ban</span></li>
+            <li><span className="rainbow"><strong>3rd Offense:</strong> Permanent ban, with legal action pursued if warranted</span></li>
+          </ul>
+          <p>Associates of banned users who are found to be defending the violation or assisting in ban evasion may also be blocked.</p>
+        </div>
+
+        <div className="section" id="appeals">
+          <h2>10. Appeal Process</h2>
+          <p>
+            If you believe a block or ban was issued in error, you may submit an appeal by opening a ticket in our Discord server or by emailing tyler@tjbmanagementinc.com. All appeals must include the following:
+          </p>
+          <ul>
+            <li><span className="rainbow">Your full username</span></li>
+            <li><span className="rainbow">The platform on which you were blocked</span></li>
+            <li><span className="rainbow">A clear explanation of what led to the block</span></li>
+            <li><span className="rainbow">Your reason for requesting reinstatement</span></li>
+          </ul>
+          <p>Appeals are only granted when supported by clear and credible evidence. Decisions are final.</p>
+        </div>
+
+        <div className="section" id="ai-disclaimer">
+          <h2>11. AI Assistant Disclaimer</h2>
+          <p>
+            This website is operated with the assistance of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All inbound emails, direct messages, and social media inquiries are handled by <a href="/hallie"><span className="rainbow">Hallie</span></a> on <a href="/tyler"><span className="rainbow">Tyler</span></a>'s behalf. Messages are only escalated to <a href="/tyler"><span className="rainbow">Tyler</span></a> directly when they require his personal attention.
+          </p>
+        </div>
+
         <div className="section" id="intellectual-property">
-          <h2>11. Intellectual Property</h2>
+          <h2>12. Intellectual Property</h2>
           <p>
             The unauthorized use of <a href="/tyler"><span className="rainbow">Tyler</span></a>'s name, image, likeness, or brand for any commercial purpose is strictly prohibited. This includes but is not limited to merchandise, promotions, sponsored content, and any form of monetized media. Violations may result in a DMCA takedown request and/or legal action.
           </p>
         </div>
 
         <div className="section" id="modifications">
-          <h2>12. Right to Modify</h2>
+          <h2>13. Right to Modify</h2>
           <p>
             We reserve the right to update, amend, or replace these guidelines at any time without prior notice. Continued engagement with <a href="/tyler"><span className="rainbow">Tyler</span></a> or this website following any update constitutes your acceptance of the revised guidelines. It is your responsibility to review this page periodically for changes.
           </p>
         </div>
 
         <div className="section" id="disclosures">
-          <h2>13. Privacy, Data & Legal Disclosures</h2>
+          <h2>14. Privacy, Data & Legal Disclosures</h2>
           <p>
             All activity across our platforms is monitored through a combination of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human oversight. We reserve the right to escalate matters to law enforcement where appropriate. By engaging with this website or any of our social media accounts, you acknowledge and agree to these guidelines, including our use of AI-assisted moderation and the collection of data outlined below.
           </p>
