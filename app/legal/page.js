@@ -213,13 +213,18 @@ export default function Legal() {
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
-        <a href="#basics" onClick={() => setMenuOpen(false)}>The Basics</a>
-        <a href="#interactions" onClick={() => setMenuOpen(false)}>Interactions with Tyler</a>
-        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>Anti-Stalking & Suspicious Behavior</a>
-        <a href="#consequences" onClick={() => setMenuOpen(false)}>Consequences</a>
-        <a href="#appeals" onClick={() => setMenuOpen(false)}>Appeals</a>
-        <a href="#affiliation-policy" onClick={() => setMenuOpen(false)}>Account Affiliation Policy</a>
-        <a href="#disclosures" onClick={() => setMenuOpen(false)}>Final Notes and Disclosures</a>
+        <a href="#basics" onClick={() => setMenuOpen(false)}>1. Community Standards</a>
+        <a href="#interactions" onClick={() => setMenuOpen(false)}>3. Engaging with Tyler</a>
+        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>4. Safety & Threat Detection</a>
+        <a href="#consequences" onClick={() => setMenuOpen(false)}>5. Enforcement & Penalties</a>
+        <a href="#appeals" onClick={() => setMenuOpen(false)}>6. Appeal Process</a>
+        <a href="#affiliation-policy" onClick={() => setMenuOpen(false)}>7. Affiliation & Association</a>
+        <a href="#false-allegations" onClick={() => setMenuOpen(false)}>8. False Allegations</a>
+        <a href="#content-spam" onClick={() => setMenuOpen(false)}>9. Content & Spam</a>
+        <a href="#minors" onClick={() => setMenuOpen(false)}>10. Minors Policy</a>
+        <a href="#intellectual-property" onClick={() => setMenuOpen(false)}>11. Intellectual Property</a>
+        <a href="#modifications" onClick={() => setMenuOpen(false)}>12. Right to Modify</a>
+        <a href="#disclosures" onClick={() => setMenuOpen(false)}>13. Privacy & Disclosures</a>
       </div>
 
       <main>
@@ -235,7 +240,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="basics">
-          <h2>1. The Basics</h2>
+          <h2>1. Community Standards</h2>
           <ul>
             <li><span className="rainbow">Treat <a href="/tyler">Tyler</a> and his team with respect at all times</span></li>
             <li><span className="rainbow">Harassment, threats, and stalking of any kind will not be tolerated</span></li>
@@ -245,7 +250,7 @@ export default function Legal() {
         </div>
 
         <div className="section">
-          <h2>2. Your Account</h2>
+          <h2>2. Account Requirements</h2>
           <ul>
             <li><span className="rainbow">Use a real profile photo and a genuine username</span></li>
             <li><span className="rainbow">Impersonating <a href="/tyler">Tyler</a>, his team, or anyone else is strictly prohibited</span></li>
@@ -256,7 +261,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="interactions">
-          <h2>3. Interactions with <a href="/tyler">Tyler</a></h2>
+          <h2>3. Engaging with <a href="/tyler">Tyler</a></h2>
           <ul>
             <li><span className="rainbow">Unsolicited flirting, pickup lines, and personal compliments are not appropriate</span></li>
             <li><span className="rainbow">If you ask for his contact and he declines, that answer is final — do not ask again</span></li>
@@ -267,7 +272,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="anti-stalking">
-          <h2>4. Anti-Stalking & Suspicious Behavior</h2>
+          <h2>4. Safety & Threat Detection</h2>
           <p>
             We continuously monitor for behavioral patterns that may pose a risk to <a href="/tyler"><span className="rainbow">Tyler</span></a> or our community. The following may result in an immediate block at our discretion:
           </p>
@@ -285,7 +290,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="consequences">
-          <h2>5. Consequences</h2>
+          <h2>5. Enforcement & Penalties</h2>
           <ul>
             <li><span className="rainbow"><strong>1st Offense:</strong> Formal warning and mute</span></li>
             <li><span className="rainbow"><strong>2nd Offense:</strong> Temporary ban</span></li>
@@ -295,7 +300,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="appeals">
-          <h2>6. Appeals</h2>
+          <h2>6. Appeal Process</h2>
           <p>
             If you believe a block or ban was issued in error, you may submit an appeal by opening a ticket in our Discord server or by emailing tyler@tjbmanagementinc.com. All appeals must include the following:
           </p>
@@ -309,7 +314,7 @@ export default function Legal() {
         </div>
 
         <div className="section" id="affiliation-policy">
-          <h2>7. Account Affiliation Policy</h2>
+          <h2>7. Affiliation & Association Policy</h2>
           <p>We reserve the right to block any account at our discretion for the following reasons:</p>
           <ul>
             <li><span className="rainbow">Maintaining a close association with individuals we have previously blocked</span></li>
@@ -319,8 +324,52 @@ export default function Legal() {
           <p>All enforcement decisions made under this policy are at our sole discretion.</p>
         </div>
 
+        <div className="section" id="false-allegations">
+          <h2>8. False Allegations Policy</h2>
+          <p>
+            Making false, defamatory, or misleading allegations against <a href="/tyler"><span className="rainbow">Tyler</span></a>, his moderators, or any of his affiliates is a serious violation of these guidelines and will not be tolerated under any circumstances.
+          </p>
+          <ul>
+            <li><span className="rainbow">Any individual found to be spreading false allegations will be immediately and permanently blocked across all platforms</span></li>
+            <li><span className="rainbow">We reserve the right to pursue legal action, including claims for defamation, against individuals who make knowingly false or malicious statements</span></li>
+            <li><span className="rainbow">Screenshots, records, and evidence of false allegations will be preserved and may be submitted to legal counsel or law enforcement</span></li>
+            <li><span className="rainbow">Encouraging or amplifying false allegations made by others is treated with equal severity</span></li>
+          </ul>
+          <p>If you have a legitimate concern or grievance, the proper channel is through the <a href="#appeals"><span className="rainbow">Appeal Process</span></a> or by emailing tyler@tjbmanagementinc.com directly.</p>
+        </div>
+
+        <div className="section" id="content-spam">
+          <h2>9. Content & Spam Policy</h2>
+          <ul>
+            <li><span className="rainbow">Spam, unsolicited self-promotion, and advertising in DMs or comments are strictly prohibited</span></li>
+            <li><span className="rainbow">Do not send repeated or bulk messages to Tyler or any member of his team</span></li>
+            <li><span className="rainbow">Posting misleading, manipulative, or low-quality content intended to bait engagement will result in removal and a block</span></li>
+          </ul>
+        </div>
+
+        <div className="section" id="minors">
+          <h2>10. Minors Policy</h2>
+          <p>
+            This community is intended for individuals aged 18 and older. Anyone found to be under the age of 18 will be immediately blocked and reported to the relevant platform. By engaging with <a href="/tyler"><span className="rainbow">Tyler</span></a> or this website, you confirm that you are at least 18 years of age.
+          </p>
+        </div>
+
+        <div className="section" id="intellectual-property">
+          <h2>11. Intellectual Property</h2>
+          <p>
+            The unauthorized use of <a href="/tyler"><span className="rainbow">Tyler</span></a>'s name, image, likeness, or brand for any commercial purpose is strictly prohibited. This includes but is not limited to merchandise, promotions, sponsored content, and any form of monetized media. Violations may result in a DMCA takedown request and/or legal action.
+          </p>
+        </div>
+
+        <div className="section" id="modifications">
+          <h2>12. Right to Modify</h2>
+          <p>
+            We reserve the right to update, amend, or replace these guidelines at any time without prior notice. Continued engagement with <a href="/tyler"><span className="rainbow">Tyler</span></a> or this website following any update constitutes your acceptance of the revised guidelines. It is your responsibility to review this page periodically for changes.
+          </p>
+        </div>
+
         <div className="section" id="disclosures">
-          <h2>8. Final Notes and Disclosures</h2>
+          <h2>13. Privacy, Data & Legal Disclosures</h2>
           <p>
             All activity across our platforms is monitored through a combination of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human oversight. We reserve the right to escalate matters to law enforcement where appropriate. By engaging with this website or any of our social media accounts, you acknowledge and agree to these guidelines, including our use of AI-assisted moderation and the collection of data outlined below.
           </p>
@@ -335,7 +384,7 @@ export default function Legal() {
         </div>
 
         <footer>
-          <p>Last Updated: April 2, 2026</p>
+          <p>Last Updated: April 5, 2026</p>
           <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
           <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
         </footer>
