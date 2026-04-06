@@ -27,7 +27,8 @@ export default function Contact() {
     { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
-    { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
+    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iam_unrizzable', icon: '🎵' },
+    { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
     { name: 'Swave Social', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
@@ -144,6 +145,8 @@ export default function Contact() {
         .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card:nth-child(8) { animation-delay: 0.8s; }
         .contact-card:nth-child(9) { animation-delay: 0.9s; }
+        .contact-card:nth-child(10) { animation-delay: 1.0s; }
+        .contact-card:nth-child(11) { animation-delay: 1.1s; }
         .contact-card::before {
           content: '';
           position: absolute;
