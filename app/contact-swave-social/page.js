@@ -223,7 +223,8 @@ export default function SwaveSocial() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
+        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
