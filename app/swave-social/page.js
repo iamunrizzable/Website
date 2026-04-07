@@ -262,7 +262,7 @@ export default function SwaveSocialInfo() {
         <div className="section">
           <h2>What is Swave Social?</h2>
           <p>
-            Swave Social is one of <span className="highlight">only 5 TikTok agencies in the world</span> that gives creators a real, dedicated point of contact — not just a Lark group chat and a prayer. Since 2021, Swave has built a creator network focused on one thing: helping LIVE streamers grow, get protected, and get paid.
+            Swave Social is one of <span className="highlight">only 5 TikTok agencies in the USA</span> with a dedicated point of contact directly at TikTok. Since 2021, Swave has built a creator network focused on one thing: helping LIVE streamers grow, get protected, and get paid.
           </p>
           <p>
             Whether you're just getting started or already pulling serious numbers, Swave gives you the infrastructure, support, and opportunities to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
@@ -308,7 +308,7 @@ export default function SwaveSocialInfo() {
         <div className="section">
           <h2>Why Swave Over Everyone Else?</h2>
           <p>
-            Most agencies throw you in a Lark group and call it support. Swave is different. As one of just 5 TikTok agencies globally with a true point of contact, you get real people, real advocacy, and real results. When something goes wrong — a ban, a violation, a campaign issue — someone actually picks up.
+            Most agencies throw you in a Lark group and call it support. Swave is different. As one of only 5 agencies in the USA with a direct point of contact at TikTok, our managers can go straight to TikTok on your behalf when you need help. <span className="highlight">Creators don't have access to this contact — only Swave managers do.</span> That means when something goes wrong — a ban, a violation, a campaign issue — we handle it at the source.
           </p>
           <p>
             Swave has been in the game since <span className="highlight">2021</span>. That's years of relationships, data, and platform experience working in your favor from day one.
