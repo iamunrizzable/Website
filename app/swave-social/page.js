@@ -28,7 +28,7 @@ export default function SwaveSocialInfo() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url("/bg-tyler.png") center/cover no-repeat;
+          background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), url("/bg-swave.jpeg") center/cover no-repeat;
           z-index: -2;
           pointer-events: none;
         }
