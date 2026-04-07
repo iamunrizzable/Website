@@ -7,7 +7,8 @@ export default function SwaveSocial() {
 
   const contacts = [
     { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
-    { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Request Swave Social to Contact You', href: 'https://swavesocial.com/contact-us/', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Give Swave Social — Creator Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Discord', href: 'https://discord.gg/TdMztsxy5Q', icon: '💬', iconSrc: null },
   ];
 
@@ -102,6 +103,8 @@ export default function SwaveSocial() {
         }
         .contact-card:nth-child(1) { animation-delay: 0.1s; }
         .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
         .contact-card::before {
           content: '';
           position: absolute;
