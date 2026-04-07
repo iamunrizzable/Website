@@ -262,7 +262,7 @@ export default function SwaveSocialInfo() {
         <div className="section">
           <h2>What is Swave Social?</h2>
           <p>
-            Swave Social is one of <span className="highlight">only 5 TikTok agencies in the USA</span> with a dedicated point of contact directly at TikTok. Since 2021, Swave has built a creator network focused on one thing: helping LIVE streamers grow, get protected, and get paid.
+            Swave Social is one of <span className="highlight">only 5 TikTok agencies in the USA</span> that had a real, dedicated point of contact at TikTok. Since 2021, Swave has built a creator network focused on one thing: helping LIVE streamers grow, get protected, and get paid.
           </p>
           <p>
             Whether you're just getting started or already pulling serious numbers, Swave gives you the infrastructure, support, and opportunities to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
