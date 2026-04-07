@@ -31,7 +31,7 @@ export default function Contact() {
     { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
-    { name: 'Swave Social', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
@@ -334,7 +334,7 @@ export default function Contact() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>      </div>
+        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>      </div>
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
