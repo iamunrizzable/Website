@@ -31,7 +31,8 @@ export default function Contact() {
     { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
-    { name: 'Swave Social', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'What is Swave Social?', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Join Swave Social', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
@@ -147,6 +148,7 @@ export default function Contact() {
         .contact-card:nth-child(9) { animation-delay: 0.9s; }
         .contact-card:nth-child(10) { animation-delay: 1.0s; }
         .contact-card:nth-child(11) { animation-delay: 1.1s; }
+        .contact-card:nth-child(12) { animation-delay: 1.2s; }
         .contact-card::before {
           content: '';
           position: absolute;
@@ -346,8 +348,8 @@ export default function Contact() {
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' ? '_blank' : undefined}
-              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' ? 'noopener noreferrer' : undefined}
+              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Join Swave Social' ? '_blank' : undefined}
+              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Join Swave Social' ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
               {contact.iconSrc
