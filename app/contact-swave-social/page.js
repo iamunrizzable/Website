@@ -8,7 +8,7 @@ export default function SwaveSocial() {
   const contacts = [
     { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Request Swave Social to Contact You', href: 'https://swavesocial.com/contact-us/', icon: null, iconSrc: '/swave-logo.svg' },
-    { name: 'Give Swave Social — Creator Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social — Creator Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Discord', href: 'https://discord.gg/TdMztsxy5Q', icon: '💬', iconSrc: null },
   ];
 
