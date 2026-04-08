@@ -317,13 +317,6 @@ export default function SwaveSocialInfo() {
         </div>
 
         <div className="section">
-          <h2>It Costs You Nothing</h2>
-          <p>
-            Joining Swave Social is completely free. There are no fees, no contracts, and no catches. It can only help you. The only thing we ask is that you show up and stream consistently.
-          </p>
-        </div>
-
-        <div className="section">
           <h2>Agency Eligibility & Leaving Swave</h2>
           <p>To be eligible to join or be signed by a TikTok agency, you must meet all of the following:</p>
           <ul>
@@ -335,6 +328,13 @@ export default function SwaveSocialInfo() {
             <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
             <li>If you leave after the 30-day trial, there is an additional <span className="highlight">60-day waiting period</span> before another agency can sign you, provided you still meet eligibility requirements.</li>
           </ul>
+        </div>
+
+        <div className="section">
+          <h2>It Costs You Nothing</h2>
+          <p>
+            Joining Swave is completely free — no fees, no contracts, no catches. There's nothing to lose and everything to gain. All we ask is that you show up and stream consistently.
+          </p>
         </div>
 
         <a href="/contact-swave-social" className="cta-btn">Apply to Join Swave Social →</a>
