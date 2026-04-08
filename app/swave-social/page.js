@@ -330,7 +330,6 @@ export default function SwaveSocialInfo() {
             <li>You are <span className="highlight">not currently signed to another agency</span></li>
             <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month or any of the 5 prior calendar months</li>
           </ul>
-          <p>As for leaving — here's how it works:</p>
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period and be signed by another agency right away as long as you meet eligibility requirements.</li>
             <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
