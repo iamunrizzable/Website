@@ -32,7 +32,7 @@ export default function Contact() {
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
     { name: 'What is Swave Social?', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
-    { name: 'Join Swave Social', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social Link Tree', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
   ];
 
   return (
@@ -323,12 +323,7 @@ export default function Contact() {
 
       <div className="fade-top"></div>
 
-      <div className="watermark">
-        <div className="watermark-glow"></div>
-        <img src="/logo-new.png" alt="Tyler J. Beasley" className="watermark-img" />
-      </div>
-
-      <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+<button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
@@ -348,8 +343,8 @@ export default function Contact() {
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Join Swave Social' ? '_blank' : undefined}
-              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Join Swave Social' ? 'noopener noreferrer' : undefined}
+              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Swave Social Link Tree' ? '_blank' : undefined}
+              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Swave Social Link Tree' ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
               {contact.iconSrc
