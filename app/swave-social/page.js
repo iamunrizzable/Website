@@ -327,10 +327,21 @@ export default function SwaveSocialInfo() {
           <h2>Can You Leave the Agency?</h2>
           <p>Yes — here's how it works:</p>
           <ul>
-            <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period, and you are eligible to be signed by another agency right away as long as you meet the requirements.</li>
+            <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period, and you are eligible to be signed by another agency right away as long as you meet agency eligibility requirements.</li>
             <li>After the trial ends, you can still leave Swave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
             <li>Once you leave, there is an additional <span className="highlight">60-day waiting period</span> before another agency can sign you, as long as you still meet agency eligibility requirements.</li>
           </ul>
+        </div>
+
+        <div className="section">
+          <h2>Agency Eligibility Requirements</h2>
+          <p>To be eligible to join or be signed by a TikTok agency, you must meet all of the following:</p>
+          <ul>
+            <li>You are <span className="highlight">not currently signed to another agency</span></li>
+            <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month</li>
+            <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in any of the 5 calendar months prior to applying</li>
+          </ul>
+          <p>If you exceed the 500k diamond threshold in the current or any of the prior 5 months, you are not eligible to be signed by an agency regardless of other circumstances.</p>
         </div>
 
         <a href="/contact-swave-social" className="cta-btn">Apply to Join Swave Social →</a>
