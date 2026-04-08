@@ -309,7 +309,7 @@ export default function SwaveSocialInfo() {
         <div className="section">
           <h2>Why Swave Over Everyone Else?</h2>
           <p>
-            Most agencies throw you in a Lark group and call it support. Swave is different. As one of only 5 agencies in the USA with a direct point of contact at TikTok, our managers can go straight to TikTok on your behalf when you need help. <span className="highlight">Creators don't have access to this contact — only Swave managers do.</span> That means when something goes wrong — a ban, a violation, a campaign issue — we handle it at the source.
+            Most creators get thrown in a Lark group with a bunch of bots and minimal support. Swave is different. As one of only 5 agencies in the USA with a direct point of contact at TikTok, our managers can go straight to TikTok on your behalf when you need help. <span className="highlight">Creators don't have access to this contact — only Swave managers do.</span> That means when something goes wrong — a ban, a violation, a campaign issue — we handle it at the source.
           </p>
           <p>
             Swave has been in the game since <span className="highlight">2021</span>. That's years of relationships, data, and platform experience working in your favor from day one.
