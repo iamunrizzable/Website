@@ -322,6 +322,16 @@ export default function SwaveSocialInfo() {
           </p>
         </div>
 
+        <div className="section">
+          <h2>Can You Leave the Agency?</h2>
+          <p>Yes — here's how it works:</p>
+          <ul>
+            <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period.</li>
+            <li>After the trial ends, you can still leave Swave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
+            <li>Once you leave, there is an additional <span className="highlight">60-day waiting period</span> before another agency can sign you, as long as you still meet agency eligibility requirements.</li>
+          </ul>
+        </div>
+
         <a href="/contact-swave-social" className="cta-btn">Apply to Join Swave Social →</a>
 
         <div className="footer">
