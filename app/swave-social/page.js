@@ -277,6 +277,7 @@ export default function SwaveSocialInfo() {
             <li>Full <strong>ban assistance and violation protection</strong> — we go to bat for you</li>
             <li>Exclusive <strong>agency campaigns, leaderboards, and tournaments</strong> with prizes ranging from diamonds to trips to TikTok HQ to being featured on the <span className="highlight">@tiktoklive_us</span> page</li>
             <li><strong>Account takeovers, creator spotlights, and in-person meetups</strong> across the US</li>
+            <li>Access to <strong>TikTok HQ locations</strong> in <span className="highlight">Miami, New York, and Los Angeles</span></li>
             <li>Elite-level <strong>live streaming education</strong> from some of the top creators in the industry</li>
             <li>Access to our <strong>private, creator-only Discord server</strong></li>
             <li>Help getting <strong>more views, more diamonds, and more exposure</strong> — with zero cost to you</li>
