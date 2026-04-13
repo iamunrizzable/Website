@@ -322,6 +322,7 @@ export default function SwaveSocialInfo() {
           <ul>
             <li>You are <span className="highlight">not currently signed to another agency</span> on this account or on any account</li>
             <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month or any of the 5 prior calendar months</li>
+            <li>You are located in the <span className="highlight">United States, Canada, or the Philippines</span></li>
           </ul>
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period and be signed by another agency right away as long as you meet eligibility requirements.</li>
