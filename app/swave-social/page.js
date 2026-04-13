@@ -320,7 +320,7 @@ export default function SwaveSocialInfo() {
           <h2>Agency Eligibility & Leaving Swave</h2>
           <p>To be eligible to join or be signed by a TikTok agency, you must meet all of the following:</p>
           <ul>
-            <li>You are <span className="highlight">not currently signed to another agency</span></li>
+            <li>You are <span className="highlight">not currently signed to another agency</span> on this account or on any account</li>
             <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month or any of the 5 prior calendar months</li>
           </ul>
           <ul>
