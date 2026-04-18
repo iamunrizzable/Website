@@ -156,7 +156,6 @@ export default function Contact() {
           position: absolute;
           inset: 0;
           z-index: -1;
-          background: linear-gradient(135deg, rgba(30, 20, 60, 0.85), rgba(15, 23, 42, 0.95));
         }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
