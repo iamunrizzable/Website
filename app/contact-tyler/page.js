@@ -156,16 +156,8 @@ export default function Contact() {
           position: absolute;
           inset: 0;
           z-index: -1;
+          background: linear-gradient(135deg, rgba(30, 20, 60, 0.85), rgba(15, 23, 42, 0.95));
         }
-        .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-        .contact-card.x::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
-        .contact-card.discord::before { background: linear-gradient(135deg, #5865f2, #4752c4); }
-        .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
-        .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
-        .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
-        .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
-        .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
-        .contact-card.tiktok-cheaper-coins-recharge::before { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
