@@ -1,7 +1,23 @@
 import { NextResponse } from 'next/server';
 
+const TIKTOK_VERIFICATIONS = {
+  'tiktok-developers-site-verification=4DwMqQPi2o4xTuuzoEsPVxZVHmktN0O9':
+    'tiktok-developers-site-verification=4DwMqQPi2o4xTuuzoEsPVxZVHmktN0O9',
+};
+
 export function middleware(request) {
   const { pathname } = request.nextUrl;
+
+  // Serve TikTok domain verification files under /legal/
+  if (pathname.startsWith('/legal/')) {
+    const segment = pathname.slice('/legal/'.length);
+    const content = TIKTOK_VERIFICATIONS[segment];
+    if (content) {
+      return new NextResponse(content, {
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    }
+  }
 
   // Protect /admin UI with HTTP Basic Auth
   if (pathname.startsWith('/admin')) {
@@ -21,5 +37,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/legal/:path*'],
 };
