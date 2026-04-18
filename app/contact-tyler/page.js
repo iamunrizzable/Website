@@ -33,6 +33,8 @@ export default function Contact() {
     { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
     { name: 'What is Swave Social?', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Link Tree', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
+    { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
   ];
 
   return (
