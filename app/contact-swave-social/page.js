@@ -110,10 +110,6 @@ export default function SwaveSocial() {
           position: absolute;
           inset: 0;
           z-index: -1;
-          background: linear-gradient(135deg, #0ea5e9, #6366f1);
-        }
-        .contact-card.discord::before {
-          background: linear-gradient(135deg, #5865f2, #4752c4);
         }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
