@@ -120,13 +120,20 @@ export default function Legal() {
         .back-link {
           display: inline-block;
           margin-bottom: 30px;
-          color: #a855f7;
+          color: #fff;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: 700;
+          font-size: 18px;
+          background: rgba(168, 85, 247, 0.4);
+          padding: 12px 22px;
+          border-radius: 10px;
+          border: 2px solid #a855f7;
+          transition: background 0.2s;
         }
 
         .back-link:hover {
-          text-decoration: underline;
+          background: rgba(168, 85, 247, 0.6);
+          text-decoration: none;
         }
 
         .section {
