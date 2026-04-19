@@ -3,7 +3,8 @@ import crypto from 'crypto';
 import { getAuthorizationUrl } from '@/lib/tiktok/oauth';
 
 export async function GET(request) {
-  const adminKey = request.headers.get('x-admin-key');
+  const { searchParams } = new URL(request.url);
+  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
   if (adminKey !== process.env.ADMIN_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
