@@ -219,6 +219,7 @@ export default function Legal() {
         <a href="#consequences" onClick={() => setMenuOpen(false)}>Consequences</a>
         <a href="#appeals" onClick={() => setMenuOpen(false)}>Appeals</a>
         <a href="#disclosures" onClick={() => setMenuOpen(false)}>Final Notes and Disclosures</a>
+        <a href="#hallie-tos" onClick={() => setMenuOpen(false)}>Hallie Moderation – Terms</a>
       </div>
 
       <main>
@@ -322,8 +323,59 @@ export default function Legal() {
           <p>We promise to only use personal information to ensure compliance with our community guidelines and will not share or sell your personal information with any person, business, or agency without a warrant.</p>
         </div>
 
+        <div className="section" id="hallie-tos">
+          <h2>8. Hallie TikTok Moderation App – Terms & Conditions</h2>
+          <p>
+            The following terms govern your use of the <span className="rainbow">Hallie Moderation System</span>, the AI-powered TikTok comment and interaction moderation tool operated by TJB Management Inc. By connecting a TikTok account to this system or interacting with any TikTok content moderated by it, you agree to the following.
+          </p>
+
+          <h2>8.1 What the System Does</h2>
+          <p>
+            The <span className="rainbow">Hallie Moderation System</span> automatically scans TikTok comments, live chat messages, and other public interactions on TJB Management Inc.'s TikTok account(s). It uses a rule-based scoring engine to classify content as spam, scam, harassment, hate speech, or promotional material and may take the following automated actions:
+          </p>
+          <ul>
+            <li><span className="rainbow">Flag content for human review</span></li>
+            <li><span className="rainbow">Generate a suggested reply for the account owner</span></li>
+            <li><span className="rainbow">Automatically hide comments that score above the configured threshold</span></li>
+            <li><span className="rainbow">Send an internal alert to tyler@tjbmanagementinc.com</span></li>
+          </ul>
+
+          <h2>8.2 Data We Access and Store</h2>
+          <p>When a TikTok account is connected to this system, the following data is accessed and temporarily stored:</p>
+          <ul>
+            <li><span className="rainbow">TikTok OAuth access tokens and refresh tokens (stored encrypted, never shared)</span></li>
+            <li><span className="rainbow">Public profile information (display name, follower count, video count)</span></li>
+            <li><span className="rainbow">Public video metadata (title, view count, comment count)</span></li>
+            <li><span className="rainbow">Public comment text, author username, and engagement data</span></li>
+            <li><span className="rainbow">Moderation event logs, including scores and flags assigned to content</span></li>
+          </ul>
+          <p>
+            All data is stored in a secure, access-controlled database. Comment data and moderation logs are retained for up to 30 days. Token data is retained only as long as the account remains connected. We do not sell, rent, or share this data with any third party.
+          </p>
+
+          <h2>8.3 TikTok Platform Compliance</h2>
+          <p>
+            This system operates under TikTok's Developer Terms of Service and Content API usage policies. Data accessed through the TikTok API is used solely for the purpose of content moderation on TJB Management Inc.'s own account(s). We do not use TikTok API data for advertising, resale, or any purpose outside of moderation and account management.
+          </p>
+
+          <h2>8.4 Automated Decisions</h2>
+          <p>
+            The <span className="rainbow">Hallie Moderation System</span> may automatically hide your comment on TJB Management Inc.'s TikTok content if it is scored as harmful under our guidelines. Automated hiding is not permanent — the account owner may review and restore any hidden comment at their discretion. If you believe a comment was incorrectly moderated, you may appeal by emailing tyler@tjbmanagementinc.com with your TikTok username and the content in question.
+          </p>
+
+          <h2>8.5 No Warranty & Limitation of Liability</h2>
+          <p>
+            The <span className="rainbow">Hallie Moderation System</span> is provided as-is. TJB Management Inc. makes no guarantees that the system will catch all harmful content or that it will never incorrectly flag benign content. Moderation is a best-effort service and is subject to the availability and approved scope of the TikTok API. TJB Management Inc. is not liable for any damages arising from moderation decisions, system downtime, or API limitations imposed by TikTok.
+          </p>
+
+          <h2>8.6 Changes to These Terms</h2>
+          <p>
+            We may update these terms at any time. Continued use of TJB Management Inc.'s TikTok content or this website after an update constitutes acceptance of the revised terms. The date at the bottom of this page reflects the most recent update.
+          </p>
+        </div>
+
         <footer>
-          <p>Last Updated: March 4, 2026</p>
+          <p>Last Updated: April 19, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
       </main>
