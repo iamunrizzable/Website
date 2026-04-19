@@ -23,10 +23,11 @@ export default function AdminPage() {
       const res = await fetch('/api/admin/status', {
         headers: { 'x-admin-key': key },
       });
-      if (res.status === 401) { setAuthed(false); return; }
+      if (res.status === 401) { setAuthed(false); localStorage.removeItem('admin_key'); return; }
       const data = await res.json();
       setStatus(data);
       setAuthed(true);
+      localStorage.setItem('admin_key', key);
     } catch (e) {
       setMsg('Failed to load status: ' + e.message);
     } finally {
@@ -37,6 +38,13 @@ export default function AdminPage() {
   function handleLogin(e) {
     e.preventDefault();
     fetchStatus(adminKey);
+  }
+
+  function handleSignOut() {
+    localStorage.removeItem('admin_key');
+    setAuthed(false);
+    setAdminKey('');
+    setStatus(null);
   }
 
   async function handleSync() {
@@ -68,7 +76,9 @@ export default function AdminPage() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('connected')) setMsg('✅ TikTok connected successfully!');
     if (params.get('error')) setMsg('❌ Error: ' + params.get('error'));
-  }, []);
+    const saved = localStorage.getItem('admin_key');
+    if (saved) { setAdminKey(saved); fetchStatus(saved); }
+  }, [fetchStatus]);
 
   const s = {
     page: { minHeight: '100vh', background: '#0f172a', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px' },
@@ -113,7 +123,10 @@ export default function AdminPage() {
   return (
     <div style={s.page}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        <h1 style={s.h1}>TJB Moderation Admin</h1>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+          <h1 style={{ ...s.h1, marginBottom: 0 }}>TJB Moderation Admin</h1>
+          <button style={{ ...s.btnSm, fontSize: 12 }} onClick={handleSignOut}>Sign Out</button>
+        </div>
         <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
 
         {msg && <div style={s.msg}>{msg}</div>}
