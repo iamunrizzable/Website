@@ -60,11 +60,8 @@ export default function AdminPage() {
   }
 
   async function handleConnect() {
-    const res = await fetch('/auth/tiktok/login', {
-      headers: { 'x-admin-key': adminKey },
-      redirect: 'follow',
-    });
-    if (res.redirected) window.location.href = res.url;
+    // Pass admin key as query param so the browser redirect works
+    window.location.href = `/auth/tiktok/login?key=${encodeURIComponent(adminKey)}`;
   }
 
   useEffect(() => {
