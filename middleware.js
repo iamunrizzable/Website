@@ -11,8 +11,8 @@ export function middleware(request) {
     );
   }
 
-  // Protect /admin UI with HTTP Basic Auth
-  if (pathname.startsWith('/admin')) {
+  // Protect /admin UI with HTTP Basic Auth (allow .txt files through for verification)
+  if (pathname.startsWith('/admin') && !pathname.endsWith('.txt')) {
     const auth = request.headers.get('authorization');
     if (auth?.startsWith('Basic ')) {
       const decoded = Buffer.from(auth.slice(6), 'base64').toString('utf-8');
