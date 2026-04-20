@@ -88,12 +88,14 @@ export default function Tyler() {
         h2:nth-of-type(2) { color: #ec4899; }
         h2:nth-of-type(3) { color: #3b82f6; }
         p {
-          color: #a0aec0;
+          color: #7dd3fc;
           margin-bottom: 15px;
+          line-height: 1.8;
         }
         li {
-          color: #a0aec0;
+          color: #7dd3fc;
           margin-bottom: 8px;
+          line-height: 1.8;
         }
         strong { 
           font-weight: 700;

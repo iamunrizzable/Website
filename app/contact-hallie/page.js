@@ -111,8 +111,11 @@ export default function ContactHallie() {
         .contact-name {
           font-size: 16px;
           font-weight: 700;
-          color: #fff;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: none;
         }
         .footer {
           text-align: center;
