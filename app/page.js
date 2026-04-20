@@ -31,8 +31,8 @@ export default function Home() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-tyler.png");
-          background-size: cover;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url("/bg-home.png");
+          background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
@@ -90,24 +90,6 @@ export default function Home() {
           transform: translateY(0);
         }
 
-        .nav-button {
-          padding: 20px 30px;
-          background: linear-gradient(135deg, #a855f7, #ec4899);
-          color: #fff;
-          border: none;
-          border-radius: 10px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: block;
-        }
-
-        .nav-button:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
-        }
 
         .footer {
           margin-top: 60px;
@@ -125,11 +107,34 @@ export default function Home() {
         }
 
         .footer p {
-          background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7);
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           font-weight: 500;
+        }
+
+        .nav-button {
+          padding: 20px 30px;
+          background: transparent;
+          color: transparent;
+          background-image: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          border: 2px solid rgba(168, 85, 247, 0.5);
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: block;
+        }
+
+        .nav-button:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
+          border-color: rgba(168, 85, 247, 0.9);
         }
 
         .menu-button {
@@ -202,11 +207,8 @@ export default function Home() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
-        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -217,17 +219,13 @@ export default function Home() {
 
         <div className="nav-buttons section">
           <a href="/hallie" className="nav-button">Meet Hallie</a>
-          <a href="/contact-hallie" className="nav-button">Contact Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
-          <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
+          <a href="/contact-tyler" className="nav-button">Contact</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
-          <a href="/swave-social" className="nav-button">Swave Social</a>
-          <a href="/contact-swave-social" className="nav-button">Join Swave Social</a>
         </div>
 
         <div className="footer section">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
+          <p>© 2026 TJB Management Inc.</p>
         </div>
       </main>
     </>
