@@ -228,12 +228,8 @@ export default function SocialsContact() {
           }
           .contact-name {
             font-size: 16px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
           }
           .footer {
             text-align: center;
