@@ -98,6 +98,9 @@ export default function SwaveSocialInfo() {
         .section:nth-of-type(4) { border-left-color: #06b6d4; }
         .section:nth-of-type(5) { border-left-color: #a855f7; }
         .section:nth-of-type(6) { border-left-color: #ec4899; }
+        .section:nth-of-type(7) { border-left-color: #3b82f6; }
+        .section:nth-of-type(8) { border-left-color: #06b6d4; }
+        .section:nth-of-type(9) { border-left-color: #a855f7; }
         .tier-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -330,6 +333,34 @@ export default function SwaveSocialInfo() {
             <li>If you leave after the 30-day trial, there is an additional <span className="highlight">60-day waiting period</span> before another agency can sign you, provided you still meet eligibility requirements.</li>
             <li><strong>Rule Violations & Termination:</strong> If you violate Swave Social's rules or guidelines at any point, the creator network reserves the right to <span className="highlight">immediately terminate your relationship at any time, for any reason</span>, with no waiting period and no further obligation to you.</li>
           </ul>
+        </div>
+
+        <div className="section">
+          <h2>What Managers Can See</h2>
+          <p>
+            When you join Swave, your creator network managers are given access to certain account data through TikTok's agency dashboard. This is what allows us to support, protect, and advocate for you effectively. Managers have visibility into:
+          </p>
+          <ul>
+            <li><strong>LIVE replays</strong> — managers can review past streams</li>
+            <li><strong>LIVE analytics</strong> — real-time and historical performance data from your streams</li>
+            <li><strong>Current violations</strong> — any active strikes or policy flags on your account</li>
+            <li><strong>Violation clips</strong> — the specific clip flagged for each violation</li>
+            <li><strong>Diamond count</strong> — your total diamonds earned</li>
+            <li><strong>LIVE time</strong> — your total hours streamed</li>
+            <li><strong>Follower count</strong></li>
+            <li><strong>Like count</strong></li>
+            <li><strong>Number of videos posted</strong></li>
+          </ul>
+          <p>
+            This data is used solely to support your growth, monitor for violations we can help resolve, and qualify you for campaigns and opportunities within the network.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>Ban Appeals</h2>
+          <p>
+            If your in-app ban appeal gets denied, your Swave creator network manager may appeal the ban on your behalf — <span className="highlight">at their discretion</span>. This is one of the most valuable things an agency can offer, and it's only possible because of our direct relationship with TikTok. Not every ban is eligible for escalation, but when it is, we go to bat for you.
+          </p>
         </div>
 
         <div className="section">
