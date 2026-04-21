@@ -261,8 +261,8 @@ export default function Legal() {
             <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
-            <li><span className="rainbow">In-person meetups requested by men need explicit approval first</span></li>
-            <li><strong>Important:</strong> <a href="/tyler"><span className="rainbow">Tyler</span></a> does not respond directly to messages from women. If you are a woman and contact <a href="/tyler"><span className="rainbow">Tyler</span></a>, <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, will respond on his behalf. This filtering decision is made by both <a href="/tyler"><span className="rainbow">Tyler</span></a> and <a href="/hallie"><span className="rainbow">Hallie</span></a>, is transparent, and by design.</li>
+            <li><span className="rainbow">All in-person meetup requests require explicit approval first</span></li>
+            <li><strong>Note:</strong> Initial messages to <a href="/tyler"><span className="rainbow">Tyler</span></a> are handled by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. This applies to everyone equally and is transparent, and by design.</li>
           </ul>
         </div>
 
