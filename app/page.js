@@ -107,7 +107,7 @@ export default function Home() {
         }
 
         .footer p {
-          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+          background: linear-gradient(90deg, #06b6d4, #3b82f6, #a855f7);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
