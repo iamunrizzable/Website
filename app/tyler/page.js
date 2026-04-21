@@ -221,32 +221,38 @@ export default function Tyler() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
-      </div>
+        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
+        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>      </div>
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
-        
-        <h1>I'm Tyler</h1>
-        
+
+        <h1>Tyler J. Beasley</h1>
+
         <div className="section">
-          <h2>Who I Am</h2>
+          <h2>Straight to the point.</h2>
           <p>
-            I'm <strong>Tyler J. Beasley</strong>. Straight to the point. I build things, manage communities, and keep everything real.
+            I build things, manage communities, and keep everything real.
           </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            I run <strong>TJB Management Inc.</strong> and manage everything from business operations to community standards. I work with <strong><a href="/hallie">Hallie, Tyler's AI assistant</a></strong> to ensure everything stays authentic, professional, and drama-free.
+            I'm a Creator Manager at <strong>Swave Social Talent</strong>, where I help livestreamers and TikTok creators turn their passion into full-time income. From optimizing live streams and community growth to handling bans and creator issues, I make sure creators stay protected and continue growing on the platform.
+          </p>
+          <p>
+            I run point on everything from strategy and monetization to handling bans with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>, I keep things authentic, drama-free, and focused on real results.
           </p>
         </div>
 
         <div className="footer">
-          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
+          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
         </div>
       </main>
     </>
