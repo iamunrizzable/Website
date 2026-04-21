@@ -31,7 +31,7 @@ export default function Legal() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-home.png");
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png");
           background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
