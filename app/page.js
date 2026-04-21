@@ -116,15 +116,12 @@ export default function Home() {
 
         .nav-button {
           padding: 20px 30px;
-          background: transparent;
-          color: transparent;
-          background-image: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          border: 2px solid rgba(168, 85, 247, 0.5);
+          background: linear-gradient(135deg, #a855f7, #ec4899);
+          color: #fff;
+          border: none;
           border-radius: 10px;
           text-decoration: none;
-          font-weight: 700;
+          font-weight: 600;
           font-size: 16px;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -134,7 +131,6 @@ export default function Home() {
         .nav-button:hover {
           transform: translateY(-5px);
           box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
-          border-color: rgba(168, 85, 247, 0.9);
         }
 
         .menu-button {
