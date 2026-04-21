@@ -98,7 +98,7 @@ export default function AdminPage() {
       <div style={s.page}>
         <div style={{ maxWidth: 400, margin: '80px auto' }}>
           <div style={s.card}>
-            <h1 style={s.h1}>TJB Moderation Suite</h1>
+            <h1 style={s.h1}>TJB Management Inc.</h1>
             <p style={{ color: '#64748b', marginBottom: 20, fontSize: 14 }}>Enter your admin secret to continue.</p>
             {msg && <div style={s.msg}>{msg}</div>}
             <form onSubmit={handleLogin}>
@@ -124,7 +124,7 @@ export default function AdminPage() {
     <div style={s.page}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-          <h1 style={{ ...s.h1, marginBottom: 0 }}>TJB Moderation Suite</h1>
+          <h1 style={{ ...s.h1, marginBottom: 0 }}>TJB Management Inc.</h1>
           <button style={{ ...s.btnSm, fontSize: 12 }} onClick={handleSignOut}>Sign Out</button>
         </div>
         <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
