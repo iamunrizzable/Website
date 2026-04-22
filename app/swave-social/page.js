@@ -330,7 +330,7 @@ export default function SwaveSocialInfo() {
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period and be signed by another agency right away as long as you meet eligibility requirements.</li>
             <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
-            <li>If you leave after the 30-day trial, there is an additional <span className="highlight">60-day waiting period</span> before another agency can sign you, provided you still meet eligibility requirements.</li>
+            <li>If you leave after the 15-day trial, there is an additional <span className="highlight">60-day waiting period</span> after the 30-day quit process before another agency can sign you, provided you still meet eligibility requirements.</li>
             <li><strong>Rule Violations & Termination:</strong> If you violate Swave Social's rules or guidelines at any point, the creator network reserves the right to <span className="highlight">immediately terminate your relationship at any time, for any reason</span>, with no waiting period and no further obligation to you.</li>
           </ul>
         </div>
