@@ -31,6 +31,7 @@ export default function Contact() {
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
     { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
   return (
@@ -144,6 +145,7 @@ export default function Contact() {
         .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card:nth-child(8) { animation-delay: 0.8s; }
         .contact-card:nth-child(9) { animation-delay: 0.9s; }
+        .contact-card:nth-child(10) { animation-delay: 1.0s; }
         .contact-card::before {
           content: '';
           position: absolute;
@@ -158,6 +160,7 @@ export default function Contact() {
         .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
         .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
         .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+        .contact-card.add-me-on-playstation::before { background: linear-gradient(135deg, #003791, #0070d1); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
