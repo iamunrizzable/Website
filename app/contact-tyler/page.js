@@ -27,14 +27,11 @@ export default function Contact() {
     { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
-    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iam_unrizzable', icon: '🎵' },
-    { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
+    { name: 'TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙', iconSrc: null },
-    { name: 'What is Swave Social?', href: '/swave-social', icon: null, iconSrc: '/swave-logo.svg' },
-    { name: 'Swave Social Link Tree', href: '/contact-swave-social', icon: null, iconSrc: '/swave-logo.svg' },
-    { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
-    { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
+    { name: 'Apply to Join Swave Social', href: '/api/swave', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Swave Social Contact Form', href: 'https://docs.google.com/forms/d/1c6_yxqisKzTsNWdGGMagwPkdFW-tZG672JpkoUi-Vrs/viewform', icon: null, iconSrc: '/swave-logo.svg' },
+    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
   return (
@@ -47,7 +44,7 @@ export default function Contact() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png") center/cover no-repeat;
+          background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-home.png") center/cover no-repeat;
           z-index: -2;
           pointer-events: none;
         }
@@ -62,8 +59,8 @@ export default function Contact() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-tyler.png");
-          background-size: cover;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-home.png");
+          background-size: contain;
           background-position: center center;
           background-repeat: no-repeat;
           z-index: -3;
@@ -149,14 +146,21 @@ export default function Contact() {
         .contact-card:nth-child(8) { animation-delay: 0.8s; }
         .contact-card:nth-child(9) { animation-delay: 0.9s; }
         .contact-card:nth-child(10) { animation-delay: 1.0s; }
-        .contact-card:nth-child(11) { animation-delay: 1.1s; }
-        .contact-card:nth-child(12) { animation-delay: 1.2s; }
         .contact-card::before {
           content: '';
           position: absolute;
           inset: 0;
           z-index: -1;
         }
+        .contact-card.email::before { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+        .contact-card.x::before { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+        .contact-card.discord::before { background: linear-gradient(135deg, #5865f2, #4752c4); }
+        .contact-card.snapchat::before { background: linear-gradient(135deg, #fcd34d, #fef3c7); }
+        .contact-card.instagram::before { background: linear-gradient(135deg, #ec4899, #fb7185); }
+        .contact-card.tiktok::before { background: linear-gradient(135deg, #000, #4b5563); }
+        .contact-card.phone::before { background: linear-gradient(135deg, #10b981, #059669); }
+        .contact-card.apply-to-join-swave-social::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+        .contact-card.add-me-on-playstation::before { background: linear-gradient(135deg, #003791, #0070d1); }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
@@ -316,28 +320,31 @@ export default function Contact() {
 
       <div className="fade-top"></div>
 
-<button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+      <div className="watermark">
+        <div className="watermark-glow"></div>
+        <img src="/logo-new.png" alt="Tyler J. Beasley" className="watermark-img" />
+      </div>
+
+      <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
-        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>      </div>
+      </div>
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
-        <h1>Contact Tyler</h1>
+        <h1>Contact</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
             <a
               key={contact.name}
               href={contact.href}
-              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Swave Social Link Tree' ? '_blank' : undefined}
-              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' && contact.name !== 'Swave Social' && contact.name !== 'TikTok Cheaper Coins Recharge' && contact.name !== 'What is Swave Social?' && contact.name !== 'Swave Social Link Tree' ? 'noopener noreferrer' : undefined}
+              target={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? '_blank' : undefined}
+              rel={contact.name !== 'Email' && contact.name !== 'Phone' && contact.name !== 'Apply to Join Swave Social' ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase()}`}
             >
               {contact.iconSrc
@@ -352,8 +359,7 @@ export default function Contact() {
         <div className="footer">
           <p className="footer-text">Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
           <p className="footer-disclaimer">This site uses Vercel Analytics. For more, see our <a href="/legal">legal guidelines</a>.</p>
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
+          <p>© 2026 TJB Management Inc.</p>
         </div>
       </main>
     </>
