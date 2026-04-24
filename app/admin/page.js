@@ -182,7 +182,94 @@ export default function AdminPage() {
 
         {/* Test Moderation */}
         <TestPanel adminKey={adminKey} />
+
+        {/* DM Assistant */}
+        <DMPanel />
       </div>
+    </div>
+  );
+}
+
+function DMPanel() {
+  const [dm, setDm] = useState('');
+  const [context, setContext] = useState('');
+  const [reply, setReply] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const s = {
+    card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '1px solid #334155' },
+    h2: { fontSize: 16, fontWeight: 600, color: '#94a3b8', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
+    label: { fontSize: 12, color: '#64748b', marginBottom: 4, display: 'block' },
+    textarea: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 80, resize: 'vertical' },
+    input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
+    btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 10 },
+    btnCopy: { background: '#10b981', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 10, marginLeft: 10 },
+    replyBox: { marginTop: 16, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: 16, fontSize: 14, color: '#e2e8f0', lineHeight: 1.7, whiteSpace: 'pre-wrap' },
+  };
+
+  async function generate() {
+    if (!dm.trim()) return;
+    setLoading(true);
+    setReply('');
+    setCopied(false);
+    try {
+      const res = await fetch('/api/dm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: dm, context }),
+      });
+      const data = await res.json();
+      if (data.error) setReply('Error: ' + data.error);
+      else setReply(data.reply);
+    } catch (e) {
+      setReply('Error: ' + e.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function copy() {
+    navigator.clipboard.writeText(reply);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>💬 Hallie DM Assistant</h2>
+      <p style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>
+        Paste a TikTok DM below — Hallie will draft a reply you can copy back into TikTok.
+      </p>
+
+      <label style={s.label}>Incoming DM</label>
+      <textarea
+        style={{ ...s.textarea, marginBottom: 12 }}
+        value={dm}
+        onChange={(e) => setDm(e.target.value)}
+        placeholder="Paste the TikTok DM here…"
+      />
+
+      <label style={s.label}>Context (optional — e.g. "creator with 50k followers asking about joining Swave")</label>
+      <input
+        style={{ ...s.input, marginBottom: 4 }}
+        value={context}
+        onChange={(e) => setContext(e.target.value)}
+        placeholder="Any extra context about who sent it or what they want…"
+      />
+
+      <div>
+        <button style={s.btn} onClick={generate} disabled={loading || !dm.trim()}>
+          {loading ? 'Generating…' : '✨ Generate Reply'}
+        </button>
+        {reply && !reply.startsWith('Error') && (
+          <button style={s.btnCopy} onClick={copy}>
+            {copied ? '✅ Copied!' : '📋 Copy Reply'}
+          </button>
+        )}
+      </div>
+
+      {reply && <div style={s.replyBox}>{reply}</div>}
     </div>
   );
 }
