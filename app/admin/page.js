@@ -11,7 +11,6 @@ const ACTION_COLORS = {
 
 export default function AdminPage() {
   const [adminKey, setAdminKey] = useState('');
-  const [authed, setAuthed] = useState(false);
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -23,10 +22,9 @@ export default function AdminPage() {
       const res = await fetch('/api/admin/status', {
         headers: { 'x-admin-key': key },
       });
-      if (res.status === 401) { setAuthed(false); localStorage.removeItem('admin_key'); return; }
+      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
       const data = await res.json();
       setStatus(data);
-      setAuthed(true);
       localStorage.setItem('admin_key', key);
     } catch (e) {
       setMsg('Failed to load status: ' + e.message);
@@ -34,18 +32,6 @@ export default function AdminPage() {
       setLoading(false);
     }
   }, []);
-
-  function handleLogin(e) {
-    e.preventDefault();
-    fetchStatus(adminKey);
-  }
-
-  function handleSignOut() {
-    localStorage.removeItem('admin_key');
-    setAuthed(false);
-    setAdminKey('');
-    setStatus(null);
-  }
 
   async function handleSync() {
     setSyncing(true);
@@ -93,39 +79,11 @@ export default function AdminPage() {
     msg: { background: '#1e3a5f', border: '1px solid #3b82f6', borderRadius: 8, padding: '10px 14px', marginBottom: 16, fontSize: 13 },
   };
 
-  if (!authed) {
-    return (
-      <div style={s.page}>
-        <div style={{ maxWidth: 400, margin: '80px auto' }}>
-          <div style={s.card}>
-            <h1 style={s.h1}>TJB Management Inc.</h1>
-            <p style={{ color: '#64748b', marginBottom: 20, fontSize: 14 }}>Enter your admin secret to continue.</p>
-            {msg && <div style={s.msg}>{msg}</div>}
-            <form onSubmit={handleLogin}>
-              <label style={s.label}>Admin Secret</label>
-              <input
-                type="password"
-                value={adminKey}
-                onChange={(e) => setAdminKey(e.target.value)}
-                style={{ ...s.input, marginBottom: 16 }}
-                placeholder="ADMIN_SECRET value"
-              />
-              <button type="submit" style={s.btn} disabled={loading}>
-                {loading ? 'Checking…' : 'Sign In'}
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div style={s.page}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <div style={{ marginBottom: 4 }}>
           <h1 style={{ ...s.h1, marginBottom: 0 }}>TJB Management Inc.</h1>
-          <button style={{ ...s.btnSm, fontSize: 12 }} onClick={handleSignOut}>Sign Out</button>
         </div>
         <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
 
