@@ -371,6 +371,7 @@ export default function SwaveSocialInfo() {
         </div>
 
         <a href="https://www.tiktok.com/t/ZThEdYt6h/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join Swave Social →</a>
+        <a href="/contact-swave-social" className="cta-btn" style={{background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 0 20px rgba(99, 102, 241, 0.4)'}}>Swave Social Link Tree →</a>
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
