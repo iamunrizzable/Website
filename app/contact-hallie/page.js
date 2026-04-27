@@ -192,8 +192,6 @@ export default function ContactHallie() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
-        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -210,7 +208,7 @@ export default function ContactHallie() {
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
+          <p>Tyler J. Beasley is a TikTok LIVE Creator Manager and agency founder.</p>
         </div>
       </main>
     </>
