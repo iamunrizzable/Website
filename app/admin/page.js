@@ -250,7 +250,7 @@ function DMPanel() {
         placeholder="Paste the TikTok DM here…"
       />
 
-      <label style={s.label}>Context (optional — e.g. "creator with 50k followers asking about joining Swave")</label>
+      <label style={s.label}>Context (optional — e.g. "creator with 50k followers asking about joining the agency")</label>
       <input
         style={{ ...s.input, marginBottom: 4 }}
         value={context}
