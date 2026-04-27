@@ -68,11 +68,11 @@ export default function Links() {
           transform: translateY(-4px);
           box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
         }
-        .btn-swave {
+        .btn-agency {
           background: linear-gradient(135deg, #0ea5e9, #6366f1);
           box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
         }
-        .btn-swave:hover {
+        .btn-agency:hover {
           transform: translateY(-4px);
           box-shadow: 0 0 40px rgba(99, 102, 241, 0.7);
         }
@@ -81,7 +81,7 @@ export default function Links() {
       <div className="page">
         <h1>TJB Management Inc.</h1>
         <a href="/contact-tyler" className="btn btn-tyler">Tyler's Link Tree</a>
-        <a href="/swave-social" className="btn btn-swave">About Swave Social</a>
+        <a href="/tyler" className="btn btn-agency">About the Agency</a>
       </div>
     </>
   );
