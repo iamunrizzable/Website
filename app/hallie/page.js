@@ -150,25 +150,6 @@ export default function Hallie() {
         .back-link:hover {
           text-decoration: underline;
         }
-        .contact-hallie-btn {
-          display: block;
-          text-align: center;
-          margin: 20px auto 40px;
-          padding: 18px 40px;
-          color: #fff;
-          font-size: 20px;
-          font-weight: 700;
-          text-decoration: none;
-          background: rgba(168, 85, 247, 0.4);
-          border: 2px solid #a855f7;
-          border-radius: 12px;
-          transition: all 0.3s ease;
-        }
-        .contact-hallie-btn:hover {
-          background: rgba(168, 85, 247, 0.6);
-          text-decoration: none;
-          box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-        }
 
         .section {
           padding: 20px;
@@ -263,9 +244,10 @@ export default function Hallie() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
+        <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/join-agency" onClick={() => setMenuOpen(false)}>Join the Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
-        <a href="/swave-social" onClick={() => setMenuOpen(false)}>Swave Social</a>
-        <a href="/contact-swave-social" onClick={() => setMenuOpen(false)}>Join Swave Social</a>      </div>
+      </div>
 
       <main>
         <a href="/" className="back-link">← Back to Home</a>
@@ -291,11 +273,8 @@ export default function Hallie() {
           <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
         </div>
 
-        <a href="/contact-hallie" className="contact-hallie-btn">Contact Hallie →</a>
-
         <footer>
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a Creator Manager at Swave Social Talent, a company affiliated with TikTok LIVE.</p>
+          <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
       </main>
     </>
