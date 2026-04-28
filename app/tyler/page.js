@@ -237,17 +237,24 @@ export default function Tyler() {
         <div className="section">
           <h2>Straight to the point.</h2>
           <p>
-            I build things, manage communities, and keep everything real.
+            Creator manager. Agency founder. Five years in the TikTok LIVE ecosystem.
           </p>
         </div>
 
         <div className="section">
-          <h2>What I Do</h2>
+          <h2>Experience</h2>
           <p>
-            I'm a TikTok LIVE Creator Manager and agency founder. I help livestreamers and TikTok creators turn their passion into full-time income. From optimizing live streams and community growth to handling bans and creator issues, I make sure creators stay protected and continue growing on the platform.
+            I've spent <strong>5 years managing creators</strong> across multiple TikTok agencies, working directly within TikTok Backstage. I know the platform inside and out — from growth strategy and monetization to handling bans, violations, and creator protection at the agency level.
           </p>
           <p>
-            I run point on everything from strategy and monetization to handling bans with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>, I keep things authentic, drama-free, and focused on real results.
+            Now I'm building my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, to give creators the real, personalized support that most agencies never deliver.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>What I Handle</h2>
+          <p>
+            Strategy, monetization, ban appeals, LIVE optimization, community growth, and creator protection — all with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>. I keep things direct, drama-free, and focused on results.
           </p>
         </div>
 
