@@ -226,6 +226,13 @@ export default function Hallie() {
           background-color: rgba(168, 85, 247, 0.1);
         }
 
+        .cta-btn {
+          display: block; text-align: center; margin: 10px auto 30px;
+          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
+          text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
+          border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(168,85,247,0.7); text-decoration: none; }
         footer {
           max-width: 900px;
           margin: 60px auto 0;
@@ -272,6 +279,8 @@ export default function Hallie() {
           <h2>The Bottom Line</h2>
           <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
         </div>
+
+        <a href="/contact-hallie" className="cta-btn">Contact Hallie →</a>
 
         <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
