@@ -16,10 +16,19 @@ export default function JoinAgency() {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch('mailto:tyler@tjbmanagementinc.com');
-    } catch (_) {}
-    setSubmitted(true);
-    setLoading(false);
+      const res = await fetch('/api/agency', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.error) alert('Error: ' + data.error);
+      else setSubmitted(true);
+    } catch (err) {
+      alert('Submission failed: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
