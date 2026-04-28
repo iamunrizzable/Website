@@ -180,12 +180,65 @@ export default function AdminPage() {
           )}
         </div>
 
+        {/* Agency Applications */}
+        <ApplicationsPanel />
+
         {/* Test Moderation */}
         <TestPanel adminKey={adminKey} />
 
         {/* DM Assistant */}
         <DMPanel />
       </div>
+    </div>
+  );
+}
+
+function ApplicationsPanel() {
+  const [apps, setApps] = useState(null);
+  const [expanded, setExpanded] = useState(null);
+
+  const s = {
+    card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '1px solid #334155' },
+    h2: { fontSize: 16, fontWeight: 600, color: '#94a3b8', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
+    row: { borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12, cursor: 'pointer' },
+    label: { fontSize: 11, color: '#64748b', marginBottom: 2 },
+    val: { fontSize: 14, color: '#e2e8f0' },
+    detail: { background: '#0f172a', borderRadius: 8, padding: 12, marginTop: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.7 },
+    btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '8px 16px', cursor: 'pointer', fontWeight: 600, fontSize: 13 },
+  };
+
+  useEffect(() => {
+    fetch('/api/agency').then(r => r.json()).then(d => setApps(d.applications ?? []));
+  }, []);
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>✍️ Agency Applications</h2>
+      {apps === null ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : apps.length === 0 ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>No applications yet.</p>
+      ) : (
+        apps.map((app, i) => (
+          <div key={i} style={s.row} onClick={() => setExpanded(expanded === i ? null : i)}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <div style={{ ...s.val, fontWeight: 600 }}>{app.tiktok} <span style={{ color: '#64748b', fontWeight: 400 }}>— {app.name}</span></div>
+                <div style={{ fontSize: 12, color: '#475569', marginTop: 2 }}>
+                  💎 {app.diamonds}/mo · ⏱ {app.hours}/mo · {new Date(app.submitted_at).toLocaleDateString()}
+                </div>
+              </div>
+              <span style={{ color: '#a855f7', fontSize: 18 }}>{expanded === i ? '▲' : '▼'}</span>
+            </div>
+            {expanded === i && (
+              <div style={s.detail}>
+                <div style={s.label}>Why they want to join:</div>
+                <div>{app.why}</div>
+              </div>
+            )}
+          </div>
+        ))
+      )}
     </div>
   );
 }
