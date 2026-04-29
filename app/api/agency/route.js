@@ -38,7 +38,7 @@ export async function POST(req) {
       });
 
       await transporter.sendMail({
-        from: `"TJB Management" <${process.env.SMTP_USER}>`,
+        from: `"TJB Management" <${process.env.SMTP_FROM ?? process.env.SMTP_USER}>`,
         to: 'tyler@tjbmanagementinc.com',
         subject: `New Agency Application — ${tiktok}`,
         html: `
