@@ -108,10 +108,10 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What is TJB Management?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok Backstage and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
+            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok's official agency platform and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
           </p>
           <p>
-            Whether you're just getting started or already pulling serious numbers, TJB Management gives you the infrastructure, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
+            Whether you're just getting started or already pulling serious numbers, TJB Management gives you the tools, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
           </p>
         </div>
 
@@ -122,9 +122,9 @@ export default function AgencyPage() {
             <li>Personalized <strong>LIVE strategy plans</strong> built around your content and goals</li>
             <li>Full <strong>ban assistance and violation protection</strong> — we go to bat for you</li>
             <li>Exclusive <strong>agency campaigns, leaderboards, and tournaments</strong> with prizes</li>
-            <li><strong>Account takeovers, creator spotlights, and in-person meetups</strong> across the US</li>
+            <li><strong>Guest features on our channels, creator spotlights, and in-person meetups</strong> across the US</li>
             <li>Elite-level <strong>live streaming education</strong> from one of the top creator managers in the industry</li>
-            <li>Access to our <strong>private, creator-only Discord server</strong></li>
+            <li>Access to our <strong>private, creator-only Discord community</strong></li>
             <li>Help getting <strong>more views, more diamonds, and more exposure</strong> — with zero cost to you</li>
           </ul>
         </div>
@@ -154,13 +154,13 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What Managers Can See</h2>
           <p>
-            When you join TJB Management, your creator network managers are given access to certain account data through TikTok's agency dashboard. This is what allows us to support, protect, and advocate for you effectively. Managers have visibility into:
+            When you join TJB Management, your managers are able to see certain stats from your TikTok LIVE account through TikTok's official agency tools. This is what helps us support, protect, and stand up for you. Here's what your manager can see:
           </p>
           <ul>
             <li><strong>LIVE replays</strong> — managers can review past streams</li>
-            <li><strong>LIVE analytics</strong> — real-time and historical performance data from your streams</li>
-            <li><strong>Current violations</strong> — any active strikes or policy flags on your account</li>
-            <li><strong>Violation clips</strong> — the specific clip flagged for each violation</li>
+            <li><strong>LIVE analytics</strong> — how your streams are doing right now and how they've done in the past</li>
+            <li><strong>Current violations</strong> — any warnings or rule strikes currently on your account</li>
+            <li><strong>Violation clips</strong> — the exact moment from your stream that caused each violation</li>
             <li><strong>Diamond count</strong> — your total diamonds earned</li>
             <li><strong>LIVE time</strong> — your total hours streamed</li>
             <li><strong>Follower count</strong></li>
@@ -168,14 +168,14 @@ export default function AgencyPage() {
             <li><strong>Number of videos posted</strong></li>
           </ul>
           <p>
-            This data is used solely to support your growth, monitor for violations we can help resolve, and qualify you for campaigns and opportunities within the network.
+            This data is used solely to support your growth, monitor for violations we can help resolve, and help you qualify for campaigns and opportunities with the agency.
           </p>
         </div>
 
         <div className="section">
           <h2>Ban Appeals</h2>
           <p>
-            If your in-app ban appeal gets denied, your TJB Management creator network manager may appeal the ban on your behalf — <span className="highlight">at their discretion</span>. Not every ban is eligible for escalation, but when it is, we go to bat for you.
+            If you appeal a ban inside the TikTok app and it gets denied, your TJB Management manager may be able to appeal it again on your behalf — <span className="highlight">at their discretion</span>. Not every ban can be appealed a second time, but when it can, we'll fight for you.
           </p>
         </div>
 
@@ -190,8 +190,8 @@ export default function AgencyPage() {
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period.</li>
             <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
-            <li>If you leave after the 15-day trial, there is an additional <span className="highlight">60-day waiting period</span> after the 30-day quit process before another agency can sign you, provided you still meet eligibility requirements.</li>
-            <li><strong>Rule Violations & Termination:</strong> If you violate TJB Management's rules or guidelines at any point, the creator network reserves the right to <span className="highlight">immediately terminate your relationship at any time, for any reason</span>, with no waiting period and no further obligation to you.</li>
+            <li>If you leave after the 15-day trial, there is an additional <span className="highlight">60-day waiting period</span> after your 30-day departure is complete before another agency can sign you, provided you still meet eligibility requirements.</li>
+            <li><strong>Rule Violations & Termination:</strong> If you violate TJB Management's rules or guidelines at any point, TJB Management can <span className="highlight">remove you from the agency immediately, at any time, for any reason</span> — with no waiting period.</li>
           </ul>
         </div>
 
