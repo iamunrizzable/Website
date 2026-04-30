@@ -132,7 +132,7 @@ export default function JoinAgency() {
               <textarea name="why" value={form.why} onChange={handleChange} placeholder="Tell Tyler a little about yourself and what you're looking for..." required />
 
               <button type="submit" className="btn" disabled={loading}>
-                {loading ? 'Submitting…' : 'Submit Application →'}
+                {loading ? 'Sending…' : 'Send My Application →'}
               </button>
             </form>
           )}
