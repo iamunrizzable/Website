@@ -202,7 +202,7 @@ export default function AgencyPage() {
           </p>
         </div>
 
-        <a href="/join-agency" className="cta-btn">Apply to Join TJB Management →</a>
+        <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
