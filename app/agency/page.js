@@ -132,6 +132,35 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>LIVE Battles (PK Battles)</h2>
+          <p>
+            LIVE Battles — also called PK Battles — are one of the highest-earning formats on TikTok LIVE. Two creators go head-to-head in a <span className="highlight">split-screen battle</span>, and their audiences compete by sending gifts. The creator with more gifts at the end wins. Here's what to know:
+          </p>
+          <ul>
+            <li><strong>How it works.</strong> You send a battle request to another creator while you're both live. If they accept, your streams merge into a split screen. Viewers pick a side by sending gifts. A timer counts down — usually <span className="highlight">1–5 minutes</span> — and whoever has more gifts at the end wins.</li>
+            <li><strong>Why it works.</strong> Battles drive massive viewer engagement. The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</li>
+            <li><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with cash prizes on top of normal gift earnings.</li>
+            <li><strong>Losing a battle.</strong> The losing creator often has to complete a challenge set by the winner (a game, a dare, etc.). This is part of what makes battles entertaining — keep it fun and your audience will come back for more.</li>
+          </ul>
+        </div>
+
+        <div className="section">
+          <h2>Gift Goals</h2>
+          <p>
+            Gift Goals let you set visible targets on your LIVE screen that your audience can help you hit. You can run up to <span className="highlight">3 goals at once</span>, and when a goal is reached, it triggers a celebration effect on stream. Here's how creators use them:
+          </p>
+          <ul>
+            <li><strong>Set a target.</strong> You choose a gift (like Roses) and a quantity (like "100 Roses"). The goal bar shows up on screen and updates in real time as viewers send that gift.</li>
+            <li><strong>Offer a reward.</strong> You can promise something when the goal is hit — play a game, do a challenge, shout out the top 3 contributors. This gives viewers a reason to participate beyond just supporting you.</li>
+            <li><strong>Top contributors.</strong> TikTok shows the top 3 gift contributors on screen when a goal is reached, which motivates viewers to compete for recognition.</li>
+            <li><strong>Works alongside your normal LIVE.</strong> Gift Goals don't replace regular gifting — they stack on top of it. Viewers can still send any gift at any time.</li>
+          </ul>
+          <p>
+            Gift Goals are one of the simplest tools for increasing your gift earnings per LIVE. Your manager can help you set goals that are realistic for your audience size and actually drive engagement.
+          </p>
+        </div>
+
+        <div className="section">
           <h2>How TikTok LIVE Gifts Work</h2>
           <p>
             When you go LIVE on TikTok, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works from start to finish:
@@ -236,6 +265,33 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>Fan Club</h2>
+          <p>
+            Fan Club is <strong>separate from Super Fan</strong> and completely free for viewers to join. Viewers earn Fan Club membership by sending you gifts — no paid subscription required. Here's how it works:
+          </p>
+          <ul>
+            <li><strong>Gift-based, not paid.</strong> Viewers accumulate Fan Club points by gifting you on LIVE. The more they gift, the higher their Fan Club level.</li>
+            <li><strong>Fan Club levels.</strong> Levels go from 1 upward. Higher-level Fan Club members get a more prominent badge next to their name in your chat, which motivates them to keep gifting to maintain or grow their rank.</li>
+            <li><strong>Super Fan shortcut.</strong> Viewers who subscribe as a Super Fan <span className="highlight">automatically join your Fan Club</span> and start at a higher level than regular gifters — giving Super Fans extra recognition on top of their badge.</li>
+            <li><strong>Why it matters.</strong> Fan Club creates a visible loyalty ranking in your chat. Viewers can see who your top supporters are, which drives friendly competition and repeat gifting without you having to say a word.</li>
+          </ul>
+        </div>
+
+        <div className="section">
+          <h2>TikTok LIVE Studio</h2>
+          <p>
+            TikTok LIVE Studio is TikTok's <strong>free desktop streaming app for Windows</strong>. It's an alternative to OBS and Streamlabs built specifically for TikTok LIVE, with features designed around the platform's format:
+          </p>
+          <ul>
+            <li><strong>Multi-camera layouts.</strong> Switch between multiple camera angles, add screen capture, picture-in-picture overlays, and custom scenes — all without third-party software.</li>
+            <li><strong>Built-in LIVE analytics.</strong> See your viewer count, gift activity, and engagement data in real time while you stream, without switching to another app.</li>
+            <li><strong>Co-Host and Multi-Guest.</strong> LIVE Studio is where Co-Host (up to 3 other creators on split screen with camera and audio) and Multi-Guest (up to 5 viewers joining by audio only) work best.</li>
+            <li><strong>Access requirement.</strong> Non-gaming creators need <span className="highlight">10,000 followers</span> to access LIVE Studio. Gaming creators have a separate pathway.</li>
+            <li><strong>RTMP is different.</strong> LIVE Studio is TikTok's own app and doesn't require a stream key. If you want to use OBS or Streamlabs, that's the RTMP route — which requires being in an official creator network.</li>
+          </ul>
+        </div>
+
+        <div className="section">
           <h2>Creator Tiers</h2>
           <p>The more you stream and grow, the more perks you unlock. Here's how the tiers work:</p>
           <div className="tier-grid">
@@ -278,6 +334,20 @@ export default function AgencyPage() {
           <p>
             We only use this info to help you grow, catch violations we can fix for you, and get you into agency events and opportunities.
           </p>
+        </div>
+
+        <div className="section">
+          <h2>Creator Health Rating</h2>
+          <p>
+            In January 2026, TikTok replaced its old violation-points system with the <strong>Creator Health Rating</strong> — a score from <span className="highlight">0 to 1,000</span> that reflects how well your account follows TikTok's guidelines. Every creator starts at <span className="highlight">200</span>. Here's what you need to know:
+          </p>
+          <ul>
+            <li><strong>Points drop for violations.</strong> Every policy violation reduces your score. How much depends on severity — minor infractions take fewer points than serious ones.</li>
+            <li><strong>Points recover over time.</strong> TikTok rewards consistent, compliant behavior. You can also complete in-app policy quizzes to speed up recovery.</li>
+            <li><strong>Below 150 triggers enforcement.</strong> If your score drops below <span className="highlight">150</span>, TikTok begins taking action against your account — starting with restrictions and escalating from there.</li>
+            <li><strong>Agencies have their own score too.</strong> Creator networks maintain a compliance score from 0–100 based on their creators' collective behavior. Your conduct reflects on the agency, and the agency's standing affects what TikTok makes available to all creators in the network.</li>
+            <li><strong>Why this matters for you.</strong> This is one more reason your manager watches for violations in real time. Catching a potential violation early protects your score — and by extension, your access to monetization and agency programs.</li>
+          </ul>
         </div>
 
         <div className="section">
