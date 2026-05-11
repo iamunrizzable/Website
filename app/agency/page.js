@@ -118,6 +118,7 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What's in It for You?</h2>
           <ul>
+            <li><strong>RTMP stream key access</strong> — As of 2025, the only way to stream on TikTok LIVE using professional software like OBS, Streamlabs, or Meld Studio is through an official creator network. There is no longer a follower count that unlocks this on its own. This alone is a reason many serious creators join an agency.</li>
             <li>Access to a <strong>private network of other TikTok LIVE creators</strong> and real people in the TikTok space</li>
             <li>Personalized <strong>LIVE strategy plans</strong> built around your content and goals</li>
             <li><strong>Help with bans and rule strikes</strong> — we fight for you when TikTok flags your account</li>
@@ -148,16 +149,15 @@ export default function AgencyPage() {
         <div className="section">
           <h2>How Much Are Your Diamonds Worth?</h2>
           <p>
-            Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, and 10,000 diamonds = $50. But TikTok takes a cut before you see a dollar, so here's the real math:
+            Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, 10,000 = $50, and 100,000 = $500. The diamonds already sitting in your account are yours — TikTok takes their cut before the diamonds even reach you (roughly 50% of the gift's coin value is how they calculate it). So the number you see is your actual payout.
           </p>
           <ul>
-            <li><strong>TikTok's base cut is 50%.</strong> For every gift sent, TikTok keeps roughly half of the value before converting it to your diamonds.</li>
-            <li><strong>Scaled rewards system.</strong> Since 2025, TikTok uses a mission-based payout system. By completing per-LIVE missions (up to 40% bonus) and weekly missions (up to 13% bonus), you can earn up to 53% of the total gift value — but this requires consistent streaming and hitting targets.</li>
-            <li><strong>Real take-home range.</strong> Most creators actually take home about 25–35% of what their viewers originally paid for coins, depending on which device viewers used to buy coins and any withdrawal fees.</li>
-            <li><strong>Minimum withdrawal is $100.</strong> You need to accumulate at least $100 in diamonds before you can cash out.</li>
+            <li><strong>Minimum withdrawal is $100.</strong> You need to hit at least $100 worth of diamonds before you can cash out. Withdrawals go through PayPal or bank transfer and can take up to 15 days to process on TikTok's end.</li>
+            <li><strong>You can only withdraw once per day.</strong> Plan accordingly — you can't do multiple withdrawals in the same 24-hour window.</li>
+            <li><strong>You must be 18+ to withdraw.</strong> You can go LIVE at 16, but cashing out requires you to be at least 18 with a verified account.</li>
           </ul>
           <p>
-            Example: If your viewers send you 100,000 diamonds in a month, that's $500 in diamond value — and you'd take home roughly $125–$175 after TikTok's cut, depending on your mission completion.
+            <strong>Scaled LIVE Rewards (launched August 2025):</strong> TikTok introduced a mission-based bonus system that lets you earn <span className="highlight">additional diamonds on top of your base earnings</span>. By completing per-LIVE missions, you can earn up to 40% extra. Weekly missions add up to another 13%. That's up to <span className="highlight">53% more diamonds</span> than you'd get without completing missions — on top of what you already earned from gifts. The more consistently you stream and hit targets, the more your diamonds are worth. This is separate from and in addition to your base diamond earnings.
           </p>
         </div>
 
@@ -194,19 +194,30 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
-          <h2>TikTok LIVE Subscriptions</h2>
+          <h2>TikTok Super Fan & Subscriptions</h2>
           <p>
-            Beyond one-time gifts, TikTok has a monthly subscription feature that lets your most loyal fans support you on a recurring basis. Here's what it includes:
+            In September 2025, TikTok split what used to be called "LIVE Subscription" into two separate products. Here's what each one is:
           </p>
+          <p><strong>Super Fan ($9.99/month) — LIVE focused</strong></p>
           <ul>
-            <li><strong>Monthly support payments</strong> — fans pay a set monthly fee to subscribe to your LIVE</li>
-            <li><strong>Subscriber badges</strong> — your subscribers get a badge next to their name in your LIVE chat so you can recognize them</li>
-            <li><strong>Custom emotes</strong> — subscribers get access to exclusive emotes only they can use in your stream</li>
-            <li><strong>Subscriber-only content</strong> — you can post subscriber-only videos and offer exclusive LIVE access to subscribers</li>
-            <li><strong>Priority in chat</strong> — subscribers stand out so you never miss them in a busy LIVE</li>
+            <li>Your most dedicated fans pay $9.99/month to become a Super Fan</li>
+            <li>They get a <strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
+            <li>Special <strong>entrance effects</strong> when they join your stream</li>
+            <li>Access to <strong>Super Fan-only LIVEs</strong> and <strong>Super Fan-only chat</strong></li>
+            <li>Automatic Fan Club membership and faster Fan Club level-up</li>
+            <li>As a US creator, you keep up to <strong>90% of Super Fan revenue</strong> (70% base + up to 20% performance bonus)</li>
+          </ul>
+          <p><strong>Subscriptions ($2.99–$99.99/month) — content focused</strong></p>
+          <ul>
+            <li>You set your own monthly price anywhere from $2.99 to $99.99 (default is $5.99)</li>
+            <li>Subscribers get access to <strong>subscriber-only posts, videos, and notes</strong> you create</li>
+            <li>Exclusive badges, stickers, and custom emotes in your streams</li>
+            <li>Subscriber-only chat access</li>
+            <li>US creators keep up to <strong>90% of subscription revenue</strong> if you meet the eligibility thresholds</li>
+            <li>To unlock: you need to be 18+, have at least 1,000 followers, and have been active on LIVE in the past 28 days</li>
           </ul>
           <p>
-            LIVE subscriptions give you a more stable, predictable income on top of your gift earnings. As an agency creator, your manager can help you build a subscription strategy to turn one-time viewers into long-term fans.
+            Both of these are separate income streams on top of your gift earnings. Together, they give you three ways to earn: one-time gifts, Super Fan monthly support, and subscriptions.
           </p>
         </div>
 
@@ -230,6 +241,8 @@ export default function AgencyPage() {
           <p className="disclaimer">
             * To qualify for agency perks, you need to: stream at least 10 days a month (1+ hour each time), hit 15 total LIVE hours a month, and earn at least 10,000 diamonds a month. Which perks you get depends on your tier.
           </p>
+          <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. To earn it, you need: 500,000+ diamonds in the past 30 days, 100+ average concurrent viewers OR 100,000+ followers, and a verified TikTok account. Less than 0.1% of all LIVE creators on the platform qualify. LIVE Pro shows a special badge on your profile and during streams.</p>
+          <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards system, the Creator League is a daily ranking of creators by diamonds earned that day. Your ranking in the Creator League affects your bonus reward percentage each week, with a $1,000 weekly cap on Creator League mission bonuses.</p>
         </div>
 
         <div className="section">
@@ -267,11 +280,43 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>What You're Not Allowed to Do on LIVE</h2>
+          <p>
+            TikTok enforces its LIVE rules strictly, and breaking them can get your monetization paused or your account banned. Your manager will help you stay clean, but here's what to know upfront:
+          </p>
+          <ul>
+            <li><strong>No asking for gifts.</strong> Telling your viewers to send you roses, diamonds, or any gift is against TikTok's rules. You can acknowledge gifts after they're sent — you just can't ask for them.</li>
+            <li><strong>No copyrighted music.</strong> Playing music from the radio, TV, Spotify, or any source other than TikTok's own Commercial Music Library in the background of your stream can get you flagged. This includes music playing in the room behind you.</li>
+            <li><strong>No sending people off TikTok.</strong> Sharing your personal phone number, email, Instagram, Snapchat, or any other contact info or outside link during a LIVE is prohibited.</li>
+            <li><strong>No pre-recorded or looping videos.</strong> Your LIVE must be genuinely live. Playing a recorded video or looping content while pretending to be live will result in action taken against your account.</li>
+            <li><strong>No inactive streams.</strong> Going live and just sitting there with no real engagement — or setting up a camera and walking away — violates TikTok's LIVE content standards.</li>
+            <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
+            <li><strong>No NSFW content.</strong> Nudity, sexually suggestive content, or anything that would be inappropriate for a general audience is not allowed on TikTok LIVE.</li>
+            <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any other protected characteristic.</li>
+          </ul>
+          <p>
+            Violations result in warnings first, then temporary bans from LIVE, then permanent removal from the platform for repeat or severe offenses.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>How to Join TJB Management</h2>
+          <p>Here's exactly how the process works once you apply and get accepted:</p>
+          <ul>
+            <li><strong>Step 1 — Apply.</strong> Tap the button below and fill out the application. Tyler reviews every application personally.</li>
+            <li><strong>Step 2 — Get your invite code.</strong> If you're accepted, Tyler or Hallie will reach out with your invite code via TikTok DM. Make sure your DMs are open.</li>
+            <li><strong>Step 3 — Enter the code in TikTok.</strong> Open TikTok → Profile → Settings → TikTok Studio → LIVE Center → Creator Network Center → More Details. Enter your code there and accept the invitation.</li>
+            <li><strong>Step 4 — Your 15-day trial starts.</strong> You're officially in. During the first 15 days, you can leave at any time with no waiting period if it's not for you.</li>
+            <li><strong>Step 5 — Get to work.</strong> Your manager will reach out to go over your goals, set up your strategy, and get you plugged into the network.</li>
+          </ul>
+        </div>
+
+        <div className="section">
           <h2>Agency Eligibility & Leaving</h2>
           <p>To be eligible to join TJB Management, you must meet all of the following:</p>
           <ul>
             <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
-            <li>You haven't earned more than <span className="highlight">500,000 diamonds</span> this month, or in any of the last 5 months</li>
+            <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in recent months — TJB Management focuses on growth-stage creators who will benefit most from the agency's support</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
           </ul>
           <ul>
