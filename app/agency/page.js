@@ -152,9 +152,8 @@ export default function AgencyPage() {
             Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, 10,000 = $50, and 100,000 = $500. The diamonds already sitting in your account are yours — TikTok takes their cut before the diamonds even reach you (roughly 50% of the gift's coin value is how they calculate it). So the number you see is your actual payout.
           </p>
           <ul>
-            <li><strong>Minimum withdrawal is $100.</strong> You need to hit at least $100 worth of diamonds before you can cash out. Withdrawals go through PayPal or bank transfer and can take up to 15 days to process on TikTok's end.</li>
-            <li><strong>You can only withdraw once per day.</strong> Plan accordingly — you can't do multiple withdrawals in the same 24-hour window.</li>
-            <li><strong>You must be 18+ to withdraw.</strong> You can go LIVE at 16, but cashing out requires you to be at least 18 with a verified account.</li>
+            <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request a withdrawal — TikTok processes and sends your diamond earnings to you on Wednesdays.</li>
+            <li><strong>You must be 18+ to receive earnings.</strong> You can go LIVE at 16, but receiving payouts requires you to be at least 18 with a verified account.</li>
           </ul>
           <p>
             <strong>Scaled LIVE Rewards:</strong> TikTok replaced the old flat 50% payout rate with a mission-based system. Your total payout is now: <span className="highlight">diamonds collected × your rewards percentage</span>. The rewards percentage is determined by how well you complete missions each LIVE and each week — and the maximum you can earn is <span className="highlight">53%</span> (up from the old 50% flat rate).
