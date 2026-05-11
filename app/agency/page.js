@@ -139,7 +139,7 @@ export default function AgencyPage() {
             <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly 65–70 coins costs viewers about $1 USD, purchased directly through the TikTok app.</li>
             <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (1 coin, about $0.01) all the way up to the Universe (44,999 coins, worth over $560 to the sender). Every gift has a coin cost that the viewer pays.</li>
             <li><strong>Step 3 — Gifts become Diamonds for you.</strong> When a viewer sends a gift, TikTok converts that gift into Diamonds deposited into your account. The number of diamonds you get is roughly half the coin value of the gift.</li>
-            <li><strong>Step 4 — You cash out your Diamonds.</strong> Once you hit the $100 minimum, you can withdraw your diamonds as real money through PayPal or other supported methods.</li>
+            <li><strong>Step 4 — You get paid.</strong> TikTok automatically sends your diamond earnings every Wednesday. The minimum payout is $1 USD.</li>
           </ul>
           <p>
             The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>TikTok</strong> (1 coin), <strong>Sunglasses</strong> (5 coins), <strong>Heart Me</strong> (10 coins), <strong>Finger Heart</strong> (5 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the biggest gift on the platform).
@@ -152,7 +152,7 @@ export default function AgencyPage() {
             Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, 10,000 = $50, and 100,000 = $500. The diamonds already sitting in your account are yours — TikTok takes their cut before the diamonds even reach you (roughly 50% of the gift's coin value is how they calculate it). So the number you see is your actual payout.
           </p>
           <ul>
-            <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request a withdrawal — TikTok processes and sends your diamond earnings to you on Wednesdays.</li>
+            <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request anything — TikTok processes and sends your diamond earnings to you on Wednesdays. The minimum payout is <span className="highlight">$1 USD</span>.</li>
             <li><strong>You must be 18+ to receive earnings.</strong> You can go LIVE at 16, but receiving payouts requires you to be at least 18 with a verified account.</li>
           </ul>
           <p>
