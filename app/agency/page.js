@@ -64,6 +64,8 @@ export default function AgencyPage() {
         .tier-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .tier-req { font-size: 13px; color: #a0aec0; }
         .highlight { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+        strong { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+        em { color: #7dd3fc; font-style: normal; }
         .cta-btn {
           display: block; text-align: center; margin: 10px auto 20px;
           padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
@@ -135,10 +137,10 @@ export default function AgencyPage() {
             When you go LIVE on TikTok, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works from start to finish:
           </p>
           <ul>
-            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly 65–70 coins costs viewers about $1 USD, purchased directly through the TikTok app.</li>
-            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (1 coin, about $0.01) all the way up to the Universe (44,999 coins, worth over $560 to the sender). Every gift has a coin cost that the viewer pays.</li>
-            <li><strong>Step 3 — Gifts become Diamonds for you.</strong> When a viewer sends a gift, TikTok converts that gift into Diamonds deposited into your account. The number of diamonds you get is roughly half the coin value of the gift.</li>
-            <li><strong>Step 4 — You get paid.</strong> TikTok automatically sends your diamond earnings every Wednesday. The minimum payout is $1 USD.</li>
+            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly <span className="highlight">65–70 coins</span> costs viewers about <span className="highlight">$1 USD</span>, purchased directly through the TikTok app.</li>
+            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>, about $0.01) all the way up to the Universe (<span className="highlight">44,999 coins</span>, worth over <span className="highlight">$560</span> to the sender). Every gift has a coin cost that the viewer pays.</li>
+            <li><strong>Step 3 — Gifts become Diamonds for you.</strong> When a viewer sends a gift, TikTok converts that gift into Diamonds deposited into your account. The number of diamonds you get is roughly <span className="highlight">half the coin value</span> of the gift.</li>
+            <li><strong>Step 4 — You get paid.</strong> TikTok automatically sends your diamond earnings every <span className="highlight">Wednesday</span>. The minimum payout is <span className="highlight">$1 USD</span>.</li>
           </ul>
           <p>
             The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>Finger Heart</strong> (5 coins), <strong>Sunglasses</strong> (199 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the biggest gift on the platform).
@@ -148,7 +150,7 @@ export default function AgencyPage() {
         <div className="section">
           <h2>How Much Are Your Diamonds Worth?</h2>
           <p>
-            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but that doesn't mean you get $0.01 for every diamond — your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a 36.5% rewards rate, 41,200 diamonds pays out $150.38. The old flat rate was 50%, which is where the "$0.005 per diamond" figure came from — but that rate no longer applies for most creators under Scaled LIVE Rewards. The diamond count shown in your account is <strong>not</strong> your cash payout — you have to factor in your current rewards percentage.
+            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but that doesn't mean you get $0.01 for every diamond — your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a <span className="highlight">36.5% rewards rate</span>, 41,200 diamonds pays out <span className="highlight">$150.38</span>. The old flat rate was 50%, which is where the "$0.005 per diamond" figure came from — but that rate no longer applies for most creators under Scaled LIVE Rewards. The diamond count shown in your account is <strong>not</strong> your cash payout — you have to factor in your current rewards percentage.
           </p>
           <ul>
             <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request anything — TikTok processes and sends your diamond earnings to you on Wednesdays. The minimum payout is <span className="highlight">$1 USD</span>.</li>
@@ -165,9 +167,9 @@ export default function AgencyPage() {
           </ul>
           <p><strong>Weekly Missions — up to 13% of your weekly diamonds:</strong></p>
           <ul>
-            <li><strong>Valid go LIVE days</strong> — you must stream at least 25 minutes total for a day to count. 1 valid day = 6%, 2 or more valid days = 8%</li>
-            <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = 1%, 100+ = 1.5%, 2,000+ = 2%</li>
-            <li><strong>Creator League</strong> — earn 1% if you're in the A1–A3 leagues and don't drop below where you started the week, or 3% if you surpass your personal best league ranking. Capped at $1,000/week.</li>
+            <li><strong>Valid go LIVE days</strong> — you must stream at least <span className="highlight">25 minutes</span> total for a day to count. 1 valid day = <span className="highlight">6%</span>, 2 or more valid days = <span className="highlight">8%</span></li>
+            <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = <span className="highlight">1%</span>, 100+ = <span className="highlight">1.5%</span>, 2,000+ = <span className="highlight">2%</span></li>
+            <li><strong>Creator League</strong> — earn <span className="highlight">+1%</span> if you're in the A1–A3 leagues and don't drop below where you started the week, or <span className="highlight">+3%</span> if you surpass your personal best league ranking. Capped at <span className="highlight">$1,000/week</span>.</li>
           </ul>
           <p>
             The more consistently you stream and hit targets, the closer you get to that 53% rate. Creators who don't complete missions earn less than the old flat 50% rate — which is why having a manager coach you on mission strategy makes a real difference to your actual take-home pay.
@@ -210,18 +212,18 @@ export default function AgencyPage() {
           <p>
             In September 2025, TikTok split what used to be called "LIVE Subscription" into two separate products. Here's what each one is:
           </p>
-          <p><strong>Super Fan ($9.99/month) — LIVE focused</strong></p>
+          <p><strong>Super Fan (<span className="highlight">$9.99/month</span>) — LIVE focused</strong></p>
           <ul>
-            <li>Your most dedicated fans pay $9.99/month to become a Super Fan</li>
+            <li>Your most dedicated fans pay <span className="highlight">$9.99/month</span> to become a Super Fan</li>
             <li>They get a <strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
             <li>Special <strong>entrance effects</strong> when they join your stream</li>
             <li>Access to <strong>Super Fan-only LIVEs</strong> and <strong>Super Fan-only chat</strong></li>
             <li>Automatic Fan Club membership and faster Fan Club level-up</li>
             <li>As a US creator, you keep up to <strong>90% of Super Fan revenue</strong> (70% base + up to 20% performance bonus)</li>
           </ul>
-          <p><strong>Subscriptions ($2.99–$99.99/month) — content focused</strong></p>
+          <p><strong>Subscriptions (<span className="highlight">$2.99–$99.99/month</span>) — content focused</strong></p>
           <ul>
-            <li>You set your own monthly price anywhere from $2.99 to $99.99 (default is $5.99)</li>
+            <li>You set your own monthly price anywhere from <span className="highlight">$2.99 to $99.99</span> (default is <span className="highlight">$5.99</span>)</li>
             <li>Subscribers get access to <strong>subscriber-only posts, videos, and notes</strong> you create</li>
             <li>Exclusive badges, stickers, and custom emotes in your streams</li>
             <li>Subscriber-only chat access</li>
@@ -251,7 +253,7 @@ export default function AgencyPage() {
             </div>
           </div>
           <p className="disclaimer">
-            * To qualify for agency perks, you need to: stream at least 10 days a month (1+ hour each time), hit 15 total LIVE hours a month, and earn at least 10,000 diamonds a month. Which perks you get depends on your tier.
+            * To qualify for agency perks, you need to: stream at least <span className="highlight">10 days a month</span> (1+ hour each time), hit <span className="highlight">15 total LIVE hours a month</span>, and earn at least <span className="highlight">10,000 diamonds a month</span>. Which perks you get depends on your tier.
           </p>
           <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. TikTok awards it to top-performing LIVE creators based on factors like diamonds earned and viewership. When you earn it, TikTok gives you a LIVE Pro badge that shows on your profile and during your streams. It is one of the rarest distinctions TikTok awards to LIVE creators.</p>
           <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards weekly missions. Leagues are ranked from D5 (entry level) up through C, B, and A tiers, with A1 being the highest rank. If you finish the week in the A1–A3 league without dropping below where you started, you earn +1% on your weekly rewards. If you surpass your personal best league ranking, you earn +3%. The Creator League mission is capped at $1,000/week.</p>
@@ -284,7 +286,7 @@ export default function AgencyPage() {
             Getting banned on TikTok LIVE is stressful — but as an agency creator, you don't have to fight it alone. Here's how it works:
           </p>
           <ul>
-            <li><strong>First, you appeal through TikTok directly.</strong> TikTok gives creators 30 days from the date of any enforcement action to submit an appeal inside the app.</li>
+            <li><strong>First, you appeal through TikTok directly.</strong> TikTok gives creators <span className="highlight">30 days</span> from the date of any enforcement action to submit an appeal inside the app.</li>
             <li><strong>If your appeal gets denied, we step in.</strong> Your TJB Management manager may be able to submit a second appeal on your behalf through TikTok's official agency channels — <span className="highlight">if they believe it has a real shot at being overturned</span>. This is something solo creators cannot do on their own.</li>
             <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be straight with you about whether a second appeal is worth pursuing.</li>
             <li><strong>We also watch for violations before they become bans.</strong> Because your manager can see your current warnings and strikes in real time, they can flag issues early and help you course correct before things escalate.</li>
