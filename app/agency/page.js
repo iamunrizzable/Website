@@ -95,7 +95,6 @@ export default function AgencyPage() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/join-agency" onClick={() => setMenuOpen(false)}>Join the Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -149,7 +148,7 @@ export default function AgencyPage() {
         <div className="section">
           <h2>How Much Are Your Diamonds Worth?</h2>
           <p>
-            Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, 10,000 = $50, and 100,000 = $500. The diamonds already sitting in your account are yours — TikTok takes their cut before the diamonds even reach you (roughly 50% of the gift's coin value is how they calculate it). So the number you see is your actual payout.
+            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but that doesn't mean you get $0.01 for every diamond — your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a 36.5% rewards rate, 41,200 diamonds pays out $150.38. The old flat rate was 50%, which is where the "$0.005 per diamond" figure came from — but that rate no longer applies for most creators under Scaled LIVE Rewards. The diamond count shown in your account is <strong>not</strong> your cash payout — you have to factor in your current rewards percentage.
           </p>
           <ul>
             <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request anything — TikTok processes and sends your diamond earnings to you on Wednesdays. The minimum payout is <span className="highlight">$1 USD</span>.</li>

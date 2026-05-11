@@ -32,13 +32,12 @@ export default function Contact() {
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
     { name: 'What is TJB Management?', href: '/agency', icon: '🏢' },
-    { name: 'Join TJB Management', href: '/join-agency', icon: '✍️' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
     { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
     { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
-  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'What is TJB Management?', 'Join TJB Management'];
+  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'What is TJB Management?'];
 
   return (
     <>
@@ -289,7 +288,6 @@ export default function Contact() {
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/join-agency" onClick={() => setMenuOpen(false)}>Join the Agency</a>
       </div>
 
       <main>
