@@ -195,7 +195,7 @@ export default function AgencyPage() {
           <ul>
             <li><strong>Agency tournaments & LIVE battles</strong> — TikTok runs exclusive competitions between agency creators where you can win cash prizes. These are not open to creators outside of official networks.</li>
             <li><strong>Diamond Incentive Programs</strong> — TikTok periodically runs bonus campaigns where agency creators can earn extra diamonds or cash rewards on top of their normal gift earnings by hitting specific streaming targets.</li>
-            <li><strong>Brand campaigns</strong> — Official creator networks get facilitated access to brand deals and sponsored campaigns through TikTok. Agency creators are prioritized for these opportunities and can be invited to campaigns that aren't broadly advertised.</li>
+            <li><strong>Brand campaigns</strong> — TikTok gives official creator networks access to exclusive brand deals and sponsored campaigns that are not made available to solo creators outside of a network.</li>
             <li><strong>Monthly bonus programs</strong> — Some campaigns reward creators simply for streaming consistently, hitting hour targets, or growing their follower count during a campaign window.</li>
             <li><strong>TikTok HQ trips</strong> — Top-performing agency creators can be nominated for in-person visits to TikTok's offices, summits, and creator events. This is an opportunity almost no solo creator ever gets access to.</li>
             <li><strong>Traffic boosts</strong> — Agencies can advocate for creators to receive additional platform exposure, helping push your LIVE to more people on the For You Page.</li>
