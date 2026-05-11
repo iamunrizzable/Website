@@ -129,8 +129,8 @@ export default function StreamingBasics() {
           <h2>How TikTok LIVE Gifts Work</h2>
           <p>When you go LIVE, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works:</p>
           <ul>
-            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly <span className="highlight">65–70 coins</span> costs viewers about <span className="highlight">$1 USD</span>, purchased through the TikTok app.</li>
-            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>) all the way up to the Universe (<span className="highlight">44,999 coins</span>, worth over <span className="highlight">$560</span> to the sender). Every gift has a coin cost the viewer pays upfront.</li>
+            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly <span className="highlight">65–70 coins</span> costs viewers about <span className="highlight">$1 USD</span>. Buying coins at <a href="https://www.tiktok.com/coin/" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>tiktok.com/coin</a> is cheaper than buying them inside the app.</li>
+            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>) all the way up to the Universe (<span className="highlight">44,999 coins</span>, worth over <span className="highlight">$640</span> to the sender). Every gift has a coin cost the viewer pays upfront.</li>
             <li><strong>Step 3 — Gifts become Diamonds for you.</strong> TikTok converts gifts into Diamonds deposited into your account. You receive roughly <span className="highlight">half the coin value</span> of each gift as diamonds.</li>
             <li><strong>Step 4 — You get paid.</strong> TikTok automatically sends your diamond earnings every <span className="highlight">Wednesday</span>. The minimum payout is <span className="highlight">$1 USD</span>. You must be <span className="highlight">18 or older</span> to receive earnings.</li>
           </ul>
