@@ -308,8 +308,8 @@ export default function SocialsContact() {
             </div>
 
             <div className="footer">
-              <p>Responses to my social media DMs and emails are automated by <span className="hallie">Hallie, Tyler's AI assistant</span> and not reviewed by Tyler Beasley unless escalated.</p>
-              <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses Vercel Analytics to collect IP addresses and basic usage data. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
+              <p>DMs and emails to me are answered by <span className="hallie">Hallie, Tyler's AI assistant</span>. Tyler only sees them personally if Hallie flags them.</p>
+              <p style={{fontSize: '12px', marginTop: '15px', color: '#666'}}>This site uses basic analytics to track visits and IP addresses. For more information, see our <a href="/legal" style={{color: '#a855f7', textDecoration: 'none'}}>legal disclaimers and guidelines</a>.</p>
               <p>© 2026 TJB Management Inc.</p>
             </div>
           </div>

@@ -226,8 +226,8 @@ export default function Home() {
         </div>
 
         <div className="footer section">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a TikTok LIVE Creator Manager and agency founder.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
+          <p>Tyler J. Beasley manages TikTok LIVE creators and founded TJB Management.</p>
         </div>
       </main>
     </>

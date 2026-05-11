@@ -30,7 +30,7 @@ export default function Contact() {
     { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iam_unrizzable', icon: '🎵' },
     { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'TikTok Cheaper Coins Recharge', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
+    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
     { name: 'What is TJB Management?', href: '/agency', icon: '🏢' },
     { name: 'Join TJB Management', href: '/join-agency', icon: '✍️' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
@@ -38,7 +38,7 @@ export default function Contact() {
     { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
-  const internalLinks = ['Email', 'Phone', 'TikTok Cheaper Coins Recharge', 'What is TJB Management?', 'Join TJB Management'];
+  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'What is TJB Management?', 'Join TJB Management'];
 
   return (
     <>
@@ -315,10 +315,10 @@ export default function Contact() {
         </div>
 
         <div className="footer">
-          <p className="footer-text">Responses to Tyler's social media DMs and emails are automated by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a> and are not reviewed unless escalated by Hallie.</p>
-          <p className="footer-disclaimer">This site uses Vercel Analytics. For more, see our <a href="/legal">legal guidelines</a>.</p>
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a TikTok LIVE Creator Manager and agency founder.</p>
+          <p className="footer-text">DMs and emails to Tyler are answered by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a>. Tyler only sees them personally if Hallie flags them for him.</p>
+          <p className="footer-disclaimer">This site uses basic analytics tools to track visits. See our <a href="/legal">legal guidelines</a> for details.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
+          <p>Tyler J. Beasley manages TikTok LIVE creators and founded TJB Management.</p>
         </div>
       </main>
     </>
