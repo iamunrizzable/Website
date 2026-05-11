@@ -140,7 +140,7 @@ export default function AgencyPage() {
             <li><strong>How it works.</strong> First, send a co-host request to another creator while you're both live. Once they accept and you're in a co-host together, you can then send a battle request. If they accept, the battle starts — viewers pick a side by sending gifts, and a <span className="highlight">5-minute</span> timer counts down. Whoever has more gifts at the end wins.</li>
             <li><strong>Why it works.</strong> Battles drive massive viewer engagement. The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</li>
             <li><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with cash prizes on top of normal gift earnings.</li>
-            <li><strong>Losing a battle.</strong> The losing creator often has to complete a challenge set by the winner (a game, a dare, etc.). This is part of what makes battles entertaining — keep it fun and your audience will come back for more.</li>
+            <li><strong>Losing a battle.</strong> Some creators optionally agree to a challenge beforehand — a game, a dare, etc. — that the loser has to complete. This is entirely optional, but it adds entertainment value and gives your audience a reason to come back.</li>
           </ul>
         </div>
 
