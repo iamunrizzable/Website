@@ -97,6 +97,8 @@ export default function AgencyPage() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/agency-info" onClick={() => setMenuOpen(false)}>Agency Information</a>
+        <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
@@ -147,16 +149,14 @@ export default function AgencyPage() {
         <div className="section">
           <h2>Gift Goals</h2>
           <p>
-            Gift Goals let you set visible targets on your LIVE screen that your audience can help you hit. You can run up to <span className="highlight">3 goals at once</span>, and when a goal is reached, it triggers a celebration effect on stream. Here's how creators use them:
+            Gift Goals let you set visible on-screen targets during your LIVE that viewers work together to hit. You can run up to <span className="highlight">4 goals at once</span> — 3 standard gift goals plus 1 gallery gift goal. When a goal is reached, TikTok plays a celebration animation and shows your top 3 contributors. You can reset and repeat goals as many times as you want in a single stream.
           </p>
           <ul>
-            <li><strong>Set a target.</strong> You choose a gift (like Roses) and a quantity (like "100 Roses"). The goal bar shows up on screen and updates in real time as viewers send that gift.</li>
-            <li><strong>Offer a reward.</strong> You can promise something when the goal is hit — play a game, do a challenge, shout out the top 3 contributors. This gives viewers a reason to participate beyond just supporting you.</li>
-            <li><strong>Top contributors.</strong> TikTok shows the top 3 gift contributors on screen when a goal is reached, which motivates viewers to compete for recognition.</li>
-            <li><strong>Works alongside your normal LIVE.</strong> Gift Goals don't replace regular gifting — they stack on top of it. Viewers can still send any gift at any time.</li>
+            <li><strong>Standard goals — pick any gift, set any quantity.</strong> For example: 100 Roses, 1,000 Corns, 50 Galaxies. Use low-cost gifts so more viewers can participate. You can write a description of what you'll do when the goal is hit to give viewers a reason to contribute.</li>
+            <li><strong>Gallery Gift Goal — lights up your Gift Gallery.</strong> Your Gift Gallery has <span className="highlight">15 slots</span> on your profile, each tied to a specific gift. Setting a gallery gift goal targets filling one of those slots. Viewers who light up a slot earn <strong>Title Gifter</strong> status and <span className="highlight">1.5× points</span> toward your LIVE Fest ranking.</li>
           </ul>
           <p>
-            Gift Goals are one of the simplest tools for increasing your gift earnings per LIVE. Your manager can help you set goals that are realistic for your audience size and actually drive engagement.
+            Your manager can help you build a gift goal strategy that fits your audience size and keeps viewers engaged throughout your stream. For a full breakdown, see the <a href="/streaming-basics" style={{color: '#a855f7'}}>Streaming Basics</a> page.
           </p>
         </div>
 
