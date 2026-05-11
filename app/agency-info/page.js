@@ -113,10 +113,7 @@ export default function AgencyInfo() {
         <div className="section">
           <h2>What is TJB Management?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working through TikTok's official agency program and managing creators across multiple TikTok LIVE agencies. Tyler built TJB Management to give creators the kind of direct, personalized support that most agencies never deliver.
-          </p>
-          <p>
-            Whether you're just getting started or already pulling serious numbers, TJB Management gives you the tools, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
+            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> in TikTok's official agency program. It costs you <span className="highlight">absolutely nothing to join</span>.
           </p>
         </div>
 
@@ -141,10 +138,7 @@ export default function AgencyInfo() {
             <span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span>
           </p>
           <p>
-            Here's how it works: TikTok has its own cut of the platform's gift revenue. When a creator joins an official TikTok creator network, TikTok shares a portion of <em>their own cut</em> with the agency as compensation for growing and supporting creators on the platform. Your diamond payout is not reduced. Your earnings are not touched. The agency earns from TikTok directly — not from you.
-          </p>
-          <p>
-            This is why joining a legitimate TikTok creator network is completely free and should never cost you a single dollar. If any agency asks you to pay fees or give up a percentage of your diamonds, that is <strong>not how official TikTok creator networks work</strong>.
+            TikTok has its own cut of the platform's gift revenue. When you join an official creator network, TikTok shares a portion of <em>their own cut</em> with the agency. Your earnings are not touched. If any agency asks you for fees or a cut of your diamonds, that is <strong>not how official TikTok creator networks work</strong>.
           </p>
         </div>
 
@@ -232,12 +226,11 @@ export default function AgencyInfo() {
             <li><strong>Violation clips</strong> — the exact moment from your stream that triggered each violation</li>
             <li><strong>Diamond count, LIVE time, follower count, like count, and number of videos posted</strong></li>
           </ul>
-          <p>This information is used exclusively to help you grow, catch issues early, and get you into agency events and opportunities.</p>
         </div>
 
         <div className="section">
           <h2>Ban Appeals</h2>
-          <p>Getting banned on TikTok LIVE is stressful — but as an agency creator, you don't have to fight it alone:</p>
+          <p>Here's how it works:</p>
           <ul>
             <li><strong>First, you appeal through TikTok directly.</strong> TikTok gives creators <span className="highlight">30 days</span> from any enforcement action to submit an appeal inside the app.</li>
             <li><strong>If your appeal gets denied, we step in.</strong> Your TJB Management manager may be able to submit a second appeal through TikTok's official agency channels — <span className="highlight">if they believe it has a real shot at being overturned</span>. Solo creators cannot do this.</li>
@@ -276,7 +269,7 @@ export default function AgencyInfo() {
         <div className="section">
           <h2>It Costs You Nothing</h2>
           <p>
-            Joining TJB Management is completely free — no fees, no contracts, no catches. There is nothing to lose and everything to gain. All we ask is that you show up and stream consistently.
+            No fees, no contracts, no catches. All we ask is that you show up and stream consistently.
           </p>
         </div>
 

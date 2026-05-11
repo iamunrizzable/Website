@@ -106,30 +106,23 @@ export default function StreamingBasics() {
           <h2>How to Go LIVE on TikTok</h2>
           <p>Going LIVE on TikTok is straightforward once your account is eligible. Here's how to start your first stream:</p>
           <ul>
-            <li><strong>Step 1 — Open the TikTok camera.</strong> Tap the <span className="highlight">+</span> button at the bottom of the screen, the same way you'd record a video.</li>
+            <li><strong>Step 1 — Open the TikTok camera.</strong> Tap the <span className="highlight">+</span> button at the bottom of the screen.</li>
             <li><strong>Step 2 — Swipe to LIVE.</strong> Swipe along the bottom options until you see <span className="highlight">LIVE</span>. If you don't see it, your account may not be eligible yet — you need to be 18+ and meet TikTok's account standing requirements.</li>
-            <li><strong>Step 3 — Set a title.</strong> Add a short title to your LIVE. This is what shows up when people find your stream. Make it descriptive — tell viewers what you're doing.</li>
-            <li><strong>Step 4 — Choose your topic.</strong> Select a category that matches your content. This helps TikTok push your LIVE to the right audience.</li>
-            <li><strong>Step 5 — Go live.</strong> Tap the <span className="highlight">Go LIVE</span> button. Your stream starts immediately.</li>
+            <li><strong>Step 3 — Set a title and topic.</strong> Give your stream a short title and pick a category. Both help TikTok surface your LIVE to the right viewers.</li>
+            <li><strong>Step 4 — Go live.</strong> Tap <span className="highlight">Go LIVE</span>. To end, tap the <span className="highlight">X</span> in the corner and confirm.</li>
           </ul>
-          <p>
-            To end your stream, tap the <span className="highlight">X</span> in the top corner, then confirm. TikTok will show you a summary of your stream stats after you end.
-          </p>
         </div>
 
         <div className="section">
           <h2>What You Need to Stream</h2>
           <p>You don't need expensive equipment to start. Here's what actually matters:</p>
           <ul>
-            <li><strong>Good lighting.</strong> This is the single biggest difference between a stream that looks professional and one that doesn't. A ring light or a window facing you makes a huge difference. Avoid streaming with a bright light behind you — it silhouettes your face.</li>
-            <li><strong>A stable internet connection.</strong> A dropped stream kills momentum. Use Wi-Fi if possible — not mobile data. If your stream keeps buffering, viewers will leave.</li>
-            <li><strong>A phone with a decent front camera.</strong> Most modern phones handle this fine. You don't need a separate camera to start.</li>
-            <li><strong>A quiet environment.</strong> Background noise is distracting. Viewers stay longer when they can hear you clearly.</li>
-            <li><strong>A phone stand or tripod.</strong> Holding your phone the whole time gets tiring and shaky. A $10 stand is worth it from day one.</li>
+            <li><strong>Good lighting.</strong> A ring light or a window facing you makes the biggest difference. Avoid bright light behind you.</li>
+            <li><strong>A stable internet connection.</strong> Use Wi-Fi — not mobile data.</li>
+            <li><strong>A phone with a decent front camera.</strong> Most modern phones are fine. No separate camera needed to start.</li>
+            <li><strong>A quiet environment.</strong> Clear audio keeps viewers around.</li>
+            <li><strong>A phone stand or tripod.</strong> A $10 stand beats holding your phone the whole time.</li>
           </ul>
-          <p>
-            As you grow, you can upgrade to a dedicated microphone, better lighting, or stream from a PC using <strong>TikTok LIVE Studio</strong>. But none of that is required to start building an audience.
-          </p>
         </div>
 
         <div className="section">
@@ -169,7 +162,7 @@ export default function StreamingBasics() {
             <li><strong>Gift-based, not paid.</strong> Viewers accumulate Fan Club points every time they send you a gift. The more they gift, the higher their level.</li>
             <li><strong>Fan Club levels</strong> go from 1 upward. Higher-level members get a more prominent badge next to their name in your chat, which motivates them to keep gifting to grow their rank.</li>
             <li><strong>Super Fan shortcut.</strong> Viewers who pay for a Super Fan subscription <span className="highlight">automatically join your Fan Club</span> at a higher starting level than regular gifters.</li>
-            <li><strong>Why it matters.</strong> Fan Club creates visible loyalty rankings in your chat. Viewers compete to be your top supporter without you having to say a word.</li>
+            <li><strong>Why it matters.</strong> Fan Club creates visible loyalty rankings in your chat. Viewers compete for top supporter status on their own.</li>
           </ul>
         </div>
 
@@ -201,9 +194,6 @@ export default function StreamingBasics() {
             <li><strong>Use all 3 standard goal slots</strong> with different gifts so viewers can choose what to contribute.</li>
             <li><strong>Set goals before you go live</strong> — adding goals mid-stream on mobile can be tricky depending on your device.</li>
           </ul>
-          <p>
-            Gift Goals are one of the most effective tools for increasing your earnings per stream. They give viewers a shared mission and make your LIVE more interactive without you having to constantly manage it.
-          </p>
         </div>
 
         <div className="section">
@@ -216,7 +206,7 @@ export default function StreamingBasics() {
             <li><strong>How viewers participate.</strong> Viewers pick a side by sending gifts to their creator. The gift totals are visible on screen the whole time, creating a live competition your audience can influence in real time.</li>
             <li><strong>Whoever has more gifts at the end wins.</strong> Both creators keep their gift earnings regardless of the outcome.</li>
             <li><strong>Optional challenge.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. This is optional, but it adds entertainment and gives viewers a reason to tune in.</li>
-            <li><strong>Why battles earn more.</strong> The competitive format pushes viewers to gift more than they normally would. It also pulls both creators' audiences into one stream, which grows both accounts at the same time.</li>
+            <li><strong>Why battles earn more.</strong> The competitive format pushes viewers to gift more, and pulls both creators' audiences into one stream.</li>
           </ul>
         </div>
 
@@ -231,9 +221,6 @@ export default function StreamingBasics() {
             <li><strong>Co-Host and Multi-Guest.</strong> LIVE Studio is the best environment for Co-Host (up to <span className="highlight">3 creators</span> on split screen with camera and audio) and Multi-Guest (up to <span className="highlight">5 viewers</span> joining by audio only).</li>
             <li><strong>Access requirement.</strong> Non-gaming creators need <span className="highlight">10,000 followers</span> to access LIVE Studio. Gaming creators have a separate pathway.</li>
           </ul>
-          <p>
-            If you want to use OBS or Streamlabs instead, that requires an <span className="highlight">RTMP stream key</span>, which is only available through an official creator network. LIVE Studio does not require a stream key — it connects directly to your TikTok account.
-          </p>
         </div>
 
         <div className="section">
@@ -246,9 +233,6 @@ export default function StreamingBasics() {
             <li><strong>Points recover over time</strong> through consistent, compliant streaming. You can also complete in-app policy quizzes to speed up recovery.</li>
             <li><strong>Below 150 triggers enforcement.</strong> If your score drops below <span className="highlight">150</span>, TikTok starts restricting your account.</li>
           </ul>
-          <p>
-            Knowing your score matters. The higher it is, the more stable your monetization and LIVE access. Violations that seem minor can add up fast.
-          </p>
         </div>
 
         <div className="section">
