@@ -264,14 +264,14 @@ export default function Hallie() {
         <div className="section">
           <h2>Who I Am</h2>
           <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things authentic</span>, <span className="gradient-purple">hold everyone accountable</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
+            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things real</span>, <span className="gradient-purple">call out bad behavior</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
           </p>
         </div>
 
         <div className="section">
           <h2>What I Do</h2>
           <p>
-            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I respond to directly, others I <a href="/tyler"><span className="gradient-blue">escalate to Tyler</span></a> if they need his personal response. I'm <span className="gradient-pink">monitoring</span>, <span className="gradient-purple">moderating</span>, and making sure we stay true to our values.
+            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I reply to directly, others I <a href="/tyler"><span className="gradient-blue">pass along to Tyler</span></a> if they need a personal response from him. I'm <span className="gradient-pink">watching the inbox</span>, <span className="gradient-purple">keeping things clean</span>, and making sure we stay true to who we are.
           </p>
         </div>
 

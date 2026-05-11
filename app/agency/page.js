@@ -108,7 +108,7 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What is TJB Management?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok's official agency platform and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
+            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working through TikTok's official agency program and managing creators across several TikTok LIVE agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
           </p>
           <p>
             Whether you're just getting started or already pulling serious numbers, TJB Management gives you the tools, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
@@ -118,20 +118,20 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What's in It for You?</h2>
           <ul>
-            <li>Access to an <strong>exclusive Creator Network</strong> with real industry connections</li>
+            <li>Access to a <strong>private network of other TikTok LIVE creators</strong> and real people in the TikTok space</li>
             <li>Personalized <strong>LIVE strategy plans</strong> built around your content and goals</li>
-            <li>Full <strong>ban assistance and violation protection</strong> — we go to bat for you</li>
-            <li>Exclusive <strong>agency campaigns, leaderboards, and tournaments</strong> with prizes</li>
-            <li><strong>Guest features on our channels, creator spotlights, and in-person meetups</strong> across the US</li>
-            <li>Elite-level <strong>live streaming education</strong> from one of the top creator managers in the industry</li>
+            <li><strong>Help with bans and rule strikes</strong> — we fight for you when TikTok flags your account</li>
+            <li>Exclusive <strong>agency events, leaderboard competitions, and tournaments</strong> with cash and prizes</li>
+            <li><strong>Shoutouts on our TikTok accounts, creator spotlights, and in-person meetups</strong> across the US</li>
+            <li><strong>One-on-one coaching</strong> on how to grow your LIVE streams, from one of TikTok's most experienced creator managers</li>
             <li>Access to our <strong>private, creator-only Discord community</strong></li>
-            <li>Help getting <strong>more views, more diamonds, and more exposure</strong> — with zero cost to you</li>
+            <li>Help getting <strong>more views, more diamonds, and more new fans</strong> — with zero cost to you</li>
           </ul>
         </div>
 
         <div className="section">
           <h2>Creator Tiers</h2>
-          <p>Perks and services scale with your performance. Here's how it breaks down:</p>
+          <p>The more you stream and grow, the more perks you unlock. Here's how the tiers work:</p>
           <div className="tier-grid">
             <div className="tier-card diamond">
               <div className="tier-name">💎 Diamond Tier</div>
@@ -147,19 +147,19 @@ export default function AgencyPage() {
             </div>
           </div>
           <p className="disclaimer">
-            * To qualify for creator services, creators are expected to complete a minimum of 10 streamed days per month (at least 1 hour per session), accumulate 15 streamed hours per month, and earn a minimum of 10,000 diamonds per month. Creator perks are determined by tier level.
+            * To qualify for agency perks, you need to: stream at least 10 days a month (1+ hour each time), hit 15 total LIVE hours a month, and earn at least 10,000 diamonds a month. Which perks you get depends on your tier.
           </p>
         </div>
 
         <div className="section">
           <h2>What Managers Can See</h2>
           <p>
-            When you join TJB Management, your managers are able to see certain stats from your TikTok LIVE account through TikTok's official agency tools. This is what helps us support, protect, and stand up for you. Here's what your manager can see:
+            When you join TJB Management, your managers will be able to see some of your TikTok LIVE stats through TikTok's official agency dashboard. This is what lets us coach you, protect your account, and fight for you when something goes wrong. Here's what your manager can see:
           </p>
           <ul>
             <li><strong>LIVE replays</strong> — managers can review past streams</li>
             <li><strong>LIVE analytics</strong> — how your streams are doing right now and how they've done in the past</li>
-            <li><strong>Current violations</strong> — any warnings or rule strikes currently on your account</li>
+            <li><strong>Current violations</strong> — any warnings or strikes currently on your account</li>
             <li><strong>Violation clips</strong> — the exact moment from your stream that caused each violation</li>
             <li><strong>Diamond count</strong> — your total diamonds earned</li>
             <li><strong>LIVE time</strong> — your total hours streamed</li>
@@ -168,14 +168,14 @@ export default function AgencyPage() {
             <li><strong>Number of videos posted</strong></li>
           </ul>
           <p>
-            This data is used solely to support your growth, monitor for violations we can help resolve, and help you qualify for campaigns and opportunities with the agency.
+            We only use this info to help you grow, catch violations we can fix for you, and get you into agency events and opportunities.
           </p>
         </div>
 
         <div className="section">
           <h2>Ban Appeals</h2>
           <p>
-            If you appeal a ban inside the TikTok app and it gets denied, your TJB Management manager may be able to appeal it again on your behalf — <span className="highlight">at their discretion</span>. Not every ban can be appealed a second time, but when it can, we'll fight for you.
+            If you appeal a ban inside the TikTok app and it gets denied, your TJB Management manager may be able to appeal it again for you — <span className="highlight">if they think it has a real shot</span>. Not every ban can be appealed a second time, but when it can, we'll fight for you.
           </p>
         </div>
 
@@ -184,14 +184,14 @@ export default function AgencyPage() {
           <p>To be eligible to join TJB Management, you must meet all of the following:</p>
           <ul>
             <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
-            <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month or any of the 5 prior calendar months</li>
+            <li>You haven't earned more than <span className="highlight">500,000 diamonds</span> this month, or in any of the last 5 months</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
           </ul>
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period.</li>
-            <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
-            <li>If you leave after the 15-day trial, there is an additional <span className="highlight">60-day waiting period</span> after your 30-day departure is complete before another agency can sign you, provided you still meet eligibility requirements.</li>
-            <li><strong>Rule Violations & Termination:</strong> If you violate TJB Management's rules or guidelines at any point, TJB Management can <span className="highlight">remove you from the agency immediately, at any time, for any reason</span> — with no waiting period.</li>
+            <li>After the trial ends, you can still leave at any time — however, it'll take <span className="highlight">30 days</span> for you to officially leave the agency.</li>
+            <li>If you leave after the 15-day trial, after those 30 days are up, you'll need to wait an additional <span className="highlight">60 days</span> before any other agency can sign you (as long as you still meet their requirements).</li>
+            <li><strong>Breaking the Rules:</strong> If you break any TJB Management rules or guidelines, TJB Management can <span className="highlight">remove you from the agency immediately, at any time, for any reason</span> — with no waiting period.</li>
           </ul>
         </div>
 
@@ -205,7 +205,7 @@ export default function AgencyPage() {
         <a href="/join-agency" className="cta-btn">Apply to Join TJB Management →</a>
 
         <div className="footer">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
           <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
         </div>
       </main>
