@@ -230,7 +230,7 @@ export default function Legal() {
         <div className="section">
           <h2>AI Assistant Disclaimer</h2>
           <p>
-            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are reviewed and responded to by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and not directly reviewed by <a href="/tyler"><span className="rainbow">Tyler</span></a> Beasley unless they are escalated as requiring his personal attention.
+            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are handled by <a href="/hallie"><span className="rainbow">Hallie</span></a>. <a href="/tyler"><span className="rainbow">Tyler</span></a> only sees them personally if Hallie flags them as needing his attention.
           </p>
         </div>
 
@@ -250,54 +250,54 @@ export default function Legal() {
             <li><span className="rainbow">Use a real photo and username</span></li>
             <li><span className="rainbow">No impersonation of anyone (especially <a href="/tyler">Tyler</a> and his admins)</span></li>
             <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
-            <li><span className="rainbow">Ban evading gets you permanently blocked and reported</span></li>
-            <li><span className="rainbow"><a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, monitors all interactions for compliance</span></li>
+            <li><span className="rainbow">Trying to get around a ban (making new accounts, etc.) gets you permanently blocked and reported</span></li>
+            <li><span className="rainbow"><a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, keeps an eye on every message to make sure people follow the rules</span></li>
           </ul>
         </div>
 
         <div className="section" id="interactions">
           <h2>3. Interactions with <a href="/tyler">Tyler</a></h2>
           <ul>
-            <li><span className="rainbow">No unsolicited flirting, pickup lines, or compliments</span></li>
+            <li><span className="rainbow">No flirting, pickup lines, or unwanted compliments</span></li>
             <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
             <li><span className="rainbow">When you message him, have an actual reason</span></li>
-            <li><span className="rainbow">All in-person meetup requests require explicit approval first</span></li>
-            <li><strong>Note:</strong> Initial messages to <a href="/tyler"><span className="rainbow">Tyler</span></a> are handled by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. This applies to everyone equally and is transparent, and by design.</li>
+            <li><span className="rainbow">Want to meet up in person? You need to ask and get a clear yes first.</span></li>
+            <li><strong>Note:</strong> The first message anyone sends <a href="/tyler"><span className="rainbow">Tyler</span></a> goes through <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> — same rule for everyone, no exceptions.</li>
           </ul>
         </div>
 
         <div className="section" id="anti-stalking">
           <h2>4. Anti-Stalking & Suspicious Behavior</h2>
           <p>
-            We actively monitor for suspicious account behavior patterns to protect <a href="/tyler"><span className="rainbow">Tyler</span></a> and our community. Accounts exhibiting the following behavior may be blocked at our discretion:
+            We watch for suspicious account activity to protect <a href="/tyler"><span className="rainbow">Tyler</span></a> and our community. Accounts showing the following behavior may be blocked at our discretion:
           </p>
           <ul>
             <li><span className="rainbow">New accounts created immediately before or after viewing <a href="/tyler">Tyler</a>'s profile</span></li>
-            <li><span className="rainbow">Multiple accounts viewing from the same IP address or device</span></li>
-            <li><span className="rainbow">Accounts with no profile picture, minimal account history, or generic usernames</span></li>
-            <li><span className="rainbow">Repeated viewing of <a href="/tyler">Tyler</a>'s profile (3+ times) with zero interaction or engagement</span></li>
-            <li><span className="rainbow">Account behavior patterns matching known coordinated attack accounts</span></li>
-            <li><span className="rainbow">Any form of stalking, harassment, or investigation of <a href="/tyler">Tyler</a> or community members</span></li>
+            <li><span className="rainbow">Multiple accounts from the same internet connection or device</span></li>
+            <li><span className="rainbow">Accounts with no profile picture, barely any posts or activity, or random-looking usernames</span></li>
+            <li><span className="rainbow">Repeatedly viewing <a href="/tyler">Tyler</a>'s profile (3+ times) with zero interaction or engagement</span></li>
+            <li><span className="rainbow">Accounts that act like part of a coordinated group targeting Tyler</span></li>
+            <li><span className="rainbow">Any stalking, harassment, or digging into Tyler's or our community members' private lives</span></li>
           </ul>
           <p>
-            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, monitors these patterns continuously and may block accounts directly or alert <a href="/tyler"><span className="rainbow">Tyler</span></a> for review. Blocking decisions are made by both <a href="/hallie"><span className="rainbow">Hallie</span></a> and <a href="/tyler"><span className="rainbow">Tyler</span></a> based on behavioral evidence.
+            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, watches for these things continuously and may block accounts on her own, or flag them for <a href="/tyler"><span className="rainbow">Tyler</span></a> to look at. Hallie and Tyler decide who gets blocked based on what an account is actually doing.
           </p>
         </div>
 
         <div className="section" id="consequences">
           <h2>5. Consequences</h2>
           <ul>
-            <li><span className="rainbow"><strong>1 Rep:</strong> Warning + mute</span></li>
-            <li><span className="rainbow"><strong>2 Reps:</strong> Temporary ban</span></li>
-            <li><span className="rainbow"><strong>3 Reps:</strong> Permanent ban + legal action if needed</span></li>
+            <li><span className="rainbow"><strong>1 Strike:</strong> Warning + mute</span></li>
+            <li><span className="rainbow"><strong>2 Strikes:</strong> Temporary ban</span></li>
+            <li><span className="rainbow"><strong>3 Strikes:</strong> Permanent ban + legal action if needed</span></li>
           </ul>
-          <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them evade.</p>
+          <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them get around the ban.</p>
         </div>
 
         <div className="section" id="appeals">
           <h2>6. Appeals</h2>
           <p>
-            To appeal a ban, users may file a ticket via Discord in the create-a-ticket channel or email tyler@tjbmanagementinc.com. Appeals must include:
+            To appeal a ban, open a support ticket in our Discord (in the #create-a-ticket channel) or email tyler@tjbmanagementinc.com. Appeals must include:
           </p>
           <ul>
             <li><span className="rainbow">Full username</span></li>
@@ -305,22 +305,22 @@ export default function Legal() {
             <li><span className="rainbow">What you did to get blocked</span></li>
             <li><span className="rainbow">Why you want to be unblocked</span></li>
           </ul>
-          <p>We only overturn bans with solid evidence supporting the appeal.</p>
+          <p>We only undo bans if you have solid proof we got it wrong.</p>
         </div>
 
         <div className="section" id="disclosures">
           <h2>7. Final Notes and Disclosures</h2>
           <p>
-            We monitor all activity, by the use of <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree and warrant to these rules and our use of AI moderation to ensure compliance with our community guidelines and the collection of information.
+            We monitor all activity through <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree to these rules and our use of AI moderation to keep our community safe.
           </p>
           <p><strong>Information we collect is:</strong></p>
           <ul>
             <li><span className="rainbow">Messages and direct interactions</span></li>
             <li><span className="rainbow">Account information and profile data</span></li>
-            <li><span className="rainbow">IP addresses (via Vercel Analytics)</span></li>
-            <li><span className="rainbow">Interaction patterns and activity logs</span></li>
+            <li><span className="rainbow">IP addresses (via our analytics tools)</span></li>
+            <li><span className="rainbow">How you interact with us and a basic log of your activity</span></li>
           </ul>
-          <p>We promise to only use personal information to ensure compliance with our community guidelines and will not share or sell your personal information with any person, business, or agency without a warrant.</p>
+          <p>We only use your personal info to make sure people follow our rules. We won't share or sell it to anyone unless we're legally required to (like with a warrant).</p>
         </div>
 
         <div className="section" id="hallie-tos">
@@ -331,31 +331,31 @@ export default function Legal() {
 
           <h2>8.1 What the System Does</h2>
           <p>
-            The <span className="rainbow">Hallie Moderation System</span> automatically scans TikTok comments, live chat messages, and other public interactions on TJB Management Inc.'s TikTok account(s). It uses a rule-based scoring engine to classify content as spam, scam, harassment, hate speech, or promotional material and may take the following automated actions:
+            The <span className="rainbow">Hallie Moderation System</span> automatically scans TikTok comments, live chat messages, and other public interactions on TJB Management Inc.'s TikTok account(s). It uses an automated system that checks content for spam, scams, harassment, hate speech, or ads, and may take the following actions:
           </p>
           <ul>
             <li><span className="rainbow">Flag content for human review</span></li>
             <li><span className="rainbow">Generate a suggested reply for the account owner</span></li>
-            <li><span className="rainbow">Automatically hide comments that score above the configured threshold</span></li>
+            <li><span className="rainbow">Automatically hide comments that get flagged as harmful</span></li>
             <li><span className="rainbow">Send an internal alert to tyler@tjbmanagementinc.com</span></li>
           </ul>
 
           <h2>8.2 Data We Access and Store</h2>
           <p>When a TikTok account is connected to this system, the following data is accessed and temporarily stored:</p>
           <ul>
-            <li><span className="rainbow">TikTok OAuth access tokens and refresh tokens (stored encrypted, never shared)</span></li>
+            <li><span className="rainbow">Secure TikTok login tokens (encrypted, never shared)</span></li>
             <li><span className="rainbow">Public profile information (display name, follower count, video count)</span></li>
-            <li><span className="rainbow">Public video metadata (title, view count, comment count)</span></li>
-            <li><span className="rainbow">Public comment text, author username, and engagement data</span></li>
-            <li><span className="rainbow">Moderation event logs, including scores and flags assigned to content</span></li>
+            <li><span className="rainbow">Public video info (title, view count, comment count)</span></li>
+            <li><span className="rainbow">Public comment text, author username, and like/reply counts</span></li>
+            <li><span className="rainbow">Records of which comments were flagged and why</span></li>
           </ul>
           <p>
-            All data is stored in a secure, access-controlled database. Comment data and moderation logs are retained for up to 30 days. Token data is retained only as long as the account remains connected. We do not sell, rent, or share this data with any third party.
+            All data is stored in a secure database only we can access. Comment data and moderation logs are kept for up to 30 days. Login tokens are kept only as long as the account stays connected. We do not sell, rent, or share this data with any third party.
           </p>
 
           <h2>8.3 TikTok Platform Compliance</h2>
           <p>
-            This system operates under TikTok's Developer Terms of Service and Content API usage policies. Data accessed through the TikTok API is used solely for the purpose of content moderation on TJB Management Inc.'s own account(s). We do not use TikTok API data for advertising, resale, or any purpose outside of moderation and account management.
+            This system follows TikTok's developer rules and API policies. Data we access through TikTok is only used for moderating TJB Management Inc.'s own account(s). We don't use it for advertising, resale, or anything outside of moderation and account management.
           </p>
 
           <h2>8.4 Automated Decisions</h2>
@@ -365,12 +365,12 @@ export default function Legal() {
 
           <h2>8.5 No Warranty & Limitation of Liability</h2>
           <p>
-            The <span className="rainbow">Hallie Moderation System</span> is provided as-is. TJB Management Inc. makes no guarantees that the system will catch all harmful content or that it will never incorrectly flag benign content. Moderation is a best-effort service and is subject to the availability and approved scope of the TikTok API. TJB Management Inc. is not liable for any damages arising from moderation decisions, system downtime, or API limitations imposed by TikTok.
+            The <span className="rainbow">Hallie Moderation System</span> is provided without guarantees. TJB Management Inc. does not promise that the system will catch all harmful content, or that it will never incorrectly flag normal, harmless content. We do our best, but it isn't perfect, and depends on what TikTok's tools allow us to do. TJB Management Inc. is not liable for any damages arising from moderation decisions, system downtime, or limitations imposed by TikTok.
           </p>
 
           <h2>8.6 Changes to These Terms</h2>
           <p>
-            We may update these terms at any time. Continued use of TJB Management Inc.'s TikTok content or this website after an update constitutes acceptance of the revised terms. The date at the bottom of this page reflects the most recent update.
+            We may update these terms at any time. If you keep using our TikTok or this website after we update these terms, that means you accept the new version. The date at the bottom of this page shows the most recent update.
           </p>
         </div>
 
