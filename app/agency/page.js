@@ -130,6 +130,68 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>How TikTok LIVE Gifts Work</h2>
+          <p>
+            When you go LIVE on TikTok, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works from start to finish:
+          </p>
+          <ul>
+            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly 65–70 coins costs viewers about $1 USD, purchased directly through the TikTok app.</li>
+            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (1 coin, about $0.01) all the way up to the Universe (44,999 coins, worth over $560 to the sender). Every gift has a coin cost that the viewer pays.</li>
+            <li><strong>Step 3 — Gifts become Diamonds for you.</strong> When a viewer sends a gift, TikTok converts that gift into Diamonds deposited into your account. The number of diamonds you get is roughly half the coin value of the gift.</li>
+            <li><strong>Step 4 — You cash out your Diamonds.</strong> Once you hit the $100 minimum, you can withdraw your diamonds as real money through PayPal or other supported methods.</li>
+          </ul>
+          <p>
+            The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>TikTok</strong> (1 coin), <strong>Sunglasses</strong> (5 coins), <strong>Heart Me</strong> (10 coins), <strong>Finger Heart</strong> (5 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the biggest gift on the platform).
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>How Much Are Your Diamonds Worth?</h2>
+          <p>
+            Each diamond is worth <span className="highlight">$0.005 USD</span> — so 1,000 diamonds = $5, and 10,000 diamonds = $50. But TikTok takes a cut before you see a dollar, so here's the real math:
+          </p>
+          <ul>
+            <li><strong>TikTok's base cut is 50%.</strong> For every gift sent, TikTok keeps roughly half of the value before converting it to your diamonds.</li>
+            <li><strong>Scaled rewards system.</strong> Since 2025, TikTok uses a mission-based payout system. By completing per-LIVE missions (up to 40% bonus) and weekly missions (up to 13% bonus), you can earn up to 53% of the total gift value — but this requires consistent streaming and hitting targets.</li>
+            <li><strong>Real take-home range.</strong> Most creators actually take home about 25–35% of what their viewers originally paid for coins, depending on which device viewers used to buy coins and any withdrawal fees.</li>
+            <li><strong>Minimum withdrawal is $100.</strong> You need to accumulate at least $100 in diamonds before you can cash out.</li>
+          </ul>
+          <p>
+            Example: If your viewers send you 100,000 diamonds in a month, that's $500 in diamond value — and you'd take home roughly $125–$175 after TikTok's cut, depending on your mission completion.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>How Agencies Get Paid — Not From You</h2>
+          <p>
+            This is one of the biggest questions creators have, and the answer is important: <span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span>
+          </p>
+          <p>
+            Here's how it actually works: TikTok has its own cut of the platform's gift revenue. When a creator joins an official TikTok creator network (agency), TikTok shares a portion of <em>their own cut</em> with the agency as compensation for growing and supporting creators on the platform. Your diamond payout is not reduced. Your earnings are not touched. The agency earns from TikTok directly — not from you.
+          </p>
+          <p>
+            This is why joining a legitimate TikTok creator network is completely free and should never cost you a single dollar. If any agency asks you to pay fees or give up a percentage of your diamonds, that is <strong>not how official TikTok creator networks work</strong>.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>TikTok LIVE Subscriptions</h2>
+          <p>
+            Beyond one-time gifts, TikTok has a monthly subscription feature that lets your most loyal fans support you on a recurring basis. Here's what it includes:
+          </p>
+          <ul>
+            <li><strong>Monthly support payments</strong> — fans pay a set monthly fee to subscribe to your LIVE</li>
+            <li><strong>Subscriber badges</strong> — your subscribers get a badge next to their name in your LIVE chat so you can recognize them</li>
+            <li><strong>Custom emotes</strong> — subscribers get access to exclusive emotes only they can use in your stream</li>
+            <li><strong>Subscriber-only content</strong> — you can post subscriber-only videos and offer exclusive LIVE access to subscribers</li>
+            <li><strong>Priority in chat</strong> — subscribers stand out so you never miss them in a busy LIVE</li>
+          </ul>
+          <p>
+            LIVE subscriptions give you a more stable, predictable income on top of your gift earnings. As an agency creator, your manager can help you build a subscription strategy to turn one-time viewers into long-term fans.
+          </p>
+        </div>
+
+        <div className="section">
           <h2>Creator Tiers</h2>
           <p>The more you stream and grow, the more perks you unlock. Here's how the tiers work:</p>
           <div className="tier-grid">
@@ -175,8 +237,14 @@ export default function AgencyPage() {
         <div className="section">
           <h2>Ban Appeals</h2>
           <p>
-            If you appeal a ban inside the TikTok app and it gets denied, your TJB Management manager may be able to appeal it again for you — <span className="highlight">if they think it has a real shot</span>. Not every ban can be appealed a second time, but when it can, we'll fight for you.
+            Getting banned on TikTok LIVE is stressful — but as an agency creator, you don't have to fight it alone. Here's how it works:
           </p>
+          <ul>
+            <li><strong>First, you appeal through TikTok directly.</strong> TikTok gives creators 30 days from the date of any enforcement action to submit an appeal inside the app.</li>
+            <li><strong>If your appeal gets denied, we step in.</strong> Your TJB Management manager may be able to submit a second appeal on your behalf through TikTok's official agency channels — <span className="highlight">if they believe it has a real shot at being overturned</span>. This is something solo creators cannot do on their own.</li>
+            <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be straight with you about whether a second appeal is worth pursuing.</li>
+            <li><strong>We also watch for violations before they become bans.</strong> Because your manager can see your current warnings and strikes in real time, they can flag issues early and help you course correct before things escalate.</li>
+          </ul>
         </div>
 
         <div className="section">
