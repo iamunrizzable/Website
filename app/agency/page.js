@@ -175,6 +175,25 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>Exclusive Contests, Campaigns & Agency-Only Perks</h2>
+          <p>
+            One of the biggest advantages of being in an official TikTok creator network is access to programs and opportunities that TikTok only makes available to agency creators — not solo streamers. Here's what that looks like:
+          </p>
+          <ul>
+            <li><strong>Agency tournaments & LIVE battles</strong> — TikTok runs exclusive competitions between agency creators where you can win cash prizes. These are not open to creators outside of official networks.</li>
+            <li><strong>Diamond Incentive Programs</strong> — TikTok periodically runs bonus campaigns where agency creators can earn extra diamonds or cash rewards on top of their normal gift earnings by hitting specific streaming targets.</li>
+            <li><strong>Brand campaigns</strong> — Because official creator networks are recognized TikTok partners, they get access to brand deals and sponsored campaigns that TikTok facilitates. Solo creators cannot be invited to these directly.</li>
+            <li><strong>Monthly bonus programs</strong> — Some campaigns reward creators simply for streaming consistently, hitting hour targets, or growing their follower count during a campaign window.</li>
+            <li><strong>Weekly challenges with cash prizes</strong> — Agency-run weekly contests where creators compete on diamonds earned, hours streamed, or viewer growth — with real money on the line.</li>
+            <li><strong>TikTok HQ trips</strong> — Top-performing agency creators can be nominated for in-person visits to TikTok's offices, summits, and creator events. This is an opportunity almost no solo creator ever gets access to.</li>
+            <li><strong>Traffic boosts</strong> — Agencies can advocate for creators to receive additional platform exposure, helping push your LIVE to more people on the For You Page.</li>
+          </ul>
+          <p>
+            TJB Management actively submits creators for every eligible campaign and contest. The more consistently you stream and grow, the more opportunities we can put you in front of.
+          </p>
+        </div>
+
+        <div className="section">
           <h2>TikTok LIVE Subscriptions</h2>
           <p>
             Beyond one-time gifts, TikTok has a monthly subscription feature that lets your most loyal fans support you on a recurring basis. Here's what it includes:
