@@ -255,7 +255,7 @@ export default function AgencyPage() {
           <p className="disclaimer">
             * To qualify for agency perks, you need to: stream at least 10 days a month (1+ hour each time), hit 15 total LIVE hours a month, and earn at least 10,000 diamonds a month. Which perks you get depends on your tier.
           </p>
-          <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. To earn it, you need: 500,000+ diamonds in the past 30 days, 100+ average concurrent viewers OR 100,000+ followers, and a verified TikTok account. Less than 0.1% of all LIVE creators on the platform qualify. LIVE Pro shows a special badge on your profile and during streams.</p>
+          <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. TikTok awards it to top-performing LIVE creators based on factors like diamonds earned and viewership. When you earn it, TikTok gives you a LIVE Pro badge that shows on your profile and during your streams. Less than 0.1% of all LIVE creators on the platform have it.</p>
           <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards weekly missions. Leagues are ranked from C4 (entry level) up through B and A tiers. If you finish the week in the A1–A3 league without dropping below where you started, you earn +1% on your weekly rewards. If you surpass your personal best league ranking, you earn +3%. The Creator League mission is capped at $1,000/week.</p>
         </div>
 
