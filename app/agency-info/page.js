@@ -169,7 +169,7 @@ export default function AgencyInfo() {
           <ul>
             <li><strong>Per-LIVE Missions — up to 40%:</strong> stream duration, new followers gained, content quality</li>
             <li><strong>Weekly Missions — up to 13%:</strong> valid LIVE days, active fan engagement, Creator League rank</li>
-            <li><strong>TikTok pays automatically every Wednesday.</strong> Minimum payout is <span className="highlight">$1 USD</span>.</li>
+            <li><strong>TikTok pays automatically every Wednesday.</strong> Minimum payout is <span className="highlight">$1 USD</span>. You need to submit tax info and link a PayPal account once before your first payout.</li>
           </ul>
         </div>
 
