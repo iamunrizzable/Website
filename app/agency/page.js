@@ -157,7 +157,22 @@ export default function AgencyPage() {
             <li><strong>You must be 18+ to withdraw.</strong> You can go LIVE at 16, but cashing out requires you to be at least 18 with a verified account.</li>
           </ul>
           <p>
-            <strong>Scaled LIVE Rewards (launched August 2025):</strong> TikTok introduced a mission-based bonus system that lets you earn <span className="highlight">additional diamonds on top of your base earnings</span>. By completing per-LIVE missions, you can earn up to 40% extra. Weekly missions add up to another 13%. That's up to <span className="highlight">53% more diamonds</span> than you'd get without completing missions — on top of what you already earned from gifts. The more consistently you stream and hit targets, the more your diamonds are worth. This is separate from and in addition to your base diamond earnings.
+            <strong>Scaled LIVE Rewards:</strong> TikTok replaced the old flat 50% payout rate with a mission-based system. Your total payout is now: <span className="highlight">diamonds collected × your rewards percentage</span>. The rewards percentage is determined by how well you complete missions each LIVE and each week — and the maximum you can earn is <span className="highlight">53%</span> (up from the old 50% flat rate).
+          </p>
+          <p><strong>Per-LIVE Missions — up to 40% of that LIVE's diamonds:</strong></p>
+          <ul>
+            <li><strong>LIVE duration</strong> — the longer your stream, the higher your percentage for that LIVE</li>
+            <li><strong>New followers</strong> — gaining new followers during your LIVE increases your rate</li>
+            <li><strong>Content quality</strong> — TikTok evaluates the quality of your stream in real time</li>
+          </ul>
+          <p><strong>Weekly Missions — up to 13% of your weekly diamonds:</strong></p>
+          <ul>
+            <li><strong>Valid go LIVE days</strong> — you must stream at least 25 minutes total for a day to count. 1 valid day = 6%, 2 or more valid days = 8%</li>
+            <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = 1%, 100+ = 1.5%, 2,000+ = 2%</li>
+            <li><strong>Creator League</strong> — earn 1% if you're in the A1–A3 leagues and don't drop below where you started the week, or 3% if you surpass your personal best league ranking. Capped at $1,000/week.</li>
+          </ul>
+          <p>
+            The more consistently you stream and hit targets, the closer you get to that 53% rate. Creators who don't complete missions earn less than the old flat 50% rate — which is why having a manager coach you on mission strategy makes a real difference to your actual take-home pay.
           </p>
         </div>
 
@@ -242,7 +257,7 @@ export default function AgencyPage() {
             * To qualify for agency perks, you need to: stream at least 10 days a month (1+ hour each time), hit 15 total LIVE hours a month, and earn at least 10,000 diamonds a month. Which perks you get depends on your tier.
           </p>
           <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. To earn it, you need: 500,000+ diamonds in the past 30 days, 100+ average concurrent viewers OR 100,000+ followers, and a verified TikTok account. Less than 0.1% of all LIVE creators on the platform qualify. LIVE Pro shows a special badge on your profile and during streams.</p>
-          <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards system, the Creator League is a daily ranking of creators by diamonds earned that day. Your ranking in the Creator League affects your bonus reward percentage each week, with a $1,000 weekly cap on Creator League mission bonuses.</p>
+          <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards weekly missions. Leagues are ranked from C4 (entry level) up through B and A tiers. If you finish the week in the A1–A3 league without dropping below where you started, you earn +1% on your weekly rewards. If you surpass your personal best league ranking, you earn +3%. The Creator League mission is capped at $1,000/week.</p>
         </div>
 
         <div className="section">
