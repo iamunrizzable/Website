@@ -169,28 +169,6 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
-          <h2>How Much Are Your Diamonds Worth?</h2>
-          <p>
-            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a <span className="highlight">36.5% rewards rate</span>, 41,200 diamonds pays out <span className="highlight">$150.38</span>. The diamond count shown in your account is <strong>not</strong> your cash payout.
-          </p>
-          <p>
-            <strong>Scaled LIVE Rewards</strong> is TikTok's mission-based payout system. Complete missions each LIVE and each week to raise your rewards percentage — the maximum is <span className="highlight">53%</span>.
-          </p>
-          <p><strong>Per-LIVE Missions — up to 40% of that LIVE's diamonds:</strong></p>
-          <ul>
-            <li><strong>LIVE duration</strong> — the longer your stream, the higher your percentage for that LIVE</li>
-            <li><strong>New followers</strong> — gaining new followers during your LIVE increases your rate</li>
-            <li><strong>Content quality</strong> — TikTok evaluates the quality of your stream in real time</li>
-          </ul>
-          <p><strong>Weekly Missions — up to 13% of your weekly diamonds:</strong></p>
-          <ul>
-            <li><strong>Valid go LIVE days</strong> — you must stream at least <span className="highlight">25 minutes</span> total for a day to count. 1 valid day = <span className="highlight">6%</span>, 2 or more valid days = <span className="highlight">8%</span></li>
-            <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = <span className="highlight">1%</span>, 100+ = <span className="highlight">1.5%</span>, 2,000+ = <span className="highlight">2%</span></li>
-            <li><strong>Creator League</strong> — earn <span className="highlight">+1%</span> if you're in the A1–A3 leagues and don't drop below where you started the week, or <span className="highlight">+3%</span> if you surpass your personal best league ranking. Capped at <span className="highlight">$1,000/week</span>.</li>
-          </ul>
-        </div>
-
-        <div className="section">
           <h2>How Agencies Get Paid — Not From You</h2>
           <p><span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span></p>
           <p>
