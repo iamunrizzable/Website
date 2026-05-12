@@ -213,13 +213,14 @@ export default function Legal() {
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
-        <a href="#basics" onClick={() => setMenuOpen(false)}>The Basics</a>
-        <a href="#interactions" onClick={() => setMenuOpen(false)}>Interactions with Tyler</a>
-        <a href="#anti-stalking" onClick={() => setMenuOpen(false)}>Anti-Stalking & Suspicious Behavior</a>
-        <a href="#consequences" onClick={() => setMenuOpen(false)}>Consequences</a>
-        <a href="#appeals" onClick={() => setMenuOpen(false)}>Appeals</a>
-        <a href="#disclosures" onClick={() => setMenuOpen(false)}>Final Notes and Disclosures</a>
-        <a href="#hallie-tos" onClick={() => setMenuOpen(false)}>Hallie Moderation – Terms</a>
+        <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
+        <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
       <main>
