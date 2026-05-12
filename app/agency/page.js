@@ -110,17 +110,14 @@ export default function AgencyPage() {
         <div className="section">
           <h2>What is TJB Management?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working through TikTok's official agency program and managing creators across several TikTok LIVE agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
-          </p>
-          <p>
-            Whether you're just getting started or already pulling serious numbers, TJB Management gives you the tools, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
+            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working through TikTok's official agency program and managing creators across several TikTok LIVE agencies. It costs you <span className="highlight">absolutely nothing to join</span>.
           </p>
         </div>
 
         <div className="section">
           <h2>What's in It for You?</h2>
           <ul>
-            <li><strong>RTMP stream key access</strong> — As of 2025, the only way to stream on TikTok LIVE using professional software like OBS, Streamlabs, or Meld Studio is through an official creator network. There is no longer a follower count that unlocks this on its own. This alone is a reason many serious creators join an agency.</li>
+            <li><strong>RTMP stream key access</strong> — The only way to stream on TikTok LIVE using OBS, Streamlabs, or Meld Studio is through an official creator network. No follower count unlocks this on its own.</li>
             <li>Access to a <strong>private network of other TikTok LIVE creators</strong> and real people in the TikTok space</li>
             <li>Personalized <strong>LIVE strategy plans</strong> built around your content and goals</li>
             <li><strong>Help with bans and rule strikes</strong> — we fight for you when TikTok flags your account</li>
@@ -128,20 +125,20 @@ export default function AgencyPage() {
             <li><strong>Shoutouts on our TikTok accounts and creator spotlights</strong></li>
             <li><strong>One-on-one coaching</strong> on how to grow your LIVE streams, from one of TikTok's most experienced creator managers</li>
             <li>Access to our <strong>private, creator-only Discord community</strong></li>
-            <li>Help getting <strong>more views, more diamonds, and more new fans</strong> — with zero cost to you</li>
+            <li>Help getting <strong>more views, more diamonds, and more new fans</strong></li>
           </ul>
         </div>
 
         <div className="section">
           <h2>LIVE Battles (PK Battles)</h2>
           <p>
-            LIVE Battles — also called PK Battles — are one of the highest-earning formats on TikTok LIVE. Two creators go head-to-head in a <span className="highlight">split-screen battle</span>, and their audiences compete by sending gifts. The creator with more gifts at the end wins. Here's what to know:
+            LIVE Battles — also called PK Battles — are one of the highest-earning formats on TikTok LIVE. Two creators go head-to-head in a <span className="highlight">split-screen battle</span> while their audiences compete by sending gifts. Here's what to know:
           </p>
           <ul>
             <li><strong>How it works.</strong> First, send a co-host request to another creator while you're both live. Once they accept and you're in a co-host together, you can then send a battle request. If they accept, the battle starts — viewers pick a side by sending gifts, and a <span className="highlight">5-minute</span> timer counts down. Whoever has more gifts at the end wins.</li>
             <li><strong>Why it works.</strong> Battles drive massive viewer engagement. The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</li>
             <li><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with cash prizes on top of normal gift earnings.</li>
-            <li><strong>Losing a battle.</strong> Some creators optionally agree to a challenge beforehand — a game, a dare, etc. — that the loser has to complete. This is entirely optional, but it adds entertainment value and gives your audience a reason to come back.</li>
+            <li><strong>Losing a battle.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. Entirely optional.</li>
           </ul>
         </div>
 
@@ -154,16 +151,12 @@ export default function AgencyPage() {
             <li><strong>Standard goals — pick any gift, set any quantity.</strong> For example: 100 Roses, 1,000 Corns, 50 Galaxies. Use low-cost gifts so more viewers can participate. You can write a description of what you'll do when the goal is hit to give viewers a reason to contribute.</li>
             <li><strong>Gallery Gift Goal — lights up your Gift Gallery.</strong> Your Gift Gallery has <span className="highlight">15 slots</span> on your profile, each tied to a specific gift. Setting a gallery gift goal targets filling one of those slots. Viewers who light up a slot earn <strong>Title Gifter</strong> status and <span className="highlight">1.5× points</span> toward your LIVE Fest ranking.</li>
           </ul>
-          <p>
-            Your manager can help you build a gift goal strategy that fits your audience size and keeps viewers engaged throughout your stream. For a full breakdown, see the <a href="/streaming-basics" style={{color: '#a855f7'}}>Streaming Basics</a> page.
-          </p>
+          <p>For a full breakdown, see the <a href="/streaming-basics" style={{color: '#a855f7'}}>Streaming Basics</a> page.</p>
         </div>
 
         <div className="section">
           <h2>How TikTok LIVE Gifts Work</h2>
-          <p>
-            When you go LIVE on TikTok, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works from start to finish:
-          </p>
+          <p>Here's how gifts work from start to finish:</p>
           <ul>
             <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly <span className="highlight">65–70 coins</span> costs viewers about <span className="highlight">$1 USD</span>. Buying coins at <a href="https://www.tiktok.com/coin/" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>tiktok.com/coin</a> is cheaper than buying them inside the app.</li>
             <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>, about $0.01) all the way up to the Universe (<span className="highlight">44,999 coins</span>, worth over <span className="highlight">$640</span> to the sender). Every gift has a coin cost that the viewer pays.</li>
@@ -178,14 +171,10 @@ export default function AgencyPage() {
         <div className="section">
           <h2>How Much Are Your Diamonds Worth?</h2>
           <p>
-            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but that doesn't mean you get $0.01 for every diamond — your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a <span className="highlight">36.5% rewards rate</span>, 41,200 diamonds pays out <span className="highlight">$150.38</span>. The old flat rate was 50%, which is where the "$0.005 per diamond" figure came from — but that rate no longer applies for most creators under Scaled LIVE Rewards. The diamond count shown in your account is <strong>not</strong> your cash payout — you have to factor in your current rewards percentage.
+            Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a <span className="highlight">36.5% rewards rate</span>, 41,200 diamonds pays out <span className="highlight">$150.38</span>. The diamond count shown in your account is <strong>not</strong> your cash payout.
           </p>
-          <ul>
-            <li><strong>TikTok sends your earnings automatically every Wednesday.</strong> You don't manually request anything — TikTok processes and sends your diamond earnings to you on Wednesdays. The minimum payout is <span className="highlight">$1 USD</span>.</li>
-            <li><strong>You must be 18 or older to go LIVE and receive earnings.</strong> TikTok requires creators to be at least 18 to host a LIVE stream and to receive any gift payouts.</li>
-          </ul>
           <p>
-            <strong>Scaled LIVE Rewards:</strong> TikTok replaced the old flat 50% payout rate with a mission-based system. Your total payout is now: <span className="highlight">diamonds collected × your rewards percentage</span>. The rewards percentage is determined by how well you complete missions each LIVE and each week — and the maximum you can earn is <span className="highlight">53%</span> (up from the old 50% flat rate).
+            <strong>Scaled LIVE Rewards</strong> is TikTok's mission-based payout system. Complete missions each LIVE and each week to raise your rewards percentage — the maximum is <span className="highlight">53%</span>.
           </p>
           <p><strong>Per-LIVE Missions — up to 40% of that LIVE's diamonds:</strong></p>
           <ul>
@@ -199,40 +188,28 @@ export default function AgencyPage() {
             <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = <span className="highlight">1%</span>, 100+ = <span className="highlight">1.5%</span>, 2,000+ = <span className="highlight">2%</span></li>
             <li><strong>Creator League</strong> — earn <span className="highlight">+1%</span> if you're in the A1–A3 leagues and don't drop below where you started the week, or <span className="highlight">+3%</span> if you surpass your personal best league ranking. Capped at <span className="highlight">$1,000/week</span>.</li>
           </ul>
-          <p>
-            The more consistently you stream and hit targets, the closer you get to that 53% rate. Creators who don't complete missions earn less than the old flat 50% rate — which is why having a manager coach you on mission strategy makes a real difference to your actual take-home pay.
-          </p>
         </div>
 
         <div className="section">
           <h2>How Agencies Get Paid — Not From You</h2>
+          <p><span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span></p>
           <p>
-            This is one of the biggest questions creators have, and the answer is important: <span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span>
-          </p>
-          <p>
-            Here's how it actually works: TikTok has its own cut of the platform's gift revenue. When a creator joins an official TikTok creator network (agency), TikTok shares a portion of <em>their own cut</em> with the agency as compensation for growing and supporting creators on the platform. Your diamond payout is not reduced. Your earnings are not touched. The agency earns from TikTok directly — not from you.
-          </p>
-          <p>
-            This is why joining a legitimate TikTok creator network is completely free and should never cost you a single dollar. If any agency asks you to pay fees or give up a percentage of your diamonds, that is <strong>not how official TikTok creator networks work</strong>.
+            TikTok takes its own cut of gift revenue. When you join an official creator network, TikTok shares a portion of <em>their own cut</em> with the agency. Your earnings are not touched. If any agency asks for fees or a cut of your diamonds, that is <strong>not how official TikTok creator networks work</strong>.
           </p>
         </div>
 
         <div className="section">
           <h2>Exclusive Contests, Campaigns & Agency-Only Perks</h2>
-          <p>
-            One of the biggest advantages of being in an official TikTok creator network is access to programs and opportunities that TikTok only makes available to agency creators — not solo streamers. Here's what that looks like:
-          </p>
+          <p>TikTok makes these available to agency creators only — not solo streamers:</p>
           <ul>
             <li><strong>Agency tournaments & LIVE battles</strong> — TikTok runs exclusive competitions between agency creators where you can win cash prizes. These are not open to creators outside of official networks.</li>
             <li><strong>Diamond Incentive Programs</strong> — TikTok periodically runs bonus campaigns where agency creators can earn extra diamonds or cash rewards on top of their normal gift earnings by hitting specific streaming targets.</li>
             <li><strong>Brand campaigns</strong> — TikTok gives official creator networks access to <span className="highlight">exclusive brand deals and sponsored campaigns</span> that are not made available to solo creators outside of a network.</li>
             <li><strong>Monthly bonus programs</strong> — Some campaigns reward creators simply for streaming consistently, hitting hour targets, or growing their follower count during a campaign window.</li>
-            <li><strong>TikTok HQ trips</strong> — Top-performing agency creators can be nominated for in-person visits to TikTok's offices, summits, and creator events. This is an opportunity almost no solo creator ever gets access to.</li>
+            <li><strong>TikTok HQ trips</strong> — Top-performing agency creators can be nominated for in-person visits to TikTok's offices, summits, and creator events.</li>
             <li><strong>Traffic boosts</strong> — Agencies can advocate for creators to receive additional platform exposure, helping push your LIVE to more people on the For You Page.</li>
           </ul>
-          <p>
-            TJB Management actively submits creators for every eligible campaign and contest. The more consistently you stream and grow, the more opportunities we can put you in front of.
-          </p>
+          <p>TJB Management actively submits creators for every eligible campaign and contest.</p>
         </div>
 
         <div className="section">
@@ -242,8 +219,7 @@ export default function AgencyPage() {
           </p>
           <p><strong>Super Fan (<span className="highlight">$9.99/month</span>) — LIVE focused</strong></p>
           <ul>
-            <li>Your most dedicated fans pay <span className="highlight">$9.99/month</span> to become a Super Fan</li>
-            <li>They get a <strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
+            <li><strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
             <li>Special <strong>entrance effects</strong> when they join your stream</li>
             <li>Access to <strong>Super Fan-only LIVEs</strong> and <strong>Super Fan-only chat</strong></li>
             <li>Automatic Fan Club membership and faster Fan Club level-up</li>
@@ -258,41 +234,37 @@ export default function AgencyPage() {
             <li>US creators keep up to <strong>90% of subscription revenue</strong> if you meet the eligibility thresholds</li>
             <li>To unlock: you need to be 18+, have at least 1,000 followers, and have been active on LIVE in the past 28 days</li>
           </ul>
-          <p>
-            Both of these are separate income streams on top of your gift earnings. Together, they give you three ways to earn: one-time gifts, Super Fan monthly support, and subscriptions.
-          </p>
         </div>
 
         <div className="section">
           <h2>Fan Club</h2>
           <p>
-            Fan Club is <strong>separate from Super Fan</strong> and completely free for viewers to join. Viewers earn Fan Club membership by sending you gifts — no paid subscription required. Here's how it works:
+            Fan Club is <strong>free for viewers</strong> and separate from the paid Super Fan subscription. Viewers earn membership and level up by gifting you on LIVE — no subscription required.
           </p>
           <ul>
-            <li><strong>Gift-based, not paid.</strong> Viewers accumulate Fan Club points by gifting you on LIVE. The more they gift, the higher their Fan Club level.</li>
-            <li><strong>Fan Club levels.</strong> Levels go from 1 upward. Higher-level Fan Club members get a more prominent badge next to their name in your chat, which motivates them to keep gifting to maintain or grow their rank.</li>
+            <li><strong>Fan Club levels.</strong> Levels go from 1 upward. Higher-level members get a more prominent badge in your chat, which motivates them to keep gifting to grow their rank.</li>
             <li><strong>Super Fan shortcut.</strong> Viewers who subscribe as a Super Fan <span className="highlight">automatically join your Fan Club</span> and start at a higher level than regular gifters — giving Super Fans extra recognition on top of their badge.</li>
-            <li><strong>Why it matters.</strong> Fan Club creates a visible loyalty ranking in your chat. Viewers can see who your top supporters are, which drives friendly competition and repeat gifting without you having to say a word.</li>
+            <li><strong>Why it matters.</strong> Fan Club creates a visible loyalty ranking in your chat that drives friendly competition and repeat gifting on its own.</li>
           </ul>
         </div>
 
         <div className="section">
           <h2>TikTok LIVE Studio</h2>
           <p>
-            TikTok LIVE Studio is TikTok's <strong>free desktop streaming app for Windows</strong>. It's an alternative to OBS and Streamlabs built specifically for TikTok LIVE, with features designed around the platform's format:
+            TikTok LIVE Studio is TikTok's <strong>free desktop streaming app for Windows</strong> — an alternative to OBS and Streamlabs built specifically for TikTok LIVE:
           </p>
           <ul>
-            <li><strong>Multi-camera layouts.</strong> Switch between multiple camera angles, add screen capture, picture-in-picture overlays, and custom scenes — all without third-party software.</li>
-            <li><strong>Built-in LIVE analytics.</strong> See your viewer count, gift activity, and engagement data in real time while you stream, without switching to another app.</li>
+            <li><strong>Multi-camera layouts.</strong> Switch between camera angles, add screen capture, picture-in-picture overlays, and custom scenes.</li>
+            <li><strong>Built-in LIVE analytics.</strong> Viewer count, gift activity, and engagement data in real time.</li>
             <li><strong>Co-Host and Multi-Guest.</strong> LIVE Studio is where Co-Host (up to 3 other creators on split screen with camera and audio) and Multi-Guest (up to 5 viewers joining by audio only) work best.</li>
             <li><strong>Access requirement.</strong> Non-gaming creators need <span className="highlight">10,000 followers</span> to access LIVE Studio. Gaming creators have a separate pathway.</li>
-            <li><strong>RTMP is different.</strong> LIVE Studio is TikTok's own app and doesn't require a stream key. If you want to use OBS or Streamlabs, that's the RTMP route — which requires being in an official creator network.</li>
+            <li><strong>RTMP is different.</strong> Using OBS or Streamlabs requires the RTMP route — which requires being in an official creator network. LIVE Studio does not.</li>
           </ul>
         </div>
 
         <div className="section">
           <h2>Creator Tiers</h2>
-          <p>The more you stream and grow, the more perks you unlock. Here's how the tiers work:</p>
+          <p>The more you stream and grow, the more perks you unlock:</p>
           <div className="tier-grid">
             <div className="tier-card diamond">
               <div className="tier-name">💎 Diamond Tier</div>
@@ -310,29 +282,19 @@ export default function AgencyPage() {
           <p className="disclaimer">
             * To qualify for agency perks, you need to: stream at least <span className="highlight">10 days a month</span> (1+ hour each time), hit <span className="highlight">15 total LIVE hours a month</span>, and earn at least <span className="highlight">10,000 diamonds a month</span>. Which perks you get depends on your tier.
           </p>
-          <p><strong>TikTok LIVE Pro</strong> — Separate from agency tiers, TikTok has its own official creator status called <strong>LIVE Pro</strong>. TikTok awards it to top-performing LIVE creators based on factors like diamonds earned and viewership. When you earn it, TikTok gives you a LIVE Pro badge that shows on your profile and during your streams. It is one of the rarest distinctions TikTok awards to LIVE creators.</p>
+          <p><strong>TikTok LIVE Pro</strong> — TikTok awards a LIVE Pro badge to top-performing creators based on diamonds and viewership. It's one of the rarest distinctions on the platform.</p>
           <p><strong>Creator League</strong> — Part of TikTok's Scaled LIVE Rewards weekly missions. Leagues are ranked from D5 (entry level) up through C, B, and A tiers, with A1 being the highest rank. If you finish the week in the A1–A3 league without dropping below where you started, you earn +1% on your weekly rewards. If you surpass your personal best league ranking, you earn +3%. The Creator League mission is capped at $1,000/week.</p>
         </div>
 
         <div className="section">
           <h2>What Managers Can See</h2>
-          <p>
-            When you join TJB Management, your managers will be able to see some of your TikTok LIVE stats through TikTok's official agency dashboard. This is what lets us coach you, protect your account, and fight for you when something goes wrong. Here's what your manager can see:
-          </p>
+          <p>Through TikTok's official agency dashboard, your manager can see:</p>
           <ul>
-            <li><strong>LIVE replays</strong> — managers can review past streams</li>
-            <li><strong>LIVE analytics</strong> — how your streams are doing right now and how they've done in the past</li>
-            <li><strong>Current violations</strong> — any warnings or strikes currently on your account</li>
-            <li><strong>Violation clips</strong> — the exact moment from your stream that caused each violation</li>
-            <li><strong>Diamond count</strong> — your total diamonds earned</li>
-            <li><strong>LIVE time</strong> — your total hours streamed</li>
-            <li><strong>Follower count</strong></li>
-            <li><strong>Like count</strong></li>
-            <li><strong>Number of videos posted</strong></li>
+            <li><strong>LIVE replays</strong></li>
+            <li><strong>LIVE analytics</strong> — real-time and historical</li>
+            <li><strong>Current violations and violation clips</strong> — the exact moment that triggered each one</li>
+            <li><strong>Diamond count, LIVE time, follower count, like count, and videos posted</strong></li>
           </ul>
-          <p>
-            We only use this info to help you grow, catch violations we can fix for you, and get you into agency events and opportunities.
-          </p>
         </div>
 
         <div className="section">
@@ -350,15 +312,13 @@ export default function AgencyPage() {
 
         <div className="section">
           <h2>What You're Not Allowed to Do on LIVE</h2>
-          <p>
-            TikTok enforces its LIVE rules strictly, and breaking them can get your monetization paused or your account banned. Your manager will help you stay clean, but here's what to know upfront:
-          </p>
+          <p>Breaking these rules can pause your monetization or get your account banned:</p>
           <ul>
             <li><strong>No aggressive gift begging.</strong> You can ask viewers to contribute to a gift goal or acknowledge gifts as they come in — what TikTok prohibits is constant, aggressive panhandling for gifts with no other content happening.</li>
             <li><strong>No copyrighted music.</strong> Playing music from the radio, TV, Spotify, or any source other than TikTok's own Commercial Music Library in the background of your stream can get you flagged. This includes music playing in the room behind you.</li>
             <li><strong>No sending people off TikTok.</strong> Sharing your personal phone number, email, Instagram, Snapchat, or any other contact info or outside link during a LIVE is prohibited.</li>
             <li><strong>No pre-recorded or looping videos.</strong> Your LIVE must be genuinely live. Playing a recorded video or looping content while pretending to be live will result in action taken against your account.</li>
-            <li><strong>No inactive streams.</strong> Going live and just sitting there with no real engagement — or setting up a camera and walking away — violates TikTok's LIVE content standards.</li>
+            <li><strong>No inactive or unattended streams.</strong></li>
             <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
             <li><strong>No NSFW content.</strong> Nudity, sexually suggestive content, or anything that would be inappropriate for a general audience is not allowed on TikTok LIVE.</li>
             <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any other protected characteristic.</li>
@@ -370,7 +330,7 @@ export default function AgencyPage() {
 
         <div className="section">
           <h2>How to Join TJB Management</h2>
-          <p>Here's exactly how the process works once you apply and get accepted:</p>
+          <p>Here's how it works once you're accepted:</p>
           <ul>
             <li><strong>Step 1 — Apply.</strong> Tap the button below and fill out the application. Tyler reviews every application personally.</li>
             <li><strong>Step 2 — Get your invite code.</strong> If you're accepted, Tyler or Hallie will reach out with your invite code via TikTok DM. Make sure your DMs are open.</li>
@@ -385,13 +345,13 @@ export default function AgencyPage() {
           <p>To be eligible to join TJB Management, you must meet all of the following:</p>
           <ul>
             <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
-            <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in recent months — TJB Management focuses on growth-stage creators who will benefit most from the agency's support</li>
+            <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in recent months</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
           </ul>
           <ul>
             <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period.</li>
             <li>After the trial ends, you can still leave at any time — however, it'll take <span className="highlight">30 days</span> for you to officially leave the agency.</li>
-            <li>If you leave after the 15-day trial, after those 30 days are up, you'll need to wait an additional <span className="highlight">60 days</span> before any other agency can sign you (as long as you still meet their requirements).</li>
+            <li>After those 30 days, you'll need to wait an additional <span className="highlight">60 days</span> before any other agency can sign you.</li>
             <li><strong>Breaking the Rules:</strong> If you break any TJB Management rules or guidelines, TJB Management can <span className="highlight">remove you from the agency immediately, at any time, for any reason</span> — with no waiting period.</li>
           </ul>
         </div>
@@ -399,7 +359,7 @@ export default function AgencyPage() {
         <div className="section">
           <h2>It Costs You Nothing</h2>
           <p>
-            Joining TJB Management is completely free — no fees, no contracts, no catches. There's nothing to lose and everything to gain. All we ask is that you show up and stream consistently.
+            No fees, no contracts, no catches. All we ask is that you show up and stream consistently.
           </p>
         </div>
 
