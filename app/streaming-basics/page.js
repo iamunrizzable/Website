@@ -224,18 +224,6 @@ export default function StreamingBasics() {
         </div>
 
         <div className="section">
-          <h2>Creator Health Rating</h2>
-          <p>
-            TikTok uses a <strong>Creator Health Rating</strong> — a score from <span className="highlight">0 to 1,000</span> that reflects how well your account follows TikTok's guidelines. Every creator starts at <span className="highlight">200</span>.
-          </p>
-          <ul>
-            <li><strong>Points drop for violations.</strong> Policy violations reduce your score. Severity determines how much.</li>
-            <li><strong>Points recover over time</strong> through consistent, compliant streaming. You can also complete in-app policy quizzes to speed up recovery.</li>
-            <li><strong>Below 150 triggers enforcement.</strong> If your score drops below <span className="highlight">150</span>, TikTok starts restricting your account.</li>
-          </ul>
-        </div>
-
-        <div className="section">
           <h2>What You're Not Allowed to Do on LIVE</h2>
           <p>Breaking TikTok's LIVE rules can pause your monetization or get your account banned. Here's what to avoid:</p>
           <ul>
