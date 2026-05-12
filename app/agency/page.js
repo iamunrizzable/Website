@@ -329,12 +329,11 @@ export default function AgencyPage() {
 
         <div className="section">
           <h2>How to Join TJB Management</h2>
-          <p>Here's how it works once you're accepted:</p>
           <ul>
-            <li><strong>Step 1 — Apply.</strong> Tap the button below and fill out the application. Tyler reviews every application personally.</li>
-            <li><strong>Step 2 — Get your invite code.</strong> If you're accepted, Tyler or Hallie will reach out with your invite code via TikTok DM. Make sure your DMs are open.</li>
-            <li><strong>Step 3 — Enter the code in TikTok.</strong> Open TikTok → Profile → Settings → TikTok Studio → LIVE Center → Creator Network Center → More Details. Enter your code there and accept the invitation.</li>
-            <li><strong>Step 4 — Your 15-day trial starts.</strong> You're officially in. During the first 15 days, you can leave at any time with no waiting period if it's not for you.</li>
+            <li><strong>Step 1 — Apply.</strong> Tap the button below and log into TikTok when prompted. Hit <strong>Apply</strong> on the page.</li>
+            <li><strong>Step 2 — Get approved.</strong> Tyler reviews every application personally.</li>
+            <li><strong>Step 3 — Accept the invitation.</strong> Once approved, the easiest way is to tap your <strong>system notification</strong> from TikTok. You can also find it in TikTok Studio → swipe to LIVE → scroll down to <strong>Tools &amp; Resources</strong> → <strong>Creator Networks</strong>.</li>
+            <li><strong>Step 4 — Your 15-day trial starts.</strong> You're in. During the first 15 days you can leave at any time with no waiting period.</li>
             <li><strong>Step 5 — Get to work.</strong> Your manager will reach out to go over your goals, set up your strategy, and get you plugged into the network.</li>
           </ul>
         </div>
