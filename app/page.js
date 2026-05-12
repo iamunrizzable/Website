@@ -201,9 +201,9 @@ export default function Home() {
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Meet Hallie</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
-        <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
