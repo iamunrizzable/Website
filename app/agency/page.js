@@ -130,45 +130,6 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
-          <h2>LIVE Battles (PK Battles)</h2>
-          <p>
-            LIVE Battles — also called PK Battles — are one of the highest-earning formats on TikTok LIVE. Two creators go head-to-head in a <span className="highlight">split-screen battle</span> while their audiences compete by sending gifts. Here's what to know:
-          </p>
-          <ul>
-            <li><strong>How it works.</strong> First, send a co-host request to another creator while you're both live. Once they accept and you're in a co-host together, you can then send a battle request. If they accept, the battle starts — viewers pick a side by sending gifts, and a <span className="highlight">5-minute</span> timer counts down. Whoever has more gifts at the end wins.</li>
-            <li><strong>Why it works.</strong> Battles drive massive viewer engagement. The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</li>
-            <li><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with cash prizes on top of normal gift earnings.</li>
-            <li><strong>Losing a battle.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. Entirely optional.</li>
-          </ul>
-        </div>
-
-        <div className="section">
-          <h2>Gift Goals</h2>
-          <p>
-            Gift Goals let you set visible on-screen targets during your LIVE that viewers work together to hit. You can run up to <span className="highlight">4 goals at once</span> — 3 standard gift goals plus 1 gallery gift goal. When a goal is reached, TikTok plays a celebration animation and shows your top 3 contributors. You can reset and repeat goals as many times as you want in a single stream.
-          </p>
-          <ul>
-            <li><strong>Standard goals — pick any gift, set any quantity.</strong> For example: 100 Roses, 1,000 Corns, 50 Galaxies. Use low-cost gifts so more viewers can participate. You can write a description of what you'll do when the goal is hit to give viewers a reason to contribute.</li>
-            <li><strong>Gallery Gift Goal — lights up your Gift Gallery.</strong> Your Gift Gallery has <span className="highlight">15 slots</span> on your profile, each tied to a specific gift. Setting a gallery gift goal targets filling one of those slots. Viewers who light up a slot earn <strong>Title Gifter</strong> status and <span className="highlight">1.5× points</span> toward your LIVE Fest ranking.</li>
-          </ul>
-          <p>For a full breakdown, see the <a href="/streaming-basics" style={{color: '#a855f7'}}>Streaming Basics</a> page.</p>
-        </div>
-
-        <div className="section">
-          <h2>How TikTok LIVE Gifts Work</h2>
-          <p>Here's how gifts work from start to finish:</p>
-          <ul>
-            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Buying through the app (via Apple or Google) costs roughly <span className="highlight">65 coins per $1</span>. Buying at <a href="https://www.tiktok.com/coin/" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>tiktok.com/coin</a> gets around <span className="highlight">95 coins per $1</span> — about 30% cheaper since it skips app store fees.</li>
-            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>) all the way up to the Universe (<span className="highlight">44,999 coins</span> — the most expensive gift on the platform). Every gift has a coin cost the viewer pays upfront.</li>
-            <li><strong>Step 3 — Gifts become Diamonds for you.</strong> TikTok converts each gift into Diamonds at roughly half the coin value — so a 1,000 coin Galaxy gives you ~500 diamonds. Each diamond is worth <span className="highlight">$0.01</span>, multiplied by your <span className="highlight">Scaled LIVE Rewards percentage</span> (up to 53%). See <em>How Much Are Your Diamonds Worth</em> below for the full breakdown.</li>
-            <li><strong>Step 4 — You get paid.</strong> Before your first payout, you need to submit your tax information and link a PayPal account to TikTok — this is a one-time setup. After that, TikTok automatically sends your diamond earnings every <span className="highlight">Wednesday</span>. The minimum payout is <span className="highlight">$1 USD</span>.</li>
-          </ul>
-          <p>
-            The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>Finger Heart</strong> (5 coins), <strong>Sunglasses</strong> (199 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the most expensive gift on the platform).
-          </p>
-        </div>
-
-        <div className="section">
           <h2>How Agencies Get Paid — Not From You</h2>
           <p><span className="highlight">TJB Management does not take any percentage of your diamonds or earnings. Ever.</span></p>
           <p>
@@ -188,56 +149,6 @@ export default function AgencyPage() {
             <li><strong>Traffic boosts</strong> — Agencies can advocate for creators to receive additional platform exposure, helping push your LIVE to more people on the For You Page.</li>
           </ul>
           <p>TJB Management actively submits creators for every eligible campaign and contest.</p>
-        </div>
-
-        <div className="section">
-          <h2>TikTok Super Fan & Subscriptions</h2>
-          <p>
-            In September 2025, TikTok split what used to be called "LIVE Subscription" into two separate products. Here's what each one is:
-          </p>
-          <p><strong>Super Fan (<span className="highlight">$9.99/month</span>) — LIVE focused</strong></p>
-          <ul>
-            <li><strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
-            <li>Special <strong>entrance effects</strong> when they join your stream</li>
-            <li>Access to <strong>Super Fan-only LIVEs</strong> and <strong>Super Fan-only chat</strong></li>
-            <li>Automatic Fan Club membership and faster Fan Club level-up</li>
-            <li>As a US creator, you keep up to <strong>90% of Super Fan revenue</strong> (70% base + up to 20% performance bonus)</li>
-          </ul>
-          <p><strong>Subscriptions (<span className="highlight">$2.99–$99.99/month</span>) — content focused</strong></p>
-          <ul>
-            <li>You set your own monthly price anywhere from <span className="highlight">$2.99 to $99.99</span> (default is <span className="highlight">$5.99</span>)</li>
-            <li>Subscribers get access to <strong>subscriber-only posts, videos, and notes</strong> you create</li>
-            <li>Exclusive badges, stickers, and custom emotes in your streams</li>
-            <li>Subscriber-only chat access</li>
-            <li>US creators keep up to <strong>90% of subscription revenue</strong> if you meet the eligibility thresholds</li>
-            <li>To unlock: you need to be 18+, have at least 1,000 followers, and have been active on LIVE in the past 28 days</li>
-          </ul>
-        </div>
-
-        <div className="section">
-          <h2>Fan Club</h2>
-          <p>
-            Fan Club is <strong>free for viewers</strong> and separate from the paid Super Fan subscription. Viewers earn membership and level up by gifting you on LIVE — no subscription required.
-          </p>
-          <ul>
-            <li><strong>Fan Club levels.</strong> Levels go from 1 upward. Higher-level members get a more prominent badge in your chat, which motivates them to keep gifting to grow their rank.</li>
-            <li><strong>Super Fan shortcut.</strong> Viewers who subscribe as a Super Fan <span className="highlight">automatically join your Fan Club</span> and start at a higher level than regular gifters — giving Super Fans extra recognition on top of their badge.</li>
-            <li><strong>Why it matters.</strong> Fan Club creates a visible loyalty ranking in your chat that drives friendly competition and repeat gifting on its own.</li>
-          </ul>
-        </div>
-
-        <div className="section">
-          <h2>TikTok LIVE Studio</h2>
-          <p>
-            TikTok LIVE Studio is TikTok's <strong>free desktop streaming app for Windows</strong> — an alternative to OBS and Streamlabs built specifically for TikTok LIVE:
-          </p>
-          <ul>
-            <li><strong>Multi-camera layouts.</strong> Switch between camera angles, add screen capture, picture-in-picture overlays, and custom scenes.</li>
-            <li><strong>Built-in LIVE analytics.</strong> Viewer count, gift activity, and engagement data in real time.</li>
-            <li><strong>Co-Host and Multi-Guest.</strong> LIVE Studio is where Co-Host (up to 3 other creators on split screen with camera and audio) and Multi-Guest (up to 5 viewers joining by audio only) work best.</li>
-            <li><strong>Access requirement.</strong> Non-gaming creators need <span className="highlight">10,000 followers</span> to access LIVE Studio. Gaming creators have a separate pathway.</li>
-            <li><strong>RTMP is different.</strong> Using OBS or Streamlabs requires the RTMP route — which requires being in an official creator network. LIVE Studio does not.</li>
-          </ul>
         </div>
 
         <div className="section">
@@ -286,23 +197,6 @@ export default function AgencyPage() {
             <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be straight with you about whether a second appeal is worth pursuing.</li>
             <li><strong>We also watch for violations before they become bans.</strong> Because your manager can see your current warnings and strikes in real time, they can flag issues early and help you course correct before things escalate.</li>
           </ul>
-        </div>
-
-        <div className="section">
-          <h2>What You're Not Allowed to Do on LIVE</h2>
-          <p>Breaking these rules can pause your monetization or get your account banned:</p>
-          <ul>
-            <li><strong>No aggressive gift begging.</strong> You can ask viewers to contribute to a gift goal or acknowledge gifts as they come in — what TikTok prohibits is constant, aggressive panhandling for gifts with no other content happening.</li>
-<li><strong>No sending people off TikTok.</strong> Sharing your personal phone number, email, Instagram, Snapchat, or any other contact info or outside link during a LIVE is prohibited.</li>
-            <li><strong>No pre-recorded or looping videos.</strong> Your LIVE must be genuinely live. Playing a recorded video or looping content while pretending to be live will result in action taken against your account.</li>
-            <li><strong>No inactive or unattended streams.</strong></li>
-            <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
-            <li><strong>No NSFW content.</strong> Nudity, sexually suggestive content, or anything that would be inappropriate for a general audience is not allowed on TikTok LIVE.</li>
-            <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any other protected characteristic.</li>
-          </ul>
-          <p>
-            Violations result in warnings first, then temporary bans from LIVE, then permanent removal from the platform for repeat or severe offenses.
-          </p>
         </div>
 
         <div className="section">

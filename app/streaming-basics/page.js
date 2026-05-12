@@ -161,6 +161,30 @@ export default function StreamingBasics() {
         </div>
 
         <div className="section">
+          <h2>TikTok Super Fan & Subscriptions</h2>
+          <p>
+            In September 2025, TikTok split what used to be called "LIVE Subscription" into two separate products:
+          </p>
+          <p><strong>Super Fan (<span className="highlight">$9.99/month</span>) — LIVE focused</strong></p>
+          <ul>
+            <li><strong>Super Fan badge</strong> next to their name in your LIVE chat</li>
+            <li>Special <strong>entrance effects</strong> when they join your stream</li>
+            <li>Access to <strong>Super Fan-only LIVEs</strong> and <strong>Super Fan-only chat</strong></li>
+            <li>Automatic Fan Club membership and faster Fan Club level-up</li>
+            <li>As a US creator, you keep up to <strong>90% of Super Fan revenue</strong> (70% base + up to 20% performance bonus)</li>
+          </ul>
+          <p><strong>Subscriptions (<span className="highlight">$2.99–$99.99/month</span>) — content focused</strong></p>
+          <ul>
+            <li>You set your own monthly price from <span className="highlight">$2.99 to $99.99</span> (default <span className="highlight">$5.99</span>)</li>
+            <li>Subscribers get access to <strong>subscriber-only posts, videos, and notes</strong></li>
+            <li>Exclusive badges, stickers, and custom emotes in your streams</li>
+            <li>Subscriber-only chat access</li>
+            <li>US creators keep up to <strong>90% of subscription revenue</strong> if you meet eligibility thresholds</li>
+            <li>To unlock: 18+, at least <span className="highlight">1,000 followers</span>, active on LIVE in the past 28 days</li>
+          </ul>
+        </div>
+
+        <div className="section">
           <h2>Fan Club</h2>
           <p>
             Fan Club is <strong>free for viewers</strong> and separate from the paid Super Fan subscription. Viewers earn Fan Club membership by gifting you on LIVE — no subscription required.
