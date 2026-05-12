@@ -315,8 +315,7 @@ export default function AgencyPage() {
           <p>Breaking these rules can pause your monetization or get your account banned:</p>
           <ul>
             <li><strong>No aggressive gift begging.</strong> You can ask viewers to contribute to a gift goal or acknowledge gifts as they come in — what TikTok prohibits is constant, aggressive panhandling for gifts with no other content happening.</li>
-            <li><strong>Don't make copyrighted music the focus of your stream.</strong> Background music while you talk, game, or interact is generally fine. Where creators get flagged is when music becomes the primary content — like streaming a playlist with nothing else happening.</li>
-            <li><strong>No sending people off TikTok.</strong> Sharing your personal phone number, email, Instagram, Snapchat, or any other contact info or outside link during a LIVE is prohibited.</li>
+<li><strong>No sending people off TikTok.</strong> Sharing your personal phone number, email, Instagram, Snapchat, or any other contact info or outside link during a LIVE is prohibited.</li>
             <li><strong>No pre-recorded or looping videos.</strong> Your LIVE must be genuinely live. Playing a recorded video or looping content while pretending to be live will result in action taken against your account.</li>
             <li><strong>No inactive or unattended streams.</strong></li>
             <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
