@@ -128,13 +128,13 @@ export default function StreamingBasics() {
           <h2>How TikTok LIVE Gifts Work</h2>
           <p>When you go LIVE, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works:</p>
           <ul>
-            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Roughly <span className="highlight">65–70 coins</span> costs viewers about <span className="highlight">$1 USD</span>. Buying coins at <a href="https://www.tiktok.com/coin/" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>tiktok.com/coin</a> is cheaper than buying them inside the app.</li>
-            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>) all the way up to the Universe (<span className="highlight">44,999 coins</span>, worth over <span className="highlight">$640</span> to the sender). Every gift has a coin cost the viewer pays upfront.</li>
+            <li><strong>Step 1 — Viewers buy TikTok Coins.</strong> Coins are TikTok's in-app currency. Buying through the app (via Apple or Google) costs roughly <span className="highlight">65 coins per $1</span>. Buying at <a href="https://www.tiktok.com/coin/" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>tiktok.com/coin</a> gets around <span className="highlight">95 coins per $1</span> — about 30% cheaper since it skips app store fees.</li>
+            <li><strong>Step 2 — They spend coins on gifts.</strong> Gifts range from a Rose (<span className="highlight">1 coin</span>) all the way up to the Universe (<span className="highlight">44,999 coins</span> — the most expensive gift on the platform). Every gift has a coin cost the viewer pays upfront.</li>
             <li><strong>Step 3 — Gifts become Diamonds for you.</strong> TikTok converts gifts into Diamonds deposited into your account. You receive roughly <span className="highlight">half the coin value</span> of each gift as diamonds.</li>
             <li><strong>Step 4 — You get paid.</strong> Before your first payout, you need to submit your tax information and link a PayPal account to TikTok — this is a one-time setup. After that, TikTok automatically sends your diamond earnings every <span className="highlight">Wednesday</span>. The minimum payout is <span className="highlight">$1 USD</span>. You must be <span className="highlight">18 or older</span> to receive earnings.</li>
           </ul>
           <p>
-            The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>Finger Heart</strong> (5 coins), <strong>Sunglasses</strong> (199 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the biggest gift on the platform).
+            The most common gifts you'll see in streams: <strong>Rose</strong> (1 coin), <strong>Finger Heart</strong> (5 coins), <strong>Sunglasses</strong> (199 coins), <strong>Galaxy</strong> (1,000 coins), <strong>Lion</strong> (29,999 coins), and <strong>Universe</strong> (44,999 coins — the most expensive gift on the platform).
           </p>
         </div>
 
