@@ -232,7 +232,7 @@ export default function Tyler() {
             I've spent <strong>5 years managing creators</strong> across multiple TikTok agencies, working directly within TikTok Backstage. I know the platform inside and out — from growth strategy and monetization to handling bans, violations, and creator protection at the agency level.
           </p>
           <p>
-            Now I'm building my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, to give creators the real, personalized support that most agencies never deliver.
+            I run my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, built to give creators the real, personalized support that most agencies never deliver.
           </p>
         </div>
 

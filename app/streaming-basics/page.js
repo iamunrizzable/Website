@@ -259,7 +259,7 @@ export default function StreamingBasics() {
           <p>Breaking TikTok's LIVE rules can pause your monetization or get your account banned. Here's what to avoid:</p>
           <ul>
             <li><strong>No aggressive gift begging.</strong> You can ask viewers to contribute to a gift goal or acknowledge gifts as they come in — what TikTok prohibits is constant, aggressive panhandling for gifts with no other content happening.</li>
-<li><strong>No sending people off TikTok.</strong> Sharing your phone number, email, Instagram, Snapchat, or any outside link during a LIVE is prohibited.</li>
+            <li><strong>No sending people off TikTok.</strong> Sharing your phone number, email, Instagram, Snapchat, or any outside link during a LIVE is prohibited.</li>
             <li><strong>No pre-recorded or looping content.</strong> Your LIVE must be genuinely live. Playing recorded video while pretending to be live will get your account flagged.</li>
             <li><strong>No inactive streams.</strong> Going live and sitting there with no engagement — or walking away from the camera — violates TikTok's content standards.</li>
             <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
