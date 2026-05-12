@@ -210,7 +210,6 @@ export default function Tyler() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/agency-info" onClick={() => setMenuOpen(false)}>Agency Information</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>

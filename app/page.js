@@ -206,7 +206,6 @@ export default function Home() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Meet Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/agency-info" onClick={() => setMenuOpen(false)}>Agency Information</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
@@ -223,7 +222,6 @@ export default function Home() {
           <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
           <a href="/agency" className="nav-button">TJB Management Agency</a>
-          <a href="/agency-info" className="nav-button">Agency Information</a>
           <a href="/streaming-basics" className="nav-button">Streaming Basics</a>
         </div>
 

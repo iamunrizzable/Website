@@ -91,7 +91,6 @@ export default function StreamingBasics() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/agency-info" onClick={() => setMenuOpen(false)}>Agency Information</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
@@ -239,7 +238,7 @@ export default function StreamingBasics() {
           <p>Violations result in warnings first, then temporary bans from LIVE, then permanent removal for repeat or severe offenses.</p>
         </div>
 
-        <a href="/agency-info" className="cta-btn">Learn About Joining TJB Management →</a>
+        <a href="/agency" className="cta-btn">Learn About Joining TJB Management →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
