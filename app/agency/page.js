@@ -337,20 +337,6 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
-          <h2>Creator Health Rating</h2>
-          <p>
-            In January 2026, TikTok replaced its old violation-points system with the <strong>Creator Health Rating</strong> — a score from <span className="highlight">0 to 1,000</span> that reflects how well your account follows TikTok's guidelines. Every creator starts at <span className="highlight">200</span>. Here's what you need to know:
-          </p>
-          <ul>
-            <li><strong>Points drop for violations.</strong> Every policy violation reduces your score. How much depends on severity — minor infractions take fewer points than serious ones.</li>
-            <li><strong>Points recover over time.</strong> TikTok rewards consistent, compliant behavior. You can also complete in-app policy quizzes to speed up recovery.</li>
-            <li><strong>Below 150 triggers enforcement.</strong> If your score drops below <span className="highlight">150</span>, TikTok begins taking action against your account — starting with restrictions and escalating from there.</li>
-            <li><strong>Agencies have their own score too.</strong> Creator networks maintain a compliance score from 0–100 based on their creators' collective behavior. Your conduct reflects on the agency, and the agency's standing affects what TikTok makes available to all creators in the network.</li>
-            <li><strong>Why this matters for you.</strong> This is one more reason your manager watches for violations in real time. Catching a potential violation early protects your score — and by extension, your access to monetization and agency programs.</li>
-          </ul>
-        </div>
-
-        <div className="section">
           <h2>Ban Appeals</h2>
           <p>
             Getting banned on TikTok LIVE is stressful — but as an agency creator, you don't have to fight it alone. Here's how it works:
