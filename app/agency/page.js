@@ -215,7 +215,8 @@ export default function AgencyPage() {
           <p>To be eligible to join TJB Management, you must meet all of the following:</p>
           <ul>
             <li>You are <span className="highlight">18 or older</span></li>
-            <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
+            <li>The account you are joining with is your <span className="highlight">main TikTok account</span> — backup accounts, alt accounts, and secondary accounts are not eligible, and the account must have been your primary account for the <span className="highlight">last 6 months</span></li>
+            <li>You are <span className="highlight">not currently signed to another agency</span> on any account, and you have not been recruited away from another active agency</li>
             <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in the last 6 months</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
             <li>Your account meets <span className="highlight">TikTok's current eligibility requirements</span> to join a creator network (follower count, account standing, etc.)</li>
