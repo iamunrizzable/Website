@@ -123,6 +123,13 @@ export default function Tyler() {
         }
         .section:nth-of-type(2) { border-left-color: #ec4899; background: transparent; }
         .section:nth-of-type(3) { border-left-color: #3b82f6; background: transparent; }
+        .cta-btn {
+          display: block; text-align: center; margin: 10px auto 20px;
+          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
+          text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
+          border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(168,85,247,0.7); text-decoration: none; }
         .footer {
           margin-top: 60px;
           padding-top: 20px;
@@ -242,6 +249,8 @@ export default function Tyler() {
             Strategy, monetization, ban appeals, LIVE optimization, community growth, and creator protection — all with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>. I keep things direct, drama-free, and focused on results.
           </p>
         </div>
+
+        <a href="/contact-tyler" className="cta-btn">Contact Tyler →</a>
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
