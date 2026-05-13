@@ -197,7 +197,7 @@ export default function AgencyPage() {
           <ul>
             <li><strong>First, you appeal through TikTok directly.</strong> TikTok gives creators <span className="highlight">30 days</span> from the date of any enforcement action to submit an appeal inside the app.</li>
             <li><strong>If your appeal gets denied, we step in.</strong> Your TJB Management manager may be able to submit a second appeal on your behalf through TikTok's official agency channels — <span className="highlight">if they believe it has a real shot at being overturned</span>. This is something solo creators cannot do on their own.</li>
-            <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be straight with you about whether a second appeal is worth pursuing.</li>
+            <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be candid with you about whether a second appeal is worth pursuing.</li>
             <li><strong>We also watch for violations before they become bans.</strong> Because your manager can see your current warnings and strikes in real time, they can flag issues early and help you course correct before things escalate.</li>
           </ul>
         </div>
@@ -210,7 +210,7 @@ export default function AgencyPage() {
           <p>Yes — and this is one of the main reasons to join. RTMP stream key access (required for OBS, Streamlabs, and Meld Studio) is only available through an official creator network. You cannot get it any other way regardless of follower count.</p>
           <p><strong>Does TJB Management take a cut of my earnings?</strong></p>
           <p>Never. TikTok pays agencies separately out of their own cut. Your diamonds and payout are not touched.</p>
-          <p><strong>What if I can't stream consistently one month?</strong></p>
+          <p><strong>What if I cannot meet my streaming minimums one month?</strong></p>
           <p>You stay in the agency. Missing the activity minimums (10 days/month, 15 hours, 10K diamonds) means you won't qualify for that month's campaigns and perks — but it doesn't remove you.</p>
           <p><strong>What if I get banned during my trial?</strong></p>
           <p>Appeal through TikTok's app first. Your manager will help escalate if it gets denied. The 15-day no-waiting-period rule still applies — you can leave during the trial for any reason, including a ban.</p>
@@ -223,7 +223,7 @@ export default function AgencyPage() {
             <li><strong>Step 2 — Get approved.</strong> Tyler reviews every application personally.</li>
             <li><strong>Step 3 — Accept the invitation.</strong> Once approved, the easiest way is to tap your <strong>system notification</strong> from TikTok. You can also find it in TikTok Studio → swipe to LIVE → scroll down to <strong>Tools &amp; Resources</strong> → <strong>Creator Networks</strong>.</li>
             <li><strong>Step 4 — Your 15-day trial starts.</strong> You're in. During the first 15 days you can leave at any time with no waiting period.</li>
-            <li><strong>Step 5 — Get to work.</strong> Your manager will reach out to go over your goals, set up your strategy, and get you plugged into the network.</li>
+            <li><strong>Step 5 — Get started.</strong> Your manager will reach out to go over your goals, set up your strategy, and get you plugged into the network.</li>
           </ul>
         </div>
 
@@ -233,7 +233,7 @@ export default function AgencyPage() {
           <ul>
             <li>You are <span className="highlight">18 or older</span></li>
             <li>The account you are joining with is your <span className="highlight">main TikTok account</span> — backup accounts, alt accounts, and secondary accounts are not eligible, and the account must have been your primary account for the <span className="highlight">last 6 months</span></li>
-            <li>You are <span className="highlight">not currently signed to another agency</span> on any account, and you have not been recruited away from another active agency</li>
+            <li>You are <span className="highlight">not currently signed to another agency</span> on any account, and you have not been solicited away from another agency</li>
             <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in the last 6 months</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
             <li>Your account meets <span className="highlight">TikTok's current eligibility requirements</span> to join a creator network (account standing, etc.)</li>
@@ -257,7 +257,7 @@ export default function AgencyPage() {
         <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
 
         <div className="footer">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and cannot be copied or reused without written permission.</p>
           <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
         </div>
       </main>

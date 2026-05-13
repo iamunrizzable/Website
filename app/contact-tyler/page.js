@@ -301,7 +301,7 @@ export default function Contact() {
         <div className="footer">
           <p className="footer-text">DMs and emails to Tyler are answered by <a href="/hallie" className="hallie-link">Hallie, Tyler's AI assistant</a>. Tyler only sees them personally if Hallie flags them for him.</p>
           <p className="footer-disclaimer">This site uses basic analytics tools to track visits. See our <a href="/legal">legal guidelines</a> for details.</p>
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website belong to TJB Management Inc. and can't be copied or reused without written permission.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website belong to TJB Management Inc. and cannot be copied or reused without written permission.</p>
           <p>Tyler J. Beasley manages TikTok LIVE creators and founded TJB Management.</p>
         </div>
       </main>
