@@ -79,6 +79,11 @@ export default function StreamingBasics() {
         .menu-dropdown a:last-child { border-bottom: none; }
         .menu-dropdown a:hover { background-color: rgba(168,85,247,0.1); }
         .fade-top { position: fixed; top: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent); z-index: 50; pointer-events: none; }
+        .toc { padding: 18px 25px; background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.2); border-radius: 10px; margin-bottom: 30px; }
+        .toc p { margin-bottom: 12px; color: #a0aec0; font-size: 14px; }
+        .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .toc-links a { color: #a855f7; text-decoration: none; font-size: 13px; padding: 4px 12px; border: 1px solid rgba(168,85,247,0.3); border-radius: 20px; transition: all 0.2s; }
+        .toc-links a:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.6); text-decoration: none; }
       `}</style>
 
       <div className="fade-top"></div>
@@ -101,7 +106,23 @@ export default function StreamingBasics() {
         <h1>Streaming Basics</h1>
         <p className="subtitle">Everything you need to know about TikTok LIVE before you go live for the first time.</p>
 
-        <div className="section">
+        <div className="toc">
+          <p>Jump to a section:</p>
+          <div className="toc-links">
+            <a href="#how-to-go-live">How to Go LIVE</a>
+            <a href="#what-you-need">Equipment</a>
+            <a href="#gifts">How Gifts Work</a>
+            <a href="#diamonds">Diamond Value</a>
+            <a href="#super-fan">Super Fan</a>
+            <a href="#fan-club">Fan Club</a>
+            <a href="#gift-goals">Gift Goals</a>
+            <a href="#battles">LIVE Battles</a>
+            <a href="#live-studio">LIVE Studio</a>
+            <a href="#rules">Rules</a>
+          </div>
+        </div>
+
+        <div className="section" id="how-to-go-live">
           <h2>How to Go LIVE on TikTok</h2>
           <p>Going LIVE on TikTok is straightforward once your account is eligible. Here's how to start your first stream:</p>
           <ul>
@@ -112,7 +133,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="what-you-need">
           <h2>What You Need to Stream</h2>
           <p>You don't need expensive equipment to start. Here's what actually matters:</p>
           <ul>
@@ -124,7 +145,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="gifts">
           <h2>How TikTok LIVE Gifts Work</h2>
           <p>When you go LIVE, your viewers can send you virtual gifts as a way to show support. Here's exactly how it works:</p>
           <ul>
@@ -138,7 +159,7 @@ export default function StreamingBasics() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="diamonds">
           <h2>How Much Are Your Diamonds Worth?</h2>
           <p>
             Each diamond has a base value of <span className="highlight">$0.01 USD</span>, but your actual payout depends on your rewards percentage. The formula is: <span className="highlight">diamonds × $0.01 × your rewards %</span>. For example, at a <span className="highlight">36.5% rewards rate</span>, 41,200 diamonds pays out <span className="highlight">$150.38</span>. The diamond count shown in your account is <strong>not</strong> your cash payout.
@@ -160,7 +181,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="super-fan">
           <h2>TikTok Super Fan & Subscriptions</h2>
           <p>
             In September 2025, TikTok split what used to be called "LIVE Subscription" into two separate products:
@@ -184,7 +205,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="fan-club">
           <h2>Fan Club</h2>
           <p>
             Fan Club is <strong>free for viewers</strong> and separate from the paid Super Fan subscription. Viewers earn Fan Club membership by gifting you on LIVE — no subscription required.
@@ -197,7 +218,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="gift-goals">
           <h2>Gift Goals</h2>
           <p>
             Gift Goals let you set visible on-screen targets during your LIVE that your viewers work together to hit. When a goal is reached, TikTok plays a celebration animation on stream and shows the top 3 contributors. You can then reset the goal and run it again as many times as you want within the same stream.
@@ -227,7 +248,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="battles">
           <h2>LIVE Battles (PK Battles)</h2>
           <p>
             LIVE Battles — also called PK Battles — are one of the <strong>highest-earning formats</strong> on TikTok LIVE. Two creators compete head-to-head in a split screen while their audiences battle it out by sending gifts.
@@ -241,7 +262,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="live-studio">
           <h2>TikTok LIVE Studio</h2>
           <p>
             TikTok LIVE Studio is TikTok's <strong>free desktop streaming app for Windows</strong>. It gives you OBS-style control over your stream without needing a third-party tool or a stream key.
@@ -254,7 +275,7 @@ export default function StreamingBasics() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="rules">
           <h2>What You're Not Allowed to Do on LIVE</h2>
           <p>Breaking TikTok's LIVE rules can pause your monetization or get your account banned. Here's what to avoid:</p>
           <ul>

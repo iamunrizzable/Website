@@ -71,7 +71,15 @@ export default function Home() {
           max-width: 100%;
           height: auto;
           display: block;
+          margin: 0 auto;
           filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+        }
+
+        .tagline {
+          color: #a0aec0;
+          font-size: 16px;
+          margin-top: 16px;
+          margin-bottom: 0;
         }
 
         .nav-buttons {
@@ -213,16 +221,17 @@ export default function Home() {
       <main>
         <div className="logo-section section">
           <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
+          <p className="tagline">TikTok LIVE creator agency & resource hub</p>
         </div>
 
         <div className="nav-buttons section">
-          <a href="/hallie" className="nav-button">Meet Hallie</a>
-          <a href="/contact-hallie" className="nav-button">Contact Hallie</a>
           <a href="/tyler" className="nav-button">Meet Tyler</a>
-          <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
-          <a href="/legal" className="nav-button">Legal & Guidelines</a>
+          <a href="/hallie" className="nav-button">Meet Hallie</a>
           <a href="/agency" className="nav-button">TJB Management Agency</a>
           <a href="/streaming-basics" className="nav-button">Streaming Basics</a>
+          <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
+          <a href="/contact-hallie" className="nav-button">Contact Hallie</a>
+          <a href="/legal" className="nav-button">Legal & Guidelines</a>
         </div>
 
         <div className="footer section">

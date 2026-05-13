@@ -6,19 +6,19 @@ export default function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
-    { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
-    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
-    { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
-    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iam_unrizzable', icon: '🎵' },
-    { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵' },
-    { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
-    { name: 'What is TJB Management?', href: '/agency', icon: '🏢' },
-    { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
-    { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
-    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
+    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #6d28d9, #a855f7)' },
+    { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏', bg: 'linear-gradient(135deg, #111827, #374151)' },
+    { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
+    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻', bg: 'linear-gradient(135deg, #b45309, #f59e0b)' },
+    { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷', bg: 'linear-gradient(135deg, #c2410c, #ec4899, #7c3aed)' },
+    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iam_unrizzable', icon: '🎵', bg: 'linear-gradient(135deg, #0e7490, #06b6d4)' },
+    { name: 'Agency TikTok Account', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
+    { name: 'Phone', href: 'tel:+14086696123', icon: '📱', bg: 'linear-gradient(135deg, #065f46, #10b981)' },
+    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙', bg: 'linear-gradient(135deg, #78350f, #d97706)' },
+    { name: 'What is TJB Management?', href: '/agency', icon: '🏢', bg: 'linear-gradient(135deg, #a855f7, #ec4899)' },
+    { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵', bg: 'linear-gradient(135deg, #991b1b, #ec4899)' },
+    { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵', bg: 'linear-gradient(135deg, #c2410c, #dc2626)' },
+    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮', bg: 'linear-gradient(135deg, #003087, #2563eb)' },
   ];
 
   const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'What is TJB Management?'];
@@ -287,6 +287,7 @@ export default function Contact() {
               target={!internalLinks.includes(contact.name) ? '_blank' : undefined}
               rel={!internalLinks.includes(contact.name) ? 'noopener noreferrer' : undefined}
               className={`contact-card ${contact.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+              style={{background: contact.bg}}
             >
               {contact.iconSrc
                 ? <img src={contact.iconSrc} alt={contact.name} className="contact-icon-img" />
