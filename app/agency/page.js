@@ -216,7 +216,7 @@ export default function AgencyPage() {
           <ul>
             <li>You are <span className="highlight">18 or older</span></li>
             <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
-            <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in recent months</li>
+            <li>You haven't averaged more than <span className="highlight">500,000 diamonds per month</span> in the last 6 months</li>
             <li>You are located in the <span className="highlight">United States or Canada</span></li>
             <li>Your account meets <span className="highlight">TikTok's current eligibility requirements</span> to join a creator network (follower count, account standing, etc.)</li>
             <li>You agree to follow <span className="highlight">TikTok's platform rules and all applicable laws</span>, including FTC disclosure guidelines for any sponsored or endorsed content</li>
