@@ -56,6 +56,9 @@ export default function AgencyPage() {
         .section:nth-of-type(7) { border-left-color: #3b82f6; }
         .section:nth-of-type(8) { border-left-color: #06b6d4; }
         .section:nth-of-type(9) { border-left-color: #a855f7; }
+        .section:nth-of-type(10) { border-left-color: #ec4899; }
+        .section:nth-of-type(11) { border-left-color: #3b82f6; }
+        .section:nth-of-type(12) { border-left-color: #06b6d4; }
         .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
         .tier-card { padding: 20px; border-radius: 10px; text-align: center; }
         .tier-card.diamond { background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(168,85,247,0.3)); border: 1px solid #6366f1; }
@@ -124,7 +127,7 @@ export default function AgencyPage() {
             <li>Exclusive <strong>agency events, leaderboard competitions, and tournaments</strong> with cash and prizes</li>
             <li><strong>Shoutouts on our TikTok accounts and creator spotlights</strong></li>
             <li><strong>One-on-one coaching</strong> on how to grow your LIVE streams, from one of TikTok's most experienced creator managers</li>
-            <li>Access to our <strong>private, creator-only Discord community</strong></li>
+            <li>Access to our <strong>private, creator-only Discord community</strong> — <a href="https://discord.gg/qFk5phHZss" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>join here</a></li>
             <li>Help getting <strong>more views, more diamonds, and more new fans</strong></li>
           </ul>
         </div>
@@ -197,6 +200,20 @@ export default function AgencyPage() {
             <li><strong>Not every ban can be appealed twice.</strong> Some violations are final regardless of who submits the appeal. Your manager will be straight with you about whether a second appeal is worth pursuing.</li>
             <li><strong>We also watch for violations before they become bans.</strong> Because your manager can see your current warnings and strikes in real time, they can flag issues early and help you course correct before things escalate.</li>
           </ul>
+        </div>
+
+        <div className="section">
+          <h2>Frequently Asked Questions</h2>
+          <p><strong>Do I need a minimum follower count?</strong></p>
+          <p>No. TJB Management has no minimum follower count requirement.</p>
+          <p><strong>Can I use OBS or Streamlabs?</strong></p>
+          <p>Yes — and this is one of the main reasons to join. RTMP stream key access (required for OBS, Streamlabs, and Meld Studio) is only available through an official creator network. You cannot get it any other way regardless of follower count.</p>
+          <p><strong>Does TJB Management take a cut of my earnings?</strong></p>
+          <p>Never. TikTok pays agencies separately out of their own cut. Your diamonds and payout are not touched.</p>
+          <p><strong>What if I can't stream consistently one month?</strong></p>
+          <p>You stay in the agency. Missing the activity minimums (10 days/month, 15 hours, 10K diamonds) means you won't qualify for that month's campaigns and perks — but it doesn't remove you.</p>
+          <p><strong>What if I get banned during my trial?</strong></p>
+          <p>Appeal through TikTok's app first. Your manager will help escalate if it gets denied. The 15-day no-waiting-period rule still applies — you can leave during the trial for any reason, including a ban.</p>
         </div>
 
         <div className="section">
