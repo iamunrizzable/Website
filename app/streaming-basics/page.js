@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 
 export default function StreamingBasics() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [calcDiamonds, setCalcDiamonds] = useState('');
+  const [calcRate, setCalcRate] = useState('36.5');
 
   useEffect(() => {
     const sections = document.querySelectorAll('.section');
@@ -84,6 +86,13 @@ export default function StreamingBasics() {
         .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
         .toc-links a { color: #a855f7; text-decoration: none; font-size: 13px; padding: 4px 12px; border: 1px solid rgba(168,85,247,0.3); border-radius: 20px; transition: all 0.2s; }
         .toc-links a:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.6); text-decoration: none; }
+        .calculator { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.25); border-radius: 10px; padding: 20px; margin-top: 15px; }
+        .calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+        .calc-row label { color: #a0aec0; font-size: 14px; min-width: 150px; }
+        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #e2e8f0; font-size: 15px; width: 160px; outline: none; }
+        .calc-row input:focus { border-color: #a855f7; }
+        .calc-result { color: #a0aec0; font-size: 15px; margin-top: 4px; }
+        .calc-result span { font-size: 26px; font-weight: 700; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       `}</style>
 
       <div className="fade-top"></div>
@@ -118,6 +127,7 @@ export default function StreamingBasics() {
             <a href="#gift-goals">Gift Goals</a>
             <a href="#battles">LIVE Battles</a>
             <a href="#live-studio">LIVE Studio</a>
+            <a href="#stream-tips">Stream Tips</a>
             <a href="#rules">Rules</a>
           </div>
         </div>
@@ -179,6 +189,35 @@ export default function StreamingBasics() {
             <li><strong>Content engagement</strong> — measured by your active fans that week. 10+ active fans = <span className="highlight">1%</span>, 100+ = <span className="highlight">1.5%</span>, 2,000+ = <span className="highlight">2%</span></li>
             <li><strong>Creator League</strong> — earn <span className="highlight">+1%</span> if you're in the A1–A3 leagues and don't drop below where you started the week, or <span className="highlight">+3%</span> if you surpass your personal best league ranking. Capped at <span className="highlight">$1,000/week</span>.</li>
           </ul>
+          <div className="calculator">
+            <div className="calc-row">
+              <label>Your diamond count</label>
+              <input
+                type="number"
+                value={calcDiamonds}
+                onChange={e => setCalcDiamonds(e.target.value)}
+                placeholder="e.g. 41200"
+                min="0"
+              />
+            </div>
+            <div className="calc-row">
+              <label>Rewards rate (%)</label>
+              <input
+                type="number"
+                value={calcRate}
+                onChange={e => setCalcRate(e.target.value)}
+                placeholder="e.g. 36.5"
+                step="0.5"
+                min="0"
+                max="53"
+              />
+            </div>
+            {calcDiamonds && calcRate && (
+              <div className="calc-result">
+                Estimated payout: <span>${(parseFloat(calcDiamonds) * 0.01 * (parseFloat(calcRate) / 100)).toFixed(2)}</span>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="section" id="super-fan">
@@ -272,6 +311,20 @@ export default function StreamingBasics() {
             <li><strong>Built-in analytics.</strong> See viewer count, gift activity, and engagement data in real time while you stream.</li>
             <li><strong>Co-Host and Multi-Guest.</strong> LIVE Studio is the best environment for Co-Host (up to <span className="highlight">3 creators</span> on split screen with camera and audio) and Multi-Guest (up to <span className="highlight">5 viewers</span> joining by audio only).</li>
             <li><strong>Access requirement.</strong> Non-gaming creators need <span className="highlight">10,000 followers</span> to access LIVE Studio. Gaming creators have a separate pathway.</li>
+          </ul>
+        </div>
+
+        <div className="section" id="stream-tips">
+          <h2>Stream Tips</h2>
+          <ul>
+            <li><strong>Hit 25 minutes minimum.</strong> For a session to count as a valid LIVE day toward your weekly mission, you must stream at least <span className="highlight">25 minutes</span>. Don't cut it short.</li>
+            <li><strong>Consistency beats length.</strong> Streaming 5 days a week for an hour beats one 5-hour stream. Your audience learns when to find you, and you stack more valid LIVE days for your weekly rewards.</li>
+            <li><strong>Set your goals before you go live.</strong> Adding gift goals mid-stream on mobile can be buggy. Set all 3 goal slots and your gallery goal before tapping Go LIVE.</li>
+            <li><strong>Use all 3 goal slots at different price points.</strong> One cheap goal (Roses), one mid-tier, one high-end. Viewers who can't afford Lions can still participate, and every gift counts toward your rewards.</li>
+            <li><strong>Say names out loud.</strong> Acknowledge gifts by calling out the viewer's name. People gift more when they feel seen — it's the single easiest way to increase gifting without changing anything else.</li>
+            <li><strong>Build relationships before PK Battles.</strong> Cold-requesting a battle from a stranger rarely works. Connect with other creators in the community first, then coordinate battles in advance.</li>
+            <li><strong>Pick a specific category.</strong> TikTok uses your title and category to surface your LIVE to the right audience. "Other" gets you less reach than a category that actually matches your content.</li>
+            <li><strong>Work your gift gallery.</strong> Actively fill your gallery slots during streams. TikTok reportedly pushes streams with gallery activity to more viewers on the For You Page.</li>
           </ul>
         </div>
 
