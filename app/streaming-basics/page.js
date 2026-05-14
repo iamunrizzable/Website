@@ -260,45 +260,32 @@ export default function StreamingBasics() {
         <div className="section" id="gift-goals">
           <h2>Gift Goals</h2>
           <p>
-            Gift Goals let you set visible on-screen targets during your LIVE that your viewers work together to hit. When a goal is reached, TikTok plays a celebration animation on stream and shows the top 3 contributors. You can then reset the goal and run it again as many times as you want within the same stream.
+            Gift Goals let you set visible on-screen targets during your LIVE that viewers work together to hit. You can run up to <span className="highlight">4 goals at once</span> — 3 standard gift goals plus 1 gallery gift goal. When a goal is reached, TikTok plays a celebration animation and shows your top 3 contributors. You can reset and repeat goals as many times as you want in a single stream.
           </p>
-          <p>
-            There are two types of goals you can set, and you can run up to <span className="highlight">4 at once</span> — 3 standard gift goals plus 1 gallery gift goal.
-          </p>
-          <p><strong>Standard Gift Goals — up to 3 at once</strong></p>
+          <p><strong>Standard Goals — up to 3 at once</strong></p>
           <ul>
-            <li><strong>Pick any gift from TikTok's catalog</strong> and set a quantity target. For example: 100 Roses, 1,000 Corns, 50 Galaxies. There are no fixed categories — you choose the gift and the number.</li>
-            <li><strong>Write a description.</strong> Tell your viewers what you'll do when the goal is hit — a challenge, a game, a shoutout. This gives them a reason to participate.</li>
+            <li><strong>Pick any gift, set any quantity.</strong> For example: 100 Roses, 1,000 Corns, 50 Galaxies. Use low-cost gifts so more viewers can participate — goals built around expensive gifts like Lions cut out most of your audience.</li>
+            <li><strong>Write a description.</strong> Tell viewers what you'll do when the goal is hit — a challenge, a game, a shoutout. Give them a reason to contribute.</li>
             <li><strong>Top 3 contributors are shown on screen</strong> when the goal completes. Viewers compete for that recognition, which drives more gifting.</li>
-            <li><strong>Reset and repeat.</strong> Once a goal is hit, you can reset it and run it again in the same LIVE. Many creators cycle through goals multiple times per stream to keep the energy going.</li>
+            <li><strong>Reset and repeat.</strong> Once a goal is hit, reset it and run it again. Many creators cycle through goals multiple times per stream to keep the energy going.</li>
           </ul>
           <p><strong>Gallery Gift Goal — 1 at a time</strong></p>
           <ul>
-            <li>Your <strong>Gift Gallery</strong> is a section of your profile with <span className="highlight">15 slots</span>, each representing a specific gift. Viewers can light up gallery slots by sending enough of that gift.</li>
-            <li>You can set one of your gallery gifts as a LIVE Goal. The target is the quantity needed to <span className="highlight">light up that slot</span> on your gallery.</li>
-            <li>When a viewer lights up a gallery slot, they earn <strong>Title Gifter</strong> status for that gift — a recognition badge — and earn <span className="highlight">1.5× points</span> toward your LIVE Fest ranking.</li>
-            <li>Filling your gallery regularly is worth doing — TikTok reportedly pushes streams with active gallery gifting to more viewers.</li>
-          </ul>
-          <p><strong>Strategy tips:</strong></p>
-          <ul>
-            <li><strong>Use low-cost, high-quantity goals.</strong> A goal of 100 Roses (1 coin each) lets almost any viewer participate. Goals built around expensive gifts like Lions cut out most of your audience.</li>
-            <li><strong>Use all 3 standard goal slots</strong> with different gifts so viewers can choose what to contribute.</li>
-            <li><strong>Set goals before you go live</strong> — adding goals mid-stream on mobile can be tricky depending on your device.</li>
+            <li>Your <strong>Gift Gallery</strong> has <span className="highlight">15 slots</span> on your profile, each tied to a specific gift. Setting a gallery gift goal targets filling one of those slots.</li>
+            <li>Viewers who light up a slot earn <strong>Title Gifter</strong> status for that gift and earn <span className="highlight">1.5× points</span> toward your LIVE Fest ranking.</li>
+            <li>Filling your gallery regularly is worth doing — TikTok reportedly pushes streams with active gallery gifting to more viewers on the For You Page.</li>
           </ul>
         </div>
 
         <div className="section" id="battles">
           <h2>LIVE Battles (PK Battles)</h2>
           <p>
-            LIVE Battles — also called PK Battles — are one of the <strong>highest-earning formats</strong> on TikTok LIVE. Two creators compete head-to-head in a split screen while their audiences battle it out by sending gifts.
+            LIVE Battles — also called PK Battles — are one of the <strong>highest-earning formats</strong> on TikTok LIVE. Two creators go head-to-head in a split-screen battle while their audiences compete by sending gifts.
           </p>
-          <ul>
-            <li><strong>How to start one.</strong> First, send a <span className="highlight">co-host request</span> to another creator while you're both live. Once they accept and you're in a co-host, you can then send a battle request. The battle lasts exactly <span className="highlight">5 minutes</span>.</li>
-            <li><strong>How viewers participate.</strong> Viewers pick a side by sending gifts to their creator. The gift totals are visible on screen the whole time, creating a live competition your audience can influence in real time.</li>
-            <li><strong>Whoever has more gifts at the end wins.</strong> Both creators keep their gift earnings regardless of the outcome.</li>
-            <li><strong>Optional challenge.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. This is optional, but it adds entertainment and gives viewers a reason to tune in.</li>
-            <li><strong>Why battles earn more.</strong> The competitive format pushes viewers to gift more, and pulls both creators' audiences into one stream.</li>
-          </ul>
+          <p><strong>How it works.</strong> Send a <span className="highlight">co-host request</span> to another creator while you're both live. Once they accept and you're in a co-host together, you can then send a battle request. If they accept, the battle starts — viewers pick a side by sending gifts, and a <span className="highlight">5-minute timer</span> counts down. Whoever has more gifts at the end wins.</p>
+          <p><strong>Why it works.</strong> The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</p>
+          <p><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with <span className="highlight">cash prizes on top of normal gift earnings</span>.</p>
+          <p><strong>Losing a battle.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. Entirely optional, but it adds entertainment value and gives viewers a reason to stay tuned.</p>
         </div>
 
         <div className="section" id="live-studio">
