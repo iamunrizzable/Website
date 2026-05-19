@@ -8,7 +8,7 @@ export default function Contact() {
   const contacts = [
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
-    { name: 'Discord', href: 'https://discord.gg/qFk5phHZss', icon: '💬' },
+    { name: 'Discord', href: 'https://discord.com/users/1258165634294878208', icon: '💬' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iamunrizzable?_r=1&_t=ZP-96V2zRaz8BS', icon: '🎵' },
