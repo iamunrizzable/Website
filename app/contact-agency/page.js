@@ -7,7 +7,7 @@ export default function ContactAgency() {
 
   const contacts = [
     { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #a855f7, #ec4899)' },
-    { name: 'Agency TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
+    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
     { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷', bg: 'linear-gradient(135deg, #c2410c, #ec4899, #7c3aed)' },
     { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #6d28d9, #a855f7)' },
@@ -95,10 +95,8 @@ export default function ContactAgency() {
           font-size: 16px;
           font-weight: 700;
           letter-spacing: 0.5px;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #fff;
+          text-shadow: 0 1px 6px rgba(0,0,0,0.7);
         }
         .cta-btn {
           display: block; text-align: center; margin: 10px auto 30px;
