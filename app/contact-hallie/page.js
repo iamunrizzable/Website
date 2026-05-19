@@ -92,12 +92,12 @@ export default function ContactHallie() {
           position: absolute;
           inset: 0;
           z-index: -1;
-          background: linear-gradient(135deg, #2563eb, #60a5fa);
+          background: linear-gradient(135deg, #1e1b4b, #4c1d95);
         }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor;
           filter: brightness(1.1);
         }
         .contact-icon {
@@ -107,12 +107,16 @@ export default function ContactHallie() {
         }
         .contact-card:hover .contact-icon {
           transform: scale(1.3) rotate(5deg);
+          filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
         }
         .contact-name {
           font-size: 16px;
           font-weight: 700;
-          color: #fff;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+          letter-spacing: 0.5px;
+          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         .footer {
           text-align: center;
