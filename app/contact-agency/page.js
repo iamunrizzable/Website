@@ -8,6 +8,7 @@ export default function ContactAgency() {
   const contacts = [
     { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #a855f7, #ec4899)' },
     { name: 'Agency TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
+    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷', bg: 'linear-gradient(135deg, #c2410c, #ec4899, #7c3aed)' },
     { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #6d28d9, #a855f7)' },
     { name: 'About the Agency', href: '/agency', icon: '🏢', bg: 'linear-gradient(135deg, #0f172a, #1e293b)' },
@@ -76,6 +77,7 @@ export default function ContactAgency() {
         .contact-card:nth-child(4) { animation-delay: 0.4s; }
         .contact-card:nth-child(5) { animation-delay: 0.5s; }
         .contact-card:nth-child(6) { animation-delay: 0.6s; }
+        .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card::before { content: ''; position: absolute; inset: 0; z-index: -1; }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
