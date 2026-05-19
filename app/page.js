@@ -66,20 +66,20 @@ export default function Home() {
           transform: translateY(0);
         }
 
-        .hero-name {
-          font-size: clamp(42px, 10vw, 80px);
-          font-weight: 900;
-          letter-spacing: -1px;
-          color: #fff;
-          text-shadow: 0 0 40px rgba(168,85,247,0.7), 0 0 80px rgba(168,85,247,0.3);
-          margin: 0 0 12px;
-          line-height: 1.1;
+        .logo-img {
+          width: 100%;
+          max-width: 500px;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+          border-radius: 16px;
+          object-fit: cover;
         }
 
         .tagline {
           color: #a0aec0;
           font-size: 18px;
-          margin: 0;
+          margin: 16px 0 0;
           letter-spacing: 1px;
         }
 
@@ -101,21 +101,29 @@ export default function Home() {
 
         .nav-button {
           padding: 20px 30px;
-          background: linear-gradient(135deg, #a855f7, #ec4899);
-          color: #fff;
-          border: none;
-          border-radius: 10px;
+          background: rgba(15, 23, 42, 0.55);
+          border: 2px solid rgba(168, 85, 247, 0.25);
+          border-radius: 12px;
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 16px;
           cursor: pointer;
           transition: all 0.3s ease;
           display: block;
         }
 
+        .nav-button span {
+          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
         .nav-button:hover {
           transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
+          border-color: rgba(255, 255, 255, 0.5);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.3);
+          filter: brightness(1.1);
         }
 
         .footer {
@@ -222,19 +230,19 @@ export default function Home() {
 
       <main>
         <div className="logo-section section">
-          <h1 className="hero-name">Tyler J. Beasley</h1>
+          <img src="/bg-main.jpeg" alt="TJB Management" className="logo-img" />
           <p className="tagline">TikTok LIVE creator agency & resource hub</p>
         </div>
 
         <div className="nav-buttons section">
-          <a href="/tyler" className="nav-button">Meet Tyler</a>
-          <a href="/hallie" className="nav-button">Meet Hallie</a>
-          <a href="/agency" className="nav-button">TJB Management Agency</a>
-          <a href="/streaming-basics" className="nav-button">Streaming Basics</a>
-          <a href="/contact-tyler" className="nav-button">Connect with Tyler</a>
-          <a href="/contact-hallie" className="nav-button">Connect with Hallie</a>
-          <a href="/contact-agency" className="nav-button">Connect with Agency</a>
-          <a href="/legal" className="nav-button">Legal & Guidelines</a>
+          <a href="/tyler" className="nav-button"><span>Meet Tyler</span></a>
+          <a href="/hallie" className="nav-button"><span>Meet Hallie</span></a>
+          <a href="/agency" className="nav-button"><span>TJB Management Agency</span></a>
+          <a href="/streaming-basics" className="nav-button"><span>Streaming Basics</span></a>
+          <a href="/contact-tyler" className="nav-button"><span>Connect with Tyler</span></a>
+          <a href="/contact-hallie" className="nav-button"><span>Connect with Hallie</span></a>
+          <a href="/contact-agency" className="nav-button"><span>Connect with Agency</span></a>
+          <a href="/legal" className="nav-button"><span>Legal & Guidelines</span></a>
         </div>
 
         <div className="footer section">
