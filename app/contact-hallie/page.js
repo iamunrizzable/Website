@@ -69,8 +69,9 @@ export default function ContactHallie() {
           padding: 30px 20px;
           border-radius: 15px;
           text-decoration: none;
-          color: #fff;
-          border: 2px solid rgba(255,255,255,0.15);
+          color: #d4a5ff;
+          background: rgba(15, 23, 42, 0.55);
+          border: 2px solid rgba(168, 85, 247, 0.25);
           overflow: hidden;
           transition: all 0.3s ease;
           height: 140px;
@@ -92,7 +93,6 @@ export default function ContactHallie() {
           position: absolute;
           inset: 0;
           z-index: -1;
-          background: linear-gradient(135deg, #1e1b4b, #4c1d95);
         }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
