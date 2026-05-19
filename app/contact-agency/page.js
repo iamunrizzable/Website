@@ -100,6 +100,13 @@ export default function ContactAgency() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+        .cta-btn {
+          display: block; text-align: center; margin: 10px auto 30px;
+          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
+          text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
+          border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(168,85,247,0.7); text-decoration: none; }
         .footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 14px; color: #8b9dc3; }
         .footer p { margin-bottom: 8px; color: #a0aec0; }
         .menu-button { position: fixed; top: 20px; right: 20px; background-color: #a855f7; color: #d4a5ff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px; transition: all 0.3s ease; }
@@ -146,6 +153,8 @@ export default function ContactAgency() {
             </a>
           ))}
         </div>
+
+        <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website cannot be copied or reused without written permission.</p>
