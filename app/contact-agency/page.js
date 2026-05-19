@@ -6,13 +6,13 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #a855f7, #ec4899)' },
-    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
-    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷', bg: 'linear-gradient(135deg, #c2410c, #ec4899, #7c3aed)' },
-    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
-    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #6d28d9, #a855f7)' },
+    { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #4c1d95, #7c3aed)' },
+    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵', bg: 'linear-gradient(135deg, #0c2340, #1e3a5f)' },
+    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷', bg: 'linear-gradient(135deg, #7c2d12, #9d174d)' },
+    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #1e1b4b, #3730a3)' },
+    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #1e1b4b, #4c1d95)' },
     { name: 'About the Agency', href: '/agency', icon: '🏢', bg: 'linear-gradient(135deg, #0f172a, #1e293b)' },
-    { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤', bg: 'linear-gradient(135deg, #7c3aed, #6d28d9)' },
+    { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤', bg: 'linear-gradient(135deg, #1e1b4b, #312e81)' },
   ];
 
   const internalLinks = ['Email', 'About the Agency', 'Contact Tyler'];
@@ -95,8 +95,10 @@ export default function ContactAgency() {
           font-size: 16px;
           font-weight: 700;
           letter-spacing: 0.5px;
-          color: #fff;
-          text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         .cta-btn {
           display: block; text-align: center; margin: 10px auto 30px;
