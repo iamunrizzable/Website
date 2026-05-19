@@ -210,10 +210,10 @@ export default function Home() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Contact Agency</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
+        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
@@ -230,9 +230,9 @@ export default function Home() {
           <a href="/hallie" className="nav-button">Meet Hallie</a>
           <a href="/agency" className="nav-button">TJB Management Agency</a>
           <a href="/streaming-basics" className="nav-button">Streaming Basics</a>
-          <a href="/contact-tyler" className="nav-button">Contact Tyler</a>
-          <a href="/contact-hallie" className="nav-button">Contact Hallie</a>
-          <a href="/contact-agency" className="nav-button">Contact Agency</a>
+          <a href="/contact-tyler" className="nav-button">Connect with Tyler</a>
+          <a href="/contact-hallie" className="nav-button">Connect with Hallie</a>
+          <a href="/contact-agency" className="nav-button">Connect with Agency</a>
           <a href="/legal" className="nav-button">Legal & Guidelines</a>
         </div>
 

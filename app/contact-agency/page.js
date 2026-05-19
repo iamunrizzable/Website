@@ -123,18 +123,18 @@ export default function ContactAgency() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Contact Agency</a>
+        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
       <main>
         <a href="/agency" className="back-link">← Back to Agency</a>
-        <h1>Contact TJB Management</h1>
+        <h1>Connect with TJB Management</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
