@@ -24,7 +24,7 @@ export default function AgencyPage() {
           position: fixed;
           top: 0; left: 0;
           width: 100vw; height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), url("/bg-tyler.png");
+          background-image: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), url("/bg-main.jpeg");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
