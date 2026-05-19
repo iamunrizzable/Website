@@ -213,7 +213,8 @@ export default function AgencyPage() {
           <p><strong>What if I cannot meet my streaming minimums one month?</strong></p>
           <p>You stay in the agency. Missing the activity minimums (10 days/month, 15 hours, 10K diamonds) means you won't qualify for that month's campaigns and perks — but it doesn't remove you.</p>
           <p><strong>What if I get banned during my trial?</strong></p>
-          <p>Appeal through TikTok's app first. Your manager will help escalate if it gets denied. The 15-day no-waiting-period rule still applies — you can leave during the trial for any reason, including a ban.</p>
+          <p>First, note that if TikTok requires you to complete a live trial before joining the agency, you are not officially signed until that trial is complete. TikTok only requires this live trial for accounts that have not completed a 10-minute stream in the past 60 days. If a ban happens before you finish that trial, the agency relationship has not formally started yet.</p>
+          <p>If you are already signed and get banned during your 15-day agency trial: appeal through TikTok's app first. Your manager will help escalate if it gets denied. The 15-day no-waiting-period rule still applies — you can leave at any time during the trial for any reason, including a ban.</p>
         </div>
 
         <div className="section">
