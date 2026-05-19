@@ -6,8 +6,7 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋' },
-    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
+{ name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
     { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
     { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
@@ -78,7 +77,6 @@ export default function ContactAgency() {
         .contact-card:nth-child(4) { animation-delay: 0.4s; }
         .contact-card:nth-child(5) { animation-delay: 0.5s; }
         .contact-card:nth-child(6) { animation-delay: 0.6s; }
-        .contact-card:nth-child(7) { animation-delay: 0.7s; }
         .contact-card::before { content: ''; position: absolute; inset: 0; z-index: -1; }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
