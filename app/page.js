@@ -66,20 +66,21 @@ export default function Home() {
           transform: translateY(0);
         }
 
-        .logo-img {
-          width: 500px;
-          max-width: 100%;
-          height: auto;
-          display: block;
-          margin: 0 auto;
-          filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+        .hero-name {
+          font-size: clamp(42px, 10vw, 80px);
+          font-weight: 900;
+          letter-spacing: -1px;
+          color: #fff;
+          text-shadow: 0 0 40px rgba(168,85,247,0.7), 0 0 80px rgba(168,85,247,0.3);
+          margin: 0 0 12px;
+          line-height: 1.1;
         }
 
         .tagline {
           color: #a0aec0;
-          font-size: 16px;
-          margin-top: 16px;
-          margin-bottom: 0;
+          font-size: 18px;
+          margin: 0;
+          letter-spacing: 1px;
         }
 
         .nav-buttons {
@@ -221,7 +222,7 @@ export default function Home() {
 
       <main>
         <div className="logo-section section">
-          <img src="/logo-new.png" alt="Tyler J. Beasley" className="logo-img" />
+          <h1 className="hero-name">Tyler J. Beasley</h1>
           <p className="tagline">TikTok LIVE creator agency & resource hub</p>
         </div>
 
