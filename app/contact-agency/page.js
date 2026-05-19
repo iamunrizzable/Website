@@ -6,13 +6,13 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #4c1d95, #7c3aed)' },
-    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵', bg: 'linear-gradient(135deg, #0c2340, #1e3a5f)' },
-    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷', bg: 'linear-gradient(135deg, #7c2d12, #9d174d)' },
-    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #1e1b4b, #3730a3)' },
-    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #1e1b4b, #4c1d95)' },
-    { name: 'About the Agency', href: '/agency', icon: '🏢', bg: 'linear-gradient(135deg, #0f172a, #1e293b)' },
-    { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤', bg: 'linear-gradient(135deg, #1e1b4b, #312e81)' },
+    { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋' },
+    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
+    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
+    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
+    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
+    { name: 'About the Agency', href: '/agency', icon: '🏢' },
+    { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤' },
   ];
 
   const internalLinks = ['Email', 'About the Agency', 'Contact Tyler'];
@@ -53,7 +53,8 @@ export default function ContactAgency() {
           border-radius: 15px;
           text-decoration: none;
           color: #d4a5ff;
-          border: 2px solid rgba(255,255,255,0.15);
+          background: rgba(15, 23, 42, 0.55);
+          border: 2px solid rgba(168, 85, 247, 0.25);
           overflow: hidden;
           transition: all 0.3s ease;
           cursor: pointer;
@@ -146,7 +147,6 @@ export default function ContactAgency() {
               target={!internalLinks.includes(contact.name) ? '_blank' : undefined}
               rel={!internalLinks.includes(contact.name) ? 'noopener noreferrer' : undefined}
               className="contact-card"
-              style={{ background: contact.bg }}
             >
               <span className="contact-icon">{contact.icon}</span>
               <span className="contact-name">{contact.name}</span>
