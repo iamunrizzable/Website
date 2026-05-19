@@ -8,7 +8,7 @@ export default function ContactAgency() {
   const contacts = [
     { name: 'Apply to Join', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '📋', bg: 'linear-gradient(135deg, #a855f7, #ec4899)' },
     { name: 'Agency TikTok', href: 'https://tiktok.com/@iamunrizzable', icon: '🎵', bg: 'linear-gradient(135deg, #1e3a5f, #0ea5e9)' },
-    { name: 'Discord Community', href: 'https://discord.gg/qFk5phHZss', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
+    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬', bg: 'linear-gradient(135deg, #4338ca, #5865f2)' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️', bg: 'linear-gradient(135deg, #6d28d9, #a855f7)' },
     { name: 'About the Agency', href: '/agency', icon: '🏢', bg: 'linear-gradient(135deg, #0f172a, #1e293b)' },
     { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤', bg: 'linear-gradient(135deg, #7c3aed, #6d28d9)' },

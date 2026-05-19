@@ -128,7 +128,7 @@ export default function AgencyPage() {
             <li>Exclusive <strong>agency events, leaderboard competitions, and tournaments</strong> with cash and prizes</li>
             <li><strong>Shoutouts on our TikTok accounts and creator spotlights</strong></li>
             <li><strong>One-on-one coaching</strong> on how to grow your LIVE streams, from one of TikTok's most experienced creator managers</li>
-            <li>Access to our <strong>private, creator-only Discord community</strong> — <a href="https://discord.gg/qFk5phHZss" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>join here</a></li>
+            <li>Access to our <strong>private, creator-only Discord community</strong> — <a href="https://discord.gg/xznQZY7CeW" target="_blank" rel="noopener noreferrer" style={{color:'#a855f7'}}>join here</a></li>
             <li>Help getting <strong>more views, more diamonds, and more new fans</strong></li>
           </ul>
         </div>
