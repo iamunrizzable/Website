@@ -248,10 +248,10 @@ export default function Hallie() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Contact Agency</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
+        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
@@ -281,7 +281,7 @@ export default function Hallie() {
           <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
         </div>
 
-        <a href="/contact-hallie" className="cta-btn">Contact Hallie →</a>
+        <a href="/contact-hallie" className="cta-btn">Connect with Hallie →</a>
 
         <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>

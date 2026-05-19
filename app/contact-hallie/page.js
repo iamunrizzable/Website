@@ -193,10 +193,10 @@ export default function ContactHallie() {
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Contact Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Contact Agency</a>
+        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
+        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
@@ -204,7 +204,7 @@ export default function ContactHallie() {
 
       <main>
         <a href="/hallie" className="back-link">← Back to Hallie</a>
-        <h1>Contact Hallie</h1>
+        <h1>Connect with Hallie</h1>
 
         <div className="contact-grid">
           <a href="mailto:hallie@tjbmanagementinc.com" className="contact-card">
