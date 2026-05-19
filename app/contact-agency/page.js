@@ -9,12 +9,11 @@ export default function ContactAgency() {
 { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
     { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
     { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
-    { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
+    { name: 'Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
     { name: 'About the Agency', href: '/agency', icon: '🏢' },
-    { name: 'Contact Tyler', href: '/contact-tyler', icon: '👤' },
   ];
 
-  const internalLinks = ['Email', 'About the Agency', 'Contact Tyler'];
+  const internalLinks = ['Email', 'About the Agency'];
 
   return (
     <>
