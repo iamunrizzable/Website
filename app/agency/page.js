@@ -205,16 +205,16 @@ export default function AgencyPage() {
         <div className="section">
           <h2>Frequently Asked Questions</h2>
           <p><strong>Do I need a minimum follower count?</strong></p>
-          <p>No. TJB Management has no minimum follower count requirement.</p>
+          <p><span className="highlight">No.</span> TJB Management has <span className="highlight">no minimum follower count</span> requirement.</p>
           <p><strong>Can I use OBS or Streamlabs?</strong></p>
-          <p>Yes — and this is one of the main reasons to join. RTMP stream key access (required for OBS, Streamlabs, and Meld Studio) is only available through an official creator network. You cannot get it any other way regardless of follower count.</p>
+          <p><span className="highlight">Yes</span> — and this is one of the main reasons to join. <span className="highlight">RTMP stream key access</span> (required for OBS, Streamlabs, and Meld Studio) is only available through an official creator network. You cannot get it any other way regardless of follower count.</p>
           <p><strong>Does TJB Management take a cut of my earnings?</strong></p>
-          <p>Never. TikTok pays agencies separately out of their own cut. Your diamonds and payout are not touched.</p>
+          <p><span className="highlight">Never.</span> TikTok pays agencies separately out of their own cut. Your <span className="highlight">diamonds and payout are not touched</span>.</p>
           <p><strong>What if I cannot meet my streaming minimums one month?</strong></p>
-          <p>You stay in the agency. Missing the activity minimums (10 days/month, 15 hours, 10K diamonds) means you won't qualify for that month's campaigns and perks — but it doesn't remove you.</p>
+          <p>You <span className="highlight">stay in the agency</span>. Missing the activity minimums (<span className="highlight">10 days/month, 15 hours, 10K diamonds</span>) means you won't qualify for that month's campaigns and perks — but it does not remove you.</p>
           <p><strong>What if I get banned during my trial?</strong></p>
-          <p>First, note that if TikTok requires you to complete a live trial before joining the agency, you are not officially signed until that trial is complete. TikTok only requires this live trial for accounts that have not completed a 10-minute stream in the past 60 days. If a ban happens before you finish that trial, the agency relationship has not formally started yet — however, if you are actively in the process of signing with TJB Management, your manager may still be able to submit an appeal on your behalf to help get you back on track.</p>
-          <p>If you are already signed and get banned during your 15-day agency trial: appeal through TikTok's app first. Your manager will help escalate if it gets denied. The 15-day no-waiting-period rule still applies — you can leave at any time during the trial for any reason, including a ban.</p>
+          <p>First, note that if TikTok requires you to complete a live trial before joining the agency, you are <span className="highlight">not officially signed</span> until that trial is complete. TikTok only requires this live trial for accounts that have not completed a <span className="highlight">10-minute stream in the past 60 days</span>. If a ban happens before you finish that trial, the agency relationship has not formally started yet — however, if you are actively in the process of signing with TJB Management, your manager <span className="highlight">may still be able to submit an appeal</span> on your behalf to help get you back on track.</p>
+          <p>If you are already signed and get banned during your <span className="highlight">15-day agency trial</span>: appeal through TikTok's app first. Your manager will help escalate if it gets denied. The <span className="highlight">15-day no-waiting-period rule</span> still applies — you can leave at any time during the trial for any reason, including a ban.</p>
         </div>
 
         <div className="section">
