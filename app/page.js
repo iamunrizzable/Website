@@ -67,9 +67,8 @@ export default function Home() {
         }
 
         .logo-img {
-          width: 100%;
-          max-width: 500px;
-          height: auto;
+          width: 220px;
+          height: 220px;
           display: block;
           margin: 0 auto;
           border-radius: 16px;
