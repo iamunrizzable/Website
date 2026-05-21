@@ -16,7 +16,7 @@ export default function Legal() {
         }
       });
     }, { threshold: 0.1 });
-    
+
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -46,10 +46,10 @@ export default function Legal() {
         }
 
         @keyframes glowPulse {
-          0%, 100% { 
+          0%, 100% {
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
           }
-          50% { 
+          50% {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
@@ -89,24 +89,12 @@ export default function Legal() {
           line-height: 1.8;
         }
 
-        strong { 
+        strong {
           font-weight: 700;
           background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-        }
-
-        strong a {
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-decoration: none;
-        }
-
-        strong a:hover {
-          text-decoration: underline;
         }
 
         .rainbow {
@@ -225,159 +213,80 @@ export default function Legal() {
       </div>
 
       <main>
-        <a href="/" className="back-link">← Back to Home</a>
-        
-        <h1>Legal Disclaimers & Community Guidelines</h1>
+        <a href="/agency" className="back-link">← Back to Agency</a>
+
+        <h1>TJB Management — Legal & Agency Guidelines</h1>
 
         <div className="section">
-          <h2>AI Assistant Disclaimer</h2>
+          <h2>1. About TJB Management Inc.</h2>
           <p>
-            This website is managed by <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>. All responses to emails, direct messages, and social media inquiries are handled by <a href="/hallie"><span className="rainbow">Hallie</span></a>. <a href="/tyler"><span className="rainbow">Tyler</span></a> only sees them personally if Hallie flags them as needing his attention.
+            TJB Management Inc. is a TikTok LIVE creator management agency founded and operated by Tyler J. Beasley. The agency represents TikTok LIVE creators under formal agreements and provides management, strategy, and growth support. Nothing on this website constitutes legal advice or a binding offer of representation until a signed agreement is in place.
           </p>
-        </div>
-
-        <div className="section" id="basics">
-          <h2>1. The Basics</h2>
-          <ul>
-            <li><span className="rainbow">Be respectful to <a href="/tyler">Tyler</a> and his admins at all times</span></li>
-            <li><span className="rainbow">No harassment, threats, or stalking</span></li>
-            <li><span className="rainbow">No doxing or publicly sharing private info about anyone other than yourself</span></li>
-            <li><span className="rainbow">NSFW creators aren't welcome here</span></li>
-          </ul>
         </div>
 
         <div className="section">
-          <h2>2. Your Account</h2>
+          <h2>2. Creator Eligibility</h2>
+          <p>To be considered for representation by TJB Management, a creator must meet all of the following at the time of signing:</p>
           <ul>
-            <li><span className="rainbow">Use a real photo and username</span></li>
-            <li><span className="rainbow">No impersonation of anyone (especially <a href="/tyler">Tyler</a> and his admins)</span></li>
-            <li><span className="rainbow">Fan/parody accounts are fine if clearly marked</span></li>
-            <li><span className="rainbow">Trying to get around a ban (making new accounts, etc.) gets you permanently blocked and reported</span></li>
-            <li><span className="rainbow"><a href="/hallie">Hallie</a>, <a href="/tyler">Tyler</a>'s AI assistant, keeps an eye on every message to make sure people follow the rules</span></li>
+            <li><span className="rainbow">Must be at least 18 years of age</span></li>
+            <li><span className="rainbow">Must be in good standing with TikTok — no active violations or permanent bans on any account they intend to use under the agency</span></li>
+            <li><span className="rainbow">Must not have averaged more than 500,000 diamonds per month over the past 6 months on any TikTok account</span></li>
+            <li><span className="rainbow">Must not currently be signed to or in active negotiations with any competing TikTok LIVE agency</span></li>
+            <li><span className="rainbow">Must not have signed any backup accounts or secondary accounts to any other agency within the past 6 months</span></li>
+            <li><span className="rainbow">The account being signed must be the creator's primary TikTok account — we do not sign backup or secondary accounts</span></li>
+            <li><span className="rainbow">Must not have attempted to poach creators from TJB Management or any other agency</span></li>
+            <li><span className="rainbow">Must be willing and able to go LIVE for a minimum of 30 minutes, 3 times per week</span></li>
           </ul>
         </div>
 
-        <div className="section" id="interactions">
-          <h2>3. Interactions with <a href="/tyler">Tyler</a></h2>
-          <ul>
-            <li><span className="rainbow">No flirting, pickup lines, or unwanted compliments</span></li>
-            <li><span className="rainbow">Ask once for his contact — if he says no, that's it</span></li>
-            <li><span className="rainbow">When you message him, have an actual reason</span></li>
-            <li><span className="rainbow">Want to meet up in person? You need to ask and get a clear yes first.</span></li>
-            <li><strong>Note:</strong> The first message anyone sends <a href="/tyler"><span className="rainbow">Tyler</span></a> goes through <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> — same rule for everyone, no exceptions.</li>
-          </ul>
-        </div>
-
-        <div className="section" id="anti-stalking">
-          <h2>4. Anti-Stalking & Suspicious Behavior</h2>
+        <div className="section">
+          <h2>3. LIVE Trial Period</h2>
           <p>
-            We watch for suspicious account activity to protect <a href="/tyler"><span className="rainbow">Tyler</span></a> and our community. Accounts showing the following behavior may be blocked at our discretion:
-          </p>
-          <ul>
-            <li><span className="rainbow">New accounts created immediately before or after viewing <a href="/tyler">Tyler</a>'s profile</span></li>
-            <li><span className="rainbow">Multiple accounts from the same internet connection or device</span></li>
-            <li><span className="rainbow">Accounts with no profile picture, barely any posts or activity, or random-looking usernames</span></li>
-            <li><span className="rainbow">Repeatedly viewing <a href="/tyler">Tyler</a>'s profile (3+ times) with zero interaction or engagement</span></li>
-            <li><span className="rainbow">Accounts that act like part of a coordinated group targeting Tyler</span></li>
-            <li><span className="rainbow">Any stalking, harassment, or digging into Tyler's or our community members' private lives</span></li>
-          </ul>
-          <p>
-            <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a>, watches for these things continuously and may block accounts on her own, or flag them for <a href="/tyler"><span className="rainbow">Tyler</span></a> to look at. Hallie and Tyler decide who gets blocked based on what an account is actually doing.
+            TikTok may require certain creators to complete a LIVE trial before gaining unrestricted access to TikTok LIVE. This applies to creators who have not completed a 10-minute LIVE stream within the past 60 days. A creator is not considered officially signed to TJB Management until they have successfully completed their LIVE trial, if one is required by TikTok. TJB Management will support creators through this process but cannot guarantee TikTok's approval or timeline.
           </p>
         </div>
 
-        <div className="section" id="consequences">
-          <h2>5. Consequences</h2>
-          <ul>
-            <li><span className="rainbow"><strong>1 Strike:</strong> Warning + mute</span></li>
-            <li><span className="rainbow"><strong>2 Strikes:</strong> Temporary ban</span></li>
-            <li><span className="rainbow"><strong>3 Strikes:</strong> Permanent ban + legal action if needed</span></li>
-          </ul>
-          <p>Close friends of banned users can get blocked too if they're defending the behavior or helping them get around the ban.</p>
+        <div className="section">
+          <h2>4. Ban Policy</h2>
+          <p>
+            TJB Management may, at its sole discretion, attempt to appeal a TikTok ban on behalf of a creator who is actively in the signing process with the agency. This benefit is reserved exclusively for prospective creators who are in active negotiations or onboarding — it is not available to the general public. TJB Management cannot guarantee the outcome of any appeal, as all final decisions rest with TikTok.
+          </p>
         </div>
 
-        <div className="section" id="appeals">
-          <h2>6. Appeals</h2>
-          <p>
-            To appeal a ban, open a support ticket in our Discord (in the #create-a-ticket channel) or email tyler@tjbmanagementinc.com. Appeals must include:
-          </p>
+        <div className="section">
+          <h2>5. Non-Solicitation & Non-Compete</h2>
+          <p>Creators signed to or in negotiations with TJB Management agree to the following:</p>
           <ul>
-            <li><span className="rainbow">Full username</span></li>
-            <li><span className="rainbow">Platform you are blocked on</span></li>
-            <li><span className="rainbow">What you did to get blocked</span></li>
-            <li><span className="rainbow">Why you want to be unblocked</span></li>
+            <li><span className="rainbow">You may not solicit, recruit, or encourage other TJB Management creators to leave the agency</span></li>
+            <li><span className="rainbow">You may not sign with or negotiate representation with a competing TikTok LIVE agency while under contract with TJB Management</span></li>
+            <li><span className="rainbow">You may not sign backup accounts, secondary accounts, or any other TikTok account to a competing agency during your time with TJB Management</span></li>
+            <li><span className="rainbow">Violations of these terms may result in immediate termination of your agreement and potential legal action</span></li>
           </ul>
-          <p>We only undo bans if you have solid proof we got it wrong.</p>
         </div>
 
-        <div className="section" id="disclosures">
-          <h2>7. Final Notes and Disclosures</h2>
+        <div className="section">
+          <h2>6. Intellectual Property</h2>
           <p>
-            We monitor all activity through <a href="/hallie"><span className="rainbow">Hallie, Tyler's AI assistant</span></a> and human moderation, and reserve the right to escalate to law enforcement. By being here, and on any of our social media, you agree to these rules and our use of AI moderation to keep our community safe.
+            The TJB Management Inc. name, branding, this website, and <a href="/hallie"><span className="rainbow">Hallie</span></a> (TJB Management's AI assistant) are the sole proprietary property of TJB Management Inc. and Tyler J. Beasley. None of these may be reproduced, copied, distributed, or used in any form without prior written consent from TJB Management Inc. Unauthorized use will be pursued to the fullest extent of the law.
           </p>
-          <p><strong>Information we collect is:</strong></p>
-          <ul>
-            <li><span className="rainbow">Messages and direct interactions</span></li>
-            <li><span className="rainbow">Account information and profile data</span></li>
-            <li><span className="rainbow">IP addresses (via our analytics tools)</span></li>
-            <li><span className="rainbow">How you interact with us and a basic log of your activity</span></li>
-          </ul>
-          <p>We only use your personal info to make sure people follow our rules. We won't share or sell it to anyone unless we're legally required to (like with a warrant).</p>
         </div>
 
-        <div className="section" id="hallie-tos">
-          <h2>8. Hallie TikTok Moderation App – Terms & Conditions</h2>
+        <div className="section">
+          <h2>7. Limitation of Liability</h2>
           <p>
-            The following terms govern your use of the <span className="rainbow">Hallie Moderation System</span>, the AI-powered TikTok comment and interaction moderation tool operated by TJB Management Inc. By connecting a TikTok account to this system or interacting with any TikTok content moderated by it, you agree to the following.
+            TJB Management Inc. is not liable for any decisions made by TikTok regarding a creator's account, including but not limited to bans, restrictions, demonetization, or removal from the TikTok LIVE program. We provide management and support services — we do not control TikTok's platform, policies, or enforcement actions. Results are not guaranteed.
           </p>
+        </div>
 
-          <h2>8.1 What the System Does</h2>
+        <div className="section">
+          <h2>8. Contact & Disputes</h2>
           <p>
-            The <span className="rainbow">Hallie Moderation System</span> automatically scans TikTok comments, live chat messages, and other public interactions on TJB Management Inc.'s TikTok account(s). It uses an automated system that checks content for spam, scams, harassment, hate speech, or ads, and may take the following actions:
-          </p>
-          <ul>
-            <li><span className="rainbow">Flag content for human review</span></li>
-            <li><span className="rainbow">Generate a suggested reply for the account owner</span></li>
-            <li><span className="rainbow">Automatically hide comments that get flagged as harmful</span></li>
-            <li><span className="rainbow">Send an internal alert to tyler@tjbmanagementinc.com</span></li>
-          </ul>
-
-          <h2>8.2 Data We Access and Store</h2>
-          <p>When a TikTok account is connected to this system, the following data is accessed and temporarily stored:</p>
-          <ul>
-            <li><span className="rainbow">Secure TikTok login tokens (encrypted, never shared)</span></li>
-            <li><span className="rainbow">Public profile information (display name, follower count, video count)</span></li>
-            <li><span className="rainbow">Public video info (title, view count, comment count)</span></li>
-            <li><span className="rainbow">Public comment text, author username, and like/reply counts</span></li>
-            <li><span className="rainbow">Records of which comments were flagged and why</span></li>
-          </ul>
-          <p>
-            All data is stored in a secure database only we can access. Comment data and moderation logs are kept for up to 30 days. Login tokens are kept only as long as the account stays connected. We do not sell, rent, or share this data with any third party.
-          </p>
-
-          <h2>8.3 TikTok Platform Compliance</h2>
-          <p>
-            This system follows TikTok's developer rules and API policies. Data we access through TikTok is only used for moderating TJB Management Inc.'s own account(s). We don't use it for advertising, resale, or anything outside of moderation and account management.
-          </p>
-
-          <h2>8.4 Automated Decisions</h2>
-          <p>
-            The <span className="rainbow">Hallie Moderation System</span> may automatically hide your comment on TJB Management Inc.'s TikTok content if it is scored as harmful under our guidelines. Automated hiding is not permanent — the account owner may review and restore any hidden comment at their discretion. If you believe a comment was incorrectly moderated, you may appeal by emailing tyler@tjbmanagementinc.com with your TikTok username and the content in question.
-          </p>
-
-          <h2>8.5 No Warranty & Limitation of Liability</h2>
-          <p>
-            The <span className="rainbow">Hallie Moderation System</span> is provided without guarantees. TJB Management Inc. does not promise that the system will catch all harmful content, or that it will never incorrectly flag normal, harmless content. We do our best, but it isn't perfect, and depends on what TikTok's tools allow us to do. TJB Management Inc. is not liable for any damages arising from moderation decisions, system downtime, or limitations imposed by TikTok.
-          </p>
-
-          <h2>8.6 Changes to These Terms</h2>
-          <p>
-            We may update these terms at any time. If you keep using our TikTok or this website after we update these terms, that means you accept the new version. The date at the bottom of this page shows the most recent update.
+            For any legal inquiries, contract questions, or disputes related to TJB Management Inc., please contact us at <span className="rainbow">support@tjbmanagementinc.com</span>. All disputes are subject to the laws of the State of California. By applying to or signing with TJB Management, you agree to these terms.
           </p>
         </div>
 
         <footer>
-          <p>Last Updated: April 19, 2026</p>
+          <p>Last Updated: May 21, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
         </footer>
       </main>
