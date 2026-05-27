@@ -287,7 +287,8 @@ export default function Legal() {
 
         <footer>
           <p>Last Updated: May 21, 2026</p>
-          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and cannot be copied or reused without written permission.</p>
+          <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
         </footer>
       </main>
     </>
