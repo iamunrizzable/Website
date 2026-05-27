@@ -6,19 +6,20 @@ export default function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
+    { name: 'Apply to TJB MGMT INC TIKTOK AGENCY', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '🎯' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
-    { name: 'Discord', href: 'https://discord.com/users/1258165634294878208', icon: '💬' },
-    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
-    { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
-    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iamunrizzable?_r=1&_t=ZP-96V2zRaz8BS', icon: '🎵' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
-    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
+    { name: 'Discord', href: 'https://discord.com/users/1258165634294878208', icon: '💬' },
+    { name: 'Personal TikTok Account', href: 'https://www.tiktok.com/@iamunrizzable?_r=1&_t=ZP-96V2zRaz8BS', icon: '🎵' },
+    { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
+    { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
+    { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
     { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
     { name: 'Rock Playlist', href: 'https://music.apple.com/us/playlist/rock/pl.u-r2yB16YFRG6W3ly', icon: '🎵' },
     { name: 'Pop Playlist', href: 'https://music.apple.com/us/playlist/pop/pl.u-r2yB1a4TRG6W3ly', icon: '🎵' },
     { name: 'Country Playlist', href: 'https://music.apple.com/us/playlist/country/pl.u-qxylEYlt35ZbepN', icon: '🎵' },
+    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
     { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
@@ -125,6 +126,7 @@ export default function Contact() {
         .contact-card:nth-child(12) { animation-delay: 1.2s; }
         .contact-card:nth-child(13) { animation-delay: 1.3s; }
         .contact-card:nth-child(14) { animation-delay: 1.4s; }
+        .contact-card:nth-child(15) { animation-delay: 1.5s; }
         .contact-card::before {
           content: '';
           position: absolute;
