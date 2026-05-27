@@ -6,7 +6,7 @@ export default function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to TJB MGMT INC TIKTOK AGENCY', href: 'https://www.tiktok.com/t/ZTkgQvTCb/', icon: '🎯' },
+    { name: 'TJB MGMT TIKTOK AGENCY', href: '/agency', icon: '🎯' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Discord', href: 'https://discord.com/users/1258165634294878208', icon: '💬' },
@@ -23,7 +23,7 @@ export default function Contact() {
     { name: 'Country Playlist', href: 'https://music.apple.com/us/playlist/country/pl.u-qxylEYlt35ZbepN', icon: '🎵' },
   ];
 
-  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)'];
+  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY'];
 
   return (
     <>
