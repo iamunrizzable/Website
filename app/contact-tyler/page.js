@@ -14,13 +14,13 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
+    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
+    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
     { name: 'Club Music Playlist', href: 'https://music.apple.com/us/playlist/club-music/pl.u-r2yB1JGTRG6W3ly', icon: '🎵' },
     { name: 'Rock Playlist', href: 'https://music.apple.com/us/playlist/rock/pl.u-r2yB16YFRG6W3ly', icon: '🎵' },
     { name: 'Pop Playlist', href: 'https://music.apple.com/us/playlist/pop/pl.u-r2yB1a4TRG6W3ly', icon: '🎵' },
     { name: 'Country Playlist', href: 'https://music.apple.com/us/playlist/country/pl.u-qxylEYlt35ZbepN', icon: '🎵' },
-    { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
-    { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
   ];
 
   const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)'];
