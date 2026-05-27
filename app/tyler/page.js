@@ -254,8 +254,8 @@ export default function Tyler() {
         <a href="/contact-tyler" className="cta-btn">Connect with Tyler →</a>
 
         <div className="footer">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. Hallie and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>Tyler J. Beasley is a TikTok LIVE Creator Manager and agency founder.</p>
+          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and cannot be copied or reused without written permission.</p>
+          <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
         </div>
       </main>
     </>
