@@ -146,6 +146,7 @@ export default function Home() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           font-weight: 500;
+          margin-bottom: 16px;
         }
 
         .menu-button {
