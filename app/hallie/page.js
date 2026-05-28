@@ -284,8 +284,10 @@ export default function Hallie() {
         <a href="/contact-hallie" className="cta-btn">Connect with Hallie →</a>
 
         <footer>
-          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and this website belong to TJB Management Inc. and cannot be copied or reused without written permission.</p>
-          <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
+          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
+          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
+          <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
         </footer>
       </main>
     </>
