@@ -138,6 +138,7 @@ export default function Tyler() {
           color: #8b9dc3;
           text-align: center;
         }
+        .footer p { margin-bottom: 16px; color: #8b9dc3; }
         a {
           color: #a855f7;
           text-decoration: none;
