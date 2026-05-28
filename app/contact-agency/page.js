@@ -129,6 +129,7 @@ export default function ContactAgency() {
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
+        <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
       </div>
 
