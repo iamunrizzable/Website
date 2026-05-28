@@ -242,7 +242,7 @@ export default function Hallie() {
           text-align: center;
           font-size: 14px;
         }
-        footer p { margin-bottom: 28px; color: #8b9dc3; }
+        footer p { margin-bottom: 1.5em; margin-top: 0; color: #8b9dc3; line-height: 1.6; }
       `}</style>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
