@@ -175,7 +175,7 @@ export default function Contact() {
           font-size: 14px;
           color: #8b9dc3;
         }
-        .footer p { margin-bottom: 1.5em; margin-top: 0; color: #a0aec0; line-height: 1.6; }
+        .footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .footer-text {
           margin-bottom: 10px;
           color: #a0aec0;

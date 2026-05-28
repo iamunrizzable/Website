@@ -197,7 +197,7 @@ export default function Legal() {
           text-align: center;
           font-size: 14px;
         }
-        footer p { margin-bottom: 1.5em; margin-top: 0; color: #8b9dc3; line-height: 1.6; }
+        footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       `}</style>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
