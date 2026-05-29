@@ -7,11 +7,11 @@ export default function Contact() {
 
   const contacts = [
     { name: 'TJB MGMT TIKTOK AGENCY', href: '/agency', icon: '🎯' },
+    { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '🐦' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
     { name: 'TikTok', href: 'https://www.tiktok.com/@iamunrizzable?_r=1&_t=ZP-96V2zRaz8BS', icon: '🎵' },
     { name: 'Discord', href: 'https://discord.com/users/1258165634294878208', icon: '💬' },
-    { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '🐦' },
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
