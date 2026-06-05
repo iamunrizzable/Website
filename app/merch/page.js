@@ -24,6 +24,12 @@ export default function Merch() {
       icon: '⚖️',
       desc: 'Official TJB Management Inc. Legal hoodie.',
     },
+    {
+      name: 'TJB CREATOR MANAGER HOODIE',
+      href: 'https://www.customink.com/designs/Creator%20manager/eqs0-00d2-hqgb/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
+      icon: '🎯',
+      desc: 'Official TJB Management Inc. Creator Manager hoodie.',
+    },
   ];
 
   return (
@@ -101,6 +107,7 @@ export default function Merch() {
         .merch-card:nth-child(1) { animation-delay: 0.1s; }
         .merch-card:nth-child(2) { animation-delay: 0.2s; }
         .merch-card:nth-child(3) { animation-delay: 0.3s; }
+        .merch-card:nth-child(4) { animation-delay: 0.4s; }
         .merch-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
