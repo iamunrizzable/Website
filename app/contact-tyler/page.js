@@ -7,6 +7,7 @@ export default function Contact() {
 
   const contacts = [
     { name: 'TJB MGMT TIKTOK AGENCY', href: '/agency', icon: '⚡' },
+    { name: 'Order TJB CREATOR HOODIE', href: 'https://www.customink.com/designs/Tjb%20creator%20hoodie/eqs0-00d2-hq5u/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile', icon: '👕' },
     { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '💼' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
@@ -129,6 +130,7 @@ export default function Contact() {
         .contact-card:nth-child(14) { animation-delay: 1.4s; }
         .contact-card:nth-child(15) { animation-delay: 1.5s; }
         .contact-card:nth-child(16) { animation-delay: 1.6s; }
+        .contact-card:nth-child(17) { animation-delay: 1.7s; }
         .contact-card::before {
           content: '';
           position: absolute;
