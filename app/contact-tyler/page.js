@@ -7,7 +7,7 @@ export default function Contact() {
 
   const contacts = [
     { name: 'TJB MGMT TIKTOK AGENCY', href: '/agency', icon: '⚡' },
-    { name: 'Order TJB CREATOR HOODIE', href: '/merch', icon: '👕' },
+    { name: 'Order TJB MERCH', href: '/merch', icon: '👕' },
     { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '💼' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
@@ -25,7 +25,7 @@ export default function Contact() {
     { name: 'Country Playlist', href: 'https://music.apple.com/us/playlist/country/pl.u-qxylEYlt35ZbepN', icon: '🎵' },
   ];
 
-  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY', 'Order TJB CREATOR HOODIE'];
+  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY', 'Order TJB MERCH'];
 
   return (
     <>
