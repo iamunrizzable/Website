@@ -7,6 +7,12 @@ export default function Merch() {
 
   const items = [
     {
+      name: 'TJB PROMOTER HOODIE',
+      href: 'https://www.customink.com/designs/Tjb%20inc%20promoter/eqs0-00d2-hqh4/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
+      icon: '📣',
+      desc: 'Official TJB Management Inc. Promoter hoodie.',
+    },
+    {
       name: 'TJB CREATOR HOODIE',
       href: 'https://www.customink.com/designs/Tjb%20creator%20hoodie/eqs0-00d2-hq5u/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
       icon: '👕',
@@ -108,6 +114,7 @@ export default function Merch() {
         .merch-card:nth-child(2) { animation-delay: 0.2s; }
         .merch-card:nth-child(3) { animation-delay: 0.3s; }
         .merch-card:nth-child(4) { animation-delay: 0.4s; }
+        .merch-card:nth-child(5) { animation-delay: 0.5s; }
         .merch-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
