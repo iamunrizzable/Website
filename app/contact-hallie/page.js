@@ -202,6 +202,7 @@ export default function ContactHallie() {
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
       </div>
 
       <main>
