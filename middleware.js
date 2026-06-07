@@ -16,8 +16,10 @@ export function middleware(request) {
     const auth = request.headers.get('authorization');
     if (auth?.startsWith('Basic ')) {
       const decoded = Buffer.from(auth.slice(6), 'base64').toString('utf-8');
-      const password = decoded.slice(decoded.indexOf(':') + 1);
-      if (password === process.env.ADMIN_SECRET) {
+      const colonIndex = decoded.indexOf(':');
+      const username = decoded.slice(0, colonIndex);
+      const password = decoded.slice(colonIndex + 1);
+      if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_SECRET) {
         return NextResponse.next();
       }
     }
