@@ -23,6 +23,7 @@ export async function POST(request) {
     return NextResponse.json({ error: 'cookies must be a non-empty array' }, { status: 400 });
   }
   // Normalize Cookie Editor / browser extension export format to Puppeteer format
+  const sameSiteMap = { lax: 'Lax', strict: 'Strict', none: 'None', no_restriction: 'None', unspecified: 'None' };
   const normalized = cookies.map((c) => ({
     name: c.name,
     value: c.value,
@@ -30,7 +31,7 @@ export async function POST(request) {
     path: c.path || '/',
     secure: c.secure ?? true,
     httpOnly: c.httpOnly ?? false,
-    sameSite: c.sameSite || 'None',
+    sameSite: sameSiteMap[(c.sameSite ?? '').toLowerCase()] ?? 'None',
     expires: c.expirationDate ?? c.expires ?? -1,
   }));
   await setBrowserCookies(normalized);
