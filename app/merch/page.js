@@ -89,26 +89,30 @@ export default function Merch() {
         .back-link:hover { text-decoration: underline; }
         .merch-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 24px;
-          margin-bottom: 50px;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 20px;
+          margin-bottom: 40px;
         }
         .merch-card {
           position: relative;
-          padding: 40px 24px 30px;
-          border-radius: 16px;
+          padding: 30px 20px;
+          border-radius: 15px;
           text-decoration: none;
+          color: #d4a5ff;
           background: rgba(15, 23, 42, 0.55);
           border: 2px solid rgba(168, 85, 247, 0.25);
+          overflow: hidden;
+          transition: all 0.3s ease;
+          height: 140px;
           display: flex;
           flex-direction: column;
+          justify-content: center;
           align-items: center;
           text-align: center;
-          gap: 14px;
+          gap: 10px;
           opacity: 0;
           transform: translateY(20px);
           animation: fadeInCard 0.6s ease forwards;
-          transition: all 0.3s ease;
         }
         .merch-card:nth-child(1) { animation-delay: 0.1s; }
         .merch-card:nth-child(2) { animation-delay: 0.2s; }
@@ -118,42 +122,24 @@ export default function Merch() {
         .merch-card:hover {
           transform: translateY(-12px) scale(1.02);
           border-color: rgba(255,255,255,0.5);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px rgba(168,85,247,0.3);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 40px currentColor;
           filter: brightness(1.1);
         }
         .merch-icon {
-          font-size: 72px;
-          filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+          font-size: 64px;
+          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
           transition: all 0.3s ease;
         }
-        .merch-card:hover .merch-icon { transform: scale(1.2) rotate(3deg); }
+        .merch-card:hover .merch-icon { transform: scale(1.3) rotate(5deg); filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
         .merch-name {
-          font-size: 18px;
-          font-weight: 800;
+          font-size: 16px;
+          font-weight: 700;
           letter-spacing: 0.5px;
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-        .merch-desc {
-          font-size: 14px;
-          color: #94a3b8;
-          line-height: 1.5;
-        }
-        .merch-btn {
-          margin-top: 8px;
-          padding: 10px 24px;
-          background: linear-gradient(135deg, #a855f7, #ec4899);
-          color: #fff;
-          font-size: 14px;
-          font-weight: 700;
-          border-radius: 999px;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          display: inline-block;
-        }
-        .merch-btn:hover { box-shadow: 0 0 20px rgba(168,85,247,0.6); transform: translateY(-2px); }
         .footer {
           text-align: center;
           border-top: 1px solid rgba(255,255,255,0.1);
@@ -223,8 +209,6 @@ export default function Merch() {
             >
               <span className="merch-icon">{item.icon}</span>
               <span className="merch-name">{item.name}</span>
-              <p className="merch-desc">{item.desc}</p>
-              <span className="merch-btn">Order Now →</span>
             </a>
           ))}
         </div>
