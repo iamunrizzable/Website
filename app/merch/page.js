@@ -7,6 +7,12 @@ export default function Merch() {
 
   const items = [
     {
+      name: 'TJB INC SUPPORTER HOODIE',
+      href: 'https://www.customink.com/designs/Tjb%20inc%20supporter/eqs0-00d2-jmrq/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
+      icon: '🤝',
+      desc: 'Official TJB Management Inc. Supporter hoodie.',
+    },
+    {
       name: 'TJB PROMOTER HOODIE',
       href: 'https://www.customink.com/designs/Tjb%20inc%20promoter/eqs0-00d2-hqh4/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
       icon: '📣',
@@ -35,12 +41,6 @@ export default function Merch() {
       href: 'https://www.customink.com/designs/TJB%20INC-%20CEO%20hoodie/eqs0-00d2-hq6k/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
       icon: '🧥',
       desc: 'Official TJB Management Inc. CEO hoodie.',
-    },
-    {
-      name: 'TJB INC SUPPORTER HOODIE',
-      href: 'https://www.customink.com/designs/Tjb%20inc%20supporter/eqs0-00d2-jmrq/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
-      icon: '🤝',
-      desc: 'Official TJB Management Inc. Supporter hoodie.',
     },
   ];
 
