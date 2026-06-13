@@ -237,8 +237,8 @@ export default function Legal() {
             <li><span className="rainbow">Must not currently be signed to or in active negotiations with any competing TikTok LIVE agency</span></li>
             <li><span className="rainbow">Must not have signed any backup accounts or secondary accounts to any other agency within the past 6 months</span></li>
             <li><span className="rainbow">The account being signed must be the creator's primary TikTok account — we do not sign backup or secondary accounts</span></li>
-            <li><span className="rainbow">Must not have attempted to poach creators from TJB Management or any other agency</span></li>
-            <li><span className="rainbow">Must be willing and able to go LIVE for a minimum of 30 minutes, 3 times per week</span></li>
+            <li><span className="rainbow">Must not have attempted to poach creators from any agency</span></li>
+            <li><span className="rainbow">Must be willing and able to go LIVE for a minimum of 1 hour, 4 days per week</span></li>
           </ul>
         </div>
 
@@ -289,7 +289,7 @@ export default function Legal() {
         </div>
 
         <footer>
-          <p>Last Updated: May 21, 2026</p>
+          <p>Last Updated: June 13, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
