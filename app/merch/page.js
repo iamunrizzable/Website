@@ -124,6 +124,7 @@ export default function Merch() {
         .merch-card:nth-child(2) { animation-delay: 0.2s; }
         .merch-card:nth-child(3) { animation-delay: 0.3s; }
         .merch-card:nth-child(4) { animation-delay: 0.4s; }
+        .merch-card:nth-child(5) { animation-delay: 0.5s; }
         .merch-card:nth-child(6) { animation-delay: 0.6s; }
         .merch-card:hover {
           transform: translateY(-12px) scale(1.02);
