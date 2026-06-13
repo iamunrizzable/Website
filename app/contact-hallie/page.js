@@ -1,9 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactHallie() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll('.contact-card'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const idx = cards.indexOf(entry.target);
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${idx * 0.05}s`;
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.style.transitionDelay = '0s';
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -83,10 +101,10 @@ export default function ContactHallie() {
           gap: 10px;
           opacity: 0;
           transform: translateY(20px);
-          animation: fadeInCard 0.6s ease forwards;
         }
-        @keyframes fadeInCard {
-          to { opacity: 1; transform: translateY(0); }
+        .contact-card.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
         .contact-card::before {
           content: '';
