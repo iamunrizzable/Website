@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,6 +14,24 @@ export default function ContactAgency() {
   ];
 
   const internalLinks = ['Email', 'About the Agency'];
+
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll('.contact-card'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const idx = cards.indexOf(entry.target);
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${idx * 0.05}s`;
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.style.transitionDelay = '0s';
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -65,17 +83,11 @@ export default function ContactAgency() {
           gap: 10px;
           opacity: 0;
           transform: translateY(20px);
-          animation: fadeInCard 0.6s ease forwards;
         }
-        @keyframes fadeInCard {
-          to { opacity: 1; transform: translateY(0); }
+        .contact-card.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .contact-card:nth-child(1) { animation-delay: 0.1s; }
-        .contact-card:nth-child(2) { animation-delay: 0.2s; }
-        .contact-card:nth-child(3) { animation-delay: 0.3s; }
-        .contact-card:nth-child(4) { animation-delay: 0.4s; }
-        .contact-card:nth-child(5) { animation-delay: 0.5s; }
-        .contact-card:nth-child(6) { animation-delay: 0.6s; }
         .contact-card::before { content: ''; position: absolute; inset: 0; z-index: -1; }
         .contact-card:hover {
           transform: translateY(-12px) scale(1.02);
