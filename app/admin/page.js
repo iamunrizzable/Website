@@ -89,6 +89,25 @@ export default function AdminPage() {
 
         {msg && <div style={s.msg}>{msg}</div>}
 
+        {/* Admin Key Entry */}
+        {!status && (
+          <div style={s.card}>
+            <h2 style={s.h2}>Admin Key</h2>
+            <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>Enter your ADMIN_SECRET to unlock the dashboard.</p>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <input
+                style={{ ...s.input, flex: 1 }}
+                type="password"
+                placeholder="Admin secret…"
+                value={adminKey}
+                onChange={(e) => setAdminKey(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && fetchStatus(adminKey)}
+              />
+              <button style={s.btn} onClick={() => fetchStatus(adminKey)}>Unlock</button>
+            </div>
+          </div>
+        )}
+
         {/* Connection Status */}
         <div style={s.card}>
           <h2 style={s.h2}>TikTok Connection</h2>
