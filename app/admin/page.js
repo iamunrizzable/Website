@@ -75,7 +75,7 @@ export default function AdminPage() {
   }, [fetchStatus]);
 
   const s = {
-    page: { minHeight: '100vh', background: '#0f172a', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px' },
+    page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
     card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '1px solid #334155' },
     h1: { fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 8 },
     h2: { fontSize: 16, fontWeight: 600, color: '#94a3b8', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
@@ -88,6 +88,22 @@ export default function AdminPage() {
   };
 
   return (
+    <>
+    <style>{`
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: -1;
+        pointer-events: none;
+      }
+      body { margin: 0; padding: 0; background: transparent; }
+    `}</style>
     <div style={s.page}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <div style={{ marginBottom: 4 }}>
@@ -201,6 +217,7 @@ export default function AdminPage() {
         <DMPanel />
       </div>
     </div>
+    </>
   );
 }
 
