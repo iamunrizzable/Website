@@ -63,7 +63,15 @@ export default function AdminPage() {
     if (params.get('connected')) setMsg('✅ TikTok connected successfully!');
     if (params.get('error')) setMsg('❌ Error: ' + params.get('error'));
     const saved = localStorage.getItem('admin_key');
-    if (saved) { setAdminKey(saved); fetchStatus(saved); }
+    if (saved) {
+      setAdminKey(saved);
+      fetchStatus(saved);
+    } else {
+      fetch('/api/admin/me')
+        .then(r => r.json())
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchStatus(key); } })
+        .catch(() => {});
+    }
   }, [fetchStatus]);
 
   const s = {
@@ -88,25 +96,6 @@ export default function AdminPage() {
         <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
 
         {msg && <div style={s.msg}>{msg}</div>}
-
-        {/* Admin Key Entry */}
-        {!status && (
-          <div style={s.card}>
-            <h2 style={s.h2}>Admin Key</h2>
-            <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>Enter your ADMIN_SECRET to unlock the dashboard.</p>
-            <div style={{ display: 'flex', gap: 10 }}>
-              <input
-                style={{ ...s.input, flex: 1 }}
-                type="password"
-                placeholder="Admin secret…"
-                value={adminKey}
-                onChange={(e) => setAdminKey(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && fetchStatus(adminKey)}
-              />
-              <button style={s.btn} onClick={() => fetchStatus(adminKey)}>Unlock</button>
-            </div>
-          </div>
-        )}
 
         {/* Connection Status */}
         <div style={s.card}>
