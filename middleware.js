@@ -31,5 +31,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/legal/tiktok:path*'],
+  matcher: ['/admin/:path*', '/api/admin/me', '/legal/tiktok:path*'],
 };
