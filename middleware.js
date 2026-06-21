@@ -11,8 +11,12 @@ export function middleware(request) {
     );
   }
 
-  // Login page and login API always pass through
-  if (pathname === '/admin/login' || pathname === '/api/admin/login') {
+  // Login page, login API, and Business OAuth always pass through
+  if (
+    pathname === '/admin/login' ||
+    pathname === '/api/admin/login' ||
+    pathname.startsWith('/auth/tiktok/')
+  ) {
     return NextResponse.next();
   }
 
