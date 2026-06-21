@@ -60,6 +60,7 @@ export default function AdminPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('connected')) setMsg('✅ TikTok connected successfully!');
+    if (params.get('business_connected')) setMsg('✅ TikTok Business API connected successfully!');
     if (params.get('error')) setMsg('❌ Error: ' + params.get('error'));
     const saved = localStorage.getItem('admin_key');
     if (saved) {
@@ -199,6 +200,29 @@ export default function AdminPage() {
           )}
         </div>
 
+        {/* Business API Connection */}
+        <div style={s.card}>
+          <h2 style={s.h2}>Business API Connection</h2>
+          {status?.business_connected ? (
+            <p style={{ marginBottom: 12 }}>
+              <span style={s.badge('#10b981')}>CONNECTED</span>
+              {status.business_advertiser_id && (
+                <span style={{ fontSize: 12, color: '#64748b', marginLeft: 10 }}>
+                  Advertiser ID: {status.business_advertiser_id}
+                </span>
+              )}
+            </p>
+          ) : (
+            <p style={{ color: '#f59e0b', marginBottom: 12, fontSize: 14 }}>Not connected to Business API.</p>
+          )}
+          <button style={s.btn} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
+            {status?.business_connected ? 'Reconnect Business API' : 'Connect Business API'}
+          </button>
+        </div>
+
+        {/* Automated Rules */}
+        <AutomatedRulesPanel adminKey={adminKey} s={s} enabled={!!status?.business_connected} />
+
         {/* Agency Applications */}
         <ApplicationsPanel />
 
@@ -210,6 +234,111 @@ export default function AdminPage() {
       </div>
     </div>
     </>
+  );
+}
+
+function AutomatedRulesPanel({ adminKey, s, enabled }) {
+  const [rules, setRules] = useState(null);
+  const [name, setName] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+    if (!adminKey || !enabled) return;
+    fetch('/api/business/rules', { headers: { 'x-admin-key': adminKey } })
+      .then(r => r.json())
+      .then(d => setRules(d.data?.rules ?? d.rules ?? []))
+      .catch(() => setRules([]));
+  }, [adminKey, enabled]);
+
+  async function handleCreate(e) {
+    e.preventDefault();
+    if (!name.trim() || !keywords.trim()) return;
+    setSaving(true);
+    setMsg('');
+    try {
+      const kws = keywords.split(',').map(k => k.trim()).filter(Boolean);
+      const res = await fetch('/api/business/rules', {
+        method: 'POST',
+        headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, keywords: kws }),
+      });
+      const data = await res.json();
+      if (data.code && data.code !== 0) setMsg('Error: ' + (data.message ?? JSON.stringify(data)));
+      else {
+        setMsg('Rule created.');
+        setName(''); setKeywords('');
+        fetch('/api/business/rules', { headers: { 'x-admin-key': adminKey } })
+          .then(r => r.json()).then(d => setRules(d.data?.rules ?? d.rules ?? []));
+      }
+    } catch (err) { setMsg('Error: ' + err.message); }
+    finally { setSaving(false); }
+  }
+
+  async function handleDelete(ruleId) {
+    const res = await fetch('/api/business/rules', {
+      method: 'POST',
+      headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'delete', rule_id: ruleId }),
+    });
+    const data = await res.json();
+    if (data.code === 0 || data.ok) {
+      setRules(prev => prev.filter(r => r.rule_id !== ruleId));
+    }
+  }
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>⚙️ Automated Comment Rules</h2>
+      {!enabled ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect the Business API above to manage automated rules.</p>
+      ) : (
+        <>
+          {msg && <div style={{ background: '#1e3a5f', border: '1px solid #3b82f6', borderRadius: 8, padding: '8px 14px', marginBottom: 14, fontSize: 13 }}>{msg}</div>}
+          <form onSubmit={handleCreate} style={{ marginBottom: 20 }}>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+              <input
+                style={{ ...s.input, flex: 1 }}
+                placeholder="Rule name (e.g. Block spam)"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <input
+                style={{ ...s.input, flex: 1 }}
+                placeholder="Keywords, comma separated (e.g. spam, scam, follow me)"
+                value={keywords}
+                onChange={e => setKeywords(e.target.value)}
+              />
+              <button type="submit" style={{ ...s.btn, opacity: saving ? 0.6 : 1 }} disabled={saving}>
+                {saving ? 'Saving…' : 'Add Rule'}
+              </button>
+            </div>
+          </form>
+
+          {rules === null ? (
+            <p style={{ fontSize: 13, color: '#475569' }}>Loading rules…</p>
+          ) : rules.length === 0 ? (
+            <p style={{ fontSize: 13, color: '#475569' }}>No rules yet. Add one above to auto-hide comments.</p>
+          ) : (
+            rules.map((rule, i) => (
+              <div key={rule.rule_id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
+                <div>
+                  <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.rule_name}</div>
+                  <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{rule.status}</div>
+                </div>
+                <button
+                  onClick={() => handleDelete(rule.rule_id)}
+                  style={{ background: 'transparent', border: '1px solid #ef4444', color: '#ef4444', borderRadius: 6, padding: '4px 12px', cursor: 'pointer', fontSize: 12 }}
+                >Delete</button>
+              </div>
+            ))
+          )}
+        </>
+      )}
+    </div>
   );
 }
 
