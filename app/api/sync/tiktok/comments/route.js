@@ -1,30 +1,26 @@
 import { NextResponse } from 'next/server';
-import { syncComments } from '@/lib/sync';
+import { getVideoList } from '@/lib/tiktok/api';
 
 function requireAdmin(request) {
   return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
 }
 
-// POST /api/sync/tiktok/comments
-// Body (optional): { video_id, auto_hide }
 export async function POST(request) {
   if (!requireAdmin(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await request.json().catch(() => ({}));
-
   try {
-    const results = await syncComments({
-      videoId: body.video_id,
-      autoHide: body.auto_hide ?? false,
-    });
-    return NextResponse.json({ synced: results.length, results });
+    const res = await getVideoList(0, 20);
+    if (res.error?.code && res.error.code !== 'ok') {
+      return NextResponse.json({ error: res.error.message ?? 'TikTok API error' }, { status: 500 });
+    }
+    const videos = res.data?.videos ?? [];
+    return NextResponse.json({ synced: videos.length, results: videos });
   } catch (err) {
     if (err.message === 'NOT_AUTHENTICATED') {
       return NextResponse.json({ error: 'Not authenticated with TikTok' }, { status: 401 });
     }
-    console.error('[sync/comments] Error:', err.message);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

@@ -40,11 +40,10 @@ export default function AdminPage() {
       const res = await fetch('/api/sync/tiktok/comments', {
         method: 'POST',
         headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ auto_hide: false }),
       });
       const data = await res.json();
       if (data.error) setMsg('Sync error: ' + JSON.stringify(data.error));
-      else setMsg(`Synced ${data.synced} items.`);
+      else setMsg(`Fetched ${data.synced} video${data.synced !== 1 ? 's' : ''}.`);
       fetchStatus(adminKey);
     } catch (e) {
       setMsg('Sync failed: ' + e.message);
@@ -149,30 +148,22 @@ export default function AdminPage() {
                 onClick={handleSync}
                 disabled={syncing}
               >
-                {syncing ? 'Syncing…' : '🔄 Sync Comments'}
+                {syncing ? 'Syncing…' : '🔄 Sync Videos'}
               </button>
             )}
           </div>
-          <p style={{ fontSize: 11, color: '#475569', marginTop: 12 }}>
-            ⚠️ Comment sync requires video.comment.list scope — apply in TikTok Developer Portal when ready.
-          </p>
         </div>
 
         {/* Scope Status */}
         <div style={s.card}>
-          <h2 style={s.h2}>Scope Checklist</h2>
+          <h2 style={s.h2}>Active Scopes</h2>
           {[
-            { scope: 'user.info.profile', status: 'approved', note: 'Profile info' },
-            { scope: 'user.info.stats', status: 'approved', note: 'Follower/like counts' },
-            { scope: 'video.list', status: 'approved', note: 'List public videos' },
-            { scope: 'video.comment.list', status: 'pending', note: 'Read comments — APPLY IN PORTAL' },
-            { scope: 'video.comment.moderate', status: 'pending', note: 'Hide/delete comments — APPLY IN PORTAL' },
-            { scope: 'dm.inbox', status: 'pending', note: 'Read DMs — APPLY IN PORTAL' },
-          ].map(({ scope, status: st, note }) => (
+            { scope: 'user.info.profile', note: 'Profile info' },
+            { scope: 'user.info.stats', note: 'Follower/like counts' },
+            { scope: 'video.list', note: 'List public videos' },
+          ].map(({ scope, note }) => (
             <div key={scope} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-              <span style={s.badge(st === 'approved' ? '#10b981' : '#f59e0b')}>
-                {st === 'approved' ? '✓' : '⏳'}
-              </span>
+              <span style={s.badge('#10b981')}>✓</span>
               <code style={{ fontSize: 13, color: '#e2e8f0' }}>{scope}</code>
               <span style={{ fontSize: 12, color: '#64748b' }}>{note}</span>
             </div>
