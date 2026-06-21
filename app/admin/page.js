@@ -204,9 +204,6 @@ export default function AdminPage() {
           )}
         </div>
 
-        {/* Browser Bot — Minor Auto-Block */}
-        <BrowserBotPanel adminKey={adminKey} s={s} />
-
         {/* Agency Applications */}
         <ApplicationsPanel />
 
@@ -218,101 +215,6 @@ export default function AdminPage() {
       </div>
     </div>
     </>
-  );
-}
-
-function BrowserBotPanel({ adminKey, s }) {
-  const [botStatus, setBotStatus] = useState(null);
-  const [cookieText, setCookieText] = useState('');
-  const [saving, setSaving] = useState(false);
-  const [botMsg, setBotMsg] = useState('');
-
-  useEffect(() => {
-    if (!adminKey) return;
-    fetch('/api/admin/cookies', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json())
-      .then(setBotStatus)
-      .catch(() => {});
-  }, [adminKey]);
-
-  async function saveCookies() {
-    setSaving(true);
-    setBotMsg('');
-    try {
-      const parsed = JSON.parse(cookieText);
-      const res = await fetch('/api/admin/cookies', {
-        method: 'POST',
-        headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cookies: parsed }),
-      });
-      const data = await res.json();
-      if (data.error) setBotMsg('Error: ' + data.error);
-      else {
-        setBotMsg(`Saved ${data.saved} cookies. Bot is ready.`);
-        setCookieText('');
-        fetch('/api/admin/cookies', { headers: { 'x-admin-key': adminKey } })
-          .then(r => r.json()).then(setBotStatus);
-      }
-    } catch {
-      setBotMsg('Invalid JSON — paste the full array from Cookie Editor.');
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  const textarea = { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 13, width: '100%', boxSizing: 'border-box', minHeight: 100, resize: 'vertical', fontFamily: 'monospace' };
-
-  return (
-    <div style={s.card}>
-      <h2 style={s.h2}>🤖 Browser Bot — Minor Auto-Block</h2>
-      <p style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>
-        When the bot detects a potential minor in comments it auto-hides the comment and queues
-        the user. Every hour, Chromium logs into TikTok with your session and blocks them.
-      </p>
-
-      {botStatus && (
-        <div style={{ marginBottom: 16 }}>
-          <span style={s.badge(botStatus.hasCookies ? '#10b981' : '#f59e0b')}>
-            {botStatus.hasCookies ? `✓ ${botStatus.cookieCount} cookies saved` : '⚠ No cookies — bot inactive'}
-          </span>
-          {botStatus.blockQueue?.length > 0 && (
-            <span style={{ ...s.badge('#ef4444'), marginLeft: 8 }}>
-              {botStatus.blockQueue.length} pending block{botStatus.blockQueue.length > 1 ? 's' : ''}
-            </span>
-          )}
-          {botStatus.blockQueue?.length > 0 && (
-            <div style={{ marginTop: 8, fontSize: 12, color: '#94a3b8' }}>
-              Queued: {botStatus.blockQueue.map(u => `@${u}`).join(', ')}
-            </div>
-          )}
-        </div>
-      )}
-
-      {botMsg && <div style={{ ...s.msg, marginBottom: 12 }}>{botMsg}</div>}
-
-      <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: 14, marginBottom: 16, fontSize: 12, color: '#64748b', lineHeight: 1.8 }}>
-        <strong style={{ color: '#94a3b8' }}>How to get your cookies:</strong><br />
-        1. Install the <strong style={{ color: '#e2e8f0' }}>Cookie Editor</strong> extension in Chrome/Firefox<br />
-        2. Log into TikTok in your browser<br />
-        3. Open Cookie Editor on tiktok.com → click <strong style={{ color: '#e2e8f0' }}>Export → Export as JSON</strong><br />
-        4. Paste the JSON below and click Save
-      </div>
-
-      <label style={s.label}>TikTok Session Cookies (JSON array from Cookie Editor)</label>
-      <textarea
-        style={{ ...textarea, marginBottom: 10 }}
-        value={cookieText}
-        onChange={(e) => setCookieText(e.target.value)}
-        placeholder={'[\n  { "name": "sessionid", "value": "...", ... },\n  ...\n]'}
-      />
-      <button
-        style={{ ...s.btn, opacity: saving || !cookieText.trim() ? 0.6 : 1 }}
-        onClick={saveCookies}
-        disabled={saving || !cookieText.trim()}
-      >
-        {saving ? 'Saving…' : 'Save Cookies'}
-      </button>
-    </div>
   );
 }
 
