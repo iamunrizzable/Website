@@ -28,6 +28,16 @@ export function middleware(request) {
       }
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
+    // Refresh cookie on every valid request so it never expires
+    const response = NextResponse.next();
+    response.cookies.set('admin_session', process.env.ADMIN_SECRET, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 400,
+      path: '/',
+    });
+    return response;
   }
 }
 
