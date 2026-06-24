@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
-import { exchangeTikTokAccountCode, exchangeTikTokBusinessAccountCode } from '@/lib/tiktok/business-oauth';
+import { exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const authCode = searchParams.get('auth_code');
-  const loginCode = searchParams.get('code');
-  const code = authCode ?? loginCode;
+  const code = searchParams.get('code');
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
@@ -23,30 +21,15 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Missing code' }, { status: 400 });
   }
 
-  const flow = request.cookies.get('tiktok_account_flow')?.value;
-  const isPortal = flow === 'portal' || !!authCode;
-
   try {
-    let tokenData;
-    if (isPortal) {
-      // Business Portal flow — use Business API exchange (grants business scopes incl. comments)
-      tokenData = await exchangeTikTokBusinessAccountCode(code);
-    } else {
-      tokenData = await exchangeTikTokAccountCode(code);
-    }
-
+    const tokenData = await exchangeTikTokAccountCode(code);
     if (tokenData.error) {
       throw new Error(tokenData.error_description ?? tokenData.error);
     }
-    if (tokenData.code && tokenData.code !== 0) {
-      throw new Error(tokenData.message ?? 'Account token exchange failed');
-    }
-
     const stored = await storeTikTokAccountToken(tokenData);
 
     const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
     response.cookies.delete('tiktok_account_state');
-    response.cookies.delete('tiktok_account_flow');
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
