@@ -326,14 +326,19 @@ function CommentsPanel({ adminKey, enabled }) {
   const [replyText, setReplyText] = useState('');
 
   function extractVideoId(input) {
-    // Accept raw ID or TikTok URL (e.g. tiktok.com/@user/video/7123456789)
-    const match = input.match(/\/video\/(\d+)/);
-    return match ? match[1] : input.trim();
+    const trimmed = input.trim();
+    const match = trimmed.match(/\/video\/(\d+)/);
+    if (match) return match[1];
+    if (/^\d+$/.test(trimmed)) return trimmed;
+    return null;
   }
 
   function loadComments(vid) {
     const id = extractVideoId(vid || videoId);
-    if (!id) return;
+    if (!id) {
+      setCommentsError('Please paste a full TikTok video URL (containing /video/ID) or a raw numeric video ID. Short share links (tiktok.com/t/…) are not supported.');
+      return;
+    }
     setActiveVideoId(id);
     setComments(null);
     setCommentsError('');
