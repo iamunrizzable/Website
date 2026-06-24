@@ -4,6 +4,7 @@
 - **NEVER change the apply link**: `https://www.tiktok.com/t/ZTkgQvTCb/`
 - **ALWAYS merge dev branch to main after every set of changes**
 - **ONLY make changes explicitly requested — nothing more**
+- **NEVER guess at a fix. If the root cause is not confirmed, ask first. Do not deploy speculative changes.**
 - Dev branch: `claude/general-session-v2pLH`
 
 ## TikTok Business API — Approved Endpoints
