@@ -74,6 +74,10 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 
 ### 2. TikTok Account Token (`getTikTokAccountToken()`)
 - OAuth: `tiktok_account_authorization_url` env var (Business Portal) — preferred
+- **CURRENT VALUE (Login Kit — gives open_id, NOT numeric business_id):**
+  `https://www.tiktok.com/v2/auth/authorize?client_key=7654470451766231041&scope=user.info.basic%2Cuser.info.username%2Cuser.info.stats%2Cuser.info.profile%2Cuser.account.type%2Cuser.insights%2Cvideo.list%2Cvideo.insights%2Ccomment.list%2Ccomment.list.manage%2Cvideo.publish%2Cvideo.upload%2Cbiz.spark.auth%2Cdiscovery.search.words%2Cbiz.brand.insights&response_type=code&redirect_uri=https%3A%2F%2Ftjbmanagementinc.com%2Fauth%2Ftiktok%2Faccount-callback`
+- **PROBLEM**: Login Kit gives `open_id` = `-000yp9tW9MisgetpAczsWTyM_Z1VHZX70Aq` — works for READ endpoints, rejected by comment WRITE endpoints (hide/delete/pin/reply)
+- **FIX NEEDED**: Switch env var to Business Portal account URL → gives `auth_code` → numeric `business_id` → comment actions work
 - Callback receives: `auth_code` (Business Portal) or `code` (Login Kit fallback)
 - Token exchange if `auth_code`: `business-api.tiktok.com/open_api/v1.3/tt_user/oauth2/token/` (JSON, `app_id` + `secret`)
 - Token exchange if `code`: `open.tiktokapis.com/v2/oauth/token/` (form-encoded, `client_key` + `client_secret`)
