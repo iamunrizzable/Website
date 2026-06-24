@@ -95,6 +95,11 @@ export default function AdminPage() {
           {/* Business API Connection */}
           <div style={s.card}>
             <h2 style={s.h2}>Business API</h2>
+            {status && !status.redis_configured && (
+              <div style={{ background: '#431407', border: '1px solid #ea580c', borderRadius: 8, padding: '10px 14px', marginBottom: 14, fontSize: 13, color: '#fed7aa' }}>
+                Redis not configured — tokens are stored in memory and will be lost on server restart. Add <code>UPSTASH_REDIS_REST_URL</code> and <code>UPSTASH_REDIS_REST_TOKEN</code> to your Vercel environment variables to make the connection permanent.
+              </div>
+            )}
             {enabled ? (
               <p style={{ marginBottom: 12 }}>
                 <span style={s.badge('#10b981')}>CONNECTED</span>
@@ -103,9 +108,9 @@ export default function AdminPage() {
                     Advertiser ID: {status.business_advertiser_id}
                   </span>
                 )}
-                {status.business_stored_at && (
-                  <span style={{ fontSize: 12, color: '#475569', marginLeft: 10 }}>
-                    · Since {new Date(status.business_stored_at).toLocaleString()}
+                {status.business_expires_at && (
+                  <span style={{ fontSize: 12, color: Date.now() > status.business_expires_at - 3600000 ? '#f59e0b' : '#475569', marginLeft: 10 }}>
+                    · Expires {new Date(status.business_expires_at).toLocaleString()}
                   </span>
                 )}
               </p>
@@ -163,14 +168,20 @@ export default function AdminPage() {
 // ── Account Info ──────────────────────────────────────────────────────────────
 
 function AccountPanel({ adminKey, enabled }) {
-  const [account, setAccount] = useState(null);
+  const [account, setAccount] = useState(undefined); // undefined = loading, null = loaded/empty
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!adminKey || !enabled) return;
+    setAccount(undefined);
+    setError('');
     fetch('/api/business/account', { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
-      .then(d => setAccount(d.data ?? null))
-      .catch(() => {});
+      .then(d => {
+        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setAccount(null); }
+        else setAccount(d.data ?? null);
+      })
+      .catch(e => { setError(e.message); setAccount(null); });
   }, [adminKey, enabled]);
 
   return (
@@ -178,8 +189,12 @@ function AccountPanel({ adminKey, enabled }) {
       <h2 style={s.h2}>Account Info</h2>
       {!enabled ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API above.</p>
-      ) : !account ? (
+      ) : account === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : error ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+      ) : !account ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>No account data returned.</p>
       ) : (
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
@@ -212,9 +227,11 @@ function StatBox({ label, value }) {
 // ── Videos & Comment Management ───────────────────────────────────────────────
 
 function VideosPanel({ adminKey, enabled }) {
-  const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState(undefined); // undefined = loading
+  const [videosError, setVideosError] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [comments, setComments] = useState(null);
+  const [commentsError, setCommentsError] = useState('');
   const [commentsLoading, setCommentsLoading] = useState(false);
   const [actionMsg, setActionMsg] = useState('');
   const [replyTo, setReplyTo] = useState(null);
@@ -222,23 +239,32 @@ function VideosPanel({ adminKey, enabled }) {
 
   useEffect(() => {
     if (!adminKey || !enabled) return;
+    setVideos(undefined);
+    setVideosError('');
     fetch('/api/business/videos', { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
-      .then(d => setVideos(d.data?.videos ?? d.videos ?? []))
-      .catch(() => setVideos([]));
+      .then(d => {
+        if (d.code && d.code !== 0) { setVideosError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setVideos([]); }
+        else setVideos(d.data?.videos ?? d.videos ?? []);
+      })
+      .catch(e => { setVideosError(e.message); setVideos([]); });
   }, [adminKey, enabled]);
 
   function loadComments(video) {
     setSelectedVideo(video);
     setComments(null);
+    setCommentsError('');
     setActionMsg('');
     setReplyTo(null);
     setReplyText('');
     setCommentsLoading(true);
     fetch(`/api/business/comments?video_id=${encodeURIComponent(video.video_id)}`, { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
-      .then(d => setComments(d.data?.comments ?? d.comments ?? []))
-      .catch(() => setComments([]))
+      .then(d => {
+        if (d.code && d.code !== 0) { setCommentsError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setComments([]); }
+        else setComments(d.data?.comments ?? d.comments ?? []);
+      })
+      .catch(e => { setCommentsError(e.message); setComments([]); })
       .finally(() => setCommentsLoading(false));
   }
 
@@ -268,8 +294,10 @@ function VideosPanel({ adminKey, enabled }) {
       <h2 style={s.h2}>Videos & Comments</h2>
       {!enabled ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage videos and comments.</p>
-      ) : videos === null ? (
+      ) : videos === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading videos…</p>
+      ) : videosError ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{videosError}</p>
       ) : videos.length === 0 ? (
         <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
       ) : (
@@ -308,6 +336,8 @@ function VideosPanel({ adminKey, enabled }) {
               {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
               {commentsLoading ? (
                 <p style={{ fontSize: 13, color: '#475569' }}>Loading comments…</p>
+              ) : commentsError ? (
+                <p style={{ fontSize: 13, color: '#f59e0b' }}>{commentsError}</p>
               ) : !comments || comments.length === 0 ? (
                 <p style={{ fontSize: 13, color: '#475569' }}>No comments found.</p>
               ) : (
