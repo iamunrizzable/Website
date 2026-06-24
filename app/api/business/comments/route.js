@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { listComments, updateCommentStatus, replyToComment, deleteComment, pinComment } from '@/lib/tiktok/business-api';
+import { listComments, hideComment, replyToComment, deleteComment, pinComment } from '@/lib/tiktok/business-api';
 
 function requireAdmin(request) {
   return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
@@ -21,8 +21,8 @@ export async function POST(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
   try {
-    if (body.action === 'hide') return NextResponse.json(await updateCommentStatus({ commentIds: body.comment_ids, status: 'HIDDEN' }));
-    if (body.action === 'show') return NextResponse.json(await updateCommentStatus({ commentIds: body.comment_ids, status: 'VISIBLE' }));
+    if (body.action === 'hide') return NextResponse.json(await hideComment({ commentId: body.comment_id, isHidden: true }));
+    if (body.action === 'show') return NextResponse.json(await hideComment({ commentId: body.comment_id, isHidden: false }));
     if (body.action === 'reply') return NextResponse.json(await replyToComment({ videoId: body.video_id, commentId: body.comment_id, content: body.content }));
     if (body.action === 'delete') return NextResponse.json(await deleteComment({ commentId: body.comment_id }));
     if (body.action === 'pin') return NextResponse.json(await pinComment({ commentId: body.comment_id, isPinned: body.is_pinned ?? true }));
