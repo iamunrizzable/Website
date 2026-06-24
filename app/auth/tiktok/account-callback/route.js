@@ -26,7 +26,23 @@ export async function GET(request) {
     if (tokenData.error) {
       throw new Error(tokenData.error_description ?? tokenData.error);
     }
-    const stored = await storeTikTokAccountToken(tokenData);
+
+    // Initial store so we have an access_token to make the next call
+    let stored = await storeTikTokAccountToken(tokenData);
+
+    // Resolve the real numeric business_id — Login Kit open_id is rejected by action endpoints
+    try {
+      const bizRes = await fetch(
+        `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(stored.business_id)}`,
+        { headers: { 'Access-Token': stored.access_token, 'Content-Type': 'application/json' } }
+      );
+      const bizJson = await bizRes.json();
+      if (bizJson.code === 0 && bizJson.data?.business_id) {
+        stored = await storeTikTokAccountToken({ ...tokenData, business_id: bizJson.data.business_id });
+      }
+    } catch (e) {
+      console.error('[account-callback] business/get failed:', e.message);
+    }
 
     const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
     response.cookies.delete('tiktok_account_state');
