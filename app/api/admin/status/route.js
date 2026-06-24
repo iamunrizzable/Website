@@ -25,6 +25,8 @@ export async function GET(request) {
     account_stored_at: accountTokens?.stored_at ?? null,
     account_expires_at: accountTokens?.expires_at ?? null,
     account_open_id: accountTokens?.open_id ?? null,
+    account_scope: accountTokens?.scope ?? null,
+    account_business_id: accountTokens?.business_id ?? null,
     redis_configured: isRedisConfigured(),
     events,
   });

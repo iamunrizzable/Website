@@ -198,6 +198,8 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               <span style={{ fontSize: 13, color: '#e2e8f0' }}>TikTok Account Token</span>
               {!accountEnabled && <span style={{ fontSize: 12, color: '#64748b', marginLeft: 8 }}>account info &amp; videos</span>}
               {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
+              {accountEnabled && status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: {status.account_scope}</div>}
+              {accountEnabled && !status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: none stored</div>}
             </div>
           </div>
           <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
