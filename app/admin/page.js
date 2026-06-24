@@ -48,7 +48,8 @@ export default function AdminPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('business_connected')) setMsg('TikTok Business API connected successfully!');
+    if (params.get('business_connected')) setMsg('TikTok Business API (advertiser) connected successfully!');
+    if (params.get('account_connected')) setMsg('TikTok Account Token connected successfully!');
     if (params.get('error')) setMsg('Error: ' + params.get('error'));
     const saved = localStorage.getItem('admin_key');
     if (saved) {
@@ -63,6 +64,7 @@ export default function AdminPage() {
   }, [fetchStatus]);
 
   const enabled = !!status?.business_connected;
+  const accountEnabled = !!status?.account_connected;
 
   return (
     <>
@@ -95,28 +97,56 @@ export default function AdminPage() {
           {/* Business API Connection */}
           <div style={s.card}>
             <h2 style={s.h2}>Business API</h2>
-            {enabled ? (
-              <p style={{ marginBottom: 12 }}>
-                <span style={s.badge('#10b981')}>CONNECTED</span>
-                {status.business_advertiser_id && (
-                  <span style={{ fontSize: 12, color: '#64748b', marginLeft: 10 }}>
-                    Advertiser ID: {status.business_advertiser_id}
-                  </span>
-                )}
-                {status.business_expires_at && (
-                  <span style={{ fontSize: 12, color: Date.now() > status.business_expires_at - 3600000 ? '#f59e0b' : '#475569', marginLeft: 10 }}>
-                    · Expires {new Date(status.business_expires_at).toLocaleString()}
-                  </span>
-                )}
-              </p>
-            ) : (
-              <p style={{ color: '#f59e0b', marginBottom: 12, fontSize: 14 }}>Not connected to Business API.</p>
-            )}
-            <button style={s.btn} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
-              {enabled ? 'Reconnect Business API' : 'Connect Business API'}
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+              {/* Advertiser token */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 8, padding: '10px 14px' }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', marginBottom: 2 }}>Advertiser Token</div>
+                  <div style={{ fontSize: 12, color: '#64748b' }}>
+                    {enabled ? (
+                      <>
+                        <span style={s.badge('#10b981')}>CONNECTED</span>
+                        {status.business_advertiser_id && <span style={{ marginLeft: 8 }}>ID: {status.business_advertiser_id}</span>}
+                        {status.business_expires_at && (
+                          <span style={{ marginLeft: 8, color: Date.now() > status.business_expires_at - 3600000 ? '#f59e0b' : '#475569' }}>
+                            · Expires {new Date(status.business_expires_at).toLocaleString()}
+                          </span>
+                        )}
+                      </>
+                    ) : 'Not connected — needed for comment management and automated rules'}
+                  </div>
+                </div>
+                <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
+                  {enabled ? 'Reconnect' : 'Connect'}
+                </button>
+              </div>
+              {/* TikTok account token */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 8, padding: '10px 14px' }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', marginBottom: 2 }}>TikTok Account Token</div>
+                  <div style={{ fontSize: 12, color: '#64748b' }}>
+                    {accountEnabled ? (
+                      <>
+                        <span style={s.badge('#10b981')}>CONNECTED</span>
+                        {status.account_open_id && <span style={{ marginLeft: 8 }}>Open ID: {status.account_open_id}</span>}
+                        {status.account_expires_at && (
+                          <span style={{ marginLeft: 8, color: Date.now() > status.account_expires_at - 3600000 ? '#f59e0b' : '#475569' }}>
+                            · Expires {new Date(status.account_expires_at).toLocaleString()}
+                          </span>
+                        )}
+                      </>
+                    ) : 'Not connected — needed for account info and video list'}
+                  </div>
+                </div>
+                <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
+                  {accountEnabled ? 'Reconnect' : 'Connect'}
+                </button>
+              </div>
+            </div>
           </div>
 
+          <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
+          <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentsPanel adminKey={adminKey} enabled={enabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={enabled} />
           <OptimizerRulesPanel adminKey={adminKey} enabled={enabled} />
@@ -154,6 +184,101 @@ export default function AdminPage() {
         </div>
       </div>
     </>
+  );
+}
+
+// ── Account Info ─────────────────────────────────────────────────────────────
+
+function AccountPanel({ adminKey, enabled }) {
+  const [account, setAccount] = useState(undefined);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!adminKey || !enabled) return;
+    fetch('/api/business/account', { headers: { 'x-admin-key': adminKey } })
+      .then(r => r.json())
+      .then(d => {
+        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setAccount(null); }
+        else setAccount(d.data ?? d);
+      })
+      .catch(e => { setError(e.message); setAccount(null); });
+  }, [adminKey, enabled]);
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Account Info</h2>
+      {!enabled ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to view account info.</p>
+      ) : account === undefined ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : error ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+      ) : (
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+          {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
+          <div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
+            <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16 }}>
+              {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
+              {account?.likes_count != null && <span>{account.likes_count.toLocaleString()} likes</span>}
+              {account?.video_views_count != null && <span>{account.video_views_count.toLocaleString()} views</span>}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Videos ────────────────────────────────────────────────────────────────────
+
+function VideosPanel({ adminKey, enabled }) {
+  const [videos, setVideos] = useState(undefined);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!adminKey || !enabled) return;
+    fetch('/api/business/videos', { headers: { 'x-admin-key': adminKey } })
+      .then(r => r.json())
+      .then(d => {
+        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setVideos([]); }
+        else setVideos(d.data?.videos ?? d.videos ?? []);
+      })
+      .catch(e => { setError(e.message); setVideos([]); });
+  }, [adminKey, enabled]);
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Videos</h2>
+      {!enabled ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to view videos.</p>
+      ) : videos === undefined ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : error ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+      ) : videos.length === 0 ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
+      ) : (
+        videos.map((v, i) => (
+          <div key={v.video_id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
+            {v.thumbnail_url && <img src={v.thumbnail_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {v.title || v.video_id}
+              </div>
+              <div style={{ fontSize: 12, color: '#64748b' }}>
+                {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
+                {v.statistics?.play_count != null && ` · ${v.statistics.play_count.toLocaleString()} plays`}
+                {v.statistics?.comment_count != null && ` · ${v.statistics.comment_count.toLocaleString()} comments`}
+              </div>
+              <div style={{ marginTop: 6 }}>
+                <span style={s.badge(v.status === 'POSTED' ? '#10b981' : '#94a3b8')}>{v.status ?? 'UNKNOWN'}</span>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
 
