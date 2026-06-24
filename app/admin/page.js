@@ -51,6 +51,9 @@ export default function AdminPage() {
     if (params.get('business_connected')) setMsg('TikTok Business API (advertiser) connected successfully!');
     if (params.get('account_connected')) setMsg('TikTok Account Token connected successfully!');
     if (params.get('error')) setMsg('Error: ' + params.get('error'));
+    if (params.get('business_connected') || params.get('account_connected')) {
+      setTimeout(() => setMsg(''), 4000);
+    }
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
@@ -261,6 +264,7 @@ function AccountPanel({ adminKey, enabled }) {
 function VideosPanel({ adminKey, enabled }) {
   const [videos, setVideos] = useState(undefined);
   const [error, setError] = useState('');
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     if (!adminKey || !enabled) return;
@@ -282,8 +286,14 @@ function VideosPanel({ adminKey, enabled }) {
 
   return (
     <div style={s.card}>
-      <h2 style={s.h2}>Videos</h2>
-      {!enabled ? (
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+        <h2 style={{ ...s.h2, marginBottom: 0 }}>Videos</h2>
+        <button
+          onClick={() => setCollapsed(c => !c)}
+          style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}
+        >{collapsed ? 'Show' : 'Hide'}</button>
+      </div>
+      {!collapsed && (!enabled ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to view videos.</p>
       ) : videos === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
@@ -308,7 +318,7 @@ function VideosPanel({ adminKey, enabled }) {
             </div>
           </div>
         ))
-      )}
+      ))}
     </div>
   );
 }
