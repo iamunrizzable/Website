@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import crypto from 'crypto';
 import { getTikTokAccountAuthUrl } from '@/lib/tiktok/business-oauth';
+import { generateState } from '@/lib/oauth-state';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -9,16 +9,7 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const state = crypto.randomBytes(16).toString('hex');
+  const state = generateState();
   const url = getTikTokAccountAuthUrl(state);
-
-  const response = NextResponse.redirect(url);
-  response.cookies.set('tiktok_account_state', state, {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    maxAge: 600,
-    path: '/',
-  });
-  return response;
+  return NextResponse.redirect(url);
 }
