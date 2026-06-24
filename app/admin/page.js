@@ -117,10 +117,7 @@ export default function AdminPage() {
             </button>
           </div>
 
-          <AccountPanel adminKey={adminKey} enabled={enabled} />
-          <VideosPanel adminKey={adminKey} enabled={enabled} />
-          <MentionsPanel adminKey={adminKey} enabled={enabled} />
-          <TrendingPanel adminKey={adminKey} enabled={enabled} />
+          <CommentsPanel adminKey={adminKey} enabled={enabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={enabled} />
           <OptimizerRulesPanel adminKey={adminKey} enabled={enabled} />
           <ApplicationsPanel />
@@ -160,71 +157,11 @@ export default function AdminPage() {
   );
 }
 
-// ── Account Info ──────────────────────────────────────────────────────────────
+// ── Comment Management ────────────────────────────────────────────────────────
 
-function AccountPanel({ adminKey, enabled }) {
-  const [account, setAccount] = useState(undefined); // undefined = loading, null = loaded/empty
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    if (!adminKey || !enabled) return;
-    setAccount(undefined);
-    setError('');
-    fetch('/api/business/account', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json())
-      .then(d => {
-        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setAccount(null); }
-        else setAccount(d.data ?? null);
-      })
-      .catch(e => { setError(e.message); setAccount(null); });
-  }, [adminKey, enabled]);
-
-  return (
-    <div style={s.card}>
-      <h2 style={s.h2}>Account Info</h2>
-      {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API above.</p>
-      ) : account === undefined ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
-      ) : error ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
-      ) : !account ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>No account data returned.</p>
-      ) : (
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-            {account.profile_image && (
-              <img src={account.profile_image} alt="" style={{ width: 52, height: 52, borderRadius: '50%', border: '2px solid #a855f7' }} />
-            )}
-            <div style={{ fontSize: 18, fontWeight: 700, color: '#e2e8f0' }}>{account.display_name}</div>
-          </div>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            {account.followers_count != null && <StatBox label="Followers" value={account.followers_count} />}
-            {account.likes_count != null && <StatBox label="Likes" value={account.likes_count} />}
-            {account.video_views_count != null && <StatBox label="Video Views" value={account.video_views_count} />}
-            {account.comment_count != null && <StatBox label="Comments" value={account.comment_count} />}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function StatBox({ label, value }) {
-  return (
-    <div style={{ background: '#0f172a', borderRadius: 8, padding: '10px 18px', textAlign: 'center', flex: '1 1 80px', minWidth: 80 }}>
-      <div style={{ fontSize: 20, fontWeight: 700, color: '#d4a5ff' }}>{Number(value).toLocaleString()}</div>
-      <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>{label}</div>
-    </div>
-  );
-}
-
-// ── Videos & Comment Management ───────────────────────────────────────────────
-
-function VideosPanel({ adminKey, enabled }) {
-  const [videos, setVideos] = useState(undefined); // undefined = loading
-  const [videosError, setVideosError] = useState('');
-  const [selectedVideo, setSelectedVideo] = useState(null);
+function CommentsPanel({ adminKey, enabled }) {
+  const [videoId, setVideoId] = useState('');
+  const [activeVideoId, setActiveVideoId] = useState('');
   const [comments, setComments] = useState(null);
   const [commentsError, setCommentsError] = useState('');
   const [commentsLoading, setCommentsLoading] = useState(false);
@@ -232,28 +169,23 @@ function VideosPanel({ adminKey, enabled }) {
   const [replyTo, setReplyTo] = useState(null);
   const [replyText, setReplyText] = useState('');
 
-  useEffect(() => {
-    if (!adminKey || !enabled) return;
-    setVideos(undefined);
-    setVideosError('');
-    fetch('/api/business/videos', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json())
-      .then(d => {
-        if (d.code && d.code !== 0) { setVideosError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setVideos([]); }
-        else setVideos(d.data?.videos ?? d.videos ?? []);
-      })
-      .catch(e => { setVideosError(e.message); setVideos([]); });
-  }, [adminKey, enabled]);
+  function extractVideoId(input) {
+    // Accept raw ID or TikTok URL (e.g. tiktok.com/@user/video/7123456789)
+    const match = input.match(/\/video\/(\d+)/);
+    return match ? match[1] : input.trim();
+  }
 
-  function loadComments(video) {
-    setSelectedVideo(video);
+  function loadComments(vid) {
+    const id = extractVideoId(vid || videoId);
+    if (!id) return;
+    setActiveVideoId(id);
     setComments(null);
     setCommentsError('');
     setActionMsg('');
     setReplyTo(null);
     setReplyText('');
     setCommentsLoading(true);
-    fetch(`/api/business/comments?video_id=${encodeURIComponent(video.video_id)}`, { headers: { 'x-admin-key': adminKey } })
+    fetch(`/api/business/comments?video_id=${encodeURIComponent(id)}`, { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setCommentsError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setComments([]); }
@@ -265,7 +197,7 @@ function VideosPanel({ adminKey, enabled }) {
 
   async function doAction(action, extra = {}) {
     setActionMsg('');
-    const body = { action, video_id: selectedVideo?.video_id, ...extra };
+    const body = { action, video_id: activeVideoId, ...extra };
     try {
       const res = await fetch('/api/business/comments', {
         method: 'POST',
@@ -277,7 +209,7 @@ function VideosPanel({ adminKey, enabled }) {
         setActionMsg('Error: ' + (data.message ?? JSON.stringify(data)));
       } else {
         setActionMsg('Done.');
-        if (selectedVideo) loadComments(selectedVideo);
+        loadComments(activeVideoId);
       }
     } catch (e) {
       setActionMsg('Error: ' + e.message);
@@ -286,313 +218,86 @@ function VideosPanel({ adminKey, enabled }) {
 
   return (
     <div style={s.card}>
-      <h2 style={s.h2}>Videos & Comments</h2>
+      <h2 style={s.h2}>Comment Management</h2>
       {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage videos and comments.</p>
-      ) : videos === undefined ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Loading videos…</p>
-      ) : videosError ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{videosError}</p>
-      ) : videos.length === 0 ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage comments.</p>
       ) : (
         <>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: selectedVideo ? 20 : 0 }}>
-            {videos.map(v => (
-              <div
-                key={v.video_id}
-                onClick={() => loadComments(v)}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 8, cursor: 'pointer',
-                  background: selectedVideo?.video_id === v.video_id ? '#1a2744' : '#0f172a',
-                  border: `1px solid ${selectedVideo?.video_id === v.video_id ? '#a855f7' : 'transparent'}`,
-                }}
-              >
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 13, color: '#e2e8f0', fontWeight: 500 }}>
-                    {v.title || `Video ${String(v.video_id).slice(-8)}`}
-                  </div>
-                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
-                    {v.statistics?.comment_count != null && `${v.statistics.comment_count} comments`}
-                    {v.statistics?.play_count != null && ` · ${Number(v.statistics.play_count).toLocaleString()} plays`}
-                    {v.create_time && ` · ${new Date(v.create_time * 1000).toLocaleDateString()}`}
-                  </div>
-                </div>
-                <span style={{ color: '#64748b', fontSize: 11 }}>▶ Load</span>
-              </div>
-            ))}
-          </div>
-
-          {selectedVideo && (
-            <div style={{ borderTop: '1px solid #334155', paddingTop: 16 }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8', marginBottom: 12 }}>
-                Comments — {selectedVideo.title || `Video ${String(selectedVideo.video_id).slice(-8)}`}
-              </div>
-              {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
-              {commentsLoading ? (
-                <p style={{ fontSize: 13, color: '#475569' }}>Loading comments…</p>
-              ) : commentsError ? (
-                <p style={{ fontSize: 13, color: '#f59e0b' }}>{commentsError}</p>
-              ) : !comments || comments.length === 0 ? (
-                <p style={{ fontSize: 13, color: '#475569' }}>No comments found.</p>
-              ) : (
-                comments.map(c => (
-                  <div key={c.comment_id} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 12, marginBottom: 12 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>@{c.username}</span>
-                        {c.status === 'HIDDEN' && <span style={s.badge('#f59e0b')}>HIDDEN</span>}
-                        {c.is_pinned && <span style={s.badge('#a855f7')}>PINNED</span>}
-                      </div>
-                      <span style={{ fontSize: 11, color: '#475569' }}>
-                        {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
-                        {c.like_count ? ` · ♥ ${c.like_count}` : ''}
-                      </span>
-                    </div>
-                    <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 8px' }}>{c.text}</p>
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      <button
-                        style={s.btnSm}
-                        onClick={() => doAction(c.status === 'HIDDEN' ? 'show' : 'hide', { comment_ids: [c.comment_id] })}
-                      >
-                        {c.status === 'HIDDEN' ? 'Show' : 'Hide'}
-                      </button>
-                      <button style={s.btnDanger} onClick={() => doAction('delete', { comment_id: c.comment_id })}>Delete</button>
-                      <button style={s.btnSm} onClick={() => doAction('pin', { comment_id: c.comment_id, is_pinned: !c.is_pinned })}>
-                        {c.is_pinned ? 'Unpin' : 'Pin'}
-                      </button>
-                      <button style={s.btnSm} onClick={() => doAction('like', { comment_id: c.comment_id, is_liked: true })}>♥ Like</button>
-                      <button
-                        style={{ ...s.btnSm, background: replyTo === c.comment_id ? '#475569' : '#334155' }}
-                        onClick={() => { setReplyTo(replyTo === c.comment_id ? null : c.comment_id); setReplyText(''); }}
-                      >
-                        {replyTo === c.comment_id ? 'Cancel' : '↩ Reply'}
-                      </button>
-                    </div>
-                    {replyTo === c.comment_id && (
-                      <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
-                        <input
-                          style={{ ...s.input, flex: 1, padding: '8px 12px', fontSize: 13 }}
-                          placeholder="Write a reply…"
-                          value={replyText}
-                          onChange={e => setReplyText(e.target.value)}
-                          onKeyDown={e => {
-                            if (e.key === 'Enter' && replyText.trim()) {
-                              doAction('reply', { comment_id: c.comment_id, content: replyText });
-                              setReplyText(''); setReplyTo(null);
-                            }
-                          }}
-                        />
-                        <button
-                          style={{ ...s.btn, padding: '8px 14px', fontSize: 13 }}
-                          onClick={() => {
-                            if (!replyText.trim()) return;
-                            doAction('reply', { comment_id: c.comment_id, content: replyText });
-                            setReplyText(''); setReplyTo(null);
-                          }}
-                        >Send</button>
-                      </div>
-                    )}
-                  </div>
-                ))
-              )}
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-// ── Mentions ──────────────────────────────────────────────────────────────────
-
-function MentionsPanel({ adminKey, enabled }) {
-  const [tab, setTab] = useState('videos');
-  const [videos, setVideos] = useState(null);
-  const [comments, setComments] = useState(null);
-  const [hashtags, setHashtags] = useState(null);
-  const [newHashtag, setNewHashtag] = useState('');
-  const [hashMsg, setHashMsg] = useState('');
-
-  useEffect(() => {
-    if (!adminKey || !enabled) return;
-    fetch('/api/business/mentions?type=videos', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json()).then(d => setVideos(d.data?.mention_videos ?? d.videos ?? [])).catch(() => setVideos([]));
-    fetch('/api/business/mentions?type=comments', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json()).then(d => setComments(d.data?.mention_comments ?? d.comments ?? [])).catch(() => setComments([]));
-    fetch('/api/business/mentions?type=tracked_hashtags', { headers: { 'x-admin-key': adminKey } })
-      .then(r => r.json()).then(d => setHashtags(d.data?.hashtags ?? d.hashtags ?? [])).catch(() => setHashtags([]));
-  }, [adminKey, enabled]);
-
-  async function handleHashtag(action, hashtag) {
-    setHashMsg('');
-    const res = await fetch('/api/business/mentions', {
-      method: 'POST',
-      headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action, hashtag }),
-    });
-    const data = await res.json();
-    if (data.code && data.code !== 0) {
-      setHashMsg('Error: ' + (data.message ?? JSON.stringify(data)));
-    } else {
-      setHashMsg('Done.');
-      fetch('/api/business/mentions?type=tracked_hashtags', { headers: { 'x-admin-key': adminKey } })
-        .then(r => r.json()).then(d => setHashtags(d.data?.hashtags ?? d.hashtags ?? []));
-    }
-  }
-
-  const MentionVideo = ({ v }) => (
-    <div style={{ background: '#0f172a', borderRadius: 8, padding: '10px 14px', marginBottom: 8 }}>
-      <div style={{ fontSize: 13, color: '#e2e8f0', fontWeight: 500 }}>{v.title || v.video_id}</div>
-      <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>@{v.username} · {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}</div>
-    </div>
-  );
-
-  const MentionComment = ({ c }) => (
-    <div style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10 }}>
-      <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>@{c.username}</span>
-      <span style={{ fontSize: 11, color: '#64748b', marginLeft: 10 }}>{c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}</span>
-      <p style={{ fontSize: 13, color: '#cbd5e1', margin: '4px 0 0' }}>{c.text}</p>
-    </div>
-  );
-
-  return (
-    <div style={s.card}>
-      <h2 style={s.h2}>Mentions</h2>
-      {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to monitor mentions.</p>
-      ) : (
-        <>
-          <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>
-            <button style={s.tab(tab === 'videos')} onClick={() => setTab('videos')}>Videos</button>
-            <button style={s.tab(tab === 'comments')} onClick={() => setTab('comments')}>Comments</button>
-            <button style={s.tab(tab === 'hashtags')} onClick={() => setTab('hashtags')}>Hashtags</button>
-          </div>
-
-          {tab === 'videos' && (
-            videos === null ? <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p> :
-            videos.length === 0 ? <p style={{ fontSize: 13, color: '#475569' }}>No mention videos found.</p> :
-            videos.map((v, i) => <MentionVideo key={i} v={v} />)
-          )}
-
-          {tab === 'comments' && (
-            comments === null ? <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p> :
-            comments.length === 0 ? <p style={{ fontSize: 13, color: '#475569' }}>No mention comments found.</p> :
-            comments.map((c, i) => <MentionComment key={i} c={c} />)
-          )}
-
-          {tab === 'hashtags' && (
-            <>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-                <input
-                  style={{ ...s.input, flex: 1 }}
-                  placeholder="Add hashtag to track (e.g. tjbmanagement)"
-                  value={newHashtag}
-                  onChange={e => setNewHashtag(e.target.value)}
-                />
-                <button
-                  style={s.btn}
-                  onClick={async () => {
-                    if (!newHashtag.trim()) return;
-                    await handleHashtag('add_hashtag', newHashtag.trim());
-                    setNewHashtag('');
-                  }}
-                >Track</button>
-              </div>
-              {hashMsg && <div style={s.inlineMsg(!hashMsg.startsWith('Error'))}>{hashMsg}</div>}
-              {hashtags === null ? <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p> :
-               hashtags.length === 0 ? <p style={{ fontSize: 13, color: '#475569' }}>No tracked hashtags yet.</p> :
-               hashtags.map((h, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid #334155' }}>
-                  <span style={{ fontSize: 14, color: '#e2e8f0' }}>#{h.hashtag ?? h}</span>
-                  <button style={s.btnDanger} onClick={() => handleHashtag('remove_hashtag', h.hashtag ?? h)}>Remove</button>
-                </div>
-               ))}
-            </>
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-// ── Trending & Discovery ──────────────────────────────────────────────────────
-
-function TrendingPanel({ adminKey, enabled }) {
-  const [mode, setMode] = useState('trending');
-  const [keyword, setKeyword] = useState('');
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  async function search() {
-    setLoading(true);
-    setResults(null);
-    try {
-      const params = new URLSearchParams({ type: mode });
-      if (keyword.trim()) params.set('keyword', keyword.trim());
-      const res = await fetch(`/api/business/trending?${params}`, { headers: { 'x-admin-key': adminKey } });
-      setResults(await res.json());
-    } catch (e) {
-      setResults({ error: e.message });
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const items = results?.data?.videos ?? results?.data?.keywords ?? results?.data?.hashtags ?? results?.data?.benchmarks ?? [];
-
-  return (
-    <div style={s.card}>
-      <h2 style={s.h2}>Trending & Discovery</h2>
-      {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to explore trends.</p>
-      ) : (
-        <>
-          <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
-            {['trending', 'keywords', 'hashtags', 'benchmark'].map(m => (
-              <button key={m} style={s.tab(mode === m)} onClick={() => { setMode(m); setResults(null); }}>
-                {m.charAt(0).toUpperCase() + m.slice(1)}
-              </button>
-            ))}
-          </div>
-          {mode !== 'benchmark' && (
-            <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-              <input
-                style={{ ...s.input, flex: 1 }}
-                placeholder={mode === 'hashtags' ? 'Keyword for hashtag suggestions…' : 'Search keyword (optional)…'}
-                value={keyword}
-                onChange={e => setKeyword(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && search()}
-              />
-              <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={search} disabled={loading}>
-                {loading ? 'Loading…' : 'Search'}
-              </button>
-            </div>
-          )}
-          {mode === 'benchmark' && (
-            <button style={{ ...s.btn, marginBottom: 14 }} onClick={search} disabled={loading}>
-              {loading ? 'Loading…' : 'Load Benchmark'}
+          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>
+            Paste a TikTok video ID or URL to load its comments.
+          </p>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+            <input
+              style={{ ...s.input, flex: 1 }}
+              placeholder="Video ID or TikTok URL…"
+              value={videoId}
+              onChange={e => setVideoId(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && loadComments()}
+            />
+            <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={() => loadComments()} disabled={!videoId.trim() || commentsLoading}>
+              {commentsLoading ? 'Loading…' : 'Load'}
             </button>
-          )}
-          {results?.error && <p style={{ color: '#ef4444', fontSize: 13 }}>{results.error}</p>}
-          {items.length > 0 && (
-            <div>
-              {items.map((item, i) => (
-                <div key={i} style={{ background: '#0f172a', borderRadius: 8, padding: '10px 14px', marginBottom: 8 }}>
-                  {item.title && <div style={{ fontSize: 13, color: '#e2e8f0', fontWeight: 500 }}>{item.title}</div>}
-                  {item.keyword && <div style={{ fontSize: 13, color: '#d4a5ff', fontWeight: 500 }}>#{item.keyword}</div>}
-                  {item.hashtag && <div style={{ fontSize: 13, color: '#d4a5ff', fontWeight: 500 }}>#{item.hashtag}</div>}
-                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 3 }}>
-                    {item.play_count != null && `${Number(item.play_count).toLocaleString()} plays`}
-                    {item.video_count != null && ` · ${Number(item.video_count).toLocaleString()} videos`}
-                    {item.search_volume != null && ` · vol: ${Number(item.search_volume).toLocaleString()}`}
+          </div>
+
+          {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
+
+          {commentsError ? (
+            <p style={{ fontSize: 13, color: '#f59e0b' }}>{commentsError}</p>
+          ) : comments === null ? null : comments.length === 0 ? (
+            <p style={{ fontSize: 13, color: '#475569' }}>No comments found.</p>
+          ) : (
+            comments.map(c => (
+              <div key={c.comment_id} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 12, marginBottom: 12 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>@{c.username}</span>
+                    {c.status === 'HIDDEN' && <span style={s.badge('#f59e0b')}>HIDDEN</span>}
                   </div>
+                  <span style={{ fontSize: 11, color: '#475569' }}>
+                    {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
+                    {c.like_count ? ` · ♥ ${c.like_count}` : ''}
+                  </span>
                 </div>
-              ))}
-            </div>
-          )}
-          {results && items.length === 0 && !results.error && (
-            <p style={{ fontSize: 13, color: '#475569' }}>No results found.</p>
+                <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 8px' }}>{c.text}</p>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  <button style={s.btnSm} onClick={() => doAction(c.status === 'HIDDEN' ? 'show' : 'hide', { comment_ids: [c.comment_id] })}>
+                    {c.status === 'HIDDEN' ? 'Show' : 'Hide'}
+                  </button>
+                  <button style={s.btnDanger} onClick={() => doAction('delete', { comment_id: c.comment_id })}>Delete</button>
+                  <button style={s.btnSm} onClick={() => doAction('pin', { comment_id: c.comment_id, is_pinned: true })}>Pin</button>
+                  <button
+                    style={{ ...s.btnSm, background: replyTo === c.comment_id ? '#475569' : '#334155' }}
+                    onClick={() => { setReplyTo(replyTo === c.comment_id ? null : c.comment_id); setReplyText(''); }}
+                  >
+                    {replyTo === c.comment_id ? 'Cancel' : '↩ Reply'}
+                  </button>
+                </div>
+                {replyTo === c.comment_id && (
+                  <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
+                    <input
+                      style={{ ...s.input, flex: 1, padding: '8px 12px', fontSize: 13 }}
+                      placeholder="Write a reply…"
+                      value={replyText}
+                      onChange={e => setReplyText(e.target.value)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' && replyText.trim()) {
+                          doAction('reply', { comment_id: c.comment_id, content: replyText });
+                          setReplyText(''); setReplyTo(null);
+                        }
+                      }}
+                    />
+                    <button
+                      style={{ ...s.btn, padding: '8px 14px', fontSize: 13 }}
+                      onClick={() => {
+                        if (!replyText.trim()) return;
+                        doAction('reply', { comment_id: c.comment_id, content: replyText });
+                        setReplyText(''); setReplyTo(null);
+                      }}
+                    >Send</button>
+                  </div>
+                )}
+              </div>
+            ))
           )}
         </>
       )}
