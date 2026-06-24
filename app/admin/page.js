@@ -205,7 +205,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               {accountEnabled && !status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: none stored</div>}
             </div>
           </div>
-          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-business/login?key=${encodeURIComponent(adminKey)}`; }}>
+          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
             {accountEnabled ? 'Reconnect' : 'Connect'}
           </button>
         </div>
