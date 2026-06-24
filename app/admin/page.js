@@ -224,7 +224,9 @@ function AccountPanel({ adminKey, enabled }) {
     fetch('/api/business/account', { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
       .then(d => {
-        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setAccount(null); }
+        const errCode = d.error?.code;
+        const hasError = (d.code && d.code !== 0) || (errCode && errCode !== 'ok' && errCode !== 'success');
+        if (hasError) { setError(`API error ${d.code ?? errCode}: ${d.message ?? d.error?.message ?? 'unknown'}`); setAccount(null); }
         else setAccount(d.data ?? d);
       })
       .catch(e => { setError(e.message); setAccount(null); });
@@ -267,8 +269,15 @@ function VideosPanel({ adminKey, enabled }) {
     fetch('/api/business/videos', { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
       .then(d => {
-        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setVideos([]); }
-        else setVideos(d.data?.videos ?? d.videos ?? d ?? []);
+        // Open Platform errors: d.error.code !== 'ok'; Business API errors: d.code !== 0
+        const errCode = d.error?.code;
+        const hasError = (d.code && d.code !== 0) || (errCode && errCode !== 'ok' && errCode !== 'success');
+        if (hasError) {
+          setError(`API error ${d.code ?? errCode}: ${d.message ?? d.error?.message ?? 'unknown'}`);
+          setVideos([]);
+        } else {
+          setVideos(d.data?.videos ?? d.videos ?? []);
+        }
       })
       .catch(e => { setError(e.message); setVideos([]); });
   }, [adminKey, enabled]);
