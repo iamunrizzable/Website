@@ -4,7 +4,8 @@ import { storeTikTokAccountToken } from '@/lib/tokens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const authCode = searchParams.get('auth_code');
+  // Login Kit flow returns 'code'; Business portal flow returns 'auth_code'
+  const code = searchParams.get('code') ?? searchParams.get('auth_code');
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
@@ -17,12 +18,16 @@ export async function GET(request) {
     return NextResponse.json({ error: 'State mismatch — possible CSRF' }, { status: 400 });
   }
 
-  if (!authCode) {
-    return NextResponse.json({ error: 'Missing auth_code' }, { status: 400 });
+  if (!code) {
+    return NextResponse.json({ error: 'Missing code' }, { status: 400 });
   }
 
   try {
-    const tokenData = await exchangeTikTokAccountCode(authCode);
+    const tokenData = await exchangeTikTokAccountCode(code);
+    // Login Kit wraps errors in tokenData.error; Business API uses tokenData.code
+    if (tokenData.error) {
+      throw new Error(tokenData.error_description ?? tokenData.error);
+    }
     if (tokenData.code && tokenData.code !== 0) {
       throw new Error(tokenData.message ?? 'Account token exchange failed');
     }
