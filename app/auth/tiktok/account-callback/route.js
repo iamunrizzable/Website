@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
-import { exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
+import { exchangeTikTokAccountCode, exchangeTikTokBusinessAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  // Login Kit flow returns 'code'; Business portal flow returns 'auth_code'
-  const code = searchParams.get('code') ?? searchParams.get('auth_code');
+  // Business Portal flow returns 'auth_code'; Login Kit flow returns 'code'
+  const authCode = searchParams.get('auth_code');
+  const loginCode = searchParams.get('code');
+  const code = loginCode ?? authCode;
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
@@ -23,8 +25,12 @@ export async function GET(request) {
   }
 
   try {
-    const tokenData = await exchangeTikTokAccountCode(code);
-    // Login Kit wraps errors in tokenData.error; Business API uses tokenData.code
+    // Business Portal returns auth_code → use Business API exchange endpoint
+    // Login Kit returns code → use Open Platform exchange endpoint
+    const tokenData = authCode
+      ? await exchangeTikTokBusinessAccountCode(authCode)
+      : await exchangeTikTokAccountCode(loginCode);
+
     if (tokenData.error) {
       throw new Error(tokenData.error_description ?? tokenData.error);
     }
