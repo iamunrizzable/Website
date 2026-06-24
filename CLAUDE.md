@@ -89,6 +89,11 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 - Stored in `acct_token` cookie (30-day)
 - Used for: account info, videos, comments, mentions, trending, discovery
 
+## Known Account Identifiers
+- TikTok Business Center ID (numeric): `7632045808657368084` — env var `TIKTOK_BUSINESS_ID`
+- Used as `business_id` for all comment action endpoints (hide/delete/pin/reply)
+- Login Kit `open_id` (`-000yp9tW9MisgetpAczsWTyM_Z1VHZX70Aq`) works for READ only
+
 ## Token Persistence
 - No Upstash Redis configured — tokens use in-memory + cookie fallback
 - Advertiser token: `biz_token` cookie (30-day HttpOnly)
