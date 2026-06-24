@@ -94,56 +94,13 @@ export default function AdminPage() {
 
           {msg && <div style={s.msg}>{msg}</div>}
 
-          {/* Business API Connection */}
-          <div style={s.card}>
-            <h2 style={s.h2}>Business API</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
-              {/* Advertiser token */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 8, padding: '10px 14px' }}>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', marginBottom: 2 }}>Advertiser Token</div>
-                  <div style={{ fontSize: 12, color: '#64748b' }}>
-                    {enabled ? (
-                      <>
-                        <span style={s.badge('#10b981')}>CONNECTED</span>
-                        {status.business_advertiser_id && <span style={{ marginLeft: 8 }}>ID: {status.business_advertiser_id}</span>}
-                        {status.business_expires_at && (
-                          <span style={{ marginLeft: 8, color: Date.now() > status.business_expires_at - 3600000 ? '#f59e0b' : '#475569' }}>
-                            · Expires {new Date(status.business_expires_at).toLocaleString()}
-                          </span>
-                        )}
-                      </>
-                    ) : 'Not connected — needed for comment management and automated rules'}
-                  </div>
-                </div>
-                <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
-                  {enabled ? 'Reconnect' : 'Connect'}
-                </button>
-              </div>
-              {/* TikTok account token */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 8, padding: '10px 14px' }}>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', marginBottom: 2 }}>TikTok Account Token</div>
-                  <div style={{ fontSize: 12, color: '#64748b' }}>
-                    {accountEnabled ? (
-                      <>
-                        <span style={s.badge('#10b981')}>CONNECTED</span>
-                        {status.account_open_id && <span style={{ marginLeft: 8 }}>Open ID: {status.account_open_id}</span>}
-                        {status.account_expires_at && (
-                          <span style={{ marginLeft: 8, color: Date.now() > status.account_expires_at - 3600000 ? '#f59e0b' : '#475569' }}>
-                            · Expires {new Date(status.account_expires_at).toLocaleString()}
-                          </span>
-                        )}
-                      </>
-                    ) : 'Not connected — needed for account info and video list'}
-                  </div>
-                </div>
-                <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
-                  {accountEnabled ? 'Reconnect' : 'Connect'}
-                </button>
-              </div>
-            </div>
-          </div>
+          {/* Connection status — compact when connected, expanded when action needed */}
+          <ConnectionCard
+            adminKey={adminKey}
+            status={status}
+            enabled={enabled}
+            accountEnabled={accountEnabled}
+          />
 
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
@@ -184,6 +141,75 @@ export default function AdminPage() {
         </div>
       </div>
     </>
+  );
+}
+
+// ── Connection Card ───────────────────────────────────────────────────────────
+
+function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
+  const [expanded, setExpanded] = useState(false);
+
+  const bothOk = enabled && accountEnabled;
+  const advExpiring = status?.business_expires_at && Date.now() > status.business_expires_at - 3600000;
+  const acctExpiring = status?.account_expires_at && Date.now() > status.account_expires_at - 3600000;
+  const needsAttention = !enabled || !accountEnabled || advExpiring || acctExpiring;
+
+  if (bothOk && !expanded) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 10, padding: '10px 16px', marginBottom: 20, border: '1px solid #1e293b' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
+          <span style={{ fontSize: 13, color: '#64748b' }}>TikTok Business API connected</span>
+        </div>
+        <button style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', padding: '2px 6px' }} onClick={() => setExpanded(true)}>
+          manage
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ ...s.card, marginBottom: 20, borderColor: needsAttention && !bothOk ? '#7c3aed' : '#334155' }}>
+      {bothOk && (
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+          <button style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer' }} onClick={() => setExpanded(false)}>
+            collapse
+          </button>
+        </div>
+      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: enabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
+            <div>
+              <span style={{ fontSize: 13, color: '#e2e8f0' }}>Advertiser Token</span>
+              {!enabled && <span style={{ fontSize: 12, color: '#64748b', marginLeft: 8 }}>comment management &amp; rules</span>}
+              {enabled && advExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
+            </div>
+          </div>
+          {(!enabled || advExpiring) && (
+            <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
+              {enabled ? 'Reconnect' : 'Connect'}
+            </button>
+          )}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: accountEnabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
+            <div>
+              <span style={{ fontSize: 13, color: '#e2e8f0' }}>TikTok Account Token</span>
+              {!accountEnabled && <span style={{ fontSize: 12, color: '#64748b', marginLeft: 8 }}>account info &amp; videos</span>}
+              {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
+            </div>
+          </div>
+          {(!accountEnabled || acctExpiring) && (
+            <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
+              {accountEnabled ? 'Reconnect' : 'Connect'}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
