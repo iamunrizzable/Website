@@ -246,8 +246,9 @@ function AccountPanel({ adminKey, enabled }) {
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
             <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16 }}>
               {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
-              {account?.likes_count != null && <span>{account.likes_count.toLocaleString()} likes</span>}
-              {account?.video_views_count != null && <span>{account.video_views_count.toLocaleString()} views</span>}
+              {account?.total_likes != null && <span>{account.total_likes.toLocaleString()} likes</span>}
+              {account?.video_views != null && <span>{account.video_views.toLocaleString()} views</span>}
+              {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
             </div>
           </div>
         </div>
@@ -286,19 +287,17 @@ function VideosPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
       ) : (
         videos.map((v, i) => (
-          <div key={v.video_id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
+          <div key={v.item_id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
             {v.thumbnail_url && <img src={v.thumbnail_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {v.title || v.video_id}
+                {v.caption || v.item_id}
               </div>
               <div style={{ fontSize: 12, color: '#64748b' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
-                {v.statistics?.play_count != null && ` · ${v.statistics.play_count.toLocaleString()} plays`}
-                {v.statistics?.comment_count != null && ` · ${v.statistics.comment_count.toLocaleString()} comments`}
-              </div>
-              <div style={{ marginTop: 6 }}>
-                <span style={s.badge(v.status === 'POSTED' ? '#10b981' : '#94a3b8')}>{v.status ?? 'UNKNOWN'}</span>
+                {v.video_views != null && ` · ${v.video_views.toLocaleString()} views`}
+                {v.likes != null && ` · ${v.likes.toLocaleString()} likes`}
+                {v.comments != null && ` · ${v.comments.toLocaleString()} comments`}
               </div>
             </div>
           </div>
