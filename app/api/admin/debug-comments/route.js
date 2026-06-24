@@ -21,12 +21,27 @@ export async function GET(request) {
     page_size: 3,
   });
 
-  const res = await fetch(
-    `https://business-api.tiktok.com/open_api/v1.3/business/comment/list/?${params}`,
-    { headers: { 'Access-Token': tokens.access_token, 'Content-Type': 'application/json' } }
-  );
+  const [bizRes, commentRes] = await Promise.all([
+    fetch(
+      `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(tokens.business_id)}`,
+      { headers: { 'Access-Token': tokens.access_token, 'Content-Type': 'application/json' } }
+    ),
+    fetch(
+      `https://business-api.tiktok.com/open_api/v1.3/business/comment/list/?${params}`,
+      { headers: { 'Access-Token': tokens.access_token, 'Content-Type': 'application/json' } }
+    ),
+  ]);
 
-  // Return raw text so we can see exactly what TikTok sends
-  const raw = await res.text();
-  return new Response(raw, { headers: { 'Content-Type': 'application/json' } });
+  const bizRaw = await bizRes.text();
+  const commentRaw = await commentRes.text();
+
+  let bizJson, commentJson;
+  try { bizJson = JSON.parse(bizRaw); } catch { bizJson = bizRaw; }
+  try { commentJson = JSON.parse(commentRaw); } catch { commentJson = commentRaw; }
+
+  return NextResponse.json({
+    stored_business_id: tokens.business_id,
+    business_get: bizJson,
+    comments: commentJson,
+  });
 }
