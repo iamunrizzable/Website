@@ -9,15 +9,25 @@
 
 ## TikTok Business API — Approved Endpoints
 
+**CRITICAL: ONLY use endpoints listed here. These are the ONLY ones authorized by TikTok. Never call any other endpoint.**
+
 Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 
-### Business / Account & Content (use `business_id` + Bearer token via account OAuth)
+### TikTok Accounts scope
 - `/business/get/`
 - `/business/video/list/`
+- `/business/comment/reply/list/`
+- `/business/comment/list/`
+- `/business/comment/create/`
+- `/business/comment/delete/`
+- `/business/comment/hide/`
+- `/business/comment/reply/create/`
+- `/business/comment/like/`
+- `/business/comment/pin/`
 - `/business/video/publish/`
-- `/business/video/settings/`
 - `/business/hashtag/suggestion/`
 - `/business/publish/status/`
+- `/business/video/settings/`
 - `/business/publish/location/`
 - `/business/photo/publish/`
 - `/business/post/authorize/`
@@ -25,18 +35,20 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 - `/business/post/authorize/delete/`
 - `/business/post/authorize/setting/`
 - `/business/benchmark/`
+- `/discovery/trending/search/`
+- `/discovery/trending/search/keyword/`
 
-### Comments (use advertiser token Access-Token + open_id as business_id — account token lacks comment scope)
-- `/business/comment/list/`  ← NOT `/comment/list/`
-- `/business/comment/reply/list/`
-- `/business/comment/create/`
-- `/business/comment/delete/`
-- `/business/comment/hide/`
-- `/business/comment/reply/create/`
-- `/business/comment/like/`
-- `/business/comment/pin/`
+### Automated Rules scope
+- `/optimizer/rule/create/`
+- `/optimizer/rule/update/`
+- `/optimizer/rule/batch_bind/`
+- `/optimizer/rule/update/status/`
+- `/optimizer/rule/get/`
+- `/optimizer/rule/list/`
+- `/optimizer/rule/result/get/`
+- `/optimizer/rule/result/list/`
 
-### Mentions
+### Mentions scope
 - `/business/mention/top_word/list/`
 - `/business/mention/top_hashtag/list/`
 - `/business/mention/video/list/`
@@ -48,20 +60,6 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 - `/business/mention/hashtag/remove/`
 - `/business/mention/comment/list/`
 - `/business/mention/comment/get/`
-
-### Discovery / Trending
-- `/discovery/trending/search/`
-- `/discovery/trending/search/keyword/`
-
-### Optimizer Rules
-- `/optimizer/rule/create/`
-- `/optimizer/rule/update/`
-- `/optimizer/rule/batch_bind/`
-- `/optimizer/rule/update/status/`
-- `/optimizer/rule/get/`
-- `/optimizer/rule/list/`
-- `/optimizer/rule/result/get/`
-- `/optimizer/rule/result/list/`
 
 ## Two OAuth Token Types
 
