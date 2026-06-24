@@ -333,12 +333,35 @@ function CommentsPanel({ adminKey, enabled }) {
     return null;
   }
 
-  function loadComments(vid) {
-    const id = extractVideoId(vid || videoId);
+  function isShortUrl(input) {
+    return /tiktok\.com\/t\//i.test(input.trim());
+  }
+
+  async function loadComments(vid) {
+    const raw = vid || videoId;
+    let id = extractVideoId(raw);
+
+    if (!id && isShortUrl(raw)) {
+      setCommentsLoading(true);
+      setComments(null);
+      setCommentsError('');
+      try {
+        const r = await fetch(`/api/admin/resolve-video?url=${encodeURIComponent(raw.trim())}`, { headers: { 'x-admin-key': adminKey } });
+        const d = await r.json();
+        if (d.error) { setCommentsError(`Could not resolve link: ${d.error}`); setCommentsLoading(false); return; }
+        id = d.video_id;
+      } catch (e) {
+        setCommentsError(`Could not resolve link: ${e.message}`);
+        setCommentsLoading(false);
+        return;
+      }
+    }
+
     if (!id) {
-      setCommentsError('Please paste a full TikTok video URL (containing /video/ID) or a raw numeric video ID. Short share links (tiktok.com/t/…) are not supported.');
+      setCommentsError('Paste a TikTok video URL, a short share link (tiktok.com/t/…), or a raw numeric video ID.');
       return;
     }
+
     setActiveVideoId(id);
     setComments(null);
     setCommentsError('');
