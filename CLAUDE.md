@@ -25,7 +25,7 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 - `/business/post/authorize/setting/`
 - `/business/benchmark/`
 
-### Comments (use `business_id` + Access-Token via account OAuth — API returns 40002 if advertiser_id is passed)
+### Comments (use advertiser token Access-Token + open_id as business_id — account token lacks comment scope)
 - `/business/comment/list/`  ← NOT `/comment/list/`
 - `/business/comment/reply/list/`
 - `/business/comment/create/`
