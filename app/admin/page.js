@@ -418,7 +418,7 @@ function CommentsPanel({ adminKey, enabled }) {
                 </div>
                 <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 8px' }}>{c.text}</p>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  <button style={s.btnSm} onClick={() => doAction(c.status === 'HIDDEN' ? 'show' : 'hide', { comment_ids: [c.comment_id] })}>
+                  <button style={s.btnSm} onClick={() => doAction(c.status === 'HIDDEN' ? 'show' : 'hide', { comment_id: c.comment_id })}>
                     {c.status === 'HIDDEN' ? 'Show' : 'Hide'}
                   </button>
                   <button style={s.btnDanger} onClick={() => doAction('delete', { comment_id: c.comment_id })}>Delete</button>
