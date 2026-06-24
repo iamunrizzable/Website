@@ -4,10 +4,9 @@ import { storeTikTokAccountToken } from '@/lib/tokens';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  // Business Portal flow returns 'auth_code'; Login Kit flow returns 'code'
   const authCode = searchParams.get('auth_code');
   const loginCode = searchParams.get('code');
-  const code = loginCode ?? authCode;
+  const code = authCode ?? loginCode;
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
@@ -24,12 +23,21 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Missing code' }, { status: 400 });
   }
 
+  const flow = request.cookies.get('tiktok_account_flow')?.value;
+  const isPortal = flow === 'portal' || !!authCode;
+
   try {
-    // Business Portal returns auth_code → use Business API exchange endpoint
-    // Login Kit returns code → use Open Platform exchange endpoint
-    const tokenData = authCode
-      ? await exchangeTikTokBusinessAccountCode(authCode)
-      : await exchangeTikTokAccountCode(loginCode);
+    let tokenData;
+    if (isPortal) {
+      // Business Portal flow — try Business API exchange first (grants business scopes)
+      tokenData = await exchangeTikTokBusinessAccountCode(code);
+      // If Business API rejects it, fall back to Login Kit exchange
+      if (tokenData.error || (tokenData.code && tokenData.code !== 0)) {
+        tokenData = await exchangeTikTokAccountCode(code);
+      }
+    } else {
+      tokenData = await exchangeTikTokAccountCode(code);
+    }
 
     if (tokenData.error) {
       throw new Error(tokenData.error_description ?? tokenData.error);
@@ -37,10 +45,12 @@ export async function GET(request) {
     if (tokenData.code && tokenData.code !== 0) {
       throw new Error(tokenData.message ?? 'Account token exchange failed');
     }
+
     const stored = await storeTikTokAccountToken(tokenData);
 
     const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
     response.cookies.delete('tiktok_account_state');
+    response.cookies.delete('tiktok_account_flow');
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
