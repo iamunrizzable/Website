@@ -400,7 +400,7 @@ function CommentsPanel({ adminKey, enabled }) {
       });
       const data = await res.json();
       if (data.code && data.code !== 0) {
-        setActionMsg('Error: ' + (data.message ?? JSON.stringify(data)));
+        setActionMsg('Error: ' + (data.message ?? JSON.stringify(data)) + (data._sent ? '\nSent: ' + data._sent : ''));
       } else {
         setActionMsg('Done.');
         loadComments(activeVideoId);
