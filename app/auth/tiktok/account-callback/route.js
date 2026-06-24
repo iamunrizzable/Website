@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
+import { verifyState } from '@/lib/oauth-state';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -13,8 +14,7 @@ export async function GET(request) {
     return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(error)}`, request.url));
   }
 
-  const savedState = request.cookies.get('tiktok_account_state')?.value;
-  if (!state || state !== savedState) {
+  if (!verifyState(state)) {
     return NextResponse.json({ error: 'State mismatch — possible CSRF' }, { status: 400 });
   }
 
@@ -58,7 +58,6 @@ export async function GET(request) {
     }
 
     const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
-    response.cookies.delete('tiktok_account_state');
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
