@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getEvents, getBusinessTokens, isRedisConfigured } from '@/lib/tokens';
+import { getEvents, getBusinessTokens, getTikTokAccountToken, isRedisConfigured } from '@/lib/tokens';
 
 function requireAdmin(request) {
   return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
@@ -10,9 +10,10 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const [events, businessTokens] = await Promise.all([
+  const [events, businessTokens, accountTokens] = await Promise.all([
     getEvents(20),
     getBusinessTokens(),
+    getTikTokAccountToken(),
   ]);
 
   return NextResponse.json({
@@ -20,6 +21,10 @@ export async function GET(request) {
     business_stored_at: businessTokens?.stored_at ?? null,
     business_expires_at: businessTokens?.expires_at ?? null,
     business_advertiser_id: businessTokens?.advertiser_id ?? null,
+    account_connected: !!accountTokens,
+    account_stored_at: accountTokens?.stored_at ?? null,
+    account_expires_at: accountTokens?.expires_at ?? null,
+    account_open_id: accountTokens?.open_id ?? null,
     redis_configured: isRedisConfigured(),
     events,
   });
