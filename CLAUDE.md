@@ -66,6 +66,8 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 
 ### 1. Advertiser Token (`getBusinessTokens()`)
 - OAuth: `tiktok_advertiser_authorization_url` env var (Business Portal)
+- **CURRENT VALUE**: `https://business-api.tiktok.com/portal/auth?app_id=7654470451766231041&state=your_custom_params&redirect_uri=https%3A%2F%2Ftjbmanagementinc.com%2Fauth%2Ftiktok%2Fbusiness%2Fcallback`
+  (note: `state=your_custom_params` is a placeholder — `getBusinessAuthUrl()` overwrites it with a real random state)
 - Callback receives: `auth_code`
 - Token exchange: `business-api.tiktok.com/open_api/v1.3/oauth2/access_token/` (JSON, `app_id` + `secret`)
 - Header: `Access-Token: <token>`
