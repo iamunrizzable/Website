@@ -425,6 +425,16 @@ function CommentsPanel({ adminKey, enabled }) {
 
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
 
+          {activeVideoId && (
+            <details style={{ marginBottom: 10 }}>
+              <summary style={{ fontSize: 11, color: '#475569', cursor: 'pointer' }}>Debug raw response</summary>
+              <button style={{ ...s.btnSm, marginTop: 6 }} onClick={() =>
+                fetch(`/api/admin/debug-comments?video_id=${activeVideoId}`, { headers: { 'x-admin-key': adminKey } })
+                  .then(r => r.text()).then(t => alert(t)).catch(e => alert(e.message))
+              }>Fetch raw TikTok data</button>
+            </details>
+          )}
+
           {commentsError ? (
             <p style={{ fontSize: 13, color: '#f59e0b' }}>{commentsError}</p>
           ) : comments === null ? null : comments.length === 0 ? (
