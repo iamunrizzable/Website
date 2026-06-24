@@ -29,12 +29,8 @@ export async function GET(request) {
   try {
     let tokenData;
     if (isPortal) {
-      // Business Portal flow — try Business API exchange first (grants business scopes)
+      // Business Portal flow — use Business API exchange (grants business scopes incl. comments)
       tokenData = await exchangeTikTokBusinessAccountCode(code);
-      // If Business API rejects it, fall back to Login Kit exchange
-      if (tokenData.error || (tokenData.code && tokenData.code !== 0)) {
-        tokenData = await exchangeTikTokAccountCode(code);
-      }
     } else {
       tokenData = await exchangeTikTokAccountCode(code);
     }

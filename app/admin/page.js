@@ -187,11 +187,9 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               {enabled && advExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
             </div>
           </div>
-          {(!enabled || advExpiring) && (
-            <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
-              {enabled ? 'Reconnect' : 'Connect'}
-            </button>
-          )}
+          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
+            {enabled ? 'Reconnect' : 'Connect'}
+          </button>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -202,11 +200,9 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
             </div>
           </div>
-          {(!accountEnabled || acctExpiring) && (
-            <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
-              {accountEnabled ? 'Reconnect' : 'Connect'}
-            </button>
-          )}
+          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
+            {accountEnabled ? 'Reconnect' : 'Connect'}
+          </button>
         </div>
       </div>
     </div>
