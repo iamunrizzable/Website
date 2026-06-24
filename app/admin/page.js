@@ -297,7 +297,7 @@ function VideosPanel({ adminKey, enabled }) {
             {v.cover_image_url && <img src={v.cover_image_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {v.title || v.id}
+                {v.title ? v.title : <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
               </div>
               <div style={{ fontSize: 12, color: '#64748b' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
