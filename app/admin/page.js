@@ -95,11 +95,6 @@ export default function AdminPage() {
           {/* Business API Connection */}
           <div style={s.card}>
             <h2 style={s.h2}>Business API</h2>
-            {status && !status.redis_configured && (
-              <div style={{ background: '#431407', border: '1px solid #ea580c', borderRadius: 8, padding: '10px 14px', marginBottom: 14, fontSize: 13, color: '#fed7aa' }}>
-                Redis not configured — tokens are stored in memory and will be lost on server restart. Add <code>UPSTASH_REDIS_REST_URL</code> and <code>UPSTASH_REDIS_REST_TOKEN</code> to your Vercel environment variables to make the connection permanent.
-              </div>
-            )}
             {enabled ? (
               <p style={{ marginBottom: 12 }}>
                 <span style={s.badge('#10b981')}>CONNECTED</span>
