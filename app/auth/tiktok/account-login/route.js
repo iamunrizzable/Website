@@ -15,8 +15,8 @@ export async function GET(request) {
   const response = NextResponse.redirect(url);
   response.cookies.set('tiktok_account_state', state, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     maxAge: 600,
     path: '/',
   });
