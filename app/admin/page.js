@@ -241,14 +241,13 @@ function AccountPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
       ) : (
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
+          {account?.avatar_url && <img src={account.avatar_url} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
           <div>
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
             <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16 }}>
-              {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
-              {account?.total_likes != null && <span>{account.total_likes.toLocaleString()} likes</span>}
-              {account?.video_views != null && <span>{account.video_views.toLocaleString()} views</span>}
-              {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
+              {account?.follower_count != null && <span>{account.follower_count.toLocaleString()} followers</span>}
+              {account?.likes_count != null && <span>{account.likes_count.toLocaleString()} likes</span>}
+              {account?.video_count != null && <span>{account.video_count.toLocaleString()} videos</span>}
             </div>
           </div>
         </div>
@@ -269,7 +268,7 @@ function VideosPanel({ adminKey, enabled }) {
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setVideos([]); }
-        else setVideos(d.data?.videos ?? d.videos ?? []);
+        else setVideos(d.data?.videos ?? d.videos ?? d ?? []);
       })
       .catch(e => { setError(e.message); setVideos([]); });
   }, [adminKey, enabled]);
@@ -287,17 +286,17 @@ function VideosPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
       ) : (
         videos.map((v, i) => (
-          <div key={v.item_id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
+          <div key={v.id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
             {v.thumbnail_url && <img src={v.thumbnail_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {v.caption || v.item_id}
+                {v.title || v.id}
               </div>
               <div style={{ fontSize: 12, color: '#64748b' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
-                {v.video_views != null && ` · ${v.video_views.toLocaleString()} views`}
-                {v.likes != null && ` · ${v.likes.toLocaleString()} likes`}
-                {v.comments != null && ` · ${v.comments.toLocaleString()} comments`}
+                {v.view_count != null && ` · ${v.view_count.toLocaleString()} views`}
+                {v.like_count != null && ` · ${v.like_count.toLocaleString()} likes`}
+                {v.comment_count != null && ` · ${v.comment_count.toLocaleString()} comments`}
               </div>
             </div>
           </div>
