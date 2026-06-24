@@ -21,6 +21,7 @@ export async function GET(request) {
     business_stored_at: businessTokens?.stored_at ?? null,
     business_expires_at: businessTokens?.expires_at ?? null,
     business_advertiser_id: businessTokens?.advertiser_id ?? null,
+    business_open_id: businessTokens?.open_id ?? null,
     account_connected: !!accountTokens,
     account_stored_at: accountTokens?.stored_at ?? null,
     account_expires_at: accountTokens?.expires_at ?? null,
