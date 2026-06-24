@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { exchangeBusinessCode } from '@/lib/tiktok/business-oauth';
 import { storeBusinessTokens } from '@/lib/tokens';
+import { verifyState } from '@/lib/oauth-state';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -12,8 +13,7 @@ export async function GET(request) {
     return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(error)}`, request.url));
   }
 
-  const savedState = request.cookies.get('tiktok_business_state')?.value;
-  if (!state || state !== savedState) {
+  if (!verifyState(state)) {
     return NextResponse.json({ error: 'State mismatch — possible CSRF' }, { status: 400 });
   }
 
@@ -29,7 +29,6 @@ export async function GET(request) {
     const stored = await storeBusinessTokens(tokenData);
 
     const response = NextResponse.redirect(new URL('/admin?business_connected=1', request.url));
-    response.cookies.delete('tiktok_business_state');
     // Persist token in cookie so it survives server restarts without Redis
     response.cookies.set('biz_token', JSON.stringify(stored), {
       httpOnly: true,
