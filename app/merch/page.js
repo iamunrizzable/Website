@@ -26,7 +26,7 @@ export default function Merch() {
   const items = [
     {
       name: 'TJB INC SUPPORTER HOODIE',
-      href: 'https://www.customink.com/designs/Tjb%20inc%20supporter/eqs0-00d2-jmrq/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
+      href: 'https://www.customink.com/designs/TJB%20INC%20supporter-%20NEW/eqs0-00d2-sdhk/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20mobile',
       icon: '🤝',
       desc: 'Official TJB Management Inc. Supporter hoodie.',
     },
