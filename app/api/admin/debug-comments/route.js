@@ -23,7 +23,7 @@ export async function GET(request) {
 
   const [bizRes, commentRes] = await Promise.all([
     fetch(
-      `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(tokens.business_id)}`,
+      `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(tokens.business_id)}&fields=business_id,display_name`,
       { headers: { 'Access-Token': tokens.access_token, 'Content-Type': 'application/json' } }
     ),
     fetch(
