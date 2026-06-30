@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server';
 import { getAccount } from '@/lib/tiktok/business-api';
 
 function requireAdmin(request) {
-  return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
+  const { searchParams } = new URL(request.url);
+  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
+  return adminKey === process.env.ADMIN_SECRET;
 }
 
 export async function GET(request) {
