@@ -21,9 +21,11 @@ export async function GET(request) {
     page_size: 3,
   });
 
+  const bizFields = encodeURIComponent(JSON.stringify(['business_id', 'display_name']));
+
   const [bizRes, commentRes] = await Promise.all([
     fetch(
-      `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(tokens.business_id)}`,
+      `https://business-api.tiktok.com/open_api/v1.3/business/get/?business_id=${encodeURIComponent(tokens.business_id)}&fields=${bizFields}`,
       { headers: { 'Access-Token': tokens.access_token, 'Content-Type': 'application/json' } }
     ),
     fetch(
