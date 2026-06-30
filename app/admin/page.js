@@ -467,8 +467,7 @@ function CommentsPanel({ adminKey, enabled }) {
                   <button style={s.btnSm} onClick={() => doAction(c.status === 'HIDDEN' ? 'show' : 'hide', { comment_id: c.comment_id })}>
                     {c.status === 'HIDDEN' ? 'Show' : 'Hide'}
                   </button>
-                  <button style={s.btnDanger} onClick={() => doAction('delete', { comment_id: c.comment_id })}>Delete</button>
-                  <button style={s.btnSm} onClick={() => doAction('pin', { comment_id: c.comment_id, is_pinned: true })}>Pin</button>
+                  {c.owner && <button style={s.btnDanger} onClick={() => doAction('delete', { comment_id: c.comment_id })}>Delete</button>}
                   <button
                     style={{ ...s.btnSm, background: replyTo === c.comment_id ? '#475569' : '#334155' }}
                     onClick={() => { setReplyTo(replyTo === c.comment_id ? null : c.comment_id); setReplyText(''); }}
