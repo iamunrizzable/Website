@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/sync-comments",
-      "schedule": "0 0 * * *"
+      "schedule": "*/5 * * * *"
     },
     {
       "path": "/api/cron/process-blocks",

@@ -17,8 +17,7 @@ export async function GET(request) {
     const results = await syncComments({ autoHide: true });
     return NextResponse.json({ synced: results.length, ts: Date.now() });
   } catch (err) {
-    if (err.message === 'NOT_AUTHENTICATED' || err.message === 'REFRESH_TOKEN_EXPIRED') {
-      // Return 200 so Vercel doesn't flood logs — TikTok may simply not be connected yet
+    if (err.message === 'ACCOUNT_NOT_AUTHENTICATED') {
       return NextResponse.json({ error: err.message, synced: 0 }, { status: 200 });
     }
     console.error('[cron/sync-comments]', err.message);
