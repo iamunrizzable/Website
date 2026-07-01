@@ -158,10 +158,10 @@ export default function HallieTikTokLegal() {
             The <strong>Hallie Account Automation Platform</strong> ("Platform") is a TikTok account automation and management system developed and operated by TJB Management Inc. ("Platform Provider"), headquartered in the United States.
           </p>
           <p>
-            The Platform connects to TikTok's Business API on behalf of authorized TikTok Business Accounts to automate account operations including content publishing, comment management, community moderation, mention monitoring, trending discovery, and automated rule execution. It is designed to help brands, creators, and businesses run their TikTok presence with as little manual intervention as possible.
+            The Platform connects to TikTok's API on behalf of authorized TikTok accounts — both Business Accounts and personal/creator accounts — to automate account operations including content publishing, comment management, community moderation, mention monitoring, trending discovery, and automated rule execution. It is designed to help brands, creators, and businesses run their TikTok presence with as little manual intervention as possible.
           </p>
           <p>
-            This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to manage their TikTok Business Accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
+            This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to manage their TikTok accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
           </p>
           <p>
             The Platform operates under TikTok's API for Business Developer Terms and is subject to TikTok's Data Security and Privacy Review (DSPR) as a condition of accessing the full scope of TikTok Business API permissions.
@@ -172,10 +172,10 @@ export default function HallieTikTokLegal() {
           <h2>2. Definitions</h2>
           <ul>
             <li><strong>Platform Provider</strong> — TJB Management Inc., the company that develops, operates, and maintains the Hallie Platform.</li>
-            <li><strong>Operator</strong> — Any business, brand, creator, or individual who uses the Hallie Platform to moderate their TikTok Business Account(s).</li>
+            <li><strong>Operator</strong> — Any business, brand, creator, or individual who uses the Hallie Platform to manage their TikTok account(s).</li>
             <li><strong>End User</strong> — TikTok users who post comments on an Operator's TikTok content. End Users do not interact with the Platform directly.</li>
             <li><strong>Platform</strong> — The Hallie Account Automation Platform, including all associated software, APIs, and infrastructure.</li>
-            <li><strong>TikTok Business Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API.</li>
+            <li><strong>Connected Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API. This may be a TikTok Business Account or a personal/creator account depending on the Operator's account type.</li>
           </ul>
         </div>
 
@@ -257,7 +257,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Seen content IDs</strong> — stored in memory to prevent reprocessing. Cleared on server restart.</li>
             <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the Operator's authorized device only. Expire after 30 days. Not persisted beyond the active session.</li>
           </ul>
-          <p>When an Operator disconnects their TikTok Business Account or revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
+          <p>When an Operator disconnects their TikTok account or revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
           <p>Operators or End Users who wish to request immediate deletion of any residual data may do so by contacting <strong>support@tjbmanagementinc.com</strong>.</p>
         </div>
 
@@ -280,7 +280,7 @@ export default function HallieTikTokLegal() {
           <p>The following role structure governs data responsibilities under this Policy:</p>
           <ul>
             <li><strong>Platform Provider (TJB Management Inc.)</strong> — Acts as a data processor on behalf of Operators. Responsible for the security and integrity of the Platform infrastructure, and for processing data only as directed by Operators and as permitted under this Policy.</li>
-            <li><strong>Operator</strong> — Acts as the data controller for their TikTok Business Account and the End Users who interact with their content. Operators are responsible for their own privacy notices, lawful basis for processing, and compliance with applicable local laws.</li>
+            <li><strong>Operator</strong> — Acts as the data controller for their connected TikTok account and the End Users who interact with their content. Operators are responsible for their own privacy notices, lawful basis for processing, and compliance with applicable local laws.</li>
             <li><strong>Platform Privacy & Security Contact</strong> — support@tjbmanagementinc.com. All privacy inquiries, data subject requests, and security incidents related to the Platform should be directed here.</li>
           </ul>
           <p>Operators must designate a Data Protection Officer (DPO) or equivalent privacy contact within their own organization where required by applicable law (e.g., GDPR Article 37).</p>
@@ -293,7 +293,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Lawful basis</strong> — Operators must have a valid lawful basis under applicable privacy law for processing End User data through the Platform.</li>
             <li><strong>Privacy notice</strong> — Operators must maintain a publicly accessible privacy notice that discloses their use of automated account management tools and the processing of End User data.</li>
             <li><strong>Credential security</strong> — Operators are responsible for securing their admin credentials and TikTok OAuth tokens. Credentials must not be shared with unauthorized personnel.</li>
-            <li><strong>Authorized use only</strong> — Operators may only use the Platform to moderate their own TikTok Business Account(s) that they are authorized to manage.</li>
+            <li><strong>Authorized use only</strong> — Operators may only use the Platform to manage their own TikTok account(s) that they are authorized to manage.</li>
             <li><strong>Compliance with TikTok terms</strong> — Operators must comply with all applicable TikTok API for Business Developer Terms and Community Guidelines.</li>
             <li><strong>Data subject requests</strong> — Operators must be able to assist End Users in exercising their data rights and must direct such requests to the Platform Provider where necessary.</li>
             <li><strong>No resale</strong> — Operators may not resell, sublicense, or otherwise provide Platform access to third parties without written authorization from the Platform Provider.</li>
@@ -368,7 +368,7 @@ export default function HallieTikTokLegal() {
           <h2>15. Access Control Policy</h2>
           <p>Access to the Platform is governed by a strict need-to-know, least-privilege model:</p>
           <ul>
-            <li><strong>Operator isolation</strong> — Each Operator accesses only their own TikTok Business Account data. No Operator can access another Operator's data or credentials.</li>
+            <li><strong>Operator isolation</strong> — Each Operator accesses only their own connected TikTok account data. No Operator can access another Operator's data or credentials.</li>
             <li><strong>Authentication</strong> — Each Operator's dashboard is protected by a unique secret key stored as an encrypted environment variable. It must be rotated if compromise is suspected.</li>
             <li><strong>No shared credentials</strong> — Shared credentials between Operators or between Operator personnel are not permitted.</li>
             <li><strong>API access</strong> — TikTok API tokens are scoped to the minimum required permissions and stored only in server-side cookies inaccessible to client-side code.</li>
