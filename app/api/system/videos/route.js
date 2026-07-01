@@ -13,7 +13,7 @@ export async function GET() {
   if (!token) return NextResponse.json({ error: 'Not connected' }, { status: 401 });
 
   const businessId = token.business_id ?? token.open_id;
-  const fields = encodeURIComponent(JSON.stringify(['id', 'title', 'create_time', 'cover_image_url', 'view_count', 'like_count', 'comment_count', 'share_count']));
+  const fields = encodeURIComponent(JSON.stringify(['item_id', 'caption', 'create_time', 'thumbnail_url', 'video_views', 'likes', 'comments', 'shares']));
   const res = await fetch(
     `https://business-api.tiktok.com/open_api/v1.3/business/video/list/?business_id=${encodeURIComponent(businessId)}&fields=${fields}`,
     { headers: { 'Access-Token': token.access_token } }

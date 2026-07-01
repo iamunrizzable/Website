@@ -26,7 +26,7 @@ export async function POST(request) {
   let videoCursor = 0;
   while (true) {
     const pageSize = maxVideos ? Math.min(maxVideos - videos.length, 20) : 20;
-    const fields = encodeURIComponent(JSON.stringify(['id', 'title', 'create_time', 'cover_image_url', 'view_count', 'like_count', 'comment_count']));
+    const fields = encodeURIComponent(JSON.stringify(['item_id', 'caption', 'create_time', 'thumbnail_url', 'video_views', 'likes', 'comments']));
     const res = await fetch(
       `${BASE}/business/video/list/?business_id=${encodeURIComponent(businessId)}&fields=${fields}&cursor=${videoCursor}&page_size=${pageSize}`,
       { headers }
@@ -47,7 +47,7 @@ export async function POST(request) {
     while (true) {
       const commentFields = encodeURIComponent(JSON.stringify(['comment_id', 'text', 'username', 'create_time', 'like_count', 'status']));
       const res = await fetch(
-        `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(video.id)}&fields=${commentFields}&cursor=${commentCursor}`,
+        `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(video.item_id)}&fields=${commentFields}&cursor=${commentCursor}`,
         { headers }
       );
       const json = await res.json();
@@ -60,7 +60,7 @@ export async function POST(request) {
           await fetch(`${BASE}/business/comment/hide/`, {
             method: 'POST',
             headers,
-            body: JSON.stringify({ business_id: businessId, comment_id: comment.comment_id, is_hidden: true, video_id: video.id }),
+            body: JSON.stringify({ business_id: businessId, comment_id: comment.comment_id, is_hidden: true, video_id: video.item_id }),
           });
           hidden++;
         }

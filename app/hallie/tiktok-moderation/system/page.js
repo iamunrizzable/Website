@@ -137,9 +137,10 @@ function AccountPanel() {
           <div>
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
             <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              {account?.follower_count != null && <span>{account.follower_count.toLocaleString()} followers</span>}
-              {account?.likes_count != null && <span>{account.likes_count.toLocaleString()} likes</span>}
-              {account?.video_count != null && <span>{account.video_count.toLocaleString()} videos</span>}
+              {account?.username && <span>@{account.username}</span>}
+              {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
+              {account?.likes != null && <span>{account.likes.toLocaleString()} likes</span>}
+              {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
             </div>
           </div>
           <a href="/auth/tiktok/system-login" style={{ marginLeft: 'auto', ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
@@ -184,17 +185,17 @@ function VideosPanel() {
         <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
       ) : (
         videos.map((v, i) => (
-          <div key={v.id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
-            {v.cover_image_url && <img src={v.cover_image_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
+          <div key={v.item_id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
+            {v.thumbnail_url && <img src={v.thumbnail_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {v.title || <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
+                {v.caption || <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
               </div>
               <div style={{ fontSize: 12, color: '#64748b' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
-                {v.view_count != null && ` · ${v.view_count.toLocaleString()} views`}
-                {v.like_count != null && ` · ${v.like_count.toLocaleString()} likes`}
-                {v.comment_count != null && ` · ${v.comment_count.toLocaleString()} comments`}
+                {v.video_views != null && ` · ${v.video_views.toLocaleString()} views`}
+                {v.likes != null && ` · ${v.likes.toLocaleString()} likes`}
+                {v.comments != null && ` · ${v.comments.toLocaleString()} comments`}
               </div>
             </div>
           </div>
