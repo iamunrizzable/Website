@@ -97,8 +97,7 @@ export default function HallieTikTokLegal() {
 
         footer {
           max-width: 900px; margin: 60px auto 0; padding: 40px 20px;
-          border-top: 1px solid rgba(168,85,247,0.2); color: #8b9dc3;
-          text-align: center; font-size: 14px;
+          border-top: 1px solid rgba(168,85,247,0.2); color: #8b9dc3; text-align: center; font-size: 14px;
         }
         footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       `}</style>
@@ -113,28 +112,32 @@ export default function HallieTikTokLegal() {
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
+        <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
+        <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
       </div>
 
       <main>
         <a href="/legal" className="back-link">← Back to Legal</a>
 
-        <h1>Hallie TikTok Moderation System</h1>
+        <h1>Hallie Platform — Data Security & Privacy Policy</h1>
         <p className="subtitle">
-          Data Security, Privacy & Compliance Policy · TJB Management Inc.<br />
+          TikTok Comment Moderation Platform · Powered by TJB Management Inc.<br />
           Effective Date: July 1, 2026 · Last Updated: July 1, 2026
         </p>
 
         <div className="toc">
           <p>Table of Contents</p>
           <ol>
-            <li><a href="#about">About This System</a></li>
+            <li><a href="#about">About the Platform</a></li>
+            <li><a href="#definitions">Definitions</a></li>
             <li><a href="#data-collected">Data Collected</a></li>
             <li><a href="#privacy-notice">Privacy Notice</a></li>
             <li><a href="#data-subject-rights">Data Subject Rights</a></li>
             <li><a href="#data-retention">Data Retention</a></li>
             <li><a href="#data-minimization">Data Minimization</a></li>
-            <li><a href="#roles">Dedicated Roles & Responsibilities</a></li>
+            <li><a href="#roles">Roles & Responsibilities</a></li>
+            <li><a href="#operator-obligations">Operator Obligations</a></li>
             <li><a href="#infosec">Information Security Policy</a></li>
             <li><a href="#network">Network Security</a></li>
             <li><a href="#endpoint">Endpoint Protection</a></li>
@@ -150,26 +153,40 @@ export default function HallieTikTokLegal() {
         </div>
 
         <div className="section" id="about">
-          <h2>1. About This System</h2>
+          <h2>1. About the Platform</h2>
           <p>
-            The <strong>Hallie TikTok Moderation System</strong> is a proprietary comment moderation platform developed and operated exclusively by TJB Management Inc. ("TJB Management," "we," "us," or "our"), a company headquartered in the United States.
+            The <strong>Hallie Comment Moderation Platform</strong> ("Platform") is a TikTok comment moderation and management solution developed and operated by TJB Management Inc. ("Platform Provider"), headquartered in the United States.
           </p>
           <p>
-            The system connects to TikTok's Business API on behalf of a single authorized TikTok Business Account — the TJB Management Inc. TikTok account — to automatically retrieve, score, and moderate comments posted to that account's videos. It is not a multi-tenant or third-party SaaS product. No other organization's TikTok data is processed by this system.
+            The Platform connects to TikTok's Business API on behalf of authorized TikTok Business Accounts to automatically retrieve, score, and moderate comments. It is designed to help brands, creators, and businesses maintain safe and respectful communities on their TikTok content.
           </p>
           <p>
-            The system operates under TikTok's API for Business Developer Terms and is subject to TikTok's Data Security and Privacy Review (DSPR) as a condition of accessing the TikTok Business Messaging scope.
+            This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to moderate their TikTok Business Accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
+          </p>
+          <p>
+            The Platform operates under TikTok's API for Business Developer Terms and is subject to TikTok's Data Security and Privacy Review (DSPR) as a condition of accessing the TikTok Business Messaging scope.
           </p>
         </div>
 
+        <div className="section" id="definitions">
+          <h2>2. Definitions</h2>
+          <ul>
+            <li><strong>Platform Provider</strong> — TJB Management Inc., the company that develops, operates, and maintains the Hallie Platform.</li>
+            <li><strong>Operator</strong> — Any business, brand, creator, or individual who uses the Hallie Platform to moderate their TikTok Business Account(s).</li>
+            <li><strong>End User</strong> — TikTok users who post comments on an Operator's TikTok content. End Users do not interact with the Platform directly.</li>
+            <li><strong>Platform</strong> — The Hallie Comment Moderation Platform, including all associated software, APIs, and infrastructure.</li>
+            <li><strong>TikTok Business Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API.</li>
+          </ul>
+        </div>
+
         <div className="section" id="data-collected">
-          <h2>2. Data Collected</h2>
-          <p>The Hallie Moderation System accesses and processes the following data via the TikTok Business API:</p>
+          <h2>3. Data Collected</h2>
+          <p>The Platform accesses and processes the following data via the TikTok Business API on behalf of each Operator:</p>
           <h3>Comment Data</h3>
           <ul>
-            <li><span className="rainbow">Comment text</span> — the content of comments posted to TJB Management's TikTok videos</li>
+            <li><span className="rainbow">Comment text</span> — the content of comments posted to an Operator's TikTok videos</li>
             <li><span className="rainbow">Comment ID</span> — TikTok's internal identifier for each comment</li>
-            <li><span className="rainbow">Username</span> — the TikTok username of the commenter</li>
+            <li><span className="rainbow">Username</span> — the TikTok username of the commenter (End User)</li>
             <li><span className="rainbow">Timestamp</span> — the date and time the comment was posted</li>
             <li><span className="rainbow">Like count</span> — the number of likes a comment has received</li>
             <li><span className="rainbow">Comment status</span> — whether a comment is visible or hidden</li>
@@ -182,161 +199,174 @@ export default function HallieTikTokLegal() {
           </ul>
           <h3>Account Data</h3>
           <ul>
-            <li><span className="rainbow">Display name and avatar</span> — fetched to display the connected account identity in the admin interface</li>
+            <li><span className="rainbow">Display name and avatar</span> — fetched to identify the connected account in the Operator's dashboard</li>
             <li><span className="rainbow">Follower, like, and video counts</span> — used for display only</li>
           </ul>
-          <p>We do not collect or process direct messages, payment information, private account data, or any data beyond what is explicitly listed above.</p>
+          <p>The Platform does not collect or process direct messages, payment information, private account data, advertising data, or any data beyond what is explicitly listed above.</p>
         </div>
 
         <div className="section" id="privacy-notice">
-          <h2>3. Privacy Notice</h2>
-          <h3>What data we collect</h3>
-          <p>As described in Section 2, we collect TikTok comment text, usernames, comment IDs, and associated video metadata through TikTok's authorized Business API.</p>
-          <h3>Why we collect it</h3>
-          <p>Data is collected solely to perform automated comment moderation — identifying and hiding comments that contain profanity, harassment, hate speech, spam, scams, or other content that violates TJB Management's community standards. This serves the legitimate interest of maintaining a safe and respectful community on TJB Management's TikTok content.</p>
+          <h2>4. Privacy Notice</h2>
+          <h3>What data is collected</h3>
+          <p>As described in Section 3, the Platform collects TikTok comment text, usernames, comment IDs, and associated video metadata through TikTok's authorized Business API on behalf of each Operator.</p>
+          <h3>Why it is collected</h3>
+          <p>Data is collected solely to perform automated comment moderation — identifying and hiding comments that contain profanity, harassment, hate speech, spam, scams, or other content that violates an Operator's community standards. Processing is based on the legitimate interests of Operators in maintaining safe communities on their TikTok content.</p>
           <h3>How data is used</h3>
-          <p>Comment text is passed through a local, rule-based scoring algorithm. No comment data is sent to third-party AI or analytics services. Comments that score above a moderation threshold are automatically hidden via TikTok's API. A moderation event log is maintained in memory for operational review.</p>
+          <p>Comment text is analyzed by the Platform's rule-based scoring engine. No comment data is sent to third-party AI, analytics, or advertising services. Comments that score above a configurable threshold are automatically hidden via TikTok's API on the Operator's behalf. A moderation event log is maintained in memory for operational review by the Operator.</p>
           <h3>Where data is transferred</h3>
-          <p>Data travels between TikTok's servers and our infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No comment data is shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform hide/reply actions authorized by the account holder.</p>
+          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. Comment data is not shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform moderation actions authorized by the Operator.</p>
           <h3>How data is protected</h3>
-          <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. The admin interface is protected by a secret key accessible only to authorized personnel.</p>
+          <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. Each Operator's admin interface is protected by a unique secret key accessible only to authorized personnel within that Operator's organization.</p>
           <h3>How long data is stored</h3>
-          <p>Comment data is processed transiently in memory and is not written to a persistent database. A rolling in-memory event log retains up to 50 recent moderation events and is cleared on server restart. OAuth access tokens are stored as HttpOnly cookies with a 30-day expiration and are not persisted beyond that. See Section 5 for the full data retention policy.</p>
+          <p>Comment data is processed transiently in memory and is not written to a persistent database. A rolling in-memory event log retains up to 50 recent moderation events per Operator and is cleared on server restart. OAuth access tokens are stored as HttpOnly cookies with a 30-day expiration. See Section 6 for the full data retention policy.</p>
         </div>
 
         <div className="section" id="data-subject-rights">
-          <h2>4. Data Subject Rights</h2>
-          <p>TJB Management Inc. respects the data rights of individuals in accordance with applicable privacy regulations including GDPR and CPRA. The following rights apply to personal data processed by the Hallie Moderation System:</p>
+          <h2>5. Data Subject Rights</h2>
+          <p>The Platform respects the data rights of End Users in accordance with applicable privacy regulations including GDPR and CPRA. Operators are responsible for facilitating these rights for their End Users. The following rights apply to personal data processed by the Platform:</p>
           <ul>
-            <li><strong>Right to Access</strong> — Individuals may request a copy of any personal data we hold about them.</li>
-            <li><strong>Right to Correction</strong> — Individuals may request that inaccurate personal data be corrected.</li>
-            <li><strong>Right to Deletion</strong> — Individuals may request that their personal data be deleted. Because we do not maintain a persistent database of comment data, most data is cleared automatically. Upon request, we will ensure any retained identifiers are removed.</li>
-            <li><strong>Right to Restriction</strong> — Individuals may request that processing of their data be restricted while a complaint is under review.</li>
-            <li><strong>Right to Object</strong> — Individuals may object to processing of their personal data where processing is based on legitimate interests.</li>
-            <li><strong>Right to Data Portability</strong> — Individuals may request a structured, machine-readable export of their data.</li>
+            <li><strong>Right to Access</strong> — End Users may request a copy of any personal data processed on their behalf.</li>
+            <li><strong>Right to Correction</strong> — End Users may request that inaccurate personal data be corrected.</li>
+            <li><strong>Right to Deletion</strong> — End Users may request deletion of their personal data. Because the Platform does not maintain a persistent database of comment data, most data is cleared automatically on server restart. Upon request, any retained identifiers will be removed.</li>
+            <li><strong>Right to Restriction</strong> — End Users may request that processing of their data be restricted while a complaint is under review.</li>
+            <li><strong>Right to Object</strong> — End Users may object to processing of their personal data where processing is based on legitimate interests.</li>
+            <li><strong>Right to Data Portability</strong> — End Users may request a structured, machine-readable export of their data.</li>
           </ul>
-          <p>To exercise any of these rights, contact us at <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request.</p>
+          <p>To exercise any of these rights, contact the Platform Provider at <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request. Operators may also direct End User data requests to the Platform Provider on their behalf.</p>
         </div>
 
         <div className="section" id="data-retention">
-          <h2>5. Data Retention</h2>
+          <h2>6. Data Retention</h2>
           <p>Personal data is retained only as long as necessary to fulfill the purpose for which it was collected:</p>
           <ul>
-            <li><strong>Comment text and usernames</strong> — processed transiently in memory. Not written to persistent storage. Cleared on server restart (typically within hours on serverless infrastructure).</li>
-            <li><strong>Moderation event log</strong> — up to 50 events retained in memory. Rolling — oldest events are overwritten as new events are added. Cleared on server restart.</li>
+            <li><strong>Comment text and usernames</strong> — processed transiently in memory. Not written to persistent storage. Cleared on server restart.</li>
+            <li><strong>Moderation event log</strong> — up to 50 events retained in memory per Operator session. Rolling — oldest events are overwritten as new events are added. Cleared on server restart.</li>
             <li><strong>Seen comment IDs</strong> — stored in memory to prevent reprocessing. Cleared on server restart.</li>
-            <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the authorized administrator's device only. Expire after 30 days. Not stored server-side beyond the active session.</li>
+            <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the Operator's authorized device only. Expire after 30 days. Not persisted beyond the active session.</li>
           </ul>
-          <p>When a TikTok Business Account user revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
-          <p>We do not retain personal data beyond the periods stated above. Users who wish to request immediate deletion of any residual data may do so by contacting <strong>support@tjbmanagementinc.com</strong>.</p>
+          <p>When an Operator disconnects their TikTok Business Account or revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
+          <p>Operators or End Users who wish to request immediate deletion of any residual data may do so by contacting <strong>support@tjbmanagementinc.com</strong>.</p>
         </div>
 
         <div className="section" id="data-minimization">
-          <h2>6. Data Minimization</h2>
+          <h2>7. Data Minimization</h2>
           <p>
-            The Hallie Moderation System requests only the minimum API scopes necessary to perform comment moderation. Specifically:
+            The Platform requests only the minimum API scopes necessary to perform comment moderation. Specifically:
           </p>
           <ul>
-            <li>We request <strong>comment.list</strong> and <strong>comment.list.manage</strong> scopes to read and moderate comments</li>
-            <li>We request <strong>video.list</strong> to identify which videos have comments to moderate</li>
-            <li>We request <strong>user.info.basic</strong> and related scopes solely to display the connected account identity in the admin interface</li>
+            <li>The Platform requests <strong>comment.list</strong> and <strong>comment.list.manage</strong> scopes to read and moderate comments on behalf of Operators</li>
+            <li>The Platform requests <strong>video.list</strong> to identify which videos have comments to moderate</li>
+            <li>The Platform requests <strong>user.info.basic</strong> and related scopes solely to display the connected account identity in each Operator's dashboard</li>
           </ul>
-          <p>We do not request scopes beyond those listed. We do not request access to direct messages, financial data, advertising data, or any other data unrelated to comment moderation. API fields requested are limited to those required for scoring and action — we do not fetch fields that are not used by the system.</p>
+          <p>No scopes beyond those listed are requested. The Platform does not request access to direct messages, financial data, advertising data, or any other data unrelated to comment moderation. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
         </div>
 
         <div className="section" id="roles">
-          <h2>7. Dedicated Roles & Responsibilities</h2>
-          <p>TJB Management Inc. has designated the following responsibilities for data privacy and security compliance:</p>
+          <h2>8. Roles & Responsibilities</h2>
+          <p>The following role structure governs data responsibilities under this Policy:</p>
           <ul>
-            <li><strong>Data Controller & Privacy Officer:</strong> Tyler J. Beasley, Founder & CEO, TJB Management Inc. Tyler is responsible for all decisions regarding data collection, processing, and protection, and serves as the primary point of contact for all privacy-related inquiries.</li>
-            <li><strong>Security Officer:</strong> Tyler J. Beasley. Responsible for maintaining and reviewing security policies, access controls, and incident response procedures.</li>
-            <li><strong>System Administrator:</strong> Tyler J. Beasley. The sole authorized administrator of the Hallie Moderation System. No other individuals have administrative access.</li>
+            <li><strong>Platform Provider (TJB Management Inc.)</strong> — Acts as a data processor on behalf of Operators. Responsible for the security and integrity of the Platform infrastructure, and for processing data only as directed by Operators and as permitted under this Policy.</li>
+            <li><strong>Operator</strong> — Acts as the data controller for their TikTok Business Account and the End Users who interact with their content. Operators are responsible for their own privacy notices, lawful basis for processing, and compliance with applicable local laws.</li>
+            <li><strong>Platform Privacy & Security Contact</strong> — support@tjbmanagementinc.com. All privacy inquiries, data subject requests, and security incidents related to the Platform should be directed here.</li>
           </ul>
-          <p>Privacy and security inquiries may be directed to <strong>support@tjbmanagementinc.com</strong> or <strong>support@tjbmanagementinc.com</strong>.</p>
+          <p>Operators must designate a Data Protection Officer (DPO) or equivalent privacy contact within their own organization where required by applicable law (e.g., GDPR Article 37).</p>
+        </div>
+
+        <div className="section" id="operator-obligations">
+          <h2>9. Operator Obligations</h2>
+          <p>By using the Hallie Platform, Operators agree to the following obligations:</p>
+          <ul>
+            <li><strong>Lawful basis</strong> — Operators must have a valid lawful basis under applicable privacy law for processing End User data through the Platform.</li>
+            <li><strong>Privacy notice</strong> — Operators must maintain a publicly accessible privacy notice that discloses their use of automated comment moderation tools and the processing of End User data.</li>
+            <li><strong>Credential security</strong> — Operators are responsible for securing their admin credentials and TikTok OAuth tokens. Credentials must not be shared with unauthorized personnel.</li>
+            <li><strong>Authorized use only</strong> — Operators may only use the Platform to moderate their own TikTok Business Account(s) that they are authorized to manage.</li>
+            <li><strong>Compliance with TikTok terms</strong> — Operators must comply with all applicable TikTok API for Business Developer Terms and Community Guidelines.</li>
+            <li><strong>Data subject requests</strong> — Operators must be able to assist End Users in exercising their data rights and must direct such requests to the Platform Provider where necessary.</li>
+            <li><strong>No resale</strong> — Operators may not resell, sublicense, or otherwise provide Platform access to third parties without written authorization from the Platform Provider.</li>
+          </ul>
         </div>
 
         <div className="section" id="infosec">
-          <h2>8. Information Security Policy</h2>
+          <h2>10. Information Security Policy</h2>
           <p>
-            TJB Management Inc. maintains an information security framework governing the operation of the Hallie Moderation System. This policy is reviewed and updated at least annually and is signed off by Tyler J. Beasley as senior leadership.
+            The Platform Provider maintains a comprehensive information security framework governing all aspects of the Hallie Platform. This framework is reviewed and updated at least annually.
           </p>
-          <p>Core security principles applied to this system:</p>
+          <p>Core security principles applied to the Platform:</p>
           <ul>
-            <li><strong>Least Privilege</strong> — system access is restricted to the minimum required to perform authorized functions</li>
-            <li><strong>Defense in Depth</strong> — multiple layers of security controls are applied at the application, infrastructure, and operational levels</li>
-            <li><strong>Data Minimization</strong> — only the data necessary for moderation is accessed or retained</li>
-            <li><strong>Secure by Default</strong> — all new features and configurations default to the most restrictive setting</li>
-            <li><strong>Continuous Improvement</strong> — security controls are reviewed following any incident, significant change, or annually at minimum</li>
+            <li><strong>Least Privilege</strong> — Platform access is restricted to the minimum required to perform authorized functions at both the infrastructure and application level.</li>
+            <li><strong>Defense in Depth</strong> — Multiple layers of security controls are applied at the application, infrastructure, and operational levels.</li>
+            <li><strong>Data Minimization</strong> — Only the data necessary for moderation is accessed or retained. No data is processed beyond what Operators authorize.</li>
+            <li><strong>Secure by Default</strong> — All new features and configurations default to the most restrictive setting and require explicit enablement.</li>
+            <li><strong>Continuous Improvement</strong> — Security controls are reviewed following any incident, significant change, or annually at minimum.</li>
           </ul>
         </div>
 
         <div className="section" id="network">
-          <h2>9. Network Security</h2>
-          <p>The Hallie Moderation System is hosted on Vercel Inc.'s serverless infrastructure, which provides the following network-level protections:</p>
+          <h2>11. Network Security</h2>
+          <p>The Platform is hosted on Vercel Inc.'s serverless infrastructure, which provides the following network-level protections:</p>
           <ul>
             <li>All traffic is routed through Vercel's edge network with DDoS protection and traffic filtering</li>
             <li>All endpoints are served exclusively over HTTPS with TLS 1.2 or above — HTTP is not permitted</li>
-            <li>Serverless function environments are fully isolated — there is no persistent shared runtime between requests</li>
-            <li>Network access to the admin interface requires knowledge of a secret administrator key that is never exposed client-side</li>
-            <li>API routes are scoped and protected — unauthenticated requests receive a 401 Unauthorized response and no data is returned</li>
+            <li>Serverless function environments are fully isolated — there is no persistent shared runtime between requests or between Operators</li>
+            <li>Network access to each Operator's dashboard requires a unique secret administrator key that is never exposed client-side</li>
+            <li>All API routes are access-controlled — unauthenticated requests receive a 401 Unauthorized response and no data is returned</li>
           </ul>
           <p>Vercel maintains a SOC 2 Type II certification. Their security documentation is available at vercel.com/security.</p>
         </div>
 
         <div className="section" id="endpoint">
-          <h2>10. Endpoint Protection</h2>
-          <p>Administrative access to the Hallie Moderation System is performed exclusively from devices owned and controlled by Tyler J. Beasley. The following endpoint protections are in place on all devices used to administer this system:</p>
+          <h2>12. Endpoint Protection</h2>
+          <p>Platform Provider personnel with administrative access to Platform infrastructure maintain the following endpoint protections on all devices used to administer the Platform:</p>
           <ul>
             <li>Antivirus and anti-malware software is installed and actively running on all administrator devices</li>
             <li>Operating system and application security patches are applied promptly upon release</li>
             <li>Full-disk encryption is enabled on all administrator devices</li>
             <li>Screen auto-lock is configured to activate after 15 minutes or less of inactivity</li>
-            <li>Access to the admin interface from non-administrator devices is blocked by the admin secret key requirement</li>
           </ul>
+          <p>Operators are expected to maintain equivalent endpoint protections on any device used to access their Hallie Platform dashboard.</p>
         </div>
 
         <div className="section" id="security-baselines">
-          <h2>11. Security Baselines</h2>
-          <p>The following baseline security measures are enforced for all access to the Hallie Moderation System and associated infrastructure:</p>
+          <h2>13. Security Baselines</h2>
+          <p>The following baseline security measures are enforced for all access to the Platform and associated infrastructure:</p>
           <ul>
-            <li><strong>Multi-Factor Authentication (MFA)</strong> — MFA is required on all accounts with access to Vercel, GitHub, and any service that stores or processes system credentials</li>
+            <li><strong>Multi-Factor Authentication (MFA)</strong> — MFA is required on all accounts with access to Platform infrastructure, including Vercel and source code repositories</li>
             <li><strong>Password Requirements</strong> — All passwords are at minimum 16 characters, include uppercase, lowercase, numbers, and special characters, and are managed via a dedicated password manager</li>
-            <li><strong>Admin Key</strong> — The system admin interface is protected by a cryptographically random secret key, rotated periodically and stored only as a Vercel environment variable — never in code or version control</li>
-            <li><strong>Session Management</strong> — Admin sessions use HttpOnly, Secure, SameSite cookies. OAuth tokens expire after 30 days and require re-authentication</li>
-            <li><strong>Screen Lock</strong> — All administrator devices enforce automatic screen lock after 15 minutes of inactivity</li>
-            <li><strong>Security Awareness</strong> — Tyler J. Beasley maintains current awareness of security threats and TikTok API security requirements through regular review of industry resources</li>
+            <li><strong>Operator Admin Keys</strong> — Each Operator's admin interface is protected by a unique cryptographically random secret key, stored only as an encrypted environment variable — never in code or version control</li>
+            <li><strong>Session Management</strong> — Operator sessions use HttpOnly, Secure, SameSite cookies. OAuth tokens expire after 30 days and require re-authentication</li>
+            <li><strong>Screen Lock</strong> — All Platform Provider administrator devices enforce automatic screen lock after 15 minutes of inactivity</li>
+            <li><strong>Security Awareness</strong> — Platform Provider personnel maintain current awareness of security threats and TikTok API security requirements through regular review of industry resources and security advisories</li>
           </ul>
         </div>
 
         <div className="section" id="data-protection">
-          <h2>12. Data Protection & Encryption</h2>
+          <h2>14. Data Protection & Encryption</h2>
           <ul>
-            <li><strong>Data in Transit</strong> — All data transmitted between clients, the Hallie Moderation System, and TikTok's API is encrypted using TLS 1.2 or above. This is enforced at the infrastructure level by Vercel and cannot be downgraded.</li>
-            <li><strong>Data at Rest</strong> — The system does not maintain a persistent database. OAuth tokens stored in cookies are HttpOnly (inaccessible to JavaScript), Secure (HTTPS only), and SameSite=Strict. Environment variables including secrets are encrypted at rest by Vercel's infrastructure using AES-256.</li>
-            <li><strong>Secret Management</strong> — API keys, admin secrets, and OAuth credentials are stored exclusively as Vercel environment variables. They are never committed to source control, logged, or exposed in API responses.</li>
-            <li><strong>No Third-Party Data Sharing</strong> — Comment data is never transmitted to third-party analytics, advertising, AI training, or any other external service. The only outbound API calls are to TikTok's authorized API endpoints.</li>
+            <li><strong>Data in Transit</strong> — All data transmitted between Operators, the Platform, and TikTok's API is encrypted using TLS 1.2 or above. This is enforced at the infrastructure level by Vercel and cannot be downgraded.</li>
+            <li><strong>Data at Rest</strong> — The Platform does not maintain a persistent database. OAuth tokens stored in cookies are HttpOnly (inaccessible to JavaScript), Secure (HTTPS only), and SameSite=Strict. Environment variables including all secrets are encrypted at rest by Vercel's infrastructure using AES-256.</li>
+            <li><strong>Secret Management</strong> — API keys, admin secrets, and OAuth credentials are stored exclusively as encrypted environment variables. They are never committed to source control, logged, or exposed in API responses.</li>
+            <li><strong>No Third-Party Data Sharing</strong> — Comment data is never transmitted to third-party analytics, advertising, AI training, or any other external service. The only outbound API calls are to TikTok's authorized API endpoints on behalf of each Operator.</li>
           </ul>
         </div>
 
         <div className="section" id="access-control">
-          <h2>13. Access Control Policy</h2>
-          <p>Access to the Hallie Moderation System is governed by a strict need-to-know, least-privilege model:</p>
+          <h2>15. Access Control Policy</h2>
+          <p>Access to the Platform is governed by a strict need-to-know, least-privilege model:</p>
           <ul>
-            <li><strong>Administrator access</strong> — Limited exclusively to Tyler J. Beasley. No other individuals hold administrative credentials.</li>
-            <li><strong>Authentication</strong> — The admin interface requires a secret key that is stored as an encrypted Vercel environment variable. It is rotated if compromise is suspected.</li>
-            <li><strong>No shared accounts</strong> — There is one administrator account. Shared credentials are not used.</li>
+            <li><strong>Operator isolation</strong> — Each Operator accesses only their own TikTok Business Account data. No Operator can access another Operator's data or credentials.</li>
+            <li><strong>Authentication</strong> — Each Operator's dashboard is protected by a unique secret key stored as an encrypted environment variable. It must be rotated if compromise is suspected.</li>
+            <li><strong>No shared credentials</strong> — Shared credentials between Operators or between Operator personnel are not permitted.</li>
             <li><strong>API access</strong> — TikTok API tokens are scoped to the minimum required permissions and stored only in server-side cookies inaccessible to client-side code.</li>
-            <li><strong>Source code access</strong> — The codebase is stored in a private GitHub repository. Access is limited to Tyler J. Beasley. MFA is enforced on the GitHub account.</li>
-            <li><strong>Infrastructure access</strong> — Vercel project access is limited to Tyler J. Beasley. MFA is enforced on the Vercel account.</li>
+            <li><strong>Platform infrastructure access</strong> — Access to Platform source code and hosting infrastructure is limited to authorized Platform Provider personnel with MFA enforced.</li>
             <li><strong>Access review</strong> — Access rights are reviewed at least annually and immediately upon any personnel or organizational change.</li>
           </ul>
         </div>
 
         <div className="section" id="vulnerability">
-          <h2>14. Vulnerability Management</h2>
-          <p>TJB Management Inc. maintains the following vulnerability management practices for the Hallie Moderation System:</p>
+          <h2>16. Vulnerability Management</h2>
+          <p>The Platform Provider maintains the following vulnerability management practices:</p>
           <ul>
-            <li><strong>Dependency management</strong> — All npm dependencies are regularly audited using <code style={{ color: '#c084fc', fontSize: 13 }}>npm audit</code>. Critical and high vulnerabilities are remediated within 7 days of discovery.</li>
+            <li><strong>Dependency management</strong> — All software dependencies are regularly audited. Critical and high vulnerabilities are remediated within 7 days of discovery.</li>
             <li><strong>Infrastructure scanning</strong> — Vercel provides automated infrastructure-level vulnerability detection and patching as part of its platform.</li>
             <li><strong>Code review</strong> — All code changes are reviewed before deployment. Security implications are evaluated for each change.</li>
             <li><strong>Penetration testing</strong> — External penetration testing is conducted at least annually or following any significant system change.</li>
@@ -346,19 +376,20 @@ export default function HallieTikTokLegal() {
         </div>
 
         <div className="section" id="incident">
-          <h2>15. Incident Management</h2>
-          <p>TJB Management Inc. maintains an incident response policy for the Hallie Moderation System. In the event of a security incident or data breach involving TikTok Business Account data:</p>
+          <h2>17. Incident Management</h2>
+          <p>The Platform Provider maintains an incident response policy. In the event of a security incident or data breach involving Operator or End User data:</p>
           <h3>Detection & Containment</h3>
           <ul>
-            <li>Suspicious activity is monitored through Vercel's runtime logs and error tracking</li>
+            <li>Suspicious activity is monitored through Platform runtime logs and error tracking</li>
             <li>Upon discovery of a potential incident, all affected tokens and credentials are immediately revoked and rotated</li>
-            <li>The affected system is isolated as quickly as possible to prevent further exposure</li>
+            <li>The affected system or account is isolated as quickly as possible to prevent further exposure</li>
           </ul>
           <h3>Assessment & Notification</h3>
           <ul>
             <li>The scope and nature of the incident is assessed within 24 hours of discovery</li>
+            <li>Affected Operators are notified within 48 hours of discovery</li>
             <li>TikTok is notified of any incident affecting TikTok user data within 72 hours in accordance with applicable regulatory requirements</li>
-            <li>Affected individuals are notified as required by applicable law (GDPR, CPRA)</li>
+            <li>Affected End Users and regulatory authorities are notified as required by applicable law (GDPR, CPRA)</li>
           </ul>
           <h3>Recovery & Review</h3>
           <ul>
@@ -371,76 +402,77 @@ export default function HallieTikTokLegal() {
         </div>
 
         <div className="section" id="subprocessors">
-          <h2>16. Subprocessors & Infrastructure</h2>
-          <p>The Hallie Moderation System relies on the following third-party subprocessors. All subprocessors are subject to appropriate data protection agreements:</p>
+          <h2>18. Subprocessors & Infrastructure</h2>
+          <p>The Platform relies on the following third-party subprocessors. All subprocessors are subject to appropriate data protection agreements:</p>
           <ul>
             <li><strong>Vercel Inc.</strong> — Hosting and serverless compute infrastructure. SOC 2 Type II certified. Headquartered in San Francisco, CA, USA. Data processed in the United States. <a href="https://vercel.com/legal/privacy-policy" style={{ color: '#a855f7' }}>Privacy Policy</a></li>
             <li><strong>GitHub Inc. (Microsoft)</strong> — Private source code repository. SOC 2 Type II certified. No production data is stored in version control. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" style={{ color: '#a855f7' }}>Privacy Policy</a></li>
-            <li><strong>TikTok for Business</strong> — Data source. All data originates from TikTok's API and is returned to TikTok via authorized API actions. No TikTok user data is shared with any other party.</li>
+            <li><strong>TikTok for Business</strong> — Data source and action endpoint. All data originates from TikTok's API and moderation actions are returned to TikTok via authorized API calls. No TikTok user data is shared with any other subprocessor.</li>
           </ul>
-          <p>TJB Management Inc. does not use any other subprocessors or third-party services that process TikTok user data. This list is reviewed and updated whenever a new subprocessor is engaged.</p>
-          <p><strong>Business Headquarters:</strong> United States<br />
-          <strong>Primary Workforce Location:</strong> United States<br />
-          <strong>System Location:</strong> United States (Vercel US regions)<br />
-          <strong>Foreign Ownership:</strong> None — TJB Management Inc. is 100% US-owned and operated</p>
+          <p>The Platform Provider does not use any other subprocessors that process Operator or End User data. This list is reviewed and updated whenever a new subprocessor is engaged. Operators will be notified of material changes to subprocessors.</p>
+          <p>
+            <strong>Platform Provider Headquarters:</strong> United States<br />
+            <strong>Primary Workforce Location:</strong> United States<br />
+            <strong>System Location:</strong> United States (Vercel US regions)<br />
+            <strong>Foreign Ownership:</strong> None — Platform Provider is 100% US-owned and operated
+          </p>
         </div>
 
         <div className="section" id="usds">
-          <h2>18. US Data Security Review (USDS)</h2>
+          <h2>19. US Data Security Review (USDS)</h2>
           <p>
-            TJB Management Inc. is subject to and in full compliance with TikTok's US Data Security (USDS) review process, which is administered by TikTok's USDS team. This review is a mandatory prerequisite for any developer seeking Business Messaging scope of permission for developer apps used with TikTok Business Accounts registered in the United States. No Business Messaging access is granted without approval from the USDS team and executed agreement on the USDS Addendum.
+            The Hallie Platform is subject to and in full compliance with TikTok's US Data Security (USDS) review process, administered by TikTok's USDS team. This review is a mandatory prerequisite for any developer seeking Business Messaging scope of permission for developer apps used with TikTok Business Accounts registered in the United States.
           </p>
           <h3>Purpose of the Review</h3>
           <p>
-            The USDS review is designed to ensure that developers handling US user data — specifically direct message data processed on behalf of TikTok Business Account users — meet TikTok's data security and privacy expectations. The review assesses data handling practices, organizational security controls, and ownership structures to protect TikTok users, Business Account users, advertisers, and the broader developer ecosystem.
+            The USDS review ensures that developers handling US user data meet TikTok's data security and privacy expectations. The review assesses data handling practices, organizational security controls, and ownership structures to protect TikTok users, Business Account users, and the broader developer ecosystem.
           </p>
           <h3>Review Timeline</h3>
           <p>
-            The USDS review process typically takes <strong>7–10 business days</strong> following submission of the completed questionnaire, subject to any follow-up questions or requests for additional documentation from the USDS team. TJB Management Inc. commits to responding to all USDS follow-up requests promptly and completely to avoid delays.
+            The USDS review process typically takes <strong>7–10 business days</strong> following submission of the completed questionnaire, subject to any follow-up requests from the USDS team. The Platform Provider commits to responding to all USDS follow-up requests promptly and completely.
           </p>
           <h3>Grounds for Rejection</h3>
           <p>TikTok's USDS team may reject a developer application for a number of reasons, including but not limited to:</p>
           <ul>
             <li>Insufficient or incomplete security controls</li>
             <li>Failure to provide requested supporting documentation</li>
-            <li>Misrepresentation or omission of material facts on the application</li>
+            <li>Misrepresentation or omission of material facts</li>
             <li>Association with USDS Restricted Countries (see below)</li>
             <li>Inability to demonstrate compliance with applicable privacy laws and TikTok's data standards</li>
           </ul>
           <h3>USDS Restricted Countries</h3>
           <p>
-            As part of the USDS review, TikTok enforces strict compliance with US national security regulations, including restrictions consistent with OFAC sanctions and CFIUS designations. TJB Management Inc. confirms and represents the following in full:
+            TikTok enforces strict compliance with US national security regulations, including restrictions consistent with OFAC sanctions and CFIUS designations. The Platform Provider confirms and represents the following:
           </p>
           <ul>
-            <li><strong>Business Headquarters:</strong> United States — not located in, organized under the laws of, or affiliated with any Restricted Country</li>
-            <li><strong>Ultimate Beneficial Ownership (UBO):</strong> TJB Management Inc. is 100% owned by Tyler J. Beasley, a US citizen and resident. No ownership interest — direct or indirect — is held by any individual or entity from a Restricted Country</li>
+            <li><strong>Platform Provider Headquarters:</strong> United States — not located in, organized under the laws of, or affiliated with any Restricted Country</li>
+            <li><strong>Ultimate Beneficial Ownership (UBO):</strong> 100% owned by US citizens and residents. No ownership interest — direct or indirect — is held by any individual or entity from a Restricted Country</li>
             <li><strong>Aggregate Foreign Ownership:</strong> 0% — well below the 25% aggregate threshold from Restricted Countries that would trigger ineligibility</li>
             <li><strong>Workforce Location:</strong> United States</li>
             <li><strong>System Location:</strong> United States (Vercel US infrastructure)</li>
-            <li><strong>Subcontractors:</strong> All subprocessors (Vercel Inc., GitHub Inc.) are US-headquartered entities with no material ownership or operational ties to Restricted Countries</li>
+            <li><strong>Subcontractors:</strong> All subprocessors are US-headquartered entities with no material ownership or operational ties to Restricted Countries</li>
           </ul>
           <p>
-            Restricted Countries as defined by TikTok's USDS policy include China (including Hong Kong), Russia, Iran, North Korea, Cuba, and Syria. TJB Management Inc. has no ownership, operational, or organizational ties to any of these jurisdictions.
+            Restricted Countries as defined by TikTok's USDS policy include China (including Hong Kong), Russia, Iran, North Korea, Cuba, and Syria. The Platform Provider has no ownership, operational, or organizational ties to any of these jurisdictions.
+          </p>
+          <p>
+            Any misrepresentation or omission related to ownership, geographic operations, or developer affiliations constitutes grounds for immediate disqualification and termination of API access. Supporting documentation including vulnerability scan reports and penetration testing results are available upon request at <strong>support@tjbmanagementinc.com</strong>.
           </p>
           <h3>USDS Addendum</h3>
           <p>
-            Upon approval by TikTok's USDS team, TJB Management Inc. agrees to execute the USDS Addendum as required. Any misrepresentation or omission related to ownership, geographic operations, or developer affiliations constitutes grounds for immediate disqualification and termination of API access.
-          </p>
-          <p>
-            Supporting documentation including the latest vulnerability scan report and penetration testing results are available upon request. Contact <strong>support@tjbmanagementinc.com</strong> to request documentation for USDS review purposes.
+            Upon approval by TikTok's USDS team, the Platform Provider agrees to execute the USDS Addendum as required. Operators using the Platform for TikTok Business Messaging functionality may be required to independently complete their own USDS review depending on their use case and jurisdiction.
           </p>
         </div>
 
         <div className="section" id="contact">
-          <h2>19. Contact & Requests</h2>
-          <p>For any questions, data subject requests, privacy inquiries, or security reports related to the Hallie TikTok Moderation System, please contact:</p>
+          <h2>20. Contact & Requests</h2>
+          <p>For any questions, data subject requests, privacy inquiries, security reports, or compliance documentation requests related to the Hallie Platform, please contact:</p>
           <ul>
-            <li><strong>Privacy inquiries, data requests, security incidents & general inquiries:</strong> support@tjbmanagementinc.com</li>
+            <li><strong>All privacy, security & compliance inquiries:</strong> support@tjbmanagementinc.com</li>
           </ul>
           <p>
             <strong>TJB Management Inc.</strong><br />
-            Tyler J. Beasley, Data Controller<br />
-            United States
+            Platform Provider · United States
           </p>
           <p>We will respond to all privacy and security inquiries within 30 days. Critical security incidents will receive an acknowledgment within 48 hours.</p>
         </div>
@@ -448,8 +480,8 @@ export default function HallieTikTokLegal() {
         <footer>
           <p>Last Updated: July 1, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-          <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Moderation System as required by TikTok's Data Security and Privacy Review (DSPR) process.</p>
-          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. TJB Management Inc. is an independent developer and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
+          <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Comment Moderation Platform as required by TikTok's Data Security and Privacy Review (DSPR) and US Data Security (USDS) review processes.</p>
+          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. The Hallie Platform is an independent product developed by TJB Management Inc. and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
         </footer>
       </main>
     </>

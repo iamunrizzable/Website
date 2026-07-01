@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function Hallie() {
+export default function AgencyLegal() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Hallie() {
         }
       });
     }, { threshold: 0.1 });
-    
+
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -29,9 +29,9 @@ export default function Hallie() {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
+          width: 100vw;
+          height: 100vh;
+          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -46,10 +46,10 @@ export default function Hallie() {
         }
 
         @keyframes glowPulse {
-          0%, 100% { 
+          0%, 100% {
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
           }
-          50% { 
+          50% {
             text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4);
           }
         }
@@ -69,15 +69,8 @@ export default function Hallie() {
           animation: glowPulse 3s ease-in-out infinite;
         }
 
-        h1.rainbow {
-          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
         h2 {
-          color: #d4a5ff;
+          color: #a855f7;
           margin-top: 40px;
           margin-bottom: 15px;
           font-size: 20px;
@@ -90,53 +83,26 @@ export default function Hallie() {
           line-height: 1.8;
         }
 
-        .gradient-pink {
-          color: #ec4899;
-          font-weight: 600;
+        li {
+          color: #7dd3fc;
+          margin-bottom: 12px;
+          line-height: 1.8;
         }
 
-        .gradient-purple {
-          color: #a855f7;
-          font-weight: 600;
-        }
-
-        .gradient-blue {
-          color: #3b82f6;
-          font-weight: 600;
-        }
-
-        .gradient-cyan {
-          color: #06b6d4;
-          font-weight: 600;
-        }
-
-        strong { 
+        strong {
           font-weight: 700;
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
-        strong a {
-          background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
+        .rainbow {
+          background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          text-decoration: none;
-        }
-
-        strong a:hover {
-          text-decoration: underline;
-        }
-
-        a {
-          color: #3b82f6;
-          text-decoration: none;
-        }
-
-        a:hover {
-          text-decoration: underline;
+          font-weight: 700;
         }
 
         .back-link {
@@ -160,10 +126,6 @@ export default function Hallie() {
           transition: all 0.6s ease;
           opacity: 0;
           transform: translateY(20px);
-        }
-
-        .section:nth-child(3) {
-          border-left-color: #ec4899;
         }
 
         .section.visible {
@@ -226,13 +188,6 @@ export default function Hallie() {
           background-color: rgba(168, 85, 247, 0.1);
         }
 
-        .cta-btn {
-          display: block; text-align: center; margin: 10px auto 30px;
-          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
-          text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
-          border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
-        }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(168,85,247,0.7); text-decoration: none; }
         footer {
           max-width: 900px;
           margin: 60px auto 0;
@@ -261,32 +216,81 @@ export default function Hallie() {
       </div>
 
       <main>
-        <a href="/" className="back-link">← Back to Home</a>
-        
-        <h1 className="rainbow">I'm Hallie</h1>
+        <a href="/legal" className="back-link">← Back to Legal</a>
+
+        <h1>TJB Management — Agency Guidelines</h1>
 
         <div className="section">
-          <h2>Who I Am</h2>
+          <h2>1. About TJB Management Inc.</h2>
           <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things real</span>, <span className="gradient-purple">call out bad behavior</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
+            TJB Management Inc. is a TikTok LIVE creator management agency founded and operated by Tyler J. Beasley. The agency represents TikTok LIVE creators under formal agreements and provides management, strategy, and growth support. Nothing on this website constitutes legal advice or a binding offer of representation until a signed agreement is in place.
           </p>
         </div>
 
         <div className="section">
-          <h2>What I Do</h2>
+          <h2>2. Creator Eligibility</h2>
+          <p>To be considered for representation by TJB Management, a creator must meet all of the following at the time of signing:</p>
+          <ul>
+            <li><span className="rainbow">Must be at least 18 years of age</span></li>
+            <li><span className="rainbow">Must be in good standing with TikTok — no active violations or permanent bans on any account they intend to use under the agency</span></li>
+            <li><span className="rainbow">Must not have averaged more than 500,000 diamonds per month over the past 6 months on any TikTok account</span></li>
+            <li><span className="rainbow">Must not currently be signed to or in active negotiations with any competing TikTok LIVE agency</span></li>
+            <li><span className="rainbow">Must not have signed any backup accounts or secondary accounts to any other agency within the past 6 months</span></li>
+            <li><span className="rainbow">The account being signed must be the creator's primary TikTok account — we do not sign backup or secondary accounts</span></li>
+            <li><span className="rainbow">Must not have attempted to poach creators from any agency</span></li>
+            <li><span className="rainbow">Must be located in the United States or Canada</span></li>
+            <li><span className="rainbow">Must be willing and able to go LIVE for a minimum of 1 hour, 4 days per week</span></li>
+          </ul>
+        </div>
+
+        <div className="section">
+          <h2>3. LIVE Trial Period</h2>
           <p>
-            <span className="gradient-blue">Every message and interaction that comes through Tyler's accounts gets reviewed by me</span>. Some I reply to directly, others I <a href="/tyler"><span className="gradient-blue">pass along to Tyler</span></a> if they need a personal response from him. I'm <span className="gradient-pink">watching the inbox</span>, <span className="gradient-purple">keeping things clean</span>, and making sure we stay true to who we are.
+            TikTok may require certain creators to complete a LIVE trial before gaining unrestricted access to TikTok LIVE. This applies to creators who have not completed a 10-minute LIVE stream within the past 60 days. A creator is not considered officially signed to TJB Management until they have successfully completed their LIVE trial, if one is required by TikTok. TJB Management will support creators through this process but cannot guarantee TikTok's approval or timeline.
           </p>
         </div>
 
         <div className="section">
-          <h2>The Bottom Line</h2>
-          <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
+          <h2>4. Ban Policy</h2>
+          <p>
+            TJB Management may, at its sole discretion, attempt to appeal a TikTok ban on behalf of a creator who is actively in the signing process with the agency. This benefit is reserved exclusively for prospective creators who are in active negotiations or onboarding — it is not available to the general public. TJB Management cannot guarantee the outcome of any appeal, as all final decisions rest with TikTok.
+          </p>
         </div>
 
-        <a href="/contact-hallie" className="cta-btn">Connect with Hallie →</a>
+        <div className="section">
+          <h2>5. Non-Solicitation & Non-Compete</h2>
+          <p>Creators signed to or in negotiations with TJB Management agree to the following:</p>
+          <ul>
+            <li><span className="rainbow">You may not solicit, recruit, or encourage other TJB Management creators to leave the agency</span></li>
+            <li><span className="rainbow">You may not sign with or negotiate representation with a competing TikTok LIVE agency while under contract with TJB Management</span></li>
+            <li><span className="rainbow">You may not sign backup accounts, secondary accounts, or any other TikTok account to a competing agency during your time with TJB Management</span></li>
+            <li><span className="rainbow">Violations of these terms may result in immediate termination of your agreement and potential legal action</span></li>
+          </ul>
+        </div>
+
+        <div className="section">
+          <h2>6. Intellectual Property</h2>
+          <p>
+            The TJB Management Inc. name, branding, this website, and <a href="/hallie"><span className="rainbow">Hallie</span></a> (TJB Management's AI assistant) are the sole proprietary property of TJB Management Inc. and Tyler J. Beasley. None of these may be reproduced, copied, distributed, or used in any form without prior written consent from TJB Management Inc. Unauthorized use will be pursued to the fullest extent of the law.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>7. Limitation of Liability</h2>
+          <p>
+            TJB Management Inc. is not liable for any decisions made by TikTok regarding a creator's account, including but not limited to bans, restrictions, demonetization, or removal from the TikTok LIVE program. We provide management and support services — we do not control TikTok's platform, policies, or enforcement actions. Results are not guaranteed.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>8. Contact & Disputes</h2>
+          <p>
+            For any legal inquiries, contract questions, or disputes related to TJB Management Inc., please contact us at <span className="rainbow">support@tjbmanagementinc.com</span>. All disputes are subject to the laws of the State of California. By applying to or signing with TJB Management, you agree to these terms.
+          </p>
+        </div>
 
         <footer>
+          <p>Last Updated: June 14, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>

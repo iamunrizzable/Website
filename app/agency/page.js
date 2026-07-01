@@ -96,7 +96,7 @@ export default function AgencyPage() {
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
         <a href="/join-agency" onClick={() => setMenuOpen(false)}>Join the Agency</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
       </div>
 
       <main>
