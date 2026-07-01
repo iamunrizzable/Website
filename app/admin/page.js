@@ -514,14 +514,18 @@ function CommentsPanel({ adminKey, enabled }) {
 function SyncPanel({ adminKey, enabled }) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [mode, setMode] = useState('all');
+  const [count, setCount] = useState('20');
 
   async function runSync() {
     setLoading(true);
     setResult(null);
+    const maxVideos = mode === 'custom' ? parseInt(count, 10) || 20 : null;
     try {
       const res = await fetch('/api/admin/sync-comments', {
         method: 'POST',
-        headers: { 'x-admin-key': adminKey },
+        headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ maxVideos }),
       });
       const data = await res.json();
       setResult(data);
@@ -532,6 +536,11 @@ function SyncPanel({ adminKey, enabled }) {
     }
   }
 
+  const tabStyle = (active) => ({
+    padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
+    background: active ? '#334155' : 'transparent', color: active ? '#e2e8f0' : '#64748b', border: 'none',
+  });
+
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Comment Sync</h2>
@@ -540,8 +549,22 @@ function SyncPanel({ adminKey, enabled }) {
       ) : (
         <>
           <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
-            Pulls comments from your last 10 videos, scores them, and auto-hides anything that triggers the filter.
+            Scores all new comments and auto-hides anything that triggers the filter.
           </p>
+          <div style={{ display: 'flex', gap: 4, marginBottom: 12 }}>
+            <button style={tabStyle(mode === 'all')} onClick={() => setMode('all')}>All videos</button>
+            <button style={tabStyle(mode === 'custom')} onClick={() => setMode('custom')}>Last N videos</button>
+          </div>
+          {mode === 'custom' && (
+            <input
+              style={{ ...s.input, marginBottom: 12, width: 120 }}
+              type="number"
+              min="1"
+              value={count}
+              onChange={e => setCount(e.target.value)}
+              placeholder="# of videos"
+            />
+          )}
           <button style={{ ...s.btn, opacity: loading ? 0.6 : 1 }} onClick={runSync} disabled={loading}>
             {loading ? 'Syncing…' : 'Sync Now'}
           </button>
