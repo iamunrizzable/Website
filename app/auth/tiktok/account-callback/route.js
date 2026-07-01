@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
-import { verifyState } from '@/lib/oauth-state';
+import { verifyState, getStateType } from '@/lib/oauth-state';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -10,8 +10,11 @@ export async function GET(request) {
   const state = searchParams.get('state');
   const error = searchParams.get('error');
 
+  const isSystem = getStateType(state) === 'system';
+  const errorDest = isSystem ? '/hallie/tiktok-moderation/system' : '/admin';
+
   if (error) {
-    return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(error)}`, request.url));
+    return NextResponse.redirect(new URL(`${errorDest}?error=${encodeURIComponent(error)}`, request.url));
   }
 
   if (!verifyState(state)) {
@@ -39,9 +42,25 @@ export async function GET(request) {
       }
     }
 
-    let stored = await storeTikTokAccountToken(tokenData);
+    // For system flow: store cookie only (not shared Redis) to preserve per-user isolation
+    let stored;
+    if (isSystem) {
+      const inner = tokenData.data ?? tokenData;
+      const expiresIn = inner.expires_in ?? 86400;
+      stored = {
+        access_token: inner.access_token,
+        refresh_token: inner.refresh_token ?? null,
+        open_id: inner.open_id ?? null,
+        business_id: tokenData.business_id ?? inner.business_id ?? inner.open_id ?? null,
+        scope: inner.scope ?? null,
+        expires_at: Date.now() + expiresIn * 1000,
+        stored_at: Date.now(),
+      };
+    } else {
+      stored = await storeTikTokAccountToken(tokenData);
+    }
 
-    // For Login Kit flow only: try /business/get/ with fields=business_id to get numeric ID
+    // For Login Kit flow only: try /business/get/ to get numeric business_id
     if (!authCode) {
       try {
         const bizRes = await fetch(
@@ -50,14 +69,16 @@ export async function GET(request) {
         );
         const bizJson = await bizRes.json();
         if (bizJson.code === 0 && bizJson.data?.business_id) {
-          stored = await storeTikTokAccountToken({ ...tokenData, business_id: bizJson.data.business_id });
+          stored.business_id = bizJson.data.business_id;
+          if (!isSystem) stored = await storeTikTokAccountToken({ ...tokenData, business_id: bizJson.data.business_id });
         }
       } catch (e) {
         console.error('[account-callback] business/get failed:', e.message);
       }
     }
 
-    const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
+    const dest = isSystem ? '/hallie/tiktok-moderation/system?connected=1' : '/admin?account_connected=1';
+    const response = NextResponse.redirect(new URL(dest, request.url));
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -68,6 +89,6 @@ export async function GET(request) {
     return response;
   } catch (err) {
     console.error('[account-callback] Error:', err.message);
-    return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(err.message)}`, request.url));
+    return NextResponse.redirect(new URL(`${errorDest}?error=${encodeURIComponent(err.message)}`, request.url));
   }
 }
