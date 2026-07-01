@@ -122,7 +122,7 @@ export default function HallieTikTokLegal() {
 
         <h1>Hallie Platform — Data Security & Privacy Policy</h1>
         <p className="subtitle">
-          TikTok Comment Moderation Platform · Powered by TJB Management Inc.<br />
+          TikTok Account Automation Platform · Powered by TJB Management Inc.<br />
           Effective Date: July 1, 2026 · Last Updated: July 1, 2026
         </p>
 
@@ -155,16 +155,16 @@ export default function HallieTikTokLegal() {
         <div className="section" id="about">
           <h2>1. About the Platform</h2>
           <p>
-            The <strong>Hallie Comment Moderation Platform</strong> ("Platform") is a TikTok comment moderation and management solution developed and operated by TJB Management Inc. ("Platform Provider"), headquartered in the United States.
+            The <strong>Hallie Account Automation Platform</strong> ("Platform") is a TikTok account automation and management system developed and operated by TJB Management Inc. ("Platform Provider"), headquartered in the United States.
           </p>
           <p>
-            The Platform connects to TikTok's Business API on behalf of authorized TikTok Business Accounts to automatically retrieve, score, and moderate comments. It is designed to help brands, creators, and businesses maintain safe and respectful communities on their TikTok content.
+            The Platform connects to TikTok's Business API on behalf of authorized TikTok Business Accounts to automate account operations including content publishing, comment management, community moderation, mention monitoring, trending discovery, and automated rule execution. It is designed to help brands, creators, and businesses run their TikTok presence with as little manual intervention as possible.
           </p>
           <p>
-            This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to moderate their TikTok Business Accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
+            This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to manage their TikTok Business Accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
           </p>
           <p>
-            The Platform operates under TikTok's API for Business Developer Terms and is subject to TikTok's Data Security and Privacy Review (DSPR) as a condition of accessing the TikTok Business Messaging scope.
+            The Platform operates under TikTok's API for Business Developer Terms and is subject to TikTok's Data Security and Privacy Review (DSPR) as a condition of accessing the full scope of TikTok Business API permissions.
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Platform Provider</strong> — TJB Management Inc., the company that develops, operates, and maintains the Hallie Platform.</li>
             <li><strong>Operator</strong> — Any business, brand, creator, or individual who uses the Hallie Platform to moderate their TikTok Business Account(s).</li>
             <li><strong>End User</strong> — TikTok users who post comments on an Operator's TikTok content. End Users do not interact with the Platform directly.</li>
-            <li><strong>Platform</strong> — The Hallie Comment Moderation Platform, including all associated software, APIs, and infrastructure.</li>
+            <li><strong>Platform</strong> — The Hallie Account Automation Platform, including all associated software, APIs, and infrastructure.</li>
             <li><strong>TikTok Business Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API.</li>
           </ul>
         </div>
@@ -182,27 +182,40 @@ export default function HallieTikTokLegal() {
         <div className="section" id="data-collected">
           <h2>3. Data Collected</h2>
           <p>The Platform accesses and processes the following data via the TikTok Business API on behalf of each Operator:</p>
-          <h3>Comment Data</h3>
+          <h3>Comment & Community Data</h3>
           <ul>
             <li><span className="rainbow">Comment text</span> — the content of comments posted to an Operator's TikTok videos</li>
             <li><span className="rainbow">Comment ID</span> — TikTok's internal identifier for each comment</li>
-            <li><span className="rainbow">Username</span> — the TikTok username of the commenter (End User)</li>
+            <li><span className="rainbow">Username</span> — the TikTok username of the commenter</li>
             <li><span className="rainbow">Timestamp</span> — the date and time the comment was posted</li>
             <li><span className="rainbow">Like count</span> — the number of likes a comment has received</li>
             <li><span className="rainbow">Comment status</span> — whether a comment is visible or hidden</li>
           </ul>
-          <h3>Video Metadata</h3>
+          <h3>Content & Publishing Data</h3>
           <ul>
-            <li><span className="rainbow">Video ID</span> — TikTok's internal identifier for each video</li>
-            <li><span className="rainbow">Video title and creation date</span> — used for display and organization only</li>
-            <li><span className="rainbow">View, like, comment, and share counts</span> — used for display only</li>
+            <li><span className="rainbow">Video ID, title, and creation date</span> — used for content management and organization</li>
+            <li><span className="rainbow">View, like, comment, and share counts</span> — used for performance analytics</li>
+            <li><span className="rainbow">Video settings and publish status</span> — used to manage and schedule content on behalf of Operators</li>
+            <li><span className="rainbow">Post authorization data</span> — used to authorize, track, and manage content actions</li>
+            <li><span className="rainbow">Location data</span> — used only when Operators choose to tag a location on published content</li>
+          </ul>
+          <h3>Mentions & Discovery Data</h3>
+          <ul>
+            <li><span className="rainbow">Hashtag and keyword mentions</span> — monitored to track brand presence and community activity</li>
+            <li><span className="rainbow">Trending search terms and hashtags</span> — used for content strategy and discovery</li>
+            <li><span className="rainbow">Mention video metadata</span> — titles and engagement counts of videos mentioning an Operator's account or hashtags</li>
           </ul>
           <h3>Account Data</h3>
           <ul>
             <li><span className="rainbow">Display name and avatar</span> — fetched to identify the connected account in the Operator's dashboard</li>
-            <li><span className="rainbow">Follower, like, and video counts</span> — used for display only</li>
+            <li><span className="rainbow">Follower, like, and video counts</span> — used for display and performance benchmarking</li>
           </ul>
-          <p>The Platform does not collect or process direct messages, payment information, private account data, advertising data, or any data beyond what is explicitly listed above.</p>
+          <h3>Automated Rules Data</h3>
+          <ul>
+            <li><span className="rainbow">Rule definitions and configurations</span> — the automation rules Operators create and manage within the Platform</li>
+            <li><span className="rainbow">Rule execution results</span> — the outcome of automated actions triggered by Operator-defined rules</li>
+          </ul>
+          <p>The Platform does not collect or process direct messages, payment information, private account data, advertising campaign data, or any data beyond what is explicitly listed above.</p>
         </div>
 
         <div className="section" id="privacy-notice">
@@ -210,15 +223,15 @@ export default function HallieTikTokLegal() {
           <h3>What data is collected</h3>
           <p>As described in Section 3, the Platform collects TikTok comment text, usernames, comment IDs, and associated video metadata through TikTok's authorized Business API on behalf of each Operator.</p>
           <h3>Why it is collected</h3>
-          <p>Data is collected solely to perform automated comment moderation — identifying and hiding comments that contain profanity, harassment, hate speech, spam, scams, or other content that violates an Operator's community standards. Processing is based on the legitimate interests of Operators in maintaining safe communities on their TikTok content.</p>
+          <p>Data is collected to power automated TikTok account management on behalf of Operators — including publishing content, moderating communities, monitoring brand mentions, discovering trending opportunities, and executing automated account rules. Processing is based on the legitimate interests of Operators in managing and growing their TikTok presence efficiently.</p>
           <h3>How data is used</h3>
-          <p>Comment text is analyzed by the Platform's rule-based scoring engine. No comment data is sent to third-party AI, analytics, or advertising services. Comments that score above a configurable threshold are automatically hidden via TikTok's API on the Operator's behalf. A moderation event log is maintained in memory for operational review by the Operator.</p>
+          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No Operator or End User data is sent to third-party AI, analytics, or advertising services. All API calls are back to TikTok on behalf of the Operator.</p>
           <h3>Where data is transferred</h3>
-          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. Comment data is not shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform moderation actions authorized by the Operator.</p>
+          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No Operator or End User data is shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform actions authorized by the Operator.</p>
           <h3>How data is protected</h3>
           <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. Each Operator's admin interface is protected by a unique secret key accessible only to authorized personnel within that Operator's organization.</p>
           <h3>How long data is stored</h3>
-          <p>Comment data is processed transiently in memory and is not written to a persistent database. A rolling in-memory event log retains up to 50 recent moderation events per Operator and is cleared on server restart. OAuth access tokens are stored as HttpOnly cookies with a 30-day expiration. See Section 6 for the full data retention policy.</p>
+          <p>Account and content data is processed transiently in memory and is not written to a persistent database. A rolling in-memory event log retains recent automation events per Operator and is cleared on server restart. OAuth access tokens are stored as HttpOnly cookies with a 30-day expiration. See Section 6 for the full data retention policy.</p>
         </div>
 
         <div className="section" id="data-subject-rights">
@@ -240,8 +253,8 @@ export default function HallieTikTokLegal() {
           <p>Personal data is retained only as long as necessary to fulfill the purpose for which it was collected:</p>
           <ul>
             <li><strong>Comment text and usernames</strong> — processed transiently in memory. Not written to persistent storage. Cleared on server restart.</li>
-            <li><strong>Moderation event log</strong> — up to 50 events retained in memory per Operator session. Rolling — oldest events are overwritten as new events are added. Cleared on server restart.</li>
-            <li><strong>Seen comment IDs</strong> — stored in memory to prevent reprocessing. Cleared on server restart.</li>
+            <li><strong>Automation event log</strong> — recent automation events retained in memory per Operator session. Rolling — oldest events are overwritten as new events are added. Cleared on server restart.</li>
+            <li><strong>Seen content IDs</strong> — stored in memory to prevent reprocessing. Cleared on server restart.</li>
             <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the Operator's authorized device only. Expire after 30 days. Not persisted beyond the active session.</li>
           </ul>
           <p>When an Operator disconnects their TikTok Business Account or revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
@@ -251,14 +264,15 @@ export default function HallieTikTokLegal() {
         <div className="section" id="data-minimization">
           <h2>7. Data Minimization</h2>
           <p>
-            The Platform requests only the minimum API scopes necessary to perform comment moderation. Specifically:
+            The Platform requests only the minimum API scopes necessary to perform authorized account automation functions. Specifically:
           </p>
           <ul>
-            <li>The Platform requests <strong>comment.list</strong> and <strong>comment.list.manage</strong> scopes to read and moderate comments on behalf of Operators</li>
-            <li>The Platform requests <strong>video.list</strong> to identify which videos have comments to moderate</li>
-            <li>The Platform requests <strong>user.info.basic</strong> and related scopes solely to display the connected account identity in each Operator's dashboard</li>
+            <li>The Platform requests <strong>comment.list</strong> and <strong>comment.list.manage</strong> scopes to read and manage comments on behalf of Operators</li>
+            <li>The Platform requests <strong>video.list</strong> and <strong>video.publish</strong> scopes to manage and publish content on behalf of Operators</li>
+            <li>The Platform requests <strong>discovery.search.words</strong> and mention-related scopes to surface trending content and monitor brand mentions</li>
+            <li>The Platform requests <strong>user.info.basic</strong> and related scopes to display the connected account identity in each Operator's dashboard</li>
           </ul>
-          <p>No scopes beyond those listed are requested. The Platform does not request access to direct messages, financial data, advertising data, or any other data unrelated to comment moderation. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
+          <p>No scopes beyond those necessary for authorized functions are requested. The Platform does not request access to direct messages, financial data, advertising campaign data, or any other data outside the scope of account automation. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
         </div>
 
         <div className="section" id="roles">
@@ -277,7 +291,7 @@ export default function HallieTikTokLegal() {
           <p>By using the Hallie Platform, Operators agree to the following obligations:</p>
           <ul>
             <li><strong>Lawful basis</strong> — Operators must have a valid lawful basis under applicable privacy law for processing End User data through the Platform.</li>
-            <li><strong>Privacy notice</strong> — Operators must maintain a publicly accessible privacy notice that discloses their use of automated comment moderation tools and the processing of End User data.</li>
+            <li><strong>Privacy notice</strong> — Operators must maintain a publicly accessible privacy notice that discloses their use of automated account management tools and the processing of End User data.</li>
             <li><strong>Credential security</strong> — Operators are responsible for securing their admin credentials and TikTok OAuth tokens. Credentials must not be shared with unauthorized personnel.</li>
             <li><strong>Authorized use only</strong> — Operators may only use the Platform to moderate their own TikTok Business Account(s) that they are authorized to manage.</li>
             <li><strong>Compliance with TikTok terms</strong> — Operators must comply with all applicable TikTok API for Business Developer Terms and Community Guidelines.</li>
@@ -480,7 +494,7 @@ export default function HallieTikTokLegal() {
         <footer>
           <p>Last Updated: July 1, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-          <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Comment Moderation Platform as required by TikTok's Data Security and Privacy Review (DSPR) and US Data Security (USDS) review processes.</p>
+          <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform as required by TikTok's Data Security and Privacy Review (DSPR) and US Data Security (USDS) review processes.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. The Hallie Platform is an independent product developed by TJB Management Inc. and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
         </footer>
       </main>
