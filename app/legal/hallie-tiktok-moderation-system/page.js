@@ -147,7 +147,7 @@ export default function HallieTikTokLegal() {
             <li><a href="#vulnerability">Vulnerability Management</a></li>
             <li><a href="#incident">Incident Management</a></li>
             <li><a href="#subprocessors">Subprocessors & Infrastructure</a></li>
-            <li><a href="#usds">US Data Security Review (USDS)</a></li>
+            <li><a href="#usds">US Data Security Compliance</a></li>
             <li><a href="#contact">Contact & Requests</a></li>
           </ol>
         </div>
@@ -433,48 +433,20 @@ export default function HallieTikTokLegal() {
         </div>
 
         <div className="section" id="usds">
-          <h2>19. US Data Security Review (USDS)</h2>
+          <h2>19. US Data Security Compliance</h2>
           <p>
-            The Hallie Platform is subject to and in full compliance with TikTok's US Data Security (USDS) review process, administered by TikTok's USDS team. This review is a mandatory prerequisite for any developer seeking Business Messaging scope of permission for developer apps used with TikTok Business Accounts registered in the United States.
+            The Hallie Platform is developed and operated in full compliance with TikTok's US Data Security (USDS) requirements as a condition of accessing the TikTok Business API.
           </p>
-          <h3>Purpose of the Review</h3>
-          <p>
-            The USDS review ensures that developers handling US user data meet TikTok's data security and privacy expectations. The review assesses data handling practices, organizational security controls, and ownership structures to protect TikTok users, Business Account users, and the broader developer ecosystem.
-          </p>
-          <h3>Review Timeline</h3>
-          <p>
-            The USDS review process typically takes <strong>7–10 business days</strong> following submission of the completed questionnaire, subject to any follow-up requests from the USDS team. The Platform Provider commits to responding to all USDS follow-up requests promptly and completely.
-          </p>
-          <h3>Grounds for Rejection</h3>
-          <p>TikTok's USDS team may reject a developer application for a number of reasons, including but not limited to:</p>
+          <p>The Platform Provider makes the following representations regarding ownership, operations, and data security:</p>
           <ul>
-            <li>Insufficient or incomplete security controls</li>
-            <li>Failure to provide requested supporting documentation</li>
-            <li>Misrepresentation or omission of material facts</li>
-            <li>Association with USDS Restricted Countries (see below)</li>
-            <li>Inability to demonstrate compliance with applicable privacy laws and TikTok's data standards</li>
-          </ul>
-          <h3>USDS Restricted Countries</h3>
-          <p>
-            TikTok enforces strict compliance with US national security regulations, including restrictions consistent with OFAC sanctions and CFIUS designations. The Platform Provider confirms and represents the following:
-          </p>
-          <ul>
-            <li><strong>Platform Provider Headquarters:</strong> United States — not located in, organized under the laws of, or affiliated with any Restricted Country</li>
-            <li><strong>Ultimate Beneficial Ownership (UBO):</strong> 100% owned by US citizens and residents. No ownership interest — direct or indirect — is held by any individual or entity from a Restricted Country</li>
-            <li><strong>Aggregate Foreign Ownership:</strong> 0% — well below the 25% aggregate threshold from Restricted Countries that would trigger ineligibility</li>
-            <li><strong>Workforce Location:</strong> United States</li>
+            <li><strong>Headquarters:</strong> United States</li>
+            <li><strong>Ownership:</strong> 100% owned by US citizens and residents. No ownership interest — direct or indirect — is held by any individual or entity from a US-restricted jurisdiction</li>
+            <li><strong>Workforce:</strong> United States</li>
             <li><strong>System Location:</strong> United States (Vercel US infrastructure)</li>
-            <li><strong>Subcontractors:</strong> All subprocessors are US-headquartered entities with no material ownership or operational ties to Restricted Countries</li>
+            <li><strong>Subprocessors:</strong> All subprocessors are US-headquartered with no material ownership or operational ties to US-restricted jurisdictions</li>
           </ul>
           <p>
-            Restricted Countries as defined by TikTok's USDS policy include China (including Hong Kong), Russia, Iran, North Korea, Cuba, and Syria. The Platform Provider has no ownership, operational, or organizational ties to any of these jurisdictions.
-          </p>
-          <p>
-            Any misrepresentation or omission related to ownership, geographic operations, or developer affiliations constitutes grounds for immediate disqualification and termination of API access. Supporting documentation including vulnerability scan reports and penetration testing results are available upon request at <strong>support@tjbmanagementinc.com</strong>.
-          </p>
-          <h3>USDS Addendum</h3>
-          <p>
-            Upon approval by TikTok's USDS team, the Platform Provider agrees to execute the USDS Addendum as required. Operators using the Platform for TikTok Business Messaging functionality may be required to independently complete their own USDS review depending on their use case and jurisdiction.
+            Supporting documentation including vulnerability scan reports and penetration testing results are available upon request at <strong>support@tjbmanagementinc.com</strong>.
           </p>
         </div>
 
