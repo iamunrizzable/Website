@@ -19,8 +19,9 @@ export async function GET(request) {
   if (!videoId) return NextResponse.json({ error: 'Missing video_id' }, { status: 400 });
 
   const businessId = token.business_id ?? token.open_id;
+  const fields = encodeURIComponent(JSON.stringify(['comment_id', 'text', 'username', 'create_time', 'like_count', 'status']));
   const res = await fetch(
-    `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(videoId)}&fields=comment_id,text,username,create_time,like_count,status`,
+    `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(videoId)}&fields=${fields}`,
     { headers: { 'Access-Token': token.access_token } }
   );
   const json = await res.json();
