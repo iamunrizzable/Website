@@ -111,6 +111,7 @@ function ConnectPrompt() {
 function AccountPanel() {
   const [account, setAccount] = useState(undefined);
   const [error, setError] = useState('');
+  const [disconnecting, setDisconnecting] = useState(false);
 
   useEffect(() => {
     fetch('/api/system/account')
@@ -123,6 +124,13 @@ function AccountPanel() {
       })
       .catch(e => { setError(e.message); setAccount(null); });
   }, []);
+
+  async function disconnect() {
+    if (!confirm('Disconnect your TikTok account and delete all session data? You can reconnect at any time.')) return;
+    setDisconnecting(true);
+    await fetch('/api/system/disconnect', { method: 'POST' });
+    window.location.href = '/hallie/tiktok-moderation/system';
+  }
 
   return (
     <div style={s.card}>
@@ -143,7 +151,12 @@ function AccountPanel() {
               {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
             </div>
           </div>
-          <a href="/auth/tiktok/system-login" style={{ marginLeft: 'auto', ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, flexShrink: 0 }}>
+            <a href="/auth/tiktok/system-login" style={{ ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
+            <button onClick={disconnect} disabled={disconnecting} style={{ ...s.btnDanger, fontSize: 11 }}>
+              {disconnecting ? 'Disconnecting…' : 'Disconnect'}
+            </button>
+          </div>
         </div>
       )}
     </div>

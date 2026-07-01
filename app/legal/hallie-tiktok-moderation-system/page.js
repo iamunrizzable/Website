@@ -215,7 +215,16 @@ export default function HallieTikTokLegal() {
             <li><span className="rainbow">Rule definitions and configurations</span> — the automation rules Operators create and manage within the Platform</li>
             <li><span className="rainbow">Rule execution results</span> — the outcome of automated actions triggered by Operator-defined rules</li>
           </ul>
-          <p>The Platform does not collect or process direct messages, payment information, private account data, advertising campaign data, or any data beyond what is explicitly listed above.</p>
+          <h3>Direct Message Data (Business Messaging API — Pending DSPR Approval)</h3>
+          <ul>
+            <li><span className="rainbow">Message content</span> — text of direct messages sent to or received from TikTok users on behalf of an Operator</li>
+            <li><span className="rainbow">Sender and recipient identifiers</span> — TikTok user IDs and usernames involved in each message thread</li>
+            <li><span className="rainbow">Message timestamps</span> — date and time each message was sent or received</li>
+            <li><span className="rainbow">Message and delivery status</span> — read, unread, and delivery state of each message</li>
+            <li><span className="rainbow">Conversation thread IDs</span> — TikTok's internal identifiers for message threads</li>
+          </ul>
+          <p>Direct message data will only be accessed upon approval of the TikTok Business Messaging API scope following completion of TikTok's Data Security and Privacy Review (DSPR). DM data is processed solely to enable automated responses and message management on behalf of authorized Operators. DM data is subject to the same — or higher — data handling and security requirements as all other data listed above. Until DSPR approval is granted, the Platform does not collect or access direct messages.</p>
+          <p>The Platform does not collect or process payment information, private account data, advertising campaign data, or any data beyond what is explicitly listed above.</p>
         </div>
 
         <div className="section" id="privacy-notice">
@@ -231,7 +240,7 @@ export default function HallieTikTokLegal() {
           <h3>How data is protected</h3>
           <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. Each Operator's admin interface is protected by a unique secret key accessible only to authorized personnel within that Operator's organization.</p>
           <h3>How long data is stored</h3>
-          <p>Account and content data is processed transiently in memory and is not written to a persistent database. A rolling in-memory event log retains recent automation events per Operator and is cleared on server restart. OAuth access tokens are stored as HttpOnly cookies with a 30-day expiration. See Section 6 for the full data retention policy.</p>
+          <p>Comment text, usernames, and other content data fetched from TikTok's API are processed in memory for the duration of the request and are not written to any persistent database operated by the Platform Provider. OAuth access tokens are stored as HttpOnly, Secure browser cookies on the Operator's own device with a 30-day expiration — the Platform Provider does not retain tokens server-side. Operators can immediately revoke all session data at any time by clicking "Disconnect" within the Platform dashboard. See Section 6 for the full data retention policy.</p>
         </div>
 
         <div className="section" id="data-subject-rights">
@@ -245,7 +254,8 @@ export default function HallieTikTokLegal() {
             <li><strong>Right to Object</strong> — End Users may object to processing of their personal data where processing is based on legitimate interests.</li>
             <li><strong>Right to Data Portability</strong> — End Users may request a structured, machine-readable export of their data.</li>
           </ul>
-          <p>To exercise any of these rights, contact the Platform Provider at <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request. Operators may also direct End User data requests to the Platform Provider on their behalf.</p>
+          <p><strong>In-platform deletion:</strong> Operators can immediately delete all session data — including their OAuth token — by clicking the "Disconnect" button within the Platform dashboard. This takes effect instantly and requires no email request.</p>
+          <p>To exercise any other rights, or to submit a request on behalf of End Users, contact the Platform Provider at <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request.</p>
         </div>
 
         <div className="section" id="data-retention">
@@ -257,8 +267,8 @@ export default function HallieTikTokLegal() {
             <li><strong>Seen content IDs</strong> — stored in memory to prevent reprocessing. Cleared on server restart.</li>
             <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the Operator's authorized device only. Expire after 30 days. Not persisted beyond the active session.</li>
           </ul>
-          <p>When an Operator disconnects their TikTok account or revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
-          <p>Operators or End Users who wish to request immediate deletion of any residual data may do so by contacting <strong>support@tjbmanagementinc.com</strong>.</p>
+          <p>When an Operator clicks "Disconnect" within the Platform dashboard, their OAuth token cookie is immediately expired — no further API access is possible and no session data remains. In-memory data (event logs, seen IDs) associated with that session is also cleared. Operators may alternatively revoke authorization directly in TikTok's app under <em>Settings → Apps and Websites</em>.</p>
+          <p>End Users who wish to request deletion of any data held about them may contact <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days.</p>
         </div>
 
         <div className="section" id="data-minimization">
@@ -272,7 +282,7 @@ export default function HallieTikTokLegal() {
             <li>The Platform requests <strong>discovery.search.words</strong> and mention-related scopes to surface trending content and monitor brand mentions</li>
             <li>The Platform requests <strong>user.info.basic</strong> and related scopes to display the connected account identity in each Operator's dashboard</li>
           </ul>
-          <p>No scopes beyond those necessary for authorized functions are requested. The Platform does not request access to direct messages, financial data, advertising campaign data, or any other data outside the scope of account automation. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
+          <p>Upon approval of the Business Messaging API scope, the Platform will additionally request only the minimum DM-related permissions required to read incoming messages and send automated responses — no other messaging scopes will be requested. No scopes beyond those necessary for each authorized function are requested at any stage. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
         </div>
 
         <div className="section" id="roles">
@@ -281,7 +291,7 @@ export default function HallieTikTokLegal() {
           <ul>
             <li><strong>Platform Provider (TJB Management Inc.)</strong> — Acts as a data processor on behalf of Operators. Responsible for the security and integrity of the Platform infrastructure, and for processing data only as directed by Operators and as permitted under this Policy.</li>
             <li><strong>Operator</strong> — Acts as the data controller for their connected TikTok account and the End Users who interact with their content. Operators are responsible for their own privacy notices, lawful basis for processing, and compliance with applicable local laws.</li>
-            <li><strong>Platform Privacy & Security Contact</strong> — support@tjbmanagementinc.com. All privacy inquiries, data subject requests, and security incidents related to the Platform should be directed here.</li>
+            <li><strong>Data Protection Officer (Platform Provider)</strong> — <strong>Tyler J. Beasley</strong>, sole authorized officer of TJB Management Inc., serves as the Platform Provider's designated Data Protection Officer and Privacy & Security Contact. All privacy inquiries, data subject requests, security incidents, and compliance documentation requests should be directed to <strong>support@tjbmanagementinc.com</strong>.</li>
           </ul>
           <p>Operators must designate a Data Protection Officer (DPO) or equivalent privacy contact within their own organization where required by applicable law (e.g., GDPR Article 37).</p>
         </div>
@@ -450,7 +460,7 @@ export default function HallieTikTokLegal() {
           <h3>Data Handling & Privacy</h3>
           <ul>
             <li>All data collected via TikTok's API is used solely to perform authorized automation actions on behalf of each Operator — no secondary use, profiling, or sale of data occurs (see Sections 3–4)</li>
-            <li>Data is processed transiently in memory and is not written to a persistent database. No TikTok user data is retained beyond the active server session (see Section 6)</li>
+            <li>Content data (comments, video metadata) fetched via TikTok's API is processed in-request memory and is not written to any persistent database operated by the Platform Provider. OAuth tokens are stored exclusively as HttpOnly browser cookies on the Operator's own device — not retained server-side. Operators can immediately delete all session data via the in-platform Disconnect button (see Section 6)</li>
             <li>Only the minimum API scopes necessary to perform authorized functions are requested — no excess permissions are sought or held (see Section 7)</li>
             <li>All data is processed and stored within the United States. No data is transferred to or accessible from any US-restricted jurisdiction</li>
             <li>End User data subject rights (access, deletion, correction, portability) are supported and can be exercised by contacting support@tjbmanagementinc.com (see Section 5)</li>
