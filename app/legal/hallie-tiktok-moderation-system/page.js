@@ -144,6 +144,7 @@ export default function HallieTikTokLegal() {
             <li><a href="#vulnerability">Vulnerability Management</a></li>
             <li><a href="#incident">Incident Management</a></li>
             <li><a href="#subprocessors">Subprocessors & Infrastructure</a></li>
+            <li><a href="#usds">US Data Security Review (USDS)</a></li>
             <li><a href="#contact">Contact & Requests</a></li>
           </ol>
         </div>
@@ -214,7 +215,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Right to Object</strong> — Individuals may object to processing of their personal data where processing is based on legitimate interests.</li>
             <li><strong>Right to Data Portability</strong> — Individuals may request a structured, machine-readable export of their data.</li>
           </ul>
-          <p>To exercise any of these rights, contact us at <strong>privacy@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request.</p>
+          <p>To exercise any of these rights, contact us at <strong>support@tjbmanagementinc.com</strong>. We will respond within 30 days. Identity verification may be required before fulfilling a request.</p>
         </div>
 
         <div className="section" id="data-retention">
@@ -227,7 +228,7 @@ export default function HallieTikTokLegal() {
             <li><strong>OAuth tokens</strong> — stored as HttpOnly cookies on the authorized administrator's device only. Expire after 30 days. Not stored server-side beyond the active session.</li>
           </ul>
           <p>When a TikTok Business Account user revokes API authorization, all associated tokens are invalidated and no further data can be accessed. Any cached data is cleared upon the next server restart.</p>
-          <p>We do not retain personal data beyond the periods stated above. Users who wish to request immediate deletion of any residual data may do so by contacting <strong>privacy@tjbmanagementinc.com</strong>.</p>
+          <p>We do not retain personal data beyond the periods stated above. Users who wish to request immediate deletion of any residual data may do so by contacting <strong>support@tjbmanagementinc.com</strong>.</p>
         </div>
 
         <div className="section" id="data-minimization">
@@ -251,7 +252,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Security Officer:</strong> Tyler J. Beasley. Responsible for maintaining and reviewing security policies, access controls, and incident response procedures.</li>
             <li><strong>System Administrator:</strong> Tyler J. Beasley. The sole authorized administrator of the Hallie Moderation System. No other individuals have administrative access.</li>
           </ul>
-          <p>Privacy and security inquiries may be directed to <strong>privacy@tjbmanagementinc.com</strong> or <strong>security@tjbmanagementinc.com</strong>.</p>
+          <p>Privacy and security inquiries may be directed to <strong>support@tjbmanagementinc.com</strong> or <strong>support@tjbmanagementinc.com</strong>.</p>
         </div>
 
         <div className="section" id="infosec">
@@ -339,7 +340,7 @@ export default function HallieTikTokLegal() {
             <li><strong>Infrastructure scanning</strong> — Vercel provides automated infrastructure-level vulnerability detection and patching as part of its platform.</li>
             <li><strong>Code review</strong> — All code changes are reviewed before deployment. Security implications are evaluated for each change.</li>
             <li><strong>Penetration testing</strong> — External penetration testing is conducted at least annually or following any significant system change.</li>
-            <li><strong>Vulnerability disclosure</strong> — Security vulnerabilities may be reported to <strong>security@tjbmanagementinc.com</strong>. We commit to acknowledging reports within 48 hours and remediating critical issues within 7 days.</li>
+            <li><strong>Vulnerability disclosure</strong> — Security vulnerabilities may be reported to <strong>support@tjbmanagementinc.com</strong>. We commit to acknowledging reports within 48 hours and remediating critical issues within 7 days.</li>
             <li><strong>Scan retention</strong> — Vulnerability scan reports and penetration test results are retained for a minimum of 12 months.</li>
           </ul>
         </div>
@@ -366,7 +367,7 @@ export default function HallieTikTokLegal() {
             <li>Incident reports are documented and retained for a minimum of 12 months</li>
             <li>Incident response procedures are tested at least annually through a tabletop exercise</li>
           </ul>
-          <p>To report a security incident or suspected breach, contact <strong>security@tjbmanagementinc.com</strong> immediately.</p>
+          <p>To report a security incident or suspected breach, contact <strong>support@tjbmanagementinc.com</strong> immediately.</p>
         </div>
 
         <div className="section" id="subprocessors">
@@ -384,13 +385,57 @@ export default function HallieTikTokLegal() {
           <strong>Foreign Ownership:</strong> None — TJB Management Inc. is 100% US-owned and operated</p>
         </div>
 
+        <div className="section" id="usds">
+          <h2>18. US Data Security Review (USDS)</h2>
+          <p>
+            TJB Management Inc. is subject to and in full compliance with TikTok's US Data Security (USDS) review process, which is administered by TikTok's USDS team. This review is a mandatory prerequisite for any developer seeking Business Messaging scope of permission for developer apps used with TikTok Business Accounts registered in the United States. No Business Messaging access is granted without approval from the USDS team and executed agreement on the USDS Addendum.
+          </p>
+          <h3>Purpose of the Review</h3>
+          <p>
+            The USDS review is designed to ensure that developers handling US user data — specifically direct message data processed on behalf of TikTok Business Account users — meet TikTok's data security and privacy expectations. The review assesses data handling practices, organizational security controls, and ownership structures to protect TikTok users, Business Account users, advertisers, and the broader developer ecosystem.
+          </p>
+          <h3>Review Timeline</h3>
+          <p>
+            The USDS review process typically takes <strong>7–10 business days</strong> following submission of the completed questionnaire, subject to any follow-up questions or requests for additional documentation from the USDS team. TJB Management Inc. commits to responding to all USDS follow-up requests promptly and completely to avoid delays.
+          </p>
+          <h3>Grounds for Rejection</h3>
+          <p>TikTok's USDS team may reject a developer application for a number of reasons, including but not limited to:</p>
+          <ul>
+            <li>Insufficient or incomplete security controls</li>
+            <li>Failure to provide requested supporting documentation</li>
+            <li>Misrepresentation or omission of material facts on the application</li>
+            <li>Association with USDS Restricted Countries (see below)</li>
+            <li>Inability to demonstrate compliance with applicable privacy laws and TikTok's data standards</li>
+          </ul>
+          <h3>USDS Restricted Countries</h3>
+          <p>
+            As part of the USDS review, TikTok enforces strict compliance with US national security regulations, including restrictions consistent with OFAC sanctions and CFIUS designations. TJB Management Inc. confirms and represents the following in full:
+          </p>
+          <ul>
+            <li><strong>Business Headquarters:</strong> United States — not located in, organized under the laws of, or affiliated with any Restricted Country</li>
+            <li><strong>Ultimate Beneficial Ownership (UBO):</strong> TJB Management Inc. is 100% owned by Tyler J. Beasley, a US citizen and resident. No ownership interest — direct or indirect — is held by any individual or entity from a Restricted Country</li>
+            <li><strong>Aggregate Foreign Ownership:</strong> 0% — well below the 25% aggregate threshold from Restricted Countries that would trigger ineligibility</li>
+            <li><strong>Workforce Location:</strong> United States</li>
+            <li><strong>System Location:</strong> United States (Vercel US infrastructure)</li>
+            <li><strong>Subcontractors:</strong> All subprocessors (Vercel Inc., GitHub Inc.) are US-headquartered entities with no material ownership or operational ties to Restricted Countries</li>
+          </ul>
+          <p>
+            Restricted Countries as defined by TikTok's USDS policy include China (including Hong Kong), Russia, Iran, North Korea, Cuba, and Syria. TJB Management Inc. has no ownership, operational, or organizational ties to any of these jurisdictions.
+          </p>
+          <h3>USDS Addendum</h3>
+          <p>
+            Upon approval by TikTok's USDS team, TJB Management Inc. agrees to execute the USDS Addendum as required. Any misrepresentation or omission related to ownership, geographic operations, or developer affiliations constitutes grounds for immediate disqualification and termination of API access.
+          </p>
+          <p>
+            Supporting documentation including the latest vulnerability scan report and penetration testing results are available upon request. Contact <strong>support@tjbmanagementinc.com</strong> to request documentation for USDS review purposes.
+          </p>
+        </div>
+
         <div className="section" id="contact">
-          <h2>17. Contact & Requests</h2>
+          <h2>19. Contact & Requests</h2>
           <p>For any questions, data subject requests, privacy inquiries, or security reports related to the Hallie TikTok Moderation System, please contact:</p>
           <ul>
-            <li><strong>Privacy inquiries & data requests:</strong> privacy@tjbmanagementinc.com</li>
-            <li><strong>Security incidents & vulnerability reports:</strong> security@tjbmanagementinc.com</li>
-            <li><strong>General inquiries:</strong> support@tjbmanagementinc.com</li>
+            <li><strong>Privacy inquiries, data requests, security incidents & general inquiries:</strong> support@tjbmanagementinc.com</li>
           </ul>
           <p>
             <strong>TJB Management Inc.</strong><br />
