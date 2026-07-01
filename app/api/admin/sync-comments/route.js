@@ -9,8 +9,15 @@ function requireAdmin(request) {
 
 export async function POST(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  let maxVideos = null;
   try {
-    const results = await syncComments({ autoHide: true });
+    const body = await request.json().catch(() => ({}));
+    if (body.maxVideos && Number.isInteger(body.maxVideos) && body.maxVideos > 0) {
+      maxVideos = body.maxVideos;
+    }
+  } catch { /* ignore */ }
+  try {
+    const results = await syncComments({ autoHide: true, maxVideos });
     return NextResponse.json({
       synced: results.length,
       hidden: results.filter(r => r.hidden).length,
