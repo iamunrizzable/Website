@@ -10,6 +10,10 @@ function getRedis() {
   return null;
 }
 
+function esc(str) {
+  return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 export async function POST(req) {
   try {
     const { name, tiktok, diamonds, hours, why } = await req.json();
@@ -47,14 +51,14 @@ export async function POST(req) {
               ✍️ New TJB Management Application
             </h2>
             <table style="width:100%;border-collapse:collapse;margin-bottom:16px">
-              <tr><td style="padding:8px 0;color:#666;width:160px"><strong>Name</strong></td><td>${name}</td></tr>
-              <tr><td style="padding:8px 0;color:#666"><strong>TikTok</strong></td><td>${tiktok}</td></tr>
-              <tr><td style="padding:8px 0;color:#666"><strong>Avg Monthly Diamonds</strong></td><td>${diamonds}</td></tr>
-              <tr><td style="padding:8px 0;color:#666"><strong>Avg Monthly LIVE Hours</strong></td><td>${hours}</td></tr>
+              <tr><td style="padding:8px 0;color:#666;width:160px"><strong>Name</strong></td><td>${esc(name)}</td></tr>
+              <tr><td style="padding:8px 0;color:#666"><strong>TikTok</strong></td><td>${esc(tiktok)}</td></tr>
+              <tr><td style="padding:8px 0;color:#666"><strong>Avg Monthly Diamonds</strong></td><td>${esc(diamonds)}</td></tr>
+              <tr><td style="padding:8px 0;color:#666"><strong>Avg Monthly LIVE Hours</strong></td><td>${esc(hours)}</td></tr>
             </table>
             <p style="color:#444;font-weight:600">Why they want to join:</p>
             <blockquote style="border-left:4px solid #a855f7;margin:0;padding:10px 16px;background:#faf5ff;color:#333;border-radius:0 8px 8px 0">
-              ${why.replace(/</g, '&lt;').replace(/\n/g, '<br>')}
+              ${esc(why).replace(/\n/g, '<br>')}
             </blockquote>
             <p style="font-size:11px;color:#999;margin-top:24px">
               Submitted ${new Date().toLocaleString()} · TJB Management Inc.
