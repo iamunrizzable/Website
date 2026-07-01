@@ -344,12 +344,11 @@ export default function HallieTikTokLegal() {
           <h2>13. Security Baselines</h2>
           <p>The following baseline security measures are enforced for all access to the Platform and associated infrastructure:</p>
           <ul>
-            <li><strong>Multi-Factor Authentication (MFA)</strong> — MFA is required on all accounts with access to Platform infrastructure, including Vercel and source code repositories</li>
-            <li><strong>Password Requirements</strong> — All passwords are at minimum 16 characters, include uppercase, lowercase, numbers, and special characters, and are managed via a dedicated password manager</li>
+            <li><strong>Firewall</strong> — Vercel's web application firewall is active across all Platform endpoints. Traffic is continuously monitored and filtered, with non-compliant requests denied or challenged in real time</li>
+            <li><strong>DDoS Mitigation</strong> — Vercel's infrastructure provides automatic DDoS protection at the network and application layers. No additional configuration is required — protection is active by default on all deployments</li>
+            <li><strong>Bot Protection</strong> — Bot Protection is enabled and actively challenging requests from non-browser sources, excluding verified bots. Known AI scrapers and crawlers are blocked</li>
             <li><strong>Operator Admin Keys</strong> — Each Operator's admin interface is protected by a unique cryptographically random secret key, stored only as an encrypted environment variable — never in code or version control</li>
             <li><strong>Session Management</strong> — Operator sessions use HttpOnly, Secure, SameSite cookies. OAuth tokens expire after 30 days and require re-authentication</li>
-            <li><strong>Screen Lock</strong> — All Platform Provider administrator devices enforce automatic screen lock after 15 minutes of inactivity</li>
-            <li><strong>Security Awareness</strong> — Platform Provider personnel maintain current awareness of security threats and TikTok API security requirements through regular review of industry resources and security advisories</li>
           </ul>
         </div>
 
