@@ -345,7 +345,7 @@ export default function HallieTikTokLegal() {
           <h2>13. Security Baselines</h2>
           <p>The following baseline security measures are enforced for all access to the Platform and associated infrastructure:</p>
           <ul>
-            <li><strong>Multi-Factor Authentication (MFA)</strong> — Vercel infrastructure access is protected by Oracle Authentication (Oracle Identity Cloud Service). Oracle is the same authentication infrastructure used by TikTok's US operations. A time-based one-time password (TOTP) is required on every login — account access cannot be completed with a password alone</li>
+            <li><strong>Multi-Factor Authentication (MFA)</strong> — All Platform infrastructure accounts (Vercel and GitHub) are protected by Oracle Authentication (Oracle Identity Cloud Service) — the same authentication infrastructure used by TikTok's US operations. Access to any internal system requires a password plus a second factor. Available second factors are: Oracle Authenticator TOTP code, Apple ID passkey (hardware-bound biometric), or SMS verification to a dedicated work number. Recovery codes are available as a last-resort backup only and cannot serve as a primary second factor. No single credential is sufficient to gain access</li>
             <li><strong>Firewall</strong> — Vercel's web application firewall is active across all Platform endpoints. Traffic is continuously monitored and filtered, with non-compliant requests denied or challenged in real time</li>
             <li><strong>DDoS Mitigation</strong> — Vercel's infrastructure provides automatic DDoS protection at the network and application layers. No additional configuration is required — protection is active by default on all deployments</li>
             <li><strong>Bot Protection</strong> — Bot Protection is enabled and actively challenging requests from non-browser sources, excluding verified bots. Known AI scrapers and crawlers are blocked</li>
@@ -459,7 +459,7 @@ export default function HallieTikTokLegal() {
           <h3>Security Controls</h3>
           <ul>
             <li>All data in transit is encrypted with TLS 1.2 or above. All secrets are encrypted at rest using AES-256 via Vercel's infrastructure (see Section 14)</li>
-            <li>Vercel infrastructure access requires Oracle Authentication (TOTP-based MFA) on every login. Oracle is the same authentication provider used by TikTok's US operations. All administrator devices enforce biometric authentication (Face ID / Touch ID) with iOS hardware encryption (see Sections 12–13)</li>
+            <li>All infrastructure accounts (Vercel and GitHub) are protected by Oracle Authentication TOTP-based MFA — the same provider used by TikTok's US operations. Access requires a password plus a second factor (Oracle Authenticator, Apple ID passkey, or SMS). All administrator devices enforce Face ID / Touch ID biometric authentication with iOS hardware encryption (see Sections 12–13)</li>
             <li>Access to the Platform is governed by least-privilege and need-to-know principles. Each Operator is isolated from all others (see Section 15)</li>
             <li>External penetration testing is conducted at least annually. Critical vulnerabilities are remediated within 7 days of discovery (see Section 16)</li>
             <li>A documented incident response process is in place. Affected parties are notified within 48 hours of any confirmed incident (see Section 17)</li>
