@@ -108,6 +108,7 @@ export default function AdminPage() {
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentsPanel adminKey={adminKey} enabled={enabled} />
+          <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={enabled} />
           <OptimizerRulesPanel adminKey={adminKey} enabled={enabled} />
           <ApplicationsPanel />
@@ -501,6 +502,60 @@ function CommentsPanel({ adminKey, enabled }) {
                 )}
               </div>
             ))
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+// ── Comment Sync ─────────────────────────────────────────────────────────────
+
+function SyncPanel({ adminKey, enabled }) {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+
+  async function runSync() {
+    setLoading(true);
+    setResult(null);
+    try {
+      const res = await fetch('/api/admin/sync-comments', {
+        method: 'POST',
+        headers: { 'x-admin-key': adminKey },
+      });
+      const data = await res.json();
+      setResult(data);
+    } catch (e) {
+      setResult({ error: e.message });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Comment Sync</h2>
+      {!enabled ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to sync comments.</p>
+      ) : (
+        <>
+          <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
+            Pulls comments from your last 10 videos, scores them, and auto-hides anything that triggers the filter.
+          </p>
+          <button style={{ ...s.btn, opacity: loading ? 0.6 : 1 }} onClick={runSync} disabled={loading}>
+            {loading ? 'Syncing…' : 'Sync Now'}
+          </button>
+          {result && (
+            <div style={{ marginTop: 12, fontSize: 13 }}>
+              {result.error ? (
+                <span style={{ color: '#f59e0b' }}>Error: {result.error}</span>
+              ) : (
+                <span style={{ color: '#10b981' }}>
+                  Done — {result.synced} new comment{result.synced !== 1 ? 's' : ''} processed
+                  {result.hidden > 0 ? `, ${result.hidden} hidden` : ''}
+                </span>
+              )}
+            </div>
           )}
         </>
       )}
