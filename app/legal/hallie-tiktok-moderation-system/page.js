@@ -158,7 +158,7 @@ export default function HallieTikTokLegal() {
             The <strong>Hallie Account Automation Platform</strong> ("Platform") is a TikTok account automation and management system developed and operated by TJB Management Inc. ("Platform Provider"), headquartered in the United States.
           </p>
           <p>
-            The Platform connects to TikTok's API on behalf of authorized TikTok accounts — both Business Accounts and personal/creator accounts — to automate account operations including content publishing, comment management, community moderation, mention monitoring, trending discovery, and automated rule execution. It is designed to help brands, creators, and businesses run their TikTok presence with as little manual intervention as possible.
+            The Platform connects to TikTok's API on behalf of authorized TikTok accounts to automate account operations including content publishing, comment management, community moderation, mention monitoring, trending discovery, and automated rule execution. It is designed to help brands, creators, and businesses run their TikTok presence with as little manual intervention as possible.
           </p>
           <p>
             This Policy governs the Platform's data handling practices and applies to all businesses and individuals ("Operators") who use the Platform to manage their TikTok accounts. By using the Platform, Operators agree to this Policy and accept responsibility for ensuring their own use complies with applicable laws and TikTok's terms.
@@ -175,13 +175,13 @@ export default function HallieTikTokLegal() {
             <li><strong>Operator</strong> — Any business, brand, creator, or individual who uses the Hallie Platform to manage their TikTok account(s).</li>
             <li><strong>End User</strong> — TikTok users who post comments on an Operator's TikTok content. End Users do not interact with the Platform directly.</li>
             <li><strong>Platform</strong> — The Hallie Account Automation Platform, including all associated software, APIs, and infrastructure.</li>
-            <li><strong>Connected Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API. This may be a TikTok Business Account or a personal/creator account depending on the Operator's account type.</li>
+            <li><strong>Connected Account</strong> — An Operator's authorized TikTok account connected to the Platform via TikTok's API.</li>
           </ul>
         </div>
 
         <div className="section" id="data-collected">
           <h2>3. Data Collected</h2>
-          <p>The Platform accesses and processes the following data via the TikTok Business API on behalf of each Operator:</p>
+          <p>The Platform accesses and processes the following data via TikTok's API on behalf of each Operator:</p>
           <h3>Comment & Community Data</h3>
           <ul>
             <li><span className="rainbow">Comment text</span> — the content of comments posted to an Operator's TikTok videos</li>
@@ -449,7 +449,7 @@ export default function HallieTikTokLegal() {
 
           <h3>Data Handling & Privacy</h3>
           <ul>
-            <li>All data collected via the TikTok Business API is used solely to perform authorized automation actions on behalf of each Operator — no secondary use, profiling, or sale of data occurs (see Sections 3–4)</li>
+            <li>All data collected via TikTok's API is used solely to perform authorized automation actions on behalf of each Operator — no secondary use, profiling, or sale of data occurs (see Sections 3–4)</li>
             <li>Data is processed transiently in memory and is not written to a persistent database. No TikTok user data is retained beyond the active server session (see Section 6)</li>
             <li>Only the minimum API scopes necessary to perform authorized functions are requested — no excess permissions are sought or held (see Section 7)</li>
             <li>All data is processed and stored within the United States. No data is transferred to or accessible from any US-restricted jurisdiction</li>
