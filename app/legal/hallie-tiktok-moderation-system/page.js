@@ -435,18 +435,45 @@ export default function HallieTikTokLegal() {
         <div className="section" id="usds">
           <h2>19. US Data Security Compliance</h2>
           <p>
-            The Hallie Platform is developed and operated in full compliance with TikTok's US Data Security (USDS) requirements as a condition of accessing the TikTok Business API.
+            The Hallie Platform is developed and operated in compliance with TikTok's US Data Security (USDS) requirements. The following attestations map TJB Management Inc.'s specific practices to each USDS requirement area.
           </p>
-          <p>The Platform Provider makes the following representations regarding ownership, operations, and data security:</p>
+
+          <h3>Ownership & Corporate Structure</h3>
           <ul>
-            <li><strong>Headquarters:</strong> United States</li>
-            <li><strong>Ownership:</strong> 100% owned by US citizens and residents. No ownership interest — direct or indirect — is held by any individual or entity from a US-restricted jurisdiction</li>
-            <li><strong>Workforce:</strong> United States</li>
-            <li><strong>System Location:</strong> United States (Vercel US infrastructure)</li>
-            <li><strong>Subprocessors:</strong> All subprocessors are US-headquartered with no material ownership or operational ties to US-restricted jurisdictions</li>
+            <li>TJB Management Inc. is headquartered in the United States and organized under US law</li>
+            <li>100% owned by US citizens and residents — no direct or indirect ownership interest is held by any individual or entity from a US-restricted jurisdiction</li>
+            <li>No board members, officers, or controlling parties are affiliated with any US-restricted jurisdiction</li>
+            <li>The Platform has no operational, contractual, or financial ties to any US-restricted jurisdiction</li>
           </ul>
+
+          <h3>Data Handling & Privacy</h3>
+          <ul>
+            <li>All data collected via the TikTok Business API is used solely to perform authorized automation actions on behalf of each Operator — no secondary use, profiling, or sale of data occurs (see Sections 3–4)</li>
+            <li>Data is processed transiently in memory and is not written to a persistent database. No TikTok user data is retained beyond the active server session (see Section 6)</li>
+            <li>Only the minimum API scopes necessary to perform authorized functions are requested — no excess permissions are sought or held (see Section 7)</li>
+            <li>All data is processed and stored within the United States. No data is transferred to or accessible from any US-restricted jurisdiction</li>
+            <li>End User data subject rights (access, deletion, correction, portability) are supported and can be exercised by contacting support@tjbmanagementinc.com (see Section 5)</li>
+          </ul>
+
+          <h3>Security Controls</h3>
+          <ul>
+            <li>All data in transit is encrypted with TLS 1.2 or above. All secrets are encrypted at rest using AES-256 via Vercel's infrastructure (see Section 14)</li>
+            <li>Multi-factor authentication (MFA) is enforced on all accounts with access to Platform infrastructure (see Section 13)</li>
+            <li>Access to the Platform is governed by least-privilege and need-to-know principles. Each Operator is isolated from all others (see Section 15)</li>
+            <li>External penetration testing is conducted at least annually. Critical vulnerabilities are remediated within 7 days of discovery (see Section 16)</li>
+            <li>A documented incident response process is in place. Affected parties are notified within 48 hours of any confirmed incident (see Section 17)</li>
+            <li>The Platform is hosted on Vercel Inc., a SOC 2 Type II certified provider operating US infrastructure (see Section 18)</li>
+          </ul>
+
+          <h3>Subprocessors</h3>
+          <ul>
+            <li>Vercel Inc. — US-headquartered, SOC 2 Type II certified, US infrastructure only</li>
+            <li>GitHub Inc. (Microsoft) — US-headquartered, SOC 2 Type II certified, no production data stored</li>
+            <li>No subprocessors have material ownership or operational ties to any US-restricted jurisdiction</li>
+          </ul>
+
           <p>
-            Supporting documentation including vulnerability scan reports and penetration testing results are available upon request at <strong>support@tjbmanagementinc.com</strong>.
+            Supporting documentation including vulnerability scan reports and penetration testing results is available upon request at <strong>support@tjbmanagementinc.com</strong>.
           </p>
         </div>
 
