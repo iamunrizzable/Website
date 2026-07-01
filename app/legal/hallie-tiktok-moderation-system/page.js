@@ -330,14 +330,15 @@ export default function HallieTikTokLegal() {
 
         <div className="section" id="endpoint">
           <h2>12. Endpoint Protection</h2>
-          <p>Platform Provider personnel with administrative access to Platform infrastructure maintain the following endpoint protections on all devices used to administer the Platform:</p>
+          <p>All Platform administration is performed exclusively on Apple iOS devices (iPhone and iPad). The following protections are enforced by the iOS platform:</p>
           <ul>
-            <li>Antivirus and anti-malware software is installed and actively running on all administrator devices</li>
-            <li>Operating system and application security patches are applied promptly upon release</li>
-            <li>Full-disk encryption is enabled on all administrator devices</li>
-            <li>Screen auto-lock is configured to activate after 15 minutes or less of inactivity</li>
+            <li><strong>Biometric Authentication</strong> — All administrator devices require Face ID or Touch ID authentication. Biometric access cannot be bypassed without the device passcode</li>
+            <li><strong>Hardware Encryption</strong> — iOS enforces full hardware-level disk encryption on all devices with Face ID or Touch ID enabled. Data is inaccessible without successful biometric or passcode authentication</li>
+            <li><strong>Automatic Screen Lock</strong> — iOS auto-lock is active on all administrator devices, requiring re-authentication after a short period of inactivity</li>
+            <li><strong>OS and App Updates</strong> — iOS and all applications are kept up to date. Security patches are applied promptly upon release</li>
+            <li><strong>App Sandboxing</strong> — iOS enforces strict app sandboxing. No application can access data belonging to another application, providing inherent protection against malware and unauthorized data access</li>
           </ul>
-          <p>Operators are expected to maintain equivalent endpoint protections on any device used to access their Hallie Platform dashboard.</p>
+          <p>Operators are expected to maintain appropriate endpoint protections on any device used to access their Hallie Platform dashboard.</p>
         </div>
 
         <div className="section" id="security-baselines">
@@ -427,7 +428,7 @@ export default function HallieTikTokLegal() {
             <strong>Platform Provider Headquarters:</strong> United States<br />
             <strong>Primary Workforce Location:</strong> United States<br />
             <strong>System Location:</strong> United States (Vercel US regions)<br />
-            <strong>Foreign Ownership:</strong> None — Platform Provider is 100% US-owned and operated
+            <strong>Ownership:</strong> Sole owner Tyler J. Beasley — US citizen and resident, sole shareholder and sole authorized officer of TJB Management Inc.
           </p>
         </div>
 
@@ -440,8 +441,8 @@ export default function HallieTikTokLegal() {
           <h3>Ownership & Corporate Structure</h3>
           <ul>
             <li>TJB Management Inc. is headquartered in the United States and organized under US law</li>
-            <li>100% owned by US citizens and residents — no direct or indirect ownership interest is held by any individual or entity from a US-restricted jurisdiction</li>
-            <li>No board members, officers, or controlling parties are affiliated with any US-restricted jurisdiction</li>
+            <li>Solely owned by Tyler J. Beasley, a US citizen and resident. Tyler J. Beasley is the sole shareholder, sole authorized officer, and sole owner of TJB Management Inc. There are no other ownership interests of any kind</li>
+            <li>No other officers, board members, or controlling parties exist — the company has a single authorized officer and a single issued share</li>
             <li>The Platform has no operational, contractual, or financial ties to any US-restricted jurisdiction</li>
           </ul>
 
@@ -457,7 +458,7 @@ export default function HallieTikTokLegal() {
           <h3>Security Controls</h3>
           <ul>
             <li>All data in transit is encrypted with TLS 1.2 or above. All secrets are encrypted at rest using AES-256 via Vercel's infrastructure (see Section 14)</li>
-            <li>Multi-factor authentication (MFA) is enforced on all accounts with access to Platform infrastructure (see Section 13)</li>
+            <li>Biometric authentication (Face ID / Touch ID) is enforced on all administrator devices. iOS hardware encryption is enabled on all devices used to administer the Platform (see Sections 12–13)</li>
             <li>Access to the Platform is governed by least-privilege and need-to-know principles. Each Operator is isolated from all others (see Section 15)</li>
             <li>External penetration testing is conducted at least annually. Critical vulnerabilities are remediated within 7 days of discovery (see Section 16)</li>
             <li>A documented incident response process is in place. Affected parties are notified within 48 hours of any confirmed incident (see Section 17)</li>
