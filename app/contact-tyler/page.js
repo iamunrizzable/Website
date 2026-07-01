@@ -283,7 +283,7 @@ export default function Contact() {
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal & Guidelines</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
       </div>
 
       <main>
