@@ -292,7 +292,7 @@ export default function HallieTikTokLegal() {
           <ul>
             <li><strong>Lawful basis</strong> — Operators must have a valid lawful basis under applicable privacy law for processing End User data through the Platform.</li>
             <li><strong>Privacy notice</strong> — Operators must maintain a publicly accessible privacy notice that discloses their use of automated account management tools and the processing of End User data.</li>
-            <li><strong>Credential security</strong> — Operators are responsible for securing their admin credentials and TikTok OAuth tokens. Credentials must not be shared with unauthorized personnel.</li>
+            <li><strong>Credential security</strong> — Operators are responsible for securing their TikTok account credentials. The Platform does not issue separate credentials — Operators authenticate directly with TikTok via Login Kit.</li>
             <li><strong>Authorized use only</strong> — Operators may only use the Platform to manage their own TikTok account(s) that they are authorized to manage.</li>
             <li><strong>Compliance with TikTok terms</strong> — Operators must comply with all applicable TikTok API for Business Developer Terms and Community Guidelines.</li>
             <li><strong>Data subject requests</strong> — Operators must be able to assist End Users in exercising their data rights and must direct such requests to the Platform Provider where necessary.</li>
@@ -349,7 +349,8 @@ export default function HallieTikTokLegal() {
             <li><strong>Firewall</strong> — Vercel's web application firewall is active across all Platform endpoints. Traffic is continuously monitored and filtered, with non-compliant requests denied or challenged in real time</li>
             <li><strong>DDoS Mitigation</strong> — Vercel's infrastructure provides automatic DDoS protection at the network and application layers. No additional configuration is required — protection is active by default on all deployments</li>
             <li><strong>Bot Protection</strong> — Bot Protection is enabled and actively challenging requests from non-browser sources, excluding verified bots. Known AI scrapers and crawlers are blocked</li>
-            <li><strong>Operator Admin Keys</strong> — Each Operator's admin interface is protected by a unique cryptographically random secret key, stored only as an encrypted environment variable — never in code or version control</li>
+            <li><strong>Operator Authentication</strong> — Operators access the Platform exclusively through TikTok Login Kit (OAuth). Each Operator authenticates with their own TikTok credentials — no shared keys or passwords are issued. The Platform Provider does not create, hold, or manage Operator credentials of any kind</li>
+            <li><strong>Administrative Access</strong> — A single administrative key, held exclusively by the Platform Provider's sole authorized officer, is used only to access operational debug logs. This key does not grant access to any Operator's TikTok account data</li>
             <li><strong>Session Management</strong> — Operator sessions use HttpOnly, Secure, SameSite cookies. OAuth tokens expire after 30 days and require re-authentication</li>
           </ul>
         </div>
@@ -368,12 +369,11 @@ export default function HallieTikTokLegal() {
           <h2>15. Access Control Policy</h2>
           <p>Access to the Platform is governed by a strict need-to-know, least-privilege model:</p>
           <ul>
-            <li><strong>Operator isolation</strong> — Each Operator accesses only their own connected TikTok account data. No Operator can access another Operator's data or credentials.</li>
-            <li><strong>Authentication</strong> — Each Operator's dashboard is protected by a unique secret key stored as an encrypted environment variable. It must be rotated if compromise is suspected.</li>
-            <li><strong>No shared credentials</strong> — Shared credentials between Operators or between Operator personnel are not permitted.</li>
-            <li><strong>API access</strong> — TikTok API tokens are scoped to the minimum required permissions and stored only in server-side cookies inaccessible to client-side code.</li>
-            <li><strong>Platform infrastructure access</strong> — Access to Platform source code and hosting infrastructure is limited to authorized Platform Provider personnel with MFA enforced.</li>
-            <li><strong>Access review</strong> — Access rights are reviewed at least annually and immediately upon any personnel or organizational change.</li>
+            <li><strong>Operator isolation</strong> — Data isolation is architecturally enforced, not just policy. Each Operator authenticates via TikTok Login Kit, which issues an OAuth token scoped exclusively to their own TikTok account. It is technically impossible for one Operator to access another Operator's data.</li>
+            <li><strong>Platform Provider data access</strong> — The Platform Provider cannot access any Operator's TikTok account data. OAuth tokens are scoped per-Operator by TikTok's API and are stored in the Operator's own session cookies. The Platform Provider's administrative key grants access only to operational debug logs — not to any account data.</li>
+            <li><strong>No credential management</strong> — The Platform does not issue, store, or manage Operator passwords or access keys. Operators authenticate directly with TikTok via Login Kit.</li>
+            <li><strong>API access</strong> — TikTok OAuth tokens are scoped to the minimum required permissions and stored only in server-side HttpOnly cookies inaccessible to client-side code.</li>
+            <li><strong>Platform infrastructure access</strong> — Access to Platform source code and hosting infrastructure is limited to the Platform Provider's sole authorized officer, with Oracle MFA enforced.</li>
           </ul>
         </div>
 
