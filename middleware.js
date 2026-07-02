@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { absoluteUrl } from '@/lib/site-url';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -30,7 +31,7 @@ export function middleware(request) {
           headers: { 'Content-Type': 'application/json' },
         });
       }
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(absoluteUrl('/admin/login'));
     }
     // Refresh cookie on every valid request so it never expires
     const response = NextResponse.next();
