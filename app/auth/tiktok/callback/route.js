@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { exchangeCodeForTokens } from '@/lib/tiktok/oauth';
 import { storeTokens } from '@/lib/tokens';
+import { absoluteUrl } from '@/lib/site-url';
 
 const ALLOWED_PATHS = ['/admin'];
 
-function safeRedirect(path, baseUrl) {
+function safeRedirect(path) {
   const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
-  return NextResponse.redirect(new URL(ok ? path : '/admin', baseUrl));
+  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin'));
 }
 
 export async function GET(request) {
@@ -16,7 +17,7 @@ export async function GET(request) {
   const error = searchParams.get('error');
 
   if (error) {
-    return safeRedirect(`/admin?error=${encodeURIComponent(error)}`, request.url);
+    return safeRedirect(`/admin?error=${encodeURIComponent(error)}`);
   }
 
   // Verify CSRF state
@@ -36,11 +37,11 @@ export async function GET(request) {
     }
     await storeTokens(tokenData);
 
-    const response = safeRedirect('/admin?connected=1', request.url);
+    const response = safeRedirect('/admin?connected=1');
     response.cookies.delete('tiktok_oauth_state');
     return response;
   } catch (err) {
     console.error('[callback] Token exchange error:', err.message);
-    return safeRedirect(`/admin?error=${encodeURIComponent(err.message)}`, request.url);
+    return safeRedirect(`/admin?error=${encodeURIComponent(err.message)}`);
   }
 }
