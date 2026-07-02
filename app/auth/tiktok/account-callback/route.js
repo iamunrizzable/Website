@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server';
 import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
+import { absoluteUrl } from '@/lib/site-url';
 
 const ALLOWED_PATHS = ['/admin', '/hallie/tiktok-moderation/system'];
 
-function safeRedirect(path, baseUrl) {
+function safeRedirect(path) {
   const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
-  return NextResponse.redirect(new URL(ok ? path : '/admin', baseUrl));
+  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin'));
 }
 
 export async function GET(request) {
@@ -21,7 +22,7 @@ export async function GET(request) {
   const errorDest = isSystem ? '/hallie/tiktok-moderation/system' : '/admin';
 
   if (error) {
-    return safeRedirect(`${errorDest}?error=${encodeURIComponent(error)}`, request.url);
+    return safeRedirect(`${errorDest}?error=${encodeURIComponent(error)}`);
   }
 
   if (!verifyState(state)) {
@@ -85,7 +86,7 @@ export async function GET(request) {
     }
 
     const dest = isSystem ? '/hallie/tiktok-moderation/system?connected=1' : '/admin?account_connected=1';
-    const response = safeRedirect(dest, request.url);
+    const response = safeRedirect(dest);
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -96,6 +97,6 @@ export async function GET(request) {
     return response;
   } catch (err) {
     console.error('[account-callback] Error:', err.message);
-    return safeRedirect(`${errorDest}?error=${encodeURIComponent(err.message)}`, request.url);
+    return safeRedirect(`${errorDest}?error=${encodeURIComponent(err.message)}`);
   }
 }
