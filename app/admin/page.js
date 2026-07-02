@@ -110,6 +110,7 @@ export default function AdminPage() {
           <CommentsPanel adminKey={adminKey} enabled={enabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={enabled} />
+          <ExportTokenPanel adminKey={adminKey} enabled={enabled} />
           <TestPanel adminKey={adminKey} />
 
           {/* Recent Flagged Events */}
@@ -674,6 +675,64 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
               </div>
             ))
           )}
+        </>
+      )}
+    </div>
+  );
+}
+
+// ── Export Advertiser Token ───────────────────────────────────────────────────
+
+function ExportTokenPanel({ adminKey, enabled }) {
+  const [token, setToken] = useState(null);
+  const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  async function load() {
+    setError(''); setToken(null); setCopied(false);
+    try {
+      const res = await fetch('/api/admin/export-token', { headers: { 'x-admin-key': adminKey } });
+      const data = await res.json();
+      if (data.error) setError(data.error);
+      else setToken(data.token);
+    } catch (e) {
+      setError(e.message);
+    }
+  }
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(token);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Export Advertiser Token</h2>
+      <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
+        Copy this value and paste it as <code style={{ background: '#0f172a', padding: '1px 6px', borderRadius: 4, color: '#a855f7' }}>TIKTOK_ADVERTISER_TOKEN</code> in Vercel → Settings → Environment Variables. After that, no one ever needs to reconnect the advertiser token.
+      </p>
+      {!enabled ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect the Advertiser Token first, then export it.</p>
+      ) : token ? (
+        <>
+          <textarea
+            readOnly
+            value={token}
+            style={{ ...s.input, fontFamily: 'monospace', fontSize: 11, minHeight: 80, resize: 'vertical', marginBottom: 10, wordBreak: 'break-all' }}
+          />
+          <button style={{ ...s.btn, background: copied ? '#10b981' : '#a855f7' }} onClick={copy}>
+            {copied ? 'Copied!' : 'Copy to Clipboard'}
+          </button>
+        </>
+      ) : (
+        <>
+          {error && <p style={{ fontSize: 13, color: '#f59e0b', marginBottom: 8 }}>{error}</p>}
+          <button style={s.btn} onClick={load}>Show Token</button>
         </>
       )}
     </div>
