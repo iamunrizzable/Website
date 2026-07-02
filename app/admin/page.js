@@ -189,7 +189,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               {enabled && advExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
             </div>
           </div>
-          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/business/login?key=${encodeURIComponent(adminKey)}`; }}>
+          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = '/auth/tiktok/business/login'; }}>
             {enabled ? 'Reconnect' : 'Connect'}
           </button>
         </div>
@@ -204,7 +204,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
               {accountEnabled && !status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: none stored</div>}
             </div>
           </div>
-          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = `/auth/tiktok/account-login?key=${encodeURIComponent(adminKey)}`; }}>
+          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = '/auth/tiktok/account-login'; }}>
             {accountEnabled ? 'Reconnect' : 'Connect'}
           </button>
         </div>
