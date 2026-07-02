@@ -3,6 +3,13 @@ import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/
 import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 
+const ALLOWED_PATHS = ['/admin', '/hallie/tiktok-moderation/system'];
+
+function safeRedirect(path, baseUrl) {
+  const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
+  return NextResponse.redirect(new URL(ok ? path : '/admin', baseUrl));
+}
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const authCode = searchParams.get('auth_code'); // Business Portal flow → numeric business_id
@@ -14,7 +21,7 @@ export async function GET(request) {
   const errorDest = isSystem ? '/hallie/tiktok-moderation/system' : '/admin';
 
   if (error) {
-    return NextResponse.redirect(new URL(`${errorDest}?error=${encodeURIComponent(error)}`, request.url));
+    return safeRedirect(`${errorDest}?error=${encodeURIComponent(error)}`, request.url);
   }
 
   if (!verifyState(state)) {
@@ -78,7 +85,7 @@ export async function GET(request) {
     }
 
     const dest = isSystem ? '/hallie/tiktok-moderation/system?connected=1' : '/admin?account_connected=1';
-    const response = NextResponse.redirect(new URL(dest, request.url));
+    const response = safeRedirect(dest, request.url);
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -89,6 +96,6 @@ export async function GET(request) {
     return response;
   } catch (err) {
     console.error('[account-callback] Error:', err.message);
-    return NextResponse.redirect(new URL(`${errorDest}?error=${encodeURIComponent(err.message)}`, request.url));
+    return safeRedirect(`${errorDest}?error=${encodeURIComponent(err.message)}`, request.url);
   }
 }
