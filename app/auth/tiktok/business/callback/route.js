@@ -3,6 +3,13 @@ import { exchangeBusinessCode, exchangeBusinessPortalAccountCode } from '@/lib/t
 import { storeBusinessTokens, storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 
+const ALLOWED_PATHS = ['/admin'];
+
+function safeRedirect(path, baseUrl) {
+  const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
+  return NextResponse.redirect(new URL(ok ? path : '/admin', baseUrl));
+}
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const authCode = searchParams.get('auth_code');
@@ -10,7 +17,7 @@ export async function GET(request) {
   const error = searchParams.get('error');
 
   if (error) {
-    return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(error)}`, request.url));
+    return safeRedirect(`/admin?error=${encodeURIComponent(error)}`, request.url);
   }
 
   if (!verifyState(state)) {
@@ -29,7 +36,7 @@ export async function GET(request) {
       const raw = await exchangeBusinessPortalAccountCode(authCode);
       if (raw.code !== 0) throw new Error(raw.message ?? 'Account token exchange failed');
       const stored = await storeTikTokAccountToken(raw.data ?? raw);
-      const response = NextResponse.redirect(new URL('/admin?account_connected=1', request.url));
+      const response = safeRedirect('/admin?account_connected=1', request.url);
       response.cookies.set('acct_token', JSON.stringify(stored), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -46,7 +53,7 @@ export async function GET(request) {
       throw new Error(tokenData.message ?? 'Token exchange failed');
     }
     const stored = await storeBusinessTokens(tokenData);
-    const response = NextResponse.redirect(new URL('/admin?business_connected=1', request.url));
+    const response = safeRedirect('/admin?business_connected=1', request.url);
     response.cookies.set('biz_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -57,6 +64,6 @@ export async function GET(request) {
     return response;
   } catch (err) {
     console.error('[business/callback] Error:', err.message);
-    return NextResponse.redirect(new URL(`/admin?error=${encodeURIComponent(err.message)}`, request.url));
+    return safeRedirect(`/admin?error=${encodeURIComponent(err.message)}`, request.url);
   }
 }
