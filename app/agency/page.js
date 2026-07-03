@@ -95,7 +95,7 @@ export default function AgencyPage() {
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Contact Tyler</a>
         <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/join-agency" onClick={() => setMenuOpen(false)}>Join the Agency</a>
+        <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Join the Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
       </div>
 
@@ -202,7 +202,7 @@ export default function AgencyPage() {
           </p>
         </div>
 
-        <a href="/join-agency" className="cta-btn">Apply to Join TJB Management →</a>
+        <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
 
         <div className="footer">
           <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
