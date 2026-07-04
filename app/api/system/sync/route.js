@@ -41,6 +41,7 @@ export async function POST(request) {
   }
 
   let synced = 0, hidden = 0;
+  const processed = [];
 
   for (const video of videos) {
     let commentCursor = 0;
@@ -56,6 +57,7 @@ export async function POST(request) {
       for (const comment of comments) {
         const { score, action } = scoreContent(comment.text ?? '');
         synced++;
+        let wasHidden = false;
         if (action === 'hide' && comment.status !== 'HIDDEN') {
           await fetch(`${BASE}/business/comment/hide/`, {
             method: 'POST',
@@ -63,7 +65,15 @@ export async function POST(request) {
             body: JSON.stringify({ business_id: businessId, comment_id: comment.comment_id, is_hidden: true, video_id: video.item_id }),
           });
           hidden++;
+          wasHidden = true;
         }
+        processed.push({
+          comment_id: comment.comment_id,
+          username: comment.username,
+          text: comment.text ?? '',
+          score,
+          action: wasHidden ? 'hidden' : 'ok',
+        });
       }
 
       if (!json.data?.has_more || comments.length === 0) break;
@@ -71,5 +81,5 @@ export async function POST(request) {
     }
   }
 
-  return NextResponse.json({ synced, hidden });
+  return NextResponse.json({ synced, hidden, comments: processed });
 }

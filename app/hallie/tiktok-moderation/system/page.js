@@ -411,6 +411,25 @@ function SyncPanel() {
           )}
         </div>
       )}
+      {result?.comments?.length > 0 && (
+        <div style={{ marginTop: 12, maxHeight: 320, overflowY: 'auto', border: '1px solid #334155', borderRadius: 8 }}>
+          {[...result.comments].sort((a, b) => (a.action === 'hidden' ? -1 : 0) - (b.action === 'hidden' ? -1 : 0)).map(c => (
+            <div key={c.comment_id} style={{ padding: '10px 12px', borderBottom: '1px solid #1e293b', fontSize: 13 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <span style={{ color: '#94a3b8', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
+                <span style={{
+                  fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999,
+                  background: c.action === 'hidden' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
+                  color: c.action === 'hidden' ? '#f87171' : '#10b981',
+                }}>
+                  {c.action === 'hidden' ? 'Hidden' : 'OK'}
+                </span>
+              </div>
+              <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#64748b' }}>(no text)</em>}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
