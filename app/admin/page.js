@@ -417,7 +417,7 @@ function CommentsPanel({ adminKey, enabled }) {
       ) : (
         <>
           <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>
-            Paste a TikTok video ID or URL to load its comments.
+            Paste a TikTok video or photo link, a share link (tiktok.com/t/…), or a numeric ID to load its comments.
           </p>
           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
             <input
