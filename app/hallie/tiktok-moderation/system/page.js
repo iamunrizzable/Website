@@ -232,7 +232,7 @@ function CommentsPanel() {
 
   function extractVideoId(input) {
     const trimmed = input.trim();
-    const match = trimmed.match(/\/video\/(\d+)/);
+    const match = trimmed.match(/\/(?:video|photo)\/(\d+)/);
     if (match) return match[1];
     if (/^\d+$/.test(trimmed)) return trimmed;
     return null;
