@@ -238,10 +238,31 @@ function CommentsPanel() {
     return null;
   }
 
+  function isShortUrl(input) {
+    return /tiktok\.com\/t\//i.test(input.trim());
+  }
+
   async function loadComments(vid) {
     const raw = vid || videoId;
-    const id = extractVideoId(raw);
-    if (!id) { setCommentsError('Paste a TikTok video URL or numeric video ID.'); return; }
+    let id = extractVideoId(raw);
+
+    if (!id && isShortUrl(raw)) {
+      setCommentsLoading(true);
+      setComments(null);
+      setCommentsError('');
+      try {
+        const r = await fetch(`/api/system/resolve-video?url=${encodeURIComponent(raw.trim())}`);
+        const d = await r.json();
+        if (d.error) { setCommentsError(`Could not resolve link: ${d.error}`); setCommentsLoading(false); return; }
+        id = d.video_id;
+      } catch (e) {
+        setCommentsError(`Could not resolve link: ${e.message}`);
+        setCommentsLoading(false);
+        return;
+      }
+    }
+
+    if (!id) { setCommentsError('Paste a TikTok video URL, a short share link (tiktok.com/t/…), or a numeric video ID.'); return; }
 
     setActiveVideoId(id);
     setComments(null);
@@ -278,7 +299,7 @@ function CommentsPanel() {
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Comment Management</h2>
-      <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>Paste a TikTok video ID or URL to load its comments.</p>
+      <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>Paste a TikTok video or photo link, a share link (tiktok.com/t/…), or a numeric ID to load its comments.</p>
       <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
         <input
           style={{ ...s.input, flex: 1 }}
