@@ -323,7 +323,13 @@ function CommentsPanel() {
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>@{c.username}</span>
-                {c.status === 'HIDDEN' && <span style={s.badge('#f59e0b')}>HIDDEN</span>}
+                <span style={{
+                  fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999,
+                  background: c.status === 'HIDDEN' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
+                  color: c.status === 'HIDDEN' ? '#f87171' : '#10b981',
+                }}>
+                  {c.status === 'HIDDEN' ? 'Hidden' : 'OK'}
+                </span>
               </div>
               <span style={{ fontSize: 11, color: '#475569' }}>
                 {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
