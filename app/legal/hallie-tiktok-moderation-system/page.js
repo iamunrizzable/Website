@@ -351,6 +351,7 @@ export default function HallieTikTokLegal() {
             <li><strong>App Sandboxing</strong> — iOS enforces strict app sandboxing. No application can access data belonging to another application, providing inherent protection against malware and unauthorized data access</li>
           </ul>
           <p>Operators are expected to maintain appropriate endpoint protections on any device used to access their Hallie Platform dashboard.</p>
+          <p>Software development and infrastructure changes are carried out with the assistance of an AI coding tool operating in an isolated, ephemeral cloud execution environment. This environment holds no independent or standing access to any Operator's TikTok account, does not persist credentials or Operator data beyond a single development session, and every action it takes is directed and authorized in real time by the Platform Provider's sole authorized officer from their Apple iOS device.</p>
         </div>
 
         <div className="section" id="security-baselines">
