@@ -24,6 +24,12 @@ const s = {
     padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
     background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#64748b', border: 'none',
   }),
+  // Shared OK / Hidden pill — identical on /admin and /system. Keep in sync.
+  statusBadge: (hidden) => ({
+    fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
+    background: hidden ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
+    color: hidden ? '#f87171' : '#10b981',
+  }),
 };
 
 export default function AdminPage() {
@@ -459,11 +465,7 @@ function CommentsPanel({ adminKey, enabled }) {
                       {c.like_count ? ` · ♥ ${c.like_count}` : ''}
                     </span>
                   </div>
-                  <span style={{
-                    fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
-                    background: c.status === 'HIDDEN' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
-                    color: c.status === 'HIDDEN' ? '#f87171' : '#10b981',
-                  }}>
+                  <span style={s.statusBadge(c.status === 'HIDDEN')}>
                     {c.status === 'HIDDEN' ? 'Hidden' : 'OK'}
                   </span>
                 </div>
@@ -590,11 +592,7 @@ function SyncPanel({ adminKey, enabled }) {
                 <div key={c.comment_id} style={{ padding: '10px 12px', borderBottom: '1px solid #1e293b', fontSize: 13 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                     <span style={{ color: '#94a3b8', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
-                    <span style={{
-                      fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999,
-                      background: c.action === 'hidden' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
-                      color: c.action === 'hidden' ? '#f87171' : '#10b981',
-                    }}>
+                    <span style={s.statusBadge(c.action === 'hidden')}>
                       {c.action === 'hidden' ? 'Hidden' : 'OK'}
                     </span>
                   </div>
