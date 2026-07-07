@@ -20,12 +20,19 @@ export async function GET(request) {
   const type = searchParams.get('type') ?? 'trending';
   const keyword = searchParams.get('keyword') ?? '';
 
+  if (type === 'keywords' && !keyword) {
+    return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
+  }
+
   const params = new URLSearchParams({ business_id: businessId });
   if (keyword) params.set('keyword', keyword);
+  // discovery/trending/search/keyword/ requires a non-empty `query` param
+  // (confirmed via TikTok's own error: "query: value is required but missing").
+  const keywordParams = new URLSearchParams({ business_id: businessId, query: keyword });
 
   const endpoints = {
     trending: `${BASE}/discovery/trending/search/?${params}`,
-    keywords: `${BASE}/discovery/trending/search/keyword/?${params}`,
+    keywords: `${BASE}/discovery/trending/search/keyword/?${keywordParams}`,
     hashtags: `${BASE}/business/hashtag/suggestion/?${params}`,
     benchmark: `${BASE}/business/benchmark/?business_id=${encodeURIComponent(businessId)}`,
   };

@@ -713,7 +713,12 @@ function TrendingPanel() {
       .catch(e => { setError(e.message); setData([]); });
   }
 
-  useEffect(() => { load(); }, [tab]);
+  useEffect(() => {
+    // The keyword search requires non-empty input — don't auto-fire on tab
+    // switch and throw an error before the user has typed anything.
+    if (tab === 'keywords' && !keyword.trim()) { setData(null); setError(''); return; }
+    load();
+  }, [tab]);
 
   const TABS = [
     ['trending', 'Trending'],
@@ -734,7 +739,7 @@ function TrendingPanel() {
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
           <input
             style={{ ...s.input, flex: 1 }}
-            placeholder="Keyword (optional)…"
+            placeholder={tab === 'keywords' ? 'Keyword (required)…' : 'Keyword (optional)…'}
             value={keyword}
             onChange={e => setKeyword(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && load()}
@@ -743,7 +748,9 @@ function TrendingPanel() {
         </div>
       )}
 
-      {data === undefined ? (
+      {data === null ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Type a keyword and hit Search.</p>
+      ) : data === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
         <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
