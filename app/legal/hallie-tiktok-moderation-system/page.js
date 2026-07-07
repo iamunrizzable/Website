@@ -280,9 +280,9 @@ export default function HallieTikTokLegal() {
           </p>
           <ul>
             <li>The Platform requests <strong>comment.list</strong> and <strong>comment.list.manage</strong> scopes to read and manage comments on behalf of Operators</li>
-            <li>The Platform requests <strong>video.list</strong> and <strong>video.publish</strong> scopes to manage and publish content on behalf of Operators</li>
-            <li>The Platform requests <strong>discovery.search.words</strong> and mention-related scopes to surface trending content and monitor brand mentions</li>
-            <li>The Platform requests <strong>user.info.basic</strong> and related scopes to display the connected account identity in each Operator's dashboard</li>
+            <li>The Platform requests <strong>video.list</strong> to display an Operator's videos in their dashboard</li>
+            <li>The Platform requests <strong>discovery.search.words</strong> to surface trending content</li>
+            <li>The Platform requests <strong>user.info.basic</strong>, <strong>user.info.username</strong>, <strong>user.info.stats</strong>, <strong>user.info.profile</strong>, and <strong>user.account.type</strong> to display the connected account's identity and stats in each Operator's dashboard</li>
           </ul>
           <p>Upon approval of the Business Messaging API scope, the Platform will additionally request only the minimum DM-related permissions required to read incoming messages and send automated responses — no other messaging scopes will be requested. No scopes beyond those necessary for each authorized function are requested at any stage. API fields are limited to those actively used by the Platform — no unused fields are fetched.</p>
         </div>
@@ -357,7 +357,7 @@ export default function HallieTikTokLegal() {
           <h2>13. Security Baselines</h2>
           <p>The following baseline security measures are enforced for all access to the Platform and associated infrastructure:</p>
           <ul>
-            <li><strong>Multi-Factor Authentication (MFA)</strong> — All Platform infrastructure accounts (Vercel and GitHub) are protected by Oracle Authentication (Oracle Identity Cloud Service) — the same authentication infrastructure used by TikTok's US operations. Access to any internal system requires a password plus a second factor. Available second factors are: Oracle Authenticator TOTP code, Apple ID passkey (hardware-bound biometric), or SMS verification to a dedicated work number. Recovery codes are available as a last-resort backup only and cannot serve as a primary second factor. No single credential is sufficient to gain access</li>
+            <li><strong>Multi-Factor Authentication (MFA)</strong> — All Platform infrastructure accounts (Vercel and GitHub) require a password plus a second factor. The Platform Provider's sole authorized officer uses the Oracle Authenticator app to generate time-based one-time passcodes (TOTP), and passkeys bound exclusively to personal Apple iOS devices (protected by Face ID or Touch ID and the device's hardware Secure Enclave) where a service supports passkey sign-in. No single credential is sufficient to gain access</li>
             <li><strong>Firewall</strong> — Vercel's web application firewall is active across all Platform endpoints. Traffic is continuously monitored and filtered, with non-compliant requests denied or challenged in real time</li>
             <li><strong>DDoS Mitigation</strong> — Vercel's infrastructure provides automatic DDoS protection at the network and application layers. No additional configuration is required — protection is active by default on all deployments</li>
             <li><strong>Bot Protection</strong> — Bot Protection is enabled and actively challenging requests from non-browser sources, excluding verified bots. Known AI scrapers and crawlers are blocked</li>
@@ -396,9 +396,8 @@ export default function HallieTikTokLegal() {
             <li><strong>Dependency management</strong> — All software dependencies are regularly audited. Critical and high vulnerabilities are remediated within 7 days of discovery.</li>
             <li><strong>Infrastructure scanning</strong> — Vercel provides automated infrastructure-level vulnerability detection and patching as part of its platform.</li>
             <li><strong>Code review</strong> — All code changes are reviewed before deployment. Security implications are evaluated for each change.</li>
-            <li><strong>Penetration testing</strong> — External penetration testing is conducted at least annually or following any significant system change.</li>
+            <li><strong>Security testing</strong> — The Platform undergoes AI-assisted security testing against non-production test environments as part of ongoing development. The Platform Provider has not yet engaged an independent third-party penetration testing firm and plans to do so as the Platform's data access needs grow.</li>
             <li><strong>Vulnerability disclosure</strong> — Security vulnerabilities may be reported to <strong>support@tjbmanagementinc.com</strong>. We commit to acknowledging reports within 48 hours and remediating critical issues within 7 days.</li>
-            <li><strong>Scan retention</strong> — Vulnerability scan reports and penetration test results are retained for a minimum of 12 months.</li>
           </ul>
         </div>
 
