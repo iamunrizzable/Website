@@ -721,11 +721,16 @@ function MentionsPanel({ adminKey, enabled }) {
 
   function extractList(type, d) {
     const dd = d.data ?? {};
-    if (type === 'videos') return dd.videos ?? [];
-    if (type === 'comments') return dd.comments ?? [];
-    if (type === 'top_words') return dd.words ?? dd.top_words ?? dd.list ?? [];
-    if (type === 'top_hashtags') return dd.hashtags ?? dd.top_hashtags ?? dd.list ?? [];
-    if (type === 'tracked_hashtags') return dd.hashtags ?? dd.list ?? [];
+    const known = {
+      videos: dd.videos,
+      comments: dd.comments,
+      top_words: dd.words ?? dd.top_words,
+      top_hashtags: dd.hashtags ?? dd.top_hashtags,
+      tracked_hashtags: dd.hashtags,
+    }[type];
+    if (Array.isArray(known)) return known;
+    // Field names vary per endpoint — fall back to the first array in data
+    for (const v of Object.values(dd)) if (Array.isArray(v)) return v;
     return [];
   }
 
@@ -814,15 +819,16 @@ function MentionsPanel({ adminKey, enabled }) {
             <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
           ) : (
             data.map((item, i) => (
-              <div key={item.video_id ?? item.comment_id ?? item.hashtag ?? item.word ?? i} style={{ borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
-                {tab === 'videos' && <>{item.title ?? item.video_id} <span style={{ color: '#64748b' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
-                {tab === 'comments' && <>@{item.username ?? 'unknown'}: {item.text}</>}
-                {tab === 'top_words' && (item.word ? <>{item.word}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
-                {tab === 'top_hashtags' && (item.hashtag ? <>#{item.hashtag}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
+              <div key={item.item_id ?? item.video_id ?? item.comment_id ?? item.hashtag ?? item.word ?? i} style={{ borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
+                {typeof item === 'string' && tab !== 'tracked_hashtags' && item}
+                {tab === 'videos' && typeof item !== 'string' && <>{item.caption ?? item.title ?? item.item_id ?? item.video_id} <span style={{ color: '#64748b' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
+                {tab === 'comments' && typeof item !== 'string' && <>@{item.username ?? 'unknown'}: {item.text}</>}
+                {tab === 'top_words' && typeof item !== 'string' && (item.word ? <>{item.word}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
+                {tab === 'top_hashtags' && typeof item !== 'string' && (item.hashtag ? <>#{item.hashtag}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
                 {tab === 'tracked_hashtags' && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>#{item.hashtag ?? item}</span>
-                    <button style={s.btnDanger} onClick={() => removeHashtag(item.hashtag ?? item)}>Remove</button>
+                    <span>#{typeof item === 'string' ? item : (item.hashtag ?? JSON.stringify(item))}</span>
+                    <button style={s.btnDanger} onClick={() => removeHashtag(typeof item === 'string' ? item : item.hashtag)}>Remove</button>
                   </div>
                 )}
               </div>
@@ -850,10 +856,15 @@ function TrendingPanel({ adminKey, enabled }) {
 
   function extractList(type, d) {
     const dd = d.data ?? {};
-    if (type === 'trending') return dd.list ?? dd.trending_list ?? dd.videos ?? [];
-    if (type === 'keywords') return dd.keywords ?? dd.list ?? [];
-    if (type === 'hashtags') return dd.hashtags ?? dd.list ?? [];
-    if (type === 'benchmark') return dd.benchmark ? [dd.benchmark] : (Array.isArray(dd) ? dd : dd.list ?? []);
+    const known = {
+      trending: dd.list ?? dd.trending_list ?? dd.videos,
+      keywords: dd.search_keywords ?? dd.keywords, // TikTok returns search_keywords: string[]
+      hashtags: dd.hashtags,
+      benchmark: dd.benchmark ? [dd.benchmark] : undefined,
+    }[type];
+    if (Array.isArray(known)) return known;
+    // Field names vary per endpoint — fall back to the first array in data
+    for (const v of Object.values(dd)) if (Array.isArray(v)) return v;
     return [];
   }
 
@@ -915,8 +926,8 @@ function TrendingPanel({ adminKey, enabled }) {
             <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
           ) : (
             data.map((item, i) => (
-              <div key={item.id ?? item.keyword ?? item.hashtag ?? i} style={{ borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
-                {JSON.stringify(item)}
+              <div key={typeof item === 'string' ? item : (item.id ?? item.keyword ?? item.hashtag ?? i)} style={{ borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
+                {typeof item === 'string' ? item : JSON.stringify(item)}
               </div>
             ))
           )}
