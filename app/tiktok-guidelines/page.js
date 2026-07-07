@@ -312,6 +312,7 @@ export default function TikTokGuidelines() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
+        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie Moderation System</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
@@ -320,6 +321,7 @@ export default function TikTokGuidelines() {
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
+        <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
