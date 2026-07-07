@@ -193,13 +193,10 @@ export default function HallieTikTokLegal() {
             <li><span className="rainbow">Like count</span> — the number of likes a comment has received</li>
             <li><span className="rainbow">Comment status</span> — whether a comment is visible or hidden</li>
           </ul>
-          <h3>Content & Publishing Data</h3>
+          <h3>Content Data</h3>
           <ul>
-            <li><span className="rainbow">Video ID, title, and creation date</span> — used for content management and organization</li>
-            <li><span className="rainbow">View, like, comment, and share counts</span> — used for performance analytics</li>
-            <li><span className="rainbow">Video settings and publish status</span> — used to manage and schedule content on behalf of Operators</li>
-            <li><span className="rainbow">Post authorization data</span> — used to authorize, track, and manage content actions</li>
-            <li><span className="rainbow">Location data</span> — used only when Operators choose to tag a location on published content</li>
+            <li><span className="rainbow">Video ID, title, and creation date</span> — displayed in each Operator's dashboard to identify their content</li>
+            <li><span className="rainbow">View, like, comment, and share counts</span> — displayed for performance visibility</li>
           </ul>
           <h3>Mentions & Discovery Data</h3>
           <ul>
@@ -471,9 +468,9 @@ export default function HallieTikTokLegal() {
           <h3>Security Controls</h3>
           <ul>
             <li>All data in transit is encrypted with TLS 1.2 or above. All secrets are encrypted at rest using AES-256 via Vercel's infrastructure (see Section 14)</li>
-            <li>All infrastructure accounts (Vercel and GitHub) are protected by Oracle Authentication TOTP-based MFA — the same provider used by TikTok's US operations. Access requires a password plus a second factor (Oracle Authenticator, Apple ID passkey, or SMS). All administrator devices enforce Face ID / Touch ID biometric authentication with iOS hardware encryption (see Sections 12–13)</li>
+            <li>All infrastructure accounts (Vercel and GitHub) require a password plus a second factor — Oracle Authenticator TOTP codes or passkeys bound to personal iOS devices, protected by Face ID or Touch ID and hardware Secure Enclave (see Sections 12–13)</li>
             <li>Access to the Platform is governed by least-privilege and need-to-know principles. Each Operator is isolated from all others (see Section 15)</li>
-            <li>External penetration testing is conducted at least annually. Critical vulnerabilities are remediated within 7 days of discovery (see Section 16)</li>
+            <li>AI-assisted security testing is performed against non-production environments as part of ongoing development. A third-party penetration testing engagement has not yet been conducted (see Section 16)</li>
             <li>A documented incident response process is in place. Affected parties are notified within 48 hours of any confirmed incident (see Section 17)</li>
             <li>The Platform is hosted on Vercel Inc., a SOC 2 Type II certified provider operating US infrastructure (see Section 18)</li>
           </ul>
@@ -486,7 +483,7 @@ export default function HallieTikTokLegal() {
           </ul>
 
           <p>
-            Supporting documentation including vulnerability scan reports and penetration testing results is available upon request at <strong>support@tjbmanagementinc.com</strong>.
+            Supporting documentation, including dependency vulnerability monitoring history, is available upon request at <strong>support@tjbmanagementinc.com</strong>.
           </p>
         </div>
 
