@@ -885,9 +885,10 @@ function TrendingPanel({ adminKey, enabled }) {
   }
 
   useEffect(() => {
-    // The keyword search requires non-empty input — don't auto-fire on tab
-    // switch and throw an error before the user has typed anything.
-    if (tab === 'keywords' && !keyword.trim()) { setData(null); setError(''); return; }
+    // Keywords and Hashtag Suggestions both require non-empty input — don't
+    // auto-fire on tab switch and throw an error before the user has typed
+    // anything.
+    if ((tab === 'keywords' || tab === 'hashtags') && !keyword.trim()) { setData(null); setError(''); return; }
     load();
   }, [adminKey, enabled, tab]);
 
@@ -914,7 +915,7 @@ function TrendingPanel({ adminKey, enabled }) {
             <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
               <input
                 style={{ ...s.input, flex: 1 }}
-                placeholder={tab === 'keywords' ? 'Keyword (required)…' : 'Keyword (optional)…'}
+                placeholder={tab === 'keywords' || tab === 'hashtags' ? 'Keyword (required)…' : 'Keyword (optional)…'}
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && load()}
