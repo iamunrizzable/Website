@@ -102,13 +102,13 @@ export default function StreamingBasics() {
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
-        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie Moderation System</a>
+        <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
+        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
