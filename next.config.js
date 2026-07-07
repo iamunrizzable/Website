@@ -21,21 +21,8 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
-  {
-    key: 'Content-Security-Policy',
-    value: [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktok.com https:",
-      "connect-src 'self'",
-      "font-src 'self' data:",
-      "frame-ancestors 'none'",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-    ].join('; '),
-  },
+  // Content-Security-Policy is set per-request in middleware.js so
+  // script-src can use a nonce instead of 'unsafe-inline'.
 ];
 
 const nextConfig = {
