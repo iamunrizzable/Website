@@ -37,7 +37,7 @@ The two lowercase env names are real and intentional (they're checked before the
 
 ## Security headers — single source of truth
 
-ALL headers (CSP, HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy) live in `next.config.js` only, plus `poweredByHeader: false`. **Never add headers to `vercel.json`** — duplicates there caused Aikido "Multiple X-Frame-Options/HSTS" findings (removed July 2026). `vercel.json` contains crons only. CSP allows `unsafe-inline`/`unsafe-eval` scripts (required by Next.js inline runtime with this config) and TikTok CDN images.
+Static headers (HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy) live in `next.config.js`, plus `poweredByHeader: false`. **CSP is the exception: it is built per-request in `middleware.js`** so `script-src` can carry a fresh nonce + `'strict-dynamic'` instead of `unsafe-inline`/`unsafe-eval` (both removed July 2026 for Aikido). This requires `export const dynamic = 'force-dynamic'` in `app/layout.js` — Next.js stamps the nonce onto its inline scripts only during dynamic rendering, so **do not remove that export or re-add a static CSP header** (a second CSP intersects and breaks all pages). `style-src` keeps `unsafe-inline` (pages inject `<style>` tags and React inline styles). **Never add headers to `vercel.json`** — duplicates there caused Aikido "Multiple X-Frame-Options/HSTS" findings. `vercel.json` contains crons only.
 
 ## Dependency policy
 
@@ -46,6 +46,7 @@ ALL headers (CSP, HSTS, X-Frame-Options DENY, nosniff, Referrer-Policy, Permissi
 ## Aikido scanner — institutional memory
 
 - **JWT-manipulation findings on `/api/cron/*`: FALSE POSITIVES.** No JWT library exists here; cron auth is a string compare. Mark as accepted risk.
+- CSP `unsafe-inline`/`unsafe-eval` findings: fixed July 2026 with the middleware nonce CSP (see above). Every page became server-rendered per request as a consequence — build output showing all routes as ƒ (Dynamic) is intentional.
 - Open-redirect findings (client + server): fixed July 2026 via hardcoded `window.location.href` strings, `safeRedirect` allowlists, and `absoluteUrl()`. Don't regress.
 - Cookie-flag findings: every `cookies.set`, including deletions, must carry httpOnly/secure/sameSite/path.
 - X-Powered-By: suppressed via `poweredByHeader: false`.
