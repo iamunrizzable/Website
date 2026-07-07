@@ -20,7 +20,7 @@ export async function GET(request) {
   const type = searchParams.get('type') ?? 'trending';
   const keyword = searchParams.get('keyword') ?? '';
 
-  if (type === 'keywords' && !keyword) {
+  if ((type === 'keywords' || type === 'hashtags') && !keyword) {
     return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
   }
 

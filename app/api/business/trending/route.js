@@ -15,7 +15,10 @@ export async function GET(request) {
       if (!keyword) return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
       return NextResponse.json(await getTrendingKeywords({ keyword }));
     }
-    if (type === 'hashtags') return NextResponse.json(await getHashtagSuggestions({ keyword }));
+    if (type === 'hashtags') {
+      if (!keyword) return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
+      return NextResponse.json(await getHashtagSuggestions({ keyword }));
+    }
     if (type === 'benchmark') return NextResponse.json(await getBenchmark());
     return NextResponse.json(await searchTrending({ keyword }));
   } catch (err) {
