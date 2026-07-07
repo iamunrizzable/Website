@@ -5,9 +5,10 @@ function requireAdmin(request) {
 }
 
 // This endpoint exists only to resolve TikTok share links (tiktok.com/t/…),
-// so outgoing requests are restricted to https URLs on tiktok.com hosts.
-// Anything else is refused before any request is made (SSRF guard).
-const ALLOWED_HOST = /^(?:[a-z0-9-]+\.)*tiktok\.com$/i;
+// so outgoing requests are restricted to https URLs on known TikTok hosts.
+// The request URL is rebuilt against a constant from ALLOWED_HOSTS, so only
+// the path and query ever come from user input (SSRF guard).
+const ALLOWED_HOSTS = ['tiktok.com', 'www.tiktok.com', 'vm.tiktok.com', 'vt.tiktok.com', 'm.tiktok.com'];
 
 function parseAllowedUrl(raw, base) {
   let parsed;
@@ -17,8 +18,11 @@ function parseAllowedUrl(raw, base) {
     return null;
   }
   if (parsed.protocol !== 'https:') return null;
-  if (!ALLOWED_HOST.test(parsed.hostname)) return null;
-  return parsed;
+  const host = ALLOWED_HOSTS.find((h) => h === parsed.hostname.toLowerCase());
+  if (!host) return null;
+  const safe = new URL(`${parsed.pathname}${parsed.search}`, `https://${host}`);
+  if (safe.hostname !== host) return null; // a pathname like //evil.com/x would re-target the host
+  return safe;
 }
 
 const MAX_REDIRECTS = 5;
