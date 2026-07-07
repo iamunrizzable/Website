@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getTikTokAccountAuthUrl } from '@/lib/tiktok/business-oauth';
 import { generateState } from '@/lib/oauth-state';
+import { absoluteUrl } from '@/lib/site-url';
 
 async function isAdmin(request) {
   const adminKey = request.headers.get('x-admin-key') ?? new URL(request.url).searchParams.get('key');
@@ -15,7 +16,12 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const state = generateState();
-  const url = getTikTokAccountAuthUrl(state);
-  return NextResponse.redirect(url);
+  try {
+    const state = generateState();
+    const url = getTikTokAccountAuthUrl(state);
+    return NextResponse.redirect(url);
+  } catch (err) {
+    console.error('[account-login] Failed to build TikTok auth URL:', err.message);
+    return NextResponse.redirect(absoluteUrl(`/admin?error=${encodeURIComponent(err.message)}`));
+  }
 }
