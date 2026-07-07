@@ -32,6 +32,10 @@ The two panels are the same product for two audiences. A change shipped to only 
 
 When you add data to one endpoint's response so the UI can render it, add the equivalent to the twin endpoint. Example (July 2026): sync endpoints both return `{ synced, hidden, comments: [{ comment_id, username, text, score, action }] }` and both SyncPanels render the same Hidden/OK badge list. Keep shapes identical so the JSX can be copy-ported with only the auth/route edits.
 
+## The `s` style objects are NOT identical — check every helper before porting
+
+Each page has its own `s` object and they have drifted: admin has helpers system lacks (this exact gap shipped a production crash in July 2026 — `s.tab()` was used by panels ported from admin to system, system's `s` had no `tab`, and the whole page died with Next's "This page couldn't load" error boundary **only in the connected state**, because the panels only mount after connect). Before porting any JSX: grep the ported code for every `s.<name>` and confirm each exists in the target file's `s`. And when verifying, browser-render the system page **with an `acct_token` cookie set** — the disconnected state renders ConnectPrompt only and will happily hide a crash in every panel.
+
 ## Checklist for every mirrored change
 
 - [ ] Change applied to `app/admin/page.js` AND `app/hallie/tiktok-moderation/system/page.js`

@@ -15,6 +15,10 @@ const s = {
   badge: (color) => ({ background: color + '22', color, border: `1px solid ${color}`, borderRadius: 4, padding: '2px 8px', fontSize: 11, fontWeight: 600 }),
   msg: { background: '#1e3a5f', border: '1px solid #3b82f6', borderRadius: 8, padding: '10px 14px', marginBottom: 16, fontSize: 13 },
   inlineMsg: (ok) => ({ fontSize: 12, color: ok ? '#10b981' : '#f59e0b', marginBottom: 8, minHeight: 18 }),
+  tab: (active) => ({
+    padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
+    background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#64748b', border: 'none',
+  }),
   // Shared OK / Hidden pill — identical on /admin and /system. Keep in sync.
   statusBadge: (hidden) => ({
     fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
