@@ -27,8 +27,8 @@ const s = {
   // Shared OK / Hidden pill — identical on /admin and /system. Keep in sync.
   statusBadge: (hidden) => ({
     fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
-    background: hidden ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
-    color: hidden ? '#f87171' : '#10b981',
+    background: hidden ? 'rgba(245,158,11,0.15)' : 'rgba(16,185,129,0.12)',
+    color: hidden ? '#f59e0b' : '#10b981',
   }),
 };
 
