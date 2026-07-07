@@ -10,10 +10,17 @@ function getToken(cookieStore) {
   try { return JSON.parse(raw); } catch { return null; }
 }
 
+function getCustomRules(cookieStore) {
+  const raw = cookieStore.get('custom_rules')?.value;
+  if (!raw) return [];
+  try { return JSON.parse(raw); } catch { return []; }
+}
+
 export async function POST(request) {
   const cookieStore = await cookies();
   const token = getToken(cookieStore);
   if (!token) return NextResponse.json({ error: 'Not connected' }, { status: 401 });
+  const customRules = getCustomRules(cookieStore);
 
   const body = await request.json().catch(() => ({}));
   const maxVideos = body.maxVideos && Number.isInteger(body.maxVideos) && body.maxVideos > 0 ? body.maxVideos : null;
@@ -55,7 +62,7 @@ export async function POST(request) {
       const comments = json.data?.comments ?? [];
 
       for (const comment of comments) {
-        const { score, action } = scoreContent(comment.text ?? '');
+        const { score, action } = scoreContent(comment.text ?? '', customRules);
         synced++;
         let wasHidden = false;
         if (action === 'hide' && comment.status !== 'HIDDEN') {

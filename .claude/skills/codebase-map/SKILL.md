@@ -61,7 +61,7 @@ Next.js 15 App Router site on Vercel serverless. One repo, three jobs:
 - `jsconfig.json` — `@/*` path alias to repo root.
 
 ## Known quirks / debt (flagged, intentionally not "fixed" without approval)
-- `lib/tiktok/business-api.js` `listRules/createRule/deleteRule` call `/automated_rule/*` endpoints which are **not** on the CLAUDE.md approved-endpoints list (the approved list has `/optimizer/rule/*`, which `/api/system/rules` uses). If admin rules break with permission errors, this is why.
+- "Automated Comment Rules" (`/api/business/rules`, `/api/system/rules`) is **local keyword storage, not a TikTok API call** — `/optimizer/rule/*` turned out to be TikTok's ad-campaign automation engine, not applicable to comment moderation. See the moderation-pipeline skill for the full story before touching this again.
 - `/business/comment/hide/` is called with two different payload shapes: `action: 'HIDE'|'UNHIDE'` (business-api.js) vs `is_hidden: true|false` (system routes). Both have worked; don't unify without testing.
 - `/api/admin/me` returns `ADMIN_SECRET` as JSON to anyone holding the `admin_session` cookie — by design, it's how the admin SPA gets its `x-admin-key`, but treat it as sensitive.
 - `/api/system/rules`, `/api/dm`, and `/api/agency` GET have no caller auth. Known; change only if Tyler asks.
