@@ -15,7 +15,7 @@
     "nodemailer": "^9.0.3",
     "puppeteer-core": "^25.3.0",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "react-dom": "^19.2.7",
     "zod": "4.4.3"
   },
   "overrides": {
