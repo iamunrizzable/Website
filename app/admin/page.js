@@ -451,20 +451,20 @@ function CommentsPanel({ adminKey, enabled }) {
           ) : (
             comments.map(c => (
               <div key={c.comment_id} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 12, marginBottom: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, minWidth: 0 }}>
                     <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>@{c.username}</span>
-                    <span style={{
-                      fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999,
-                      background: c.status === 'HIDDEN' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
-                      color: c.status === 'HIDDEN' ? '#f87171' : '#10b981',
-                    }}>
-                      {c.status === 'HIDDEN' ? 'Hidden' : 'OK'}
+                    <span style={{ fontSize: 11, color: '#475569', whiteSpace: 'nowrap' }}>
+                      {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
+                      {c.like_count ? ` · ♥ ${c.like_count}` : ''}
                     </span>
                   </div>
-                  <span style={{ fontSize: 11, color: '#475569' }}>
-                    {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
-                    {c.like_count ? ` · ♥ ${c.like_count}` : ''}
+                  <span style={{
+                    fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 999, whiteSpace: 'nowrap', flexShrink: 0,
+                    background: c.status === 'HIDDEN' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)',
+                    color: c.status === 'HIDDEN' ? '#f87171' : '#10b981',
+                  }}>
+                    {c.status === 'HIDDEN' ? 'Hidden' : 'OK'}
                   </span>
                 </div>
                 <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 8px' }}>{c.text}</p>
