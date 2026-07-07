@@ -115,7 +115,7 @@ export default function AdminPage() {
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentsPanel adminKey={adminKey} enabled={enabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
-          <AutomatedRulesPanel adminKey={adminKey} enabled={enabled} />
+          <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
           <ExportTokenPanel adminKey={adminKey} enabled={enabled} />
@@ -609,7 +609,7 @@ function SyncPanel({ adminKey, enabled }) {
   );
 }
 
-// ── Automated Rules (keyword → hide comment) ──────────────────────────────────
+// ── Automated Rules (keyword → auto-hide, applied during Comment Sync) ────────
 
 function AutomatedRulesPanel({ adminKey, enabled }) {
   const [rules, setRules] = useState(null);
@@ -622,7 +622,7 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
     if (!adminKey) return;
     fetch('/api/business/rules', { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
-      .then(d => setRules(d.data?.rules ?? d.rules ?? []))
+      .then(d => setRules(d.rules ?? []))
       .catch(() => setRules([]));
   }
 
@@ -640,8 +640,8 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
         body: JSON.stringify({ name, keywords: kws }),
       });
       const data = await res.json();
-      if (data.code && data.code !== 0) setMsg('Error: ' + (data.message ?? JSON.stringify(data)));
-      else { setMsg('Rule created.'); setName(''); setKeywords(''); loadRules(); }
+      if (!data.ok) setMsg('Error: ' + (data.error ?? JSON.stringify(data)));
+      else { setMsg('Rule created.'); setName(''); setKeywords(''); setRules(data.rules); }
     } catch (err) { setMsg('Error: ' + err.message); }
     finally { setSaving(false); }
   }
@@ -653,16 +653,19 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
       body: JSON.stringify({ action: 'delete', rule_id: ruleId }),
     });
     const data = await res.json();
-    if (data.code === 0 || data.ok) setRules(prev => prev.filter(r => r.rule_id !== ruleId));
+    if (data.ok) setRules(data.rules);
   }
 
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Automated Comment Rules</h2>
       {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage automated rules.</p>
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to manage automated rules.</p>
       ) : (
         <>
+          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+            Comments matching any rule's keywords are automatically hidden the next time Comment Sync runs (manually or via the daily cron) — not in real time.
+          </p>
           {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
           <form onSubmit={handleCreate} style={{ marginBottom: 20 }}>
             <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
@@ -691,12 +694,12 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
             <p style={{ fontSize: 13, color: '#475569' }}>No rules yet.</p>
           ) : (
             rules.map((rule, i) => (
-              <div key={rule.rule_id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
+              <div key={rule.id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
                 <div>
-                  <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.rule_name}</div>
-                  <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{rule.status}</div>
+                  <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.name}</div>
+                  <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
                 </div>
-                <button onClick={() => handleDelete(rule.rule_id)} style={s.btnDanger}>Delete</button>
+                <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
               </div>
             ))
           )}

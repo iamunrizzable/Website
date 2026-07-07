@@ -461,7 +461,7 @@ function SyncPanel() {
   );
 }
 
-// ── Automated Rules ───────────────────────────────────────────────────────────
+// ── Automated Rules (keyword → auto-hide, applied during Comment Sync) ────────
 
 function AutomatedRulesPanel() {
   const [rules, setRules] = useState(null);
@@ -473,7 +473,7 @@ function AutomatedRulesPanel() {
   function loadRules() {
     fetch('/api/system/rules')
       .then(r => r.json())
-      .then(d => setRules(d.data?.rules ?? d.rules ?? []))
+      .then(d => setRules(d.rules ?? []))
       .catch(() => setRules([]));
   }
 
@@ -491,24 +491,28 @@ function AutomatedRulesPanel() {
         body: JSON.stringify({ name, keywords: kws }),
       });
       const data = await res.json();
-      if (data.code && data.code !== 0) setMsg('Error: ' + (data.message ?? JSON.stringify(data)));
-      else { setMsg('Rule created.'); setName(''); setKeywords(''); loadRules(); }
+      if (!data.ok) setMsg('Error: ' + (data.error ?? JSON.stringify(data)));
+      else { setMsg('Rule created.'); setName(''); setKeywords(''); setRules(data.rules); }
     } catch (err) { setMsg('Error: ' + err.message); }
     finally { setSaving(false); }
   }
 
   async function handleDelete(ruleId) {
-    await fetch('/api/system/rules', {
+    const res = await fetch('/api/system/rules', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'delete', rule_id: ruleId }),
     });
-    setRules(prev => prev.filter(r => r.rule_id !== ruleId));
+    const data = await res.json();
+    if (data.ok) setRules(data.rules);
   }
 
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Automated Comment Rules</h2>
+      <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+        Comments matching any rule's keywords are automatically hidden the next time Comment Sync runs — not in real time.
+      </p>
       {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
       <form onSubmit={handleCreate} style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
@@ -525,12 +529,12 @@ function AutomatedRulesPanel() {
         <p style={{ fontSize: 13, color: '#475569' }}>No rules yet.</p>
       ) : (
         rules.map((rule, i) => (
-          <div key={rule.rule_id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
+          <div key={rule.id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
             <div>
-              <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.rule_name}</div>
-              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{rule.status}</div>
+              <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.name}</div>
+              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
             </div>
-            <button onClick={() => handleDelete(rule.rule_id)} style={s.btnDanger}>Delete</button>
+            <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
           </div>
         ))
       )}

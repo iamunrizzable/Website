@@ -1,45 +1,50 @@
 import { NextResponse } from 'next/server';
-import { getBusinessTokens } from '@/lib/tokens';
+import { cookies } from 'next/headers';
 
-const BASE = 'https://business-api.tiktok.com/open_api/v1.3';
+const COOKIE = 'custom_rules';
+const MAX_AGE = 60 * 60 * 24 * 30;
+
+function getRules(cookieStore) {
+  const raw = cookieStore.get(COOKIE)?.value;
+  if (!raw) return [];
+  try { return JSON.parse(raw); } catch { return []; }
+}
+
+function setRulesCookie(response, rules) {
+  response.cookies.set(COOKIE, JSON.stringify(rules), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: MAX_AGE,
+    path: '/',
+  });
+}
 
 export async function GET() {
-  const biz = await getBusinessTokens();
-  if (!biz) return NextResponse.json({ error: 'Advertiser token not configured' }, { status: 503 });
-
-  const res = await fetch(
-    `${BASE}/optimizer/rule/list/?advertiser_id=${encodeURIComponent(biz.advertiser_id)}`,
-    { headers: { 'Access-Token': biz.access_token } }
-  );
-  const json = await res.json();
-  return NextResponse.json(json);
+  const cookieStore = await cookies();
+  const rules = getRules(cookieStore);
+  return NextResponse.json({ rules });
 }
 
 export async function POST(request) {
-  const biz = await getBusinessTokens();
-  if (!biz) return NextResponse.json({ error: 'Advertiser token not configured' }, { status: 503 });
-
+  const cookieStore = await cookies();
+  const rules = getRules(cookieStore);
   const body = await request.json();
-  const headers = { 'Access-Token': biz.access_token, 'Content-Type': 'application/json' };
 
   if (body.action === 'delete') {
-    const res = await fetch(`${BASE}/optimizer/rule/update/status/`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ advertiser_id: biz.advertiser_id, rule_id: body.rule_id, status: 'DELETED' }),
-    });
-    return NextResponse.json(await res.json());
+    const next = rules.filter((r) => r.id !== body.rule_id);
+    const response = NextResponse.json({ ok: true, rules: next });
+    setRulesCookie(response, next);
+    return response;
   }
 
-  const res = await fetch(`${BASE}/optimizer/rule/create/`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      advertiser_id: biz.advertiser_id,
-      rule_name: body.name,
-      trigger: { event_type: 'COMMENT_CREATED', keywords: body.keywords },
-      action: { action_type: 'HIDE_COMMENT' },
-    }),
-  });
-  return NextResponse.json(await res.json());
+  if (!body.name || !body.keywords?.length) {
+    return NextResponse.json({ error: 'name and keywords required' }, { status: 400 });
+  }
+
+  const rule = { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, name: body.name, keywords: body.keywords };
+  const next = [...rules, rule];
+  const response = NextResponse.json({ ok: true, rules: next });
+  setRulesCookie(response, next);
+  return response;
 }

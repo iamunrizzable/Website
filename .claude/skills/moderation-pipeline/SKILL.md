@@ -25,6 +25,16 @@ Score capped at 100. **Thresholds: ≥ 25 → `action: 'hide'`; ≥ 60 → email
 
 Test any scorer change via `POST /api/moderate` `{ text }` (unauthenticated, also drives the TestPanel on both UIs) — it returns `{ score, flags, action, suggested_reply }`.
 
+## Custom keyword rules ("Automated Rules" panel) — local storage, NOT a TikTok API
+
+The "Automated Comment Rules" panel on both `/admin` and `/system` manages a simple `{ id, name, keywords[] }` list — **not** a TikTok API resource. `scoreContent(text, customRules)` takes an optional second argument: any custom rule whose keywords substring-match the comment text forces `score = max(score, 25)` and `action: 'hide'`, tagged with flag `custom:<rule name>`. Rules only take effect the next time Comment Sync runs (manual or cron) — there is no real-time hook.
+
+Storage: admin's rules live in `lib/tokens.js` (`getCustomRules`/`storeCustomRules`, Redis-or-memory, same pattern as everything else there) and are passed into `lib/sync.js`'s `syncComments()` once per run. System's rules live in a `custom_rules` HttpOnly cookie (per-operator, no shared storage — same isolation model as `acct_token`) and are read once per run in `app/api/system/sync/route.js`.
+
+**Why not just call TikTok's Automated Rules API?** Because `/optimizer/rule/*` (the endpoint family CLAUDE.md's approved-endpoints list calls "Automated Rules scope," and which the TikTok developer portal genuinely does grant under that name) is **TikTok's ad-campaign automation engine** — budget/bid/status rules bound to ads, ad groups, or campaigns. Confirmed from TikTok's own public SDK docs (`github.com/tiktok/tiktok-business-api-sdk`, `python_sdk/docs/OptimizerRuleCreateBody.md` and `OptimizerRuleCreateBodyRules.md`): a real create call requires `rules: [{ name, conditions[], actions[], apply_objects[], notification, rule_exec_info }]` — `apply_objects` binds to ad-campaign objects, and there's no comment/keyword concept anywhere in the schema. Two earlier implementations (`/automated_rule/*`, then `/optimizer/rule/*`) both silently failed to do anything for comment moderation because neither one is the right tool — not a payload bug, an architectural mismatch. Don't reach for `/optimizer/rule/*` for anything comment-related; the local custom-rules system above is the real mechanism.
+
+`app/api/business/optimizer/route.js` still exists as raw (unused-by-any-UI) plumbing to the real Optimizer Rule API via `lib/tiktok/business-api.js`'s `listOptimizerRules`/`createOptimizerRule`/`updateOptimizerRuleStatus`/`listOptimizerRuleResults` — kept because it's the correct low-level access for genuine future ad-campaign automation, but its current payload shape (flat `rule_name`/`rule_type`/`conditions`/`action`) does **not** match the real schema above. Fix that shape before ever building a UI on top of it.
+
 ## The two sync implementations (intentionally separate)
 
 1. **Shared sync — `lib/sync.js` `syncComments()`** (admin panel + daily cron): paginates videos (Open Platform) → comments (Business API) → **skips seen comments** (`isCommentSeen`, 30-day Redis TTL) → scores → `autoHide` hides ≥25 → `potential_minor` queues username in block queue → ≥60 sends email with suggested reply → pushes event to the feed (last 50, shown on admin page). Returns full event objects.

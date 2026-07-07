@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getBusinessTokens } from '@/lib/tokens';
-
-const BASE = 'https://business-api.tiktok.com/open_api/v1.3';
+import { getCustomRules, storeCustomRules } from '@/lib/tokens';
 
 function requireAdmin(request) {
   const { searchParams } = new URL(request.url);
@@ -11,46 +9,27 @@ function requireAdmin(request) {
 
 export async function GET(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const biz = await getBusinessTokens();
-  if (!biz) return NextResponse.json({ error: 'Advertiser token not configured' }, { status: 503 });
-
-  const res = await fetch(
-    `${BASE}/optimizer/rule/list/?advertiser_id=${encodeURIComponent(biz.advertiser_id)}`,
-    { headers: { 'Access-Token': biz.access_token } }
-  );
-  return NextResponse.json(await res.json());
+  const rules = await getCustomRules();
+  return NextResponse.json({ rules });
 }
 
 export async function POST(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const biz = await getBusinessTokens();
-  if (!biz) return NextResponse.json({ error: 'Advertiser token not configured' }, { status: 503 });
-
   const body = await request.json();
-  const headers = { 'Access-Token': biz.access_token, 'Content-Type': 'application/json' };
+  const rules = await getCustomRules();
 
   if (body.action === 'delete') {
-    const res = await fetch(`${BASE}/optimizer/rule/update/status/`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ advertiser_id: biz.advertiser_id, rule_id: body.rule_id, status: 'DELETED' }),
-    });
-    return NextResponse.json(await res.json());
+    const next = rules.filter((r) => r.id !== body.rule_id);
+    await storeCustomRules(next);
+    return NextResponse.json({ ok: true, rules: next });
   }
 
   if (!body.name || !body.keywords?.length) {
     return NextResponse.json({ error: 'name and keywords required' }, { status: 400 });
   }
 
-  const res = await fetch(`${BASE}/optimizer/rule/create/`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      advertiser_id: biz.advertiser_id,
-      rule_name: body.name,
-      trigger: { event_type: 'COMMENT_CREATED', keywords: body.keywords },
-      action: { action_type: 'HIDE_COMMENT' },
-    }),
-  });
-  return NextResponse.json(await res.json());
+  const rule = { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, name: body.name, keywords: body.keywords };
+  const next = [...rules, rule];
+  await storeCustomRules(next);
+  return NextResponse.json({ ok: true, rules: next });
 }
