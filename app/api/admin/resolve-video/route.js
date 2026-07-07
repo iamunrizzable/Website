@@ -22,7 +22,7 @@ export async function GET(request) {
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; TJBBot/1.0)' },
     });
     const finalUrl = res.url;
-    const match = finalUrl.match(/\/video\/(\d+)/);
+    const match = finalUrl.match(/\/(?:video|photo)\/(\d+)/);
     if (!match) {
       return NextResponse.json({ error: `Could not extract video ID from resolved URL: ${finalUrl}` }, { status: 422 });
     }
