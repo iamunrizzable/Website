@@ -394,9 +394,9 @@ export default function HallieTikTokLegal() {
           <h2>16. Vulnerability Management</h2>
           <p>The Platform Provider maintains the following vulnerability management practices:</p>
           <ul>
-            <li><strong>Dependency management</strong> — All software dependencies are regularly audited. Critical and high vulnerabilities are remediated within 7 days of discovery.</li>
+            <li><strong>Dependency management</strong> — GitHub Dependabot continuously monitors all software dependencies and opens an alert or pull request when a vulnerability is found. Critical and high vulnerabilities are prioritized for prompt remediation.</li>
             <li><strong>Infrastructure scanning</strong> — Vercel provides automated infrastructure-level vulnerability detection and patching as part of its platform.</li>
-            <li><strong>Code review</strong> — All code changes are reviewed before deployment. Security implications are evaluated for each change.</li>
+            <li><strong>Development and review process</strong> — Code and infrastructure changes are made collaboratively by the Platform Provider's sole authorized officer and an AI coding assistant. Every change is authorized by the Platform Provider before it is committed. When Dependabot identifies a vulnerability, the Platform Provider and the AI assistant jointly evaluate and remediate it before the fix is published to the main repository. There is no independent second human reviewer, consistent with the Platform Provider being a single-person organization (see Section 8).</li>
             <li><strong>Security testing</strong> — The Platform undergoes AI-assisted security testing against non-production test environments as part of ongoing development. The Platform Provider has not yet engaged an independent third-party penetration testing firm and plans to do so as the Platform's data access needs grow.</li>
             <li><strong>Vulnerability disclosure</strong> — Security vulnerabilities may be reported to <strong>support@tjbmanagementinc.com</strong>. We commit to acknowledging reports within 48 hours and remediating critical issues within 7 days.</li>
           </ul>
