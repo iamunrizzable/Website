@@ -82,6 +82,8 @@ export default function SystemPage() {
               <CommentsPanel />
               <SyncPanel />
               <AutomatedRulesPanel />
+              <MentionsPanel />
+              <TrendingPanel />
               <TestPanel />
             </>
           )}
@@ -531,6 +533,214 @@ function AutomatedRulesPanel() {
             <button onClick={() => handleDelete(rule.rule_id)} style={s.btnDanger}>Delete</button>
           </div>
         ))
+      )}
+    </div>
+  );
+}
+
+// ── Mentions ──────────────────────────────────────────────────────────────────
+
+function MentionsPanel() {
+  const [tab, setTab] = useState('videos');
+  const [data, setData] = useState(undefined);
+  const [raw, setRaw] = useState(null);
+  const [error, setError] = useState('');
+  const [hashtag, setHashtag] = useState('');
+  const [actionMsg, setActionMsg] = useState('');
+
+  function extractList(type, d) {
+    const dd = d.data ?? {};
+    if (type === 'videos') return dd.videos ?? [];
+    if (type === 'comments') return dd.comments ?? [];
+    if (type === 'top_words') return dd.words ?? dd.top_words ?? dd.list ?? [];
+    if (type === 'top_hashtags') return dd.hashtags ?? dd.top_hashtags ?? dd.list ?? [];
+    if (type === 'tracked_hashtags') return dd.hashtags ?? dd.list ?? [];
+    return [];
+  }
+
+  function load(type) {
+    setData(undefined);
+    setError('');
+    fetch(`/api/system/mentions?type=${type}`)
+      .then(r => r.json())
+      .then(d => {
+        setRaw(d);
+        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
+        else setData(extractList(type, d));
+      })
+      .catch(e => { setError(e.message); setData([]); });
+  }
+
+  useEffect(() => { load(tab); }, [tab]);
+
+  async function addHashtag() {
+    if (!hashtag.trim()) return;
+    setActionMsg('');
+    try {
+      const res = await fetch('/api/system/mentions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim() }),
+      });
+      const d = await res.json();
+      if (d.code && d.code !== 0) setActionMsg(`Error: ${d.message ?? 'unknown'}`);
+      else { setActionMsg('Hashtag added.'); setHashtag(''); load('tracked_hashtags'); }
+    } catch (e) { setActionMsg('Error: ' + e.message); }
+  }
+
+  async function removeHashtag(tag) {
+    try {
+      await fetch('/api/system/mentions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag }),
+      });
+      load('tracked_hashtags');
+    } catch {}
+  }
+
+  const TABS = [
+    ['videos', 'Videos'],
+    ['comments', 'Comments'],
+    ['top_words', 'Top Words'],
+    ['top_hashtags', 'Top Hashtags'],
+    ['tracked_hashtags', 'Tracked Hashtags'],
+  ];
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Mentions</h2>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
+        {TABS.map(([key, label]) => (
+          <button key={key} style={s.tab(tab === key)} onClick={() => setTab(key)}>{label}</button>
+        ))}
+      </div>
+
+      {tab === 'tracked_hashtags' && (
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <input
+            style={{ ...s.input, flex: 1 }}
+            placeholder="Add hashtag to track (without #)…"
+            value={hashtag}
+            onChange={e => setHashtag(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && addHashtag()}
+          />
+          <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
+        </div>
+      )}
+      {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
+
+      {data === undefined ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : error ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+      ) : data.length === 0 ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
+      ) : (
+        data.map((item, i) => (
+          <div key={item.video_id ?? item.comment_id ?? item.hashtag ?? item.word ?? i} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
+            {tab === 'videos' && <>{item.title ?? item.video_id} <span style={{ color: '#64748b' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
+            {tab === 'comments' && <>@{item.username ?? 'unknown'}: {item.text}</>}
+            {tab === 'top_words' && (item.word ? <>{item.word}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
+            {tab === 'top_hashtags' && (item.hashtag ? <>#{item.hashtag}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
+            {tab === 'tracked_hashtags' && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>#{item.hashtag ?? item}</span>
+                <button style={s.btnDanger} onClick={() => removeHashtag(item.hashtag ?? item)}>Remove</button>
+              </div>
+            )}
+          </div>
+        ))
+      )}
+      {raw && (
+        <button style={{ ...s.btnSm, marginTop: 4 }} onClick={() => alert(JSON.stringify(raw, null, 2))}>
+          View raw API response
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ── Trending & Discovery ──────────────────────────────────────────────────────
+
+function TrendingPanel() {
+  const [tab, setTab] = useState('trending');
+  const [keyword, setKeyword] = useState('');
+  const [data, setData] = useState(undefined);
+  const [raw, setRaw] = useState(null);
+  const [error, setError] = useState('');
+
+  function extractList(type, d) {
+    const dd = d.data ?? {};
+    if (type === 'trending') return dd.list ?? dd.trending_list ?? dd.videos ?? [];
+    if (type === 'keywords') return dd.keywords ?? dd.list ?? [];
+    if (type === 'hashtags') return dd.hashtags ?? dd.list ?? [];
+    if (type === 'benchmark') return dd.benchmark ? [dd.benchmark] : (Array.isArray(dd) ? dd : dd.list ?? []);
+    return [];
+  }
+
+  function load() {
+    setData(undefined);
+    setError('');
+    const params = new URLSearchParams({ type: tab });
+    if (keyword.trim()) params.set('keyword', keyword.trim());
+    fetch(`/api/system/trending?${params}`)
+      .then(r => r.json())
+      .then(d => {
+        setRaw(d);
+        if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
+        else setData(extractList(tab, d));
+      })
+      .catch(e => { setError(e.message); setData([]); });
+  }
+
+  useEffect(() => { load(); }, [tab]);
+
+  const TABS = [
+    ['trending', 'Trending'],
+    ['keywords', 'Keywords'],
+    ['hashtags', 'Hashtag Suggestions'],
+    ['benchmark', 'Benchmark'],
+  ];
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Trending & Discovery</h2>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
+        {TABS.map(([key, label]) => (
+          <button key={key} style={s.tab(tab === key)} onClick={() => setTab(key)}>{label}</button>
+        ))}
+      </div>
+      {tab !== 'benchmark' && (
+        <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+          <input
+            style={{ ...s.input, flex: 1 }}
+            placeholder="Keyword (optional)…"
+            value={keyword}
+            onChange={e => setKeyword(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && load()}
+          />
+          <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={load}>Search</button>
+        </div>
+      )}
+
+      {data === undefined ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
+      ) : error ? (
+        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+      ) : data.length === 0 ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
+      ) : (
+        data.map((item, i) => (
+          <div key={item.id ?? item.keyword ?? item.hashtag ?? i} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
+            {JSON.stringify(item)}
+          </div>
+        ))
+      )}
+      {raw && (
+        <button style={{ ...s.btnSm, marginTop: 4 }} onClick={() => alert(JSON.stringify(raw, null, 2))}>
+          View raw API response
+        </button>
       )}
     </div>
   );
