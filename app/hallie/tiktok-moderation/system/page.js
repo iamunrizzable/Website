@@ -567,7 +567,6 @@ function AutomatedRulesPanel() {
 function MentionsPanel() {
   const [tab, setTab] = useState('videos');
   const [data, setData] = useState(undefined);
-  const [raw, setRaw] = useState(null);
   const [error, setError] = useState('');
   const [hashtag, setHashtag] = useState('');
   const [username, setUsername] = useState('');
@@ -609,7 +608,6 @@ function MentionsPanel() {
     fetch(`/api/system/mentions?${params}`)
       .then(r => r.json())
       .then(d => {
-        setRaw(d);
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
         else setData(extractList(type, d));
       })
@@ -724,11 +722,6 @@ function MentionsPanel() {
           </div>
         ))
       )}
-      {raw && (
-        <button style={{ ...s.btnSm, marginTop: 4 }} onClick={() => alert(JSON.stringify(raw, null, 2))}>
-          View raw API response
-        </button>
-      )}
     </div>
   );
 }
@@ -740,7 +733,6 @@ function TrendingPanel() {
   const [keyword, setKeyword] = useState('');
   const [businessCategory, setBusinessCategory] = useState('');
   const [data, setData] = useState(undefined);
-  const [raw, setRaw] = useState(null);
   const [error, setError] = useState('');
 
   function extractList(type, d) {
@@ -766,7 +758,6 @@ function TrendingPanel() {
     fetch(`/api/system/trending?${params}`)
       .then(r => r.json())
       .then(d => {
-        setRaw(d);
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
         else setData(extractList(tab, d));
       })
@@ -843,11 +834,6 @@ function TrendingPanel() {
             {typeof item === 'string' ? item : JSON.stringify(item)}
           </div>
         ))
-      )}
-      {raw && (
-        <button style={{ ...s.btnSm, marginTop: 4 }} onClick={() => alert(JSON.stringify(raw, null, 2))}>
-          View raw API response
-        </button>
       )}
     </div>
   );
