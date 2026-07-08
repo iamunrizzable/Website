@@ -36,8 +36,14 @@ export async function POST(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
   try {
-    if (body.action === 'add_hashtag') return NextResponse.json(await addTrackedHashtag({ hashtag: body.hashtag }));
-    if (body.action === 'remove_hashtag') return NextResponse.json(await removeTrackedHashtag({ hashtag: body.hashtag }));
+    if (body.action === 'add_hashtag') {
+      if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+      return NextResponse.json(await addTrackedHashtag({ hashtag: body.hashtag, username: body.username }));
+    }
+    if (body.action === 'remove_hashtag') {
+      if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+      return NextResponse.json(await removeTrackedHashtag({ hashtag: body.hashtag, username: body.username }));
+    }
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });

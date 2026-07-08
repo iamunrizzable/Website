@@ -803,7 +803,7 @@ function MentionsPanel({ adminKey, enabled }) {
       const res = await fetch('/api/business/mentions', {
         method: 'POST',
         headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim() }),
+        body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim(), username }),
       });
       const d = await res.json();
       if (d.code && d.code !== 0) setActionMsg(`Error: ${d.message ?? 'unknown'}`);
@@ -816,7 +816,7 @@ function MentionsPanel({ adminKey, enabled }) {
       await fetch('/api/business/mentions', {
         method: 'POST',
         headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag }),
+        body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag, username }),
       });
       load('tracked_hashtags');
     } catch {}
