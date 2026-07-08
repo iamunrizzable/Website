@@ -717,6 +717,7 @@ function MentionsPanel({ adminKey, enabled }) {
   const [raw, setRaw] = useState(null);
   const [error, setError] = useState('');
   const [hashtag, setHashtag] = useState('');
+  const [username, setUsername] = useState('');
   const [actionMsg, setActionMsg] = useState('');
 
   function extractList(type, d) {
@@ -738,7 +739,9 @@ function MentionsPanel({ adminKey, enabled }) {
     if (!adminKey || !enabled) return;
     setData(undefined);
     setError('');
-    fetch(`/api/business/mentions?type=${type}`, { headers: { 'x-admin-key': adminKey } })
+    const params = new URLSearchParams({ type });
+    if (type === 'tracked_hashtags' && username.trim()) params.set('username', username.trim());
+    fetch(`/api/business/mentions?${params}`, { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
       .then(d => {
         setRaw(d);
@@ -748,7 +751,12 @@ function MentionsPanel({ adminKey, enabled }) {
       .catch(e => { setError(e.message); setData([]); });
   }
 
-  useEffect(() => { load(tab); }, [adminKey, enabled, tab]);
+  useEffect(() => {
+    // Tracked Hashtags requires a TikTok username — don't auto-fire on tab
+    // switch and throw an error before the user has typed anything.
+    if (tab === 'tracked_hashtags' && !username.trim()) { setData(null); setError(''); return; }
+    load(tab);
+  }, [adminKey, enabled, tab]);
 
   async function addHashtag() {
     if (!hashtag.trim()) return;
@@ -798,20 +806,34 @@ function MentionsPanel({ adminKey, enabled }) {
           </div>
 
           {tab === 'tracked_hashtags' && (
-            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-              <input
-                style={{ ...s.input, flex: 1 }}
-                placeholder="Add hashtag to track (without #)…"
-                value={hashtag}
-                onChange={e => setHashtag(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && addHashtag()}
-              />
-              <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
-            </div>
+            <>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+                <input
+                  style={{ ...s.input, flex: 1 }}
+                  placeholder="TikTok username (required by this endpoint)…"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && load('tracked_hashtags')}
+                />
+                <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={() => load('tracked_hashtags')}>Load</button>
+              </div>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+                <input
+                  style={{ ...s.input, flex: 1 }}
+                  placeholder="Add hashtag to track (without #)…"
+                  value={hashtag}
+                  onChange={e => setHashtag(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && addHashtag()}
+                />
+                <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
+              </div>
+            </>
           )}
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
 
-          {data === undefined ? (
+          {data === null ? (
+            <p style={{ fontSize: 13, color: '#475569' }}>Enter a TikTok username and hit Load.</p>
+          ) : data === undefined ? (
             <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
           ) : error ? (
             <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
@@ -850,6 +872,7 @@ function MentionsPanel({ adminKey, enabled }) {
 function TrendingPanel({ adminKey, enabled }) {
   const [tab, setTab] = useState('trending');
   const [keyword, setKeyword] = useState('');
+  const [businessCategory, setBusinessCategory] = useState('');
   const [data, setData] = useState(undefined);
   const [raw, setRaw] = useState(null);
   const [error, setError] = useState('');
@@ -874,6 +897,7 @@ function TrendingPanel({ adminKey, enabled }) {
     setError('');
     const params = new URLSearchParams({ type: tab });
     if (keyword.trim()) params.set('keyword', keyword.trim());
+    if (businessCategory.trim()) params.set('business_category', businessCategory.trim());
     fetch(`/api/business/trending?${params}`, { headers: { 'x-admin-key': adminKey } })
       .then(r => r.json())
       .then(d => {
@@ -885,10 +909,11 @@ function TrendingPanel({ adminKey, enabled }) {
   }
 
   useEffect(() => {
-    // Keywords and Hashtag Suggestions both require non-empty input — don't
-    // auto-fire on tab switch and throw an error before the user has typed
-    // anything.
+    // Keywords, Hashtag Suggestions, and Benchmark all require non-empty
+    // input — don't auto-fire on tab switch and throw an error before the
+    // user has typed anything.
     if ((tab === 'keywords' || tab === 'hashtags') && !keyword.trim()) { setData(null); setError(''); return; }
+    if (tab === 'benchmark' && !businessCategory.trim()) { setData(null); setError(''); return; }
     load();
   }, [adminKey, enabled, tab]);
 
@@ -911,7 +936,18 @@ function TrendingPanel({ adminKey, enabled }) {
               <button key={key} style={s.tab(tab === key)} onClick={() => setTab(key)}>{label}</button>
             ))}
           </div>
-          {tab !== 'benchmark' && (
+          {tab === 'benchmark' ? (
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              <input
+                style={{ ...s.input, flex: 1 }}
+                placeholder="Business category (required — TikTok-defined code, e.g. from your Ads Manager account settings)…"
+                value={businessCategory}
+                onChange={e => setBusinessCategory(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && load()}
+              />
+              <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={load}>Search</button>
+            </div>
+          ) : (
             <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
               <input
                 style={{ ...s.input, flex: 1 }}
@@ -925,7 +961,7 @@ function TrendingPanel({ adminKey, enabled }) {
           )}
 
           {data === null ? (
-            <p style={{ fontSize: 13, color: '#475569' }}>Type a keyword and hit Search.</p>
+            <p style={{ fontSize: 13, color: '#475569' }}>{tab === 'benchmark' ? 'Enter a business category and hit Search.' : 'Type a keyword and hit Search.'}</p>
           ) : data === undefined ? (
             <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
           ) : error ? (

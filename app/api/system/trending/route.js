@@ -19,9 +19,13 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'trending';
   const keyword = searchParams.get('keyword') ?? '';
+  const businessCategory = searchParams.get('business_category') ?? '';
 
   if ((type === 'keywords' || type === 'hashtags') && !keyword) {
     return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
+  }
+  if (type === 'benchmark' && !businessCategory) {
+    return NextResponse.json({ error: 'A business category is required' }, { status: 400 });
   }
 
   const params = new URLSearchParams({ business_id: businessId });
@@ -34,7 +38,7 @@ export async function GET(request) {
     trending: `${BASE}/discovery/trending/search/?${params}`,
     keywords: `${BASE}/discovery/trending/search/keyword/?${keywordParams}`,
     hashtags: `${BASE}/business/hashtag/suggestion/?${params}`,
-    benchmark: `${BASE}/business/benchmark/?business_id=${encodeURIComponent(businessId)}`,
+    benchmark: `${BASE}/business/benchmark/?business_id=${encodeURIComponent(businessId)}&business_category=${encodeURIComponent(businessCategory)}`,
   };
   const url = endpoints[type] ?? endpoints.trending;
 

@@ -18,13 +18,18 @@ export async function GET(request) {
   const headers = { 'Access-Token': token.access_token };
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'videos';
+  const username = searchParams.get('username') ?? '';
+
+  if (type === 'tracked_hashtags' && !username) {
+    return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+  }
 
   const endpoints = {
     videos: `${BASE}/business/mention/video/list/?business_id=${encodeURIComponent(businessId)}`,
     comments: `${BASE}/business/mention/comment/list/?business_id=${encodeURIComponent(businessId)}`,
     top_words: `${BASE}/business/mention/top_word/list/?business_id=${encodeURIComponent(businessId)}`,
     top_hashtags: `${BASE}/business/mention/top_hashtag/list/?business_id=${encodeURIComponent(businessId)}`,
-    tracked_hashtags: `${BASE}/business/mention/hashtag/manage/list/?business_id=${encodeURIComponent(businessId)}`,
+    tracked_hashtags: `${BASE}/business/mention/hashtag/manage/list/?business_id=${encodeURIComponent(businessId)}&username=${encodeURIComponent(username)}`,
   };
   const url = endpoints[type] ?? endpoints.videos;
 
