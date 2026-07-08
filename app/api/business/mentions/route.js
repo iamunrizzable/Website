@@ -17,11 +17,15 @@ export async function GET(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'videos';
+  const username = searchParams.get('username') ?? '';
   try {
     if (type === 'comments') return NextResponse.json(await listMentionComments());
     if (type === 'top_words') return NextResponse.json(await listTopMentionWords());
     if (type === 'top_hashtags') return NextResponse.json(await listTopMentionHashtags());
-    if (type === 'tracked_hashtags') return NextResponse.json(await listTrackedHashtags());
+    if (type === 'tracked_hashtags') {
+      if (!username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+      return NextResponse.json(await listTrackedHashtags({ username }));
+    }
     return NextResponse.json(await listMentionVideos());
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });

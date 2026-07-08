@@ -19,7 +19,11 @@ export async function GET(request) {
       if (!keyword) return NextResponse.json({ error: 'A keyword is required for this search' }, { status: 400 });
       return NextResponse.json(await getHashtagSuggestions({ keyword }));
     }
-    if (type === 'benchmark') return NextResponse.json(await getBenchmark());
+    if (type === 'benchmark') {
+      const businessCategory = searchParams.get('business_category') ?? '';
+      if (!businessCategory) return NextResponse.json({ error: 'A business category is required' }, { status: 400 });
+      return NextResponse.json(await getBenchmark({ businessCategory }));
+    }
     return NextResponse.json(await searchTrending({ keyword }));
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
