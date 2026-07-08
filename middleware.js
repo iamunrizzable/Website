@@ -10,13 +10,18 @@ function buildCsp(nonce) {
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktok.com https:",
+    // TikTok's image CDN spans several distinct domain families (regional
+    // CDN hosts, an Akamai-fronted edge, and legacy Bytedance CDN domains)
+    // beyond tiktokcdn.com/tiktok.com — enumerated here instead of a bare
+    // 'https:' wildcard, which Aikido correctly flagged as too permissive.
+    "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.tiktokcdn-eu.com https://*.tiktokcdn-in.com https://*.tiktok.com https://*.tiktokv.com https://*.muscdn.com https://*.ibyteimg.com https://*.ibytedtos.com https://*.akamaized.net",
     "connect-src 'self'",
     "font-src 'self' data:",
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
+    "upgrade-insecure-requests",
   ].join('; ');
 }
 
