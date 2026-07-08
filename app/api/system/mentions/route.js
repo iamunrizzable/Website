@@ -48,19 +48,22 @@ export async function POST(request) {
 
   if (body.action === 'add_hashtag') {
     if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+    // Field is `hashtags` (plural array), not `hashtag` (confirmed via
+    // TikTok's own error: "hashtags: Missing data for required field.").
     const res = await fetch(`${BASE}/business/mention/hashtag/add/`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ business_id: businessId, username: body.username, hashtag: body.hashtag }),
+      body: JSON.stringify({ business_id: businessId, username: body.username, hashtags: [body.hashtag] }),
     });
     return NextResponse.json(await res.json());
   }
   if (body.action === 'remove_hashtag') {
     if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+    // Same `hashtags` (plural array) field as add_hashtag above.
     const res = await fetch(`${BASE}/business/mention/hashtag/remove/`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ business_id: businessId, username: body.username, hashtag: body.hashtag }),
+      body: JSON.stringify({ business_id: businessId, username: body.username, hashtags: [body.hashtag] }),
     });
     return NextResponse.json(await res.json());
   }
