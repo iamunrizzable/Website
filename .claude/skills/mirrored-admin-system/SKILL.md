@@ -25,7 +25,7 @@ The two panels are the same product for two audiences. A change shipped to only 
 
 Not everything is mirrored on principle — a few things are admin-only by design:
 - `ExportTokenPanel` (advertiser token export)
-- The **"View raw API response" debug buttons** on Mentions/Trending (removed from system July 2026): showing raw TikTok payloads to public operators is an information-disclosure risk (implementation details, internal field names, competitor/copycat intel). Admin is gated by the admin key and is the right place for this debugging tool; system is public-facing and should not get it back. If a future change re-adds Mentions/Trending debug tooling, it stays admin-only.
+- **ALL debugging/diagnostic tooling, full stop — not just "View raw API response."** Test buttons, raw-response dumps, exploratory API probes (e.g. a "Verify (debug)" button added to poke an untested endpoint), anything whose purpose is internal investigation rather than a usable feature: admin-only, always. This has been violated twice now (the original "View raw API response" buttons, removed from system July 2026; and a "Verify (debug)" hashtag-probe button added to system and reverted the same day in July 2026) — the pattern is: **think "is this a debugging aid or a real feature?" before every Mentions/Trending/API-diagnostics change.** Admin = internal testing surface. System = usable-features-only surface. This is a permanent split, not a one-off exception — don't re-derive it per finding, just apply it every time.
 
 ## The three differences you must translate when porting
 
