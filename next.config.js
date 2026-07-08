@@ -27,6 +27,12 @@ const securityHeaders = [
 
 const nextConfig = {
   poweredByHeader: false,
+  // @sparticuz/chromium ships a compressed Chromium binary it extracts at
+  // runtime relative to its own package directory. Next's default bundling
+  // relocates/inlines the module and breaks that path resolution ("input
+  // directory .../bin does not exist") — this tells Next to leave both
+  // packages unbundled or so they're required normally from node_modules.
+  serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
   async headers() {
     return [
       {
