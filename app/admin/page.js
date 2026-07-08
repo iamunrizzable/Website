@@ -736,6 +736,7 @@ function MentionsPanel({ adminKey, enabled }) {
   const [hashtag, setHashtag] = useState('');
   const [username, setUsername] = useState('');
   const [actionMsg, setActionMsg] = useState('');
+  const [verifyMsg, setVerifyMsg] = useState('');
 
   // Pull the connected account's own username from account info instead of
   // asking the operator to type it — hashtag/manage/list requires it as a
@@ -811,6 +812,22 @@ function MentionsPanel({ adminKey, enabled }) {
     } catch (e) { setActionMsg('Error: ' + e.message); }
   }
 
+  // Temporary diagnostic: hashtag/add/ rejects every hashtag tried so
+  // far as invalid regardless of case/content. Calls the one Mentions
+  // endpoint we've never used (hashtag/verify/list) so we can see
+  // TikTok's real response instead of guessing at a fix.
+  async function verifyHashtag() {
+    if (!hashtag.trim()) return;
+    setVerifyMsg('Checking…');
+    try {
+      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim() })}`, {
+        headers: { 'x-admin-key': adminKey },
+      });
+      const d = await res.json();
+      setVerifyMsg(JSON.stringify(d));
+    } catch (e) { setVerifyMsg('Error: ' + e.message); }
+  }
+
   async function removeHashtag(tag) {
     try {
       await fetch('/api/business/mentions', {
@@ -853,9 +870,11 @@ function MentionsPanel({ adminKey, enabled }) {
                 onKeyDown={e => e.key === 'Enter' && addHashtag()}
               />
               <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
+              <button style={{ ...s.btn, whiteSpace: 'nowrap', background: '#475569' }} onClick={verifyHashtag}>Verify (debug)</button>
             </div>
           )}
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
+          {verifyMsg && <p style={{ fontSize: 12, color: '#94a3b8', wordBreak: 'break-all', marginBottom: 12 }}>{verifyMsg}</p>}
 
           {data === null ? (
             <p style={{ fontSize: 13, color: '#475569' }}>Loading your account info…</p>
