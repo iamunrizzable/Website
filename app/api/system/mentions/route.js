@@ -47,18 +47,20 @@ export async function POST(request) {
   const body = await request.json();
 
   if (body.action === 'add_hashtag') {
+    if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
     const res = await fetch(`${BASE}/business/mention/hashtag/add/`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ business_id: businessId, hashtag: body.hashtag }),
+      body: JSON.stringify({ business_id: businessId, username: body.username, hashtag: body.hashtag }),
     });
     return NextResponse.json(await res.json());
   }
   if (body.action === 'remove_hashtag') {
+    if (!body.username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
     const res = await fetch(`${BASE}/business/mention/hashtag/remove/`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ business_id: businessId, hashtag: body.hashtag }),
+      body: JSON.stringify({ business_id: businessId, username: body.username, hashtag: body.hashtag }),
     });
     return NextResponse.json(await res.json());
   }

@@ -635,7 +635,7 @@ function MentionsPanel() {
       const res = await fetch('/api/system/mentions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim() }),
+        body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim(), username }),
       });
       const d = await res.json();
       if (d.code && d.code !== 0) setActionMsg(`Error: ${d.message ?? 'unknown'}`);
@@ -648,7 +648,7 @@ function MentionsPanel() {
       await fetch('/api/system/mentions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag }),
+        body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag, username }),
       });
       load('tracked_hashtags');
     } catch {}
