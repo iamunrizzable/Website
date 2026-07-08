@@ -19,9 +19,13 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'videos';
   const username = searchParams.get('username') ?? '';
+  const hashtag = searchParams.get('hashtag') ?? '';
 
   if (type === 'tracked_hashtags' && !username) {
     return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+  }
+  if (type === 'verify_hashtag' && !hashtag) {
+    return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
   }
 
   const endpoints = {
@@ -30,6 +34,12 @@ export async function GET(request) {
     top_words: `${BASE}/business/mention/top_word/list/?business_id=${encodeURIComponent(businessId)}`,
     top_hashtags: `${BASE}/business/mention/top_hashtag/list/?business_id=${encodeURIComponent(businessId)}`,
     tracked_hashtags: `${BASE}/business/mention/hashtag/manage/list/?business_id=${encodeURIComponent(businessId)}&username=${encodeURIComponent(username)}`,
+    // Diagnostic only (not yet wired into the UI): hashtag/add/ rejects
+    // every hashtag we've tried ("Invalid Params: some of hashtags are
+    // invalid.") regardless of case or content, so we're calling the one
+    // unused approved Mentions endpoint — verify/list — to see TikTok's
+    // real response shape before guessing at a fix.
+    verify_hashtag: `${BASE}/business/mention/hashtag/verify/list/?business_id=${encodeURIComponent(businessId)}&hashtags=${encodeURIComponent(JSON.stringify([hashtag]))}`,
   };
   const url = endpoints[type] ?? endpoints.videos;
 
