@@ -728,6 +728,7 @@ function MentionsPanel({ adminKey, enabled }) {
   const [username, setUsername] = useState('');
   const [actionMsg, setActionMsg] = useState('');
   const [verifyMsg, setVerifyMsg] = useState('');
+  const [verifyUsername, setVerifyUsername] = useState('');
 
   // Pull the connected account's own username from account info instead of
   // asking the operator to type it — hashtag/manage/list requires it as a
@@ -738,7 +739,7 @@ function MentionsPanel({ adminKey, enabled }) {
       .then(r => r.json())
       .then(d => {
         const u = (d.data ?? d)?.username;
-        if (u) setUsername(u);
+        if (u) { setUsername(u); setVerifyUsername(prev => prev || u); }
       })
       .catch(() => {});
   }, [adminKey, enabled]);
@@ -804,14 +805,18 @@ function MentionsPanel({ adminKey, enabled }) {
   }
 
   // Temporary diagnostic: hashtag/add/ rejects every hashtag tried so
-  // far as invalid regardless of case/content. Calls the one Mentions
-  // endpoint we've never used (hashtag/verify/list) so we can see
-  // TikTok's real response instead of guessing at a fix.
+  // far, including real hashtags pulled straight from this account's
+  // own Top Hashtags list ("no valid hashtag for this username"). The
+  // `username` field defaults to the connected account's own username,
+  // but hashtag/verify/list requires *some* username and we've never
+  // confirmed which one — verifyUsername lets us test with a different
+  // value (e.g. a commenter/mentioner's username from the Comments
+  // tab) instead of guessing which username the API actually means.
   async function verifyHashtag() {
-    if (!hashtag.trim()) return;
+    if (!hashtag.trim() || !verifyUsername.trim()) return;
     setVerifyMsg('Checking…');
     try {
-      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim(), username })}`, {
+      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim(), username: verifyUsername.trim() })}`, {
         headers: { 'x-admin-key': adminKey },
       });
       const d = await res.json();
@@ -847,7 +852,7 @@ function MentionsPanel({ adminKey, enabled }) {
         <>
           <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
             {TABS.map(([key, label]) => (
-              <button key={key} style={s.tab(tab === key)} onClick={() => setTab(key)}>{label}</button>
+              <button key={key} style={s.tab(tab === key)} onClick={() => { setTab(key); setActionMsg(''); setVerifyMsg(''); }}>{label}</button>
             ))}
           </div>
 
@@ -861,10 +866,22 @@ function MentionsPanel({ adminKey, enabled }) {
                 onKeyDown={e => e.key === 'Enter' && addHashtag()}
               />
               <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
-              <button style={{ ...s.btn, whiteSpace: 'nowrap', background: '#475569' }} onClick={verifyHashtag}>Verify (debug)</button>
             </div>
           )}
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
+
+          {tab === 'tracked_hashtags' && (
+            <div style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+              <input
+                style={{ ...s.input, flex: 1, minWidth: 160 }}
+                placeholder="username to test verify with…"
+                value={verifyUsername}
+                onChange={e => setVerifyUsername(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && verifyHashtag()}
+              />
+              <button style={{ ...s.btn, whiteSpace: 'nowrap', background: '#475569' }} onClick={verifyHashtag}>Verify (debug)</button>
+            </div>
+          )}
           {verifyMsg && <p style={{ fontSize: 12, color: '#94a3b8', wordBreak: 'break-all', marginBottom: 12 }}>{verifyMsg}</p>}
 
           {data === null ? (
