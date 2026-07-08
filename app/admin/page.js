@@ -1,5 +1,7 @@
 'use client';
 
+import './page.css';
+
 import { useEffect, useState, useCallback } from 'react';
 
 const ACTION_COLORS = {
@@ -93,17 +95,6 @@ export default function AdminPage() {
 
   return (
     <>
-      <style>{`
-        body::before {
-          content: "";
-          position: fixed; top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
-          background-size: cover; background-position: center center; background-repeat: no-repeat;
-          z-index: -1; pointer-events: none;
-        }
-        body { margin: 0; padding: 0; background: transparent; }
-      `}</style>
       <div style={s.page}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
 
