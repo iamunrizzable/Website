@@ -844,28 +844,16 @@ function MentionsPanel({ adminKey, enabled }) {
           </div>
 
           {tab === 'tracked_hashtags' && (
-            <>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-                <input
-                  style={{ ...s.input, flex: 1 }}
-                  placeholder="TikTok username (auto-filled from your account)…"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && load('tracked_hashtags')}
-                />
-                <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={() => load('tracked_hashtags')}>Load</button>
-              </div>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-                <input
-                  style={{ ...s.input, flex: 1 }}
-                  placeholder="Add hashtag to track (without #)…"
-                  value={hashtag}
-                  onChange={e => setHashtag(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && addHashtag()}
-                />
-                <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
-              </div>
-            </>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              <input
+                style={{ ...s.input, flex: 1 }}
+                placeholder="Add hashtag to track (without #)…"
+                value={hashtag}
+                onChange={e => setHashtag(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && addHashtag()}
+              />
+              <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={addHashtag}>Add</button>
+            </div>
           )}
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
 
