@@ -251,13 +251,14 @@ function AccountPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
       ) : (
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          {account?.avatar_url && <img src={account.avatar_url} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
+          {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
           <div>
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
-            <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16 }}>
-              {account?.follower_count != null && <span>{account.follower_count.toLocaleString()} followers</span>}
-              {account?.likes_count != null && <span>{account.likes_count.toLocaleString()} likes</span>}
-              {account?.video_count != null && <span>{account.video_count.toLocaleString()} videos</span>}
+            <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+              {account?.username && <span>@{account.username}</span>}
+              {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
+              {account?.likes != null && <span>{account.likes.toLocaleString()} likes</span>}
+              {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
             </div>
           </div>
         </div>
@@ -720,6 +721,20 @@ function MentionsPanel({ adminKey, enabled }) {
   const [username, setUsername] = useState('');
   const [actionMsg, setActionMsg] = useState('');
 
+  // Pull the connected account's own username from account info instead of
+  // asking the operator to type it — hashtag/manage/list requires it as a
+  // param but there's no reason to make a human supply data we already have.
+  useEffect(() => {
+    if (!adminKey || !enabled) return;
+    fetch('/api/business/account', { headers: { 'x-admin-key': adminKey } })
+      .then(r => r.json())
+      .then(d => {
+        const u = (d.data ?? d)?.username;
+        if (u) setUsername(u);
+      })
+      .catch(() => {});
+  }, [adminKey, enabled]);
+
   function extractList(type, d) {
     const dd = d.data ?? {};
     const known = {
@@ -752,11 +767,18 @@ function MentionsPanel({ adminKey, enabled }) {
   }
 
   useEffect(() => {
-    // Tracked Hashtags requires a TikTok username — don't auto-fire on tab
-    // switch and throw an error before the user has typed anything.
+    // Tracked Hashtags requires a TikTok username. It's usually already
+    // known by the time this tab is opened (see the account-info effect
+    // above); if not yet, wait rather than fire an error.
     if (tab === 'tracked_hashtags' && !username.trim()) { setData(null); setError(''); return; }
     load(tab);
   }, [adminKey, enabled, tab]);
+
+  // If the account-info fetch resolves after the operator has already
+  // switched to this tab, load as soon as the username arrives.
+  useEffect(() => {
+    if (tab === 'tracked_hashtags' && username.trim() && data === null) load('tracked_hashtags');
+  }, [username]);
 
   async function addHashtag() {
     if (!hashtag.trim()) return;
@@ -810,7 +832,7 @@ function MentionsPanel({ adminKey, enabled }) {
               <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
                 <input
                   style={{ ...s.input, flex: 1 }}
-                  placeholder="TikTok username (required by this endpoint)…"
+                  placeholder="TikTok username (auto-filled from your account)…"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && load('tracked_hashtags')}
@@ -832,7 +854,7 @@ function MentionsPanel({ adminKey, enabled }) {
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
 
           {data === null ? (
-            <p style={{ fontSize: 13, color: '#475569' }}>Enter a TikTok username and hit Load.</p>
+            <p style={{ fontSize: 13, color: '#475569' }}>Loading your account info…</p>
           ) : data === undefined ? (
             <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
           ) : error ? (
