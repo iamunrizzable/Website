@@ -19,6 +19,13 @@ The two panels are the same product for two audiences. A change shipped to only 
 | Test scorer | `TestPanel` → `/api/moderate` | `TestPanel` → `/api/moderate` (shared) |
 | Token export | `ExportTokenPanel` → `/api/admin/export-token` | — admin-only, no mirror needed |
 | Connection status | `ConnectionCard` → `/api/admin/status` | connected gate → `/api/system/status` |
+| Mentions / Trending raw response debug | `MentionsPanel`/`TrendingPanel` — has "View raw API response" | — **intentionally admin-only** (see below) |
+
+## Deliberate exceptions to mirroring
+
+Not everything is mirrored on principle — a few things are admin-only by design:
+- `ExportTokenPanel` (advertiser token export)
+- The **"View raw API response" debug buttons** on Mentions/Trending (removed from system July 2026): showing raw TikTok payloads to public operators is an information-disclosure risk (implementation details, internal field names, competitor/copycat intel). Admin is gated by the admin key and is the right place for this debugging tool; system is public-facing and should not get it back. If a future change re-adds Mentions/Trending debug tooling, it stays admin-only.
 
 ## The three differences you must translate when porting
 
