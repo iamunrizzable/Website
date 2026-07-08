@@ -9,6 +9,22 @@ const ACTION_COLORS = {
   allow: '#10b981',
 };
 
+// The complete, valid business_category enum for /business/benchmark/,
+// confirmed directly from TikTok's own validation error message (API
+// error 40002 lists every allowed value when a bad one is sent).
+const BUSINESS_CATEGORIES = [
+  'PERSONAL_BLOG', 'MACHINERY_AND_EQUIPMENT', 'HEALTH_AND_WELLNESS', 'PETS',
+  'AUTOMOTIVE_AND_TRANSPORTATION', 'EDUCATION_AND_TRAINING', 'FOOD_AND_BEVERAGE',
+  'REAL_ESTATE', 'ELECTRONICS', 'SHOPPING_AND_RETAIL', 'PUBLIC_ADMINISTRATION',
+  'ART_AND_CRAFTS', 'BABY', 'GAMING', 'RESTAURANTS_AND_BARS',
+  'HOME_FURNITURE_AND_APPLIANCES', 'PROFESSIONAL_SERVICES', 'SOFTWARE_AND_APPS',
+  'MEDIA_AND_ENTERTAINMENT', 'BEAUTY', 'SPORTS_FITNESS_AND_OUTDOORS',
+  'CLOTHING_AND_ACCESSORIES', 'TRAVEL_AND_TOURISM', 'OTHERS', 'FINANCE_AND_INVESTING',
+];
+function categoryLabel(code) {
+  return code.split('_').map(w => (w === 'AND' ? '&' : w[0] + w.slice(1).toLowerCase())).join(' ');
+}
+
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '1px solid #334155' },
@@ -939,6 +955,11 @@ function TrendingPanel({ adminKey, enabled }) {
     load();
   }, [adminKey, enabled, tab]);
 
+  // Selecting a category should search immediately, not wait for a click.
+  useEffect(() => {
+    if (tab === 'benchmark' && businessCategory.trim()) load();
+  }, [businessCategory]);
+
   const TABS = [
     ['trending', 'Trending'],
     ['keywords', 'Keywords'],
@@ -960,13 +981,16 @@ function TrendingPanel({ adminKey, enabled }) {
           </div>
           {tab === 'benchmark' ? (
             <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-              <input
+              <select
                 style={{ ...s.input, flex: 1 }}
-                placeholder="Business category (required — TikTok-defined code, e.g. from your Ads Manager account settings)…"
                 value={businessCategory}
                 onChange={e => setBusinessCategory(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && load()}
-              />
+              >
+                <option value="">Select a business category…</option>
+                {BUSINESS_CATEGORIES.map(c => (
+                  <option key={c} value={c}>{categoryLabel(c)}</option>
+                ))}
+              </select>
               <button style={{ ...s.btn, whiteSpace: 'nowrap' }} onClick={load}>Search</button>
             </div>
           ) : (
