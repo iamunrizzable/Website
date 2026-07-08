@@ -818,8 +818,14 @@ function TrendingPanel() {
         <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
       ) : (
         data.map((item, i) => (
-          <div key={typeof item === 'string' ? item : (item.id ?? item.keyword ?? item.hashtag ?? i)} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
-            {typeof item === 'string' ? item : JSON.stringify(item)}
+          <div key={typeof item === 'string' ? item : (item.id ?? item.keyword ?? item.hashtag ?? item.name ?? i)} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
+            {typeof item === 'string' ? (
+              item
+            ) : tab === 'hashtags' && item.name ? (
+              <>#{item.name}{item.view_count != null && <span style={{ color: '#64748b' }}> · {item.view_count.toLocaleString()} views</span>}</>
+            ) : (
+              JSON.stringify(item)
+            )}
           </div>
         ))
       )}
