@@ -5,9 +5,17 @@
 }
 
 html, body {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  /* Declared after the shorthand so it survives: `background` shorthand
+     resets background-color to its initial value, so a fallback listed
+     before it would be silently wiped out. This solid color is what
+     iOS Safari paints during the elastic overscroll bounce and the
+     toolbar show/hide transition, when the gradient/fixed-position
+     backgrounds below haven't repainted yet — without it that moment
+     flashes the browser's default white. */
+  background-color: #16213e;
   color: #eee;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
