@@ -557,6 +557,19 @@ function MentionsPanel() {
   const [username, setUsername] = useState('');
   const [actionMsg, setActionMsg] = useState('');
 
+  // Pull the connected account's own username from account info instead of
+  // asking the operator to type it — hashtag/manage/list requires it as a
+  // param but there's no reason to make a human supply data we already have.
+  useEffect(() => {
+    fetch('/api/system/account')
+      .then(r => r.json())
+      .then(d => {
+        const u = (d.data ?? d)?.username;
+        if (u) setUsername(u);
+      })
+      .catch(() => {});
+  }, []);
+
   function extractList(type, d) {
     const dd = d.data ?? {};
     const known = {
@@ -588,11 +601,18 @@ function MentionsPanel() {
   }
 
   useEffect(() => {
-    // Tracked Hashtags requires a TikTok username — don't auto-fire on tab
-    // switch and throw an error before the user has typed anything.
+    // Tracked Hashtags requires a TikTok username. It's usually already
+    // known by the time this tab is opened (see the account-info effect
+    // above); if not yet, wait rather than fire an error.
     if (tab === 'tracked_hashtags' && !username.trim()) { setData(null); setError(''); return; }
     load(tab);
   }, [tab]);
+
+  // If the account-info fetch resolves after the operator has already
+  // switched to this tab, load as soon as the username arrives.
+  useEffect(() => {
+    if (tab === 'tracked_hashtags' && username.trim() && data === null) load('tracked_hashtags');
+  }, [username]);
 
   async function addHashtag() {
     if (!hashtag.trim()) return;
@@ -642,7 +662,7 @@ function MentionsPanel() {
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <input
               style={{ ...s.input, flex: 1 }}
-              placeholder="TikTok username (required by this endpoint)…"
+              placeholder="TikTok username (auto-filled from your account)…"
               value={username}
               onChange={e => setUsername(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && load('tracked_hashtags')}
@@ -664,7 +684,7 @@ function MentionsPanel() {
       {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
 
       {data === null ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Enter a TikTok username and hit Load.</p>
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading your account info…</p>
       ) : data === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
