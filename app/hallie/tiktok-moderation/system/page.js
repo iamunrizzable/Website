@@ -1,5 +1,7 @@
 'use client';
 
+import './page.css';
+
 import { useEffect, useState, useCallback } from 'react';
 
 const ACTION_COLORS = { hide: '#ef4444', flag: '#f59e0b', review: '#3b82f6', allow: '#10b981' };
@@ -62,21 +64,6 @@ export default function SystemPage() {
 
   return (
     <>
-      <style>{`
-        body::before {
-          content: "";
-          position: fixed; top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
-          background-size: cover; background-position: center center; background-repeat: no-repeat;
-          z-index: -1; pointer-events: none;
-        }
-        body { margin: 0; padding: 0; background: transparent; }
-        @keyframes glowPulse {
-          0%, 100% { text-shadow: 0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.3); }
-          50% { text-shadow: 0 0 40px rgba(168,85,247,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(59,130,246,0.5); }
-        }
-      `}</style>
       <div style={s.page}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
 

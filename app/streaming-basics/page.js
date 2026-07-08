@@ -1,5 +1,7 @@
 'use client';
 
+import './page.css';
+
 import { useState, useEffect } from 'react';
 
 export default function StreamingBasics() {
@@ -21,81 +23,6 @@ export default function StreamingBasics() {
 
   return (
     <>
-      <style>{`
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), url("/bg-main.jpeg");
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          z-index: -2;
-          pointer-events: none;
-        }
-        body { margin: 0; padding: 0; background: transparent; }
-        @keyframes glowPulse {
-          0%, 100% { text-shadow: 0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.3); }
-          50% { text-shadow: 0 0 40px rgba(168,85,247,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(59,130,246,0.5); }
-        }
-        main { max-width: 900px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 10; }
-        h1 { color: #d4a5ff; margin-bottom: 10px; font-size: 36px; animation: glowPulse 3s ease-in-out infinite; }
-        .subtitle { color: #a0aec0; font-size: 16px; margin-bottom: 40px; }
-        h2 { color: #a855f7; font-size: 20px; margin-bottom: 15px; animation: glowPulse 3s ease-in-out infinite; }
-        p { color: #a0aec0; line-height: 1.8; margin-bottom: 15px; }
-        li { color: #a0aec0; line-height: 1.8; margin-bottom: 8px; }
-        strong { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
-        em { color: #7dd3fc; font-style: normal; }
-        .section {
-          padding: 25px; border-left: 8px solid #a855f7; margin-bottom: 30px;
-          border-radius: 5px; background: rgba(255,255,255,0.03);
-          opacity: 0; transform: translateY(20px); transition: all 0.6s ease;
-        }
-        .section.visible { opacity: 1; transform: translateY(0); }
-        .section:nth-of-type(2) { border-left-color: #ec4899; }
-        .section:nth-of-type(3) { border-left-color: #3b82f6; }
-        .section:nth-of-type(4) { border-left-color: #06b6d4; }
-        .section:nth-of-type(5) { border-left-color: #a855f7; }
-        .section:nth-of-type(6) { border-left-color: #ec4899; }
-        .section:nth-of-type(7) { border-left-color: #3b82f6; }
-        .section:nth-of-type(8) { border-left-color: #06b6d4; }
-        .section:nth-of-type(9) { border-left-color: #a855f7; }
-        .section:nth-of-type(10) { border-left-color: #ec4899; }
-        .section:nth-of-type(11) { border-left-color: #3b82f6; }
-        .highlight { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
-        .cta-btn {
-          display: block; text-align: center; margin: 10px auto 20px;
-          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
-          text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
-          border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
-        }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(168,85,247,0.7); text-decoration: none; }
-        .back-link { display: inline-block; margin-bottom: 30px; color: #a855f7; text-decoration: none; font-weight: 500; }
-        .back-link:hover { text-decoration: underline; }
-        .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 12px; color: #8b9dc3; line-height: 1.8; }
-        .footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .menu-button { position: fixed; top: 20px; right: 20px; background-color: #a855f7; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px; transition: all 0.3s ease; }
-        .menu-button:hover { background-color: #9333ea; transform: scale(1.05); box-shadow: 0 0 20px rgba(168,85,247,0.6); }
-        .menu-dropdown { display: none; position: fixed; top: 60px; right: 20px; background-color: #0f172a; border: 2px solid #a855f7; border-radius: 5px; padding: 10px 0; min-width: 200px; z-index: 101; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        .menu-dropdown.active { display: block; }
-        .menu-dropdown a { display: block; padding: 10px 20px; color: #a855f7; text-decoration: none; border-bottom: 1px solid rgba(168,85,247,0.2); transition: background-color 0.2s; }
-        .menu-dropdown a:last-child { border-bottom: none; }
-        .menu-dropdown a:hover { background-color: rgba(168,85,247,0.1); }
-        .fade-top { position: fixed; top: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent); z-index: 50; pointer-events: none; }
-        .toc { padding: 18px 25px; background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.2); border-radius: 10px; margin-bottom: 30px; }
-        .toc p { margin-bottom: 12px; color: #a0aec0; font-size: 14px; }
-        .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
-        .toc-links a { color: #a855f7; text-decoration: none; font-size: 13px; padding: 4px 12px; border: 1px solid rgba(168,85,247,0.3); border-radius: 20px; transition: all 0.2s; }
-        .toc-links a:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.6); text-decoration: none; }
-        .calculator { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.25); border-radius: 10px; padding: 20px; margin-top: 15px; }
-        .calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-        .calc-row label { color: #a0aec0; font-size: 14px; min-width: 150px; }
-        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #e2e8f0; font-size: 15px; width: 160px; outline: none; }
-        .calc-row input:focus { border-color: #a855f7; }
-        .calc-result { color: #a0aec0; font-size: 15px; margin-top: 4px; }
-        .calc-result span { font-size: 26px; font-weight: 700; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-      `}</style>
 
       <div className="fade-top"></div>
 

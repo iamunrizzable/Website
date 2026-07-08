@@ -1,5 +1,7 @@
 'use client';
 
+import './page.css';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -35,27 +37,6 @@ export default function AdminLogin() {
 
   return (
     <>
-      <style>{`
-        body::before {
-          content: "";
-          position: fixed;
-          top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          z-index: -1;
-          pointer-events: none;
-        }
-        body { margin: 0; padding: 0; background: transparent; }
-        @keyframes glowPulse {
-          0%, 100% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3); }
-          50% { text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5); }
-        }
-        input:focus { outline: none; border-color: #a855f7 !important; box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2); }
-        .sign-in-btn:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
-      `}</style>
 
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ width: '100%', maxWidth: 380 }}>
