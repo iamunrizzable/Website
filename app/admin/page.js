@@ -820,7 +820,7 @@ function MentionsPanel({ adminKey, enabled }) {
     if (!hashtag.trim()) return;
     setVerifyMsg('Checking…');
     try {
-      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim() })}`, {
+      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim(), username })}`, {
         headers: { 'x-admin-key': adminKey },
       });
       const d = await res.json();

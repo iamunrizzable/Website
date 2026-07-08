@@ -30,7 +30,8 @@ export async function GET(request) {
     }
     if (type === 'verify_hashtag') {
       if (!hashtag) return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
-      return NextResponse.json(await verifyHashtag({ hashtag }));
+      if (!username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+      return NextResponse.json(await verifyHashtag({ hashtag, username }));
     }
     return NextResponse.json(await listMentionVideos());
   } catch (err) {
