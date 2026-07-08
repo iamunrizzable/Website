@@ -654,7 +654,7 @@ function MentionsPanel() {
       <h2 style={s.h2}>Mentions</h2>
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         {TABS.map(([key, label]) => (
-          <button key={key} style={s.tab(tab === key)} onClick={() => setTab(key)}>{label}</button>
+          <button key={key} style={s.tab(tab === key)} onClick={() => { setTab(key); setActionMsg(''); }}>{label}</button>
         ))}
       </div>
 
