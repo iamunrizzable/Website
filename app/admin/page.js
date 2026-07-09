@@ -804,19 +804,21 @@ function MentionsPanel({ adminKey, enabled }) {
     } catch (e) { setActionMsg('Error: ' + e.message); }
   }
 
-  // Temporary diagnostic: hashtag/add/ rejects every hashtag tried so
-  // far, including real hashtags pulled straight from this account's
-  // own Top Hashtags list ("no valid hashtag for this username"). The
-  // `username` field defaults to the connected account's own username,
-  // but hashtag/verify/list requires *some* username and we've never
-  // confirmed which one — verifyUsername lets us test with a different
-  // value (e.g. a commenter/mentioner's username from the Comments
-  // tab) instead of guessing which username the API actually means.
+  // Temporary diagnostic. hashtag/verify/list is a LIST endpoint, not a
+  // validity check — confirmed from TikTok's own example request (no
+  // hashtag param at all, just business_id + username): it returns
+  // { hashtag_list: [{ hashtag, create_date }] }, the hashtags TikTok
+  // already considers verified for that username. Sending a `hashtags`
+  // param (the old behavior here) isn't part of the real request shape,
+  // which is almost certainly why every hashtag tried came back "no
+  // valid hashtag for this username." verifyUsername lets us check any
+  // username's verified-hashtag list (defaults to the connected
+  // account's own username) to see what's actually returned.
   async function verifyHashtag() {
-    if (!hashtag.trim() || !verifyUsername.trim()) return;
+    if (!verifyUsername.trim()) return;
     setVerifyMsg('Checking…');
     try {
-      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', hashtag: hashtag.trim(), username: verifyUsername.trim() })}`, {
+      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'verify_hashtag', username: verifyUsername.trim() })}`, {
         headers: { 'x-admin-key': adminKey },
       });
       const d = await res.json();

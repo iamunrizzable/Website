@@ -19,7 +19,6 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'videos';
   const username = searchParams.get('username') ?? '';
-  const hashtag = searchParams.get('hashtag') ?? '';
   try {
     if (type === 'comments') return NextResponse.json(await listMentionComments());
     if (type === 'top_words') return NextResponse.json(await listTopMentionWords());
@@ -29,9 +28,8 @@ export async function GET(request) {
       return NextResponse.json(await listTrackedHashtags({ username }));
     }
     if (type === 'verify_hashtag') {
-      if (!hashtag) return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
       if (!username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
-      return NextResponse.json(await verifyHashtag({ hashtag, username }));
+      return NextResponse.json(await verifyHashtag({ username }));
     }
     return NextResponse.json(await listMentionVideos());
   } catch (err) {
