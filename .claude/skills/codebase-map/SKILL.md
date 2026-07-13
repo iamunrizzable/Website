@@ -55,7 +55,7 @@ Next.js 15 App Router site on Vercel serverless. One repo, three jobs:
 **CRITICAL: the TikTok apply link `https://www.tiktok.com/t/ZTkgQvTCb/` must NEVER be changed.**
 
 ### Infrastructure
-- `middleware.js` — runs on every non-asset request: builds the per-request **CSP with a script nonce + strict-dynamic** (no unsafe-inline/unsafe-eval); admin session gate for `/admin/*` + `/api/admin/me`; serves TikTok domain-verification text at `/legal/tiktok*`; refreshes the session cookie on every hit (400-day sliding window). Pairs with `export const dynamic = 'force-dynamic'` in `app/layout.js` — don't remove either half.
+- `proxy.js` (formerly `middleware.js` — Next.js renamed the file convention; exports `proxy()`, not `middleware()`) — runs on every non-asset request: builds the per-request **CSP with a script nonce + strict-dynamic** (no unsafe-inline/unsafe-eval); admin session gate for `/admin/*` + `/api/admin/me`; serves TikTok domain-verification text at `/legal/tiktok*`; refreshes the session cookie on every hit (400-day sliding window). Pairs with `export const dynamic = 'force-dynamic'` in `app/layout.js` — don't remove either half.
 - `next.config.js` — `poweredByHeader: false` + the static security headers (HSTS, XFO, etc.; CSP lives in middleware). **Do not add headers to vercel.json** (that caused duplicate-header Aikido findings, removed 2026-07).
 - `vercel.json` — crons only: sync-comments daily 00:00 UTC, process-blocks daily 01:00 UTC. (Old comment in the cron route saying "every 15 minutes" is stale.)
 - `jsconfig.json` — `@/*` path alias to repo root.

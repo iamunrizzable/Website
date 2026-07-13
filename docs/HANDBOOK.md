@@ -63,8 +63,8 @@ lib/
   tiktok/business-api.js ← main TikTok client (parseRes() fixes 19-digit ID corruption)
   tiktok/business-oauth.js ← auth URLs + token exchange + refresh
   tiktok/browser.js     ← Puppeteer user-blocking (no API exists for it)
-middleware.js           ← per-request CSP nonce + admin session gate
-next.config.js          ← static security headers (CSP lives in middleware); poweredByHeader:false
+proxy.js                ← per-request CSP nonce + admin session gate (formerly middleware.js — Next renamed the file convention)
+next.config.js          ← static security headers (CSP lives in proxy.js); poweredByHeader:false
 ```
 
 ## 5. The things that will bite you (all learned the hard way)
