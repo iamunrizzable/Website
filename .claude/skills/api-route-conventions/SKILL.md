@@ -54,9 +54,11 @@ Every cookie set or cleared MUST carry the full flag set (Aikido checks this):
 ```
 Cookies in use: `admin_session` (400d, refreshed by middleware), `biz_token` (30d), `acct_token` (30d), `tiktok_oauth_state` (legacy flow only).
 
-## Middleware interactions (`middleware.js`)
+## Proxy interactions (`proxy.js`, formerly `middleware.js`)
 
-Matcher covers `/admin*`, `/api/admin/me`, `/api/admin/login`, `/legal/tiktok*`. Everything else — including the rest of `/api/admin/*` — is NOT middleware-protected and relies on its in-route `requireAdmin`. `/auth/tiktok/*` passes through freely (OAuth entry routes do their own auth). If you add a page under `/admin/`, it's automatically cookie-gated; a new admin API route must do its own key check.
+Next.js renamed the middleware file convention to "proxy" (the "middleware" file convention is deprecated — see https://nextjs.org/docs/messages/middleware-to-proxy); this project's file is `proxy.js` at the repo root, exporting a `proxy()` function (not `middleware()`). Same behavior as before, new name only.
+
+Matcher covers `/admin*`, `/api/admin/me`, `/api/admin/login`, `/legal/tiktok*`. Everything else — including the rest of `/api/admin/*` — is NOT proxy-protected and relies on its in-route `requireAdmin`. `/auth/tiktok/*` passes through freely (OAuth entry routes do their own auth). If you add a page under `/admin/`, it's automatically cookie-gated; a new admin API route must do its own key check.
 
 ## Redirect rule
 
