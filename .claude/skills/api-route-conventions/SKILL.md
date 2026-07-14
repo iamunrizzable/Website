@@ -54,11 +54,11 @@ Every cookie set or cleared MUST carry the full flag set (Aikido checks this):
 ```
 Cookies in use: `admin_session` (400d, refreshed by middleware), `biz_token` (30d), `acct_token` (30d), `tiktok_oauth_state` (legacy flow only).
 
-## Proxy interactions (`proxy.js`, formerly `middleware.js`)
+## Middleware interactions (`middleware.js`)
 
-Next.js renamed the middleware file convention to "proxy" (the "middleware" file convention is deprecated — see https://nextjs.org/docs/messages/middleware-to-proxy); this project's file is `proxy.js` at the repo root, exporting a `proxy()` function (not `middleware()`). Same behavior as before, new name only.
+Next.js 16 deprecated this file convention in favor of `proxy.js`/`export function proxy()` — see https://nextjs.org/docs/messages/middleware-to-proxy. Deliberately NOT migrated yet (tried July 2026, reverted same day): the rename immediately preceded an Aikido "CSP header not set" finding (risk 91) on production, and there are documented Vercel-specific deploy failures tied to this exact rename (`ENOENT ... proxy.js` during build — see https://github.com/vercel/next.js/discussions/84842). Couldn't confirm from this environment whether the two are actually connected or coincidental (no direct access to live prod headers or the Vercel deploy dashboard), so reverted to the known-working `middleware.js` rather than leave a possible CSP gap live while investigating. Re-attempt only with a live post-deploy CSP header check in hand, not just a local build/start check — local `next start` verified fine both times, which didn't catch whatever happened (if anything) in the real Vercel environment.
 
-Matcher covers `/admin*`, `/api/admin/me`, `/api/admin/login`, `/legal/tiktok*`. Everything else — including the rest of `/api/admin/*` — is NOT proxy-protected and relies on its in-route `requireAdmin`. `/auth/tiktok/*` passes through freely (OAuth entry routes do their own auth). If you add a page under `/admin/`, it's automatically cookie-gated; a new admin API route must do its own key check.
+Matcher covers `/admin*`, `/api/admin/me`, `/api/admin/login`, `/legal/tiktok*`. Everything else — including the rest of `/api/admin/*` — is NOT middleware-protected and relies on its in-route `requireAdmin`. `/auth/tiktok/*` passes through freely (OAuth entry routes do their own auth). If you add a page under `/admin/`, it's automatically cookie-gated; a new admin API route must do its own key check.
 
 ## Redirect rule
 

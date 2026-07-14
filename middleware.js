@@ -25,7 +25,7 @@ function buildCsp(nonce) {
   ].join('; ');
 }
 
-export function proxy(request) {
+export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   const nonce = btoa(crypto.randomUUID());
