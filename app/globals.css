@@ -7,15 +7,18 @@
 html, body {
   min-height: 100%;
   width: 100%;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  /* Declared after the shorthand so it survives: `background` shorthand
-     resets background-color to its initial value, so a fallback listed
-     before it would be silently wiped out. This solid color is what
-     iOS Safari paints during the elastic overscroll bounce and the
-     toolbar show/hide transition, when the gradient/fixed-position
-     backgrounds below haven't repainted yet — without it that moment
-     flashes the browser's default white. */
-  background-color: #16213e;
+  /* #0f172a matches every page's actual body::before overlay color
+     (rgba(15, 23, 42, ...) in each page.css) exactly. This is what iOS
+     Safari paints during the elastic overscroll bounce and the toolbar
+     show/hide transition, when the per-page fixed-position background
+     hasn't repainted yet — it used to be a different navy (#16213e),
+     which fixed the white-flash bug but created a visible color seam
+     against every page's real background instead (the "colors cut and
+     mismatch" bug). Solid, no gradient: the per-page overlay itself is
+     a flat rgba tint (both gradient stops identical), not an actual
+     gradient, so matching it with anything but a flat color would
+     reintroduce the same seam. */
+  background: #0f172a;
   color: #eee;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
