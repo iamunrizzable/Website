@@ -14,7 +14,7 @@ Pure regex rule engine — no ML, no API calls, deterministic and free. Categori
 | hate_speech | 90 | slur patterns |
 | potential_minor | 70 | age statements, grade levels, "minor"/"underage" — ALSO queues an account block |
 | harassment | 65 | kys, death wishes, personal attacks |
-| scam | 40 | any URL, crypto, telegram/whatsapp handles, money-per-day |
+| scam | 40 | any URL, crypto, telegram/whatsapp handles, money-per-day, tag-a-recovery-account testimonial-bait |
 | negativity | 35 | mockery, "L + ratio", "nobody asked" family |
 | profanity | 35 | obfuscation-tolerant (`f+[u*]+c+k+`) |
 | spam | 25 | f4f, repeated chars, "check my bio" |
@@ -23,7 +23,11 @@ Pure regex rule engine — no ML, no API calls, deterministic and free. Categori
 
 Score capped at 100. **Thresholds: ≥ 25 → `action: 'hide'`; ≥ 60 → email alert (`shouldAlert`).** Note 25 means a single spam or promo+caps match triggers hiding — when Tyler says "it's hiding too much / too little," tune pattern lists or these two numbers, nothing else.
 
-Test any scorer change via `POST /api/moderate` `{ text }` (unauthenticated, also drives the TestPanel on both UIs) — it returns `{ score, flags, action, suggested_reply }`.
+Test any scorer change via `POST /api/moderate` `{ text }` (unauthenticated, also drives the TestPanel on both UIs) — it returns `{ score, flags, action, suggested_reply }`. When Tyler screenshots a scam/spam comment that slipped through as "OK", ALWAYS: (1) add the pattern, (2) run the exact reported text through `/api/moderate` to confirm it now scores/hides, (3) test a benign near-miss so the new regex doesn't over-hide. Example added July 2026 — the "tag a fake recovery account + testimonial" template (`@"handle" 💯 help me`, `@handle helped me`, `reach out to @handle`): two `scam` patterns matching a tagged/quoted handle near testimonial words (help me / reach out / recommend / life saver / legit / god bless), verified to match the report and NOT match innocent shoutouts (`shoutout @friend love your videos`).
+
+### `potential_minor` detection = regex only, high-recall by design
+
+It fires on explicit self-stated age 4–17 ("i'm 14", "14 years old", "age: 12"), school grades ("7th grade", "middle school", "freshman"/"sophomore"), and the literal words "minor"/"underage". It is pure keyword matching — no context, no account lookup. It will NOT catch indirect signals (birth year, "my mom won't let me", talking about homework) and WILL false-positive ("freshman year of college"). Deliberately over-flags to avoid missing a real minor. If Tyler asks "why doesn't it detect minors / bots from their account," the answer is: TikTok's API exposes no age or bot field for any user (see tiktok-api-calls), so detection is limited to what the commenter literally types plus (future) the public-profile scrape heuristic.
 
 ## Custom keyword rules ("Automated Rules" panel) — local storage, NOT a TikTok API
 
@@ -54,6 +58,14 @@ No TikTok API exists for blocking users, so:
 3. Cron `/api/cron/process-blocks` (daily 01:00 UTC, `maxDuration: 60`) runs `blockTikTokUser()` — Puppeteer + @sparticuz/chromium loads the profile, clicks ⋯ → Block → confirm
 4. Requires TikTok web-session cookies uploaded via `POST /api/admin/cookies` (Cookie-Editor export format is normalized to Puppeteer format). `NO_BROWSER_COOKIES` error → Tyler must re-export cookies from a logged-in browser
 5. Failures stay in queue for retry; selector errors (`SELECTOR_NOT_FOUND:*`) usually mean TikTok changed their DOM — update the selector lists in `lib/tiktok/browser.js`
+
+**Two reasons this whole path has likely NEVER run end-to-end in prod (both real, both found July 2026):**
+- **Redis isn't configured** (`UPSTASH_REDIS_*` unset), so `queueBlock` writes to an in-memory `Map`. On Vercel that Map lives in one function invocation; the daily `process-blocks` cron is a *different* invocation (guaranteed cold start), so the queue is empty by the time the cron reads it. The block queue cannot survive from "flag" to "act" without Redis. Same gap silently breaks anything relying on `mem` across requests.
+- **`@sparticuz/chromium` must be externalized from the bundler OR Puppeteer crashes before it opens a page**, with `The input directory ".../@sparticuz/chromium/bin" does not exist`. Next.js bundles the package by default, which breaks its runtime binary extraction. Fix (in `next.config.js`): `serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core']` AND `outputFileTracingIncludes: { '/api/cron/process-blocks': ['./node_modules/@sparticuz/chromium/**'], '/api/admin/debug-profile': ['./node_modules/@sparticuz/chromium/**'] }`. The first stops relocation; the SECOND is what actually copies the binary into the deployed function (serverExternalPackages alone left the dir missing — the error persisted until both were present). Verify by grepping the built `.next/server/app/api/.../route.js.nft.json` for `chromium.br` — that trace manifest is what Vercel packages. **Any new route importing `lib/tiktok/browser.js` needs its own `outputFileTracingIncludes` entry.**
+
+## Commenter profile signals (`getProfileSignals`, admin-debug only)
+
+`lib/tiktok/browser.js` `getProfileSignals(username)` anonymously loads a commenter's public profile (same stealth Puppeteer as blocking, no login cookies) and extracts TikTok's embedded `__UNIVERSAL_DATA_FOR_REHYDRATION__` / `SIGI_STATE` JSON + visible DOM stats. Goal: a bot-likelihood heuristic from public signals (followers/following/bio/avatar/verified). **Age is NOT obtainable** — TikTok exposes no birthdate for any user (not even the connected account) to third-party apps, so "is this commenter over 18" is not answerable by any endpoint or scrape; drop that goal. Wired to `GET /api/admin/debug-profile?username=X` (admin-only per the debug-tooling rule). Not yet in the sync pipeline — first confirm anonymous scraping even gets past TikTok's datacenter-IP bot detection (Vercel IPs are the risky kind) via a live test.
 
 ## Email alerts (`lib/email/alerts.js`)
 
