@@ -117,8 +117,20 @@ export default function AgencyLegal() {
           </p>
         </div>
 
+        <div className="section">
+          <h2>9. Support Availability</h2>
+          <p>TJB Management Inc. operates two distinct support channels, each with its own hours (all times Eastern):</p>
+          <ul>
+            <li><span className="rainbow">Corporate Support — available 8:00 PM to 12:00 AM ET.</span> Corporate Support is designed to reply to business inquiries directed to TJB Management Inc. that were not initiated by TJB Management Inc.</li>
+            <li><span className="rainbow">Creator Support — available 7:00 AM to 12:00 AM ET.</span> Creator Support is defined as support for creators who are signed to, or are in the process of signing to, TJB Management Inc.</li>
+          </ul>
+          <p>
+            Inquiries received outside these windows will be addressed during the next available support period for the applicable channel.
+          </p>
+        </div>
+
         <footer>
-          <p>Last Updated: June 14, 2026</p>
+          <p>Last Updated: July 20, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
