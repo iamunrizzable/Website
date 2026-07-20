@@ -23,7 +23,19 @@ const s = {
 
 Palette: purple accent `#a855f7` / heading glow `#d4a5ff`, slate surfaces (`#0f172a` / `#1e293b` / `#334155`), muted text `#64748b`/`#94a3b8`, success `#10b981`, warning `#f59e0b`, danger `#ef4444`. Status badges: `background: color + '22'` with 1px border of the color. Action colors: hide=red, flag=amber, review=blue, allow=green.
 
-Background: a fixed `body::before` layer with `bg-main.jpeg` under a dark gradient — injected via a `<style>` tag inside the page component. Copy the existing block when a new page needs it.
+Background: a fixed `body::before` layer with `bg-main.jpeg` under a dark tint. **Now lives in a sibling `page.css` imported at the top of each page component** — NOT an inline `<style>` tag anymore (all 17 were extracted to real CSS files July 2026 so `style-src 'unsafe-inline'` could eventually be dropped for an Aikido finding; the `<style>{`…`}</style>` blocks were pure static CSS, moved verbatim, served as external `<link>` which `style-src 'self'` allows with no nonce). Copy the existing `page.css` block when a new page needs the background. Inline `style={{…}}` props on marketing pages are being migrated to classes for the same reason — prefer a class in `page.css` over a new inline style attribute.
+
+### The mobile background — get this exactly right, it bit us three times in one day
+
+The fixed background layer must be sized with **`lvh` (large-viewport), oversized past every edge**, never `dvh` or `vh`:
+```css
+body::before { position: fixed; top: -10lvh; left: 0; width: 100vw; height: 120lvh; … }
+```
+Why, learned the hard way:
+- **`dvh` is the trap.** The dynamic viewport unit live-resizes as iOS Safari's toolbar collapses/expands during scroll. A background sized `100dvh` has a bottom edge that *travels with the toolbar*, exposing whatever's underneath — a visible seam that "zooms in and out when you scroll" (Tyler's exact words, and the clue that finally cracked it). Use `lvh` (static, largest-possible viewport, never resizes) and oversize it (`-10lvh` top, `120lvh` tall) so the edge sits outside anything Safari ever reveals, including overscroll bounce.
+- **A flat fallback color can never match a photo background.** When the background is `bg-main.jpeg` + tint, any solid `background-color` under it (on `html`/`body`) will show a hard edge wherever the image layer ends. Two commits were burned "matching" the fallback to `#16213e` then `#0f172a` — both still seamed, because the real background is a *photo*, not a color. The fix is to make the image layer never end on-screen, not to color-match beneath it.
+- **The top/bottom bands are Safari's browser chrome, not page pixels.** Status-bar area (top) and toolbar area (bottom) are painted by Safari. Declare `export const viewport = { themeColor: '#0f172a' }` in `app/layout.js` so Safari doesn't sample-and-guess a wrong tint — but know its limit: Safari's toolbar is *translucent* and blurs whatever's behind it, so theme-color alone won't fix a seam if what's behind the toolbar is the wrong thing. All three layers (oversized lvh image, flat html fallback, theme-color) work together; the lvh sizing is the load-bearing one.
+- **You cannot see any of this in headless Chromium** — it doesn't render Safari's chrome or toolbar-collapse behavior. Verify the CSS is correct locally (built output, screenshot for gross layout), then get final confirmation from a real iOS device. Say so explicitly rather than claiming it's fixed.
 
 ## Panel pattern (control panels)
 

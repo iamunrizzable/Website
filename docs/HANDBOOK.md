@@ -2,7 +2,7 @@
 
 *Blueprints for the next engineer. If you read nothing else before touching this repo, read this.*
 
-Last major revision: July 8, 2026.
+Last major revision: July 20, 2026.
 
 ---
 
@@ -46,7 +46,9 @@ Start with `codebase-map`. When something breaks, start with `debugging-playbook
 
 ```
 app/
-  page.js, agency, tyler, hallie, merch, links, contact-*, legal/*  ← marketing pages (inline styles, dark purple theme)
+  page.js, agency, tyler, hallie, merch, links, contact-*, legal/*  ← marketing pages (dark purple theme; each has a sibling page.css for its background + static styles)
+  layout.js               ← root: metadata + viewport themeColor (#0f172a, for iOS Safari chrome)
+  globals.css             ← reset + html/body flat fallback bg (#0f172a, matches page overlays)
   admin/page.js                       ← Tyler's dashboard (one big client component)
   hallie/tiktok-moderation/system/page.js  ← operator dashboard (mirror of admin)
   api/
@@ -76,7 +78,12 @@ next.config.js          ← static security headers (CSP lives in middleware.js)
 - **Tokens auto-refresh (July 2026) — but only the shared ones.** `lib/tokens.js` refreshes admin advertiser + account tokens 5 min before expiry, only if a `refresh_token` exists (old stored tokens have `null` — one reconnect fixes it). The account-token refresh response omits `business_id`, so the refresh code re-injects it or comment writes silently downgrade to read-only. System per-operator cookie tokens have NO refresh yet.
 - **CSP is nonce-based in middleware, not next.config.js.** Every page is `force-dynamic` because of it. Don't add a static CSP header or remove the force-dynamic — you'll double the CSP and break every page.
 - **"This page couldn't load" on iOS is OUR crash**, not a network error — it's Next's client error boundary. Reproduce with headless Chromium against the exact URL + cookies; the real error is in `pageerror`. Test the *connected* state (set an `acct_token` cookie) — the disconnected state hides panel crashes.
-- **No Redis in prod right now.** Durable state = cookies + env vars only. In-memory "works locally, gone in prod" is expected on serverless.
+- **No Redis in prod right now.** Durable state = cookies + env vars only. In-memory "works locally, gone in prod" is expected on serverless. This is why **automated user-blocking has never actually completed end-to-end**: `queueBlock` writes to memory, and the daily cron that drains the queue is a separate (cold-start) invocation that sees an empty queue. It needs `UPSTASH_REDIS_*` set to ever work.
+- **Puppeteer/@sparticuz/chromium needs bundler escape hatches.** `next.config.js` must have `serverExternalPackages: ['@sparticuz/chromium','puppeteer-core']` AND `outputFileTracingIncludes` copying `./node_modules/@sparticuz/chromium/**` into each route that uses `lib/tiktok/browser.js`. Missing the second → "input directory .../bin does not exist", a crash that ONLY appears on Vercel, never in local build. Add an `outputFileTracingIncludes` entry for any new browser-using route.
+- **The mobile background seam (three commits to solve).** Every page's fixed `body::before` background must be sized `top:-10lvh; height:120lvh` — oversized **large-viewport** units. `dvh` resizes with iOS Safari's toolbar and drags the background edge visibly during scroll ("zooms in and out"); a flat fallback color can't match a photo background; and Safari's translucent toolbar defeats theme-color alone. See frontend-conventions skill. You cannot verify Safari chrome in headless Chromium — confirm on a real phone.
+- **`middleware.js` stays named `middleware.js`.** Next 16 wants `proxy.js`; the rename was tried and reverted (an Aikido "CSP header not set" risk-91 finding landed right after, unconfirmable from the sandbox, plus documented Vercel ENOENT failures for that rename). The deprecation warning is harmless. Don't re-rename without a live post-deploy CSP-header check.
+- **TikTok exposes no age or bot signal for any user** — not commenters, not even the connected account. "Detect if a commenter is a minor / a bot" is not API-answerable; minor detection is regex on what they literally type, and any bot heuristic must come from scraping their public profile (`getProfileSignals`, admin-debug only, unproven against TikTok's bot detection).
+- **Some TikTok endpoints need account-side setup we can't do in code.** `hashtag/add` (Mentions) only enables a hashtag already registered as a "brand hashtag" on the account — a TikTok-portal process, not our API. Five request-shape "fixes" failed before this was understood; the endpoint was never the bug. When docs are needed and the portal is login-walled (all `portal/*` URLs 403 anonymously), have Tyler paste the request example rather than guessing from the endpoint name.
 
 ## 6. Definition of done (every change)
 
@@ -95,4 +102,6 @@ next.config.js          ← static security headers (CSP lives in middleware.js)
 
 ---
 
-*The one line to remember: the API's own error message is the documentation. Read it before you guess. Almost every fix in this repo's history came from letting TikTok tell us exactly what it wanted.*
+*The one line to remember: the API's own error message is the documentation — but when the error keeps lying (see the Mentions hashtag saga: five "fixes" chasing an error that was reporting a missing account setup, not a bad request), get the real request/response example from someone who can reach the login-walled docs. Read the error, read the real payload, THEN write code. Almost every wrong turn in this repo came from writing against a guess — a field name, a response shape, an endpoint's purpose, a viewport unit. Confirm the shape of reality first.*
+
+*Two more that cost the most time recently: (1) production-only failures are real and invisible locally — Redis-less state, Vercel bundling, iOS Safari chrome, deploy-only crashes all pass a local build; when a fix "should work" but Tyler says it doesn't, believe him and look for the layer you can't see from here. (2) Say what you can't verify. Half of this session's dead ends were things confidently called "fixed" that were only fixed in a sandbox that can't render Safari, can't reach TikTok, and isn't a Lambda. Ship the fix, then name exactly what still needs Tyler's real device / real account to confirm.*
