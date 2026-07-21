@@ -25,17 +25,41 @@ Palette: purple accent `#a855f7` / heading glow `#d4a5ff`, slate surfaces (`#0f1
 
 Background: a fixed `body::before` layer with `bg-main.jpeg` under a dark tint. **Now lives in a sibling `page.css` imported at the top of each page component** — NOT an inline `<style>` tag anymore (all 17 were extracted to real CSS files July 2026 so `style-src 'unsafe-inline'` could eventually be dropped for an Aikido finding; the `<style>{`…`}</style>` blocks were pure static CSS, moved verbatim, served as external `<link>` which `style-src 'self'` allows with no nonce). Copy the existing `page.css` block when a new page needs the background. Inline `style={{…}}` props on marketing pages are being migrated to classes for the same reason — prefer a class in `page.css` over a new inline style attribute.
 
-### The mobile background — get this exactly right, it bit us three times in one day
+### The mobile background — flat canvas + a watermark that CANNOT mismatch the strips
 
-The fixed background layer must be sized with **`lvh` (large-viewport), oversized past every edge**, never `dvh` or `vh`:
+This took ~7 commits and a lot of Tyler's patience. The final, working design (do not re-litigate it):
+
 ```css
-body::before { position: fixed; top: -10lvh; left: 0; width: 100vw; height: 120lvh; … }
+/* every page.css */
+html { background-color: #0f172a; }   /* the ONE color, fills every strip */
+body { background: transparent; }
+
+/* logo-on-black pages (bg-main.jpeg, 13 pages): */
+body::before {
+  content: ""; position: fixed; inset: 0;
+  background: url("/bg-main.jpeg") center center / cover no-repeat;
+  mix-blend-mode: lighten;   /* black field → blends INTO the navy → invisible */
+  opacity: 0.2;              /* faint watermark; per-page ~0.12–0.35 */
+  z-index: -1; pointer-events: none;
+}
+
+/* photo pages (bg-tyler.png, 4 pages: tyler/agency/contact-tyler/links): */
+body::before {
+  content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100lvh;
+  background-image:
+    linear-gradient(to bottom, #0f172a 0%, #0f172a 8%,
+      rgba(15,23,42,<X>) 20%, rgba(15,23,42,<X>) 80%, #0f172a 92%, #0f172a 100%),
+    url("/bg-tyler.png");
+  background: … center / cover no-repeat; z-index: -3; pointer-events: none;
+}
 ```
-Why, learned the hard way:
-- **`dvh` is the trap.** The dynamic viewport unit live-resizes as iOS Safari's toolbar collapses/expands during scroll. A background sized `100dvh` has a bottom edge that *travels with the toolbar*, exposing whatever's underneath — a visible seam that "zooms in and out when you scroll" (Tyler's exact words, and the clue that finally cracked it). Use `lvh` (static, largest-possible viewport, never resizes) and oversize it (`-10lvh` top, `120lvh` tall) so the edge sits outside anything Safari ever reveals, including overscroll bounce.
-- **A flat fallback color can never match a photo background.** When the background is `bg-main.jpeg` + tint, any solid `background-color` under it (on `html`/`body`) will show a hard edge wherever the image layer ends. Two commits were burned "matching" the fallback to `#16213e` then `#0f172a` — both still seamed, because the real background is a *photo*, not a color. The fix is to make the image layer never end on-screen, not to color-match beneath it.
-- **The top/bottom bands are Safari's browser chrome, not page pixels.** Status-bar area (top) and toolbar area (bottom) are painted by Safari. Declare `export const viewport = { themeColor: '#0f172a' }` in `app/layout.js` so Safari doesn't sample-and-guess a wrong tint — but know its limit: Safari's toolbar is *translucent* and blurs whatever's behind it, so theme-color alone won't fix a seam if what's behind the toolbar is the wrong thing. All three layers (oversized lvh image, flat html fallback, theme-color) work together; the lvh sizing is the load-bearing one.
-- **You cannot see any of this in headless Chromium** — it doesn't render Safari's chrome or toolbar-collapse behavior. Verify the CSS is correct locally (built output, screenshot for gross layout), then get final confirmation from a real iOS device. Say so explicitly rather than claiming it's fixed.
+And `globals.css` `html, body` uses **`background-color`** (longhand), never the `background` shorthand — the shorthand would reset `background-image` and its color would fight the page's.
+
+**The two hard-won facts behind this:**
+- **iOS 26 Safari refuses to paint `position: fixed`/`sticky` content behind its floating bottom toolbar** — it clips it (Apple dev forum thread 800798). So a fixed background layer leaves a flat gap under the toolbar. NO size/unit fixes this — three commits were wasted on `vh`→`dvh`→oversized `lvh`, a fallback color, and `theme-color`, all treating a render-path bug as geometry. `dvh` is separately bad (resizes with the toolbar → seam "zooms in and out"), but even perfect sizing can't save a fixed element here.
+- **The winning idea: make the seam impossible instead of chasing coverage.** Put ONE flat `#0f172a` on the html canvas (paints every strip — status bar, under-toolbar, overscroll — uniformly). Then the watermark is layered so its *field* equals that same navy: for the logo-on-black image, `mix-blend-mode: lighten` makes the pure-black field blend invisibly into the navy (only the logo, brighter than navy, shows); for the photo, a vertical gradient fades the tint to solid `#0f172a` at the top/bottom edges. Either way the watermark contributes only its center imagery — the strips are always plain navy, so painted-or-not under the toolbar is irrelevant. The iOS bug stops mattering.
+- **Rejected detour:** putting the full tinted image on the html canvas (canvas propagation does paint under the toolbar) — but `cover` on the root sizes to the *document*, which zoomed the watermark huge on long pages ("way too zoomed in"). The blend/fade approach keeps a normal viewport-sized watermark AND no seam.
+- **You cannot verify this in headless Chromium** — it renders no Safari chrome/toolbar. Confirm layout locally (build + screenshot: field should be uniform navy, only the centered logo/photo visible), then get final sign-off from a real iOS device. Say so; don't call it fixed from the sandbox.
 
 ## Panel pattern (control panels)
 

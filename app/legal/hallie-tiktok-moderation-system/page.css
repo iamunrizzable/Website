@@ -2,25 +2,28 @@
   color: #a855f7;
 }
 
-/* Background lives on the html canvas, NOT a position:fixed element.
-   iOS 26 Safari refuses to paint fixed-positioned elements behind its
-   floating toolbar (Apple dev forum thread 800798), which caused the
-   persistent color seam at the top/bottom of every page no matter how
-   the fixed layer was sized (vh/dvh/lvh all failed). The root element's
-   background is propagated to the viewport canvas and painted across
-   the whole surface, toolbar area included. cover sizes to the full
-   document so the image reaches under the toolbar; background-attachment
-   is fixed for true parallax on desktop (iOS silently downgrades it to
-   scroll, which still paints the canvas seamlessly). */
-html {
-  background-color: #0f172a;
-  background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-main.jpeg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
+/* Flat navy canvas fills every strip uniformly (status bar,
+   under-toolbar, overscroll) — no color can mismatch it. The logo
+   watermark is layered with mix-blend-mode:lighten so the image's
+   pure-black field blends invisibly into the navy and only the
+   logo shows; this also sidesteps the iOS 26 Safari bug where a
+   position:fixed element won't paint behind the floating toolbar
+   (Apple dev forum 800798) — that region is just the flat canvas. */
+html { background-color: #0f172a; }
 body { background: transparent; }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/bg-main.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  mix-blend-mode: lighten;
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
         body { margin: 0; padding: 0; background: transparent; }
 
         @keyframes glowPulse {
