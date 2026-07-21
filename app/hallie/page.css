@@ -1,17 +1,22 @@
-body::before {
-          content: "";
-          position: fixed;
-          top: -10vh; top: -10lvh;
-          left: 0;
-          width: 100%;
-          height: 120vh; height: 120lvh;
-          background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
-          background-size: cover;
-          background-position: center center;
-          background-repeat: no-repeat;
-          z-index: -3;
-          pointer-events: none;
-        }
+/* Background lives on the html canvas, NOT a position:fixed element.
+   iOS 26 Safari refuses to paint fixed-positioned elements behind its
+   floating toolbar (Apple dev forum thread 800798), which caused the
+   persistent color seam at the top/bottom of every page no matter how
+   the fixed layer was sized (vh/dvh/lvh all failed). The root element's
+   background is propagated to the viewport canvas and painted across
+   the whole surface, toolbar area included. cover sizes to the full
+   document so the image reaches under the toolbar; background-attachment
+   is fixed for true parallax on desktop (iOS silently downgrades it to
+   scroll, which still paints the canvas seamlessly). */
+html {
+  background-color: #0f172a;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url("/bg-hallie.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+body { background: transparent; }
 
         body {
           margin: 0;

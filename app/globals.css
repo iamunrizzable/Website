@@ -7,18 +7,16 @@
 html, body {
   min-height: 100%;
   width: 100%;
-  /* #0f172a matches every page's actual body::before overlay color
-     (rgba(15, 23, 42, ...) in each page.css) exactly. This is what iOS
-     Safari paints during the elastic overscroll bounce and the toolbar
-     show/hide transition, when the per-page fixed-position background
-     hasn't repainted yet — it used to be a different navy (#16213e),
-     which fixed the white-flash bug but created a visible color seam
-     against every page's real background instead (the "colors cut and
-     mismatch" bug). Solid, no gradient: the per-page overlay itself is
-     a flat rgba tint (both gradient stops identical), not an actual
-     gradient, so matching it with anything but a flat color would
-     reintroduce the same seam. */
-  background: #0f172a;
+  /* background-COLOR, not the `background` shorthand: each page.css sets
+     a full background-image on `html` (the canvas background that paints
+     seamlessly under iOS Safari's toolbar). The shorthand here would
+     reset background-image to none and, depending on stylesheet load
+     order, could wipe that per-page image. Color-only leaves the image
+     untouched and just provides the flat #0f172a base — which matches
+     every page's tint, so pages without their own canvas image (and the
+     brief moment before the image decodes) still show the right navy,
+     no white flash, no seam. */
+  background-color: #0f172a;
   color: #eee;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
