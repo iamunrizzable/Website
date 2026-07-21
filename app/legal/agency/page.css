@@ -180,3 +180,10 @@ body::before {
           font-size: 14px;
         }
         footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .toc { background: rgba(168,85,247,0.05); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 20px; margin-bottom: 30px; }
+        .toc p { color: #a855f7; font-weight: 600; font-size: 13px; margin-bottom: 10px; }
+        .toc ol { color: #7dd3fc; font-size: 13px; padding-left: 20px; }
+        .toc li { margin-bottom: 6px; }
+        .toc a { color: #7dd3fc; text-decoration: none; }
+        .toc a:hover { color: #c084fc; text-decoration: underline; }
