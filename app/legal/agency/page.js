@@ -102,21 +102,19 @@ export default function AgencyLegal() {
 
         <div className="section" id="ban-appeal">
           <h2>4. Ban Appeal Policy</h2>
+          <ol>
+            <li>For signed creators, we will review all violation clips in accordance with TikTok's policies and share findings privately with the creator.</li>
+            <li>If the ban appears unfair, we will first appeal through TikTok Backstage to the USDS Trust and Safety team.</li>
+            <li>If that appeal fails and we still disagree with the ban, we will then ask the designated partner for assistance.</li>
+            <li>If the ban is justified, no appeal will be submitted.</li>
+          </ol>
+          <p>Designated external partners should not reach out about bans unless explicitly requested by TJB Management Inc.</p>
           <p>
             TJB Management Inc. may, at its sole discretion, assist with TikTok ban appeals for creators who are actively in the signing process or onboarding phase. This service is exclusive to prospective and incoming creators and is not available to the general public.
           </p>
           <p>
             We cannot guarantee the success of any appeal, as all final decisions rest solely with TikTok.
           </p>
-
-          <p><strong>TikTok Suspension Appeals Process</strong></p>
-          <ol>
-            <li>We will review all violation clips per TikTok's policies and share findings privately with the creator.</li>
-            <li>If the ban appears unfair, we will first appeal through TikTok Backstage to the USDS Trust and Safety team.</li>
-            <li>If that appeal fails and we still disagree with the ban, we will then ask the designated partner for assistance.</li>
-            <li>If the ban is justified, no appeal will be submitted.</li>
-          </ol>
-          <p>Designated external partners should not reach out about bans unless explicitly requested by TJB Management Inc.</p>
         </div>
 
         <div className="section" id="non-solicitation">
