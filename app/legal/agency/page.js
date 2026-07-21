@@ -92,6 +92,15 @@ export default function AgencyLegal() {
           <p>
             We cannot guarantee the success of any appeal, as all final decisions rest solely with TikTok.
           </p>
+
+          <p><strong>TikTok Suspension Appeals Process</strong></p>
+          <ol>
+            <li>We will review all violation clips per TikTok's policies and share findings privately with the creator.</li>
+            <li>If the ban appears unfair, we will first appeal through TikTok Backstage to the USDS Trust and Safety team.</li>
+            <li>If that appeal fails and we still disagree with the ban, we will then ask the designated partner for assistance.</li>
+            <li>If the ban is justified, no appeal will be submitted.</li>
+          </ol>
+          <p>Designated external partners should not reach out about bans unless explicitly requested by TJB Management Inc.</p>
         </div>
 
         <div className="section">
@@ -146,7 +155,7 @@ export default function AgencyLegal() {
         </div>
 
         <div className="section">
-          <h2>10. Corporate Policy: Inquiry Handling and TikTok Appeals Process (Effective July 22, 2026)</h2>
+          <h2>10. Corporate Policy: Inquiry Handling (Effective July 22, 2026)</h2>
           <p>TJB Management Inc. operates 7 days a week with clearly defined response windows:</p>
 
           <p><strong>Creator Inquiries</strong></p>
@@ -168,15 +177,6 @@ export default function AgencyLegal() {
           <p>
             Anyone is welcome to email us at <span className="rainbow">support@tjbmanagementinc.com</span> unless explicitly stated to you otherwise.
           </p>
-
-          <p><strong>TikTok Suspension Appeals Process</strong></p>
-          <ol>
-            <li>We will review all violation clips per TikTok's policies and share findings privately with the creator.</li>
-            <li>If the ban appears unfair, we will first appeal through TikTok Backstage to the USDS Trust and Safety team.</li>
-            <li>If that appeal fails and we still disagree with the ban, we will then ask the designated partner for assistance.</li>
-            <li>If the ban is justified, no appeal will be submitted.</li>
-          </ol>
-          <p>Designated external partners should not reach out about bans unless explicitly requested by TJB Management Inc.</p>
         </div>
 
         <footer>
