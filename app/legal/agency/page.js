@@ -118,19 +118,40 @@ export default function AgencyLegal() {
         </div>
 
         <div className="section">
-          <h2>9. Support Availability</h2>
-          <p>TJB Management Inc. operates two distinct support channels, each with its own hours (all times Eastern):</p>
-          <ul>
-            <li><span className="rainbow">Corporate Support — available 8:00 PM to 12:00 AM ET.</span> Corporate Support is designed to reply to business inquiries directed to TJB Management Inc. that were not initiated by TJB Management Inc.</li>
-            <li><span className="rainbow">Creator Support — available 7:00 AM to 12:00 AM ET.</span> Creator Support is defined as support for creators who are signed to, or are in the process of signing to, TJB Management Inc.</li>
-          </ul>
+          <h2>9. TJB Support</h2>
+
+          <p><strong>TJB Corporate Support</strong></p>
+          <p>Available: 8:00 PM – 12:00 AM ET</p>
           <p>
-            Inquiries received outside these windows will be addressed during the next available support period for the applicable channel.
+            TJB Corporate Support handles ALL business inquiries sent to and from TJB Management Inc. that are NOT related to signed creators or creators in the process of signing with TJB Management Inc.
           </p>
+
+          <p><strong>TJB Creator Support</strong></p>
+          <p>Available: 7:00 AM – 12:00 AM ET</p>
+          <p>
+            TJB Creator Support provides support for creators who are currently signed with TJB Management Inc. or in the process of signing.
+          </p>
+
+          <p>
+            Both teams communicate via email, iMessage, or phone call at our sole discretion, unless otherwise agreed upon.
+          </p>
+
+          <p>TJB Management Inc.'s publicly available contact information is:</p>
+          <ul>
+            <li>📞 <a href="tel:+14086696123"><span className="rainbow">(408) 669-6123</span></a></li>
+            <li>📧 <a href="mailto:support@tjbmanagementinc.com"><span className="rainbow">support@tjbmanagementinc.com</span></a></li>
+          </ul>
+
+          <p><strong>Important Notes</strong></p>
+          <ul>
+            <li>Our office is open 7 days a week.</li>
+            <li>Corporate Support may respond during Creator Support hours at our sole discretion.</li>
+            <li>Most inquiries received outside these hours will be addressed during the next business day.</li>
+          </ul>
         </div>
 
         <footer>
-          <p>Last Updated: July 20, 2026</p>
+          <p>Last Updated: July 21, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
