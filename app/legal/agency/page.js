@@ -48,7 +48,23 @@ export default function AgencyLegal() {
 
         <h1>TJB Management — Agency Guidelines</h1>
 
-        <div className="section">
+        <div className="toc">
+          <p>Table of Contents</p>
+          <ol>
+            <li><a href="#about">About TJB Management Inc.</a></li>
+            <li><a href="#eligibility">Creator Eligibility Requirements</a></li>
+            <li><a href="#live-trial">LIVE Trial Period</a></li>
+            <li><a href="#ban-appeal">Ban Appeal Policy</a></li>
+            <li><a href="#non-solicitation">Non-Solicitation and Non-Compete</a></li>
+            <li><a href="#ip">Intellectual Property</a></li>
+            <li><a href="#liability">Limitation of Liability</a></li>
+            <li><a href="#contact-disputes">Contact and Dispute Resolution</a></li>
+            <li><a href="#support">Support Availability</a></li>
+            <li><a href="#corporate-policy">Corporate Policy: Inquiry Handling</a></li>
+          </ol>
+        </div>
+
+        <div className="section" id="about">
           <h2>1. About TJB Management Inc.</h2>
           <p>
             TJB Management Inc. is a specialized TikTok LIVE creator management agency founded and led by Tyler J. Beasley. We represent TikTok LIVE creators through formal contracts and deliver comprehensive management, strategic guidance, and growth support.
@@ -58,7 +74,7 @@ export default function AgencyLegal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="eligibility">
           <h2>2. Creator Eligibility Requirements</h2>
           <p>To qualify for representation with TJB Management Inc., creators must satisfy all of the following criteria at the time of signing:</p>
           <ul>
@@ -74,7 +90,7 @@ export default function AgencyLegal() {
           </ul>
         </div>
 
-        <div className="section">
+        <div className="section" id="live-trial">
           <h2>3. LIVE Trial Period</h2>
           <p>
             TikTok may require some creators to complete a LIVE trial before unlocking full access to TikTok LIVE features. This typically applies to creators who have not streamed LIVE for at least 10 minutes in the past 60 days.
@@ -84,7 +100,7 @@ export default function AgencyLegal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="ban-appeal">
           <h2>4. Ban Appeal Policy</h2>
           <p>
             TJB Management Inc. may, at its sole discretion, assist with TikTok ban appeals for creators who are actively in the signing process or onboarding phase. This service is exclusive to prospective and incoming creators and is not available to the general public.
@@ -103,7 +119,7 @@ export default function AgencyLegal() {
           <p>Designated external partners should not reach out about bans unless explicitly requested by TJB Management Inc.</p>
         </div>
 
-        <div className="section">
+        <div className="section" id="non-solicitation">
           <h2>5. Non-Solicitation and Non-Compete</h2>
           <p>Creators who are signed to or actively negotiating with TJB Management Inc. agree to the following:</p>
           <ul>
@@ -114,7 +130,7 @@ export default function AgencyLegal() {
           <p>Violations of these provisions may result in immediate contract termination and potential legal action.</p>
         </div>
 
-        <div className="section">
+        <div className="section" id="ip">
           <h2>6. Intellectual Property</h2>
           <p>
             The TJB Management Inc. name, logo, branding, website content, and <a href="/hallie"><span className="rainbow">Hallie</span></a> (our AI assistant) are the exclusive proprietary property of TJB Management Inc. and Tyler J. Beasley.
@@ -124,7 +140,7 @@ export default function AgencyLegal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="liability">
           <h2>7. Limitation of Liability</h2>
           <p>
             TJB Management Inc. is not responsible or liable for any actions or decisions taken by TikTok, including (but not limited to) account bans, restrictions, demonetization, or removal from the LIVE program.
@@ -134,7 +150,7 @@ export default function AgencyLegal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="contact-disputes">
           <h2>8. Contact and Dispute Resolution</h2>
           <p>
             For legal inquiries, contract questions, or disputes, please contact us at <span className="rainbow">support@tjbmanagementinc.com</span>.
@@ -144,7 +160,7 @@ export default function AgencyLegal() {
           </p>
         </div>
 
-        <div className="section">
+        <div className="section" id="support">
           <h2>9. Support Availability</h2>
           <p>TJB Management Inc. maintains the following support hours (all times Eastern Time):</p>
           <ul>
@@ -154,7 +170,7 @@ export default function AgencyLegal() {
           <p>Inquiries received outside these windows will be addressed during the next available support period for the applicable support hours.</p>
         </div>
 
-        <div className="section">
+        <div className="section" id="corporate-policy">
           <h2>10. Corporate Policy: Inquiry Handling</h2>
           <p>TJB Management Inc. operates 7 days a week with clearly defined response windows:</p>
 
