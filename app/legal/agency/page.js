@@ -155,7 +155,7 @@ export default function AgencyLegal() {
         </div>
 
         <div className="section">
-          <h2>10. Corporate Policy: Inquiry Handling (Effective July 22, 2026)</h2>
+          <h2>10. Corporate Policy: Inquiry Handling</h2>
           <p>TJB Management Inc. operates 7 days a week with clearly defined response windows:</p>
 
           <p><strong>Creator Inquiries</strong></p>
