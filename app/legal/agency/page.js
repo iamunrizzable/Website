@@ -163,7 +163,10 @@ export default function AgencyLegal() {
 
           <p><strong>Communication Rules for Designated External Partners</strong></p>
           <p>
-            All required communications will occur exclusively through Lark and work email. Personal virtual or in-person meetings are discontinued unless mandated by official policy or law.
+            All required communications must take place using the channels approved by TJB Management Inc. Personal virtual or in-person meetings are discontinued unless mandated by official policy or law.
+          </p>
+          <p>
+            Anyone is welcome to email us at <span className="rainbow">support@tjbmanagementinc.com</span> unless explicitly stated to you otherwise.
           </p>
 
           <p><strong>TikTok Suspension Appeals Process</strong></p>
