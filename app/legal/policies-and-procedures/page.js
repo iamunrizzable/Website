@@ -52,13 +52,13 @@ export default function PoliciesAndProcedures() {
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
-          This page consolidates policies and procedures that are also published in their original context elsewhere on this
-          website — the <a href="/legal/agency"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
+          This page consolidates policies and procedures written by TJB Management Inc. that are also published in their
+          original context elsewhere on this website — the <a href="/legal/agency"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
           <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>,
-          the <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and informational pages including{' '}
-          <a href="/agency"><span className="rainbow">/agency</span></a>, <a href="/streaming-basics"><span className="rainbow">/streaming-basics</span></a>,
-          and <a href="/tiktok-guidelines"><span className="rainbow">/tiktok-guidelines</span></a>. This page does not replace those originals —
-          where any difference exists, the original source page governs.
+          the <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
+          <a href="/agency"><span className="rainbow">/agency</span></a> informational page. This page does not include TikTok's own
+          platform rules or guidelines, and it does not replace those originals — where any difference exists, the original
+          source page governs.
         </p>
 
         <div className="toc">
@@ -80,25 +80,7 @@ export default function PoliciesAndProcedures() {
             <li><a href="#agency-corporate-policy">Corporate Policy: Inquiry Handling</a></li>
           </ol>
 
-          <p className="toc-part">Part II — TikTok LIVE Streaming Requirements & Rules</p>
-          <ol>
-            <li><a href="#live-eligibility">Eligibility & Account Requirements</a></li>
-            <li><a href="#live-rules">What You're Not Allowed to Do on LIVE</a></li>
-          </ol>
-
-          <p className="toc-part">Part III — TikTok Community Guidelines</p>
-          <ol>
-            <li><a href="#cg-hate-speech">Hate Speech and Hateful Behavior</a></li>
-            <li><a href="#cg-harassment">Harassment and Bullying</a></li>
-            <li><a href="#cg-nudity">Nudity, Body Exposure and Sexual Activity</a></li>
-            <li><a href="#cg-regulated-goods">Regulated Goods and Commercial Activity</a></li>
-            <li><a href="#cg-self-harm">Suicide, Self-Harm and Dangerous Activities</a></li>
-            <li><a href="#cg-minor-safety">Minor/Youth Safety</a></li>
-            <li><a href="#cg-low-quality">Low Quality Content</a></li>
-            <li><a href="#cg-gift-baiting">Gift Baiting and Fake Engagement</a></li>
-          </ol>
-
-          <p className="toc-part">Part IV — Hallie Platform Data Security & Privacy Policy</p>
+          <p className="toc-part">Part II — Hallie Platform Data Security & Privacy Policy</p>
           <ol>
             <li><a href="#hallie-about">About the Platform</a></li>
             <li><a href="#hallie-definitions">Definitions</a></li>
@@ -122,7 +104,7 @@ export default function PoliciesAndProcedures() {
             <li><a href="#hallie-contact">Contact & Requests</a></li>
           </ol>
 
-          <p className="toc-part">Part V — General Legal Terms</p>
+          <p className="toc-part">Part III — General Legal Terms</p>
           <ol>
             <li><a href="#general-acceptance">Acceptance of Terms</a></li>
             <li><a href="#general-use-of-site">Use of This Website</a></li>
@@ -323,144 +305,7 @@ export default function PoliciesAndProcedures() {
         </div>
 
         {/* ══════════════════════════════════════════ PART II ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part II — TikTok LIVE Streaming Requirements & Rules</h2>
-        <p className="disclaimer">Source: <a href="/streaming-basics"><span className="rainbow">/streaming-basics</span></a></p>
-
-        <div className="section" id="live-eligibility">
-          <h2>1. Eligibility & Account Requirements</h2>
-          <ul>
-            <li><strong>Going LIVE.</strong> You need to be 18+ and meet TikTok's account standing requirements to access the LIVE feature.</li>
-            <li><strong>Receiving payouts.</strong> Before your first payout, you need to submit your tax information and link a PayPal account to TikTok. The minimum payout is $1 USD. You must be 18 or older to receive earnings.</li>
-            <li><strong>Subscriptions.</strong> To unlock Subscriptions, you must be 18+, have at least 1,000 followers, and be active on LIVE in the past 28 days.</li>
-            <li><strong>LIVE Studio access.</strong> Non-gaming creators need 10,000 followers to access LIVE Studio. Gaming creators have a separate pathway.</li>
-            <li><strong>Valid LIVE day.</strong> For a session to count as a valid LIVE day toward your weekly mission, you must stream at least 25 minutes.</li>
-          </ul>
-        </div>
-
-        <div className="section" id="live-rules">
-          <h2>2. What You're Not Allowed to Do on LIVE</h2>
-          <p>Breaking TikTok's LIVE rules can pause your monetization or get your account banned. Here's what to avoid:</p>
-          <ul>
-            <li><strong>No aggressive gift begging.</strong> You can ask viewers to contribute to a gift goal or acknowledge gifts as they come in — what TikTok prohibits is constant, aggressive panhandling for gifts with no other content happening.</li>
-            <li><strong>No sending people off TikTok.</strong> Sharing your phone number, email, Instagram, Snapchat, or any outside link during a LIVE is prohibited.</li>
-            <li><strong>No pre-recorded or looping content.</strong> Your LIVE must be genuinely live. Playing recorded video while pretending to be live will get your account flagged.</li>
-            <li><strong>No inactive streams.</strong> Going live and sitting there with no engagement — or walking away from the camera — violates TikTok's content standards.</li>
-            <li><strong>No smoking, vaping, or drug use on stream.</strong></li>
-            <li><strong>No NSFW content.</strong> Nudity, sexually suggestive content, or anything inappropriate for a general audience is not allowed.</li>
-            <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any protected characteristic.</li>
-          </ul>
-          <p>Violations result in warnings first, then temporary bans from LIVE, then permanent removal for repeat or severe offenses.</p>
-        </div>
-
-        {/* ══════════════════════════════════════════ PART III ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part III — TikTok Community Guidelines</h2>
-        <p className="disclaimer">
-          Source: <a href="/tiktok-guidelines"><span className="rainbow">/tiktok-guidelines</span></a>. Know the rules before you go LIVE — violations can result
-          in content removal, account restrictions, or permanent bans. Common violations tend to fall within the following 6 main policies.
-        </p>
-
-        <div className="section" id="cg-hate-speech">
-          <h2>1. Hate Speech and Hateful Behavior</h2>
-          <p>We do not allow any hateful behavior, hate speech, or promotion of hateful ideologies. This includes content that attacks a person or group because of protected attributes.</p>
-          <p><strong>Best Practices</strong></p>
-          <ul>
-            <li>Be conscientious when speaking about but not limited to: ethnicity, race, religion, gender, sexual orientation and disability.</li>
-            <li>Be aware of the language being used by yourself and any co-hosts/guests on your LIVE.</li>
-            <li>Educate your moderators to help promote positivity and zero-tolerance policy against hate speech and hateful behaviors throughout your LIVE.</li>
-          </ul>
-        </div>
-
-        <div className="section" id="cg-harassment">
-          <h2>2. Harassment and Bullying</h2>
-          <p>We do not allow language or behavior that harasses, humiliates, or threatens anyone.</p>
-          <p><strong>Some examples of what is NOT allowed</strong></p>
-          <ul>
-            <li>Degrading someone or expressing disgust on the basis of their personal characteristics or circumstances.</li>
-            <li>Showing someone being physically bullied by another person or group.</li>
-            <li>Expressing a desire for a person to experience severe physical harm or degrading someone with profanity or obscene language.</li>
-            <li>Threatening or encouraging sharing account information, blackmail, or hacking someone's account.</li>
-            <li>Promoting coordinated harassment of a person or attempting to create conflict between people, such as calling for others to flood comments with abusive language.</li>
-          </ul>
-          <p><em>True/False:</em> "It is ok to sarcastically make fun of your friend during a LIVE." — <strong>False</strong></p>
-        </div>
-
-        <div className="section" id="cg-nudity">
-          <h2>3. Nudity, Body Exposure and Sexual Activity</h2>
-          <p>We do not allow nudity, including uncovered genitals and buttocks, as well as nipples and areolas of women and girls. Sheer and partially see-through clothing is not considered covered.</p>
-          <p><strong>Some examples of what is NOT allowed</strong></p>
-          <ul>
-            <li>Nudity of adults, including photography and digitally created images such as manga and anime.</li>
-            <li>Nudity of young people, including visual fine art, objects, photography, and digitally created images such as manga and anime.</li>
-            <li>Semi-nudity or significant body exposure of young people.</li>
-          </ul>
-          <p><strong>FYP Ineligible</strong></p>
-          <ul>
-            <li>Semi nudity or significant body exposure of adults.</li>
-            <li>Moderate body exposure of young people or showing of young people engaging in sexually suggestive behaviors.</li>
-          </ul>
-          <p><em>Single Choice:</em> "Which behavior is likely to be considered as sexually suggestive content?" A. Taking off shirts to show off abs per viewers' request &nbsp;B. Describing a sexual encounter in details &nbsp;C. Singing sexually explicit lyrics &nbsp;D. All of the above — <strong>Correct answer: D</strong></p>
-        </div>
-
-        <div className="section" id="cg-regulated-goods">
-          <h2>4. Regulated Goods and Commercial Activity</h2>
-          <p><strong>Some examples of what is NOT allowed</strong></p>
-          <ul>
-            <li><strong>Alcohol, Tobacco & Drugs:</strong> Showing or promoting both young people and adults possessing or consuming alcohol, tobacco products, drugs, or other regulated substances. Even for recreational purposes.</li>
-            <li><strong>Gambling:</strong> Facilitating gambling, marketing of gambling, or gambling-like activities, such as providing a link to a gambling service.</li>
-            <li><strong>Dangerous Weapons:</strong> Showing or promoting firearms or explosive weapons that are not used in a safe or appropriate setting.</li>
-          </ul>
-          <p><em>True/False:</em> "Going LIVE while drinking at a bar with friends is FYP eligible." — <strong>False</strong></p>
-        </div>
-
-        <div className="section" id="cg-self-harm">
-          <h2>5. Suicide, Self-Harm and Dangerous Activities</h2>
-          <p>We want TikTok to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. We do not allow showing, promoting, or sharing plans for suicide or self-harm.</p>
-          <p><strong>Some examples of what is NOT allowed</strong></p>
-          <ul>
-            <li>Showing, promoting, or providing instructions on suicide and self-harm, and related challenges, dares, games, and pacts.</li>
-            <li>Showing or promoting suicide and self-harm hoaxes.</li>
-            <li>Sharing plans for suicide and self-harm.</li>
-          </ul>
-          <p><em>Multiple Choice:</em> "Showing your audience how you are able to jump from one building to another is likely to not be FYP eligible because:" A. I will make too much money &nbsp;B. Everyone will try and copy me &nbsp;C. The self harm CG guidelines does not allow it &nbsp;D. All of the above — <strong>Correct answers: B and C</strong></p>
-        </div>
-
-        <div className="section" id="cg-minor-safety">
-          <h2>6. Minor/Youth Safety</h2>
-          <p>Youth safety is our priority. We do not allow content that may put young people at risk of exploitation, or psychological, physical, or developmental harm.</p>
-          <p><strong>Some examples of what is NOT allowed</strong></p>
-          <ul>
-            <li>Sexual exploitation of young people, including child sexual abuse material (CSAM), grooming, solicitation, and pedophilia.</li>
-            <li>Physical abuse, neglect, endangerment, and psychological abuse of young people.</li>
-            <li>Trafficking of young people, promotion or facilitation of underage marriage, and recruitment of child soldiers.</li>
-            <li>Revictimizing young people who have experienced abuse or exploitation, including through third party reshares.</li>
-          </ul>
-        </div>
-
-        <div className="section" id="cg-low-quality">
-          <h2>7. Low Quality Content</h2>
-          <p>Low quality content will likely not be eligible on the FYP. Low quality content includes but is not limited to manipulating others to increase engagement metrics, reproducing content from other platforms, LIVE recorded content, etc.</p>
-          <p><strong>Best Practices</strong></p>
-          <ul>
-            <li>Minimize low interaction content which can include silent content, going off the screen for a long time without pausing the LIVE or low engagement with audience.</li>
-            <li>Do not go LIVE with reproduced content, looped content, TV displays or other devices playing TV or movie content.</li>
-            <li>Minimize low visual or viewing quality such as dark or noisy backgrounds, random filmings and moving around/shaky filming.</li>
-            <li>Minimize excessive yelling, cursing, screaming or crying on screen.</li>
-          </ul>
-        </div>
-
-        <div className="section" id="cg-gift-baiting">
-          <h2>8. Gift Baiting and Fake Engagement is NOT Allowed</h2>
-          <ul>
-            <li>"Follow-for-follow" schemes.</li>
-            <li>Reverse psychology baiting.</li>
-            <li>Begging (e.g., exploiting hardships).</li>
-            <li>Low-interaction Gift baiting.</li>
-            <li>Matches that are based on external topics or agenda.</li>
-          </ul>
-        </div>
-
-        {/* ══════════════════════════════════════════ PART IV ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part IV — Hallie Platform Data Security & Privacy Policy</h2>
+        <h2 className="part-heading">Part II — Hallie Platform Data Security & Privacy Policy</h2>
         <p className="disclaimer">Source: <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">/legal/hallie-tiktok-moderation-system</span></a> — the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform, as required by TikTok's DSPR and USDS review processes. That page remains the canonical, authoritative copy.</p>
 
         <div className="section" id="hallie-about">
@@ -809,8 +654,8 @@ export default function PoliciesAndProcedures() {
           <p>We will respond to all privacy and security inquiries within 30 days. Critical security incidents will receive an acknowledgment within 48 hours.</p>
         </div>
 
-        {/* ══════════════════════════════════════════ PART V ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part V — General Legal Terms</h2>
+        {/* ══════════════════════════════════════════ PART III ══════════════════════════════════════════ */}
+        <h2 className="part-heading">Part III — General Legal Terms</h2>
         <p className="disclaimer">Source: <a href="/legal/general"><span className="rainbow">/legal/general</span></a></p>
 
         <div className="section" id="general-acceptance">
