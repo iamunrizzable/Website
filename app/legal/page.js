@@ -49,6 +49,13 @@ export default function Legal() {
         </div>
 
         <div className="grid">
+          <a href="/legal/general" className="card section">
+            <span className="card-icon">📄</span>
+            <span className="card-title">General Legal Terms</span>
+            <span className="card-desc">General terms of use, intellectual property, liability, and contact information applicable to tjbmanagementinc.com as a whole.</span>
+            <span className="card-link">VIEW TERMS →</span>
+          </a>
+
           <a href="/legal/agency" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">Agency Guidelines</span>
