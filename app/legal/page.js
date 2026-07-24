@@ -69,6 +69,13 @@ export default function Legal() {
             <span className="card-desc">Full data security, privacy, and compliance documentation for the Hallie TikTok Account Automation Platform, including USDS and DSPR requirements.</span>
             <span className="card-link">VIEW POLICY →</span>
           </a>
+
+          <a href="/legal/policies-and-procedures" className="card section">
+            <span className="card-icon">📋</span>
+            <span className="card-title">Policies & Procedures</span>
+            <span className="card-desc">A single consolidated reference for every policy and procedure published across this website — agency terms, LIVE streaming rules, TikTok Community Guidelines, the Hallie data security policy, and general legal terms.</span>
+            <span className="card-link">VIEW ALL POLICIES →</span>
+          </a>
         </div>
 
         <footer>
