@@ -16,6 +16,7 @@ The two panels are the same product for two audiences. A change shipped to only 
 | Comment feed + actions | `CommentsPanel` → `/api/business/comments` | `CommentsPanel` → `/api/system/comments` |
 | Comment sync | `SyncPanel` → POST `/api/admin/sync-comments` | `SyncPanel` → POST `/api/system/sync` |
 | Keyword rules | `AutomatedRulesPanel` → `/api/business/rules` | `AutomatedRulesPanel` → `/api/system/rules` |
+| Category filters | `CommentFiltersPanel` → `/api/business/category-filters` | `CommentFiltersPanel` → `/api/system/category-filters` |
 | Test scorer | `TestPanel` → `/api/moderate` | `TestPanel` → `/api/moderate` (shared) |
 | Token export | `ExportTokenPanel` → `/api/admin/export-token` | — admin-only, no mirror needed |
 | Connection status | `ConnectionCard` → `/api/admin/status` | connected gate → `/api/system/status` |

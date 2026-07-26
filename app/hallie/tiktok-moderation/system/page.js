@@ -89,6 +89,7 @@ export default function SystemPage() {
               <CommentsPanel />
               <SyncPanel />
               <AutomatedRulesPanel />
+              <CommentFiltersPanel />
               <MentionsPanel />
               <TrendingPanel />
               <TestPanel />
@@ -544,6 +545,85 @@ function AutomatedRulesPanel() {
             <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
           </div>
         ))
+      )}
+    </div>
+  );
+}
+
+// ── Comment Filters (which built-in scorer categories to apply) ──────────────
+
+function CommentFiltersPanel() {
+  const [data, setData] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+    fetch('/api/system/category-filters')
+      .then(r => r.json())
+      .then(d => { setData(d); setSelected(new Set(d.enabled ?? [])); })
+      .catch(() => {});
+  }, []);
+
+  function toggle(key) {
+    setSelected(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  }
+
+  async function save() {
+    setSaving(true); setMsg('');
+    try {
+      const res = await fetch('/api/system/category-filters', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled: Array.from(selected) }),
+      });
+      const d = await res.json();
+      if (!d.ok) setMsg('Error: ' + (d.error ?? JSON.stringify(d)));
+      else { setMsg('Filters saved.'); setSelected(new Set(d.enabled)); }
+    } catch (err) { setMsg('Error: ' + err.message); }
+    finally { setSaving(false); }
+  }
+
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>Comment Filters</h2>
+      {!data || !selected ? (
+        <p style={{ fontSize: 13, color: '#475569' }}>Loading filters…</p>
+      ) : (
+        <>
+          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+            Choose which kinds of comments get automatically hidden during Comment Sync. Unchecked categories are left alone even if they'd otherwise score high enough to hide.
+          </p>
+          {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderBottom: '1px solid #334155', marginBottom: 8, opacity: 0.7 }}>
+            <input type="checkbox" checked disabled style={{ marginTop: 3 }} />
+            <div>
+              <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>Potential Minor Detection <span style={{ fontSize: 11, color: '#f59e0b', fontWeight: 400 }}>— Always On</span></div>
+              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
+            </div>
+          </div>
+          {data.categories.map(cat => (
+            <label key={cat.key} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderBottom: '1px solid #334155', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={selected.has(cat.key)}
+                onChange={() => toggle(cat.key)}
+                style={{ marginTop: 3 }}
+              />
+              <div>
+                <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{cat.label}</div>
+                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{cat.description}</div>
+              </div>
+            </label>
+          ))}
+          <button style={{ ...s.btn, marginTop: 16, opacity: saving ? 0.6 : 1 }} onClick={save} disabled={saving}>
+            {saving ? 'Saving…' : 'Save Filters'}
+          </button>
+        </>
       )}
     </div>
   );
