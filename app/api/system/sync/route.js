@@ -16,11 +16,18 @@ function getCustomRules(cookieStore) {
   try { return JSON.parse(raw); } catch { return []; }
 }
 
+function getCategoryFilters(cookieStore) {
+  const raw = cookieStore.get('category_filters')?.value;
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
 export async function POST(request) {
   const cookieStore = await cookies();
   const token = getToken(cookieStore);
   if (!token) return NextResponse.json({ error: 'Not connected' }, { status: 401 });
   const customRules = getCustomRules(cookieStore);
+  const categoryFilters = getCategoryFilters(cookieStore);
 
   const body = await request.json().catch(() => ({}));
   const maxVideos = body.maxVideos && Number.isInteger(body.maxVideos) && body.maxVideos > 0 ? body.maxVideos : null;
@@ -62,7 +69,7 @@ export async function POST(request) {
       const comments = json.data?.comments ?? [];
 
       for (const comment of comments) {
-        const { score, action } = scoreContent(comment.text ?? '', customRules);
+        const { score, action } = scoreContent(comment.text ?? '', customRules, categoryFilters);
         synced++;
         let wasHidden = false;
         if (action === 'hide' && comment.status !== 'HIDDEN') {
