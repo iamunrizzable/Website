@@ -25,6 +25,7 @@ export default function Contact() {
     { name: 'Rock Playlist', href: 'https://music.apple.com/us/playlist/rock/pl.u-r2yB16YFRG6W3ly', icon: '🎵' },
     { name: 'Pop Playlist', href: 'https://music.apple.com/us/playlist/pop/pl.u-r2yB1a4TRG6W3ly', icon: '🎵' },
     { name: 'Country Playlist', href: 'https://music.apple.com/us/playlist/country/pl.u-qxylEYlt35ZbepN', icon: '🎵' },
+    { name: 'Social Battery Recharge Playlist', href: 'https://music.apple.com/us/playlist/social-battery-recharge/pl.u-MDAWv8qTAK57EBN', icon: '🎵' },
   ];
 
   const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY', 'Order TJB MERCH'];
