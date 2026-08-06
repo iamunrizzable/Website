@@ -6,9 +6,7 @@ import {
   listOptimizerRuleResults,
 } from '@/lib/tiktok/business-api';
 
-function requireAdmin(request) {
-  return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 export async function GET(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { timingSafeEqual } from './lib/auth.js';
 
 // CSP is built per-request so script-src can carry a fresh nonce instead of
 // 'unsafe-inline'. Next.js reads the Content-Security-Policy request header
@@ -59,7 +60,7 @@ export function middleware(request) {
   // Protect /admin/* and /api/admin/me with session cookie
   if (pathname.startsWith('/admin') || pathname === '/api/admin/me') {
     const session = request.cookies.get('admin_session')?.value;
-    if (session !== process.env.ADMIN_SECRET) {
+    if (!session || !process.env.ADMIN_SECRET || !timingSafeEqual(session, process.env.ADMIN_SECRET)) {
       if (pathname.startsWith('/api/')) {
         return withCsp(new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
           status: 401,

@@ -3,11 +3,17 @@ import { scoreContent, shouldAlert } from '@/lib/moderation/scorer';
 import { suggestReply } from '@/lib/moderation/replies';
 import { sendModerationAlert } from '@/lib/email/alerts';
 import { pushEvent } from '@/lib/tokens';
+import { isValidAdminKey } from '@/lib/auth';
 
 // POST /api/moderate
 // Body: { text, type?, author?, video_id?, send_alert? }
-// No admin key required — can be called from internal services.
-// Protect by only calling from trusted server-side code or add ADMIN_SECRET check if exposed publicly.
+// Scoring itself is intentionally unauthenticated — both TestPanels (admin
+// and system) call this to preview how a comment would score, and always
+// pass send_alert:false. The alert-sending side effect is a different story:
+// it's a real email to Tyler built from these same request fields, so
+// send_alert is only honored when the caller also supplies a valid
+// x-admin-key — otherwise anyone could spam his inbox at will with
+// arbitrary attacker-chosen text/author/video_id.
 export async function POST(request) {
   let body;
   try {
@@ -28,7 +34,7 @@ export async function POST(request) {
   const event = { type, author, video_id, text, score, flags, action, suggested_reply: suggestedReply };
   await pushEvent(event);
 
-  if (send_alert && shouldAlert(score)) {
+  if (send_alert && isValidAdminKey(request) && shouldAlert(score)) {
     await sendModerationAlert({
       type,
       content: text,

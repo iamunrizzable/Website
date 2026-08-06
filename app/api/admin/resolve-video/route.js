@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
-
-function requireAdmin(request) {
-  return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey } from '@/lib/auth';
 
 // Extract the [A-Za-z0-9] share code from a TikTok short link. Returns null
 // for anything that isn't a recognized tiktok.com short-link shape.
@@ -27,7 +24,7 @@ function shareCode(raw) {
 }
 
 export async function GET(request) {
-  if (!requireAdmin(request)) {
+  if (!isValidAdminKey(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

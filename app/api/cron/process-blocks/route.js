@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getBlockQueue, removeFromBlockQueue } from '@/lib/tokens';
 import { blockTikTokUser } from '@/lib/tiktok/browser';
+import { isValidCronSecret } from '@/lib/auth';
 
 export const maxDuration = 60;
 
-function verifyCron(request) {
-  return request.headers.get('authorization') === `Bearer ${process.env.CRON_SECRET}`;
-}
-
 // GET /api/cron/process-blocks — runs hourly, blocks queued users via browser automation
 export async function GET(request) {
-  if (!verifyCron(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isValidCronSecret(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const queue = await getBlockQueue();
   if (!queue.length) return NextResponse.json({ processed: 0, results: [] });

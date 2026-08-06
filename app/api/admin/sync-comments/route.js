@@ -1,14 +1,9 @@
 import { NextResponse } from 'next/server';
 import { syncComments } from '@/lib/sync';
-
-function requireAdmin(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  return adminKey === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function POST(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   let maxVideos = null;
   try {
     const body = await request.json().catch(() => ({}));

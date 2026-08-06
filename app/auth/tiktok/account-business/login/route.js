@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server';
 import { getBusinessAuthUrl } from '@/lib/tiktok/business-oauth';
 import { generateState } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  if (adminKey !== process.env.ADMIN_SECRET) {
+  if (!isValidAdminKey(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
