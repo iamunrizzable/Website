@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getProfileSignals } from '@/lib/tiktok/browser';
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  if (adminKey !== process.env.ADMIN_SECRET) {
+  if (!isValidAdminKey(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const { searchParams } = new URL(request.url);
   const username = searchParams.get('username');
   if (!username) return NextResponse.json({ error: 'Missing username' }, { status: 400 });
 

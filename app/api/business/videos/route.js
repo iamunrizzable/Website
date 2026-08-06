@@ -1,11 +1,6 @@
 import { NextResponse } from 'next/server';
 import { listVideos } from '@/lib/tiktok/business-api';
-
-function requireAdmin(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  return adminKey === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 export async function GET(request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

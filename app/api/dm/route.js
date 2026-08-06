@@ -1,8 +1,17 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { isValidAdminKey } from '@/lib/auth';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Gated: this calls a metered third-party API and splices `context` directly
+// into the system prompt, so an unauthenticated caller could both run up the
+// Anthropic bill at will and inject arbitrary system-prompt content. Nothing
+// in this codebase currently calls this route — when a real TikTok DM
+// webhook integration is wired up, give it the same x-admin-key.
 export async function POST(req) {
+  if (!isValidAdminKey(req)) {
+    return Response.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const { message, context } = await req.json();
     if (!message?.trim()) {

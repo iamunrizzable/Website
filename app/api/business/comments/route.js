@@ -1,12 +1,9 @@
 import { NextResponse } from 'next/server';
 import { listComments, hideComment, replyToComment, deleteComment, pinComment } from '@/lib/tiktok/business-api';
-
-function requireAdmin(request) {
-  return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { searchParams } = new URL(request.url);
   const videoId = searchParams.get('video_id');
   if (!videoId) return NextResponse.json({ error: 'Missing video_id' }, { status: 400 });
@@ -18,7 +15,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
   try {
     if (body.action === 'hide') return NextResponse.json(await hideComment({ commentId: body.comment_id, isHidden: true, videoId: body.video_id }));

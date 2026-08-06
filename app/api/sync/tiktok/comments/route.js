@@ -1,12 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getVideoList } from '@/lib/tiktok/api';
-
-function requireAdmin(request) {
-  return request.headers.get('x-admin-key') === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function POST(request) {
-  if (!requireAdmin(request)) {
+  if (!isValidAdminKey(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

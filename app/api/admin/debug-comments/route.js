@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getTikTokAccountToken } from '@/lib/tokens';
+import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  if (adminKey !== process.env.ADMIN_SECRET) {
+  if (!isValidAdminKey(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const { searchParams } = new URL(request.url);
   const videoId = searchParams.get('video_id');
   if (!videoId) return NextResponse.json({ error: 'Missing video_id' }, { status: 400 });
 

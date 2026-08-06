@@ -1,12 +1,7 @@
 import { NextResponse } from 'next/server';
 import { TOGGLEABLE_CATEGORIES, CATEGORY_META } from '@/lib/moderation/scorer';
 import { getCategoryFilters, storeCategoryFilters } from '@/lib/tokens';
-
-function requireAdmin(request) {
-  const { searchParams } = new URL(request.url);
-  const adminKey = request.headers.get('x-admin-key') ?? searchParams.get('key');
-  return adminKey === process.env.ADMIN_SECRET;
-}
+import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 function categoryList() {
   return TOGGLEABLE_CATEGORIES.map((key) => ({ key, ...CATEGORY_META[key] }));

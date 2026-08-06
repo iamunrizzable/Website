@@ -1,15 +1,11 @@
 import { NextResponse } from 'next/server';
 import { syncComments } from '@/lib/sync';
-
-function verifyCron(request) {
-  const auth = request.headers.get('authorization');
-  return auth === `Bearer ${process.env.CRON_SECRET}`;
-}
+import { isValidCronSecret } from '@/lib/auth';
 
 // GET /api/cron/sync-comments
 // Called by Vercel Cron every 15 minutes. Auto-hides comments scoring ≥ 50.
 export async function GET(request) {
-  if (!verifyCron(request)) {
+  if (!isValidCronSecret(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
