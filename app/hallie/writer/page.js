@@ -12,16 +12,31 @@ const s = {
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 16 },
   btnSm: { background: '#334155', color: '#e2e8f0', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
+  segWrap: { display: 'inline-flex', background: '#0f172a', border: '1px solid #475569', borderRadius: 8, overflow: 'hidden' },
+  seg: { background: 'none', border: 'none', color: '#94a3b8', padding: '8px 18px', cursor: 'pointer', fontSize: 13, fontWeight: 600 },
+  segActive: { background: '#a855f7', color: '#fff' },
 };
 
-export default function SnapchatModerationSystem() {
+export default function HallieWriter() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [channel, setChannel] = useState('dm');
+  const [mode, setMode] = useState('reply');
   const [message, setMessage] = useState('');
   const [context, setContext] = useState('');
   const [draft, setDraft] = useState('');
+  const [hasVoice, setHasVoice] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+
+  const inputLabel = mode === 'reply'
+    ? `${channel === 'email' ? 'Email' : 'DM'} you received`
+    : 'What do you want to say, and to who?';
+  const inputPlaceholder = mode === 'reply'
+    ? `Paste the ${channel === 'email' ? 'email' : 'message'} here…`
+    : channel === 'email'
+      ? 'e.g. email a brand back saying I’m interested but need details on budget and timeline'
+      : 'e.g. tell this creator their audit is done and ask when they can hop on a call';
 
   async function handleDraft(e) {
     e.preventDefault();
@@ -30,10 +45,10 @@ export default function SnapchatModerationSystem() {
     setError('');
     setCopied(false);
     try {
-      const res = await fetch('/api/hallie/snapchat/draft', {
+      const res = await fetch('/api/hallie/draft', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, context }),
+        body: JSON.stringify({ message, context, channel, mode }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -41,6 +56,7 @@ export default function SnapchatModerationSystem() {
         setDraft('');
       } else {
         setDraft(data.reply);
+        setHasVoice(data.hasVoice);
       }
     } catch (err) {
       setError(err.message);
@@ -78,31 +94,41 @@ export default function SnapchatModerationSystem() {
       <div style={s.page}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
-            Hallie — Snapchat Reply Drafts
+            Hallie — Writer
           </h1>
           <p style={{ color: '#64748b', fontSize: 13, marginBottom: 24 }}>
-            Paste a Snapchat message below and Hallie will draft a suggested reply in your voice. Nothing is sent
-            automatically — copy the draft and send it yourself in Snapchat.
+            Drafts emails and DMs in your voice. Nothing is sent automatically — copy the draft and send it yourself.
           </p>
 
           <div style={s.card}>
             <form onSubmit={handleDraft}>
-              <label style={s.label}>Message you received</label>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <div style={s.segWrap}>
+                  <button type="button" style={{ ...s.seg, ...(channel === 'dm' ? s.segActive : {}) }} onClick={() => setChannel('dm')}>DM</button>
+                  <button type="button" style={{ ...s.seg, ...(channel === 'email' ? s.segActive : {}) }} onClick={() => setChannel('email')}>Email</button>
+                </div>
+                <div style={s.segWrap}>
+                  <button type="button" style={{ ...s.seg, ...(mode === 'reply' ? s.segActive : {}) }} onClick={() => setMode('reply')}>Reply</button>
+                  <button type="button" style={{ ...s.seg, ...(mode === 'compose' ? s.segActive : {}) }} onClick={() => setMode('compose')}>Write New</button>
+                </div>
+              </div>
+
+              <label style={s.label}>{inputLabel}</label>
               <textarea
                 style={s.textarea}
                 value={message}
                 onChange={e => setMessage(e.target.value)}
-                placeholder="Paste the Snapchat message here…"
+                placeholder={inputPlaceholder}
               />
               <label style={s.label}>Extra context (optional)</label>
               <input
                 style={s.input}
                 value={context}
                 onChange={e => setContext(e.target.value)}
-                placeholder="e.g. this is a fan asking about joining the agency"
+                placeholder="e.g. this is a creator already signed with the agency"
               />
               <button type="submit" style={{ ...s.btn, opacity: loading || !message.trim() ? 0.6 : 1 }} disabled={loading || !message.trim()}>
-                {loading ? 'Drafting…' : 'Draft Reply'}
+                {loading ? 'Drafting…' : 'Draft It'}
               </button>
             </form>
 
@@ -112,7 +138,12 @@ export default function SnapchatModerationSystem() {
 
             {draft && (
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #334155' }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>Suggested reply</p>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>Draft</p>
+                {!hasVoice && (
+                  <p style={{ color: '#eab308', fontSize: 12, marginBottom: 8 }}>
+                    No voice samples are set up yet, so this draft is in a generic tone — Tyler&apos;s samples get added in lib/hallie-voice.js.
+                  </p>
+                )}
                 <p style={{ color: '#e2e8f0', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
                   {draft}
                 </p>

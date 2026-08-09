@@ -57,18 +57,19 @@ export function middleware(request) {
     return withCsp(NextResponse.next({ request: { headers: requestHeaders } }));
   }
 
-  // Protect /admin/*, /api/admin/me, and the Snapchat draft-assist page
+  // Protect /admin/*, /api/admin/me, and the Hallie writer page
   // (Tyler-only, not a mirrored multi-operator surface like the TikTok
-  // system) with the same admin session cookie. Its API route is
-  // deliberately NOT listed here — like every /api/admin/* and
-  // /api/business/* route except /api/admin/me, it does its own auth check
-  // (cookie OR x-admin-key) rather than being middleware-gated, so both
-  // credential types actually work instead of the cookie-only check here
-  // shadowing the route's own x-admin-key fallback.
+  // system) with the same admin session cookie. Its API route
+  // (/api/hallie/draft) is deliberately NOT listed here — like every
+  // /api/admin/* and /api/business/* route except /api/admin/me, it does
+  // its own auth check (cookie OR x-admin-key) rather than being
+  // middleware-gated, so both credential types actually work instead of
+  // the cookie-only check here shadowing the route's own x-admin-key
+  // fallback.
   if (
     pathname.startsWith('/admin') ||
     pathname === '/api/admin/me' ||
-    pathname.startsWith('/hallie/snapchat/moderation-system')
+    pathname.startsWith('/hallie/writer')
   ) {
     const session = request.cookies.get('admin_session')?.value;
     if (!session || !process.env.ADMIN_SECRET || !timingSafeEqual(session, process.env.ADMIN_SECRET)) {
