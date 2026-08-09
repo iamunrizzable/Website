@@ -193,7 +193,7 @@ export default function HallieWriter() {
                 style={{ background: 'none', border: 'none', color: '#d4a5ff', cursor: 'pointer', fontSize: 15, fontWeight: 600, padding: 0, display: 'flex', alignItems: 'center', gap: 8 }}
               >
                 <span style={{ fontSize: 12 }}>{voiceOpen ? '▼' : '▶'}</span>
-                Your Voice {voiceExamples.trim() ? `(${voiceExamples.split('\n').filter(l => l.trim()).length} samples saved)` : '(not set up — drafts will sound generic)'}
+                Your Voice {voiceExamples.trim() ? `(${voiceExamples.split('\n').filter(l => l.trim()).length} extra samples saved)` : '(baseline only — add your own for more range)'}
               </button>
               {voiceOpen && (
                 <div style={{ marginTop: 12 }}>
