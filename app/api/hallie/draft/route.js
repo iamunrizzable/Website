@@ -116,7 +116,11 @@ ${contextLine}`;
 }
 
 function buildTylerPrompt({ taskLine, channel, mode, contextLine, voiceExamples }) {
-  const voice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 8000) : '';
+  // 40K chars (~10K tokens) — comfortably fits a full imported Sent
+  // folder (30 messages, each context-labeled) without silently
+  // truncating most of it. Groq's Llama 3.3 70B has a 128K-token
+  // context window, so this is nowhere near the model's real ceiling.
+  const voice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 40000) : '';
   const numberedVoice = voice
     ? voice.split('\n').map(l => l.trim()).filter(Boolean).map((line, i) => `[${i + 1}] ${line}`).join('\n')
     : '';
