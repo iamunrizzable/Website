@@ -52,6 +52,11 @@ export default function HallieWriter() {
     setTimeout(() => setVoiceSaved(false), 2000);
   }
 
+  function handleVoiceClear() {
+    setVoiceExamples('');
+    localStorage.removeItem(VOICE_KEY);
+  }
+
   // Every imported message is kept, tagged with who it went to and what
   // it was about (see buildContextLabel server-side) — no filtering, no
   // review gate. Tyler wants the model to have full context on how he
@@ -212,9 +217,12 @@ export default function HallieWriter() {
                     onChange={e => setVoiceExamples(e.target.value)}
                     placeholder={'yo what’s good bro\nlmk when you tryna go live, i can get you set up fr\nnah we don’t do that here 😂'}
                   />
-                  <button onClick={handleVoiceSave} style={{ ...s.btnSm, marginTop: 8 }}>
-                    {voiceSaved ? 'Saved!' : 'Save Voice'}
-                  </button>
+                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                    <button onClick={handleVoiceSave} style={s.btnSm}>
+                      {voiceSaved ? 'Saved!' : 'Save Voice'}
+                    </button>
+                    <button onClick={handleVoiceClear} style={s.btnSm}>Clear All</button>
+                  </div>
                 </div>
               )}
             </div>
