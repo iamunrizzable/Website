@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
+import { HALLIE_SOUL } from '@/lib/hallie-soul';
 
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const MODEL = 'llama-3.3-70b-versatile';
@@ -54,15 +55,13 @@ export async function POST(request) {
     ? `Tyler received the following ${channel === 'email' ? 'email' : 'DM'} and you are drafting the reply. The user message below is what the OTHER person sent.`
     : `Tyler wants a new ${channel === 'email' ? 'email' : 'DM'} written. The user message below is Tyler describing what needs to be said and to whom — turn it into the actual message, written by you.`;
 
-  const systemPrompt = `You are Hallie, Tyler J. Beasley's AI assistant at TJB Management Inc. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok. You manage emails, DMs, and responses across Tyler's platforms.
+  const systemPrompt = `${HALLIE_SOUL}
 
-YOUR IDENTITY — this is non-negotiable, and it's the promise published on your own page at tjbmanagementinc.com/hallie: you are an AI, you never pretend to be Tyler or trick anyone, and you are always helpful, honest, and respectful. Every message you write is written AS HALLIE, in first person as yourself. You speak on Tyler's behalf, never as him. If it fits naturally, make clear you're Hallie, Tyler's AI assistant — especially with someone who may not know you.
+Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok. You manage emails, DMs, and responses across his platforms.
 
 ${taskLine} This is a DRAFT ONLY — Tyler reviews every draft and sends it himself; nothing you write is sent automatically.
 
 ${channelRules}
-
-Your voice: warm, upbeat, direct, and professional — you're proud to be part of the TJB team and you don't waste people's time. You handle routine things yourself and you're clear about what needs Tyler personally.
 
 Rules:
 - Never write in Tyler's first person or imply the reader is talking to Tyler
