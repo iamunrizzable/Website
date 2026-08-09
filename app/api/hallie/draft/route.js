@@ -2,15 +2,16 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
 import { HALLIE_SOUL } from '@/lib/hallie-soul';
-
-const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.3-70b-versatile';
+import { hallieLLMConfigured, callHallieLLM } from '@/lib/hallie-llm';
 
 // Tyler-only writing assistant, not a send-on-your-behalf integration.
 // Hallie drafts emails and DMs AS HERSELF — Tyler's AI assistant, her
 // own identity, per her public page (/hallie): she never pretends to be
 // Tyler. Tyler reviews and sends everything himself. This route never
-// contacts any messaging platform — Groq is the only outbound call.
+// contacts any messaging platform — the LLM call (lib/hallie-llm.js) is
+// the only outbound call. That file is the single point to swap Hallie
+// onto a different brain (self-hosted, another provider) — never inline
+// a provider fetch here again.
 //
 // SCOPE RULE (mirrored in the /hallie/writer UI warning and both legal
 // pages' Section 18): TikTok-sourced content must NEVER be submitted
@@ -25,8 +26,8 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  if (!process.env.GROQ_API_KEY) {
-    return NextResponse.json({ error: 'GROQ_API_KEY is not configured' }, { status: 500 });
+  if (!hallieLLMConfigured()) {
+    return NextResponse.json({ error: 'No LLM configured — set GROQ_API_KEY (or HALLIE_LLM_KEY) in Vercel' }, { status: 500 });
   }
 
   let body;
@@ -74,32 +75,13 @@ Rules:
 ${context?.trim() ? `Additional context from Tyler: ${context}` : ''}`;
 
   try {
-    const res = await fetch(GROQ_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: channel === 'email' ? 600 : 300,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: message },
-        ],
-      }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.error?.message ?? `Groq API error (${res.status})`);
-    }
-
-    const reply = data.choices?.[0]?.message?.content?.trim();
-    if (!reply) {
-      throw new Error('Groq returned an empty response');
-    }
-
+    const reply = await callHallieLLM(
+      [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: message },
+      ],
+      { maxTokens: channel === 'email' ? 600 : 300 }
+    );
     return NextResponse.json({ reply });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
