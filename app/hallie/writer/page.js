@@ -2,7 +2,9 @@
 
 import './page.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const VOICE_KEY = 'tyler_writer_voice_examples';
 
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
@@ -19,6 +21,7 @@ const s = {
 
 export default function HallieWriter() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [persona, setPersona] = useState('hallie');
   const [channel, setChannel] = useState('dm');
   const [mode, setMode] = useState('reply');
   const [message, setMessage] = useState('');
@@ -27,6 +30,25 @@ export default function HallieWriter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+
+  const [voiceExamples, setVoiceExamples] = useState('');
+  const [voiceOpen, setVoiceOpen] = useState(false);
+  const [voiceSaved, setVoiceSaved] = useState(false);
+
+  // Tyler's voice samples live in this browser's localStorage — this app
+  // has no server-side storage, and they only ever need to exist on
+  // Tyler's own devices. Hallie's persona never reads this; it's Tyler-
+  // persona-only, on purpose (she keeps her own identity).
+  useEffect(() => {
+    const stored = localStorage.getItem(VOICE_KEY);
+    if (stored) setVoiceExamples(stored);
+  }, []);
+
+  function handleVoiceSave() {
+    localStorage.setItem(VOICE_KEY, voiceExamples);
+    setVoiceSaved(true);
+    setTimeout(() => setVoiceSaved(false), 2000);
+  }
 
   const inputLabel = mode === 'reply'
     ? `${channel === 'email' ? 'Email' : 'DM'} you received`
@@ -47,7 +69,14 @@ export default function HallieWriter() {
       const res = await fetch('/api/hallie/draft', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, context, channel, mode }),
+        body: JSON.stringify({
+          message,
+          context,
+          channel,
+          mode,
+          persona,
+          voiceExamples: persona === 'tyler' ? voiceExamples : undefined,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -92,17 +121,56 @@ export default function HallieWriter() {
       <div style={s.page}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
-            Hallie — Writer
+            Writer
           </h1>
           <p style={{ color: '#64748b', fontSize: 13, marginBottom: 12 }}>
-            Hallie drafts emails and DMs as herself — your AI assistant, speaking on your behalf, never pretending
-            to be you. Nothing is sent automatically — copy the draft and send it yourself.
+            Two voices to draft in: <strong>Hallie</strong> writes as herself — your AI assistant, speaking on your
+            behalf, never pretending to be you. <strong>Tyler</strong> writes as you, first person, in your own voice.
+            Nothing is sent automatically — copy the draft and send it yourself.
           </p>
           <p style={{ color: '#eab308', fontSize: 12, lineHeight: 1.5, marginBottom: 24, background: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: 8, padding: '10px 14px' }}>
             ⚠️ Never paste TikTok DMs, comments, or anything pulled from the Hallie TikTok Platform in here.
-            Drafts are processed by Groq (a third-party AI service), and the Platform&apos;s privacy policy guarantees
+            Drafts are processed by a third-party AI service, and the Platform&apos;s privacy policy guarantees
             TikTok data never goes to third-party AI. Emails, Snapchat, IG, and everything else are fine.
           </p>
+
+          <div style={s.card}>
+            <label style={{ ...s.label, marginTop: 0 }}>Who&apos;s writing?</label>
+            <div style={s.segWrap}>
+              <button type="button" style={{ ...s.seg, ...(persona === 'hallie' ? s.segActive : {}) }} onClick={() => setPersona('hallie')}>Hallie</button>
+              <button type="button" style={{ ...s.seg, ...(persona === 'tyler' ? s.segActive : {}) }} onClick={() => setPersona('tyler')}>Tyler</button>
+            </div>
+          </div>
+
+          {persona === 'tyler' && (
+            <div style={s.card}>
+              <button
+                onClick={() => setVoiceOpen(!voiceOpen)}
+                style={{ background: 'none', border: 'none', color: '#d4a5ff', cursor: 'pointer', fontSize: 15, fontWeight: 600, padding: 0, display: 'flex', alignItems: 'center', gap: 8 }}
+              >
+                <span style={{ fontSize: 12 }}>{voiceOpen ? '▼' : '▶'}</span>
+                Your Voice {voiceExamples.trim() ? `(${voiceExamples.split('\n').filter(l => l.trim()).length} samples saved)` : '(not set up — drafts will sound generic)'}
+              </button>
+              {voiceOpen && (
+                <div style={{ marginTop: 12 }}>
+                  <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>
+                    Paste real messages you&apos;ve sent — one per line, the more the better (10-20 is a good start).
+                    The Tyler persona studies these and copies how you actually type: slang, punctuation, emoji, all
+                    of it. Saved only in this browser, so set it up once per device.
+                  </p>
+                  <textarea
+                    style={{ ...s.textarea, minHeight: 160 }}
+                    value={voiceExamples}
+                    onChange={e => setVoiceExamples(e.target.value)}
+                    placeholder={'yo what’s good bro\nlmk when you tryna go live, i can get you set up fr\nnah we don’t do that here 😂'}
+                  />
+                  <button onClick={handleVoiceSave} style={{ ...s.btnSm, marginTop: 8 }}>
+                    {voiceSaved ? 'Saved!' : 'Save Voice'}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           <div style={s.card}>
             <form onSubmit={handleDraft}>
@@ -142,7 +210,9 @@ export default function HallieWriter() {
 
             {draft && (
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #334155' }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>Hallie&apos;s draft</p>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>
+                  {persona === 'hallie' ? "Hallie's draft" : "Draft (as you)"}
+                </p>
                 <p style={{ color: '#e2e8f0', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
                   {draft}
                 </p>
