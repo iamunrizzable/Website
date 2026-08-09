@@ -8,15 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.110.0",
+    "@anthropic-ai/sdk": "^0.115.0",
     "@sparticuz/chromium": "^149.0.0",
-    "@upstash/redis": "^1.38.0",
+    "@upstash/redis": "^1.38.2",
     "imapflow": "^1.6.6",
-    "next": "^16.2.12",
-    "nodemailer": "^9.0.3",
-    "puppeteer-core": "^25.3.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "next": "^16.3.0",
+    "nodemailer": "^9.0.4",
+    "puppeteer-core": "^25.5.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "zod": "4.4.3"
   },
   "overrides": {
