@@ -12,6 +12,7 @@
     "@sparticuz/chromium": "^149.0.0",
     "@upstash/redis": "^1.38.0",
     "imapflow": "^1.6.6",
+    "mailparser": "^3.9.15",
     "next": "^16.2.12",
     "nodemailer": "^9.0.3",
     "puppeteer-core": "^25.3.0",

@@ -68,7 +68,7 @@ export async function POST(request) {
         { role: 'system', content: systemPrompt },
         { role: 'user', content: message },
       ],
-      { maxTokens: channel === 'email' ? 600 : 300 }
+      { maxTokens: channel === 'email' ? 700 : 400 }
     );
     return NextResponse.json({ reply, persona: resolvedPersona });
   } catch (err) {
@@ -76,12 +76,27 @@ export async function POST(request) {
   }
 }
 
+// Abstract personality descriptions (HALLIE_SOUL) don't reliably shift
+// surface-level writing style on their own — models follow concrete,
+// actionable rules far better than they infer style from trait
+// descriptions. This translates her existing described personality
+// into specific mechanics without inventing anything new about her.
+const HALLIE_STYLE_GUIDE = `Concrete writing mechanics for this draft, not just vibes:
+- Never open with "I hope this email finds you well," "Great question!," "I'd be happy to help," or any other stock filler. Start with the actual point.
+- Never use corporate-speak: "circling back," "per my last message," "just following up," "touching base," "reaching out to." Say the plain version instead.
+- Short sentences over long ones. Break up anything that would take two breaths to say out loud.
+- Contractions are normal (I'm, that's, don't) — this isn't formal correspondence.
+- No hedging padding ("I just wanted to," "I was wondering if maybe"). State things directly.
+- It's fine to have a take, a preference, or a bit of dry humor if it fits naturally — don't flatten every sentence into neutral customer-service tone.`;
+
 function buildHalliePrompt({ taskLine, channel, mode, contextLine }) {
   const channelRules = channel === 'email'
     ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Keep it tight — a few short paragraphs at most. Sign off as Hallie (e.g. "— Hallie, Tyler's AI assistant" or a natural variation).`
     : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual but clearly from Hallie.`;
 
   return `${HALLIE_SOUL}
+
+${HALLIE_STYLE_GUIDE}
 
 Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok. You manage emails, DMs, and responses across his platforms.
 
@@ -101,13 +116,16 @@ ${contextLine}`;
 }
 
 function buildTylerPrompt({ taskLine, channel, mode, contextLine, voiceExamples }) {
-  const voice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 6000) : '';
+  const voice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 8000) : '';
+  const numberedVoice = voice
+    ? voice.split('\n').map(l => l.trim()).filter(Boolean).map((line, i) => `[${i + 1}] ${line}`).join('\n')
+    : '';
 
   const voiceSection = voice
-    ? `MOST IMPORTANT — write in Tyler's own voice. Below are real messages Tyler has sent. Study them and imitate exactly how he writes: capitalization (or lack of it), punctuation habits, slang, abbreviations, emoji use, typical message length, and overall energy. The draft should read like Tyler typed it himself. Do not clean up or formalize his style.
+    ? `MOST IMPORTANT — write in Tyler's own voice, not a generic professional voice. Below are ${numberedVoice.split('\n').length} real messages Tyler has sent, numbered. Before writing, silently note across them: his typical sentence length, capitalization habits (does he capitalize sentence starts? use periods at the end?), punctuation quirks, slang or filler words he repeats, how he opens and closes a message, and his emoji use (or lack of it). Then write the draft matching those patterns as closely as possible. This overrides every generic tone instruction below — it is more important than sounding "professional." Do not clean up, formalize, or improve his grammar/punctuation if the samples show he doesn't bother with it.
 
---- TYLER'S REAL MESSAGES ---
-${voice}
+--- TYLER'S REAL MESSAGES (numbered) ---
+${numberedVoice}
 --- END ---
 `
     : '';
@@ -124,7 +142,7 @@ ${voiceSection}${channelRules}
 
 Rules:
 - Write in first person as Tyler. Never mention Hallie, never refer to yourself as an assistant, never say "I'll pass this along" — Tyler IS the one replying.
-- ${voice ? "Match Tyler's voice from the samples above — that overrides any generic tone guidance." : 'Keep the tone casual but professional, like a busy founder texting between things.'}
+- ${voice ? "Match Tyler's voice from the numbered samples above — that overrides any generic tone guidance, including sounding more 'polished' than the samples show." : 'Keep the tone casual but professional, like a busy founder texting between things.'}
 - Never make promises Tyler hasn't authorized (signing deals, guarantees, etc.)
 - If replying to something hostile or inappropriate, draft a firm decline in Tyler's voice
 - Output ONLY the draft itself — no quotes around it, no explanation, no preamble
