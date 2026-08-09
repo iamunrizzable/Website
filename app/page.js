@@ -50,16 +50,12 @@ export default function Home() {
         </div>
 
         <div className="nav-buttons section">
-          <a href="/tyler" className="nav-button"><span>Meet Tyler</span></a>
-          <a href="/hallie" className="nav-button"><span>Meet Hallie</span></a>
-          <a href="/agency" className="nav-button"><span>TJB Management Agency</span></a>
+          <a href="/tyler" className="nav-button"><span>Tyler</span></a>
+          <a href="/hallie" className="nav-button"><span>Hallie</span></a>
+          <a href="/agency" className="nav-button"><span>Agency</span></a>
           <a href="/merch" className="nav-button"><span>Merch</span></a>
-          <a href="/streaming-basics" className="nav-button"><span>Streaming Basics</span></a>
-          <a href="/tiktok-guidelines" className="nav-button"><span>TikTok Guidelines</span></a>
-          <a href="/contact-tyler" className="nav-button"><span>Connect with Tyler</span></a>
-          <a href="/contact-hallie" className="nav-button"><span>Connect with Hallie</span></a>
-          <a href="/contact-agency" className="nav-button"><span>Connect with Agency</span></a>
-          <a href="/legal" className="nav-button"><span>Legal & Guidelines</span></a>
+          <a href="/streaming-basics" className="nav-button"><span>Guidelines & Resources</span></a>
+          <a href="/legal" className="nav-button"><span>Legal</span></a>
         </div>
 
         <div className="footer section">
