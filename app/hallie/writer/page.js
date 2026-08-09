@@ -36,13 +36,6 @@ export default function HallieWriter() {
   const [voiceSaved, setVoiceSaved] = useState(false);
   const [importing, setImporting] = useState(false);
   const [importError, setImportError] = useState('');
-  // Fetched-but-not-yet-added-to-voiceExamples snippets, each reviewed
-  // individually before anything is kept. Unchecked by default — an
-  // inbox has personal/sensitive content mixed in with business
-  // correspondence (family, legal, medical, harassment reports), and
-  // none of that belongs in a business-writing voice profile headed to
-  // a third-party AI without Tyler explicitly choosing to include it.
-  const [importReview, setImportReview] = useState([]);
 
   // Tyler's voice samples live in this browser's localStorage — this app
   // has no server-side storage, and they only ever need to exist on
@@ -59,6 +52,10 @@ export default function HallieWriter() {
     setTimeout(() => setVoiceSaved(false), 2000);
   }
 
+  // Every imported message is kept, tagged with who it went to and what
+  // it was about (see buildContextLabel server-side) — no filtering, no
+  // review gate. Tyler wants the model to have full context on how he
+  // communicates across every kind of situation, not a curated subset.
   async function handleImportEmail() {
     setImporting(true);
     setImportError('');
@@ -77,7 +74,12 @@ export default function HallieWriter() {
         setImportError('No sent emails found to import');
         return;
       }
-      setImportReview(data.snippets.map(text => ({ text, checked: false })));
+      const imported = data.snippets.join('\n');
+      setVoiceExamples(prev => {
+        const next = prev.trim() ? `${prev.trim()}\n${imported}` : imported;
+        localStorage.setItem(VOICE_KEY, next);
+        return next;
+      });
     } catch (err) {
       setImportError(err.message);
     } finally {
@@ -85,23 +87,6 @@ export default function HallieWriter() {
     }
   }
 
-  function toggleReviewItem(i) {
-    setImportReview(prev => prev.map((item, idx) => (idx === i ? { ...item, checked: !item.checked } : item)));
-  }
-
-  function setAllReview(checked) {
-    setImportReview(prev => prev.map(item => ({ ...item, checked })));
-  }
-
-  function addSelectedToVoice() {
-    const selected = importReview.filter(item => item.checked).map(item => item.text);
-    if (!selected.length) return;
-    const joined = selected.join('\n');
-    setVoiceExamples(prev => (prev.trim() ? `${prev.trim()}\n${joined}` : joined));
-    setImportReview(prev => prev.filter(item => !item.checked));
-  }
-
-  const selectedCount = importReview.filter(item => item.checked).length;
 
   const inputLabel = mode === 'reply'
     ? `${channel === 'email' ? 'Email' : 'DM'} you received`
@@ -208,10 +193,12 @@ export default function HallieWriter() {
               {voiceOpen && (
                 <div style={{ marginTop: 12 }}>
                   <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>
-                    Paste real messages you&apos;ve sent — one per line, the more the better (10-20 is a good start).
-                    The Tyler persona studies these and copies how you actually type: slang, punctuation, emoji, all
-                    of it. Saved only in this browser, so set it up once per device. TikTok content is never used
-                    here, imported or pasted.
+                    Paste real messages you&apos;ve sent, or import your Sent folder below — the more the better.
+                    Imported messages are tagged with who they went to and what they were about, so the Tyler
+                    persona learns how you actually communicate across different situations, not just your surface
+                    phrasing. Everything imported is added and saved immediately, no review step. Saved only in
+                    this browser, so set it up once per device. TikTok content is never used here, imported or
+                    pasted.
                   </p>
                   <button onClick={handleImportEmail} style={{ ...s.btnSm, marginBottom: 10 }} disabled={importing}>
                     {importing ? 'Importing…' : 'Import from Sent Email'}
@@ -219,37 +206,6 @@ export default function HallieWriter() {
                   {importError && (
                     <p style={{ color: '#ef4444', fontSize: 12, marginBottom: 8 }}>{importError}</p>
                   )}
-
-                  {importReview.length > 0 && (
-                    <div style={{ background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: 12, marginBottom: 12 }}>
-                      <p style={{ color: '#eab308', fontSize: 12, lineHeight: 1.5, marginBottom: 10 }}>
-                        Review each one — inboxes mix business emails with personal, family, legal, or medical
-                        content that has no business being sent to an AI as a writing sample. Nothing here is
-                        added until you check it.
-                      </p>
-                      <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-                        <button type="button" onClick={() => setAllReview(true)} style={s.btnSm}>Select All</button>
-                        <button type="button" onClick={() => setAllReview(false)} style={s.btnSm}>Deselect All</button>
-                      </div>
-                      <div style={{ maxHeight: 320, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        {importReview.map((item, i) => (
-                          <label key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 12, color: '#cbd5e1', cursor: 'pointer' }}>
-                            <input type="checkbox" checked={item.checked} onChange={() => toggleReviewItem(i)} style={{ marginTop: 3, flexShrink: 0 }} />
-                            <span>{item.text.length > 220 ? `${item.text.slice(0, 220)}…` : item.text}</span>
-                          </label>
-                        ))}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={addSelectedToVoice}
-                        style={{ ...s.btnSm, marginTop: 10, opacity: selectedCount ? 1 : 0.5 }}
-                        disabled={!selectedCount}
-                      >
-                        Add {selectedCount || ''} Selected to Voice Samples
-                      </button>
-                    </div>
-                  )}
-
                   <textarea
                     style={{ ...s.textarea, minHeight: 160 }}
                     value={voiceExamples}

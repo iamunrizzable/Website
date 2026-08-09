@@ -90,7 +90,9 @@ export async function POST(request) {
           : stripQuotedTextFallback(parsed.text ?? '');
         const trimmed = stripSignatureBoilerplate(ownWords);
         const cleaned = trimmed.replace(/\s+/g, ' ').trim();
-        if (cleaned.length >= MIN_SNIPPET_CHARS) snippets.push(cleaned.slice(0, SNIPPET_MAX_CHARS));
+        if (cleaned.length < MIN_SNIPPET_CHARS) continue;
+        const label = buildContextLabel(parsed);
+        snippets.push(`${label}${cleaned.slice(0, SNIPPET_MAX_CHARS)}`);
       }
     } finally {
       lock.release();
@@ -101,6 +103,23 @@ export async function POST(request) {
     try { await client.logout(); } catch { /* already closed */ }
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
+}
+
+// Tags each sample with who it went to, the subject, and roughly when —
+// so the model reads these as real, situated communications ("here's how
+// Tyler writes to a legal contact about a dispute" vs "here's how Tyler
+// writes to a brand about a collab"), not a flat pile of anonymous
+// sentences. This is what makes the samples teach how Tyler actually
+// thinks across different situations, not just his surface phrasing.
+function buildContextLabel(parsed) {
+  const to = parsed.to?.text?.trim();
+  const subject = parsed.subject?.trim();
+  const date = parsed.date instanceof Date ? parsed.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : null;
+  const parts = [];
+  if (to) parts.push(`to ${to}`);
+  if (subject) parts.push(`re: "${subject}"`);
+  if (date) parts.push(date);
+  return parts.length ? `[${parts.join(' — ')}] ` : '';
 }
 
 // Removes every <blockquote> (Apple Mail's quoted/forwarded-content
