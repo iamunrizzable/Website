@@ -48,7 +48,7 @@ export default function HallieTikTokLegal() {
         <h1>Hallie Platform — Data Security & Privacy Policy</h1>
         <p className="subtitle">
           TikTok Account Automation Platform · Powered by TJB Management Inc.<br />
-          Effective Date: July 1, 2026 · Last Updated: August 9, 2026
+          Effective Date: July 1, 2026 · Last Updated: August 12, 2026
         </p>
 
         <div className="toc">
@@ -156,7 +156,7 @@ export default function HallieTikTokLegal() {
           <h3>Why it is collected</h3>
           <p>Data is collected to power automated TikTok account management on behalf of Operators — including publishing content, moderating communities, monitoring brand mentions, discovering trending opportunities, and executing automated account rules. Processing is based on the legitimate interests of Operators in managing and growing their TikTok presence efficiently.</p>
           <h3>How data is used</h3>
-          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No data obtained from TikTok's API is sent to third-party AI, analytics, or advertising services. All Platform API calls are back to TikTok on behalf of the Operator. Separately from the Platform, the Platform Provider operates an internal, authentication-gated drafting tool that is not connected to TikTok's API in any way; it processes only text the Operator manually types or pastes in, and the Operator is prohibited from submitting TikTok-sourced content to it. That tool's sole outbound call is to Groq, Inc. for transient AI inference — see Section 18 for Groq's data handling terms.</p>
+          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No data obtained from TikTok's API is sent to third-party AI, analytics, or advertising services. All Platform API calls are back to TikTok on behalf of the Operator. Separately from the Platform, the Platform Provider operates an internal, authentication-gated drafting tool that is not connected to TikTok's API in any way; it processes only text the Operator manually types or pastes in, and the Operator is prohibited from submitting TikTok-sourced content to it. That tool's outbound calls are to Groq, Inc. for transient AI inference, and — for one persona's optional writing-style reference feature — to Apple's iCloud IMAP servers to read the Operator's own Sent-folder email. That email import reads only messages the Operator personally authored and sent; it never reads received messages, other mailboxes, or any other person's data, is never sourced from TikTok, and nothing it reads is stored server-side. See Section 18 for both subprocessors' data handling terms.</p>
           <h3>Where data is transferred</h3>
           <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No data obtained from TikTok's API is shared with, sold to, or transferred to any third party. The Platform's only outbound API calls are back to TikTok to perform actions authorized by the Operator.</p>
           <h3>How data is protected</h3>
@@ -356,6 +356,7 @@ export default function HallieTikTokLegal() {
             <li><strong>GitHub Inc. (Microsoft)</strong> — Private source code repository. SOC 2 Type II certified. No production data is stored in version control. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" className="link-purple">Privacy Policy</a></li>
             <li><strong>TikTok for Business</strong> — Data source and action endpoint. All data originates from TikTok's API and moderation actions are returned to TikTok via authorized API calls. No TikTok user data is shared with any other subprocessor.</li>
             <li><strong>Groq, Inc.</strong> — AI inference provider for an internal drafting tool operated separately from the Platform and never connected to TikTok's API. Processes only text manually provided by the Operator; data obtained from TikTok's API is never sent to Groq. Per Groq's services agreement, Groq may not use inputs or outputs to train AI models and does not retain them by default (temporary logs of up to 30 days may exist solely for reliability troubleshooting and abuse investigation). Headquartered in Mountain View, CA, USA. <a href="https://groq.com/privacy-policy" className="link-purple">Privacy Policy</a></li>
+            <li><strong>Apple Inc. (iCloud Mail)</strong> — The Operator's own email provider, already used for the Operator's business email independent of the Platform. The internal drafting tool connects via IMAP, authenticated with the Operator's own account credentials, solely to read the Operator's Sent folder for an optional writing-style reference feature. No Operator data beyond the Operator's own authored, previously-sent emails is accessed; no End User or TikTok data is ever read; nothing fetched is stored server-side — it is returned directly to the Operator's browser for review. <a href="https://www.apple.com/legal/privacy/en-ww/" className="link-purple">Privacy Policy</a></li>
           </ul>
           <p>The Platform Provider does not use any other subprocessors that process Operator or End User data. This list is reviewed and updated whenever a new subprocessor is engaged. Operators will be notified of material changes to subprocessors.</p>
           <p>
@@ -425,7 +426,7 @@ export default function HallieTikTokLegal() {
         </div>
 
         <footer>
-          <p>Last Updated: August 9, 2026</p>
+          <p>Last Updated: August 12, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform as required by TikTok's Data Security and Privacy Review (DSPR) and US Data Security (USDS) review processes.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. The Hallie Platform is an independent product developed by TJB Management Inc. and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
