@@ -34,6 +34,8 @@ export default function HallieWriter() {
   const [voiceExamples, setVoiceExamples] = useState('');
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [voiceSaved, setVoiceSaved] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [importError, setImportError] = useState('');
 
   // Tyler's voice samples live in this browser's localStorage — this app
   // has no server-side storage, and they only ever need to exist on
@@ -48,6 +50,33 @@ export default function HallieWriter() {
     localStorage.setItem(VOICE_KEY, voiceExamples);
     setVoiceSaved(true);
     setTimeout(() => setVoiceSaved(false), 2000);
+  }
+
+  async function handleImportEmail() {
+    setImporting(true);
+    setImportError('');
+    try {
+      const res = await fetch('/api/hallie/voice-import/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ limit: 30 }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setImportError(data.error ?? 'Import failed');
+        return;
+      }
+      if (!data.snippets?.length) {
+        setImportError('No sent emails found to import');
+        return;
+      }
+      const imported = data.snippets.join('\n');
+      setVoiceExamples(prev => (prev.trim() ? `${prev.trim()}\n${imported}` : imported));
+    } catch (err) {
+      setImportError(err.message);
+    } finally {
+      setImporting(false);
+    }
   }
 
   const inputLabel = mode === 'reply'
@@ -156,8 +185,15 @@ export default function HallieWriter() {
                   <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>
                     Paste real messages you&apos;ve sent — one per line, the more the better (10-20 is a good start).
                     The Tyler persona studies these and copies how you actually type: slang, punctuation, emoji, all
-                    of it. Saved only in this browser, so set it up once per device.
+                    of it. Saved only in this browser, so set it up once per device. TikTok content is never used
+                    here, imported or pasted.
                   </p>
+                  <button onClick={handleImportEmail} style={{ ...s.btnSm, marginBottom: 10 }} disabled={importing}>
+                    {importing ? 'Importing…' : 'Import from Sent Email'}
+                  </button>
+                  {importError && (
+                    <p style={{ color: '#ef4444', fontSize: 12, marginBottom: 8 }}>{importError}</p>
+                  )}
                   <textarea
                     style={{ ...s.textarea, minHeight: 160 }}
                     value={voiceExamples}
