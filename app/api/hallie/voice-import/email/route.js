@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { ImapFlow } from 'imapflow';
+import { simpleParser } from 'mailparser';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
 
 const SENT_MAILBOX = 'Sent Messages'; // iCloud's standard Sent folder name
@@ -14,6 +15,12 @@ const SNIPPET_MAX_CHARS = 1500;
 // returned text into its own localStorage voice sample box. See the
 // carve-out in both legal pages' Section 18 (Apple/iCloud subprocessor)
 // for why this is scoped to IMAP + the Sent folder only.
+//
+// Uses mailparser's simpleParser for extraction — a hand-rolled regex
+// parser here previously didn't decode quoted-printable/base64 content
+// encoding (which iCloud/Apple Mail commonly use), so it could silently
+// feed garbled text (raw "=E2=80=99" escapes, base64 blobs) into voice
+// samples instead of clean prose. Don't revert to a regex-based parser.
 export async function POST(request) {
   const cookieStore = await cookies();
   if (!isValidAdminKey(request) && !isAdminSessionValid(cookieStore)) {
@@ -65,9 +72,11 @@ export async function POST(request) {
       const from = Math.max(1, total - limit + 1);
       const range = `${from}:${total}`;
 
-      for await (const message of client.fetch(range, { envelope: true, source: true })) {
-        const text = extractPlainText(message.source?.toString('utf8') ?? '');
-        const cleaned = cleanEmailText(text);
+      for await (const message of client.fetch(range, { source: true })) {
+        if (!message.source) continue;
+        const parsed = await simpleParser(message.source);
+        const raw = parsed.text ?? htmlToText(parsed.html ?? '');
+        const cleaned = cleanEmailText(raw);
         if (cleaned) snippets.push(cleaned.slice(0, SNIPPET_MAX_CHARS));
       }
     } finally {
@@ -81,19 +90,16 @@ export async function POST(request) {
   }
 }
 
-// Best-effort: grab the text/plain part (or strip tags from text/html) out
-// of a raw RFC822 message. Not a full MIME parser — good enough for
-// extracting readable body text for voice samples.
-function extractPlainText(raw) {
-  const plainMatch = raw.match(/Content-Type:\s*text\/plain[\s\S]*?\r?\n\r?\n([\s\S]*?)(?:\r?\n--|\r?\n\r?\n$)/i);
-  if (plainMatch) return plainMatch[1];
-
-  const htmlMatch = raw.match(/Content-Type:\s*text\/html[\s\S]*?\r?\n\r?\n([\s\S]*?)(?:\r?\n--|\r?\n\r?\n$)/i);
-  if (htmlMatch) return htmlMatch[1].replace(/<[^>]+>/g, ' ');
-
-  // No multipart boundary found — treat everything after the header block as the body.
-  const parts = raw.split(/\r?\n\r?\n/);
-  return parts.slice(1).join('\n\n');
+function htmlToText(html) {
+  return html
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"');
 }
 
 // Strips quoted reply chains, signatures, and boilerplate so the sample
