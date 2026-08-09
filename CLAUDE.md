@@ -5,8 +5,9 @@
 - **ALWAYS merge dev branch to main after every set of changes**
 - **ONLY make changes explicitly requested — nothing more**
 - **NEVER guess at a fix. If the root cause is not confirmed, ask first. Do not deploy speculative changes.**
-- **`/admin` and `/hallie/tiktok-moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + x-admin-key; system uses `/api/system/*` + acct_token cookie)
-- **`/admin` is the internal testing surface; `/hallie/tiktok-moderation/system` is usable-features-only, always.** Debugging/diagnostic tooling (test buttons, raw-response dumps, exploratory API probes) goes on `/admin` ONLY — never on `/system`. This is an explicit exception to the mirror rule above: mirror shipped features, never debug scaffolding.
+- **`/admin/internal/hallie/tiktok-moderation/system` and `/hallie/tiktok-moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + x-admin-key; system uses `/api/system/*` + acct_token cookie)
+- **`/admin/internal/hallie/tiktok-moderation/system` is the internal testing surface; `/hallie/tiktok-moderation/system` is usable-features-only, always.** Debugging/diagnostic tooling (test buttons, raw-response dumps, exploratory API probes) goes on `/admin/internal/hallie/tiktok-moderation/system` ONLY — never on `/system`. This is an explicit exception to the mirror rule above: mirror shipped features, never debug scaffolding.
+- **`/admin` is now the tools hub** (lists Hallie Writer, the moderation system, and the Admin Panel) — the TikTok testing dashboard itself moved to `/admin/internal/hallie/tiktok-moderation/system`. Login redirects to `/admin`, not `/admin/internal/hallie/tiktok-moderation/system`.
 - Dev branch: `claude/general-session-v2pLH`
 
 ## TikTok Business API — Approved Endpoints

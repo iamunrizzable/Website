@@ -4,11 +4,11 @@ import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
 
-const ALLOWED_PATHS = ['/admin', '/hallie/tiktok-moderation/system'];
+const ALLOWED_PATHS = ['/admin/internal/hallie/tiktok-moderation/system', '/hallie/tiktok-moderation/system'];
 
 function safeRedirect(path) {
   const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
-  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin'));
+  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin/internal/hallie/tiktok-moderation/system'));
 }
 
 export async function GET(request) {
@@ -19,7 +19,7 @@ export async function GET(request) {
   const error = searchParams.get('error');
 
   const isSystem = getStateType(state) === 'system';
-  const errorDest = isSystem ? '/hallie/tiktok-moderation/system' : '/admin';
+  const errorDest = isSystem ? '/hallie/tiktok-moderation/system' : '/admin/internal/hallie/tiktok-moderation/system';
 
   if (error) {
     return safeRedirect(`${errorDest}?error=${encodeURIComponent(error)}`);
@@ -85,7 +85,7 @@ export async function GET(request) {
       }
     }
 
-    const dest = isSystem ? '/hallie/tiktok-moderation/system?connected=1' : '/admin?account_connected=1';
+    const dest = isSystem ? '/hallie/tiktok-moderation/system?connected=1' : '/admin/internal/hallie/tiktok-moderation/system?account_connected=1';
     const response = safeRedirect(dest);
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,

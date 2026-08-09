@@ -23,7 +23,7 @@ export default function AdminLogin() {
         body: JSON.stringify({ username, password }),
       });
       if (res.ok) {
-        router.push('/admin/tools');
+        router.push('/admin');
       } else {
         const data = await res.json();
         setError(data.error || 'Invalid credentials');

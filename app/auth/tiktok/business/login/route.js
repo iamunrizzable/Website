@@ -22,6 +22,6 @@ export async function GET(request) {
     return NextResponse.redirect(url);
   } catch (err) {
     console.error('[business/login] Failed to build TikTok auth URL:', err.message);
-    return NextResponse.redirect(absoluteUrl(`/admin?error=${encodeURIComponent(err.message)}`));
+    return NextResponse.redirect(absoluteUrl(`/admin/internal/hallie/tiktok-moderation/system?error=${encodeURIComponent(err.message)}`));
   }
 }

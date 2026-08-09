@@ -4,11 +4,11 @@ import { storeBusinessTokens, storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
 
-const ALLOWED_PATHS = ['/admin'];
+const ALLOWED_PATHS = ['/admin/internal/hallie/tiktok-moderation/system'];
 
 function safeRedirect(path) {
   const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
-  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin'));
+  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin/internal/hallie/tiktok-moderation/system'));
 }
 
 export async function GET(request) {
@@ -18,7 +18,7 @@ export async function GET(request) {
   const error = searchParams.get('error');
 
   if (error) {
-    return safeRedirect(`/admin?error=${encodeURIComponent(error)}`);
+    return safeRedirect(`/admin/internal/hallie/tiktok-moderation/system?error=${encodeURIComponent(error)}`);
   }
 
   if (!verifyState(state)) {
@@ -37,7 +37,7 @@ export async function GET(request) {
       const raw = await exchangeBusinessPortalAccountCode(authCode);
       if (raw.code !== 0) throw new Error(raw.message ?? 'Account token exchange failed');
       const stored = await storeTikTokAccountToken(raw.data ?? raw);
-      const response = safeRedirect('/admin?account_connected=1');
+      const response = safeRedirect('/admin/internal/hallie/tiktok-moderation/system?account_connected=1');
       response.cookies.set('acct_token', JSON.stringify(stored), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -54,7 +54,7 @@ export async function GET(request) {
       throw new Error(tokenData.message ?? 'Token exchange failed');
     }
     const stored = await storeBusinessTokens(tokenData);
-    const response = safeRedirect('/admin?business_connected=1');
+    const response = safeRedirect('/admin/internal/hallie/tiktok-moderation/system?business_connected=1');
     response.cookies.set('biz_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -65,6 +65,6 @@ export async function GET(request) {
     return response;
   } catch (err) {
     console.error('[business/callback] Error:', err.message);
-    return safeRedirect(`/admin?error=${encodeURIComponent(err.message)}`);
+    return safeRedirect(`/admin/internal/hallie/tiktok-moderation/system?error=${encodeURIComponent(err.message)}`);
   }
 }
