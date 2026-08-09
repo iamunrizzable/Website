@@ -96,8 +96,13 @@ export default function HallieWriter() {
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
             Hallie — Writer
           </h1>
-          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 24 }}>
+          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 12 }}>
             Drafts emails and DMs in your voice. Nothing is sent automatically — copy the draft and send it yourself.
+          </p>
+          <p style={{ color: '#eab308', fontSize: 12, lineHeight: 1.5, marginBottom: 24, background: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: 8, padding: '10px 14px' }}>
+            ⚠️ Never paste TikTok DMs, comments, or anything pulled from the Hallie TikTok Platform in here.
+            Drafts are processed by Groq (a third-party AI service), and the Platform&apos;s privacy policy guarantees
+            TikTok data never goes to third-party AI. Emails, Snapchat, IG, and everything else are fine.
           </p>
 
           <div style={s.card}>

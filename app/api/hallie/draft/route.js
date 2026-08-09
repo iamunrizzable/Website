@@ -11,6 +11,14 @@ const MODEL = 'llama-3.3-70b-versatile';
 // lib/hallie-voice.js); he reviews and sends everything himself. This
 // route never contacts any messaging platform — Groq is the only
 // outbound call.
+//
+// SCOPE RULE (mirrored in the /hallie/writer UI warning and both legal
+// pages' Section 18): TikTok-sourced content must NEVER be submitted
+// here. The DSPR-reviewed privacy policy guarantees data obtained from
+// TikTok's API is never sent to third-party AI services — this tool
+// stays compliant only because it processes non-TikTok content that
+// Tyler pastes in manually. Do not wire this route to any TikTok data
+// source.
 export async function POST(request) {
   const cookieStore = await cookies();
   if (!isValidAdminKey(request) && !isAdminSessionValid(cookieStore)) {
@@ -52,7 +60,7 @@ ${VOICE_NOTES ? `\nStyle notes from Tyler: ${VOICE_NOTES}\n` : ''}`
 
   const channelRules = channel === 'email'
     ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Keep it tight — a few short paragraphs at most. ${hasVoice ? "Match how formal or casual Tyler's samples are; don't default to stiff business-speak." : ''} Sign off the way Tyler would.`
-    : `This is a DM (TikTok, Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual.`;
+    : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual.`;
 
   const taskLine = mode === 'reply'
     ? `Tyler received the following ${channel === 'email' ? 'email' : 'DM'} and wants a reply drafted. The user message below is what the OTHER person sent him.`
