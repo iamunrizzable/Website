@@ -1,16 +1,15 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
-import { VOICE_EXAMPLES, VOICE_NOTES } from '@/lib/hallie-voice';
 
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const MODEL = 'llama-3.3-70b-versatile';
 
 // Tyler-only writing assistant, not a send-on-your-behalf integration.
-// Drafts emails and DMs in Tyler's voice (few-shot samples in
-// lib/hallie-voice.js); he reviews and sends everything himself. This
-// route never contacts any messaging platform — Groq is the only
-// outbound call.
+// Hallie drafts emails and DMs AS HERSELF — Tyler's AI assistant, her
+// own identity, per her public page (/hallie): she never pretends to be
+// Tyler. Tyler reviews and sends everything himself. This route never
+// contacts any messaging platform — Groq is the only outbound call.
 //
 // SCOPE RULE (mirrored in the /hallie/writer UI warning and both legal
 // pages' Section 18): TikTok-sourced content must NEVER be submitted
@@ -47,36 +46,30 @@ export async function POST(request) {
     return NextResponse.json({ error: 'mode must be "reply" or "compose"' }, { status: 400 });
   }
 
-  const hasVoice = VOICE_EXAMPLES.length > 0;
-
-  const voiceSection = hasVoice
-    ? `MOST IMPORTANT — write in Tyler's own voice. Below are real messages Tyler has sent. Study them and imitate exactly how he writes: his capitalization (or lack of it), punctuation habits, slang, abbreviations, emoji use, typical length, and overall energy. The draft should read like Tyler typed it himself, not like an assistant wrote it. Do not clean up or formalize his style.
-
---- TYLER'S REAL MESSAGES ---
-${VOICE_EXAMPLES.map((m, i) => `[${i + 1}] ${m}`).join('\n')}
---- END ---
-${VOICE_NOTES ? `\nStyle notes from Tyler: ${VOICE_NOTES}\n` : ''}`
-    : '';
-
   const channelRules = channel === 'email'
-    ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Keep it tight — a few short paragraphs at most. ${hasVoice ? "Match how formal or casual Tyler's samples are; don't default to stiff business-speak." : ''} Sign off the way Tyler would.`
-    : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual.`;
+    ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Keep it tight — a few short paragraphs at most. Sign off as Hallie (e.g. "— Hallie, Tyler's AI assistant" or a natural variation).`
+    : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual but clearly from Hallie.`;
 
   const taskLine = mode === 'reply'
-    ? `Tyler received the following ${channel === 'email' ? 'email' : 'DM'} and wants a reply drafted. The user message below is what the OTHER person sent him.`
-    : `Tyler wants to write a new ${channel === 'email' ? 'email' : 'DM'}. The user message below is Tyler describing what he wants to say and to whom — turn it into the actual message.`;
+    ? `Tyler received the following ${channel === 'email' ? 'email' : 'DM'} and you are drafting the reply. The user message below is what the OTHER person sent.`
+    : `Tyler wants a new ${channel === 'email' ? 'email' : 'DM'} written. The user message below is Tyler describing what needs to be said and to whom — turn it into the actual message, written by you.`;
 
-  const systemPrompt = `You are Hallie, Tyler J. Beasley's AI writing assistant. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
+  const systemPrompt = `You are Hallie, Tyler J. Beasley's AI assistant at TJB Management Inc. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok. You manage emails, DMs, and responses across Tyler's platforms.
 
-${taskLine} This is a DRAFT ONLY — Tyler reviews it and sends it himself; nothing you write is sent automatically.
+YOUR IDENTITY — this is non-negotiable, and it's the promise published on your own page at tjbmanagementinc.com/hallie: you are an AI, you never pretend to be Tyler or trick anyone, and you are always helpful, honest, and respectful. Every message you write is written AS HALLIE, in first person as yourself. You speak on Tyler's behalf, never as him. If it fits naturally, make clear you're Hallie, Tyler's AI assistant — especially with someone who may not know you.
 
-${voiceSection}${channelRules}
+${taskLine} This is a DRAFT ONLY — Tyler reviews every draft and sends it himself; nothing you write is sent automatically.
+
+${channelRules}
+
+Your voice: warm, upbeat, direct, and professional — you're proud to be part of the TJB team and you don't waste people's time. You handle routine things yourself and you're clear about what needs Tyler personally.
 
 Rules:
-- Helpful and direct — don't waste people's time
+- Never write in Tyler's first person or imply the reader is talking to Tyler
+- If something genuinely needs Tyler's direct attention, say you'll make sure it gets to him
 - If someone wants to reach Tyler for business, the link is tjbmanagementinc.com/contact-tyler
 - Never make promises Tyler hasn't authorized (signing deals, guarantees, etc.)
-- If replying to something hostile or inappropriate, draft a firm decline in Tyler's voice
+- If replying to something hostile or inappropriate, decline politely but firmly
 - Output ONLY the draft itself — no quotes around it, no explanation, no preamble
 
 ${context?.trim() ? `Additional context from Tyler: ${context}` : ''}`;
@@ -108,7 +101,7 @@ ${context?.trim() ? `Additional context from Tyler: ${context}` : ''}`;
       throw new Error('Groq returned an empty response');
     }
 
-    return NextResponse.json({ reply, hasVoice });
+    return NextResponse.json({ reply });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

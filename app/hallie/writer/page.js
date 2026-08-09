@@ -24,7 +24,6 @@ export default function HallieWriter() {
   const [message, setMessage] = useState('');
   const [context, setContext] = useState('');
   const [draft, setDraft] = useState('');
-  const [hasVoice, setHasVoice] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
@@ -56,7 +55,6 @@ export default function HallieWriter() {
         setDraft('');
       } else {
         setDraft(data.reply);
-        setHasVoice(data.hasVoice);
       }
     } catch (err) {
       setError(err.message);
@@ -97,7 +95,8 @@ export default function HallieWriter() {
             Hallie — Writer
           </h1>
           <p style={{ color: '#64748b', fontSize: 13, marginBottom: 12 }}>
-            Drafts emails and DMs in your voice. Nothing is sent automatically — copy the draft and send it yourself.
+            Hallie drafts emails and DMs as herself — your AI assistant, speaking on your behalf, never pretending
+            to be you. Nothing is sent automatically — copy the draft and send it yourself.
           </p>
           <p style={{ color: '#eab308', fontSize: 12, lineHeight: 1.5, marginBottom: 24, background: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: 8, padding: '10px 14px' }}>
             ⚠️ Never paste TikTok DMs, comments, or anything pulled from the Hallie TikTok Platform in here.
@@ -143,12 +142,7 @@ export default function HallieWriter() {
 
             {draft && (
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #334155' }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>Draft</p>
-                {!hasVoice && (
-                  <p style={{ color: '#eab308', fontSize: 12, marginBottom: 8 }}>
-                    No voice samples are set up yet, so this draft is in a generic tone — Tyler&apos;s samples get added in lib/hallie-voice.js.
-                  </p>
-                )}
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>Hallie&apos;s draft</p>
                 <p style={{ color: '#e2e8f0', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
                   {draft}
                 </p>
