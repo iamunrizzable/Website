@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { ImapFlow } from 'imapflow';
 import { simpleParser } from 'mailparser';
+import * as cheerio from 'cheerio';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
 
 const SENT_MAILBOX = 'Sent Messages'; // iCloud's standard Sent folder name
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 30;
 const SNIPPET_MAX_CHARS = 1500;
+const MIN_SNIPPET_CHARS = 8; // drop "- Tyler" / empty-after-cleanup stubs — no signal for voice matching
 
 // Pulls Tyler's OWN authored writing for the Tyler-persona voice panel —
 // his Sent folder only, nothing anyone else wrote. Purely a passthrough:
@@ -21,6 +23,14 @@ const SNIPPET_MAX_CHARS = 1500;
 // encoding (which iCloud/Apple Mail commonly use), so it could silently
 // feed garbled text (raw "=E2=80=99" escapes, base64 blobs) into voice
 // samples instead of clean prose. Don't revert to a regex-based parser.
+//
+// Quote/thread stripping goes through the HTML part via cheerio, not
+// text-pattern guessing: Apple Mail wraps quoted/forwarded content in
+// <blockquote> elements, not in a ">" prefix or a reliable "On X wrote:"
+// line, so a regex-based stripper let entire other-people's threads
+// (marketing emails, other senders' replies) through as if Tyler wrote
+// them — the exact bug this route exists to avoid. Falls back to the
+// text-based heuristic only when a message has no HTML part at all.
 export async function POST(request) {
   const cookieStore = await cookies();
   if (!isValidAdminKey(request) && !isAdminSessionValid(cookieStore)) {
@@ -75,9 +85,12 @@ export async function POST(request) {
       for await (const message of client.fetch(range, { source: true })) {
         if (!message.source) continue;
         const parsed = await simpleParser(message.source);
-        const raw = parsed.text ?? htmlToText(parsed.html ?? '');
-        const cleaned = cleanEmailText(raw);
-        if (cleaned) snippets.push(cleaned.slice(0, SNIPPET_MAX_CHARS));
+        const ownWords = parsed.html
+          ? extractOwnTextFromHtml(parsed.html)
+          : stripQuotedTextFallback(parsed.text ?? '');
+        const trimmed = stripSignatureBoilerplate(ownWords);
+        const cleaned = trimmed.replace(/\s+/g, ' ').trim();
+        if (cleaned.length >= MIN_SNIPPET_CHARS) snippets.push(cleaned.slice(0, SNIPPET_MAX_CHARS));
       }
     } finally {
       lock.release();
@@ -90,27 +103,39 @@ export async function POST(request) {
   }
 }
 
-function htmlToText(html) {
-  return html
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"');
+// Removes every <blockquote> (Apple Mail's quoted/forwarded-content
+// wrapper, including nested reply chains) before extracting text, so
+// only content Tyler actually typed in this message remains. Newlines
+// are preserved here — stripSignatureBoilerplate below needs real line
+// breaks to anchor on; whitespace gets collapsed once, at the very end.
+function extractOwnTextFromHtml(html) {
+  const $ = cheerio.load(html);
+  $('blockquote, style, script').remove();
+  // cheerio collapses block-level tags onto one line by default — add
+  // explicit breaks so paragraphs/divs/br still separate as newlines.
+  $('p, div, br').after('\n');
+  return $.root().text();
 }
 
-// Strips quoted reply chains, signatures, and boilerplate so the sample
-// is Tyler's own words, not a forwarded thread.
-function cleanEmailText(text) {
+// Best-effort fallback for the rare message with no HTML part — same
+// heuristic as before, kept only as a last resort. Also preserves
+// newlines for the signature-stripping step that follows.
+function stripQuotedTextFallback(text) {
   return text
     .split(/\r?\n/)
     .filter(line => !line.trim().startsWith('>'))
     .join('\n')
-    .split(/\n\s*On .{0,80} wrote:\s*$/im)[0]
-    .split(/\n--\s*$/m)[0]
-    .replace(/\s+/g, ' ')
-    .trim();
+    .split(/\n\s*On .{0,80} wrote:\s*$/im)[0];
+}
+
+// Cuts everything from the first signature/footer marker onward — the
+// repeated "Sent from my iPhone", confidentiality notice, and contact
+// block add no voice signal (identical every message) and just eat the
+// sample budget. Matched at line start (needs the caller's newlines
+// intact) to avoid false-positive cuts on a message that happens to
+// contain these words mid-sentence.
+const SIGNATURE_MARKERS = /^\s*(sent from my i|confidentiality notice|sincerely,|all the best,|unapologetically,)/im;
+function stripSignatureBoilerplate(text) {
+  const match = text.match(SIGNATURE_MARKERS);
+  return match ? text.slice(0, match.index) : text;
 }
