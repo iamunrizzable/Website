@@ -149,6 +149,7 @@ export default function HallieWriter() {
 
       <div style={s.page}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
+          <a href="/admin/tools" style={{ color: '#a855f7', fontSize: 13, textDecoration: 'none', display: 'inline-block', marginBottom: 8 }}>← All Tools</a>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
             Writer
           </h1>
