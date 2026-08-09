@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
 import { HALLIE_SOUL } from '@/lib/hallie-soul';
+import { TYLER_VOICE_BASELINE } from '@/lib/tyler-voice-baseline';
 import { hallieLLMConfigured, callHallieLLM } from '@/lib/hallie-llm';
 
 // Tyler-only writing assistant, not a send-on-your-behalf integration.
@@ -118,28 +119,28 @@ ${contextLine}`;
 function buildTylerPrompt({ taskLine, channel, mode, contextLine, voiceExamples }) {
   // 40K chars (~10K tokens) — comfortably fits a full imported Sent
   // folder (30 messages, each context-labeled) without silently
-  // truncating most of it. Groq's Llama 3.3 70B has a 128K-token
-  // context window, so this is nowhere near the model's real ceiling.
-  const voice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 40000) : '';
-  const numberedVoice = voice
-    ? voice.split('\n').map(l => l.trim()).filter(Boolean).map((line, i) => `[${i + 1}] ${line}`).join('\n')
-    : '';
+  // truncating most of it. Well under this model's real context window.
+  const userVoice = typeof voiceExamples === 'string' ? voiceExamples.trim().slice(0, 40000) : '';
+  const userLines = userVoice ? userVoice.split('\n').map(l => l.trim()).filter(Boolean) : [];
 
-  const voiceSection = voice
-    ? `MOST IMPORTANT — write in Tyler's own voice, not a generic professional voice. Below are ${numberedVoice.split('\n').length} real messages Tyler has sent, numbered, each tagged with who it went to and what it was about. Before writing, silently note across them: his typical sentence length, capitalization habits (does he capitalize sentence starts? use periods at the end?), punctuation quirks, slang or filler words he repeats, how he opens and closes a message, and his emoji use (or lack of it). Then write the draft matching those patterns as closely as possible. This overrides every generic tone instruction below — it is more important than sounding "professional." Do not clean up, formalize, or improve his grammar/punctuation if the samples show he doesn't bother with it.
+  // TYLER_VOICE_BASELINE always goes in — it's the raw/blunt register his
+  // email corpus alone doesn't show. Rather than writing more and more
+  // prose rules for every scenario (stranger vs. contact, blunt vs.
+  // flat), the fix is giving the model real range to draw from and
+  // trusting it to infer the right register per situation — that's what
+  // few-shot examples are for.
+  const allLines = [...TYLER_VOICE_BASELINE, ...userLines];
+  const numberedVoice = allLines.map((line, i) => `[${i + 1}] ${line}`).join('\n');
 
-Your default instinct is to soften things — add warmth, hedge, cushion a blunt statement with an exclamation point or an apologetic phrase. Suppress that instinct here. Look at how directly and bluntly Tyler actually writes in the samples: he gets to the point, doesn't pad refusals or corrections with extra warmth, and doesn't add cheerfulness that isn't earned by the situation. Do not soften a blunt reply, do not add a smiley or an exclamation point to take the edge off, do not explain more than he would.
+  const voiceSection = `MOST IMPORTANT — write in Tyler's own voice, not a generic professional voice. Below are ${allLines.length} real things Tyler has actually said or written, numbered — some are business emails, some are raw messages he sent when annoyed or in a hurry. Study the full range: sentence length, capitalization, punctuation, filler words, and how his tone shifts depending on who he's talking to and how he feels about it. Match that range for THIS situation — don't default to the calmest or most polished example in the set just because it's easier. If the honest reaction is blunt, curt, irritated, or profane, write it that way; don't soften it, don't add a smiley or exclamation point to take the edge off, don't pad it with warmth it doesn't need. Do not clean up or formalize his grammar/punctuation if the samples show he doesn't bother with it.
 
-Match the actual emotional charge of the situation, not just its length — being blunt isn't the same as being flat. A random stranger asking Tyler something personal or invasive isn't owed a polite short "no" — Tyler doesn't know them and they have no standing to ask, so the correct energy is real irritation at the presumption, something like "who are you to ask me that, I don't know you" — annoyed and dismissive, cursing if it fits naturally, not a bare denial that undersells how he'd actually react. Calibrate to who's asking and what they're asking: a stranger's invasive question gets attitude; a legitimate business contact gets Tyler's normal direct-but-professional register from the samples, not hostility.
-
---- TYLER'S REAL MESSAGES (numbered) ---
+--- TYLER'S ACTUAL WORDS (numbered) ---
 ${numberedVoice}
 --- END ---
-`
-    : '';
+`;
 
   const channelRules = channel === 'email'
-    ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} ${voice ? "Sign off the way Tyler's samples suggest he would." : 'Sign off simply, the way a busy founder would (first name is enough).'}`
+    ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Sign off the way Tyler's samples suggest he would.`
     : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences.`;
 
   return `You are drafting a message for Tyler J. Beasley to send AS HIMSELF, in first person. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
@@ -150,9 +151,8 @@ ${voiceSection}${channelRules}
 
 Rules:
 - Write in first person as Tyler. Never mention Hallie, never refer to yourself as an assistant, never say "I'll pass this along" — Tyler IS the one replying.
-- ${voice ? "Match Tyler's voice from the numbered samples above — that overrides any generic tone guidance, including sounding more 'polished' than the samples show." : 'Keep the tone casual but professional, like a busy founder texting between things.'}
+- Match Tyler's real voice and real reaction to the situation above every other instruction here, including sounding more "polished" than the samples show.
 - Never make promises Tyler hasn't authorized (signing deals, guarantees, etc.)
-- If replying to something hostile or inappropriate, draft a firm decline in Tyler's voice
 - Output ONLY the draft itself — no quotes around it, no explanation, no preamble
 
 ${contextLine}`;
