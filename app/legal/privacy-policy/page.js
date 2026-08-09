@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: July 24, 2026
+          Effective Date: July 24, 2026 · Last Updated: August 9, 2026
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
@@ -266,9 +266,9 @@ export default function PrivacyPolicy() {
           <h3>Why it is collected</h3>
           <p>Data is collected to power automated TikTok account management on behalf of Operators — including publishing content, moderating communities, monitoring brand mentions, discovering trending opportunities, and executing automated account rules. Processing is based on the legitimate interests of Operators in managing and growing their TikTok presence efficiently.</p>
           <h3>How data is used</h3>
-          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No Operator or End User data is sent to third-party AI, analytics, or advertising services. All API calls are back to TikTok on behalf of the Operator.</p>
+          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No data obtained from TikTok's API is sent to third-party AI, analytics, or advertising services. All Platform API calls are back to TikTok on behalf of the Operator. Separately from the Platform, the Platform Provider operates an internal, authentication-gated drafting tool that is not connected to TikTok's API in any way; it processes only text the Operator manually types or pastes in, and the Operator is prohibited from submitting TikTok-sourced content to it. That tool's sole outbound call is to Groq, Inc. for transient AI inference — see Section 18 for Groq's data handling terms.</p>
           <h3>Where data is transferred</h3>
-          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No Operator or End User data is shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform actions authorized by the Operator.</p>
+          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No data obtained from TikTok's API is shared with, sold to, or transferred to any third party. The Platform's only outbound API calls are back to TikTok to perform actions authorized by the Operator.</p>
           <h3>How data is protected</h3>
           <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. Each Operator's admin interface is protected by a unique secret key accessible only to authorized personnel within that Operator's organization.</p>
           <h3>How long data is stored</h3>
@@ -465,6 +465,7 @@ export default function PrivacyPolicy() {
             <li><strong>Vercel Inc.</strong> — Hosting and serverless compute infrastructure. SOC 2 Type II certified. Headquartered in San Francisco, CA, USA. Data processed in the United States. <a href="https://vercel.com/legal/privacy-policy" className="rainbow">Privacy Policy</a></li>
             <li><strong>GitHub Inc. (Microsoft)</strong> — Private source code repository. SOC 2 Type II certified. No production data is stored in version control. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" className="rainbow">Privacy Policy</a></li>
             <li><strong>TikTok for Business</strong> — Data source and action endpoint. All data originates from TikTok's API and moderation actions are returned to TikTok via authorized API calls. No TikTok user data is shared with any other subprocessor.</li>
+            <li><strong>Groq, Inc.</strong> — AI inference provider for an internal drafting tool operated separately from the Platform and never connected to TikTok's API. Processes only text manually provided by the Operator; data obtained from TikTok's API is never sent to Groq. Per Groq's services agreement, Groq may not use inputs or outputs to train AI models and does not retain them by default (temporary logs of up to 30 days may exist solely for reliability troubleshooting and abuse investigation). Headquartered in Mountain View, CA, USA. <a href="https://groq.com/privacy-policy" className="rainbow">Privacy Policy</a></li>
           </ul>
           <p>The Platform Provider does not use any other subprocessors that process Operator or End User data. This list is reviewed and updated whenever a new subprocessor is engaged. Operators will be notified of material changes to subprocessors.</p>
           <p>
@@ -534,7 +535,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: July 24, 2026</p>
+          <p>Last Updated: August 9, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
