@@ -98,8 +98,10 @@ export default function AdminPage() {
       <div style={s.page}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
 
+          <a href="/admin/tools" style={{ color: '#a855f7', fontSize: 13, textDecoration: 'none' }}>← All Tools</a>
+
           {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4, marginTop: 8 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 0 }}>TJB Management Inc.</h1>
             <button
               style={{ background: 'transparent', border: '1px solid #334155', borderRadius: 8, color: '#64748b', fontSize: 13, padding: '6px 14px', cursor: 'pointer' }}
