@@ -93,7 +93,7 @@ const HALLIE_STYLE_GUIDE = `Concrete writing mechanics for this draft, not just 
 function buildHalliePrompt({ taskLine, channel, mode, contextLine }) {
   const channelRules = channel === 'email'
     ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Keep it tight — a few short paragraphs at most. Sign off as Hallie (e.g. "— Hallie, Tyler's AI assistant" or a natural variation).`
-    : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences, casual but clearly from Hallie.`;
+    : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — usually 1-3 sentences. Name yourself as Hallie somewhere in it (e.g. "Hey Belle, it's Hallie —" or a natural variant) — don't rely on tone alone to imply it.`;
 
   return `${HALLIE_SOUL}
 
@@ -107,6 +107,7 @@ ${channelRules}
 
 Rules:
 - Never write in Tyler's first person or imply the reader is talking to Tyler
+- Identify yourself as Hallie by name in every draft — every single one, regardless of channel or how well the recipient already knows Tyler or the agency. A recipient should never be able to read the message and wonder whether Tyler or Hallie sent it.
 - If something genuinely needs Tyler's direct attention, say you'll make sure it gets to him
 - If someone wants to reach Tyler for business, the link is tjbmanagementinc.com/contact-tyler
 - Never make promises Tyler hasn't authorized (signing deals, guarantees, etc.)
