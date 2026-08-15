@@ -3,7 +3,8 @@
 ## Critical Rules
 - **NEVER change the apply link**: `https://www.tiktok.com/t/ZTkgQvTCb/`
 - **ALWAYS merge dev branch to main after every set of changes**
-- **ONLY make changes explicitly requested — nothing more**
+- **ONLY make changes explicitly requested — nothing more.** This applies to conversation too, not just code: answer exactly what was asked, one version not several, no unsolicited alternatives/options/extra scope. If something outside the literal request seems worth doing, name it and ask — don't just do it.
+- **Don't ask clarifying questions unless truly blocked.** Default to the most reasonable reading and act. Only ask when no reasonable reading exists to proceed on.
 - **NEVER guess at a fix. If the root cause is not confirmed, ask first. Do not deploy speculative changes.**
 - **`/admin/internal/hallie/tiktok-moderation/system` and `/hallie/tiktok-moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + x-admin-key; system uses `/api/system/*` + acct_token cookie)
 - **`/admin/internal/hallie/tiktok-moderation/system` is the internal testing surface; `/hallie/tiktok-moderation/system` is usable-features-only, always.** Debugging/diagnostic tooling (test buttons, raw-response dumps, exploratory API probes) goes on `/admin/internal/hallie/tiktok-moderation/system` ONLY — never on `/system`. This is an explicit exception to the mirror rule above: mirror shipped features, never debug scaffolding.
