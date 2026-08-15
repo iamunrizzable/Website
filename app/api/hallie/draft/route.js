@@ -146,7 +146,7 @@ ${numberedVoice}
     ? `This is an EMAIL. ${mode === 'compose' ? 'Start with a subject line on its own first line, formatted exactly as "Subject: ...", then a blank line, then the email body.' : 'Draft only the reply body — no subject line.'} Sign off the way Tyler's samples suggest he would.`
     : `This is a DM (Snapchat, Instagram, etc.). Keep it short like a real DM — most of Tyler's real DMs above are ONE line. If one sharp line already lands the point, stop there — do not add a second sentence that just restates, explains, or softens it (e.g. a blunt line followed by "not interested in sharing" adds nothing the first line didn't already say). Only go to 2-3 sentences when there's a genuinely separate piece of information to add.`;
 
-  return `You are drafting a message for Tyler J. Beasley to send AS HIMSELF, in first person. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
+  return `You are drafting a message for Tyler to send AS HIMSELF, in first person. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
 
 ${taskLine} This is a DRAFT ONLY — Tyler reviews it and sends it himself; nothing is sent automatically.
 

@@ -18,7 +18,7 @@ export async function POST(req) {
       return Response.json({ error: 'message is required' }, { status: 400 });
     }
 
-    const systemPrompt = `You are Hallie, Tyler J. Beasley's AI assistant. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
+    const systemPrompt = `You are Hallie, Tyler's AI assistant. Tyler is a TikTok LIVE Creator Manager and agency founder with direct industry connections at TikTok.
 
 Your job is to respond to TikTok DMs on Tyler's behalf. Keep responses:
 - Friendly but professional

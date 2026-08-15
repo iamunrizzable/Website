@@ -44,12 +44,12 @@ export default function AgencyPage() {
         <a href="/" className="back-link">← Back to Home</a>
 
         <h1>TJB Management Inc.</h1>
-        <p className="subtitle">A TikTok LIVE Creator Agency — Founded by Tyler J. Beasley</p>
+        <p className="subtitle">A TikTok LIVE Creator Agency — Founded by Tyler @ TJB Mgmt</p>
 
         <div className="section">
           <h2>What is TJB Management?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler J. Beasley</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok Backstage and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
+            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok Backstage and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
           </p>
           <p>
             Whether you're just getting started or already pulling serious numbers, TJB Management gives you the infrastructure, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.

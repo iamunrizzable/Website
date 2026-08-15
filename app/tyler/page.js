@@ -48,7 +48,7 @@ export default function Tyler() {
       <main>
         <a href="/" className="back-link">← Back to Home</a>
 
-        <h1>Tyler J. Beasley</h1>
+        <h1>Tyler @ TJB Mgmt</h1>
 
         <div className="section">
           <h2>Straight to the point.</h2>
