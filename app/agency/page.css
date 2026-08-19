@@ -1,19 +1,23 @@
-/* Photo backdrop: flat navy canvas fills the strips; the fixed
-   photo layer's tint fades to solid #0f172a at top/bottom edges so
-   it blends seamlessly into that canvas (and into the under-toolbar
-   region iOS won't paint the fixed layer into). */
+/* Flat navy canvas fills every strip uniformly (status bar,
+   under-toolbar, overscroll) — no color can mismatch it. The logo
+   watermark is layered with mix-blend-mode:lighten so the image's
+   pure-black field blends invisibly into the navy and only the
+   logo shows; this also sidesteps the iOS 26 Safari bug where a
+   position:fixed element won't paint behind the floating toolbar
+   (Apple dev forum 800798) — that region is just the flat canvas. */
 html { background-color: #0f172a; }
 body { background: transparent; }
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100lvh;
-  background-image: linear-gradient(to bottom, #0f172a 0%, #0f172a 8%, rgba(15, 23, 42, 0.82) 20%, rgba(15, 23, 42, 0.82) 80%, #0f172a 92%, #0f172a 100%), url("/bg-tyler.png");
+  inset: 0;
+  background-image: url("/bg-main.jpeg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: -3;
+  mix-blend-mode: lighten;
+  opacity: 0.35;
+  z-index: -1;
   pointer-events: none;
 }
         body { margin: 0; padding: 0; background: transparent; }
