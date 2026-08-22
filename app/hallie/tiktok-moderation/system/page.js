@@ -69,7 +69,7 @@ export default function SystemPage() {
 
           <div style={{ marginBottom: 24 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
-              Hallie
+              Hallie™
             </h1>
             <p style={{ color: '#64748b', fontSize: 13, margin: 0 }}>TikTok Account Automation · Powered by TJB Management Inc.</p>
           </div>

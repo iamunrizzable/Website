@@ -14,7 +14,7 @@ const s = {
 const TOOLS = [
   {
     href: '/hallie/writer',
-    title: 'Hallie Writer',
+    title: 'Hallie™ Writer',
     desc: 'Draft emails and DMs — as Hallie speaking on your behalf, or as yourself in your own voice.',
   },
   {
@@ -37,9 +37,9 @@ export default function AdminTools() {
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
-        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie TikTok Moderation System</a>
+        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
