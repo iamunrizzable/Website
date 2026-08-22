@@ -32,9 +32,9 @@ export default function HallieTikTokLegal() {
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
-        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie TikTok Moderation System</a>
+        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
@@ -45,7 +45,7 @@ export default function HallieTikTokLegal() {
       <main>
         <a href="/legal" className="back-link">← Back to Legal</a>
 
-        <h1>Hallie Platform — Data Security & Privacy Policy</h1>
+        <h1>Hallie™ Platform — Data Security & Privacy Policy</h1>
         <p className="subtitle">
           TikTok Account Automation Platform · Powered by TJB Management Inc.<br />
           Effective Date: July 1, 2026 · Last Updated: August 12, 2026

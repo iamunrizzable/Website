@@ -37,9 +37,9 @@ export default function ContactHallie() {
         <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
-        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie TikTok Moderation System</a>
+        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
@@ -49,7 +49,7 @@ export default function ContactHallie() {
 
       <main>
         <a href="/hallie" className="back-link">← Back to Hallie</a>
-        <h1>Connect with Hallie</h1>
+        <h1>Connect with Hallie™</h1>
 
         <div className="contact-grid">
           <a href="mailto:hallie@tjbmanagementinc.com" className="contact-card">
