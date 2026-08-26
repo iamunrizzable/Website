@@ -37,6 +37,7 @@ export default function StreamingBasics() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
+        <a href="/tiktok" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
@@ -66,6 +67,7 @@ export default function StreamingBasics() {
             <a href="#live-studio">LIVE Studio</a>
             <a href="#stream-tips">Stream Tips</a>
             <a href="#rules">Rules</a>
+            <a href="#faq">FAQ</a>
           </div>
         </div>
 
@@ -356,6 +358,27 @@ export default function StreamingBasics() {
           </ul>
           <p>Violations result in warnings first, then temporary bans from LIVE, then permanent removal for repeat or severe offenses.</p>
           <p><a href="/tiktok-guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of TikTok's Community Guidelines →</a></p>
+        </div>
+
+        <div className="section" id="faq">
+          <h2>Frequently Asked Questions</h2>
+          <p><strong>How old do I need to be to go LIVE on TikTok?</strong></p>
+          <p>You need to be 18+ and meet TikTok's account standing requirements before the LIVE option appears.</p>
+          <p><strong>When do I actually get paid for my diamonds?</strong></p>
+          <p>After you link a PayPal account and submit your tax information, TikTok automatically pays out your diamond earnings every Wednesday. The minimum payout is $1 USD.</p>
+          <p><strong>What's the difference between Super Fan and Subscriptions?</strong></p>
+          <p>Super Fan ($9.99/month) is LIVE-focused — a chat badge, entrance effects, and access to Super Fan-only LIVEs and chat. Subscriptions ($2.99–$99.99/month, price set by you) are content-focused — subscriber-only posts, videos, and chat access.</p>
+          <p><strong>Do I need expensive equipment to start streaming?</strong></p>
+          <p>No. Good lighting, a stable Wi-Fi connection, a decent phone camera, a quiet space, and a $10 phone stand are enough to start.</p>
+          <p><strong>How many followers do I need for TikTok LIVE Studio?</strong></p>
+          <p>10,000 followers for non-gaming creators. Gaming creators have a separate access pathway.</p>
+          <p><strong>What's the difference between Co-Host and a Match?</strong></p>
+          <p>Co-Host lets multiple creators share the same LIVE at the same time. A Match is a Co-Host mode that adds structured competition on top — Match = Co-Host + Competition.</p>
+          <p><strong>Am I allowed to ask viewers to send gifts?</strong></p>
+          <p>You can acknowledge gifts and highlight a gift goal — what's against the rules is constant, aggressive gift begging with no other content happening.</p>
+          <p><strong>What counts as a valid LIVE day for weekly rewards?</strong></p>
+          <p>Streaming at least 25 minutes total in a day. 1 valid day that week gets you 6% toward your Scaled LIVE Rewards, 2 or more gets you 8%.</p>
+          <p>Have a question that isn't answered here? <a href="/contact-agency" style={{ color: '#a855f7', textDecoration: 'none' }}>Connect with the agency →</a></p>
         </div>
 
         <a href="/agency" className="cta-btn">Learn About Joining TJB Management →</a>
