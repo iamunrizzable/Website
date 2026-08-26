@@ -65,6 +65,7 @@ export default function Contact() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
+        <a href="/tiktok" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>

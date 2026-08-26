@@ -37,6 +37,7 @@ export default function Home() {
         <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
         <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
         <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
+        <a href="/tiktok" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
         <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
         <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
@@ -54,7 +55,7 @@ export default function Home() {
           <a href="/hallie" className="nav-button"><span>Hallie</span></a>
           <a href="/agency" className="nav-button"><span>Agency</span></a>
           <a href="/merch" className="nav-button"><span>Merch</span></a>
-          <a href="/streaming-basics" className="nav-button"><span>Guidelines & Resources</span></a>
+          <a href="/tiktok" className="nav-button"><span>Guidelines & Resources</span></a>
           <a href="/legal" className="nav-button"><span>Legal</span></a>
         </div>
 
