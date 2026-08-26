@@ -53,6 +53,7 @@ export default function StreamingBasics() {
           <p>Jump to a section:</p>
           <div className="toc-links">
             <a href="#how-to-go-live">How to Go LIVE</a>
+            <a href="#discovery">How Viewers Find You</a>
             <a href="#what-you-need">Equipment</a>
             <a href="#gifts">How Gifts Work</a>
             <a href="#diamonds">Diamond Value</a>
@@ -76,6 +77,19 @@ export default function StreamingBasics() {
             <li><strong>Step 3 — Set a title and topic.</strong> Give your stream a short title and pick a category. Both help TikTok surface your LIVE to the right viewers.</li>
             <li><strong>Step 4 — Go live.</strong> Tap <span className="highlight">Go LIVE</span>. To end, tap the <span className="highlight">X</span> in the corner and confirm.</li>
           </ul>
+        </div>
+
+        <div className="section" id="discovery">
+          <h2>How Viewers Find Your LIVE</h2>
+          <p>Viewers reach your LIVE through a few different pathways — each one is a possible arrival point, not a guarantee of reach:</p>
+          <ul>
+            <li><strong>Followers.</strong> People who already know you.</li>
+            <li><strong>LIVE Feed.</strong> People actively browsing LIVE content.</li>
+            <li><strong>For You.</strong> Potential new audiences TikTok surfaces you to.</li>
+            <li><strong>Shares.</strong> Your community brings people in when they share your LIVE.</li>
+            <li><strong>Profile + Search.</strong> Other surfaces on the app that can create entry points.</li>
+          </ul>
+          <p>Getting discovered is only half of it — the better question is: <strong>what happens when a new viewer arrives?</strong> A stream with nothing structured going on gives them no reason to stay. That's what Co-Host and Match (below) are for.</p>
         </div>
 
         <div className="section" id="what-you-need">
@@ -226,9 +240,23 @@ export default function StreamingBasics() {
         <div className="section" id="match">
           <h2>Co-Host & Match</h2>
           <p>
-            A LIVE Match is a Co-Host mode that turns a shared LIVE into a structured challenge — <strong>Match = Co-Host + Competition</strong>. Formats and features may vary by availability.
+            <strong>Co-Host</strong> lets multiple creators share the same LIVE moment at the same time — going LIVE together instead of alone. A <strong>Match</strong> is a Co-Host mode that turns that shared LIVE into a structured challenge: <strong>Match = Co-Host + Competition</strong>. Formats and features may vary by availability.
           </p>
-          <p><strong>Picking a co-host partner.</strong> Follower count isn't what makes a co-host work. What matters is <span className="highlight">content fit, energy fit, audience compatibility, and interaction</span> — someone whose content and personality give viewers a natural reason to stay, not just whoever has the biggest following or accepts first.</p>
+          <p><strong>What Co-Host gives you:</strong></p>
+          <ul>
+            <li><strong>Connect.</strong> Build creator relationships and interact in real time.</li>
+            <li><strong>Expand.</strong> Introduce different communities to each other.</li>
+            <li><strong>Create.</strong> Add perspectives, personalities, and interaction your solo stream doesn't have.</li>
+          </ul>
+          <p><strong>How to start a Co-Host.</strong> While you're LIVE, tap <span className="highlight">+Hosts</span> and send an invite.</p>
+          <p><strong>Give viewers a reason to watch.</strong> Co-Host isn't just "split screen" — <em>"We are both LIVE"</em> is a weak pitch, <em>"We are doing something together"</em> is a better one. Structure the time together instead of just sitting side by side:</p>
+          <ul>
+            <li><strong>Chat</strong> — Q&A, opinions, stories.</li>
+            <li><strong>Challenge</strong> — who can do it better?</li>
+            <li><strong>Collab</strong> — make something together.</li>
+            <li><strong>Match</strong> — structured competition in real time.</li>
+          </ul>
+          <p><strong>Picking a co-host partner.</strong> Follower count isn't what makes a co-host work. What matters is <span className="highlight">content fit, energy fit, audience compatibility, and interaction</span> — invite someone who makes your LIVE more interesting, not just someone who's available or has the biggest following.</p>
           <p><strong>How a Match builds engagement:</strong></p>
           <ul>
             <li><strong>Co-Host</strong> creates the shared LIVE moment.</li>
