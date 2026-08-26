@@ -60,6 +60,7 @@ export default function StreamingBasics() {
             <a href="#fan-club">Fan Club</a>
             <a href="#gift-goals">Gift Goals</a>
             <a href="#battles">LIVE Battles</a>
+            <a href="#match">Co-Host & Match</a>
             <a href="#live-studio">LIVE Studio</a>
             <a href="#stream-tips">Stream Tips</a>
             <a href="#rules">Rules</a>
@@ -220,6 +221,32 @@ export default function StreamingBasics() {
           <p><strong>Why it works.</strong> The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</p>
           <p><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with <span className="highlight">cash prizes on top of normal gift earnings</span>.</p>
           <p><strong>Losing a battle.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. Entirely optional, but it adds entertainment value and gives viewers a reason to stay tuned.</p>
+        </div>
+
+        <div className="section" id="match">
+          <h2>Co-Host & Match</h2>
+          <p>
+            A LIVE Match is a Co-Host mode that turns a shared LIVE into a structured challenge — <strong>Match = Co-Host + Competition</strong>. Formats and features may vary by availability.
+          </p>
+          <p><strong>Picking a co-host partner.</strong> Follower count isn't what makes a co-host work. What matters is <span className="highlight">content fit, energy fit, audience compatibility, and interaction</span> — someone whose content and personality give viewers a natural reason to stay, not just whoever has the biggest following or accepts first.</p>
+          <p><strong>How a Match builds engagement:</strong></p>
+          <ul>
+            <li><strong>Co-Host</strong> creates the shared LIVE moment.</li>
+            <li><strong>Match</strong> selects the challenge format.</li>
+            <li><strong>Viewers</strong> like, comment, share, or gift where eligible.</li>
+            <li><strong>Points</strong> — those actions can become visible game progress.</li>
+            <li><strong>Compete</strong> — the LIVE moment gains stakes.</li>
+            <li><strong>Engage</strong> — viewers get more reasons to watch and react.</li>
+          </ul>
+          <p>Without a Match, the pitch to a viewer is "watch me." With a Match, it becomes "<strong>watch us compete</strong>" — giving them a reason to watch in real time, like to show support for a side, comment to react, gift where eligible, and share to bring more people into the moment. Better content can support a stronger viewer response, but it doesn't guarantee traffic or ranking — a Match isn't a shortcut to reach on its own.</p>
+          <p><strong>The 4P model for planning a good Match:</strong></p>
+          <ul>
+            <li><strong>Promotion.</strong> Build anticipation before the Match — a short teaser video, a scheduled LIVE Event, clear timing. Post the teaser <span className="highlight">48–24 hours out</span> so viewers have a reason to show up.</li>
+            <li><strong>Pairing.</strong> Opponent selection drives the narrative. An aesthetic match (like DJ vs. DJ) raises the stakes, and niche crossovers create curiosity — similarity between the two creators creates energy.</li>
+            <li><strong>Plot.</strong> A structured game or story arc keeps viewers invested for the full match — think elimination formats, themed challenges, or dares. Give viewers a narrative to follow, not just a scoreboard.</li>
+            <li><strong>Post-Game.</strong> The victory lap isn't optional. Punishments, rewards, and callbacks in the minutes right after the Match are peak viewer retention — use them instead of ending cold.</li>
+          </ul>
+          <p><strong>The revenue loop.</strong> Think in terms of building a loop, not asking for gifts: <span className="highlight">discovery</span> (new viewers enter the LIVE) → <span className="highlight">engagement</span> (they watch, like, comment, and react) → <span className="highlight">competition</span> (they have a reason to participate) → <span className="highlight">gifting</span> (supporters may send gifts where eligible) → <span className="highlight">diamonds</span> (eligible creators collect diamonds). Keep asking: how do I create more moments that make viewers want to participate? LIVE Gifts and Diamonds availability and eligibility requirements apply.</p>
         </div>
 
         <div className="section" id="live-studio">
