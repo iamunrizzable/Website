@@ -64,7 +64,7 @@ export default function TikTokGuidelines() {
         <div className="section">
           <h2 className="section-title">1. Hate Speech and Hateful Behavior</h2>
           <p className="policy-text">
-            We do not allow any hateful behavior, hate speech, or promotion of hateful ideologies. <span className="white">This includes content that attacks a person or group because of protected attributes.</span>
+            Neither of us allows any hateful behavior, hate speech, or promotion of hateful ideologies. <span className="white">This includes content that attacks a person or group because of protected attributes.</span>
           </p>
           <span className="badge badge-pink">Best Practices</span>
           <div className="practices-grid">
@@ -86,7 +86,7 @@ export default function TikTokGuidelines() {
         {/* Section 2 */}
         <div className="section">
           <h2 className="section-title">2. Harassment and Bullying</h2>
-          <p className="policy-text">We do not allow language or behavior that harasses, humiliates, or threatens anyone.</p>
+          <p className="policy-text">Neither of us allows language or behavior that harasses, humiliates, or threatens anyone.</p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">
             <li>Degrading someone or expressing disgust on the basis of their personal characteristics or circumstances.</li>
@@ -106,7 +106,7 @@ export default function TikTokGuidelines() {
         <div className="section">
           <h2 className="section-title">3. <span className="pink">Nudity, Body Exposure</span> and Sexual Activity</h2>
           <p className="policy-text">
-            We do not allow nudity, including uncovered genitals and buttocks, as well as nipples and areolas of women and girls. <span className="white">Sheer and partially see-through clothing is not considered covered.</span>
+            Neither of us allows nudity, including uncovered genitals and buttocks, as well as nipples and areolas of women and girls. <span className="white">Sheer and partially see-through clothing is not considered covered.</span>
           </p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">
@@ -151,7 +151,7 @@ export default function TikTokGuidelines() {
         <div className="section">
           <h2 className="section-title">5. <span className="pink">Suicide, Self-Harm</span> and Dangerous Activities</h2>
           <p className="policy-text">
-            We want TikTok to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. <span className="white">We do not allow showing, promoting, or sharing plans for suicide or self-harm.</span>
+            TikTok and TJB Management both want this to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. <span className="white">Neither of us allows showing, promoting, or sharing plans for suicide or self-harm.</span>
           </p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">
@@ -175,7 +175,7 @@ export default function TikTokGuidelines() {
         <div className="section">
           <h2 className="section-title">6. <span className="pink">Minor/Youth</span> Safety</h2>
           <p className="policy-text">
-            Youth safety is our priority. <span className="white">We do not allow content that may put young people at risk of exploitation, or psychological, physical, or developmental harm.</span>
+            Youth safety is a priority for both of us. <span className="white">Neither of us allows content that may put young people at risk of exploitation, or psychological, physical, or developmental harm.</span>
           </p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">
