@@ -55,6 +55,7 @@ export default function StreamingBasics() {
             <a href="#how-to-go-live">How to Go LIVE</a>
             <a href="#discovery">How Viewers Find You</a>
             <a href="#what-you-need">Equipment</a>
+            <a href="#visuals">Visual Setup</a>
             <a href="#gifts">How Gifts Work</a>
             <a href="#diamonds">Diamond Value</a>
             <a href="#super-fan">Super Fan</a>
@@ -101,6 +102,34 @@ export default function StreamingBasics() {
             <li><strong>A phone with a decent front camera.</strong> Most modern phones are fine. No separate camera needed to start.</li>
             <li><strong>A quiet environment.</strong> Clear audio keeps viewers around.</li>
             <li><strong>A phone stand or tripod.</strong> A $10 stand beats holding your phone the whole time.</li>
+          </ul>
+        </div>
+
+        <div className="section" id="visuals">
+          <h2>Make Your LIVE Easy to Watch</h2>
+          <p>TikTok doesn't publish one exact visual recipe that guarantees traffic — but it consistently rewards streams that are clear over streams that are just polished. <strong>Don't chase aesthetics. Chase viewer response.</strong></p>
+          <p><strong>What the platform actually looks for:</strong></p>
+          <ul>
+            <li><strong>Attention</strong> — is the subject immediately clear?</li>
+            <li><strong>Trust</strong> — can viewers clearly see you or the subject?</li>
+            <li><strong>Friction</strong> — is the screen easy to understand quickly?</li>
+            <li><strong>Interaction</strong> — can viewers see the next action to take?</li>
+          </ul>
+          <p>Good visual doesn't mean expensive visual — <strong>good visual means a clear viewer experience.</strong></p>
+          <p><strong>The 5-second test.</strong> A new viewer scrolling in decides almost instantly whether to stay. Ask yourself three questions every time you go LIVE:</p>
+          <ul>
+            <li><strong>Who am I watching?</strong> Make the creator or subject easy to recognize.</li>
+            <li><strong>What are they doing?</strong> Make the activity or moment immediately visible.</li>
+            <li><strong>Why should I stay?</strong> Give viewers a clear reason to keep watching or join in.</li>
+          </ul>
+          <p>A <strong>strong</strong> visual is creator + activity + context, all visible at once. A <strong>weak</strong> visual is a dark screen, a tiny creator in frame, and unclear activity.</p>
+          <p><strong>Quick clarity checklist:</strong></p>
+          <ul>
+            <li><strong>Lighting.</strong> Even light on your face or subject — not too dark, not backlit.</li>
+            <li><strong>Camera.</strong> Positioned near eye level when appropriate, not sitting too low.</li>
+            <li><strong>Background.</strong> Tidy or intentionally styled, with a clear focal point instead of clutter.</li>
+            <li><strong>Framing.</strong> The main subject is easy to pick out at a glance.</li>
+            <li><strong>Interaction.</strong> Look at the camera and respond — a screen that reacts feels active, not static.</li>
           </ul>
         </div>
 
@@ -274,6 +303,14 @@ export default function StreamingBasics() {
             <li><strong>Plot.</strong> A structured game or story arc keeps viewers invested for the full match — think elimination formats, themed challenges, or dares. Give viewers a narrative to follow, not just a scoreboard.</li>
             <li><strong>Post-Game.</strong> The victory lap isn't optional. Punishments, rewards, and callbacks in the minutes right after the Match are peak viewer retention — use them instead of ending cold.</li>
           </ul>
+          <p><strong>Make the Match watchable.</strong> A good Match has a story — every phase should give viewers a reason to stay, react, and follow what happens next.</p>
+          <ul>
+            <li><strong>Set stakes.</strong> Ask viewers directly: <em>"Who do you think will win?"</em></li>
+            <li><strong>Keep the energy moving.</strong> React, challenge, celebrate, and read comments out loud.</li>
+            <li><strong>Make it a moment.</strong> Acknowledge support as it changes the live moment — something like <em>"Thank you, [name] — that just pushed us ahead!"</em></li>
+            <li><strong>Close the loop.</strong> Celebrate the result, thank both communities, and invite viewers to stay.</li>
+          </ul>
+          <p>Invite participation — never pressure viewers to send gifts.</p>
           <p><strong>The revenue loop.</strong> Think in terms of building a loop, not asking for gifts: <span className="highlight">discovery</span> (new viewers enter the LIVE) → <span className="highlight">engagement</span> (they watch, like, comment, and react) → <span className="highlight">competition</span> (they have a reason to participate) → <span className="highlight">gifting</span> (supporters may send gifts where eligible) → <span className="highlight">diamonds</span> (eligible creators collect diamonds). Keep asking: how do I create more moments that make viewers want to participate? LIVE Gifts and Diamonds availability and eligibility requirements apply.</p>
         </div>
 
