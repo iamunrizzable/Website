@@ -338,6 +338,7 @@ export default function StreamingBasics() {
             <li><strong>Build relationships before PK Battles.</strong> Cold-requesting a battle from a stranger rarely works. Connect with other creators in the community first, then coordinate battles in advance.</li>
             <li><strong>Pick a specific category.</strong> TikTok uses your title and category to surface your LIVE to the right audience. "Other" gets you less reach than a category that actually matches your content.</li>
             <li><strong>Work your gift gallery.</strong> Actively fill your gallery slots during streams. TikTok reportedly pushes streams with gallery activity to more viewers on the For You Page.</li>
+            <li><strong>Run one experiment per LIVE.</strong> Pick a single test each stream — fix one visual (camera, lighting, framing, background, on-screen clarity), run one co-host, or test one Match — and only change <span className="highlight">one major variable at a time</span>. Then compare the result against your last stream: average viewers and watch time, gifts and diamonds where eligible, and new followers or gift senders.</li>
           </ul>
         </div>
 
