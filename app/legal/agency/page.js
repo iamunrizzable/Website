@@ -161,29 +161,13 @@ export default function AgencyLegal() {
 
         <div className="section" id="support">
           <h2>9. Support Availability</h2>
-          <p>TJB Management Inc. maintains the following support hours (all times Eastern Time):</p>
-          <ul>
-            <li><span className="rainbow">TJB Creator Support — 7:00 AM to 12:00 AM ET.</span> Support for creators who are signed to or actively signing with TJB Management Inc.</li>
-            <li><span className="rainbow">TJB Corporate Support — 8:00 PM to 12:00 AM ET.</span> Business inquiries directed to TJB Management Inc. that were not initiated by the agency.</li>
-          </ul>
-          <p>Inquiries received outside these windows will be addressed during the next available support period for the applicable support hours.</p>
+          <p>TJB Management Inc. support is available <span className="rainbow">Monday through Friday, 9:00 AM to 9:00 PM Eastern Time</span>, unless otherwise stated.</p>
+          <p>Inquiries received outside these hours will be addressed during the next available support period.</p>
         </div>
 
         <div className="section" id="corporate-policy">
           <h2>10. Corporate Policy: Inquiry Handling</h2>
-          <p>TJB Management Inc. operates 7 days a week with clearly defined response windows:</p>
-
-          <p><strong>Creator Inquiries</strong></p>
-          <ul>
-            <li><span className="rainbow">Related to creators who are signed or in the process of signing with TJB Management Inc.</span></li>
-            <li><span className="rainbow">Response Window: 7:00 AM – 12:00 AM ET daily</span></li>
-          </ul>
-
-          <p><strong>Corporate Inquiries</strong></p>
-          <ul>
-            <li><span className="rainbow">All other business inquiries not related to signed or signing creators.</span></li>
-            <li><span className="rainbow">Response Window: 8:00 PM – 12:00 AM ET daily</span></li>
-          </ul>
+          <p>TJB Management Inc. handles all inquiries — from creators, partners, or the public — under the same response window described in Support Availability above.</p>
 
           <p><strong>Communication Rules for Designated External Partners</strong></p>
           <p>
@@ -195,7 +179,7 @@ export default function AgencyLegal() {
         </div>
 
         <footer>
-          <p>Last Updated: July 21, 2026</p>
+          <p>Last Updated: August 27, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
