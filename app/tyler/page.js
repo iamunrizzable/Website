@@ -4,7 +4,7 @@ import './page.css';
 
 import { useState, useEffect } from 'react';
 
-export default function Tyler() {
+export default function TylerHub() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ export default function Tyler() {
         }
       });
     }, { threshold: 0.1 });
-    
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -26,63 +25,43 @@ export default function Tyler() {
   return (
     <>
 
-      <div className="fade-top"></div>
-
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TJB Management Agency</a>
-        <a href="/contact-agency" onClick={() => setMenuOpen(false)}>Connect with Agency</a>
-        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-        <a href="/contact-tyler" onClick={() => setMenuOpen(false)}>Connect with Tyler</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/contact-hallie" onClick={() => setMenuOpen(false)}>Connect with Hallie</a>
-        <a href="/hallie/tiktok-moderation/system" onClick={() => setMenuOpen(false)}>Hallie™ TikTok Moderation System</a>
-        <a href="/merch" onClick={() => setMenuOpen(false)}>Merch</a>
+        <a href="/agency" onClick={() => setMenuOpen(false)}>Agency Hub</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler Hub</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™ Hub</a>
         <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
-        <a href="/streaming-basics" onClick={() => setMenuOpen(false)}>Streaming Basics</a>
-        <a href="/tiktok-guidelines" onClick={() => setMenuOpen(false)}>TikTok Guidelines</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal Hub</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
-        <a href="/" className="back-link">← Back to Home</a>
-
-        <h1>Tyler @ TJB Mgmt</h1>
-
-        <div className="section">
-          <h2>Straight to the point.</h2>
-          <p>
-            Creator manager. Agency founder. Five years in the TikTok LIVE ecosystem.
-          </p>
+        <div className="header section">
+          <h1>Tyler Hub</h1>
+          <p className="subtitle">Tyler @ TJB Mgmt · Creator Manager & Agency Founder</p>
         </div>
 
-        <div className="section">
-          <h2>Experience</h2>
-          <p>
-            I've spent <strong>5 years managing creators</strong> across multiple TikTok agencies, working directly through TikTok's official agency management platform. I know the platform inside and out — from growth strategy and monetization to handling bans, violations, and creator protection at the agency level.
-          </p>
-          <p>
-            I run my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, built to give creators the real, personalized support that most agencies never deliver.
-          </p>
+        <div className="grid">
+          <a href="/tyler/about" className="card section">
+            <span className="card-icon">👤</span>
+            <span className="card-title">About Tyler</span>
+            <span className="card-desc">Five years managing TikTok LIVE creators — his experience, what he handles, and how he works.</span>
+            <span className="card-link">MEET TYLER →</span>
+          </a>
+
+          <a href="/contact-tyler" className="card section">
+            <span className="card-icon">🔗</span>
+            <span className="card-title">Connect with Tyler</span>
+            <span className="card-desc">Phone, email, TikTok, Discord, Instagram, Snapchat, X, PlayStation, playlists, and more.</span>
+            <span className="card-link">CONNECT →</span>
+          </a>
         </div>
 
-        <div className="section">
-          <h2>What I Handle</h2>
-          <p>
-            Strategy, monetization, ban appeals, LIVE optimization, community growth, and creator protection — all with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>. I keep things direct, drama-free, and focused on results.
-          </p>
-        </div>
-
-        <a href="/contact-tyler" className="cta-btn">Connect with Tyler →</a>
-
-        <div className="footer">
+        <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-          <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
-          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
-          <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
-        </div>
+          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners.</p>
+        </footer>
       </main>
     </>
   );

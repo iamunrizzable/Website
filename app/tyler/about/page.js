@@ -4,34 +4,22 @@ import './page.css';
 
 import { useState, useEffect } from 'react';
 
-export default function ContactAgency() {
+export default function Tyler() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const contacts = [
-{ name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
-    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
-    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
-    { name: 'Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'About the Agency', href: '/agency/about', icon: '🏢' },
-  ];
-
-  const internalLinks = ['Email', 'About the Agency'];
-
   useEffect(() => {
-    const cards = Array.from(document.querySelectorAll('.contact-card'));
+    const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const idx = cards.indexOf(entry.target);
         if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${idx * 0.05}s`;
           entry.target.classList.add('visible');
         } else {
-          entry.target.style.transitionDelay = '0s';
           entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.1 });
-    cards.forEach(card => observer.observe(card));
+    
+    sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
@@ -52,25 +40,35 @@ export default function ContactAgency() {
       </div>
 
       <main>
-        <a href="/agency" className="back-link">← Back to Agency</a>
-        <h1>Connect with TJB Management</h1>
+        <a href="/tyler" className="back-link">← Back to Tyler Hub</a>
 
-        <div className="contact-grid">
-          {contacts.map((contact) => (
-            <a
-              key={contact.name}
-              href={contact.href}
-              target={!internalLinks.includes(contact.name) ? '_blank' : undefined}
-              rel={!internalLinks.includes(contact.name) ? 'noopener noreferrer' : undefined}
-              className="contact-card"
-            >
-              <span className="contact-icon">{contact.icon}</span>
-              <span className="contact-name">{contact.name}</span>
-            </a>
-          ))}
+        <h1>Tyler @ TJB Mgmt</h1>
+
+        <div className="section">
+          <h2>Straight to the point.</h2>
+          <p>
+            Creator manager. Agency founder. Five years in the TikTok LIVE ecosystem.
+          </p>
         </div>
 
-        <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
+        <div className="section">
+          <h2>Experience</h2>
+          <p>
+            I've spent <strong>5 years managing creators</strong> across multiple TikTok agencies, working directly through TikTok's official agency management platform. I know the platform inside and out — from growth strategy and monetization to handling bans, violations, and creator protection at the agency level.
+          </p>
+          <p>
+            I run my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, built to give creators the real, personalized support that most agencies never deliver.
+          </p>
+        </div>
+
+        <div className="section">
+          <h2>What I Handle</h2>
+          <p>
+            Strategy, monetization, ban appeals, LIVE optimization, community growth, and creator protection — all with the help of <strong><a href="/hallie">Hallie, my AI assistant</a></strong>. I keep things direct, drama-free, and focused on results.
+          </p>
+        </div>
+
+        <a href="/contact-tyler" className="cta-btn">Connect with Tyler →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
