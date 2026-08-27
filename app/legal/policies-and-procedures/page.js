@@ -116,7 +116,6 @@ export default function PoliciesAndProcedures() {
 
         {/* ══════════════════════════════════════════ PART I ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part I — Agency Policies & Procedures</h2>
-        <p className="disclaimer">Source: <a href="/legal/agency"><span className="rainbow">/legal/agency</span></a> and <a href="/agency"><span className="rainbow">/agency</span></a></p>
 
         <div className="section" id="agency-about">
           <h2>1. About TJB Management Inc.</h2>
@@ -283,7 +282,6 @@ export default function PoliciesAndProcedures() {
 
         {/* ══════════════════════════════════════════ PART II ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part II — Hallie Platform Data Security & Privacy Policy</h2>
-        <p className="disclaimer">Source: <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">/legal/hallie-tiktok-moderation-system</span></a> — the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform, as required by TikTok's DSPR and USDS review processes. That page remains the canonical, authoritative copy.</p>
 
         <div className="section" id="hallie-about">
           <h2>1. About the Platform</h2>
@@ -633,7 +631,6 @@ export default function PoliciesAndProcedures() {
 
         {/* ══════════════════════════════════════════ PART III ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part III — General Legal Terms</h2>
-        <p className="disclaimer">Source: <a href="/legal/general"><span className="rainbow">/legal/general</span></a></p>
 
         <div className="section" id="general-acceptance">
           <h2>1. Acceptance of Terms</h2>
