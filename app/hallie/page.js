@@ -42,7 +42,7 @@ export default function HallieHub() {
         </div>
 
         <div className="grid">
-          <a href="/hallie/about" className="card section">
+          <a href="/hallie/about/hallie" className="card section">
             <span className="card-icon">🤖</span>
             <span className="card-title">About Hallie™</span>
             <span className="card-desc">Tyler's AI assistant — managing emails, DMs, and responses across all platforms.</span>
