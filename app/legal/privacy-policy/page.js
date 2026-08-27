@@ -95,7 +95,6 @@ export default function PrivacyPolicy() {
 
         {/* ══════════════════════════════════════════ PART I ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part I — General Website Privacy Practices</h2>
-        <p className="disclaimer">Source: <a href="/legal/agency"><span className="rainbow">/legal/agency</span></a>, <a href="/agency"><span className="rainbow">/agency</span></a>, and <a href="/legal/general"><span className="rainbow">/legal/general</span></a></p>
 
         <div className="section" id="privacy-overview">
           <h2>1. Overview</h2>
