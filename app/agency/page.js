@@ -31,7 +31,6 @@ export default function AgencyHub() {
         <a href="/agency" onClick={() => setMenuOpen(false)}>Agency Hub</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler Hub</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™ Hub</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal Hub</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -39,7 +38,7 @@ export default function AgencyHub() {
       <main>
         <div className="header section">
           <h1>Agency Hub</h1>
-          <p className="subtitle">TJB Management Inc. · A TikTok LIVE Creator Agency</p>
+          <p className="subtitle">TJB Management Inc. · Agency, Guidelines, Streaming Resources & TikTok Tools</p>
         </div>
 
         <div className="grid">
@@ -55,6 +54,34 @@ export default function AgencyHub() {
             <span className="card-title">Connect with Agency</span>
             <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
             <span className="card-link">CONNECT →</span>
+          </a>
+
+          <a href="/legal/agency" className="card section">
+            <span className="card-icon">📋</span>
+            <span className="card-title">Agency Guidelines</span>
+            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
+            <span className="card-link">VIEW GUIDELINES →</span>
+          </a>
+
+          <a href="/streaming-basics" className="card section">
+            <span className="card-icon">📺</span>
+            <span className="card-title">Streaming Basics & FAQs</span>
+            <span className="card-desc">Going LIVE, gifts and diamonds, Super Fan and Fan Club, Co-Host and Match, visual setup, stream tips, and frequently asked questions.</span>
+            <span className="card-link">VIEW GUIDE →</span>
+          </a>
+
+          <a href="/tiktok-guidelines" className="card section">
+            <span className="card-icon">📜</span>
+            <span className="card-title">TikTok Community Guidelines</span>
+            <span className="card-desc">The 6 main Community Guidelines policies, what's not allowed on LIVE, and gift-baiting rules — with best practices and quick self-checks.</span>
+            <span className="card-link">VIEW GUIDELINES →</span>
+          </a>
+
+          <a href="/hallie/tiktok-moderation/system" className="card section">
+            <span className="card-icon">🛡️</span>
+            <span className="card-title">Hallie™ TikTok Moderation System</span>
+            <span className="card-desc">Hallie's live comment moderation tool for your TikTok account — review, hide, and manage comments automatically.</span>
+            <span className="card-link">OPEN SYSTEM →</span>
           </a>
 
           <a href="/merch" className="card section">
