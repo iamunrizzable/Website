@@ -49,20 +49,6 @@ export default function AgencyHub() {
             <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 
-          <a href="/contact-agency" className="card section">
-            <span className="card-icon">🤝</span>
-            <span className="card-title">Connect with TikTok Agency</span>
-            <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
-            <span className="card-link">CONNECT →</span>
-          </a>
-
-          <a href="/legal/agency" className="card section">
-            <span className="card-icon">📋</span>
-            <span className="card-title">Agency Guidelines</span>
-            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
-            <span className="card-link">VIEW GUIDELINES →</span>
-          </a>
-
           <a href="/streaming-basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics & FAQs</span>
@@ -77,11 +63,11 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/hallie/tiktok-moderation/system" className="card section">
-            <span className="card-icon">🛡️</span>
-            <span className="card-title">Hallie™ TikTok Moderation System</span>
-            <span className="card-desc">Hallie's live comment moderation tool for your TikTok account — review, hide, and manage comments automatically.</span>
-            <span className="card-link">OPEN SYSTEM →</span>
+          <a href="/legal/agency" className="card section">
+            <span className="card-icon">📋</span>
+            <span className="card-title">Agency Guidelines</span>
+            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
+            <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
           <a href="/merch" className="card section">
@@ -89,6 +75,20 @@ export default function AgencyHub() {
             <span className="card-title">Merch</span>
             <span className="card-desc">Official TJB Management merchandise.</span>
             <span className="card-link">SHOP MERCH →</span>
+          </a>
+
+          <a href="/contact-agency" className="card section">
+            <span className="card-icon">🤝</span>
+            <span className="card-title">Connect with TikTok Agency</span>
+            <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
+            <span className="card-link">CONNECT →</span>
+          </a>
+
+          <a href="/hallie/tiktok-moderation/system" className="card section">
+            <span className="card-icon">🛡️</span>
+            <span className="card-title">Hallie™ TikTok Moderation System</span>
+            <span className="card-desc">Hallie's live comment moderation tool for your TikTok account — review, hide, and manage comments automatically.</span>
+            <span className="card-link">OPEN SYSTEM →</span>
           </a>
         </div>
 
