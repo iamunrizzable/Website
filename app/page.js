@@ -32,7 +32,6 @@ export default function Home() {
         <a href="/agency" onClick={() => setMenuOpen(false)}>Agency Hub</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler Hub</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™ Hub</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Hub</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal Hub</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -47,7 +46,6 @@ export default function Home() {
           <a href="/tyler" className="nav-button"><span>Tyler Hub</span></a>
           <a href="/hallie" className="nav-button"><span>Hallie Hub</span></a>
           <a href="/agency" className="nav-button"><span>Agency Hub</span></a>
-          <a href="/tiktok/agency" className="nav-button"><span>TikTok Hub</span></a>
           <a href="/legal" className="nav-button"><span>Legal Hub</span></a>
         </div>
 
