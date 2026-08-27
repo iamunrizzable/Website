@@ -12,10 +12,10 @@ export default function ContactAgency() {
     { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
     { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
     { name: 'Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'About the Agency', href: '/agency/about', icon: '🏢' },
+    { name: 'About the TikTok Agency', href: '/tiktok/agency/about', icon: '🏢' },
   ];
 
-  const internalLinks = ['Email', 'About the Agency'];
+  const internalLinks = ['Email', 'About the TikTok Agency'];
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll('.contact-card'));
@@ -45,13 +45,13 @@ export default function ContactAgency() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
-        <a href="/agency" className="back-link">← Back to Agency</a>
+        <a href="/tiktok/agency" className="back-link">← Back to TikTok Agency</a>
         <h1>Connect with TJB Management</h1>
 
         <div className="contact-grid">
