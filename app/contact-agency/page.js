@@ -8,13 +8,13 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
-    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
+    { name: 'TikTok Agency Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
+    { name: "TikTok Agency's TikTok", href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
+    { name: 'TikTok Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
     { name: 'Join Our TikTok Agency Discord', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
   ];
 
-  const internalLinks = ['Email'];
+  const internalLinks = ['TikTok Agency Email'];
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll('.contact-card'));
