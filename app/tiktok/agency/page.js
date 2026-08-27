@@ -49,7 +49,7 @@ export default function AgencyHub() {
             <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 
-          <a href="/streaming-basics" className="card section">
+          <a href="/tiktok/streaming/basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics & FAQs</span>
             <span className="card-desc">Going LIVE, gifts and diamonds, Super Fan and Fan Club, Co-Host and Match, visual setup, stream tips, and frequently asked questions.</span>
