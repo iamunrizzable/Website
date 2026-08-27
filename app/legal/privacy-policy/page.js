@@ -180,7 +180,6 @@ export default function PrivacyPolicy() {
 
         {/* ══════════════════════════════════════════ PART II ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part II — Hallie Platform Data Security & Privacy Policy</h2>
-        <p className="disclaimer">Source: <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">/legal/hallie-tiktok-moderation-system</span></a> — the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform, as required by TikTok's DSPR and USDS review processes. That page remains the canonical, authoritative copy.</p>
 
         <div className="section" id="hallie-about">
           <h2>1. About the Platform</h2>
