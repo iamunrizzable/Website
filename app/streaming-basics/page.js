@@ -31,7 +31,7 @@ export default function StreamingBasics() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -373,7 +373,7 @@ export default function StreamingBasics() {
           <p>Have a question that isn't answered here? <a href="/contact-agency" style={{ color: '#a855f7', textDecoration: 'none' }}>Connect with the agency →</a></p>
         </div>
 
-        <a href="/agency" className="cta-btn">Learn About Joining TJB Management →</a>
+        <a href="/tiktok/agency" className="cta-btn">Learn About Joining TJB Management →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>

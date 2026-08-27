@@ -30,7 +30,7 @@ export default function GeneralLegal() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>

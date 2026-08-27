@@ -30,7 +30,7 @@ export default function PoliciesAndProcedures() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -49,7 +49,7 @@ export default function PoliciesAndProcedures() {
           original context elsewhere on this website — the <a href="/legal/agency"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
           <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>,
           the <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
-          <a href="/agency"><span className="rainbow">/agency</span></a> informational page. This page does not include TikTok's own
+          <a href="/tiktok/agency"><span className="rainbow">/agency</span></a> informational page. This page does not include TikTok's own
           platform rules or guidelines, and it does not replace those originals — where any difference exists, the original
           source page governs.
         </p>
