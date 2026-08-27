@@ -33,7 +33,7 @@ export default function Tyler() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -56,7 +56,7 @@ export default function Tyler() {
             I've spent <strong>5 years managing creators</strong> across multiple TikTok agencies, working directly through TikTok's official agency management platform. I know the platform inside and out — from growth strategy and monetization to handling bans, violations, and creator protection at the agency level.
           </p>
           <p>
-            I run my own agency, <strong><a href="/agency">TJB Management Inc.</a></strong>, built to give creators the real, personalized support that most agencies never deliver.
+            I run my own agency, <strong><a href="/tiktok/agency">TJB Management Inc.</a></strong>, built to give creators the real, personalized support that most agencies never deliver.
           </p>
         </div>
 

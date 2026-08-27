@@ -8,7 +8,7 @@ export default function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'TJB MGMT TIKTOK AGENCY', href: '/agency', icon: '⚡' },
+    { name: 'TJB MGMT TIKTOK AGENCY', href: '/tiktok/agency', icon: '⚡' },
     { name: 'Order TJB MERCH', href: '/merch', icon: '👕' },
     { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '💼' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
@@ -59,7 +59,7 @@ export default function Contact() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>

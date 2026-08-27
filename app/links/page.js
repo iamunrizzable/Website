@@ -9,7 +9,7 @@ export default function Links() {
       <div className="page">
         <h1>TJB Management Inc.</h1>
         <a href="/contact-tyler" className="btn btn-tyler">Tyler's Link Tree</a>
-        <a href="/agency" className="btn btn-agency">TJB Management Agency</a>
+        <a href="/tiktok/agency" className="btn btn-agency">TJB Management Agency</a>
       </div>
     </>
   );
