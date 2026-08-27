@@ -9,8 +9,8 @@ export default function ContactAgency() {
 
   const contacts = [
     { name: 'Email Our TikTok Agency', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: "Check Our TikTok Agency's TikTok Account", href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
-    { name: "Check Our TikTok Agency's Instagram Account", href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
+    { name: "Check Out Our TikTok Agency's TikTok Account", href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
+    { name: "Check Out Our TikTok Agency's Instagram Account", href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
     { name: 'Join Our TikTok Agency Discord', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
   ];
 
