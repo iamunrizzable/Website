@@ -28,16 +28,16 @@ export default function TylerHub() {
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>Agency Hub</a>
-        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler Hub</a>
-        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™ Hub</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal Hub</a>
+        <a href="/agency" onClick={() => setMenuOpen(false)}>Agency</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
         <div className="header section">
-          <h1>Tyler Hub</h1>
+          <h1>Tyler</h1>
           <p className="subtitle">Tyler @ TJB Mgmt · Creator Manager & Agency Founder</p>
         </div>
 
