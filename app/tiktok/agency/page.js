@@ -30,28 +30,28 @@ export default function AgencyHub() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
         <div className="header section">
-          <h1>Agency</h1>
+          <h1>TikTok Agency</h1>
           <p className="subtitle">TJB Management Inc. · Agency, Guidelines, Streaming Resources & TikTok Tools</p>
         </div>
 
         <div className="grid">
-          <a href="/agency/about" className="card section">
+          <a href="/tiktok/agency/about" className="card section">
             <span className="card-icon">🏢</span>
-            <span className="card-title">About the Agency</span>
+            <span className="card-title">About the TikTok Agency</span>
             <span className="card-desc">Who TJB Management is, what we offer creators, and how to join — free, with real support from Tyler and Hallie.</span>
-            <span className="card-link">VIEW AGENCY →</span>
+            <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 
           <a href="/contact-agency" className="card section">
             <span className="card-icon">🤝</span>
-            <span className="card-title">Connect with Agency</span>
+            <span className="card-title">Connect with TikTok Agency</span>
             <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
             <span className="card-link">CONNECT →</span>
           </a>
