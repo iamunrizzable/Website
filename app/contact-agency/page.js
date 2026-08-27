@@ -8,10 +8,10 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-{ name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
-    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
-    { name: 'Discord Community', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
     { name: 'Email', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
+    { name: 'Agency TikTok', href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
+    { name: 'Agency Instagram', href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
+    { name: 'Join Our TikTok Agency Discord', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
     { name: 'About the TikTok Agency', href: '/tiktok/agency/about', icon: '🏢' },
   ];
 
@@ -52,7 +52,7 @@ export default function ContactAgency() {
 
       <main>
         <a href="/tiktok/agency" className="back-link">← Back to TikTok Agency</a>
-        <h1>Connect with TJB Management</h1>
+        <h1>Connect with TJB Management's TikTok Agency</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
