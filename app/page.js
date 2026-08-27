@@ -39,7 +39,7 @@ export default function Home() {
       <main>
         <div className="logo-section section">
           <img src="/bg-main.jpeg" alt="TJB Management" className="logo-img" />
-          <p className="tagline">TikTok LIVE creator agency & resource hub</p>
+          <p className="tagline">Straight to the point</p>
         </div>
 
         <div className="nav-buttons section">
