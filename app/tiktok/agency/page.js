@@ -46,7 +46,7 @@ export default function TikTokHub() {
       <main>
         <div className="header section">
           <h1>TikTok Hub</h1>
-          <p className="subtitle">TJB Management Inc. · Agency Info, Guidelines & Streaming Resources</p>
+          <p className="subtitle">TJB Management Inc. · Agency, Guidelines, Streaming Resources & TikTok Tools</p>
         </div>
 
         <div className="grid">
@@ -69,6 +69,20 @@ export default function TikTokHub() {
             <span className="card-title">Streaming Basics & FAQs</span>
             <span className="card-desc">Going LIVE, gifts and diamonds, Super Fan and Fan Club, Co-Host and Match, visual setup, stream tips, and frequently asked questions.</span>
             <span className="card-link">VIEW GUIDE →</span>
+          </a>
+
+          <a href="/tiktok-guidelines" className="card section">
+            <span className="card-icon">📜</span>
+            <span className="card-title">TikTok Community Guidelines</span>
+            <span className="card-desc">The 6 main Community Guidelines policies, what's not allowed on LIVE, and gift-baiting rules — with best practices and quick self-checks.</span>
+            <span className="card-link">VIEW GUIDELINES →</span>
+          </a>
+
+          <a href="/hallie/tiktok-moderation/system" className="card section">
+            <span className="card-icon">🛡️</span>
+            <span className="card-title">Hallie™ TikTok Moderation System</span>
+            <span className="card-desc">Hallie's live comment moderation tool for your TikTok account — review, hide, and manage comments automatically.</span>
+            <span className="card-link">OPEN SYSTEM →</span>
           </a>
         </div>
 
