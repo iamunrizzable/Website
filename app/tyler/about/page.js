@@ -67,7 +67,7 @@ export default function Tyler() {
           </p>
         </div>
 
-        <a href="/contact-tyler" className="cta-btn">Connect with Tyler →</a>
+        <a href="/tyler/about/tyler" className="cta-btn">Connect with Tyler →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
