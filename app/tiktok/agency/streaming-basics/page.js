@@ -349,7 +349,7 @@ export default function StreamingBasics() {
             <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any protected characteristic.</li>
           </ul>
           <p>Violations result in warnings first, then temporary bans from LIVE, then permanent removal for repeat or severe offenses.</p>
-          <p><a href="/tiktok-guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of TikTok's Community Guidelines →</a></p>
+          <p><a href="/tiktok/agency/community-guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of TikTok's Community Guidelines →</a></p>
         </div>
 
         <div className="section" id="faq">
@@ -370,7 +370,7 @@ export default function StreamingBasics() {
           <p>You can acknowledge gifts and highlight a gift goal — what's against the rules is constant, aggressive gift begging with no other content happening.</p>
           <p><strong>What counts as a valid LIVE day for weekly rewards?</strong></p>
           <p>Streaming at least 25 minutes total in a day. 1 valid day that week gets you 6% toward your Scaled LIVE Rewards, 2 or more gets you 8%.</p>
-          <p>Have a question that isn't answered here? <a href="/contact-agency" style={{ color: '#a855f7', textDecoration: 'none' }}>Connect with the agency →</a></p>
+          <p>Have a question that isn't answered here? <a href="/tiktok/agency/connect" style={{ color: '#a855f7', textDecoration: 'none' }}>Connect with the agency →</a></p>
         </div>
 
         <a href="/tiktok/agency" className="cta-btn">Learn About Joining TJB Management →</a>

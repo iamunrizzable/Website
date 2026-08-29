@@ -49,21 +49,21 @@ export default function AgencyHub() {
             <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 
-          <a href="/tiktok/streaming/basics" className="card section">
+          <a href="/tiktok/agency/streaming-basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics & FAQs</span>
             <span className="card-desc">Going LIVE, gifts and diamonds, Super Fan and Fan Club, Co-Host and Match, visual setup, stream tips, and frequently asked questions.</span>
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
-          <a href="/tiktok-guidelines" className="card section">
+          <a href="/tiktok/agency/community-guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">TikTok Community Guidelines</span>
             <span className="card-desc">The 6 main Community Guidelines policies, what's not allowed on LIVE, and gift-baiting rules — with best practices and quick self-checks.</span>
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/legal/agency" className="card section">
+          <a href="/legal/tiktok/agency-guidelines" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">Agency Guidelines</span>
             <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
@@ -77,7 +77,7 @@ export default function AgencyHub() {
             <span className="card-link">SHOP MERCH →</span>
           </a>
 
-          <a href="/contact-agency" className="card section">
+          <a href="/tiktok/agency/connect" className="card section">
             <span className="card-icon">🤝</span>
             <span className="card-title">Connect with TikTok Agency</span>
             <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
