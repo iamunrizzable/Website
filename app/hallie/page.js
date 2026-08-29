@@ -49,7 +49,7 @@ export default function HallieHub() {
             <span className="card-link">MEET HALLIE →</span>
           </a>
 
-          <a href="/contact-hallie" className="card section">
+          <a href="/hallie/contact/hallie" className="card section">
             <span className="card-icon">✉️</span>
             <span className="card-title">Connect with Hallie</span>
             <span className="card-desc">Email Hallie directly.</span>
