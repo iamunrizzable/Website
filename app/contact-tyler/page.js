@@ -9,7 +9,7 @@ export default function Contact() {
 
   const contacts = [
     { name: 'TJB MGMT TIKTOK AGENCY', href: '/tiktok/agency', icon: '⚡' },
-    { name: 'Order TJB MERCH', href: '/merch', icon: '👕' },
+    { name: 'Order TJB MERCH', href: '/tiktok/agency/merch', icon: '👕' },
     { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '💼' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },

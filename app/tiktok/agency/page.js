@@ -70,7 +70,7 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/merch" className="card section">
+          <a href="/tiktok/agency/merch" className="card section">
             <span className="card-icon">👕</span>
             <span className="card-title">Merch</span>
             <span className="card-desc">Official TJB Management merchandise.</span>
