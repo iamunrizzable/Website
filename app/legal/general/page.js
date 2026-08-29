@@ -68,7 +68,7 @@ export default function GeneralLegal() {
             By accessing or using tjbmanagementinc.com (the "Website"), you agree to be bound by these General Terms of Use. If you do not agree to these terms, please do not use the Website.
           </p>
           <p>
-            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as our <a href="/legal/agency"><span className="rainbow">Agency Guidelines</span></a> for signed or signing creators, or the <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a> for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
+            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as our <a href="/legal/tiktok/agency-guidelines"><span className="rainbow">Agency Guidelines</span></a> for signed or signing creators, or the <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a> for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
           </p>
         </div>
 

@@ -138,7 +138,7 @@ export default function AgencyPage() {
 
         <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
         <p style={{ textAlign: 'center', marginTop: 12 }}>
-          <a href="/contact-agency" style={{ color: '#a855f7', fontSize: 14, textDecoration: 'none' }}>Have questions first? Connect with the agency →</a>
+          <a href="/tiktok/agency/connect" style={{ color: '#a855f7', fontSize: 14, textDecoration: 'none' }}>Have questions first? Connect with the agency →</a>
         </p>
 
         <div className="footer">
