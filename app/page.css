@@ -188,6 +188,9 @@ body::before {
         }
 
         @media (max-width: 640px) {
+          .logo-section {
+            margin-top: 50px;
+          }
           .logo-img {
             width: 100%;
           }
