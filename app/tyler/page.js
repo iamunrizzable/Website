@@ -49,7 +49,7 @@ export default function TylerHub() {
             <span className="card-link">MEET TYLER →</span>
           </a>
 
-          <a href="/contact-tyler" className="card section">
+          <a href="/tyler/about/tyler" className="card section">
             <span className="card-icon">🔗</span>
             <span className="card-title">Connect with Tyler</span>
             <span className="card-desc">Phone, email, TikTok, Discord, Instagram, Snapchat, X, PlayStation, playlists, and more.</span>
