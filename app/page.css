@@ -50,11 +50,11 @@ body::before {
 
         .logo-img {
           width: 220px;
-          height: 220px;
+          max-width: 100%;
+          height: auto;
           display: block;
           margin: 0 auto;
           border-radius: 16px;
-          object-fit: cover;
         }
 
         .tagline {
