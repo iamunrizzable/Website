@@ -46,7 +46,7 @@ export default function PoliciesAndProcedures() {
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
           This page consolidates policies and procedures written by TJB Management Inc. that are also published in their
-          original context elsewhere on this website — the <a href="/legal/agency"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
+          original context elsewhere on this website — the <a href="/legal/tiktok/agency-guidelines"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
           <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>,
           the <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
           <a href="/tiktok/agency"><span className="rainbow">/agency</span></a> informational page. This page does not include TikTok's own
