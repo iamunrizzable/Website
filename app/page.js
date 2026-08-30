@@ -38,7 +38,7 @@ export default function Home() {
 
       <main>
         <div className="logo-section section">
-          <img src="/bg-main.jpeg" alt="TJB Management" className="logo-img" />
+          <img src="/logo-tjb.jpeg" alt="TJB Management" className="logo-img" />
           <p className="tagline">Straight to the point.</p>
         </div>
 
