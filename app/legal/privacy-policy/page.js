@@ -115,7 +115,7 @@ export default function PrivacyPolicy() {
             This Website is hosted on Vercel, which provides TJB Management with <strong>Vercel Analytics</strong> — a built-in traffic dashboard that shows a visitor's IP address and the time of each visit. This data remains visible to TJB Management for approximately 24 hours following a visit and is used only to understand site traffic; it is not sold, shared with advertisers, or used for cross-site tracking.
           </p>
           <p>
-            The Website's contact pages (<span className="rainbow">/tiktok/agency/connect</span>, <span className="rainbow">/tyler/about/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
+            The Website's contact pages (<span className="rainbow">/tiktok/agency/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
             Beyond Vercel Analytics described above and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
