@@ -191,9 +191,6 @@ body::before {
           .logo-section {
             margin-top: 50px;
           }
-          .logo-img {
-            width: 100%;
-          }
           .nav-buttons {
             grid-template-columns: 1fr;
           }
