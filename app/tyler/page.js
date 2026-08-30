@@ -42,14 +42,14 @@ export default function TylerHub() {
         </div>
 
         <div className="grid">
-          <a href="/tyler/about" className="card section">
+          <a href="/tyler/about/tyler" className="card section">
             <span className="card-icon">👤</span>
             <span className="card-title">About Tyler</span>
             <span className="card-desc">Five years managing TikTok LIVE creators — his experience, what he handles, and how he works.</span>
             <span className="card-link">MEET TYLER →</span>
           </a>
 
-          <a href="/tyler/about/tyler" className="card section">
+          <a href="/tyler/contact/tyler" className="card section">
             <span className="card-icon">🔗</span>
             <span className="card-title">Connect with Tyler</span>
             <span className="card-desc">Phone, email, TikTok, Discord, Instagram, Snapchat, X, PlayStation, playlists, and more.</span>
