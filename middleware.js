@@ -9,7 +9,11 @@ import { timingSafeEqual } from './lib/auth.js';
 function buildCsp(nonce) {
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    // fpnpmcdn.net: Fingerprint's agent loader, dynamically imported by
+    // FingerprintClient (app/layout.js). Covered by 'strict-dynamic' in
+    // modern browsers regardless, but listed explicitly as the fallback
+    // for browsers that don't support strict-dynamic.
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://fpnpmcdn.net`,
     "style-src 'self' 'unsafe-inline'",
     // TikTok's image CDN spans several distinct domain families (regional
     // CDN hosts, an Akamai-fronted edge, and legacy Bytedance CDN domains)
