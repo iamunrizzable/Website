@@ -142,8 +142,10 @@ export default function AgencyPage() {
         </p>
 
         <div className="footer">
-          <p>© 2026 Tyler J. Beasley. All rights reserved. TJB Management Inc. and the TJB Management Inc. website are the sole proprietary property of TJB Management Inc. and may not be reproduced or copied without prior written consent.</p>
-          <p>TikTok and the TikTok logo are the property of TikTok US Data Security Joint Venture LLC. All rights reserved.</p>
+          <p>© 2026 TJB Management Inc. All rights reserved.</p>
+          <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
+          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
+          <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
         </div>
       </main>
     </>
