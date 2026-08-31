@@ -39,7 +39,7 @@ export default function AgencyLegal() {
       <main>
         <a href="/legal" className="back-link">← Back to Legal</a>
 
-        <h1>TJB Management — Agency Guidelines</h1>
+        <h1>TJB Management — TikTok Agency Guidelines</h1>
 
         <div className="toc">
           <p>Table of Contents</p>
@@ -75,9 +75,9 @@ export default function AgencyLegal() {
             <li><span className="rainbow">Maintain good standing with TikTok (no active violations or permanent bans on the account intended for agency use)</span></li>
             <li><span className="rainbow">Have averaged no more than 500,000 diamonds per month over the past 6 months on any TikTok account</span></li>
             <li><span className="rainbow">Not be currently signed to, or in active negotiations with, any competing TikTok LIVE agency</span></li>
-            <li><span className="rainbow">Not have signed backup or secondary accounts to another agency within the past 6 months</span></li>
+            <li><span className="rainbow">Not have signed backup or secondary accounts to another TikTok agency within the past 6 months</span></li>
             <li><span className="rainbow">Sign only their primary TikTok account (backup or secondary accounts are not accepted)</span></li>
-            <li><span className="rainbow">Not have attempted to recruit or poach creators from any other agency</span></li>
+            <li><span className="rainbow">Not have attempted to recruit or poach creators from any other TikTok agency</span></li>
             <li><span className="rainbow">Be located in the United States or Canada</span></li>
             <li><span className="rainbow">Commit to going LIVE for a minimum of 1 hour, at least 4 days per week</span></li>
           </ul>
@@ -114,9 +114,9 @@ export default function AgencyLegal() {
           <h2>5. Non-Solicitation and Non-Compete</h2>
           <p>Creators who are signed to or actively negotiating with TJB Management Inc. agree to the following:</p>
           <ul>
-            <li><span className="rainbow">You will not solicit, recruit, or encourage other TJB Management creators to leave the agency.</span></li>
+            <li><span className="rainbow">You will not solicit, recruit, or encourage other TJB Management creators to leave the TikTok agency.</span></li>
             <li><span className="rainbow">You will not sign with or negotiate with any competing TikTok LIVE agency while under contract.</span></li>
-            <li><span className="rainbow">You will not sign backup, secondary, or any other TikTok accounts to a competing agency during your contract term.</span></li>
+            <li><span className="rainbow">You will not sign backup, secondary, or any other TikTok accounts to a competing TikTok agency during your contract term.</span></li>
           </ul>
           <p>Violations of these provisions may result in immediate contract termination and potential legal action.</p>
         </div>
@@ -153,7 +153,7 @@ export default function AgencyLegal() {
 
         <div className="section" id="support">
           <h2>9. Support Availability</h2>
-          <p>TJB Management Inc. support is available <span className="rainbow">Monday through Friday, 9:00 AM to 9:00 PM Eastern Time</span>, unless otherwise stated.</p>
+          <p>TJB Management Inc. TikTok LIVE agency support is available <span className="rainbow">Monday through Friday, 1:00 PM to 9:00 PM Eastern Time</span>, unless otherwise stated.</p>
           <p>Inquiries received outside these hours will be addressed during the next available support period.</p>
         </div>
 
@@ -171,7 +171,7 @@ export default function AgencyLegal() {
         </div>
 
         <footer>
-          <p>Last Updated: August 27, 2026</p>
+          <p>Last Updated: August 31, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
