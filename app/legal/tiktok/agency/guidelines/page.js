@@ -173,7 +173,7 @@ export default function AgencyLegal() {
         <footer>
           <p>Last Updated: August 31, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
-          <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
+          <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
           <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
         </footer>
