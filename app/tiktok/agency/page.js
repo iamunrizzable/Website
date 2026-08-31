@@ -63,7 +63,7 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/legal/tiktok/agency-guidelines" className="card section">
+          <a href="/legal/tiktok/agency/guidelines" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">Agency Guidelines</span>
             <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
