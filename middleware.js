@@ -40,8 +40,11 @@ export function middleware(request) {
     return response;
   };
 
-  // TikTok domain verification
-  if (pathname.startsWith('/legal/tiktok')) {
+  // TikTok domain verification — exact path only. Was startsWith(),
+  // which also swallowed /legal/tiktok/agency-guidelines once that page
+  // moved under this prefix, serving verification text instead of the
+  // page for every route nested under here.
+  if (pathname === '/legal/tiktok' || pathname === '/legal/tiktok/') {
     return withCsp(new NextResponse(
       'tiktok-developers-site-verification=4DwMqQPi2o4xTuuzoEsPVxZVHmktN0O9',
       { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
