@@ -1,5 +1,7 @@
 import './globals.css';
 
+import FingerprintClient from './FingerprintClient';
+
 // Force per-request rendering so Next.js applies the CSP nonce from
 // middleware to its inline scripts. Static prerendering would bake in
 // nonce-less inline scripts, which the strict CSP would then block.
@@ -27,9 +29,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Read server-side so the value reaches the client regardless of the env
+  // var's exact name (Vercel's Fingerprint integration provisions
+  // NEXT_FPJS_PUBLIC_API_KEY, which — unlike NEXT_PUBLIC_-prefixed vars —
+  // Next.js does NOT auto-inline into client bundles). Falls back to the
+  // NEXT_PUBLIC_ name too in case that's what's set locally.
+  const fpApiKey = process.env.NEXT_FPJS_PUBLIC_API_KEY || process.env.NEXT_PUBLIC_FPJS_PUBLIC_API_KEY || '';
+  const fpRegion = process.env.NEXT_FPJS_REGION || process.env.NEXT_PUBLIC_FPJS_REGION || 'us';
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <FingerprintClient apiKey={fpApiKey} region={fpRegion}>
+          {children}
+        </FingerprintClient>
+      </body>
     </html>
   );
 }
