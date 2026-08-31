@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: August 27, 2026
+          Effective Date: July 24, 2026 · Last Updated: September 1, 2026
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
@@ -109,10 +109,10 @@ export default function PrivacyPolicy() {
         <div className="section" id="privacy-info-collected">
           <h2>2. Information We Collect</h2>
           <p>
-            This Website does not install any third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
+            This Website is hosted on Vercel, which provides TJB Management with <strong>Vercel Analytics</strong> — a built-in traffic dashboard that shows a visitor's IP address and the time of each visit. This data remains visible to TJB Management for approximately 24 hours following a visit and is used only to understand site traffic; it is not sold, shared with advertisers, or used for cross-site tracking.
           </p>
           <p>
-            This Website is hosted on Vercel, which provides TJB Management with <strong>Vercel Analytics</strong> — a built-in traffic dashboard that shows a visitor's IP address and the time of each visit. This data remains visible to TJB Management for approximately 24 hours following a visit and is used only to understand site traffic; it is not sold, shared with advertisers, or used for cross-site tracking.
+            Beyond Vercel Analytics, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
           </p>
           <p>
             The Website's contact pages (<span className="rainbow">/tiktok/agency/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
@@ -125,7 +125,7 @@ export default function PrivacyPolicy() {
         <div className="section" id="privacy-cookies">
           <h2>3. Cookies We Use</h2>
           <p>
-            TJB Management uses a small number of cookies, each serving a specific operational purpose. None are used for advertising, analytics, or cross-site tracking.
+            TJB Management uses a small number of cookies, each serving a specific operational purpose. Vercel Analytics (Section 2) does not use cookies — none of the cookies below are used for advertising, analytics, or cross-site tracking, and none are shared with or accessible to any third party.
           </p>
           <ul>
             <li><strong>tiktok_oauth_state</strong> — a short-lived cookie set during TikTok OAuth login flows to prevent cross-site request forgery. Expires after 10 minutes.</li>
@@ -530,7 +530,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: August 27, 2026</p>
+          <p>Last Updated: September 1, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
