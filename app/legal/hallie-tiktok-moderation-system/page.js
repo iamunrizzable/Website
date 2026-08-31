@@ -422,7 +422,7 @@ export default function HallieTikTokLegal() {
           <p>Last Updated: August 12, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>This document constitutes the official Data Security and Privacy Policy for the Hallie TikTok Account Automation Platform as required by TikTok's Data Security and Privacy Review (DSPR) and US Data Security (USDS) review processes.</p>
-          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. The Hallie Platform is an independent product developed by TJB Management Inc. and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
+          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. The Hallie™ Platform is an independent product developed by TJB Management Inc. and is not affiliated with, endorsed by, or sponsored by TikTok.</p>
         </footer>
       </main>
     </>
