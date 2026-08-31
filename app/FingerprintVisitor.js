@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useVisitorData } from '@fingerprint/react';
 
 // Mounted once inside FingerprintClient — fires the Fingerprint identify
@@ -10,6 +11,16 @@ import { useVisitorData } from '@fingerprint/react';
 export default function FingerprintVisitor() {
   const { isLoading, error, data } = useVisitorData({ immediate: true });
   const debug = typeof window !== 'undefined' && window.location.search.includes('fpdebug=1');
+  const [violations, setViolations] = useState([]);
+
+  useEffect(() => {
+    if (!debug) return;
+    const onViolation = (e) => {
+      setViolations((prev) => [...prev, `${e.violatedDirective} blocked ${e.blockedURI}`]);
+    };
+    document.addEventListener('securitypolicyviolation', onViolation);
+    return () => document.removeEventListener('securitypolicyviolation', onViolation);
+  }, [debug]);
 
   if (!isLoading && !error && data) {
     console.log('[Fingerprint] visitor_id:', data.visitor_id, 'event_id:', data.event_id);
@@ -40,6 +51,9 @@ export default function FingerprintVisitor() {
       {!isLoading && error && `Fingerprint error: ${error.message}`}
       {!isLoading && !error && data && `visitor_id: ${data.visitor_id} | event_id: ${data.event_id}`}
       {!isLoading && !error && !data && 'Fingerprint: no data returned'}
+      {violations.map((v, i) => (
+        <div key={i}>CSP violation: {v}</div>
+      ))}
     </div>
   );
 }
