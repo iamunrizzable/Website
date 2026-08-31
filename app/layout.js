@@ -1,8 +1,5 @@
 import './globals.css';
 
-import { FingerprintProvider } from '@fingerprint/react';
-import FingerprintVisitor from './FingerprintVisitor';
-
 // Force per-request rendering so Next.js applies the CSP nonce from
 // middleware to its inline scripts. Static prerendering would bake in
 // nonce-less inline scripts, which the strict CSP would then block.
@@ -32,15 +29,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <FingerprintProvider
-          apiKey={process.env.NEXT_PUBLIC_FPJS_PUBLIC_API_KEY}
-          region={process.env.NEXT_PUBLIC_FPJS_REGION}
-        >
-          <FingerprintVisitor />
-          {children}
-        </FingerprintProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
