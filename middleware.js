@@ -20,12 +20,12 @@ function buildCsp(nonce) {
     // beyond tiktokcdn.com/tiktok.com — enumerated here instead of a bare
     // 'https:' wildcard, which Aikido correctly flagged as too permissive.
     "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.tiktokcdn-eu.com https://*.tiktokcdn-in.com https://*.tiktok.com https://*.tiktokv.com https://*.muscdn.com https://*.ibyteimg.com https://*.ibytedtos.com https://*.akamaized.net",
-    // fpnpmcdn.net: same domain Fingerprint's agent (loaded via script-src
-    // above) uses to submit the actual visitor-data request. Confirmed from
-    // the installed SDK's own source (@fingerprint/agent dist bundle),
-    // which defaults its endpoint to https://fpnpmcdn.net/ and returns the
-    // literal error "Blocked by CSP" when this is missing.
-    "connect-src 'self' https://fpnpmcdn.net",
+    // fpnpmcdn.net: loader domain (script-src above). api.fpjs.io: the
+    // actual identify-data request domain — confirmed via a live
+    // securitypolicyviolation report showing requests blocked to
+    // https://api.fpjs.io/... (not fpnpmcdn.net, which only serves the
+    // agent script itself).
+    "connect-src 'self' https://fpnpmcdn.net https://api.fpjs.io",
     "font-src 'self' data:",
     "frame-ancestors 'none'",
     "object-src 'none'",
