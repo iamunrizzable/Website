@@ -41,12 +41,12 @@ export default function PoliciesAndProcedures() {
         <h1>Policies & Procedures</h1>
         <p className="subtitle">
           TJB Management Inc. · A single consolidated reference for every policy and procedure published across this website<br />
-          Last Updated: August 27, 2026
+          Last Updated: August 31, 2026
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
           This page consolidates policies and procedures written by TJB Management Inc. that are also published in their
-          original context elsewhere on this website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">Agency Guidelines</span></a>, the{' '}
+          original context elsewhere on this website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
           <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>,
           the <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
           <a href="/tiktok/agency"><span className="rainbow">/agency</span></a> informational page. This page does not include TikTok's own
@@ -57,7 +57,7 @@ export default function PoliciesAndProcedures() {
         <div className="toc">
           <p>Table of Contents</p>
 
-          <p className="toc-part">Part I — Agency Policies & Procedures</p>
+          <p className="toc-part">Part I — TikTok Agency Policies & Procedures</p>
           <ol>
             <li><a href="#agency-about">About TJB Management Inc.</a></li>
             <li><a href="#agency-eligibility">Creator Eligibility Requirements</a></li>
@@ -115,7 +115,7 @@ export default function PoliciesAndProcedures() {
         </div>
 
         {/* ══════════════════════════════════════════ PART I ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part I — Agency Policies & Procedures</h2>
+        <h2 className="part-heading">Part I — TikTok Agency Policies & Procedures</h2>
 
         <div className="section" id="agency-about">
           <h2>1. About TJB Management Inc.</h2>
@@ -135,15 +135,15 @@ export default function PoliciesAndProcedures() {
             <li><span className="rainbow">Maintain good standing with TikTok (no active violations or permanent bans on the account intended for agency use)</span></li>
             <li><span className="rainbow">Have averaged no more than 500,000 diamonds per month over the past 6 months on any TikTok account</span></li>
             <li><span className="rainbow">Not be currently signed to, or in active negotiations with, any competing TikTok LIVE agency</span></li>
-            <li><span className="rainbow">Not have signed backup or secondary accounts to another agency within the past 6 months</span></li>
+            <li><span className="rainbow">Not have signed backup or secondary accounts to another TikTok agency within the past 6 months</span></li>
             <li><span className="rainbow">Sign only their primary TikTok account (backup or secondary accounts are not accepted)</span></li>
-            <li><span className="rainbow">Not have attempted to recruit or poach creators from any other agency</span></li>
+            <li><span className="rainbow">Not have attempted to recruit or poach creators from any other TikTok agency</span></li>
             <li><span className="rainbow">Be located in the United States or Canada</span></li>
             <li><span className="rainbow">Commit to going LIVE for a minimum of 1 hour, at least 4 days per week</span></li>
           </ul>
           <p>Separately, to be eligible to join TJB Management at all, a creator must meet all of the following:</p>
           <ul>
-            <li>You are not currently signed to another agency on this account or any account</li>
+            <li>You are not currently signed to another TikTok agency on this account or any account</li>
             <li>You have not exceeded 500,000 diamonds in the current calendar month or any of the 5 prior calendar months</li>
             <li>You are located in the United States or Canada</li>
           </ul>
@@ -193,9 +193,9 @@ export default function PoliciesAndProcedures() {
           <h2>5. Non-Solicitation and Non-Compete</h2>
           <p>Creators who are signed to or actively negotiating with TJB Management Inc. agree to the following:</p>
           <ul>
-            <li><span className="rainbow">You will not solicit, recruit, or encourage other TJB Management creators to leave the agency.</span></li>
+            <li><span className="rainbow">You will not solicit, recruit, or encourage other TJB Management creators to leave the TikTok agency.</span></li>
             <li><span className="rainbow">You will not sign with or negotiate with any competing TikTok LIVE agency while under contract.</span></li>
-            <li><span className="rainbow">You will not sign backup, secondary, or any other TikTok accounts to a competing agency during your contract term.</span></li>
+            <li><span className="rainbow">You will not sign backup, secondary, or any other TikTok accounts to a competing TikTok agency during your contract term.</span></li>
           </ul>
           <p>Violations of these provisions may result in immediate contract termination and potential legal action.</p>
         </div>
@@ -226,7 +226,7 @@ export default function PoliciesAndProcedures() {
           <ul>
             <li>When a creator first joins, they are placed on a <span className="rainbow">15-day trial period</span>. During this time, the creator can leave immediately with no waiting period.</li>
             <li>After the trial ends, the creator can still leave at any time — however, departure will take <span className="rainbow">30 days</span> to process.</li>
-            <li>If a creator leaves after the 15-day trial, there is an additional <span className="rainbow">60-day waiting period</span> after the 30-day quit process before another agency can sign them, provided they still meet eligibility requirements.</li>
+            <li>If a creator leaves after the 15-day trial, there is an additional <span className="rainbow">60-day waiting period</span> after the 30-day quit process before another TikTok agency can sign them, provided they still meet eligibility requirements.</li>
             <li><strong>Rule Violations & Termination:</strong> If a creator violates TJB Management's rules or guidelines at any point, the creator network reserves the right to <span className="rainbow">immediately terminate the relationship at any time, for any reason</span>, with no waiting period and no further obligation to the creator.</li>
           </ul>
         </div>
@@ -263,7 +263,7 @@ export default function PoliciesAndProcedures() {
 
         <div className="section" id="agency-support">
           <h2>11. Support Availability</h2>
-          <p>TJB Management Inc. support is available <span className="rainbow">Monday through Friday, 9:00 AM to 9:00 PM Eastern Time</span>, unless otherwise stated.</p>
+          <p>TJB Management Inc. TikTok LIVE agency support is available <span className="rainbow">Monday through Friday, 1:00 PM to 9:00 PM Eastern Time</span>, unless otherwise stated.</p>
           <p>Inquiries received outside these hours will be addressed during the next available support period.</p>
         </div>
 
@@ -638,7 +638,7 @@ export default function PoliciesAndProcedures() {
             By accessing or using tjbmanagementinc.com (the "Website"), you agree to be bound by these General Terms of Use. If you do not agree to these terms, please do not use the Website.
           </p>
           <p>
-            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as the Agency Guidelines for signed or signing creators, or the Hallie Platform Data Security & Privacy Policy for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
+            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as the TikTok Agency Guidelines for signed or signing creators, or the Hallie Platform Data Security & Privacy Policy for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
           </p>
         </div>
 
@@ -726,7 +726,7 @@ export default function PoliciesAndProcedures() {
         </div>
 
         <footer>
-          <p>Last Updated: August 27, 2026</p>
+          <p>Last Updated: August 31, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, and website are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
