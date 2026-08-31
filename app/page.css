@@ -48,13 +48,22 @@ body::before {
           transform: translateY(0);
         }
 
+        .logo-backdrop {
+          background: #000;
+          width: 100vw;
+          margin-left: calc(50% - 50vw);
+          margin-right: calc(50% - 50vw);
+          display: flex;
+          justify-content: center;
+        }
+
         .logo-img {
           width: 220px;
           max-width: 100%;
           height: auto;
           display: block;
           margin: 0 auto;
-          border-radius: 16px;
+          border-radius: 0;
         }
 
         .tagline {
