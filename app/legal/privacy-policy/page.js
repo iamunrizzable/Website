@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: September 1, 2026
+          Effective Date: July 24, 2026 · Last Updated: September 4, 2026
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
@@ -112,13 +112,16 @@ export default function PrivacyPolicy() {
             This Website is hosted on Vercel, which provides TJB Management with <strong>Vercel Analytics</strong> — a built-in traffic dashboard that shows a visitor's IP address and the time of each visit. This data remains visible to TJB Management for approximately 24 hours following a visit and is used only to understand site traffic; it is not sold, shared with advertisers, or used for cross-site tracking.
           </p>
           <p>
-            Beyond Vercel Analytics, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
+            The Website also uses <strong>Fingerprint</strong>, a third-party device identification service, for security purposes — specifically, to detect and permanently block a device from accessing TJB Management&apos;s Website, social media accounts, and systems following a policy violation or abuse, independent of the visitor&apos;s IP address (which can change or be shared across devices). Fingerprint generates a device identifier from characteristics of a visitor&apos;s browser and device. This identifier is used solely for the security purpose described above — it is not used for advertising, marketing, analytics, or cross-site tracking, and TJB Management does not sell or share this data with any third party except Fingerprint itself as the service provider. Fingerprint&apos;s own privacy practices are described at fingerprint.com.
+          </p>
+          <p>
+            Beyond Vercel Analytics and Fingerprint, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
           </p>
           <p>
             The Website's contact pages (<span className="rainbow">/tiktok/agency/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
-            Beyond Vercel Analytics described above and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
+            Beyond Vercel Analytics, Fingerprint device identification, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
           </p>
         </div>
 
