@@ -85,7 +85,10 @@ body::before {
           width: fit-content;
           margin: 0 auto;
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
+          padding: 0 0 24px;
         }
 
         .logo-img {
@@ -98,7 +101,7 @@ body::before {
         }
 
         .tagline {
-          color: #d4a5ff;
+          color: #ec4899;
           font-size: 18px;
           font-weight: 700;
           margin: 16px 0 0;
