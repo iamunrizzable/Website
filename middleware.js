@@ -35,27 +35,44 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     background-size: cover;
     background-repeat: no-repeat;
     mix-blend-mode: lighten;
-    opacity: 0.2;
+    opacity: 0.13;
     z-index: -1;
     pointer-events: none;
+  }
+  @keyframes glowPulse {
+    0%, 100% { text-shadow: 0 0 20px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3); }
+    50% { text-shadow: 0 0 40px rgba(239,68,68,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(168,85,247,0.5); }
+  }
+  @keyframes popIn {
+    0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   .card {
     max-width: 480px;
     text-align: center;
     color: #e2e8f0;
+    background: rgba(15,23,42,0.6);
+    border: 2px solid rgba(239,68,68,0.35);
+    border-radius: 16px;
+    padding: 36px 30px;
+    position: relative;
+    z-index: 10;
+    animation: popIn 0.6s ease-out;
   }
   h1 {
     color: #ef4444;
-    font-size: 22px;
+    font-size: 24px;
     margin: 0 0 16px;
+    font-weight: 800;
+    animation: glowPulse 3s ease-in-out infinite;
   }
   p {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #cbd5e1;
     margin: 0;
   }
-  a { color: #a855f7; }
+  a { color: #a855f7; font-weight: 600; }
 </style>
 </head>
 <body>
