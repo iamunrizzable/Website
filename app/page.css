@@ -60,11 +60,11 @@ body::before {
           display: inline-block;
           background: #ec4899;
           color: #fff;
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 700;
-          padding: 5px 14px;
+          padding: 6px 16px;
           border-radius: 999px;
-          margin-bottom: 16px;
+          margin-top: 16px;
         }
 
         .logo-section {
@@ -88,7 +88,7 @@ body::before {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 0 0 24px;
+          padding: 0 0 20px;
         }
 
         .logo-img {
@@ -98,15 +98,6 @@ body::before {
           display: block;
           margin: 0 auto;
           border-radius: 0;
-        }
-
-        .tagline {
-          color: #ec4899;
-          font-size: 18px;
-          font-weight: 700;
-          margin: 16px 0 0;
-          letter-spacing: 1px;
-          animation: glowPulse 3s ease-in-out infinite;
         }
 
         .nav-buttons {
