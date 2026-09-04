@@ -34,7 +34,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     height: 100lvh;
     background-image: url("/bg-main.jpeg");
     background-position: center center;
-    background-size: cover;
+    background-size: 140%;
     background-repeat: no-repeat;
     mix-blend-mode: lighten;
     opacity: 0.13;
@@ -49,6 +49,10 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     0% { opacity: 0; transform: translateY(20px) scale(0.96); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
+  @keyframes borderGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.4), 0 0 30px rgba(239,68,68,0.2); }
+    50% { box-shadow: 0 0 25px rgba(239,68,68,0.7), 0 0 50px rgba(236,72,153,0.4); }
+  }
   .card {
     max-width: 480px;
     width: 100%;
@@ -61,7 +65,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     padding: 36px 12px;
     position: relative;
     z-index: 10;
-    animation: popIn 0.6s ease-out;
+    animation: popIn 0.6s ease-out, borderGlow 3s ease-in-out infinite;
   }
   .badge {
     display: inline-block;
