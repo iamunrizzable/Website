@@ -108,7 +108,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     <span class="badge">403 · RESTRICTED</span>
     <h1>Access Denied</h1>
     <p><span class="cyan">You have been blocked from accessing</span><br><span class="pink">TJB Management Inc.'s social media</span><br><span class="purple">accounts and systems.</span></p>
-    <p><span class="magenta">If you believe this was done in error</span><br><span class="nowrap-line cyan">Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br><span class="pink">for assistance.</span></p>
+    <p><span class="magenta">If you believe this was done in error,</span><br><span class="nowrap-line cyan">please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br><span class="pink">for assistance.</span></p>
   </div>
 </body>
 </html>`;
