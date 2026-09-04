@@ -349,7 +349,7 @@ export default function StreamingBasics() {
             <li><strong>No hate speech or harassment.</strong> This includes targeting people based on race, gender, religion, or any protected characteristic.</li>
           </ul>
           <p>Violations result in warnings first, then temporary bans from LIVE, then permanent removal for repeat or severe offenses.</p>
-          <p><a href="/tiktok/agency/community-guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of TikTok's Community Guidelines →</a></p>
+          <p><a href="/tiktok/agency/tiktok/community/guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of TikTok's Community Guidelines →</a></p>
         </div>
 
         <div className="section" id="faq">
