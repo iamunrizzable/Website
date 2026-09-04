@@ -25,7 +25,7 @@ const TOOLS = [
   {
     href: '/admin/security',
     title: 'Security',
-    desc: 'Block visitors by IP address site-wide.',
+    desc: 'Permanently ban devices from the site by Fingerprint ID.',
   },
 ];
 
