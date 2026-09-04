@@ -42,8 +42,7 @@ export default function Home() {
         <div className="logo-section section">
           <div className="logo-backdrop">
             <img src="/logo-tjb.jpeg" alt="TJB Management" className="logo-img" />
-            <span className="badge">⚡ TikTok LIVE Creator Agency</span>
-            <p className="tagline">Straight to the point.</p>
+            <span className="badge">Straight to the point.</span>
           </div>
         </div>
 
