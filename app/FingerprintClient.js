@@ -2,6 +2,7 @@
 
 import { FingerprintProvider } from '@fingerprint/react';
 import FingerprintVisitor from './FingerprintVisitor';
+import FingerprintGate from './FingerprintGate';
 
 // apiKey/region are read server-side in layout.js (a Server Component can
 // see any env var name, regardless of the NEXT_PUBLIC_ prefix Next.js
@@ -26,7 +27,7 @@ export default function FingerprintClient({ apiKey, region, children }) {
   return (
     <FingerprintProvider apiKey={apiKey} region={region}>
       <FingerprintVisitor />
-      {children}
+      <FingerprintGate>{children}</FingerprintGate>
     </FingerprintProvider>
   );
 }
