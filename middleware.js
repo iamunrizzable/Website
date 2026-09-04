@@ -1,124 +1,17 @@
 import { NextResponse } from 'next/server';
 import { timingSafeEqual } from './lib/auth.js';
-import { isIpBlocked } from './lib/tokens.js';
 
 // CSP is built per-request so script-src can carry a fresh nonce instead of
 // 'unsafe-inline'. Next.js reads the Content-Security-Policy request header
 // during dynamic rendering and stamps the nonce onto its inline scripts
 // (root layout forces dynamic rendering for this reason). The static
 // security headers (HSTS etc.) still live in next.config.js.
-const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Access Denied</title>
-<style>
-  html { background-color: #0f172a; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    min-height: 100lvh;
-    background: transparent;
-    display: flex;
-    padding: 40px 12px;
-    box-sizing: border-box;
-    font-family: system-ui, sans-serif;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100lvh;
-    background-image: url("/bg-main.jpeg");
-    background-position: center center;
-    background-size: 140%;
-    background-repeat: no-repeat;
-    mix-blend-mode: lighten;
-    opacity: 0.13;
-    z-index: -1;
-    pointer-events: none;
-  }
-  @keyframes glowPulse {
-    0%, 100% { text-shadow: 0 0 20px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3); }
-    50% { text-shadow: 0 0 40px rgba(239,68,68,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(168,85,247,0.5); }
-  }
-  @keyframes popIn {
-    0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @keyframes borderGlow {
-    0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.4), 0 0 30px rgba(239,68,68,0.2); }
-    50% { box-shadow: 0 0 25px rgba(239,68,68,0.7), 0 0 50px rgba(236,72,153,0.4); }
-  }
-  .card {
-    max-width: 480px;
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    color: #e2e8f0;
-    background: rgba(15,23,42,0.6);
-    border: 2px solid rgba(239,68,68,0.35);
-    border-radius: 16px;
-    padding: 36px 12px;
-    position: relative;
-    z-index: 10;
-    animation: popIn 0.6s ease-out, borderGlow 3s ease-in-out infinite;
-  }
-  .badge {
-    display: inline-block;
-    background: #ec4899;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 5px 14px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-  }
-  h1 {
-    color: #ef4444;
-    font-size: 24px;
-    margin: 0 0 16px;
-    font-weight: 800;
-    animation: glowPulse 3s ease-in-out infinite;
-  }
-  p {
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0 0 14px;
-  }
-  p:last-child { margin-bottom: 0; }
-  .nowrap-line {
-    display: inline-block;
-    white-space: nowrap;
-    font-size: 12.5px;
-    line-height: 1.7;
-  }
-  .pink { color: #ec4899; }
-  .cyan { color: #06b6d4; }
-  .purple { color: #a855f7; }
-  .magenta { color: #d946ef; }
-  a {
-    background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-    text-decoration: underline;
-  }
-</style>
-</head>
-<body>
-  <div class="card">
-    <span class="badge">403 · RESTRICTED</span>
-    <h1>Access Denied</h1>
-    <p><span class="cyan">You have been blocked from accessing</span><br><span class="pink">TJB Management Inc.'s social media</span><br><span class="purple">accounts and systems.</span></p>
-    <p><span class="magenta">If you believe this was done in error,</span><br><span class="nowrap-line cyan">please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br><span class="pink">for assistance.</span></p>
-  </div>
-</body>
-</html>`;
+
+// IP-based blocking used to live here (checked against a blocklist managed
+// at /admin/security). Removed — IP is trivially rotated/spoofed (mobile
+// carrier CGNAT alone made it unreliable all session), so blocking now
+// happens purely on Fingerprint's visitor_id (see FingerprintGate.js /
+// app/api/fingerprint/check), which survives IP changes.
 
 function buildCsp(nonce) {
   return [
@@ -170,24 +63,6 @@ export async function middleware(request) {
     response.headers.set('Cache-Control', 'no-store');
     return response;
   };
-
-  // Site-wide IP blocklist, managed at /admin/security. Fails OPEN — any
-  // error checking the list (e.g. Redis unreachable) lets the request
-  // through rather than blocking everyone, same fail-open contract as the
-  // Fingerprint ruleset gate.
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim();
-  try {
-    const blocked = ip ? await isIpBlocked(ip) : false;
-    console.log('[ip-block-check]', { ip, blocked });
-    if (blocked) {
-      return withCsp(new NextResponse(BLOCKED_PAGE_HTML, {
-        status: 403,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      }));
-    }
-  } catch (e) {
-    console.error('[ip-block-check] error', ip, e?.message ?? String(e));
-  }
 
   // TikTok domain verification — exact path only. Was startsWith(),
   // which also swallowed /legal/tiktok/agency-guidelines once that page
