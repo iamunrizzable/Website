@@ -56,11 +56,13 @@ export async function middleware(request) {
   // Fingerprint ruleset gate.
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim();
   try {
-    if (ip && (await isIpBlocked(ip))) {
+    const blocked = ip ? await isIpBlocked(ip) : false;
+    console.log('[ip-block-check]', { ip, blocked });
+    if (blocked) {
       return withCsp(new NextResponse('Access denied', { status: 403 }));
     }
-  } catch {
-    // ignore — fail open
+  } catch (e) {
+    console.error('[ip-block-check] error', ip, e?.message ?? String(e));
   }
 
   // TikTok domain verification — exact path only. Was startsWith(),
