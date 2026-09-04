@@ -1,14 +1,21 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useVisitorData } from '@fingerprint/react';
+
+// Time to wait for a verdict before giving up and showing the site anyway.
+// Bounds the worst case (Fingerprint's script never loads, or the check
+// hangs) so a Fingerprint outage can still never take the whole site down
+// — it just means the check gets skipped after this long instead of never
+// running at all.
+const CHECK_TIMEOUT_MS = 3000;
 
 // Blocks the whole site for visitors whose identification event fails the
 // Fingerprint ruleset (rs_4ns6PcOeU2RspQ — forbidden IPs, VPN detection,
-// etc, configured in the Fingerprint dashboard). The verdict check runs
-// AFTER the page has already rendered normally, so legitimate visitors see
-// zero added latency; a blocked visitor gets swapped to the block screen
-// once the server-side verdict comes back a moment later.
+// etc) or matches the device blocklist at /admin/security. The verdict is
+// checked BEFORE showing any page content — a loading screen covers the
+// page until the check resolves (or times out), so a blocked visitor never
+// sees a flash of real content first.
 //
 // The check itself (app/api/fingerprint/check) fails OPEN on any error, so
 // a Fingerprint outage or misconfiguration can only ever result in nobody
@@ -16,7 +23,18 @@ import { useVisitorData } from '@fingerprint/react';
 // Fingerprint install that crashed on a missing key.
 export default function FingerprintGate({ children }) {
   const { data } = useVisitorData({ immediate: true });
-  const [blocked, setBlocked] = useState(false);
+  const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'allowed'
+  const resolvedRef = useRef(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!resolvedRef.current) {
+        resolvedRef.current = true;
+        setStatus('allowed');
+      }
+    }, CHECK_TIMEOUT_MS);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     if (!data?.event_id) return;
@@ -29,16 +47,54 @@ export default function FingerprintGate({ children }) {
     })
       .then((res) => (res.ok ? res.json() : { blocked: false }))
       .then((result) => {
-        if (!cancelled && result?.blocked) setBlocked(true);
+        if (cancelled || resolvedRef.current) return;
+        resolvedRef.current = true;
+        setStatus(result?.blocked ? 'blocked' : 'allowed');
       })
-      .catch(() => {});
+      .catch(() => {
+        if (cancelled || resolvedRef.current) return;
+        resolvedRef.current = true;
+        setStatus('allowed');
+      });
 
     return () => {
       cancelled = true;
     };
   }, [data?.event_id]);
 
-  if (blocked) {
+  if (status === 'checking') {
+    return (
+      <>
+        <style>{`
+          @keyframes fpSpin { to { transform: rotate(360deg); } }
+        `}</style>
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#0f172a',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              border: '3px solid rgba(168,85,247,0.25)',
+              borderTopColor: '#a855f7',
+              animation: 'fpSpin 0.8s linear infinite',
+            }}
+          />
+        </div>
+      </>
+    );
+  }
+
+  if (status === 'blocked') {
     return (
       <>
         <style>{`
