@@ -56,7 +56,7 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
-          <a href="/tiktok/agency/community-guidelines" className="card section">
+          <a href="/tiktok/agency/tiktok/community/guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">TikTok Community Guidelines</span>
             <span className="card-desc">The 6 main Community Guidelines policies, what's not allowed on LIVE, and gift-baiting rules — with best practices and quick self-checks.</span>
