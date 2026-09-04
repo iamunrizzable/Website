@@ -85,8 +85,8 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
 <body>
   <div class="card">
     <h1>Access Denied</h1>
-    <p class="rainbow">You have been blocked from accessing TJB Management Inc.'s company. Social media accounts and systems.</p>
-    <p class="rainbow">If you believe this was done in error. Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a> for assistance.</p>
+    <p class="rainbow">You have been blocked from accessing. TJB Management Inc.'s social media accounts and systems.</p>
+    <p class="rainbow">If you believe this was done in error. Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a><br>for assistance.</p>
   </div>
 </body>
 </html>`;
