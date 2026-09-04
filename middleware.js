@@ -23,7 +23,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 12px;
     box-sizing: border-box;
     font-family: system-ui, sans-serif;
   }
@@ -55,7 +55,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     background: rgba(15,23,42,0.6);
     border: 2px solid rgba(239,68,68,0.35);
     border-radius: 16px;
-    padding: 36px 20px;
+    padding: 36px 12px;
     position: relative;
     z-index: 10;
     animation: popIn 0.6s ease-out;
@@ -76,7 +76,8 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   .nowrap-line {
     display: inline-block;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 12.5px;
+    line-height: 1.7;
   }
   .rainbow, a {
     background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
