@@ -25,6 +25,8 @@ export default function HallieHub() {
   return (
     <>
 
+      <div className="fade-top"></div>
+
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
@@ -39,6 +41,7 @@ export default function HallieHub() {
         <div className="header section">
           <h1>Hallie™</h1>
           <p className="subtitle">Hallie™ · TJB Management's AI Assistant</p>
+          <span className="badge">⚡ AI Powered</span>
         </div>
 
         <div className="grid">

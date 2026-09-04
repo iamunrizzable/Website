@@ -25,6 +25,8 @@ export default function Legal() {
   return (
     <>
 
+      <div className="fade-top"></div>
+
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
@@ -39,6 +41,7 @@ export default function Legal() {
         <div className="header section">
           <h1>Legal & Guidelines</h1>
           <p className="subtitle">TJB Management Inc. · Policies, Terms & Compliance Documentation</p>
+          <span className="badge">⚡ Compliance Hub</span>
         </div>
 
         <div className="grid">
