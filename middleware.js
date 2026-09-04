@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { timingSafeEqual } from './lib/auth.js';
+import { isIpBlocked } from './lib/tokens.js';
 
 // CSP is built per-request so script-src can carry a fresh nonce instead of
 // 'unsafe-inline'. Next.js reads the Content-Security-Policy request header
@@ -35,7 +36,7 @@ function buildCsp(nonce) {
   ].join('; ');
 }
 
-export function middleware(request) {
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
   const nonce = btoa(crypto.randomUUID());
@@ -48,6 +49,19 @@ export function middleware(request) {
     response.headers.set('Content-Security-Policy', csp);
     return response;
   };
+
+  // Site-wide IP blocklist, managed at /admin/security. Fails OPEN — any
+  // error checking the list (e.g. Redis unreachable) lets the request
+  // through rather than blocking everyone, same fail-open contract as the
+  // Fingerprint ruleset gate.
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim();
+  try {
+    if (ip && (await isIpBlocked(ip))) {
+      return withCsp(new NextResponse('Access denied', { status: 403 }));
+    }
+  } catch {
+    // ignore — fail open
+  }
 
   // TikTok domain verification — exact path only. Was startsWith(),
   // which also swallowed /legal/tiktok/agency-guidelines once that page
