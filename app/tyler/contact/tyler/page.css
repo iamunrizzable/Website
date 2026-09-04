@@ -134,12 +134,12 @@ body::before {
           border-top: 1px solid rgba(255,255,255,0.1);
           padding-top: 30px;
           font-size: 14px;
-          color: #8b9dc3;
+          color: #ec4899;
         }
         .footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .footer-text {
           margin-bottom: 10px;
-          color: #a0aec0;
+          color: #ec4899;
         }
         .hallie-link {
           background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4);
@@ -156,7 +156,7 @@ body::before {
         .footer-disclaimer {
           font-size: 12px;
           margin-top: 15px;
-          color: #a0aec0;
+          color: #ec4899;
         }
         .footer-disclaimer a {
           color: #a855f7;

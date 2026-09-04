@@ -30,7 +30,7 @@ function categoryLabel(code) {
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
-  h2: { fontSize: 16, fontWeight: 600, color: '#94a3b8', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
+  h2: { fontSize: 16, fontWeight: 600, color: '#d946ef', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14 },
   btnSm: { background: '#334155', color: '#e2e8f0', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
@@ -40,7 +40,7 @@ const s = {
   inlineMsg: (ok) => ({ fontSize: 12, color: ok ? '#10b981' : '#f59e0b', marginBottom: 8, minHeight: 18 }),
   tab: (active) => ({
     padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
-    background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#64748b', border: 'none',
+    background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#06b6d4', border: 'none',
   }),
   // Shared OK / Hidden pill — identical on /admin and /system. Keep in sync.
   statusBadge: (hidden) => ({
@@ -104,11 +104,11 @@ export default function AdminPage() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4, marginTop: 8 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 0, animation: 'glowPulse 3s ease-in-out infinite' }}>TJB Management Inc.</h1>
             <button
-              style={{ background: 'transparent', border: '1px solid #334155', borderRadius: 8, color: '#64748b', fontSize: 13, padding: '6px 14px', cursor: 'pointer' }}
+              style={{ background: 'transparent', border: '1px solid #334155', borderRadius: 8, color: '#06b6d4', fontSize: 13, padding: '6px 14px', cursor: 'pointer' }}
               onClick={async () => { await fetch('/api/admin/logout', { method: 'POST' }); window.location.href = '/admin/login'; }}
             >Sign Out</button>
           </div>
-          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
+          <p style={{ color: '#06b6d4', fontSize: 13, marginBottom: 20 }}>tjbmanagementinc.com · Hallie Moderation System</p>
 
           {msg && <div style={s.msg}>{msg}</div>}
 
@@ -140,16 +140,16 @@ export default function AdminPage() {
               (status?.events ?? []).map((ev, i) => (
                 <div key={i} style={{ borderBottom: '1px solid #1e293b', paddingBottom: 12, marginBottom: 12 }}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-                    <span style={s.badge(ACTION_COLORS[ev.action] ?? '#94a3b8')}>{ev.action?.toUpperCase()}</span>
-                    <span style={{ fontSize: 12, color: '#64748b' }}>{ev.type}</span>
-                    {ev.author && <span style={{ fontSize: 12, color: '#94a3b8' }}>@{ev.author}</span>}
+                    <span style={s.badge(ACTION_COLORS[ev.action] ?? '#d946ef')}>{ev.action?.toUpperCase()}</span>
+                    <span style={{ fontSize: 12, color: '#06b6d4' }}>{ev.type}</span>
+                    {ev.author && <span style={{ fontSize: 12, color: '#d946ef' }}>@{ev.author}</span>}
                     <span style={{ fontSize: 11, color: '#475569', marginLeft: 'auto' }}>score: {ev.score}</span>
                   </div>
                   <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 4px' }}>{ev.text?.slice(0, 200)}{ev.text?.length > 200 ? '…' : ''}</p>
                   {ev.flags?.length > 0 && (
                     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                       {ev.flags.map((f) => (
-                        <span key={f} style={{ fontSize: 11, background: '#334155', color: '#94a3b8', padding: '2px 6px', borderRadius: 4 }}>{f}</span>
+                        <span key={f} style={{ fontSize: 11, background: '#334155', color: '#d946ef', padding: '2px 6px', borderRadius: 4 }}>{f}</span>
                       ))}
                     </div>
                   )}
@@ -179,7 +179,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 10, padding: '10px 16px', marginBottom: 20, border: '1px solid #1e293b' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-          <span style={{ fontSize: 13, color: '#64748b' }}>TikTok Business API connected</span>
+          <span style={{ fontSize: 13, color: '#06b6d4' }}>TikTok Business API connected</span>
         </div>
         <button style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', padding: '2px 6px' }} onClick={() => setExpanded(true)}>
           manage
@@ -203,7 +203,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: enabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
             <div>
               <span style={{ fontSize: 13, color: '#e2e8f0' }}>Advertiser Token</span>
-              {!enabled && <span style={{ fontSize: 12, color: '#64748b', marginLeft: 8 }}>comment management &amp; rules</span>}
+              {!enabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>comment management &amp; rules</span>}
               {enabled && advExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
             </div>
           </div>
@@ -216,7 +216,7 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: accountEnabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
             <div>
               <span style={{ fontSize: 13, color: '#e2e8f0' }}>TikTok Account Token</span>
-              {!accountEnabled && <span style={{ fontSize: 12, color: '#64748b', marginLeft: 8 }}>account info &amp; videos</span>}
+              {!accountEnabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>account info &amp; videos</span>}
               {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
               {accountEnabled && status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: {status.account_scope}</div>}
               {accountEnabled && !status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: none stored</div>}
@@ -264,7 +264,7 @@ function AccountPanel({ adminKey, enabled }) {
           {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
           <div>
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
-            <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <div style={{ fontSize: 13, color: '#06b6d4', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               {account?.username && <span>@{account.username}</span>}
               {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
               {account?.likes != null && <span>{account.likes.toLocaleString()} likes</span>}
@@ -308,7 +308,7 @@ function VideosPanel({ adminKey, enabled }) {
         <h2 style={{ ...s.h2, marginBottom: 0 }}>Videos</h2>
         <button
           onClick={() => setCollapsed(c => !c)}
-          style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}
+          style={{ background: 'transparent', border: 'none', color: '#06b6d4', fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}
         >{collapsed ? 'Show' : 'Hide'}</button>
       </div>
       {!collapsed && (!enabled ? (
@@ -327,7 +327,7 @@ function VideosPanel({ adminKey, enabled }) {
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {v.title ? v.title : <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
               </div>
-              <div style={{ fontSize: 12, color: '#64748b' }}>
+              <div style={{ fontSize: 12, color: '#06b6d4' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
                 {v.view_count != null && ` · ${v.view_count.toLocaleString()} views`}
                 {v.like_count != null && ` · ${v.like_count.toLocaleString()} likes`}
@@ -435,7 +435,7 @@ function CommentsPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage comments.</p>
       ) : (
         <>
-          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>
+          <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 10 }}>
             Paste a TikTok video or photo link, a share link (tiktok.com/t/…), or a numeric ID to load its comments.
           </p>
           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
@@ -557,7 +557,7 @@ function SyncPanel({ adminKey, enabled }) {
 
   const tabStyle = (active) => ({
     padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
-    background: active ? '#334155' : 'transparent', color: active ? '#e2e8f0' : '#64748b', border: 'none',
+    background: active ? '#334155' : 'transparent', color: active ? '#e2e8f0' : '#06b6d4', border: 'none',
   });
 
   return (
@@ -567,7 +567,7 @@ function SyncPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to sync comments.</p>
       ) : (
         <>
-          <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
+          <p style={{ fontSize: 13, color: '#06b6d4', marginBottom: 12 }}>
             Scores all new comments and auto-hides anything that triggers the filter.
           </p>
           <div style={{ display: 'flex', gap: 4, marginBottom: 12 }}>
@@ -604,12 +604,12 @@ function SyncPanel({ adminKey, enabled }) {
               {[...result.comments].sort((a, b) => (a.action === 'hidden' ? -1 : 0) - (b.action === 'hidden' ? -1 : 0)).map(c => (
                 <div key={c.comment_id} style={{ padding: '10px 12px', borderBottom: '1px solid #1e293b', fontSize: 13 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                    <span style={{ color: '#94a3b8', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
+                    <span style={{ color: '#d946ef', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
                     <span style={s.statusBadge(c.action === 'hidden')}>
                       {c.action === 'hidden' ? 'Hidden' : 'OK'}
                     </span>
                   </div>
-                  <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#64748b' }}>(no text)</em>}</div>
+                  <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#06b6d4' }}>(no text)</em>}</div>
                 </div>
               ))}
             </div>
@@ -674,7 +674,7 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to manage automated rules.</p>
       ) : (
         <>
-          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+          <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 12 }}>
             Comments matching any rule's keywords are automatically hidden the next time Comment Sync runs (manually or via the daily cron) — not in real time.
           </p>
           {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
@@ -708,7 +708,7 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
               <div key={rule.id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
                 <div>
                   <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.name}</div>
-                  <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
+                  <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
                 </div>
                 <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
               </div>
@@ -768,7 +768,7 @@ function CommentFiltersPanel({ adminKey, enabled }) {
         <p style={{ fontSize: 13, color: '#475569' }}>Loading filters…</p>
       ) : (
         <>
-          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+          <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 12 }}>
             Choose which kinds of comments get automatically hidden during Comment Sync. Unchecked categories are left alone even if they'd otherwise score high enough to hide.
           </p>
           {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
@@ -776,7 +776,7 @@ function CommentFiltersPanel({ adminKey, enabled }) {
             <input type="checkbox" checked disabled style={{ marginTop: 3 }} />
             <div>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>Potential Minor Detection <span style={{ fontSize: 11, color: '#f59e0b', fontWeight: 400 }}>— Always On</span></div>
-              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
+              <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
             </div>
           </div>
           {data.categories.map(cat => (
@@ -789,7 +789,7 @@ function CommentFiltersPanel({ adminKey, enabled }) {
               />
               <div>
                 <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{cat.label}</div>
-                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{cat.description}</div>
+                <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{cat.description}</div>
               </div>
             </label>
           ))}
@@ -969,7 +969,7 @@ function MentionsPanel({ adminKey, enabled }) {
               <button style={{ ...s.btn, whiteSpace: 'nowrap', background: '#475569' }} onClick={verifyHashtag}>Verify (debug)</button>
             </div>
           )}
-          {verifyMsg && <p style={{ fontSize: 12, color: '#94a3b8', wordBreak: 'break-all', marginBottom: 12 }}>{verifyMsg}</p>}
+          {verifyMsg && <p style={{ fontSize: 12, color: '#d946ef', wordBreak: 'break-all', marginBottom: 12 }}>{verifyMsg}</p>}
 
           {data === null ? (
             <p style={{ fontSize: 13, color: '#475569' }}>Loading your account info…</p>
@@ -983,7 +983,7 @@ function MentionsPanel({ adminKey, enabled }) {
             data.map((item, i) => (
               <div key={item.item_id ?? item.video_id ?? item.comment_id ?? item.hashtag ?? item.word ?? i} style={{ borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
                 {typeof item === 'string' && tab !== 'tracked_hashtags' && item}
-                {tab === 'videos' && typeof item !== 'string' && <>{item.caption ?? item.title ?? item.item_id ?? item.video_id} <span style={{ color: '#64748b' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
+                {tab === 'videos' && typeof item !== 'string' && <>{item.caption ?? item.title ?? item.item_id ?? item.video_id} <span style={{ color: '#06b6d4' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
                 {tab === 'comments' && typeof item !== 'string' && <>@{item.username ?? 'unknown'}: {item.text}</>}
                 {tab === 'top_words' && typeof item !== 'string' && (item.word ? <>{item.word}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
                 {tab === 'top_hashtags' && typeof item !== 'string' && (item.hashtag ? <>#{item.hashtag}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
@@ -1122,7 +1122,7 @@ function TrendingPanel({ adminKey, enabled }) {
                 {typeof item === 'string' ? (
                   item
                 ) : tab === 'hashtags' && item.name ? (
-                  <>#{item.name}{item.view_count != null && <span style={{ color: '#64748b' }}> · {item.view_count.toLocaleString()} views</span>}</>
+                  <>#{item.name}{item.view_count != null && <span style={{ color: '#06b6d4' }}> · {item.view_count.toLocaleString()} views</span>}</>
                 ) : (
                   JSON.stringify(item)
                 )}
@@ -1172,7 +1172,7 @@ function ExportTokenPanel({ adminKey, enabled }) {
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Export Advertiser Token</h2>
-      <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
+      <p style={{ fontSize: 13, color: '#06b6d4', marginBottom: 12 }}>
         Copy this value and paste it as <code style={{ background: '#0f172a', padding: '1px 6px', borderRadius: 4, color: '#a855f7' }}>TIKTOK_ADVERTISER_TOKEN</code> in Vercel → Settings → Environment Variables. After that, no one ever needs to reconnect the advertiser token.
       </p>
       {!enabled ? (
@@ -1224,7 +1224,7 @@ function TestPanel({ adminKey }) {
       />
       <button style={{ ...s.btn, marginTop: 10 }} onClick={test} disabled={!text.trim()}>Score It</button>
       {result && (
-        <pre style={{ marginTop: 12, background: '#0f172a', padding: 12, borderRadius: 8, fontSize: 12, color: '#94a3b8', overflowX: 'auto' }}>
+        <pre style={{ marginTop: 12, background: '#0f172a', padding: 12, borderRadius: 8, fontSize: 12, color: '#d946ef', overflowX: 'auto' }}>
           {JSON.stringify(result, null, 2)}
         </pre>
       )}

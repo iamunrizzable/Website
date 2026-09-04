@@ -52,7 +52,7 @@ body::before {
         }
 
         .subtitle {
-          color: #64748b;
+          color: #06b6d4;
           font-size: 13px;
           margin-bottom: 30px;
         }
@@ -66,13 +66,13 @@ body::before {
         }
 
         p {
-          color: #7dd3fc;
+          color: #a855f7;
           margin-bottom: 15px;
           line-height: 1.8;
         }
 
         li {
-          color: #7dd3fc;
+          color: #a855f7;
           margin-bottom: 12px;
           line-height: 1.8;
         }
@@ -187,7 +187,7 @@ body::before {
           margin: 60px auto 0;
           padding: 40px 20px;
           border-top: 1px solid rgba(168, 85, 247, 0.2);
-          color: #8b9dc3;
+          color: #ec4899;
           text-align: center;
           font-size: 14px;
         }
@@ -195,7 +195,7 @@ body::before {
 
         .toc { background: rgba(168,85,247,0.05); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 20px; margin-bottom: 30px; }
         .toc p { color: #a855f7; font-weight: 600; font-size: 13px; margin-bottom: 10px; }
-        .toc ol { color: #7dd3fc; font-size: 13px; padding-left: 20px; }
+        .toc ol { color: #a855f7; font-size: 13px; padding-left: 20px; }
         .toc li { margin-bottom: 6px; }
-        .toc a { color: #7dd3fc; text-decoration: none; }
+        .toc a { color: #a855f7; text-decoration: none; }
         .toc a:hover { color: #c084fc; text-decoration: underline; }
