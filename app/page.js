@@ -26,6 +26,8 @@ export default function Home() {
   return (
     <>
 
+      <div className="fade-top"></div>
+
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
@@ -41,6 +43,7 @@ export default function Home() {
           <div className="logo-backdrop">
             <img src="/logo-tjb.jpeg" alt="TJB Management" className="logo-img" />
           </div>
+          <span className="badge">⚡ TikTok LIVE Creator Agency</span>
           <p className="tagline">Straight to the point.</p>
         </div>
 

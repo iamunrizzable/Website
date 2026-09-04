@@ -25,6 +25,8 @@ export default function AgencyHub() {
   return (
     <>
 
+      <div className="fade-top"></div>
+
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
@@ -39,6 +41,7 @@ export default function AgencyHub() {
         <div className="header section">
           <h1>TikTok Agency</h1>
           <p className="subtitle">TJB Management Inc. · Agency, Guidelines, Streaming Resources & TikTok Tools</p>
+          <span className="badge">⚡ Free to Join</span>
         </div>
 
         <div className="grid">

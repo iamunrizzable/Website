@@ -35,6 +35,38 @@ body::before {
           z-index: 10;
         }
 
+        @keyframes glowPulse {
+          0%, 100% { text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3); }
+          50% { text-shadow: 0 0 40px rgba(168, 85, 247, 1), 0 0 60px rgba(236, 72, 153, 0.8), 0 0 80px rgba(59, 130, 246, 0.5), 0 0 100px rgba(168, 85, 247, 0.4); }
+        }
+
+        @keyframes borderGlow {
+          0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.25), 0 0 30px rgba(168,85,247,0.12); }
+          50% { box-shadow: 0 0 25px rgba(168,85,247,0.5), 0 0 50px rgba(236,72,153,0.25); }
+        }
+
+        .fade-top {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 200px;
+          background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent);
+          z-index: 50;
+          pointer-events: none;
+        }
+
+        .badge {
+          display: inline-block;
+          background: #ec4899;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 5px 14px;
+          border-radius: 999px;
+          margin-bottom: 16px;
+        }
+
         .logo-section {
           margin-bottom: 60px;
           text-align: center;
@@ -66,10 +98,12 @@ body::before {
         }
 
         .tagline {
-          color: #a0aec0;
+          color: #d4a5ff;
           font-size: 18px;
+          font-weight: 700;
           margin: 16px 0 0;
           letter-spacing: 1px;
+          animation: glowPulse 3s ease-in-out infinite;
         }
 
         .nav-buttons {
@@ -99,6 +133,7 @@ body::before {
           cursor: pointer;
           transition: all 0.3s ease;
           display: block;
+          animation: borderGlow 3s ease-in-out infinite;
         }
 
         .nav-button span {

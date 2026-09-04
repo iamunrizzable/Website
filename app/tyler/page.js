@@ -25,6 +25,8 @@ export default function TylerHub() {
   return (
     <>
 
+      <div className="fade-top"></div>
+
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
@@ -39,6 +41,7 @@ export default function TylerHub() {
         <div className="header section">
           <h1>Tyler</h1>
           <p className="subtitle">Tyler @ TJB Mgmt · Creator Manager & Agency Founder</p>
+          <span className="badge">⚡ Founder</span>
         </div>
 
         <div className="grid">

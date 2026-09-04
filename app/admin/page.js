@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
-  card: { display: 'block', background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 16, border: '1px solid #334155', textDecoration: 'none', color: 'inherit', transition: 'border-color 0.15s, transform 0.15s' },
+  card: { display: 'block', background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 16, border: '2px solid rgba(168,85,247,0.25)', textDecoration: 'none', color: 'inherit', transition: 'border-color 0.15s, transform 0.15s', animation: 'borderGlow 3s ease-in-out infinite' },
   title: { fontSize: 17, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 },
   desc: { fontSize: 13, color: '#94a3b8', lineHeight: 1.5 },
 };
@@ -60,7 +60,7 @@ export default function AdminTools() {
               href={tool.href}
               style={s.card}
               onMouseEnter={e => { e.currentTarget.style.borderColor = '#a855f7'; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#334155'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(168,85,247,0.25)'; }}
             >
               <div style={s.title}>{tool.title}</div>
               <div style={s.desc}>{tool.desc}</div>
