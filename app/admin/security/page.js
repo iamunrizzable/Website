@@ -19,33 +19,19 @@ const s = {
 export default function SecurityPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [adminKey, setAdminKey] = useState('');
-  const [ips, setIps] = useState([]);
   const [redisConfigured, setRedisConfigured] = useState(true);
-  const [newIp, setNewIp] = useState('');
-  const [msg, setMsg] = useState('');
   const [visitorIds, setVisitorIds] = useState([]);
   const [newVisitorId, setNewVisitorId] = useState('');
   const [deviceMsg, setDeviceMsg] = useState('');
 
-  const fetchIps = useCallback(async (key) => {
-    try {
-      const res = await fetch('/api/admin/blocked-ips', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
-      const data = await res.json();
-      setIps(data.ips ?? []);
-      setRedisConfigured(!!data.redisConfigured);
-      localStorage.setItem('admin_key', key);
-    } catch (e) {
-      setMsg('Failed to load blocked IPs: ' + e.message);
-    }
-  }, []);
-
   const fetchVisitorIds = useCallback(async (key) => {
     try {
       const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) return;
+      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
       const data = await res.json();
       setVisitorIds(data.visitorIds ?? []);
+      setRedisConfigured(!!data.redisConfigured);
+      localStorage.setItem('admin_key', key);
     } catch (e) {
       setDeviceMsg('Failed to load blocked devices: ' + e.message);
     }
@@ -55,46 +41,14 @@ export default function SecurityPage() {
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
-      fetchIps(saved);
       fetchVisitorIds(saved);
     } else {
       fetch('/api/admin/me')
         .then(r => r.json())
-        .then(({ key }) => { if (key) { setAdminKey(key); fetchIps(key); fetchVisitorIds(key); } })
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchVisitorIds(key); } })
         .catch(() => {});
     }
-  }, [fetchIps, fetchVisitorIds]);
-
-  const addIp = async () => {
-    setMsg('');
-    const ip = newIp.trim();
-    if (!ip) return;
-    try {
-      const res = await fetch('/api/admin/blocked-ips', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-        body: JSON.stringify({ ip }),
-      });
-      const data = await res.json();
-      if (!res.ok) { setMsg(data.error ?? 'Failed to block IP'); return; }
-      setNewIp('');
-      fetchIps(adminKey);
-    } catch (e) {
-      setMsg('Failed to block IP: ' + e.message);
-    }
-  };
-
-  const removeIp = async (ip) => {
-    try {
-      await fetch(`/api/admin/blocked-ips?ip=${encodeURIComponent(ip)}`, {
-        method: 'DELETE',
-        headers: { 'x-admin-key': adminKey },
-      });
-      fetchIps(adminKey);
-    } catch (e) {
-      setMsg('Failed to remove IP: ' + e.message);
-    }
-  };
+  }, [fetchVisitorIds]);
 
   const addVisitorId = async () => {
     setDeviceMsg('');
@@ -143,51 +97,22 @@ export default function SecurityPage() {
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4 }}>Security</h1>
           <p style={{ color: '#64748b', fontSize: 13, marginBottom: 28 }}>
-            Block visitors by IP address site-wide. Enforced directly in middleware — no third-party dependency.
+            Permanently ban a device from the site by Fingerprint visitor_id. IP-based blocking
+            was removed — IPs are trivially rotated or spoofed, so a device fingerprint is what
+            actually makes a ban stick. Get a visitor_id from a site visit&apos;s debug info
+            (<code>?fpdebug=1</code> on any page) or from the Fingerprint dashboard&apos;s
+            Identification Events.
           </p>
 
           {!redisConfigured && (
             <div style={s.warnBanner}>
               <strong>Blocking is not actually active yet.</strong> This requires Redis
-              (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN) to be configured — without it,
-              IPs will save here but visitors won&apos;t actually be blocked. Set those up in Vercel
-              (Storage → add Upstash Redis) and redeploy.
+              (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN, or the Vercel-provisioned
+              KV_REST_API_* equivalents) to be configured — without it, devices will save here
+              but visitors won&apos;t actually be blocked. Set that up in Vercel
+              (Storage → add a Redis database) and redeploy.
             </div>
           )}
-
-          <div style={s.card}>
-            <div style={s.h2}>Block an IP</div>
-            {msg && <div style={s.msg}>{msg}</div>}
-            <div style={{ display: 'flex', gap: 8 }}>
-              <input
-                style={s.input}
-                placeholder="e.g. 50.146.255.42"
-                value={newIp}
-                onChange={(e) => setNewIp(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') addIp(); }}
-              />
-              <button style={s.btn} onClick={addIp}>Block</button>
-            </div>
-          </div>
-
-          <div style={s.card}>
-            <div style={s.h2}>Blocked IPs ({ips.length})</div>
-            {ips.length === 0 && <div style={{ color: '#64748b', fontSize: 13 }}>No IPs blocked.</div>}
-            {ips.map((ip) => (
-              <div key={ip} style={s.row}>
-                <span>{ip}</span>
-                <button style={s.btnDanger} onClick={() => removeIp(ip)}>Remove</button>
-              </div>
-            ))}
-          </div>
-
-          <h2 style={{ fontSize: 18, fontWeight: 700, color: '#d4a5ff', marginTop: 36, marginBottom: 4 }}>Devices</h2>
-          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>
-            Permanent, IP-independent bans — Fingerprint&apos;s visitor_id stays stable across IP
-            changes, unlike IP-only blocking above. Get a visitor_id from a site visit&apos;s
-            debug info (<code>?fpdebug=1</code> on any page) or from the Fingerprint dashboard&apos;s
-            Identification Events.
-          </p>
 
           <div style={s.card}>
             <div style={s.h2}>Block a Device</div>
