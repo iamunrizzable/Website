@@ -22,6 +22,11 @@ const TOOLS = [
     title: 'Admin Panel',
     desc: 'Internal testing and debug surface for the Hallie TikTok Platform — raw API probes, diagnostics.',
   },
+  {
+    href: '/admin/security',
+    title: 'Security',
+    desc: 'Block visitors by IP address site-wide.',
+  },
 ];
 
 export default function AdminTools() {
