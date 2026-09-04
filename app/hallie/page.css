@@ -60,7 +60,7 @@ body::before {
         }
 
         .subtitle {
-          color: #64748b;
+          color: #06b6d4;
           font-size: 15px;
           margin: 0;
         }
@@ -111,7 +111,7 @@ body::before {
         }
 
         .card-desc {
-          color: #64748b;
+          color: #06b6d4;
           font-size: 13px;
           line-height: 1.7;
           display: block;
@@ -150,6 +150,6 @@ body::before {
 
         footer {
           max-width: 900px; margin: 60px auto 0; padding: 40px 20px;
-          border-top: 1px solid rgba(168,85,247,0.2); color: #8b9dc3; text-align: center; font-size: 14px;
+          border-top: 1px solid rgba(168,85,247,0.2); color: #ec4899; text-align: center; font-size: 14px;
         }
         footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }

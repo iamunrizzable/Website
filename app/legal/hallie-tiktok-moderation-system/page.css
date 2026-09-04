@@ -35,8 +35,8 @@ body::before {
         h1 { color: #d4a5ff; margin-bottom: 8px; font-size: 28px; animation: glowPulse 3s ease-in-out infinite; line-height: 1.3; }
         h2 { color: #a855f7; margin-top: 40px; margin-bottom: 15px; font-size: 18px; animation: glowPulse 3s ease-in-out infinite; }
         h3 { color: #c084fc; margin-top: 24px; margin-bottom: 10px; font-size: 15px; }
-        p { color: #7dd3fc; margin-bottom: 15px; line-height: 1.8; font-size: 14px; }
-        li { color: #7dd3fc; margin-bottom: 10px; line-height: 1.8; font-size: 14px; }
+        p { color: #a855f7; margin-bottom: 15px; line-height: 1.8; font-size: 14px; }
+        li { color: #a855f7; margin-bottom: 10px; line-height: 1.8; font-size: 14px; }
         ul { padding-left: 20px; }
 
         strong {
@@ -63,7 +63,7 @@ body::before {
           50% { box-shadow: 0 0 25px rgba(168,85,247,0.3), 0 0 50px rgba(236,72,153,0.15); }
         }
 
-        .subtitle { color: #64748b; font-size: 13px; margin-bottom: 30px; }
+        .subtitle { color: #06b6d4; font-size: 13px; margin-bottom: 30px; }
 
         .menu-button {
           position: fixed; top: 20px; right: 20px; background: #a855f7; color: white;
@@ -83,13 +83,13 @@ body::before {
 
         .toc { background: rgba(168,85,247,0.05); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 20px; margin-bottom: 30px; }
         .toc p { color: #a855f7; font-weight: 600; font-size: 13px; margin-bottom: 10px; }
-        .toc ol { color: #7dd3fc; font-size: 13px; padding-left: 20px; }
+        .toc ol { color: #a855f7; font-size: 13px; padding-left: 20px; }
         .toc li { margin-bottom: 6px; }
-        .toc a { color: #7dd3fc; text-decoration: none; }
+        .toc a { color: #a855f7; text-decoration: none; }
         .toc a:hover { color: #c084fc; text-decoration: underline; }
 
         footer {
           max-width: 900px; margin: 60px auto 0; padding: 40px 20px;
-          border-top: 1px solid rgba(168,85,247,0.2); color: #8b9dc3; text-align: center; font-size: 14px;
+          border-top: 1px solid rgba(168,85,247,0.2); color: #ec4899; text-align: center; font-size: 14px;
         }
         footer p { margin-bottom: 1.5em; margin-top: 0; line-height: 1.6; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }

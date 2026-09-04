@@ -42,7 +42,7 @@ body::before {
           animation: glowPulse 3s ease-in-out infinite;
         }
         .subtitle {
-          color: #a0aec0;
+          color: #ec4899;
           font-size: 15px;
           margin-bottom: 40px;
         }

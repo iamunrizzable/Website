@@ -25,7 +25,7 @@ function categoryLabel(code) {
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
-  h2: { fontSize: 16, fontWeight: 600, color: '#94a3b8', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
+  h2: { fontSize: 16, fontWeight: 600, color: '#d946ef', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14 },
   btnSm: { background: '#334155', color: '#e2e8f0', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
@@ -35,7 +35,7 @@ const s = {
   inlineMsg: (ok) => ({ fontSize: 12, color: ok ? '#10b981' : '#f59e0b', marginBottom: 8, minHeight: 18 }),
   tab: (active) => ({
     padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
-    background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#64748b', border: 'none',
+    background: active ? '#a855f7' : 'transparent', color: active ? '#fff' : '#06b6d4', border: 'none',
   }),
   // Shared OK / Hidden pill — identical on /admin and /system. Keep in sync.
   statusBadge: (hidden) => ({
@@ -71,14 +71,14 @@ export default function SystemPage() {
             <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
               Hallie™
             </h1>
-            <p style={{ color: '#64748b', fontSize: 13, margin: 0 }}>TikTok Account Automation · Powered by TJB Management Inc.</p>
+            <p style={{ color: '#06b6d4', fontSize: 13, margin: 0 }}>TikTok Account Automation · Powered by TJB Management Inc.</p>
           </div>
 
           {msg && <div style={s.msg}>{msg}</div>}
 
           {connected === null ? (
             <div style={{ ...s.card, textAlign: 'center', padding: 40 }}>
-              <p style={{ color: '#64748b', fontSize: 14 }}>Loading…</p>
+              <p style={{ color: '#06b6d4', fontSize: 14 }}>Loading…</p>
             </div>
           ) : !connected ? (
             <ConnectPrompt />
@@ -109,7 +109,7 @@ function ConnectPrompt() {
     <div style={{ ...s.card, textAlign: 'center', padding: '48px 24px' }}>
       <div style={{ fontSize: 48, marginBottom: 16 }}>🎵</div>
       <h2 style={{ color: '#d4a5ff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Connect Your TikTok Account</h2>
-      <p style={{ color: '#64748b', fontSize: 14, marginBottom: 28, maxWidth: 400, margin: '0 auto 28px' }}>
+      <p style={{ color: '#06b6d4', fontSize: 14, marginBottom: 28, maxWidth: 400, margin: '0 auto 28px' }}>
         Sign in with TikTok to start automating your account — comment moderation, sync, and more.
       </p>
       <a
@@ -160,7 +160,7 @@ function AccountPanel() {
           {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
           <div>
             <div style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0' }}>{account?.display_name ?? '—'}</div>
-            <div style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <div style={{ fontSize: 13, color: '#06b6d4', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               {account?.username && <span>@{account.username}</span>}
               {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
               {account?.likes != null && <span>{account.likes.toLocaleString()} likes</span>}
@@ -202,7 +202,7 @@ function VideosPanel() {
     <div style={s.card}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
         <h2 style={{ ...s.h2, marginBottom: 0 }}>Videos</h2>
-        <button onClick={() => setCollapsed(c => !c)} style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}>
+        <button onClick={() => setCollapsed(c => !c)} style={{ background: 'transparent', border: 'none', color: '#06b6d4', fontSize: 13, cursor: 'pointer', padding: '4px 8px' }}>
           {collapsed ? 'Show' : 'Hide'}
         </button>
       </div>
@@ -220,7 +220,7 @@ function VideosPanel() {
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {v.caption || <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
               </div>
-              <div style={{ fontSize: 12, color: '#64748b' }}>
+              <div style={{ fontSize: 12, color: '#06b6d4' }}>
                 {v.create_time ? new Date(v.create_time * 1000).toLocaleDateString() : ''}
                 {v.video_views != null && ` · ${v.video_views.toLocaleString()} views`}
                 {v.likes != null && ` · ${v.likes.toLocaleString()} likes`}
@@ -315,7 +315,7 @@ function CommentsPanel() {
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Comment Management</h2>
-      <p style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>Paste a TikTok video or photo link, a share link (tiktok.com/t/…), or a numeric ID to load its comments.</p>
+      <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 10 }}>Paste a TikTok video or photo link, a share link (tiktok.com/t/…), or a numeric ID to load its comments.</p>
       <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
         <input
           style={{ ...s.input, flex: 1 }}
@@ -398,7 +398,7 @@ function SyncPanel() {
 
   const tabStyle = (active) => ({
     padding: '6px 14px', borderRadius: 6, fontSize: 13, cursor: 'pointer', fontWeight: active ? 600 : 400,
-    background: active ? '#334155' : 'transparent', color: active ? '#e2e8f0' : '#64748b', border: 'none',
+    background: active ? '#334155' : 'transparent', color: active ? '#e2e8f0' : '#06b6d4', border: 'none',
   });
 
   async function runSync() {
@@ -419,7 +419,7 @@ function SyncPanel() {
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Comment Sync</h2>
-      <p style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>
+      <p style={{ fontSize: 13, color: '#06b6d4', marginBottom: 12 }}>
         Scores all new comments and auto-hides anything that triggers the filter.
       </p>
       <div style={{ display: 'flex', gap: 4, marginBottom: 12 }}>
@@ -455,12 +455,12 @@ function SyncPanel() {
           {[...result.comments].sort((a, b) => (a.action === 'hidden' ? -1 : 0) - (b.action === 'hidden' ? -1 : 0)).map(c => (
             <div key={c.comment_id} style={{ padding: '10px 12px', borderBottom: '1px solid #1e293b', fontSize: 13 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                <span style={{ color: '#94a3b8', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
+                <span style={{ color: '#d946ef', fontWeight: 600 }}>@{c.username ?? 'unknown'}</span>
                 <span style={s.statusBadge(c.action === 'hidden')}>
                   {c.action === 'hidden' ? 'Hidden' : 'OK'}
                 </span>
               </div>
-              <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#64748b' }}>(no text)</em>}</div>
+              <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#06b6d4' }}>(no text)</em>}</div>
             </div>
           ))}
         </div>
@@ -518,7 +518,7 @@ function AutomatedRulesPanel() {
   return (
     <div style={s.card}>
       <h2 style={s.h2}>Automated Comment Rules</h2>
-      <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+      <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 12 }}>
         Comments matching any rule's keywords are automatically hidden the next time Comment Sync runs — not in real time.
       </p>
       {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
@@ -540,7 +540,7 @@ function AutomatedRulesPanel() {
           <div key={rule.id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
             <div>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{rule.name}</div>
-              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
+              <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
             </div>
             <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
           </div>
@@ -595,7 +595,7 @@ function CommentFiltersPanel() {
         <p style={{ fontSize: 13, color: '#475569' }}>Loading filters…</p>
       ) : (
         <>
-          <p style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
+          <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 12 }}>
             Choose which kinds of comments get automatically hidden during Comment Sync. Unchecked categories are left alone even if they'd otherwise score high enough to hide.
           </p>
           {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
@@ -603,7 +603,7 @@ function CommentFiltersPanel() {
             <input type="checkbox" checked disabled style={{ marginTop: 3 }} />
             <div>
               <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>Potential Minor Detection <span style={{ fontSize: 11, color: '#f59e0b', fontWeight: 400 }}>— Always On</span></div>
-              <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
+              <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
             </div>
           </div>
           {data.categories.map(cat => (
@@ -616,7 +616,7 @@ function CommentFiltersPanel() {
               />
               <div>
                 <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>{cat.label}</div>
-                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{cat.description}</div>
+                <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{cat.description}</div>
               </div>
             </label>
           ))}
@@ -764,7 +764,7 @@ function MentionsPanel() {
         data.map((item, i) => (
           <div key={item.item_id ?? item.video_id ?? item.comment_id ?? item.hashtag ?? item.word ?? i} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 10, marginBottom: 10, fontSize: 13, color: '#cbd5e1' }}>
             {typeof item === 'string' && tab !== 'tracked_hashtags' && item}
-            {tab === 'videos' && typeof item !== 'string' && <>{item.caption ?? item.title ?? item.item_id ?? item.video_id} <span style={{ color: '#64748b' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
+            {tab === 'videos' && typeof item !== 'string' && <>{item.caption ?? item.title ?? item.item_id ?? item.video_id} <span style={{ color: '#06b6d4' }}>{item.create_time ? new Date(item.create_time * 1000).toLocaleDateString() : ''}</span></>}
             {tab === 'comments' && typeof item !== 'string' && <>@{item.username ?? 'unknown'}: {item.text}</>}
             {tab === 'top_words' && typeof item !== 'string' && (item.word ? <>{item.word}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
             {tab === 'top_hashtags' && typeof item !== 'string' && (item.hashtag ? <>#{item.hashtag}{item.count != null && ` · ${item.count}`}</> : JSON.stringify(item))}
@@ -889,7 +889,7 @@ function TrendingPanel() {
             {typeof item === 'string' ? (
               item
             ) : tab === 'hashtags' && item.name ? (
-              <>#{item.name}{item.view_count != null && <span style={{ color: '#64748b' }}> · {item.view_count.toLocaleString()} views</span>}</>
+              <>#{item.name}{item.view_count != null && <span style={{ color: '#06b6d4' }}> · {item.view_count.toLocaleString()} views</span>}</>
             ) : (
               JSON.stringify(item)
             )}
@@ -926,7 +926,7 @@ function TestPanel() {
       />
       <button style={{ ...s.btn, marginTop: 10 }} onClick={test} disabled={!text.trim()}>Score It</button>
       {result && (
-        <pre style={{ marginTop: 12, background: '#0f172a', padding: 12, borderRadius: 8, fontSize: 12, color: '#94a3b8', overflowX: 'auto' }}>
+        <pre style={{ marginTop: 12, background: '#0f172a', padding: 12, borderRadius: 8, fontSize: 12, color: '#d946ef', overflowX: 'auto' }}>
           {JSON.stringify(result, null, 2)}
         </pre>
       )}

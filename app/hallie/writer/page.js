@@ -9,13 +9,13 @@ const VOICE_KEY = 'tyler_writer_voice_examples';
 const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
-  label: { display: 'block', fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 6, marginTop: 16 },
+  label: { display: 'block', fontSize: 13, fontWeight: 600, color: '#d946ef', marginBottom: 6, marginTop: 16 },
   textarea: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 100, resize: 'vertical', fontFamily: 'inherit' },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 16 },
   btnSm: { background: '#334155', color: '#e2e8f0', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   segWrap: { display: 'inline-flex', background: '#0f172a', border: '1px solid #475569', borderRadius: 8, overflow: 'hidden' },
-  seg: { background: 'none', border: 'none', color: '#94a3b8', padding: '8px 18px', cursor: 'pointer', fontSize: 13, fontWeight: 600 },
+  seg: { background: 'none', border: 'none', color: '#d946ef', padding: '8px 18px', cursor: 'pointer', fontSize: 13, fontWeight: 600 },
   segActive: { background: '#a855f7', color: '#fff' },
 };
 
@@ -160,7 +160,7 @@ export default function HallieWriter() {
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
             Writer
           </h1>
-          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 12 }}>
+          <p style={{ color: '#06b6d4', fontSize: 13, marginBottom: 12 }}>
             Two voices to draft in: <strong>Hallie</strong> writes as herself — your AI assistant, speaking on your
             behalf, never pretending to be you. <strong>Tyler</strong> writes as you, first person, in your own voice.
             Nothing is sent automatically — copy the draft and send it yourself.
@@ -190,7 +190,7 @@ export default function HallieWriter() {
               </button>
               {voiceOpen && (
                 <div style={{ marginTop: 12 }}>
-                  <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>
+                  <p style={{ color: '#06b6d4', fontSize: 13, lineHeight: 1.5, marginBottom: 8 }}>
                     Paste real messages you&apos;ve sent, or import your Sent folder below — the more the better.
                     Imported messages are tagged with who they went to and what they were about, so the Tyler
                     persona learns how you actually communicate across different situations, not just your surface
@@ -259,7 +259,7 @@ export default function HallieWriter() {
 
             {draft && (
               <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #334155' }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', marginBottom: 8 }}>
+                <p style={{ fontSize: 13, fontWeight: 600, color: '#a855f7', marginBottom: 8 }}>
                   {persona === 'hallie' ? "Hallie's draft" : "Draft (as you)"}
                 </p>
                 <p style={{ color: '#e2e8f0', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
