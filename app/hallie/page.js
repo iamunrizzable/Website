@@ -40,8 +40,8 @@ export default function HallieHub() {
       <main>
         <div className="header section">
           <h1>Hallie™</h1>
-          <p className="subtitle">Hallie™ · TJB Management's AI Assistant</p>
-          <span className="badge">⚡ AI Powered</span>
+          <p className="subtitle">Hallie™ · TJB Management Inc.</p>
+          <span className="badge">⚡ TJB Management's AI Assistant</span>
         </div>
 
         <div className="grid">
