@@ -17,7 +17,10 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   html { background-color: #0f172a; }
   body {
     margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: transparent;
+    display: flex;
     padding: 40px 12px;
     box-sizing: border-box;
     font-family: system-ui, sans-serif;
@@ -45,7 +48,8 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   }
   .card {
     max-width: 480px;
-    margin: 0 auto;
+    width: 100%;
+    margin: auto;
     text-align: center;
     color: #e2e8f0;
     background: rgba(15,23,42,0.6);
