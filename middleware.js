@@ -7,6 +7,65 @@ import { isIpBlocked } from './lib/tokens.js';
 // during dynamic rendering and stamps the nonce onto its inline scripts
 // (root layout forces dynamic rendering for this reason). The static
 // security headers (HSTS etc.) still live in next.config.js.
+const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access Denied</title>
+<style>
+  html { background-color: #0f172a; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/bg-main.jpeg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: lighten;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .card {
+    max-width: 480px;
+    text-align: center;
+    color: #e2e8f0;
+  }
+  h1 {
+    color: #ef4444;
+    font-size: 22px;
+    margin: 0 0 16px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin: 0;
+  }
+  a { color: #a855f7; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Access Denied</h1>
+    <p>You have been blocked from accessing TJB Management Inc.'s company social media accounts and systems. If you believe this was done in error, please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a> for assistance.</p>
+  </div>
+</body>
+</html>`;
+
 function buildCsp(nonce) {
   return [
     "default-src 'self'",
@@ -59,7 +118,10 @@ export async function middleware(request) {
     const blocked = ip ? await isIpBlocked(ip) : false;
     console.log('[ip-block-check]', { ip, blocked });
     if (blocked) {
-      return withCsp(new NextResponse('Access denied', { status: 403 }));
+      return withCsp(new NextResponse(BLOCKED_PAGE_HTML, {
+        status: 403,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      }));
     }
   } catch (e) {
     console.error('[ip-block-check] error', ip, e?.message ?? String(e));
