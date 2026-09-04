@@ -9,7 +9,7 @@ body::before {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100lvh;
-  background-image: linear-gradient(to bottom, #0f172a 0%, #0f172a 8%, rgba(15, 23, 42, 0.85) 20%, rgba(15, 23, 42, 0.85) 80%, #0f172a 92%, #0f172a 100%), url("/bg-tyler.png");
+  background-image: linear-gradient(to bottom, #0f172a 0%, #0f172a 8%, rgba(15, 23, 42, 0.97) 20%, rgba(15, 23, 42, 0.97) 80%, #0f172a 92%, #0f172a 100%), url("/bg-tyler.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
