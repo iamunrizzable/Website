@@ -82,13 +82,14 @@ body::before {
 
         .logo-backdrop {
           background: #000;
-          width: fit-content;
+          width: 100%;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           padding: 0 0 90px;
+          box-sizing: border-box;
         }
 
         .logo-img {
