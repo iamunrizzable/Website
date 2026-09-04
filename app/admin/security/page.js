@@ -95,14 +95,7 @@ export default function SecurityPage() {
 
       <div style={s.page}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
-          <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4 }}>Security</h1>
-          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 28 }}>
-            Permanently ban a device from the site by Fingerprint visitor_id. IP-based blocking
-            was removed — IPs are trivially rotated or spoofed, so a device fingerprint is what
-            actually makes a ban stick. Get a visitor_id from a site visit&apos;s debug info
-            (<code>?fpdebug=1</code> on any page) or from the Fingerprint dashboard&apos;s
-            Identification Events.
-          </p>
+          <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 28 }}>Security</h1>
 
           {!redisConfigured && (
             <div style={s.warnBanner}>
