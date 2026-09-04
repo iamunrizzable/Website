@@ -60,6 +60,16 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     z-index: 10;
     animation: popIn 0.6s ease-out;
   }
+  .badge {
+    display: inline-block;
+    background: #ec4899;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
   h1 {
     color: #ef4444;
     font-size: 24px;
@@ -79,20 +89,26 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     font-size: 12.5px;
     line-height: 1.7;
   }
-  .rainbow, a {
+  .pink { color: #ec4899; }
+  .cyan { color: #06b6d4; }
+  .purple { color: #a855f7; }
+  .magenta { color: #d946ef; }
+  a {
     background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-weight: 600;
+    text-decoration: underline;
   }
-  a { font-weight: 600; text-decoration: underline; }
 </style>
 </head>
 <body>
   <div class="card">
+    <span class="badge">403 · RESTRICTED</span>
     <h1>Access Denied</h1>
-    <p class="rainbow">You have been blocked from accessing<br>TJB Management Inc.'s social media<br>accounts and systems.</p>
-    <p class="rainbow">If you believe this was done in error<br><span class="nowrap-line">Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br>for assistance.</p>
+    <p><span class="cyan">You have been blocked from accessing</span><br><span class="pink">TJB Management Inc.'s social media</span><br><span class="purple">accounts and systems.</span></p>
+    <p><span class="magenta">If you believe this was done in error</span><br><span class="nowrap-line cyan">Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br><span class="pink">for assistance.</span></p>
   </div>
 </body>
 </html>`;
