@@ -18,7 +18,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   body {
     margin: 0;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100lvh;
     background: transparent;
     display: flex;
     padding: 40px 12px;
@@ -28,7 +28,10 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100lvh;
     background-image: url("/bg-main.jpeg");
     background-position: center center;
     background-size: cover;
