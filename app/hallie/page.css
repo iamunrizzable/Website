@@ -35,6 +35,23 @@ body::before {
         }
         .header.visible { opacity: 1; transform: translateY(0); }
 
+        .fade-top {
+          position: fixed; top: 0; left: 0; width: 100%; height: 200px;
+          background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent);
+          z-index: 50; pointer-events: none;
+        }
+
+        .badge {
+          display: inline-block;
+          background: #ec4899;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 5px 14px;
+          border-radius: 999px;
+          margin-top: 14px;
+        }
+
         h1 {
           color: #d4a5ff;
           font-size: 36px;
@@ -55,10 +72,14 @@ body::before {
           margin-bottom: 60px;
         }
 
+        @keyframes borderGlow {
+          0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.2), 0 0 30px rgba(168,85,247,0.1); }
+          50% { box-shadow: 0 0 25px rgba(168,85,247,0.4), 0 0 50px rgba(236,72,153,0.2); }
+        }
         .card {
           display: block;
           background: rgba(30, 41, 59, 0.8);
-          border: 1px solid #334155;
+          border: 2px solid rgba(168,85,247,0.25);
           border-radius: 14px;
           padding: 28px 24px;
           text-decoration: none;
@@ -67,7 +88,7 @@ body::before {
           transform: translateY(20px);
           cursor: pointer;
         }
-        .card.visible { opacity: 1; transform: translateY(0); }
+        .card.visible { opacity: 1; transform: translateY(0); animation: borderGlow 3s ease-in-out infinite; }
         .card:hover {
           border-color: #a855f7;
           background: rgba(168, 85, 247, 0.08);

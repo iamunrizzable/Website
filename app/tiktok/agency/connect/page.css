@@ -56,9 +56,14 @@ body::before {
           opacity: 0;
           transform: translateY(20px);
         }
+        @keyframes borderGlow {
+          0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.2), 0 0 30px rgba(168,85,247,0.1); }
+          50% { box-shadow: 0 0 25px rgba(168,85,247,0.4), 0 0 50px rgba(236,72,153,0.2); }
+        }
         .contact-card.visible {
           opacity: 1;
           transform: translateY(0);
+          animation: borderGlow 3s ease-in-out infinite;
         }
         .contact-card::before { content: ''; position: absolute; inset: 0; z-index: -1; }
         .contact-card:hover {
