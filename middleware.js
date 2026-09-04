@@ -18,6 +18,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   body {
     margin: 0;
     min-height: 100vh;
+    min-height: 100dvh;
     background: transparent;
     display: flex;
     align-items: center;
