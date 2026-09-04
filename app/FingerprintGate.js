@@ -81,6 +81,20 @@ export default function FingerprintGate({ children }) {
         >
           <div
             style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundImage: 'url(/bg-main.jpeg)',
+              backgroundPosition: 'center center',
+              backgroundSize: '140%',
+              backgroundRepeat: 'no-repeat',
+              mixBlendMode: 'lighten',
+              opacity: 0.13,
+              zIndex: -1,
+              pointerEvents: 'none',
+            }}
+          />
+          <div
+            style={{
               width: 32,
               height: 32,
               borderRadius: '50%',
@@ -180,7 +194,7 @@ export default function FingerprintGate({ children }) {
               Access Denied
             </h1>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#06b6d4' }}>This device has been permanently blocked from accessing</span><br />
+              <span style={{ color: '#06b6d4' }}>You have been blocked from accessing</span><br />
               <span style={{ color: '#ec4899' }}>TJB Management Inc.'s social media</span><br />
               <span style={{ color: '#a855f7' }}>accounts and systems.</span>
             </p>
