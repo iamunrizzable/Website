@@ -23,7 +23,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
+    padding: 20px;
     box-sizing: border-box;
     font-family: system-ui, sans-serif;
   }
@@ -55,7 +55,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     background: rgba(15,23,42,0.6);
     border: 2px solid rgba(239,68,68,0.35);
     border-radius: 16px;
-    padding: 36px 30px;
+    padding: 36px 20px;
     position: relative;
     z-index: 10;
     animation: popIn 0.6s ease-out;
@@ -73,6 +73,11 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
     margin: 0 0 14px;
   }
   p:last-child { margin-bottom: 0; }
+  .nowrap-line {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 12px;
+  }
   .rainbow, a {
     background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
     -webkit-background-clip: text;
@@ -86,7 +91,7 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   <div class="card">
     <h1>Access Denied</h1>
     <p class="rainbow">You have been blocked from accessing<br>TJB Management Inc.'s social media<br>accounts and systems.</p>
-    <p class="rainbow">If you believe this was done in error<br>Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a><br>for assistance.</p>
+    <p class="rainbow">If you believe this was done in error<br><span class="nowrap-line">Please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a></span><br>for assistance.</p>
   </div>
 </body>
 </html>`;
