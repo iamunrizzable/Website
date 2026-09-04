@@ -121,8 +121,16 @@ export async function middleware(request) {
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', csp);
 
+  // no-store on every response middleware touches — the whole site is
+  // already force-dynamic (see app/layout.js), so nothing here was ever
+  // meant to be cached, but without an explicit header the CDN/browser are
+  // free to apply their own default caching heuristics. That's the likely
+  // reason an IP block took up to ~a minute to take effect: the visitor's
+  // last allowed response could still be served stale for a bit even
+  // after Redis was updated.
   const withCsp = (response) => {
     response.headers.set('Content-Security-Policy', csp);
+    response.headers.set('Cache-Control', 'no-store');
     return response;
   };
 
