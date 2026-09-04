@@ -41,7 +41,7 @@ export default function TylerHub() {
         <div className="header section">
           <h1>Tyler</h1>
           <p className="subtitle">Tyler @ TJB Mgmt · Creator Manager & Agency Founder</p>
-          <span className="badge">⚡ Founder</span>
+          <span className="badge">⚡ 5 Years Experience</span>
         </div>
 
         <div className="grid">
