@@ -23,6 +23,9 @@ export default function SecurityPage() {
   const [redisConfigured, setRedisConfigured] = useState(true);
   const [newIp, setNewIp] = useState('');
   const [msg, setMsg] = useState('');
+  const [visitorIds, setVisitorIds] = useState([]);
+  const [newVisitorId, setNewVisitorId] = useState('');
+  const [deviceMsg, setDeviceMsg] = useState('');
 
   const fetchIps = useCallback(async (key) => {
     try {
@@ -37,18 +40,30 @@ export default function SecurityPage() {
     }
   }, []);
 
+  const fetchVisitorIds = useCallback(async (key) => {
+    try {
+      const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
+      if (res.status === 401) return;
+      const data = await res.json();
+      setVisitorIds(data.visitorIds ?? []);
+    } catch (e) {
+      setDeviceMsg('Failed to load blocked devices: ' + e.message);
+    }
+  }, []);
+
   useEffect(() => {
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
       fetchIps(saved);
+      fetchVisitorIds(saved);
     } else {
       fetch('/api/admin/me')
         .then(r => r.json())
-        .then(({ key }) => { if (key) { setAdminKey(key); fetchIps(key); } })
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchIps(key); fetchVisitorIds(key); } })
         .catch(() => {});
     }
-  }, [fetchIps]);
+  }, [fetchIps, fetchVisitorIds]);
 
   const addIp = async () => {
     setMsg('');
@@ -78,6 +93,37 @@ export default function SecurityPage() {
       fetchIps(adminKey);
     } catch (e) {
       setMsg('Failed to remove IP: ' + e.message);
+    }
+  };
+
+  const addVisitorId = async () => {
+    setDeviceMsg('');
+    const visitorId = newVisitorId.trim();
+    if (!visitorId) return;
+    try {
+      const res = await fetch('/api/admin/blocked-devices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify({ visitorId }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to block device'); return; }
+      setNewVisitorId('');
+      fetchVisitorIds(adminKey);
+    } catch (e) {
+      setDeviceMsg('Failed to block device: ' + e.message);
+    }
+  };
+
+  const removeVisitorId = async (visitorId) => {
+    try {
+      await fetch(`/api/admin/blocked-devices?visitorId=${encodeURIComponent(visitorId)}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-key': adminKey },
+      });
+      fetchVisitorIds(adminKey);
+    } catch (e) {
+      setDeviceMsg('Failed to remove device: ' + e.message);
     }
   };
 
@@ -131,6 +177,40 @@ export default function SecurityPage() {
               <div key={ip} style={s.row}>
                 <span>{ip}</span>
                 <button style={s.btnDanger} onClick={() => removeIp(ip)}>Remove</button>
+              </div>
+            ))}
+          </div>
+
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: '#d4a5ff', marginTop: 36, marginBottom: 4 }}>Devices</h2>
+          <p style={{ color: '#64748b', fontSize: 13, marginBottom: 20 }}>
+            Permanent, IP-independent bans — Fingerprint&apos;s visitor_id stays stable across IP
+            changes, unlike IP-only blocking above. Get a visitor_id from a site visit&apos;s
+            debug info (<code>?fpdebug=1</code> on any page) or from the Fingerprint dashboard&apos;s
+            Identification Events.
+          </p>
+
+          <div style={s.card}>
+            <div style={s.h2}>Block a Device</div>
+            {deviceMsg && <div style={s.msg}>{deviceMsg}</div>}
+            <div style={{ display: 'flex', gap: 8 }}>
+              <input
+                style={s.input}
+                placeholder="e.g. MiGaRxSTjSL0ADqniflW"
+                value={newVisitorId}
+                onChange={(e) => setNewVisitorId(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') addVisitorId(); }}
+              />
+              <button style={s.btn} onClick={addVisitorId}>Block</button>
+            </div>
+          </div>
+
+          <div style={s.card}>
+            <div style={s.h2}>Blocked Devices ({visitorIds.length})</div>
+            {visitorIds.length === 0 && <div style={{ color: '#64748b', fontSize: 13 }}>No devices blocked.</div>}
+            {visitorIds.map((visitorId) => (
+              <div key={visitorId} style={s.row}>
+                <span>{visitorId}</span>
+                <button style={s.btnDanger} onClick={() => removeVisitorId(visitorId)}>Remove</button>
               </div>
             ))}
           </div>
