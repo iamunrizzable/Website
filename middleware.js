@@ -70,16 +70,23 @@ const BLOCKED_PAGE_HTML = `<!DOCTYPE html>
   p {
     font-size: 15px;
     line-height: 1.7;
-    color: #cbd5e1;
-    margin: 0;
+    margin: 0 0 14px;
   }
-  a { color: #a855f7; font-weight: 600; }
+  p:last-child { margin-bottom: 0; }
+  .rainbow, a {
+    background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  a { font-weight: 600; text-decoration: underline; }
 </style>
 </head>
 <body>
   <div class="card">
     <h1>Access Denied</h1>
-    <p>You have been blocked from accessing TJB Management Inc.'s company social media accounts and systems. If you believe this was done in error, please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a> for assistance.</p>
+    <p class="rainbow">You have been blocked from accessing TJB Management Inc.'s company social media accounts and systems.</p>
+    <p class="rainbow">If you believe this was done in error, please email <a href="mailto:support@tjbmanagementinc.com">support@tjbmanagementinc.com</a> for assistance.</p>
   </div>
 </body>
 </html>`;
