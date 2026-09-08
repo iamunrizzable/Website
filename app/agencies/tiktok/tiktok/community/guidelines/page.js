@@ -29,13 +29,13 @@ export default function TikTokGuidelines() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/agencies/tiktok" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
-        <a href="/tiktok/agency/streaming-basics" className="back-link">← Back to Streaming Basics</a>
+        <a href="/agencies/tiktok/streaming-basics" className="back-link">← Back to Streaming Basics</a>
         <h1>TikTok Community Guidelines</h1>
         <p className="page-subtitle">Know the rules before you go LIVE. Violations can result in content removal, account restrictions, or permanent bans.</p>
 

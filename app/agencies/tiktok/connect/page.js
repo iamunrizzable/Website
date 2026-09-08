@@ -44,13 +44,13 @@ export default function ContactAgency() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/agencies/tiktok" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
-        <a href="/tiktok/agency" className="back-link">← Back to TikTok Agency</a>
+        <a href="/agencies/tiktok" className="back-link">← Back to TikTok Agency</a>
         <h1>Connect with TJB Management's TikTok Agency</h1>
 
         <div className="contact-grid">

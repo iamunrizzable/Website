@@ -28,13 +28,13 @@ export default function AgencyPage() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/agencies/tiktok" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
       <main>
-        <a href="/tiktok/agency" className="back-link">← Back to TikTok Agency</a>
+        <a href="/agencies/tiktok" className="back-link">← Back to TikTok Agency</a>
 
         <h1>TJB Management Inc.</h1>
         <p className="subtitle">A TikTok LIVE Creator Agency — Founded by Tyler @ TJB Mgmt</p>
@@ -138,7 +138,7 @@ export default function AgencyPage() {
 
         <a href="https://www.tiktok.com/t/ZTkgQvTCb/" target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join TJB Management →</a>
         <p style={{ textAlign: 'center', marginTop: 12 }}>
-          <a href="/tiktok/agency/connect" style={{ color: '#a855f7', fontSize: 14, textDecoration: 'none' }}>Have questions first? Connect with the agency →</a>
+          <a href="/agencies/tiktok/connect" style={{ color: '#a855f7', fontSize: 14, textDecoration: 'none' }}>Have questions first? Connect with the agency →</a>
         </p>
 
         <div className="footer">

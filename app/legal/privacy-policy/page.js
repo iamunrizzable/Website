@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/agencies/tiktok" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
         <p className="disclaimer" style={{ marginBottom: 30 }}>
           This Privacy Policy brings together the privacy-related practices already described elsewhere on this
           website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
-          <a href="/tiktok/agency"><span className="rainbow">/agency</span></a> page, the{' '}
+          <a href="/agencies/tiktok"><span className="rainbow">/agency</span></a> page, the{' '}
           <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
           <a href="/legal/hallie-tiktok-moderation-system"><span className="rainbow">Hallie Platform Data Security &amp; Privacy Policy</span></a>,
           into a single reference. It does not replace those originals — where any difference exists, the original
@@ -128,7 +128,7 @@ export default function PrivacyPolicy() {
             Beyond Vercel Analytics and Fingerprint, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
           </p>
           <p>
-            The Website's contact pages (<span className="rainbow">/tiktok/agency/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
+            The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
             Beyond Vercel Analytics, Fingerprint device identification, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
