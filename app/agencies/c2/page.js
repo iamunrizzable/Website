@@ -4,7 +4,7 @@ import './page.css';
 
 import { useState, useEffect } from 'react';
 
-export default function C2Network() {
+export default function C2Hub() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ export default function C2Network() {
         }
       });
     }, { threshold: 0.1 });
-
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -39,32 +38,41 @@ export default function C2Network() {
       </div>
 
       <main>
-        <a href="/agencies" className="back-link">← Back to Creator Networks</a>
-
-        <h1>C2 @ TJB Mgmt</h1>
-
-        <div className="section">
-          <h2>Straight to the point.</h2>
-          <p>
-            TJB Management Inc.&apos;s creator network on <strong>C2 Live</strong> — the live-streaming app.
-          </p>
+        <div className="header section">
+          <h1>C2</h1>
+          <p className="subtitle">TJB Management Inc. · Creator Network on C2 Live</p>
+          <span className="badge">⚡ Free to Join</span>
         </div>
 
-        <div className="section">
-          <h2>Get the App</h2>
-          <p>
-            Download C2 Live on the <strong><a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer">App Store</a></strong> or <strong><a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Google Play</a></strong>.
-          </p>
+        <div className="grid">
+          <a href="https://c2live.co/agency/iamunrizzable" target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">😄</span>
+            <span className="card-title">Join C2</span>
+            <span className="card-desc">Join TJB Management's creator network on C2 Live through Tyler.</span>
+            <span className="card-link">JOIN C2 →</span>
+          </a>
+
+          <a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">🍎</span>
+            <span className="card-title">App Store</span>
+            <span className="card-desc">Download C2 Live for iPhone and iPad.</span>
+            <span className="card-link">GET THE APP →</span>
+          </a>
+
+          <a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">🤖</span>
+            <span className="card-title">Google Play</span>
+            <span className="card-desc">Download C2 Live for Android.</span>
+            <span className="card-link">GET THE APP →</span>
+          </a>
         </div>
 
-        <a href="https://c2live.co/agency/iamunrizzable" target="_blank" rel="noopener noreferrer" className="cta-btn">Join C2 →</a>
-
-        <div className="footer">
+        <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>C2 Live and the C2 logo are trademarks of their respective owner. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
           <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
-        </div>
+        </footer>
       </main>
     </>
   );
