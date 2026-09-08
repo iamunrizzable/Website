@@ -342,7 +342,7 @@ export default function FingerprintGate({ children }) {
               <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 20px' }}>
-              <span style={{ color: '#d946ef' }}>Please disable it for this site.</span>
+              <span style={{ color: '#d946ef' }}>Please disable it for this site and</span>
             </p>
             <button
               onClick={() => window.location.reload()}
