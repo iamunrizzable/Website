@@ -33,7 +33,7 @@ export default function SecurityPage() {
       setRedisConfigured(!!data.redisConfigured);
       localStorage.setItem('admin_key', key);
     } catch (e) {
-      setDeviceMsg('Failed to load blocked devices: ' + e.message);
+      setDeviceMsg('Failed to load blocked IDs: ' + e.message);
     }
   }, []);
 
@@ -61,11 +61,11 @@ export default function SecurityPage() {
         body: JSON.stringify({ visitorId }),
       });
       const data = await res.json();
-      if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to block device'); return; }
+      if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to block ID'); return; }
       setNewVisitorId('');
       fetchVisitorIds(adminKey);
     } catch (e) {
-      setDeviceMsg('Failed to block device: ' + e.message);
+      setDeviceMsg('Failed to block ID: ' + e.message);
     }
   };
 
@@ -77,7 +77,7 @@ export default function SecurityPage() {
       });
       fetchVisitorIds(adminKey);
     } catch (e) {
-      setDeviceMsg('Failed to remove device: ' + e.message);
+      setDeviceMsg('Failed to remove ID: ' + e.message);
     }
   };
 
@@ -101,14 +101,14 @@ export default function SecurityPage() {
             <div style={s.warnBanner}>
               <strong>Blocking is not actually active yet.</strong> This requires Redis
               (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN, or the Vercel-provisioned
-              KV_REST_API_* equivalents) to be configured — without it, devices will save here
+              KV_REST_API_* equivalents) to be configured — without it, IDs will save here
               but visitors won&apos;t actually be blocked. Set that up in Vercel
               (Storage → add a Redis database) and redeploy.
             </div>
           )}
 
           <div style={s.card}>
-            <div style={s.h2}>Block a Device</div>
+            <div style={s.h2}>Block an ID</div>
             {deviceMsg && <div style={s.msg}>{deviceMsg}</div>}
             <div style={{ display: 'flex', gap: 8 }}>
               <input
@@ -123,8 +123,8 @@ export default function SecurityPage() {
           </div>
 
           <div style={s.card}>
-            <div style={s.h2}>Blocked Devices ({visitorIds.length})</div>
-            {visitorIds.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No devices blocked.</div>}
+            <div style={s.h2}>Blocked IDs ({visitorIds.length})</div>
+            {visitorIds.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No IDs blocked.</div>}
             {visitorIds.map((visitorId) => (
               <div key={visitorId} style={s.row}>
                 <span>{visitorId}</span>
