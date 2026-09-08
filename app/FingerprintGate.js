@@ -263,6 +263,16 @@ export default function FingerprintGate({ children }) {
             0%, 100% { box-shadow: 0 0 15px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.2); }
             50% { box-shadow: 0 0 25px rgba(245,158,11,0.7), 0 0 50px rgba(236,72,153,0.3); }
           }
+          @keyframes fpBorderGlowHome {
+            0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.25), 0 0 30px rgba(168,85,247,0.12); }
+            50% { box-shadow: 0 0 25px rgba(168,85,247,0.5), 0 0 50px rgba(236,72,153,0.25); }
+          }
+          .fp-reload:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.5) !important;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.3);
+            filter: brightness(1.1);
+          }
           @keyframes fpPopIn {
             0% { opacity: 0; transform: translateY(20px) scale(0.96); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -338,25 +348,31 @@ export default function FingerprintGate({ children }) {
             </h1>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
               <span style={{ color: '#06b6d4' }}>We couldn&apos;t verify your browser</span><br />
-              <span style={{ color: '#06b6d4' }}>to load this site securely.</span><br />
+              <span style={{ color: '#06b6d4' }}>to load this site securely.</span>
+            </p>
+            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
               <span style={{ color: '#ec4899' }}>This is usually caused by an ad blocker,</span><br />
               <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 20px' }}>
-              <span style={{ color: '#d946ef' }}>Please disable it for this site and</span>
+            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
+              <span style={{ color: '#d946ef' }}>Please disable it for this site</span><br />
+              <span style={{ color: '#d946ef' }}>and</span>
             </p>
             <button
               onClick={() => window.location.reload()}
+              className="fp-reload"
               style={{
                 background: '#f59e0b',
                 color: '#0f172a',
-                border: 'none',
+                border: '2px solid rgba(168,85,247,0.25)',
                 borderRadius: 999,
                 padding: '10px 24px',
                 fontSize: 14,
                 fontWeight: 700,
                 cursor: 'pointer',
                 marginBottom: 18,
+                transition: 'all 0.3s ease',
+                animation: 'fpBorderGlowHome 3s ease-in-out infinite',
               }}
             >
               reload this page.
