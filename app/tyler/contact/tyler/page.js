@@ -18,6 +18,7 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
+    { name: 'C2', href: 'https://r.c2live.co/iamunrizzable', icon: '😄' },
     { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
     { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
