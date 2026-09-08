@@ -4,24 +4,21 @@ import './page.css';
 
 import { useState, useEffect } from 'react';
 
-export default function ContactHallie() {
+export default function AgenciesHub() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const cards = Array.from(document.querySelectorAll('.contact-card'));
+    const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const idx = cards.indexOf(entry.target);
         if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${idx * 0.05}s`;
           entry.target.classList.add('visible');
         } else {
-          entry.target.style.transitionDelay = '0s';
           entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.1 });
-    cards.forEach(card => observer.observe(card));
+    sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
@@ -41,22 +38,27 @@ export default function ContactHallie() {
       </div>
 
       <main>
-        <a href="/hallie" className="back-link">← Back to Hallie</a>
-        <h1>Connect with Hallie™</h1>
+        <div className="header section">
+          <h1>Agencies</h1>
+          <p className="subtitle">TJB Management Inc. · Creator Agencies</p>
+          <span className="badge">⚡ Free to Join</span>
+        </div>
 
-        <div className="contact-grid">
-          <a href="mailto:hallie@tjbmanagementinc.com" className="contact-card">
-            <span className="contact-icon">✉️</span>
-            <span className="contact-name">Email Hallie</span>
+        <div className="grid">
+          <a href="/agencies/tiktok" className="card section">
+            <span className="card-icon">🎵</span>
+            <span className="card-title">TikTok Agency</span>
+            <span className="card-desc">TJB Management's TikTok LIVE creator agency — guidelines, streaming resources, merch, and how to join.</span>
+            <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
         </div>
 
-        <div className="footer">
+        <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
           <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
-        </div>
+        </footer>
       </main>
     </>
   );
