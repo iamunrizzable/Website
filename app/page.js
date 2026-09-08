@@ -41,7 +41,9 @@ export default function Home() {
       <main>
         <div className="logo-section section">
           <div className="logo-backdrop">
-            <img src="/logo-tjb.jpeg" alt="TJB Management" className="logo-img" />
+            <div className="logo-img-band">
+              <img src="/logo-tjb.jpeg" alt="TJB Management" className="logo-img" />
+            </div>
             <span className="badge">⚡ Straight to the point.</span>
           </div>
         </div>
