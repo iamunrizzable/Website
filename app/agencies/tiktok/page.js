@@ -32,7 +32,7 @@ export default function AgencyHub() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/tiktok/agency" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
+        <a href="/agencies/tiktok" onClick={() => setMenuOpen(false)}>TikTok Agency</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
@@ -45,21 +45,21 @@ export default function AgencyHub() {
         </div>
 
         <div className="grid">
-          <a href="/tiktok/agency/about" className="card section">
+          <a href="/agencies/tiktok/about" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">About the TikTok Agency</span>
             <span className="card-desc">Who TJB Management is, what we offer creators, and how to join — free, with real support from Tyler and Hallie.</span>
             <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 
-          <a href="/tiktok/agency/streaming-basics" className="card section">
+          <a href="/agencies/tiktok/streaming-basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics & FAQs</span>
             <span className="card-desc">Going LIVE, gifts and diamonds, Super Fan and Fan Club, Co-Host and Match, visual setup, stream tips, and frequently asked questions.</span>
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
-          <a href="/tiktok/agency/tiktok/community/guidelines" className="card section">
+          <a href="/agencies/tiktok/tiktok/community/guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">TikTok Community Guidelines</span>
             <span className="card-desc">The 6 main Community Guidelines policies, what's not allowed on LIVE, and gift-baiting rules — with best practices and quick self-checks.</span>
@@ -73,14 +73,14 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/tiktok/agency/merch" className="card section">
+          <a href="/agencies/tiktok/merch" className="card section">
             <span className="card-icon">👕</span>
             <span className="card-title">Merch</span>
             <span className="card-desc">Official TJB Management merchandise.</span>
             <span className="card-link">SHOP MERCH →</span>
           </a>
 
-          <a href="/tiktok/agency/connect" className="card section">
+          <a href="/agencies/tiktok/connect" className="card section">
             <span className="card-icon">🤝</span>
             <span className="card-title">Connect with TikTok Agency</span>
             <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>

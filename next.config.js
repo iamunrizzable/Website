@@ -54,6 +54,15 @@ const nextConfig = {
       },
     ];
   },
+  // The TikTok agency pages moved from /tiktok/agency/* to
+  // /agencies/tiktok/* when the /agencies hub was added. The old URLs are
+  // in TikTok bios and DMs in the wild, so keep them working permanently.
+  async redirects() {
+    return [
+      { source: '/tiktok/agency', destination: '/agencies/tiktok', permanent: true },
+      { source: '/tiktok/agency/:path*', destination: '/agencies/tiktok/:path*', permanent: true },
+    ];
+  },
 };
 
 module.exports = nextConfig;
