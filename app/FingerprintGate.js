@@ -220,7 +220,7 @@ export default function FingerprintGate({ children }) {
             </p>
             {data?.visitor_id && (
               <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: '18px 0 0', color: '#06b6d4' }}>
-                Your device ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{data.visitor_id}</span>
+                Your ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{data.visitor_id}</span>
                 <br />
                 <span style={{ color: '#ec4899' }}>Make sure to include this ID in your appeal.</span>
               </p>
