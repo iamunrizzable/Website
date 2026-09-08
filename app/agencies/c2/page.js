@@ -51,20 +51,13 @@ export default function C2Network() {
         </div>
 
         <div className="section">
-          <h2>Join the Network</h2>
-          <p>
-            Join TJB Management&apos;s C2 network through Tyler&apos;s link: <strong><a href="https://r.c2live.co/iamunrizzable" target="_blank" rel="noopener noreferrer">r.c2live.co/iamunrizzable</a></strong>.
-          </p>
-        </div>
-
-        <div className="section">
           <h2>Get the App</h2>
           <p>
             Download C2 Live on the <strong><a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer">App Store</a></strong> or <strong><a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Google Play</a></strong>.
           </p>
         </div>
 
-        <a href="https://r.c2live.co/iamunrizzable" target="_blank" rel="noopener noreferrer" className="cta-btn">Join C2 →</a>
+        <a href="https://c2live.co/agency/iamunrizzable" target="_blank" rel="noopener noreferrer" className="cta-btn">Join C2 →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
