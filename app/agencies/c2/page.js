@@ -4,7 +4,7 @@ import './page.css';
 
 import { useState, useEffect } from 'react';
 
-export default function AgenciesHub() {
+export default function C2Network() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function AgenciesHub() {
         }
       });
     }, { threshold: 0.1 });
+
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
@@ -38,34 +39,39 @@ export default function AgenciesHub() {
       </div>
 
       <main>
-        <div className="header section">
-          <h1>Agencies</h1>
-          <p className="subtitle">TJB Management Inc. · Creator Agencies</p>
-          <span className="badge">⚡ Free to Join</span>
+        <a href="/agencies" className="back-link">← Back to Creator Networks</a>
+
+        <h1>C2 @ TJB Mgmt</h1>
+
+        <div className="section">
+          <h2>Straight to the point.</h2>
+          <p>
+            TJB Management Inc.&apos;s creator network on <strong>C2 Live</strong> — the live-streaming app.
+          </p>
         </div>
 
-        <div className="grid">
-          <a href="/agencies/tiktok" className="card section">
-            <span className="card-icon">🎵</span>
-            <span className="card-title">TikTok Agency</span>
-            <span className="card-desc">TJB Management's TikTok LIVE creator agency — guidelines, streaming resources, merch, and how to join.</span>
-            <span className="card-link">VIEW TIKTOK AGENCY →</span>
-          </a>
-
-          <a href="/agencies/c2" className="card section">
-            <span className="card-icon">😄</span>
-            <span className="card-title">C2</span>
-            <span className="card-desc">TJB Management's creator network on C2 Live — join through Tyler and get the app.</span>
-            <span className="card-link">VIEW C2 →</span>
-          </a>
+        <div className="section">
+          <h2>Join the Network</h2>
+          <p>
+            Join TJB Management&apos;s C2 network through Tyler&apos;s link: <strong><a href="https://r.c2live.co/iamunrizzable" target="_blank" rel="noopener noreferrer">r.c2live.co/iamunrizzable</a></strong>.
+          </p>
         </div>
 
-        <footer>
+        <div className="section">
+          <h2>Get the App</h2>
+          <p>
+            Download C2 Live on the <strong><a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer">App Store</a></strong> or <strong><a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer">Google Play</a></strong>.
+          </p>
+        </div>
+
+        <a href="https://r.c2live.co/iamunrizzable" target="_blank" rel="noopener noreferrer" className="cta-btn">Join C2 →</a>
+
+        <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
-          <p>TikTok and the TikTok logo are trademarks of TikTok US Data Security Joint Venture LLC. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
+          <p>C2 Live and the C2 logo are trademarks of their respective owner. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
           <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
-        </footer>
+        </div>
       </main>
     </>
   );
