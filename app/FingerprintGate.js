@@ -3,42 +3,56 @@
 import { useEffect, useRef, useState } from 'react';
 import { useVisitorData } from '@fingerprint/react';
 
-// Time to wait for a verdict before giving up and showing the site anyway.
-// Bounds the worst case (Fingerprint's script never loads, or the check
-// hangs) so a Fingerprint outage can still never take the whole site down
-// — it just means the check gets skipped after this long instead of never
-// running at all.
-const CHECK_TIMEOUT_MS = 3000;
+// How long to wait for Fingerprint's OWN script to identify the visitor
+// (i.e. for data.event_id to appear) before concluding identification
+// itself failed — most commonly an ad blocker or privacy extension
+// blocking fpnpmcdn.net/api.fpjs.io, rather than any policy violation.
+// This path fails CLOSED: if we can never even ask "is this visitor
+// banned," letting them through unconditionally would make blocking
+// this script an unintentional bypass of every device ban on the site.
+const IDENTIFY_TIMEOUT_MS = 3000;
+
+// How long to wait for OUR OWN /api/fingerprint/check call, once an
+// event_id IS available, before giving up. This path fails OPEN — a
+// slow or down check API (Redis, Fingerprint's ruleset API, etc.) must
+// never block real visitors; that's a site outage, not a security
+// decision, and is exactly what this integration crashed on before.
+const CHECK_TIMEOUT_MS = 5000;
 
 // Blocks the whole site for visitors whose identification event fails the
 // Fingerprint ruleset (rs_4ns6PcOeU2RspQ — forbidden IPs, VPN detection,
-// etc) or matches the device blocklist at /admin/security. The verdict is
-// checked BEFORE showing any page content — a loading screen covers the
-// page until the check resolves (or times out), so a blocked visitor never
-// sees a flash of real content first.
-//
-// The check itself (app/api/fingerprint/check) fails OPEN on any error, so
-// a Fingerprint outage or misconfiguration can only ever result in nobody
-// being blocked — never in the site going down, unlike the earlier
-// Fingerprint install that crashed on a missing key.
+// etc), matches the device blocklist at /admin/security, or whose browser
+// never lets Fingerprint identify them at all (see IDENTIFY_TIMEOUT_MS
+// above). The verdict is checked BEFORE showing any page content — a
+// loading screen covers the page until the check resolves (or times out),
+// so a blocked visitor never sees a flash of real content first.
 export default function FingerprintGate({ children }) {
   const { data } = useVisitorData({ immediate: true });
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'allowed'
   const resolvedRef = useRef(false);
+  const identifiedRef = useRef(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (!resolvedRef.current) {
+      if (!resolvedRef.current && !identifiedRef.current) {
         resolvedRef.current = true;
-        setStatus('allowed');
+        setStatus('blocked');
       }
-    }, CHECK_TIMEOUT_MS);
+    }, IDENTIFY_TIMEOUT_MS);
     return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
     if (!data?.event_id) return;
+    identifiedRef.current = true;
     let cancelled = false;
+
+    const checkTimeout = setTimeout(() => {
+      if (!cancelled && !resolvedRef.current) {
+        resolvedRef.current = true;
+        setStatus('allowed');
+      }
+    }, CHECK_TIMEOUT_MS);
 
     fetch('/api/fingerprint/check', {
       method: 'POST',
@@ -55,10 +69,12 @@ export default function FingerprintGate({ children }) {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
         setStatus('allowed');
-      });
+      })
+      .finally(() => clearTimeout(checkTimeout));
 
     return () => {
       cancelled = true;
+      clearTimeout(checkTimeout);
     };
   }, [data?.event_id]);
 
