@@ -21,14 +21,17 @@ const CHECK_TIMEOUT_MS = 5000;
 
 // Blocks the whole site for visitors whose identification event fails the
 // Fingerprint ruleset (rs_4ns6PcOeU2RspQ — forbidden IPs, VPN detection,
-// etc), matches the device blocklist at /admin/security, or whose browser
-// never lets Fingerprint identify them at all (see IDENTIFY_TIMEOUT_MS
-// above). The verdict is checked BEFORE showing any page content — a
-// loading screen covers the page until the check resolves (or times out),
-// so a blocked visitor never sees a flash of real content first.
+// etc) or matches the device blocklist at /admin/security ('blocked'), and
+// separately shows an 'unverified' screen for visitors whose browser never
+// lets Fingerprint identify them at all (see IDENTIFY_TIMEOUT_MS above) —
+// that group is mostly ad-blocker/privacy-extension users, not banned
+// visitors, so it gets different copy rather than being told they were
+// banned. The verdict is checked BEFORE showing any page content — a
+// loading screen covers the page until it resolves (or times out), so
+// nobody sees a flash of real content first.
 export default function FingerprintGate({ children }) {
   const { data } = useVisitorData({ immediate: true });
-  const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'allowed'
+  const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const resolvedRef = useRef(false);
   const identifiedRef = useRef(false);
 
@@ -36,7 +39,7 @@ export default function FingerprintGate({ children }) {
     const timeout = setTimeout(() => {
       if (!resolvedRef.current && !identifiedRef.current) {
         resolvedRef.current = true;
-        setStatus('blocked');
+        setStatus('unverified');
       }
     }, IDENTIFY_TIMEOUT_MS);
     return () => clearTimeout(timeout);
@@ -242,6 +245,140 @@ export default function FingerprintGate({ children }) {
                 <span style={{ color: '#ec4899' }}>(otherwise we cannot identify you to review your unlock request).</span>
               </p>
             )}
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (status === 'unverified') {
+    return (
+      <>
+        <style>{`
+          @keyframes fpGlowPulseAmber {
+            0%, 100% { text-shadow: 0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.3); }
+            50% { text-shadow: 0 0 40px rgba(245,158,11,1), 0 0 60px rgba(236,72,153,0.6), 0 0 80px rgba(168,85,247,0.4); }
+          }
+          @keyframes fpBorderGlowAmber {
+            0%, 100% { box-shadow: 0 0 15px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.2); }
+            50% { box-shadow: 0 0 25px rgba(245,158,11,0.7), 0 0 50px rgba(236,72,153,0.3); }
+          }
+          @keyframes fpPopIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+          }
+        `}</style>
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#0f172a',
+            zIndex: 999999,
+            overflowY: 'auto',
+            display: 'flex',
+            padding: '40px 12px',
+            boxSizing: 'border-box',
+            fontFamily: 'system-ui, sans-serif',
+          }}
+        >
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundImage: 'url(/bg-main.jpeg)',
+              backgroundPosition: 'center center',
+              backgroundSize: '140%',
+              backgroundRepeat: 'no-repeat',
+              mixBlendMode: 'lighten',
+              opacity: 0.13,
+              zIndex: -1,
+              pointerEvents: 'none',
+            }}
+          />
+          <div
+            style={{
+              maxWidth: 480,
+              width: '100%',
+              margin: 'auto',
+              textAlign: 'center',
+              color: '#e2e8f0',
+              background: 'rgba(15,23,42,0.6)',
+              border: '2px solid rgba(245,158,11,0.35)',
+              borderRadius: 16,
+              padding: '36px 12px',
+              position: 'relative',
+              zIndex: 10,
+              animation: 'fpPopIn 0.6s ease-out, fpBorderGlowAmber 3s ease-in-out infinite',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                background: '#f59e0b',
+                color: '#fff',
+                fontSize: 12,
+                fontWeight: 700,
+                padding: '5px 14px',
+                borderRadius: 999,
+                marginBottom: 14,
+              }}
+            >
+              🔒 UNVERIFIED
+            </span>
+            <h1
+              style={{
+                color: '#f59e0b',
+                fontSize: 24,
+                margin: '0 0 16px',
+                fontWeight: 800,
+                animation: 'fpGlowPulseAmber 3s ease-in-out infinite',
+              }}
+            >
+              Unable to Verify
+            </h1>
+            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
+              <span style={{ color: '#06b6d4' }}>We couldn&apos;t verify your browser to</span><br />
+              <span style={{ color: '#ec4899' }}>load this site securely. This is usually</span><br />
+              <span style={{ color: '#a855f7' }}>caused by an ad blocker, privacy</span><br />
+              <span style={{ color: '#a855f7' }}>extension, or VPN.</span>
+            </p>
+            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 20px' }}>
+              <span style={{ color: '#d946ef' }}>Please disable it for this site and</span><br />
+              <span style={{ color: '#06b6d4' }}>reload the page.</span>
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                background: '#f59e0b',
+                color: '#0f172a',
+                border: 'none',
+                borderRadius: 999,
+                padding: '10px 24px',
+                fontSize: 14,
+                fontWeight: 700,
+                cursor: 'pointer',
+                marginBottom: 18,
+              }}
+            >
+              Reload Page
+            </button>
+            <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: 0, color: '#06b6d4' }}>
+              Still not working? Email{' '}
+              <a
+                href="mailto:support@tjbmanagementinc.com"
+                style={{
+                  background: 'linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 600,
+                  textDecoration: 'underline',
+                }}
+              >
+                support@tjbmanagementinc.com
+              </a>
+              .
+            </p>
           </div>
         </div>
       </>
