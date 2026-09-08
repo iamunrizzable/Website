@@ -90,9 +90,19 @@ body::before {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 24px 0 90px;
+          padding: 0 0 90px;
           box-sizing: border-box;
+          overflow: hidden;
           animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        .logo-img-band {
+          background: #000;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          padding: 24px 0;
+          box-sizing: border-box;
         }
 
         .logo-img {
