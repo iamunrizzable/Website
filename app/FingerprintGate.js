@@ -356,7 +356,7 @@ export default function FingerprintGate({ children }) {
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
               <span style={{ color: '#d946ef' }}>Please disable it for this site</span><br />
-              <span style={{ color: '#d946ef' }}>and</span>
+              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
             </p>
             <button
               onClick={() => window.location.reload()}
