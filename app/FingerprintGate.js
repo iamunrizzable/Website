@@ -358,7 +358,7 @@ export default function FingerprintGate({ children }) {
                 marginBottom: 18,
               }}
             >
-              Reload Page
+              reload this page.
             </button>
             <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: 0, color: '#06b6d4' }}>
               Still not working? Email{' '}
