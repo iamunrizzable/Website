@@ -337,14 +337,12 @@ export default function FingerprintGate({ children }) {
               Unable to Verify
             </h1>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#06b6d4' }}>We couldn&apos;t verify your browser to</span><br />
-              <span style={{ color: '#ec4899' }}>load this site securely. This is usually</span><br />
-              <span style={{ color: '#a855f7' }}>caused by an ad blocker, privacy</span><br />
-              <span style={{ color: '#a855f7' }}>extension, or VPN.</span>
+              <span style={{ color: '#06b6d4' }}>We couldn&apos;t verify your browser to load this site securely.</span><br />
+              <span style={{ color: '#ec4899' }}>This is usually caused by an ad blocker,</span><br />
+              <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 20px' }}>
-              <span style={{ color: '#d946ef' }}>Please disable it for this site and</span><br />
-              <span style={{ color: '#06b6d4' }}>reload the page.</span>
+              <span style={{ color: '#d946ef' }}>Please disable it for this site.</span>
             </p>
             <button
               onClick={() => window.location.reload()}
