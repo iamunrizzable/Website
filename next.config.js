@@ -63,6 +63,7 @@ const nextConfig = {
       { source: '/tiktok/agency/:path*', destination: '/agencies/tiktok/:path*', permanent: true },
       { source: '/agencies/c2/agency-agreement', destination: '/legal/agencies/agreements/c2', permanent: true },
       { source: '/agencies/c2/streaming-basics', destination: '/agencies/c2/streaming/basics', permanent: true },
+      { source: '/agencies/c2/join', destination: '/agencies/c2/about', permanent: true },
     ];
   },
 };

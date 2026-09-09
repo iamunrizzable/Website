@@ -66,13 +66,6 @@ export default function C2Hub() {
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
-          <a href="/agencies/c2/join" className="card section">
-            <span className="card-icon">🤝</span>
-            <span className="card-title">Joining TJB Management's C2 Agency</span>
-            <span className="card-desc">Cost to join, switching agencies, leaving, and member contests.</span>
-            <span className="card-link">LEARN MORE →</span>
-          </a>
-
           <a href="/agencies/c2/about" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">About Our C2 Agency</span>
