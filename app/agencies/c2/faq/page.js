@@ -40,7 +40,7 @@ export default function C2AgenciesFAQ() {
         <a href="/agencies/c2" className="back-link">← Back to C2</a>
 
         <h1>C2 Agencies FAQ</h1>
-        <p className="subtitle">C2 Capital Group Inc.&apos;s own FAQ for the C2 Agency feature, reproduced here for TJB Management creators. See the full terms at <a href="/agencies/c2/agency-agreement">C2 Agency Agreement</a>.</p>
+        <p className="subtitle">C2 Capital Group Inc.&apos;s own FAQ for the C2 Agency feature, reproduced here for TJB Management creators. See the full terms at <a href="/legal/agencies/agreements/c2">C2 Agency Agreement</a>.</p>
 
         <div className="section">
           <p><strong>What is the C2 Agency feature?</strong></p>
