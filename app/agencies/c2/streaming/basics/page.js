@@ -190,7 +190,7 @@ export default function C2StreamingBasics() {
           <p>Yes, there will be contests exclusive to agencies and their members on a regular basis. If you have additional questions or need agency related assistance, please contact support@c2live.co.</p>
         </div>
 
-        <a href="https://c2live.co/agency/iamunrizzable" target="_blank" rel="noopener noreferrer" className="cta-btn">Join TJB Management on C2 →</a>
+        <a href="/agencies/c2/about" className="cta-btn">About Our C2 Agency →</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>

@@ -66,6 +66,13 @@ export default function C2Hub() {
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
+          <a href="/agencies/c2/about" className="card section">
+            <span className="card-icon">🏢</span>
+            <span className="card-title">About Our C2 Agency</span>
+            <span className="card-desc">What the C2 Agency feature is and how it works, plus how to join — from C2's own FAQ.</span>
+            <span className="card-link">LEARN MORE →</span>
+          </a>
+
           <a href="/agencies/c2/community/guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">C2 Community Guidelines</span>
