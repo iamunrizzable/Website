@@ -227,8 +227,8 @@ export default function FingerprintGate({ children }) {
               <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: '18px 0 0', color: '#06b6d4' }}>
                 Your ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{data.visitor_id}</span>
                 <br />
-                <span style={{ color: '#ec4899' }}>(make sure to include this in your email</span><br />
-                <span style={{ color: '#ec4899' }}>otherwise we will not be able to identify you)</span>
+                <span style={{ color: '#ec4899' }}>(make sure to include this in your email,</span><br />
+                <span style={{ color: '#ec4899' }}>otherwise we won&apos;t be able to identify you)</span>
               </p>
             )}
           </div>
