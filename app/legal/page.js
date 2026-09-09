@@ -59,6 +59,13 @@ export default function Legal() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
+          <a href="/legal/agencies/agreements/c2" className="card section">
+            <span className="card-icon">📋</span>
+            <span className="card-title">C2 Agency Agreement</span>
+            <span className="card-desc">The full text of C2 Capital Group Inc.'s own C2 Live Streamer Agency Agreement — registration, commission structure, obligations, and termination.</span>
+            <span className="card-link">VIEW AGREEMENT →</span>
+          </a>
+
           <a href="/legal/hallie-tiktok-moderation-system" className="card section">
             <span className="card-icon">🛡️</span>
             <span className="card-title">Hallie Platform — Data Security & Privacy</span>
