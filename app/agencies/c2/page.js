@@ -45,25 +45,25 @@ export default function C2Hub() {
         </div>
 
         <div className="grid">
-          <a href="https://c2live.co/agency/iamunrizzable" target="_blank" rel="noopener noreferrer" className="card section">
-            <span className="card-icon">😄</span>
-            <span className="card-title">Join C2</span>
-            <span className="card-desc">Join TJB Management's creator network on C2 Live through Tyler.</span>
-            <span className="card-link">JOIN C2 →</span>
+          <a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">📱</span>
+            <span className="card-title">Download C2 on the App Store</span>
+            <span className="card-desc">Download C2 Live for iPhone and iPad.</span>
+            <span className="card-link">GET THE APP →</span>
           </a>
 
-          <a href="/agencies/c2/streaming-basics" className="card section">
+          <a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">▶️</span>
+            <span className="card-title">Google Play</span>
+            <span className="card-desc">Download C2 Live for Android.</span>
+            <span className="card-link">GET THE APP →</span>
+          </a>
+
+          <a href="/agencies/c2/streaming/basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics &amp; FAQs</span>
-            <span className="card-desc">How C2 Coins, Gifts, and C2 Gems work, redeeming your earnings, account rules, what you lose if you're terminated, and frequently asked questions.</span>
+            <span className="card-desc">How C2 Coins, Gifts, and C2 Gems work, redeeming your earnings, account rules, what you lose if you're terminated, the C2 Agencies FAQ, and how to join.</span>
             <span className="card-link">VIEW GUIDE →</span>
-          </a>
-
-          <a href="/agencies/c2/faq" className="card section">
-            <span className="card-icon">❓</span>
-            <span className="card-title">C2 Agencies FAQ</span>
-            <span className="card-desc">C2's own FAQ for the Agency feature — commissions, leaving or disbanding an agency, recruiting, and more.</span>
-            <span className="card-link">VIEW FAQ →</span>
           </a>
 
           <a href="/agencies/c2/community/guidelines" className="card section">
@@ -71,20 +71,6 @@ export default function C2Hub() {
             <span className="card-title">C2 Community Guidelines</span>
             <span className="card-desc">C2's most common reasons for termination, what's not allowed on LIVE, and the consequences — summarized from C2's User Content and Conduct Policy.</span>
             <span className="card-link">VIEW GUIDELINES →</span>
-          </a>
-
-          <a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer" className="card section">
-            <span className="card-icon">🍎</span>
-            <span className="card-title">App Store</span>
-            <span className="card-desc">Download C2 Live for iPhone and iPad.</span>
-            <span className="card-link">GET THE APP →</span>
-          </a>
-
-          <a href="https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" className="card section">
-            <span className="card-icon">🤖</span>
-            <span className="card-title">Google Play</span>
-            <span className="card-desc">Download C2 Live for Android.</span>
-            <span className="card-link">GET THE APP →</span>
           </a>
         </div>
 
