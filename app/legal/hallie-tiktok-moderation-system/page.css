@@ -35,8 +35,8 @@ body::before {
         h1 { color: #d4a5ff; margin-bottom: 8px; font-size: 28px; animation: glowPulse 3s ease-in-out infinite; line-height: 1.3; }
         h2 { color: #a855f7; margin-top: 40px; margin-bottom: 15px; font-size: 18px; animation: glowPulse 3s ease-in-out infinite; }
         h3 { color: #c084fc; margin-top: 24px; margin-bottom: 10px; font-size: 15px; }
-        p { color: #a855f7; margin-bottom: 15px; line-height: 1.8; font-size: 14px; }
-        li { color: #a855f7; margin-bottom: 10px; line-height: 1.8; font-size: 14px; }
+        p { color: #cbd5e1; margin-bottom: 15px; line-height: 1.8; font-size: 14px; }
+        li { color: #cbd5e1; margin-bottom: 10px; line-height: 1.8; font-size: 14px; }
         ul { padding-left: 20px; }
 
         strong {

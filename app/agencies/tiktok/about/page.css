@@ -29,8 +29,8 @@ body::before {
         h1 { color: #d4a5ff; margin-bottom: 10px; font-size: 36px; animation: glowPulse 3s ease-in-out infinite; }
         .subtitle { color: #ec4899; font-size: 16px; margin-bottom: 40px; }
         h2 { color: #a855f7; font-size: 20px; margin-bottom: 15px; animation: glowPulse 3s ease-in-out infinite; }
-        p { color: #ec4899; line-height: 1.8; margin-bottom: 15px; }
-        li { color: #ec4899; line-height: 1.8; margin-bottom: 8px; }
+        p { color: #cbd5e1; line-height: 1.8; margin-bottom: 15px; }
+        li { color: #cbd5e1; line-height: 1.8; margin-bottom: 8px; }
         @keyframes borderGlow {
           0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.15), 0 0 30px rgba(168,85,247,0.08); }
           50% { box-shadow: 0 0 25px rgba(168,85,247,0.3), 0 0 50px rgba(236,72,153,0.15); }
