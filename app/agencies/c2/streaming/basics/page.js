@@ -55,7 +55,6 @@ export default function C2StreamingBasics() {
             <a href="#rules">Rules</a>
             <a href="#contact">Contact C2</a>
             <a href="#faq">FAQ</a>
-            <a href="#agency-faq">Joining the Agency</a>
           </div>
         </div>
 
@@ -173,21 +172,6 @@ export default function C2StreamingBasics() {
           <p><strong>Can I run my C2 account as a business or let someone else stream on it?</strong></p>
           <p>No. Accounts are for personal, non-commercial use, may not be transferred, and may not be accessed by anyone else.</p>
           <p>Have a question that isn&apos;t answered here? <a href="/agencies/tiktok/connect" style={{ color: '#a855f7', textDecoration: 'none' }}>Connect with the agency →</a></p>
-        </div>
-
-        <div className="section" id="agency-faq">
-          <h2>Joining TJB Management&apos;s C2 Agency</h2>
-          <p><strong>Does it cost anything to join?</strong></p>
-          <p>No, streamers do not pay any fee to join an agency.</p>
-
-          <p><strong>Can you be in more than one agency?</strong></p>
-          <p>No, you can only join one agency at a time.</p>
-
-          <p><strong>Can you leave the agency?</strong></p>
-          <p>Yes, you can leave an agency at any time.</p>
-
-          <p><strong>Are there contests for agency members?</strong></p>
-          <p>Yes, there will be contests exclusive to agencies and their members on a regular basis. If you have additional questions or need agency related assistance, please contact support@c2live.co.</p>
         </div>
 
         <a href="/agencies/c2/about" className="cta-btn">About Our C2 Agency →</a>
