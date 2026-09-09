@@ -62,7 +62,7 @@ export default function C2Hub() {
           <a href="/agencies/c2/streaming/basics" className="card section">
             <span className="card-icon">📺</span>
             <span className="card-title">Streaming Basics &amp; FAQs</span>
-            <span className="card-desc">How C2 Coins, Gifts, and C2 Gems work, redeeming your earnings, account rules, what you lose if you're terminated, the C2 Agencies FAQ, and how to join.</span>
+            <span className="card-desc">How C2 Coins, Gifts, and C2 Gems work, redeeming your earnings, account rules, what you lose if you're terminated, and how to join.</span>
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
