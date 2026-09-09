@@ -52,6 +52,13 @@ export default function C2Hub() {
             <span className="card-link">JOIN C2 →</span>
           </a>
 
+          <a href="/agencies/c2/community/guidelines" className="card section">
+            <span className="card-icon">📜</span>
+            <span className="card-title">C2 Community Guidelines</span>
+            <span className="card-desc">C2's most common reasons for termination, what's not allowed on LIVE, and the consequences — summarized from C2's User Content and Conduct Policy.</span>
+            <span className="card-link">VIEW GUIDELINES →</span>
+          </a>
+
           <a href="https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603" target="_blank" rel="noopener noreferrer" className="card section">
             <span className="card-icon">🍎</span>
             <span className="card-title">App Store</span>
