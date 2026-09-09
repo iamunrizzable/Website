@@ -47,9 +47,6 @@ export default function C2About() {
           <p><strong>What is the C2 Agency feature?</strong></p>
           <p>The C2 Agency feature allows experienced streamers to build and manage their own network of streamers. Agency owners earn a commission based on the total earnings of the streamers in their agency.</p>
 
-          <p><strong>How much commission do agency owners get?</strong></p>
-          <p>Agency owners earn 5% commission on their agency&apos;s total earnings for life. More information can be found here: <a href="https://c2live.co/agency-agreement" target="_blank" rel="noopener noreferrer">c2live.co/agency-agreement</a>.</p>
-
           <p><strong>Can you leave an agency?</strong></p>
           <p>Yes, you can leave an agency at any time. However, any commission already earned by the agency is non-refundable and irreversible.</p>
 
