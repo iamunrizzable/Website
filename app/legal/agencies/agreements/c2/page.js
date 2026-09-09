@@ -37,7 +37,7 @@ export default function C2AgencyAgreement() {
       </div>
 
       <main>
-        <a href="/agencies/c2" className="back-link">← Back to C2</a>
+        <a href="/legal" className="back-link">← Back to Legal</a>
 
         <h1>C2 Live Streamer Agency Agreement</h1>
         <p className="subtitle">Effective Date: August 22, 2025. This is the full text of C2 Capital Group Inc.&apos;s own C2 Live Streamer Agency Agreement, reproduced here for TJB Management creators. This is C2&apos;s contract, not TJB Management&apos;s — it governs everyone who joins an Agency on C2, including TJB Management&apos;s. The official Agreement at c2live.co and C2&apos;s Terms at c2live.co/terms govern.</p>
