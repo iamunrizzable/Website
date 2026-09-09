@@ -52,6 +52,13 @@ export default function C2Hub() {
             <span className="card-link">JOIN C2 →</span>
           </a>
 
+          <a href="/agencies/c2/streaming-basics" className="card section">
+            <span className="card-icon">📺</span>
+            <span className="card-title">Streaming Basics &amp; FAQs</span>
+            <span className="card-desc">How C2 Coins, Gifts, and C2 Gems work, redeeming your earnings, account rules, what you lose if you're terminated, and frequently asked questions.</span>
+            <span className="card-link">VIEW GUIDE →</span>
+          </a>
+
           <a href="/agencies/c2/community/guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">C2 Community Guidelines</span>
