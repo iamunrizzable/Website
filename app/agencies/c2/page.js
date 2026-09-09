@@ -59,6 +59,13 @@ export default function C2Hub() {
             <span className="card-link">VIEW GUIDE →</span>
           </a>
 
+          <a href="/agencies/c2/agency-agreement" className="card section">
+            <span className="card-icon">📋</span>
+            <span className="card-title">C2 Agency Agreement</span>
+            <span className="card-desc">Registration, commission structure, obligations, and termination — summarized from C2's own Streamer Agency Agreement.</span>
+            <span className="card-link">VIEW AGREEMENT →</span>
+          </a>
+
           <a href="/agencies/c2/community/guidelines" className="card section">
             <span className="card-icon">📜</span>
             <span className="card-title">C2 Community Guidelines</span>
