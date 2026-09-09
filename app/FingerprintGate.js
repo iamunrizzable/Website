@@ -344,19 +344,15 @@ export default function FingerprintGate({ children }) {
                 animation: 'fpGlowPulseAmber 3s ease-in-out infinite',
               }}
             >
-              Unable to Verify
+              We are unable<br />
+              to verify you.
             </h1>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#06b6d4' }}>We couldn&apos;t verify your browser</span><br />
-              <span style={{ color: '#06b6d4' }}>to load this site securely.</span>
-            </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
               <span style={{ color: '#ec4899' }}>This is usually caused by an ad blocker,</span><br />
               <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
-              <span style={{ color: '#d946ef' }}>Please disable it for this site</span><br />
-              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
+              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT AND</span>
             </p>
             <button
               onClick={() => window.location.reload()}
