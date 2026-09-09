@@ -33,8 +33,8 @@ body::before {
         h1 { color: #d4a5ff; margin-bottom: 10px; font-size: 36px; animation: glowPulse 3s ease-in-out infinite; }
         .subtitle { color: #ec4899; font-size: 16px; margin-bottom: 40px; }
         h2 { color: #a855f7; font-size: 20px; margin-bottom: 15px; animation: glowPulse 3s ease-in-out infinite; }
-        p { color: #ec4899; line-height: 1.8; margin-bottom: 15px; }
-        li { color: #ec4899; line-height: 1.8; margin-bottom: 8px; }
+        p { color: #cbd5e1; line-height: 1.8; margin-bottom: 15px; }
+        li { color: #cbd5e1; line-height: 1.8; margin-bottom: 8px; }
         strong { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         em { color: #a855f7; font-style: normal; }
         @keyframes borderGlow {
