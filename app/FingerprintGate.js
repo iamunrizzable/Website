@@ -206,7 +206,7 @@ export default function FingerprintGate({ children }) {
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: 0 }}>
               <span style={{ color: '#d946ef' }}>If you believe this was done in error,</span><br />
               <span style={{ display: 'inline-block', whiteSpace: 'nowrap', fontSize: 12.5, lineHeight: 1.7, color: '#06b6d4' }}>
-                please email{' '}
+                email{' '}
                 <a
                   href="mailto:support@tjbmanagementinc.com"
                   style={{
