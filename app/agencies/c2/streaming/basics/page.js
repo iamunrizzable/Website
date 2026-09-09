@@ -171,7 +171,6 @@ export default function C2StreamingBasics() {
           <p>Yes. Everyone who redeems C2 Gems is solely responsible for reporting and paying any taxes due.</p>
           <p><strong>Can I run my C2 account as a business or let someone else stream on it?</strong></p>
           <p>No. Accounts are for personal, non-commercial use, may not be transferred, and may not be accessed by anyone else.</p>
-          <p>Have a question that isn&apos;t answered here? <a href="mailto:support@c2live.co" style={{ color: '#a855f7', textDecoration: 'none' }}>Email support@c2live.co →</a></p>
         </div>
 
         <a href="/agencies/c2/about" className="cta-btn">About Our C2 Agency →</a>
