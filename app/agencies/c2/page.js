@@ -91,7 +91,7 @@ export default function C2Hub() {
         <footer>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
-          <p>C2 Live and the C2 logo are trademarks of their respective owner. All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
+          <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
           <p>All rights not expressly granted herein are reserved by TJB Management Inc.</p>
         </footer>
       </main>
