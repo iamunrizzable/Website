@@ -187,24 +187,10 @@ export default function FingerprintGate({ children }) {
               animation: 'fpPopIn 0.6s ease-out, fpBorderGlow 3s ease-in-out infinite',
             }}
           >
-            <span
-              style={{
-                display: 'inline-block',
-                background: '#ec4899',
-                color: '#fff',
-                fontSize: 12,
-                fontWeight: 700,
-                padding: '5px 14px',
-                borderRadius: 999,
-                marginBottom: 14,
-              }}
-            >
-              403 · RESTRICTED
-            </span>
             <h1
               style={{
                 color: '#ef4444',
-                fontSize: 24,
+                fontSize: 32,
                 margin: '0 0 16px',
                 fontWeight: 800,
                 animation: 'fpGlowPulse 3s ease-in-out infinite',
@@ -321,24 +307,10 @@ export default function FingerprintGate({ children }) {
               animation: 'fpPopIn 0.6s ease-out, fpBorderGlowAmber 3s ease-in-out infinite',
             }}
           >
-            <span
-              style={{
-                display: 'inline-block',
-                background: '#f59e0b',
-                color: '#fff',
-                fontSize: 12,
-                fontWeight: 700,
-                padding: '5px 14px',
-                borderRadius: 999,
-                marginBottom: 14,
-              }}
-            >
-              🔒 UNVERIFIED
-            </span>
             <h1
               style={{
                 color: '#f59e0b',
-                fontSize: 24,
+                fontSize: 32,
                 margin: '0 0 16px',
                 fontWeight: 800,
                 animation: 'fpGlowPulseAmber 3s ease-in-out infinite',
@@ -352,7 +324,8 @@ export default function FingerprintGate({ children }) {
               <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
-              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT AND</span>
+              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT</span><br />
+              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
             </p>
             <button
               onClick={() => window.location.reload()}
