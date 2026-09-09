@@ -200,8 +200,8 @@ export default function FingerprintGate({ children }) {
             </h1>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
               <span style={{ color: '#06b6d4' }}>You have been blocked from accessing</span><br />
-              <span style={{ color: '#ec4899' }}>TJB Management Inc.'s social media</span><br />
-              <span style={{ color: '#a855f7' }}>accounts and systems.</span>
+              <span style={{ color: '#ec4899' }}>TJB Management Inc.'s</span><br />
+              <span style={{ color: '#a855f7' }}>social media accounts and systems.</span>
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: 0 }}>
               <span style={{ color: '#d946ef' }}>If you believe this was done in error,</span><br />
