@@ -11,10 +11,10 @@ const POLICY_PROOF = [
 
 const RUDE_PROOF = [
   { src: '/tiktok-proof/IMG_9949.jpeg', caption: '"Labor Day" / "extremely rude" / "discuss... your performance"' },
-  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious"' },
   { src: '/tiktok-proof/IMG_9950.jpeg', caption: 'Invited to name what was rude — the answer: "You change your CN name" and "You lark me at 3am"' },
   { src: '/tiktok-proof/IMG_9951.jpeg', caption: 'Our own message explaining the CN name change' },
   { src: '/tiktok-proof/IMG_9952.jpeg', caption: 'Our own message explaining our office hours' },
+  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious" — the last message she sent' },
 ];
 
 function ProofImages({ items }) {
