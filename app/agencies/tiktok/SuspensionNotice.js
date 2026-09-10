@@ -157,7 +157,7 @@ export default function SuspensionNotice() {
             <ProofImages items={RUDE_PROOF} />
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut our access off when we don&apos;t pay them on time to streamers, gifters, and consumers, so why shouldn&apos;t we do the same?
+              TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
