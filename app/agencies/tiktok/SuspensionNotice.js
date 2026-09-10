@@ -1,12 +1,12 @@
 // Screenshots backing specific claims in the suspension letter below —
 // grouped by which paragraph they support, in the order they're shown.
-const POLICY_PROOF = [
+const ATTEMPTS_PROOF = [
   { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement approved, invoice submitted, confirmed — then stuck at "Process payout," 09/06/2026' },
-  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Sept 9, 11:41 AM: TikTok’s own support says to "wait until the 7th of this month" — two days after the 7th' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, our POC — on her second Lark account — blames a holiday — 09/08/2026' },
 ];
 
-const ATTEMPTS_PROOF = [
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, our POC — on her second Lark account — blames a holiday — 09/08/2026' },
+const POLICY_PROOF = [
+  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Sept 9, 11:41 AM: TikTok’s own support says to "wait until the 7th of this month" — two days after the 7th' },
 ];
 
 const RUDE_PROOF = [
@@ -139,16 +139,16 @@ export default function SuspensionNotice() {
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              TikTok&apos;s own policy states that settlements are released &quot;around the 7th of the following month.&quot; On September 9th — two days after their own stated date — their support was still telling us to &quot;wait until the 7th of this month&quot; for a payment that, by their own timeline, should already have been sent.
-            </p>
-
-            <ProofImages items={POLICY_PROOF} />
-
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
               We have made multiple attempts through multiple channels to try to get TikTok to process our payment, and none were successful.
             </p>
 
             <ProofImages items={ATTEMPTS_PROOF} />
+
+            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              TikTok&apos;s own policy states that settlements are released &quot;around the 7th of the following month.&quot; On September 9th — two days after their own stated date — their support was still telling us to &quot;wait until the 7th of this month&quot; for a payment that, by their own timeline, should already have been sent.
+            </p>
+
+            <ProofImages items={POLICY_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
               When we asked why our payout still had not been processed, the answer was &quot;Labor Day&quot; and &quot;every single cn is delayed.&quot; When we followed up again, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team, and that it was &quot;not necessary to be anxious&quot; about money we are owed. When we invited them to point out what they found &quot;extremely rude,&quot; their response was that we abbreviated our own company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours, which we have never once asked them to answer outside of.
