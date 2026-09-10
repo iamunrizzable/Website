@@ -179,7 +179,7 @@ export default function TikTokSuspensionGate({ children }) {
               </p>
 
               <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-                TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut our access off when we don&apos;t pay them on time, so why shouldn&apos;t we do the same?
+                TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut our access off when we don&apos;t pay them on time to streamers, gifters, and consumers, so why shouldn&apos;t we do the same?
               </p>
 
               <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
