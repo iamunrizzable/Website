@@ -14,13 +14,13 @@ const CHECK_TIMEOUT_MS = 3000;
 // grouped by which paragraph they support, in the order they're shown.
 const OWED_PROOF = [
   { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement stuck at "Process payout" — 09/06/2026' },
-  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Settlement still stuck at "Process payout" — 09/09/2026' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, a rep blames a holiday — 09/08/2026' },
+  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Still stuck at "Process payout" three days later — 09/09/2026' },
 ];
 
 const RUDE_PROOF = [
   { src: '/tiktok-proof/IMG_9949.jpeg', caption: '"Labor Day" / "extremely rude" / "discuss... your performance"' },
   { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious"' },
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'A different rep, same holiday excuse, two days later' },
   { src: '/tiktok-proof/IMG_9950.jpeg', caption: 'Invited to name what was rude — the answer: "You change your CN name" and "You lark me at 3am"' },
   { src: '/tiktok-proof/IMG_9951.jpeg', caption: 'Our own message explaining the CN name change' },
   { src: '/tiktok-proof/IMG_9952.jpeg', caption: 'Our own message explaining our office hours' },
