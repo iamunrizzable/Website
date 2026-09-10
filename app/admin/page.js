@@ -25,7 +25,7 @@ const TOOLS = [
   {
     href: '/admin/security',
     title: 'Security',
-    desc: 'Permanently ban devices from the site by Fingerprint ID.',
+    desc: 'Permanently ban devices from the site by Fingerprint ID. Also has the TikTok Agency kill switch.',
   },
 ];
 
