@@ -6,7 +6,7 @@ const POLICY_PROOF = [
 ];
 
 const ATTEMPTS_PROOF = [
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, a different rep blames a holiday — 09/08/2026' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, our POC — on her second Lark account — blames a holiday — 09/08/2026' },
 ];
 
 const RUDE_PROOF = [
