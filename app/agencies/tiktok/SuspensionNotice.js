@@ -131,7 +131,7 @@ export default function SuspensionNotice() {
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>Hello,</p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              While we we appreciate your interest in our TikTok agency and services, we had to make the difficult decision to temporarily suspended all access to our TikTok servers, and Agency.
+              While we we appreciate your interest in our TikTok agency and services, we sadly had to temporarily suspend all access to our TikTok servers, and Agency.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
