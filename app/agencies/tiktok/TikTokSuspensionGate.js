@@ -178,6 +178,10 @@ export default function TikTokSuspensionGate({ children }) {
                 We have made multiple attempts through multiple channels to try to get TikTok to process our payment, and none were successful.
               </p>
 
+              <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+                When we asked why our payout still had not been processed, the answer was &quot;Labor Day&quot; and &quot;every single cn is delayed.&quot; When we followed up again, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team, and that it was &quot;not necessary to be anxious&quot; about money we are owed. When we invited them to tell us what we had actually done wrong, the two things they named were that we abbreviated our own company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours, which we have never once asked them to answer outside of.
+              </p>
+
               <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
                 TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut our access off when we don&apos;t pay them on time to streamers, gifters, and consumers, so why shouldn&apos;t we do the same?
               </p>
