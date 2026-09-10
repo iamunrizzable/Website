@@ -2,7 +2,7 @@
 // grouped by which paragraph they support, in the order they're shown.
 const ATTEMPTS_PROOF = [
   { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement approved, invoice submitted, confirmed — then stuck at "Process payout," 09/06/2026' },
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, our POC — on her second Lark account — blames a holiday — 09/08/2026' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'Message 1: we ask about the payout, our POC blames a holiday — 09/08/2026' },
 ];
 
 const POLICY_PROOF = [
