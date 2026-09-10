@@ -10,6 +10,55 @@ import { useEffect, useRef, useState } from 'react';
 // here means "not suspended," never "suspended."
 const CHECK_TIMEOUT_MS = 3000;
 
+// Screenshots backing specific claims in the suspension letter below —
+// grouped by which paragraph they support, in the order they're shown.
+const OWED_PROOF = [
+  { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement stuck at "Process payout" — 09/06/2026' },
+  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Settlement still stuck at "Process payout" — 09/09/2026' },
+];
+
+const RUDE_PROOF = [
+  { src: '/tiktok-proof/IMG_9949.jpeg', caption: '"Labor Day" / "extremely rude" / "discuss... your performance"' },
+  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious"' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'A different rep, same holiday excuse, two days later' },
+  { src: '/tiktok-proof/IMG_9950.jpeg', caption: 'Invited to name what was rude — the answer: "You change your CN name" and "You lark me at 3am"' },
+  { src: '/tiktok-proof/IMG_9951.jpeg', caption: 'Our own message explaining the CN name change' },
+  { src: '/tiktok-proof/IMG_9952.jpeg', caption: 'Our own message explaining our office hours' },
+];
+
+function ProofImages({ items }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 12,
+        margin: '0 0 16px',
+      }}
+    >
+      {items.map((item) => (
+        <figure key={item.src} style={{ margin: 0, width: 'min(100%, 260px)' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.src}
+            alt={item.caption}
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              borderRadius: 10,
+              border: '1px solid rgba(168,85,247,0.35)',
+            }}
+          />
+          <figcaption style={{ fontSize: 12, color: '#94a3b8', marginTop: 6, lineHeight: 1.4 }}>
+            {item.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 // Manual kill switch for /agencies/tiktok and every page under it, flipped
 // from /admin/security. When on, this replaces the real page with a
 // full-screen notice instead of a 404 or empty page — visitors always get
@@ -174,6 +223,8 @@ export default function TikTokSuspensionGate({ children }) {
                 This is because TikTok Not Only owes us an entire month&apos;s worth of money, they threatened us for asking them when we would be paid.
               </p>
 
+              <ProofImages items={OWED_PROOF} />
+
               <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
                 We have made multiple attempts through multiple channels to try to get TikTok to process our payment, and none were successful.
               </p>
@@ -181,6 +232,8 @@ export default function TikTokSuspensionGate({ children }) {
               <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
                 When we asked why our payout still had not been processed, the answer was &quot;Labor Day&quot; and &quot;every single cn is delayed.&quot; When we followed up again, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team, and that it was &quot;not necessary to be anxious&quot; about money we are owed. When we invited them to point out what they found &quot;extremely rude,&quot; their response was that we abbreviated our own company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours, which we have never once asked them to answer outside of.
               </p>
+
+              <ProofImages items={RUDE_PROOF} />
 
               <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
                 TJB MANAGEMENT INC., will reactivate it&apos;s servers and support for TikTok WHEN tiktok pays us what they owe us, because after all, they shut our access off when we don&apos;t pay them on time to streamers, gifters, and consumers, so why shouldn&apos;t we do the same?
