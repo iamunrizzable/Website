@@ -163,7 +163,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={ESCALATION_PROOF} />
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              When we invited them to point out what they found extremely rude, they couldn&apos;t point to anything we had actually done that was &quot;extremely rude.&quot; — their response was that we abbreviated our company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours, which we have never asked them to answer outside of.
+              When we invited them to point out what they found extremely rude, they couldn&apos;t point to anything we had actually done that was &quot;extremely rude.&quot; — their response was that we abbreviated our company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours — we did not ask or expect our TikTok POC to answer any messages regarding this matter outside of office hours.
             </p>
 
             <ProofImages items={INVITE_PROOF} />
