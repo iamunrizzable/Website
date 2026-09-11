@@ -185,7 +185,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              After we responded to both claims of what she found extremely rude with detailed explanations, she never responded to our explanation of our office hours. She did respond to our explanation of our CN name change — with this:
+              We explained, in detail, why neither of the two things she called &quot;extremely rude&quot; — our office hours and our CN name change — actually were. She never responded to our explanation about office hours. She did respond to our explanation about the CN name change — with this:
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
