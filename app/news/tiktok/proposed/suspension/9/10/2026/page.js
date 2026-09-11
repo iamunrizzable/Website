@@ -119,7 +119,7 @@ export default function ProposedSuspensionLetter() {
               animation: 'tsGlowPulse 3s ease-in-out infinite',
             }}
           >
-            Notice of potential suspension of TJB Management inc&apos;s Tiktok agency, Tjb Inc&apos;s TikTok servers, and TJB Management inc&apos;s TikTok support to take effect 9/11/2026 at 12 PM ET.
+            Notice of suspension of TJB Management inc&apos;s Tiktok Services to take effect 9/11/2026 at 12 PM ET.
           </h1>
 
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
@@ -131,7 +131,7 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We regret to inform you that we are suspending our TikTok Servers, our TikTok Agency, and our TikTok Support on September 11th, 2026, at 12 PM Eastern time because:
+              We regret to inform you that we are suspending our TikTok Services on September 11th, 2026, at 12 PM Eastern time because:
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
@@ -215,11 +215,11 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              Therefore, if TikTok does not pay the money it owes TJB Management Inc., TJB Management Inc. will suspend its TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
+              Therefore, if TikTok does not pay the money it owes TJB Management Inc., TJB Management Inc. will suspend its TikTok Services on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              We encourage you to tell TikTok to process the payment they owe us to avoid a shutdown of our TikTok Agency, our TikTok servers, and our TikTok Support by filling out the form at{' '}
+              We encourage you to tell TikTok to process the payment they owe us to avoid a shutdown of our TikTok Services by filling out the form at{' '}
               <a
                 href="https://www.tiktok.com/legal/report/feedback"
                 target="_blank"
@@ -239,7 +239,7 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              While TJB Management Inc. remains committed to attempting to work with TikTok because we hope to avoid a shutdown of our TikTok agency, our TikTok Servers, and our TikTok support.
+              While TJB Management Inc. remains committed to attempting to work with TikTok because we hope to avoid a shutdown of our TikTok Services.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
