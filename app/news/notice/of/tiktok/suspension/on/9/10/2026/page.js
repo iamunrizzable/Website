@@ -227,10 +227,6 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              Thank you for your patience and understanding.
-            </p>
-
-            <p style={{ color: '#a855f7', margin: 0 }}>
               If you have any questions, please email Tyler at{' '}
               <a
                 href="mailto:Tyler@TJBManagementinc.com"
@@ -246,6 +242,10 @@ export default function ProposedSuspensionLetter() {
                 Tyler@TJBManagementinc.com
               </a>
               .
+            </p>
+
+            <p style={{ color: '#a855f7', margin: 0 }}>
+              Thank you for your patience, understanding, and attention to this matter!
             </p>
           </div>
         </div>
