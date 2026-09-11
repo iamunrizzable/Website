@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 // Proof that TikTok actually paid.
 const PAYMENT_PROOF = [
-  { src: '/tiktok-proof/IMG_0096.jpeg', caption: 'Settlement dashboard: "Payout processed" 09/10/2026 10:58:44 — status Finished, $541.00' },
+  { src: '/tiktok-proof/IMG_0096.jpeg', caption: 'Settlement dashboard: "Payout processed" 09/10/2026 10:58:44 — status Finished' },
   { src: '/tiktok-proof/IMG_9981.jpeg', caption: '"chase just released the payment" — 1:48 PM' },
 ];
 
@@ -99,17 +99,17 @@ export default function SuspensionWithdrawn() {
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              TikTok has successfully paid what they owe us, so we will not shut down services or support for them as my chief complaint has been resolved.
+              TikTok has paid what they owed us. As our chief complaint has been resolved, we will not be suspending our TikTok services.
             </p>
 
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              Additionally, our POC could not name one thing we did that was &quot;extremely rude.&quot;
+              We also note that, when given the opportunity, our point of contact could not identify anything we had actually done that was &quot;extremely rude.&quot;
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              Detailed here:{' '}
+              A full account of this matter is detailed in{' '}
               <a
                 href="/news/notice/of/tiktok/suspension/on/9/10/2026"
                 style={{
@@ -127,23 +127,19 @@ export default function SuspensionWithdrawn() {
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              Personally @tiktok_us I&apos;m going to leave this conversation up, because SHE had no right to be threatening us with retaliatory reports for simply asking when we would be paid for work we already did, especially given you were 2 days late paying us when the threat was made and that&apos;s not how TJB MANAGEMENT INC., does business.
+              We are leaving that record public because we do not believe our point of contact was justified in threatening retaliatory action against us for simply asking when we would be paid for work we had already completed — particularly given that TikTok was already two days past its own stated payment deadline at the time the threat was made. That is not how TJB Management Inc. conducts business.
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              I don&apos;t know what this WOMAN has going on.
+              We do not know what accounts for this individual&apos;s conduct, but we will not continue to accept being treated this way by a single representative.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              But SHE is done using me and my staff as punching bags because SHE&apos;s being emotional, and doesn&apos;t seem to want to do work.
+              We will continue working with TikTok as a company, as we do not hold an entire organization responsible for the actions of one employee.
             </p>
 
-            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              I will continue to work with TikTok as a whole because I don&apos;t fault an entire company for one WOMAN&apos;S actions.
-            </p>
-
-            <p style={{ color: '#d946ef', margin: 0 }}>
-              I encourage TikTok to review the conversation and take appropriate action in regard to this WOMAN.
+            <p style={{ color: '#a855f7', margin: 0 }}>
+              We encourage TikTok to review this conversation and take appropriate action regarding this representative&apos;s conduct.
             </p>
           </div>
         </div>
