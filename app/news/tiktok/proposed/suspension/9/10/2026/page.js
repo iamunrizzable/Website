@@ -119,7 +119,7 @@ export default function ProposedSuspensionLetter() {
               animation: 'tsGlowPulse 3s ease-in-out infinite',
             }}
           >
-            Notice of Scheduled Suspension of our TikTok Servers, our TikTok Agency and our TikTok Support
+            Notice of potential suspension of TJB Management inc&apos;s Tiktok agency, Tjb Inc&apos;s TikTok servers, and TJB Management inc&apos;s TikTok support to take effect 9/11/2026 at 12 PM ET.
           </h1>
 
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
@@ -127,10 +127,14 @@ export default function ProposedSuspensionLetter() {
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              Notice of potential suspension of TJB Management inc&apos;s Tiktok agency, Tjb Inc&apos;s TikTok servers, and TJB Management inc&apos;s TikTok support to take effect 9/11/2026 at 12 PM ET.
+              To whom it may concern:
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              We regret to inform you that we are suspending our TikTok Servers, our TikTok Agency, and our TikTok Support on September 11th, 2026, at 12 PM Eastern time because:
+            </p>
+
+            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
               TikTok owes us an entire month of payment. When we asked when that payment would be released, they threatened us. We made multiple attempts through multiple channels to get the payment processed. None were successful.
             </p>
 
