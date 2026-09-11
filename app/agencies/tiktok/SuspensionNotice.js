@@ -83,10 +83,6 @@ export default function SuspensionNotice() {
             TO OUR TIKTOK SERVICES
           </h1>
 
-          <p style={{ fontSize: 16, lineHeight: 1.6, color: '#d946ef', margin: '0 0 32px' }}>
-            TikTok owes us a month&apos;s pay. When we asked when we&apos;d be paid, they threatened us instead — so we shut them out, the same way they shut out creators who don&apos;t pay on time.
-          </p>
-
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'center' }}>
             <a
               href="/news/notice/of/tiktok/suspension/on/9/10/2026"
