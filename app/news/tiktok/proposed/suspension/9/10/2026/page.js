@@ -11,7 +11,7 @@ const SETTLEMENT_PROOF = [
 ];
 
 const ATTEMPT_PROOF = [
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'September 8: we ask our POC about the payout — she blames a holiday' },
+  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'September 8: we ask about the payout — our POC blames a holiday' },
 ];
 
 const POLICY_PROOF = [
@@ -35,7 +35,7 @@ const HOURS_PROOF = [
 ];
 
 const LAST_MESSAGE_PROOF = [
-  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious" — the last message she sent' },
+  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious" — the last message our POC sent' },
 ];
 
 function ProofImages({ items }) {
@@ -181,13 +181,13 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              The last message she sent was that the delay was due to the holiday, that it was not necessary to be anxious about money we are owed, and that we were told to continue to wait.
+              The last message our POC sent was that the delay was due to the holiday, that it was not necessary to be anxious about money we are owed, and that we were told to continue to wait.
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              If TikTok does not pay what it owes, TJB Management Inc. will suspend its TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
+              If TikTok does not pay TJB Management Inc., the money it owes TJB Management Inc., TJB Management Inc., will suspend our TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
