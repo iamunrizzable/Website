@@ -181,7 +181,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              After we responded to both claims of what she found extremely rude with detailed explanations, she never responded to our explanation of our office hours. She did respond to our explanation of our CN name change — and her response was itself rude:
+              After we responded to both claims of what she found extremely rude with detailed explanations, she never responded to our explanation of our office hours. She did respond to our explanation of our CN name change — with this:
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
@@ -194,12 +194,24 @@ export default function ProposedSuspensionLetter() {
               She told us that the delay in processing our payment was due to the holiday, and that it was not necessary to be anxious about money we are owed, and that we needed to continue to wait.
             </p>
 
+            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              The irony is not lost on us: the same person who called us &quot;extremely rude&quot; and threatened to discuss our &quot;performance&quot; with her team for being extremely rude was, in our opinion dismissive, condescending, and rude in return.
+            </p>
+
+            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
+              With the message: &quot;That&apos;s them. I am your POC and I am telling you the delay is due to holiday,&quot; followed by telling us it was &quot;not necessary to be anxious&quot; about money we are owed and to not &quot;keep asking a question she had already answered.&quot;
+            </p>
+
+            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
+              We would like to note she never actually provided a proposed resolution or timeline on when the issue would be resolved.
+            </p>
+
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              It is now September 10th, at 11 A.M. Eastern time, and we still don&apos;t have our payment,
+              It is now September 10th, at 11 A.M. Eastern time, and we still don&apos;t have our payment.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              Therefore, if TikTok does not pay the money it owes TJB Management Inc., TJB Management Inc., will suspend its TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
+              Therefore, if TikTok does not pay the money it owes TJB Management Inc., TJB Management Inc. will suspend its TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
