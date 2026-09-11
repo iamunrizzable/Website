@@ -119,7 +119,7 @@ export default function ProposedSuspensionLetter() {
               animation: 'tsGlowPulse 3s ease-in-out infinite',
             }}
           >
-            Proposed TikTok Servers, Agency and Support Suspension
+            Potential TikTok Servers, Agency and Support Suspension
           </h1>
 
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
@@ -127,7 +127,7 @@ export default function ProposedSuspensionLetter() {
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              Today we are giving notice of a proposed suspension of our TikTok servers and TikTok agency.
+              Notice of potential suspension of TJB Management inc&apos;s Tiktok agency, Tjb Inc&apos;s TikTok servers, and TJB Management inc&apos;s TikTok support to take effect 9/11/2026 at 12 PM ET.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
