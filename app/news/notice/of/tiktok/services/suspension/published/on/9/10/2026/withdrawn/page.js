@@ -95,7 +95,7 @@ export default function SuspensionWithdrawn() {
           </h1>
 
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
-          <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 22px' }}>September 11, 2026</p>
+          <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 22px' }}>September 10, 2026 — 2 PM Eastern Time</p>
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
@@ -105,11 +105,15 @@ export default function SuspensionWithdrawn() {
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We are leaving our previous notice public because we do not believe our point of contact was justified in threatening retaliatory action against us for simply asking when we would be paid for work we had already completed — particularly given that TikTok was already two days past its own stated payment deadline at the time the threat was made. That is not how TJB Management Inc. conducts business.
+              We are leaving our previous notice public because we do not believe our point of contact was justified in threatening retaliatory action against us for simply asking when we would be paid for work we had already completed — particularly given that TikTok was already two days past its own stated payment deadline at the time the threat was made.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              A full account of this matter is detailed in{' '}
+              That is not how TJB Management Inc. conducts business.
+            </p>
+
+            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
+              We also note that, when given the opportunity, our point of contact could not identify anything we had actually done that was &quot;extremely rude,&quot; as detailed in our earlier{' '}
               <a
                 href="/news/notice/of/tiktok/suspension/on/9/10/2026"
                 style={{
@@ -121,13 +125,9 @@ export default function SuspensionWithdrawn() {
                   textDecoration: 'underline',
                 }}
               >
-                our proposed suspension letter
+                notice of suspension letter
               </a>
               .
-            </p>
-
-            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              We also note that, when given the opportunity, our point of contact could not identify anything we had actually done that was &quot;extremely rude.&quot;
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
