@@ -8,10 +8,16 @@ import { useState, useEffect } from 'react';
 // letters naturally sink toward the bottom of the page.
 const NEWSLETTERS = [
   {
+    date: 'September 11, 2026',
+    title: 'Notice of Suspension of TikTok Services Withdrawn',
+    desc: 'TikTok paid what they owe us — the proposed suspension of our TikTok servers, agency, and support is withdrawn.',
+    href: '/news/notice/of/tiktok/services/suspension/published/on/9/10/2026/withdrawn',
+  },
+  {
     date: 'September 10, 2026',
     title: 'Notice of suspension of TJB Management inc\'s Tiktok Services to take effect 9/11/2026 at 12 PM ET.',
     desc: 'Notice of a suspension of our TikTok Services, effective September 11, 2026 at 12 PM ET, if TikTok does not pay what it owes.',
-    href: '/news/tiktok/proposed/suspension/9/10/2026',
+    href: '/news/notice/of/tiktok/suspension/on/9/10/2026',
   },
 ];
 
