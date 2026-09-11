@@ -181,13 +181,21 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              The last message our POC sent was that the delay was due to the holiday, that it was not necessary to be anxious about money we are owed, and that we were told to continue to wait.
+              The last message our TikTok POC sent was on September 9th, 2026.
+            </p>
+
+            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
+              She told us that the delay in processing our payment was due to the holiday, and that it was not necessary to be anxious about money we are owed, and that we needed to continue to wait.
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
 
-            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              If TikTok does not pay TJB Management Inc., the money it owes TJB Management Inc., TJB Management Inc., will suspend our TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
+            <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
+              It is now September 10th, at 11 A.M. Eastern time, and we still don&apos;t have our payment,
+            </p>
+
+            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              Therefore, if TikTok does not pay the money it owes TJB Management Inc., TJB Management Inc., will suspend its TikTok servers and TikTok agency support on September 11th, 2026 at 12 PM Eastern time until that payment is processed, because after all, they shut off access to systems for consumers and business owners when they are not paid on time, so we thought — why shouldn&apos;t we do the same to them?
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
