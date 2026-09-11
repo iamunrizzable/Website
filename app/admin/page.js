@@ -18,7 +18,7 @@ const TOOLS = [
     desc: 'Draft emails and DMs — as Hallie speaking on your behalf, or as yourself in your own voice.',
   },
   {
-    href: '/admin/internal/hallie/tiktok-moderation/system',
+    href: '/admin/internal/hallie/tiktok/moderation/system',
     title: 'Admin Panel',
     desc: 'Internal testing and debug surface for the Hallie TikTok Platform — raw API probes, diagnostics.',
   },

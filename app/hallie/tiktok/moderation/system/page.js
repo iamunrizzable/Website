@@ -145,7 +145,7 @@ function AccountPanel() {
     if (!confirm('Disconnect your TikTok account and delete all session data? You can reconnect at any time.')) return;
     setDisconnecting(true);
     await fetch('/api/system/disconnect', { method: 'POST' });
-    window.location.href = '/hallie/tiktok-moderation/system';
+    window.location.href = '/hallie/tiktok/moderation/system';
   }
 
   return (
