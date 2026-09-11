@@ -190,6 +190,10 @@ export default function ProposedSuspensionLetter() {
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
 
+            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              The irony is not lost on us: the same person who called us &quot;extremely rude&quot; and threatened to discuss our &quot;performance&quot; with her team was, in her own words, dismissive of a legitimate question about money we are owed — telling us it was &quot;not necessary to be anxious&quot; and to stop &quot;keep asking the question&quot; she had already answered, rather than actually resolving it.
+            </p>
+
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
               It is now September 10th, at 11 A.M. Eastern time, and we still don&apos;t have our payment,
             </p>
