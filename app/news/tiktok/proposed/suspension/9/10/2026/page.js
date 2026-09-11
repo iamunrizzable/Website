@@ -157,7 +157,7 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              When we followed up again, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team, and that it was &quot;not necessary to be anxious&quot; about money we are owed.
+              When we followed up again on September 9, 2026 after still not seeing our payment remitted, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team.
             </p>
 
             <ProofImages items={ESCALATION_PROOF} />
@@ -181,7 +181,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              The last message she sent was that the delay was due to the holiday and that it was not necessary to be anxious.
+              The last message she sent was that the delay was due to the holiday, that it was not necessary to be anxious about money we are owed, and that we were told to continue to wait.
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
