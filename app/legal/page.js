@@ -67,21 +67,21 @@ export default function Legal() {
             <span className="card-link">VIEW AGREEMENT →</span>
           </a>
 
-          <a href="/legal/hallie-tiktok-moderation-system" className="card section">
+          <a href="/legal/hallie/tiktok/moderation/system" className="card section">
             <span className="card-icon">🛡️</span>
             <span className="card-title">Hallie Platform — Data Security & Privacy</span>
             <span className="card-desc">Full data security, privacy, and compliance documentation for the Hallie TikTok Account Automation Platform, including USDS and DSPR requirements.</span>
             <span className="card-link">VIEW POLICY →</span>
           </a>
 
-          <a href="/legal/policies-and-procedures" className="card section">
+          <a href="/legal/policies/and/procedures" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">Policies & Procedures</span>
             <span className="card-desc">A single consolidated reference for every policy and procedure TJB Management Inc. has written across this website — agency terms, the Hallie data security policy, and general legal terms.</span>
             <span className="card-link">VIEW ALL POLICIES →</span>
           </a>
 
-          <a href="/legal/privacy-policy" className="card section">
+          <a href="/legal/privacy/policy" className="card section">
             <span className="card-icon">🔒</span>
             <span className="card-title">Privacy Policy</span>
             <span className="card-desc">How tjbmanagementinc.com handles data — cookies in use, what creator data managers can see, third-party links, and the full Hallie Platform Data Security & Privacy Policy.</span>
