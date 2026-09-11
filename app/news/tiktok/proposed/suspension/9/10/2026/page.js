@@ -181,7 +181,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              After we responded to both claims of what she found extremely rude with detailed explanations, she never responded to our explanation of our office hours. She did respond to our explanation of our CN name change — with this:
+              After we responded to both claims of what she found extremely rude with detailed explanations, she never responded to our explanation of our office hours. She did respond to our explanation of our CN name change — and her response was itself rude:
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
@@ -192,10 +192,6 @@ export default function ProposedSuspensionLetter() {
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
               She told us that the delay in processing our payment was due to the holiday, and that it was not necessary to be anxious about money we are owed, and that we needed to continue to wait.
-            </p>
-
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              The irony is not lost on us: the same person who called us &quot;extremely rude&quot; and threatened to discuss our &quot;performance&quot; with her team was, in her own words, dismissive and condescending in return — &quot;That&apos;s them. I am your POC and I am telling you the delay is due to holiday,&quot; followed by telling us it was &quot;not necessary to be anxious&quot; about money we are owed and to stop &quot;keep asking the question&quot; she had already answered, rather than actually resolving it.
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
