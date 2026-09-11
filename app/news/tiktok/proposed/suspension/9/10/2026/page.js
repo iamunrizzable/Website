@@ -35,7 +35,7 @@ const HOURS_PROOF = [
 ];
 
 const LAST_MESSAGE_PROOF = [
-  { src: '/tiktok-proof/IMG_9897.jpeg', caption: '"the delay is due to holiday" / "not necessary to be anxious" — the last message our POC sent' },
+  { src: '/tiktok-proof/IMG_9979.jpeg', caption: 'We offered to let her deny the name change — "That’s not an issue" — her reply: "not necessary to be anxious," the last message our POC sent' },
 ];
 
 function ProofImages({ items }) {
@@ -169,7 +169,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={INVITE_PROOF} />
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              We explained the name change in writing.
+              We explained the name change in writing. We even offered a denial of the name change if our TikTok POC had an issue with that.
             </p>
 
             <ProofImages items={NAME_PROOF} />
