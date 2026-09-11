@@ -119,7 +119,7 @@ export default function ProposedSuspensionLetter() {
               animation: 'tsGlowPulse 3s ease-in-out infinite',
             }}
           >
-            Potential TikTok Servers, Agency and Support Suspension
+            Notice of Scheduled Suspension of our TikTok Servers, our TikTok Agency and our TikTok Support
           </h1>
 
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
