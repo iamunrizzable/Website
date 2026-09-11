@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react';
 const NEWSLETTERS = [
   {
     date: 'September 10, 2026',
-    title: 'Notice of Scheduled Suspension of our TikTok Servers, our TikTok Agency and our TikTok Support',
-    desc: 'Notice of a potential suspension of our TikTok servers and TikTok agency, effective September 11, 2026 at 12 PM ET, if TikTok does not pay what it owes.',
+    title: 'Notice of suspension of TJB Management inc\'s Tiktok Services to take effect 9/11/2026 at 12 PM ET.',
+    desc: 'Notice of a suspension of our TikTok Services, effective September 11, 2026 at 12 PM ET, if TikTok does not pay what it owes.',
     href: '/news/tiktok/proposed/suspension/9/10/2026',
   },
 ];
