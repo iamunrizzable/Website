@@ -99,13 +99,13 @@ export default function SuspensionWithdrawn() {
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              TikTok has paid what they owed us. As our chief complaint has been resolved, we will not be suspending our TikTok services.
+              TikTok has remitted the payment owed to us. As our primary concern has been resolved, we will not be proceeding with the suspension of our TikTok services.
             </p>
 
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We also note that, when given the opportunity, our point of contact could not identify anything we had actually done that was &quot;extremely rude.&quot;
+              We are leaving our previous notice, announced yesterday at 2 PM, public because we do not believe our point of contact was justified.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
@@ -127,7 +127,7 @@ export default function SuspensionWithdrawn() {
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              We are leaving that record public because we do not believe our point of contact was justified in threatening retaliatory action against us for simply asking when we would be paid for work we had already completed — particularly given that TikTok was already two days past its own stated payment deadline at the time the threat was made. That is not how TJB Management Inc. conducts business.
+              We also note that, when given the opportunity, our point of contact could not identify anything we had actually done that was &quot;extremely rude.&quot;
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
