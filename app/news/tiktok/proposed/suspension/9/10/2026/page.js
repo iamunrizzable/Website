@@ -219,7 +219,7 @@ export default function ProposedSuspensionLetter() {
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              We encourage you to tell TikTok to process the payment they owe us at{' '}
+              We encourage you to tell TikTok to process the payment they owe us to avoid a shutdown of our TikTok Agency, our TikTok servers, and our TikTok Support by filling out the form at{' '}
               <a
                 href="https://www.tiktok.com/legal/report/feedback"
                 target="_blank"
@@ -235,10 +235,18 @@ export default function ProposedSuspensionLetter() {
               >
                 tiktok.com/legal/report/feedback
               </a>
-              {' '}so we can continue working with their platform and avoid a shutdown of our agency, servers, and support for TikTok.
+              , as the shutdown will not go into effect if TikTok makes full payment by our deadline.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
+              While TJB Management Inc. remains committed to attempting to work with TikTok because we hope to avoid a shutdown of our TikTok agency, our TikTok Servers, and our TikTok support.
+            </p>
+
+            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
+              While we hope to avoid even a Temporary Shutdown of our TikTok Services, we will have no choice but to suspend our TikTok Services if TikTok doesn&apos;t remit payment for what we are owed by 12 PM on September 11, 2026, we will be left with no choice but to shut down our TikTok Services, until they remit payment for what we are owed.
+            </p>
+
+            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
               Thank you for your patience and understanding.
             </p>
 
