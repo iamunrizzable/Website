@@ -11,7 +11,7 @@ Last major revision: July 20, 2026.
 One Next.js repo, three products:
 
 1. **Marketing site** — tjbmanagementinc.com, ~15 static-feeling pages for a TikTok LIVE creator agency.
-2. **Hallie** — a TikTok comment-moderation platform. Public operators connect their own TikTok Business account at `/hallie/tiktok-moderation/system`.
+2. **Hallie** — a TikTok comment-moderation platform. Public operators connect their own TikTok Business account at `/hallie/tiktok/moderation/system`.
 3. **Admin panel** — `/admin`, Tyler's cockpit. Superset of Hallie plus token management and debug tooling.
 
 Stack: Next.js 16 App Router, React 19, Vercel serverless, no database (cookies + in-memory + optional Upstash Redis), no TypeScript, no test framework, inline styles. Every page is server-rendered per request (forced dynamic — required by the CSP nonce, see §5).
@@ -22,7 +22,7 @@ Stack: Next.js 16 App Router, React 19, Vercel serverless, no database (cookies 
 2. **Everything ships to `main`** (which is production — Vercel deploys on push). Keep the dev branch `claude/general-session-v2pLH` synced to main after each push.
 3. **Only make changes explicitly requested.**
 4. **Never guess at a fix.** Confirm root cause by reproduction or trace, or ask. No speculative deploys.
-5. **`/admin` and `/hallie/tiktok-moderation/system` are mirrored.** A feature shipped to one and not the other is a bug — with documented exceptions (token export, raw-API-response debug buttons: admin-only by design).
+5. **`/admin` and `/hallie/tiktok/moderation/system` are mirrored.** A feature shipped to one and not the other is a bug — with documented exceptions (token export, raw-API-response debug buttons: admin-only by design).
 
 ## 3. Where the knowledge lives
 
@@ -50,7 +50,7 @@ app/
   layout.js               ← root: metadata + viewport themeColor (#0f172a, for iOS Safari chrome)
   globals.css             ← reset + html/body flat fallback bg (#0f172a, matches page overlays)
   admin/page.js                       ← Tyler's dashboard (one big client component)
-  hallie/tiktok-moderation/system/page.js  ← operator dashboard (mirror of admin)
+  hallie/tiktok/moderation/system/page.js  ← operator dashboard (mirror of admin)
   api/
     admin/*, business/*   ← admin-only: x-admin-key header, shared token store
     system/*              ← operator: acct_token cookie, per-operator isolation, inline fetch
@@ -98,7 +98,7 @@ next.config.js          ← static security headers (CSP lives in middleware.js)
 - **Git push rejected (403/fetch-first):** Tyler pushes to `main` too. `git pull origin main --rebase`, then push. Retry network failures with backoff.
 - **Dependabot PRs:** minor/patch grouped weekly (safe to merge); **major bumps go to Tyler first** — a broken major hits production with no staging.
 - **Scanner findings (Aikido/CodeQL):** many are false positives (JWT findings — there's no JWT here). Real ones need *structural* fixes, not runtime checks (SSRF took 3 rounds to satisfy CodeQL — the winning move was a literal-prefix URL + charset-constrained token, not a validate-then-fetch guard).
-- **TikTok Business Messaging API (DSPR/USDS):** the legal doc at `/legal/hallie-tiktok-moderation-system` is the compliance artifact. Keep it *true* — fabricated security claims (there were some) are a disqualifier per TikTok's own rules.
+- **TikTok Business Messaging API (DSPR/USDS):** the legal doc at `/legal/hallie/tiktok/moderation/system` is the compliance artifact. Keep it *true* — fabricated security claims (there were some) are a disqualifier per TikTok's own rules.
 
 ---
 

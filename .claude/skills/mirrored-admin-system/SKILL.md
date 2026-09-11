@@ -1,6 +1,6 @@
 ---
 name: mirrored-admin-system
-description: How to make a UI or feature change to the /admin panel and the /hallie/tiktok-moderation/system panel in lockstep. Use whenever adding, changing, or removing any panel, button, API behavior, or display element on either page — they are mirrored and MUST be changed together.
+description: How to make a UI or feature change to the /admin panel and the /hallie/tiktok/moderation/system panel in lockstep. Use whenever adding, changing, or removing any panel, button, API behavior, or display element on either page — they are mirrored and MUST be changed together.
 ---
 
 # Mirrored UI Changes: /admin ↔ /system
@@ -9,7 +9,7 @@ The two panels are the same product for two audiences. A change shipped to only 
 
 ## Panel-by-panel mapping
 
-| Feature | `/admin` (app/admin/page.js) | `/system` (app/hallie/tiktok-moderation/system/page.js) |
+| Feature | `/admin` (app/admin/page.js) | `/system` (app/hallie/tiktok/moderation/system/page.js) |
 |---|---|---|
 | Account info | `AccountPanel` → `/api/business/account` | `AccountPanel` → `/api/system/account` |
 | Videos | `VideosPanel` → `/api/business/videos` | `VideosPanel` → `/api/system/videos` |
@@ -46,7 +46,7 @@ Each page has its own `s` object and they have drifted: admin has helpers system
 
 ## Checklist for every mirrored change
 
-- [ ] Change applied to `app/admin/page.js` AND `app/hallie/tiktok-moderation/system/page.js`
+- [ ] Change applied to `app/admin/page.js` AND `app/hallie/tiktok/moderation/system/page.js`
 - [ ] Backend change applied to the `/api/admin/*` or `/api/business/*` route AND the `/api/system/*` twin
 - [ ] Admin version passes `x-admin-key`; system version relies on cookie
 - [ ] Styles use each file's local `s` style object (they're near-identical; copy styles as-is)
