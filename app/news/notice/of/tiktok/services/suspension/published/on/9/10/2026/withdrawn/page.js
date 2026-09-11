@@ -134,12 +134,8 @@ export default function SuspensionWithdrawn() {
               We do not know what accounts for this individual&apos;s conduct, but we will not continue to accept being treated this way by a single representative.
             </p>
 
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We will continue working with TikTok as a company, as we do not hold an entire organization responsible for the actions of one employee.
-            </p>
-
-            <p style={{ color: '#a855f7', margin: 0 }}>
-              We encourage TikTok to review this conversation and take appropriate action regarding this representative&apos;s conduct.
+            <p style={{ color: '#ec4899', margin: 0 }}>
+              While we encourage TikTok to review this conversation and take appropriate action regarding this representative&apos;s conduct, we will continue working with TikTok as a company, as we do not hold an entire organization responsible for the actions of one employee.
             </p>
           </div>
         </div>
