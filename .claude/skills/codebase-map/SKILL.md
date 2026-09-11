@@ -13,13 +13,13 @@ Next.js 15 App Router site on Vercel serverless. One repo, three jobs:
 
 ## The two control panels (MIRRORED — see mirrored-admin-system skill)
 
-| | `/admin` | `/hallie/tiktok-moderation/system` |
+| | `/admin` | `/hallie/tiktok/moderation/system` |
 |---|---|---|
 | Audience | Tyler (owner) | External operators ("Hallie" product) |
 | Auth | `admin_session` cookie (middleware) + `x-admin-key` header on API calls | `acct_token` cookie only |
 | API family | `/api/admin/*`, `/api/business/*` | `/api/system/*` |
 | OAuth entry | `/auth/tiktok/business/login`, `/auth/tiktok/account-login`, `/auth/tiktok/account-business/login` | `/auth/tiktok/system-login` |
-| File | `app/admin/page.js` (single big client component file) | `app/hallie/tiktok-moderation/system/page.js` (same) |
+| File | `app/admin/page.js` (single big client component file) | `app/hallie/tiktok/moderation/system/page.js` (same) |
 
 **Any feature added to one panel must be added to the other.** This is a Critical Rule in CLAUDE.md.
 

@@ -60,7 +60,7 @@ export default function HallieHub() {
             <span className="card-link">CONNECT →</span>
           </a>
 
-          <a href="/hallie/tiktok-moderation/system" className="card section">
+          <a href="/hallie/tiktok/moderation/system" className="card section">
             <span className="card-icon">🛡️</span>
             <span className="card-title">Hallie™ TikTok Moderation System</span>
             <span className="card-desc">Hallie's live comment moderation tool for your TikTok account — review, hide, and manage comments automatically.</span>
