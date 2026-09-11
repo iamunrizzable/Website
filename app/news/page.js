@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react';
 const NEWSLETTERS = [
   {
     date: 'September 10, 2026',
-    title: 'Proposed TikTok Servers, Agency and Support Suspension',
-    desc: 'Notice of a proposed suspension of our TikTok servers and TikTok agency, effective September 11, 2026 at 12 PM ET, if TikTok does not pay what it owes.',
+    title: 'Potential TikTok Servers, Agency and Support Suspension',
+    desc: 'Notice of a potential suspension of our TikTok servers and TikTok agency, effective September 11, 2026 at 12 PM ET, if TikTok does not pay what it owes.',
     href: '/news/tiktok/proposed/suspension/9/10/2026',
   },
 ];
@@ -53,7 +53,7 @@ export default function News() {
         <div className="header section">
           <h1>Newsletters</h1>
           <p className="subtitle">TJB Management Inc. · Public Letters & Statements</p>
-          <span className="badge">📰 Newsletter Archive</span>
+          <span className="badge">📰 Letters and Statements</span>
         </div>
 
         <div className="list">
