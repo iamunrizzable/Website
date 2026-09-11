@@ -105,7 +105,7 @@ export default function SuspensionWithdrawn() {
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We are leaving our previous notice public because we do not believe our point of contact was justified.
+              We are leaving our previous notice public because we do not believe our point of contact was justified in threatening retaliatory action against us for simply asking when we would be paid for work we had already completed — particularly given that TikTok was already two days past its own stated payment deadline at the time the threat was made. That is not how TJB Management Inc. conducts business.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
@@ -134,8 +134,30 @@ export default function SuspensionWithdrawn() {
               We do not know what accounts for this individual&apos;s conduct, but we will not continue to accept being treated this way by a single representative.
             </p>
 
-            <p style={{ color: '#ec4899', margin: 0 }}>
+            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
               While we encourage TikTok to review this conversation and take appropriate action regarding this representative&apos;s conduct, we will continue working with TikTok as a company, as we do not hold an entire organization responsible for the actions of one employee.
+            </p>
+
+            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
+              If you have any questions, please email Tyler at{' '}
+              <a
+                href="mailto:Tyler@TJBManagementinc.com"
+                style={{
+                  background: 'linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 600,
+                  textDecoration: 'underline',
+                }}
+              >
+                Tyler@TJBManagementinc.com
+              </a>
+              .
+            </p>
+
+            <p style={{ color: '#d946ef', margin: 0 }}>
+              Thank you for your patience, understanding, and attention to this matter!
             </p>
           </div>
         </div>
