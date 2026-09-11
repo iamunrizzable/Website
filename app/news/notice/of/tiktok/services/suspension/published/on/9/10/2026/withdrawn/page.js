@@ -105,7 +105,7 @@ export default function SuspensionWithdrawn() {
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We are leaving our previous notice, announced yesterday at 2 PM, public because we do not believe our point of contact was justified.
+              We are leaving our previous notice public because we do not believe our point of contact was justified.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
