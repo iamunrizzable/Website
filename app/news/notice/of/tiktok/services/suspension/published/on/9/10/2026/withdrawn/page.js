@@ -7,6 +7,11 @@ import { useState } from 'react';
 // Screenshots backing specific claims in this recap — each one placed
 // directly under the sentence it supports, same pattern as the original
 // letter at /news/notice/of/tiktok/suspension/on/9/10/2026.
+const PAYMENT_PROOF = [
+  { src: '/tiktok-proof/IMG_0096.jpeg', caption: 'Settlement dashboard: "Payout processed" 09/10/2026 10:58:44 — status Finished, $541.00' },
+  { src: '/tiktok-proof/IMG_9981.jpeg', caption: '"chase just released the payment" — 1:48 PM' },
+];
+
 const SETTLEMENT_PROOF = [
   { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement confirmed, invoice submitted, approved — then stuck at "Process payout," 09/06/2026' },
 ];
@@ -130,6 +135,8 @@ export default function SuspensionWithdrawn() {
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
               Today we are withdrawing the proposed suspension of our TikTok servers and TikTok agency. TikTok paid what they owe us. Servers stay on. Agency support stays on.
             </p>
+
+            <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
               The payment is closed. The threat is not.
