@@ -207,7 +207,7 @@ export default function ProposedSuspensionLetter() {
               >
                 tiktok.com/legal/report/feedback
               </a>
-              {' '}so we can continue working with their platform.
+              {' '}so we can continue working with their platform and avoid a shutdown of our agency, servers, and support for TikTok.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
