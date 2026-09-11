@@ -173,7 +173,7 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={INVITE_PROOF} />
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              We explained the name change in writing. We even offered a denial of the name change if our TikTok POC had an issue with that.
+              We explained the name change in writing, and even offered to let her deny it if she had an issue with it.
             </p>
 
             <ProofImages items={NAME_PROOF} />
@@ -185,29 +185,13 @@ export default function ProposedSuspensionLetter() {
             <ProofImages items={HOURS_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              We explained, in detail, why neither of the two things she called &quot;extremely rude&quot; — our office hours and our CN name change — actually were. She never responded to our explanation about office hours. She did respond to our explanation about the CN name change — with this:
+              She never responded to our explanation of our office hours. She did respond to our explanation of the CN name change — on September 9th, her last message to us. She told us the delay was due to the holiday, that it was &quot;not necessary to be anxious&quot; about money we are owed, and to stop &quot;keep asking a question&quot; she had already answered.
             </p>
 
             <ProofImages items={LAST_MESSAGE_PROOF} />
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              The last message our TikTok POC sent was on September 9th, 2026.
-            </p>
-
-            <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              She told us that the delay in processing our payment was due to the holiday, and that it was not necessary to be anxious about money we are owed, and that we needed to continue to wait.
-            </p>
-
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              The irony is not lost on us: the same person who called us &quot;extremely rude&quot; and threatened to discuss our &quot;performance&quot; with her team for being extremely rude was, in our opinion dismissive, condescending, and rude in return.
-            </p>
-
-            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              With the message: &quot;That&apos;s them. I am your POC and I am telling you the delay is due to holiday,&quot; followed by telling us it was &quot;not necessary to be anxious&quot; about money we are owed and to not &quot;keep asking a question she had already answered.&quot;
-            </p>
-
-            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              We would like to note she never actually provided a proposed resolution or timeline on when the issue would be resolved.
+              The same person who called us &quot;extremely rude&quot; and threatened to discuss our &quot;performance&quot; with her team was, in her own reply, dismissive, rude, and condescending in return — telling us &quot;That&apos;s them. I am your POC and I am telling you the delay is due to holiday.&quot; She never offered a proposed resolution or a timeline for when the issue would actually be resolved.
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
@@ -238,12 +222,8 @@ export default function ProposedSuspensionLetter() {
               , as the shutdown will not go into effect if TikTok makes full payment by our deadline.
             </p>
 
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              While TJB Management Inc. remains committed to attempting to work with TikTok because we hope to avoid a shutdown of our TikTok Services.
-            </p>
-
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              While we hope to avoid even a Temporary Shutdown of our TikTok Services, we will have no choice but to suspend our TikTok Services if TikTok doesn&apos;t remit payment for what we are owed by 12 PM on September 11, 2026, we will be left with no choice but to shut down our TikTok Services, until they remit payment for what we are owed.
+              TJB Management Inc. remains committed to working with TikTok, and we hope to avoid this outcome entirely.
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
