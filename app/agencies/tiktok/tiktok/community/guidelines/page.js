@@ -36,7 +36,7 @@ export default function TikTokGuidelines() {
       </div>
 
       <main>
-        <a href="/agencies/tiktok/streaming-basics" className="back-link">← Back to Streaming Basics</a>
+        <a href="/agencies/tiktok/streaming/basics" className="back-link">← Back to Streaming Basics</a>
         <h1>TikTok Community Guidelines</h1>
         <p className="page-subtitle">Know the rules before you go LIVE. Violations can result in content removal, account restrictions, or permanent bans.</p>
 
