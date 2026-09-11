@@ -4,44 +4,10 @@ import './page.css';
 
 import { useState } from 'react';
 
-// Screenshots backing specific claims in this recap — each one placed
-// directly under the sentence it supports, same pattern as the original
-// letter at /news/notice/of/tiktok/suspension/on/9/10/2026.
+// Proof that TikTok actually paid.
 const PAYMENT_PROOF = [
   { src: '/tiktok-proof/IMG_0096.jpeg', caption: 'Settlement dashboard: "Payout processed" 09/10/2026 10:58:44 — status Finished, $541.00' },
   { src: '/tiktok-proof/IMG_9981.jpeg', caption: '"chase just released the payment" — 1:48 PM' },
-];
-
-const SETTLEMENT_PROOF = [
-  { src: '/tiktok-proof/IMG_9866.jpeg', caption: 'Settlement confirmed, invoice submitted, approved — then stuck at "Process payout," 09/06/2026' },
-];
-
-const HOLIDAY_PROOF = [
-  { src: '/tiktok-proof/IMG_9954.jpeg', caption: 'September 8: our POC blames a holiday' },
-];
-
-const POLICY_PROOF = [
-  { src: '/tiktok-proof/IMG_9865.jpeg', caption: 'Sept 9, 11:41 AM: TikTok’s own support says to "wait until the 7th of this month" — two days after the 7th' },
-];
-
-const ESCALATION_PROOF = [
-  { src: '/tiktok-proof/IMG_9949.jpeg', caption: '"Labor Day" / "extremely rude" / "discuss... your performance"' },
-];
-
-const INVITE_PROOF = [
-  { src: '/tiktok-proof/IMG_9950.jpeg', caption: 'Invited to name what was rude — the answer: "You change your CN name" and "You lark me at 3am"' },
-];
-
-const NAME_PROOF = [
-  { src: '/tiktok-proof/IMG_9951.jpeg', caption: 'Our own message explaining the CN name change' },
-];
-
-const HOURS_PROOF = [
-  { src: '/tiktok-proof/IMG_9952.jpeg', caption: 'Our own message explaining our office hours' },
-];
-
-const LAST_MESSAGE_PROOF = [
-  { src: '/tiktok-proof/IMG_9979.jpeg', caption: 'We offered to let her deny the name change — "That’s not an issue" — her reply: "not necessary to be anxious," the last message our POC sent' },
 ];
 
 function ProofImages({ items }) {
@@ -133,73 +99,51 @@ export default function SuspensionWithdrawn() {
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              Today we are withdrawing the proposed suspension of our TikTok servers and TikTok agency. TikTok paid what they owe us. Servers stay on. Agency support stays on.
+              TikTok has successfully paid what they owe us, so we will not shut down services or support for them as my chief complaint has been resolved.
             </p>
 
             <ProofImages items={PAYMENT_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              The payment is closed. The threat is not.
+              Additionally, our POC could not name one thing we did that was &quot;extremely rude.&quot;
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              When we asked when an entire month of payment would be released, our point of contact threatened us.
+              Detailed here:{' '}
+              <a
+                href="/news/notice/of/tiktok/suspension/on/9/10/2026"
+                style={{
+                  background: 'linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 600,
+                  textDecoration: 'underline',
+                }}
+              >
+                our proposed suspension letter
+              </a>
+              .
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              After the settlement was confirmed, invoiced, and approved, the file stopped at &quot;Process payout&quot; on September 6.
+              Personally @tiktok_us I&apos;m going to leave this conversation up, because SHE had no right to be threatening us with retaliatory reports for simply asking when we would be paid for work we already did, especially given you were 2 days late paying us when the threat was made and that&apos;s not how TJB MANAGEMENT INC., does business.
             </p>
-
-            <ProofImages items={SETTLEMENT_PROOF} />
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              On September 8 she blamed a holiday.
+              I don&apos;t know what this WOMAN has going on.
             </p>
-
-            <ProofImages items={HOLIDAY_PROOF} />
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              On September 9 at 11:41 a.m., two days after TikTok&apos;s own &quot;around the 7th&quot; release date, support was still telling us to wait until the 7th.
+              But SHE is done using me and my staff as punching bags because SHE&apos;s being emotional, and doesn&apos;t seem to want to do work.
             </p>
-
-            <ProofImages items={POLICY_PROOF} />
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              When we asked why the payout still had not processed, the answer was &quot;Labor Day&quot; and &quot;every single CN is delayed.&quot; When we followed up again, we were told we were &quot;extremely rude&quot; for asking, that our &quot;performance&quot; would be discussed with their team, and that it was &quot;not necessary to be anxious&quot; about money we are owed.
+              I will continue to work with TikTok as a whole because I don&apos;t fault an entire company for one WOMAN&apos;S actions.
             </p>
 
-            <ProofImages items={ESCALATION_PROOF} />
-
-            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              When we invited them to point out what they found extremely rude, they could not. Their response was that we abbreviated our company name to our DBA — after another network was told a shorter name was exactly what unblocked their settlement — and that we send messages outside of their office hours, which we have never asked them to answer outside of.
-            </p>
-
-            <ProofImages items={INVITE_PROOF} />
-
-            <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              We explained the name change in writing.
-            </p>
-
-            <ProofImages items={NAME_PROOF} />
-
-            <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              We explained our office hours in writing.
-            </p>
-
-            <ProofImages items={HOURS_PROOF} />
-
-            <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              The last message she sent was that the delay was due to the holiday and that it was not necessary to be anxious.
-            </p>
-
-            <ProofImages items={LAST_MESSAGE_PROOF} />
-
-            <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              She threatened us for asking when we would be paid for work we already did. We have asked TikTok to review that conversation and take appropriate action. We will continue to work with TikTok as a company.
-            </p>
-
-            <p style={{ color: '#ec4899', margin: 0 }}>
-              The proposed suspension is withdrawn because they paid.
+            <p style={{ color: '#d946ef', margin: 0 }}>
+              I encourage TikTok to review the conversation and take appropriate action in regard to this WOMAN.
             </p>
           </div>
         </div>
