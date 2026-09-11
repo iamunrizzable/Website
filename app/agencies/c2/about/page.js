@@ -34,6 +34,7 @@ export default function C2About() {
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
         <a href="/agencies" onClick={() => setMenuOpen(false)}>Creator Networks</a>
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
+        <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
