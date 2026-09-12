@@ -16,19 +16,21 @@ const RULESET_ID = 'rs_4ns6PcOeU2RspQ';
 //    etc, configured in Fingerprint's own dashboard). Requires
 //    FINGERPRINT_SERVER_API_KEY (Server API secret key — see .env.example).
 //
-// Fails OPEN on any problem: missing/invalid ids, missing server key, a
+// Fails CLOSED on any problem: missing/invalid ids, missing server key, a
 // Fingerprint API error, a Redis error, or a network failure all resolve
-// to that check being skipped rather than blocking. This endpoint gates
-// the ENTIRE site (FingerprintGate in app/layout.js), so if it ever
-// fails closed instead, an outage here takes the whole site down with
-// it — exactly the kind of outage this Fingerprint integration already
-// caused once.
-// Every verdict this route returns — blocked or allowed, including each
-// fail-open path — is logged here so a silent fail-open (missing key,
-// Redis error, Fingerprint API error/timeout) shows up in Vercel's
-// function logs instead of being invisible. Errors/misconfig use
-// console.error so they're easy to filter for; normal verdicts use
-// console.log.
+// to BLOCKED rather than skipping the check — per explicit instruction,
+// any activity this route can't actually verify is treated as unverified
+// and blocked. This endpoint gates the ENTIRE site (FingerprintGate in
+// app/layout.js), so an outage in Fingerprint's API or in Redis now takes
+// the whole site down for everyone rather than letting traffic through
+// unchecked — that tradeoff was made deliberately, overriding this
+// route's prior fail-open design (which existed because fail-closed
+// caused a site-wide outage once before).
+// Every verdict this route returns is logged here so a fail-closed block
+// (missing key, Redis error, Fingerprint API error/timeout) is
+// distinguishable in Vercel's function logs from a real ruleset/blocklist
+// block. Errors/misconfig use console.error so they're easy to filter
+// for; normal verdicts use console.log.
 function logVerdict(blocked, reason, { visitorId, eventId, isError } = {}) {
   const log = isError ? console.error : console.log;
   log(`[fingerprint-check] ${blocked ? 'BLOCKED' : 'allowed'} reason=${reason} visitorId=${visitorId ?? '-'} eventId=${eventId ?? '-'}`);
@@ -37,30 +39,29 @@ function logVerdict(blocked, reason, { visitorId, eventId, isError } = {}) {
 export async function POST(request) {
   const { eventId, visitorId } = await request.json().catch(() => ({}));
 
-  let blocked = false;
   try {
     if (visitorId && typeof visitorId === 'string') {
-      blocked = await isVisitorIdBlocked(visitorId);
+      const blocked = await isVisitorIdBlocked(visitorId);
+      if (blocked) {
+        logVerdict(true, 'device-blocklist', { visitorId, eventId });
+        return NextResponse.json({ blocked: true });
+      }
     }
   } catch (err) {
-    logVerdict(false, 'device-blocklist-check-error', { visitorId, eventId, isError: true });
-  }
-
-  if (blocked) {
-    logVerdict(true, 'device-blocklist', { visitorId, eventId });
+    logVerdict(true, 'device-blocklist-check-error', { visitorId, eventId, isError: true });
     return NextResponse.json({ blocked: true });
   }
 
   try {
     if (!eventId || typeof eventId !== 'string') {
-      logVerdict(false, 'no-event-id', { visitorId, eventId });
-      return NextResponse.json({ blocked: false });
+      logVerdict(true, 'no-event-id', { visitorId, eventId });
+      return NextResponse.json({ blocked: true });
     }
 
     const apiKey = process.env.FINGERPRINT_SERVER_API_KEY;
     if (!apiKey) {
-      logVerdict(false, 'missing-server-key', { visitorId, eventId, isError: true });
-      return NextResponse.json({ blocked: false });
+      logVerdict(true, 'missing-server-key', { visitorId, eventId, isError: true });
+      return NextResponse.json({ blocked: true });
     }
 
     const url = `https://api.fpjs.io/v4/events/${encodeURIComponent(eventId)}?ruleset_id=${RULESET_ID}`;
@@ -70,8 +71,8 @@ export async function POST(request) {
     });
 
     if (!res.ok) {
-      logVerdict(false, `fingerprint-api-error-${res.status}`, { visitorId, eventId, isError: true });
-      return NextResponse.json({ blocked: false });
+      logVerdict(true, `fingerprint-api-error-${res.status}`, { visitorId, eventId, isError: true });
+      return NextResponse.json({ blocked: true });
     }
 
     const event = await res.json();
@@ -80,7 +81,7 @@ export async function POST(request) {
     logVerdict(rulesetBlocked, rulesetBlocked ? 'ruleset' : 'ruleset-clear', { visitorId, eventId });
     return NextResponse.json({ blocked: rulesetBlocked });
   } catch (err) {
-    logVerdict(false, `exception-${err?.name || 'unknown'}`, { visitorId, eventId, isError: true });
-    return NextResponse.json({ blocked: false });
+    logVerdict(true, `exception-${err?.name || 'unknown'}`, { visitorId, eventId, isError: true });
+    return NextResponse.json({ blocked: true });
   }
 }
