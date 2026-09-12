@@ -21,19 +21,43 @@ const IDENTIFY_TIMEOUT_MS = 3000;
 // deliberately overridden.)
 const CHECK_TIMEOUT_MS = 5000;
 
+// Friendly labels for the 'unverified' screen's reason line. A purposeful
+// block (device-blocklist match, ruleset says block) shows 'blocked'
+// instead — this map only covers cases where we couldn't actually
+// complete verification. Falls back to the raw reason string for
+// dynamic/unmapped codes (fingerprint-api-error-*, exception-*).
+const REASON_LABELS = {
+  'identify-timeout': 'Your browser or an extension (ad blocker, privacy extension, or VPN) prevented us from identifying your device.',
+  'check-timeout': 'Our verification service took too long to respond.',
+  'check-api-error': 'Our verification service returned an error.',
+  'network-error': "We couldn't reach our verification service.",
+  'device-blocklist-check-error': "We couldn't confirm your device's status.",
+  'no-event-id': 'Verification data was missing from your request.',
+  'missing-server-key': "Our verification service isn't configured correctly.",
+};
+
+function reasonLabel(reason) {
+  if (REASON_LABELS[reason]) return REASON_LABELS[reason];
+  if (reason?.startsWith('fingerprint-api-error-')) return 'Our verification provider returned an error.';
+  if (reason?.startsWith('exception-')) return 'An unexpected error occurred during verification.';
+  return reason || 'We were unable to complete verification.';
+}
+
 // Blocks the whole site for visitors whose identification event fails the
 // Fingerprint ruleset (rs_4ns6PcOeU2RspQ — forbidden IPs, VPN detection,
-// etc) or matches the device blocklist at /admin/security ('blocked'), and
-// separately shows an 'unverified' screen for visitors whose browser never
-// lets Fingerprint identify them at all (see IDENTIFY_TIMEOUT_MS above) —
-// that group is mostly ad-blocker/privacy-extension users, not banned
-// visitors, so it gets different copy rather than being told they were
-// banned. The verdict is checked BEFORE showing any page content — a
+// etc) or matches the device blocklist at /admin/security ('blocked' —
+// a purposeful, confirmed block). Anything else we can't actually verify
+// — the browser never producing an identification event, our own check
+// call timing out/erroring, Fingerprint's API failing, a Redis error,
+// etc — shows the 'unverified' screen instead, with `reason` naming
+// specifically why, since none of those are us blocking someone on
+// purpose. The verdict is checked BEFORE showing any page content — a
 // loading screen covers the page until it resolves (or times out), so
 // nobody sees a flash of real content first.
 export default function FingerprintGate({ children }) {
   const { data } = useVisitorData({ immediate: true });
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
+  const [reason, setReason] = useState(null);
   const resolvedRef = useRef(false);
   const identifiedRef = useRef(false);
 
@@ -41,6 +65,7 @@ export default function FingerprintGate({ children }) {
     const timeout = setTimeout(() => {
       if (!resolvedRef.current && !identifiedRef.current) {
         resolvedRef.current = true;
+        setReason('identify-timeout');
         setStatus('unverified');
       }
     }, IDENTIFY_TIMEOUT_MS);
@@ -55,7 +80,8 @@ export default function FingerprintGate({ children }) {
     const checkTimeout = setTimeout(() => {
       if (!cancelled && !resolvedRef.current) {
         resolvedRef.current = true;
-        setStatus('blocked');
+        setReason('check-timeout');
+        setStatus('unverified');
       }
     }, CHECK_TIMEOUT_MS);
 
@@ -64,16 +90,24 @@ export default function FingerprintGate({ children }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ eventId: data.event_id, visitorId: data.visitor_id }),
     })
-      .then((res) => (res.ok ? res.json() : { blocked: true }))
+      .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
       .then((result) => {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
-        setStatus(result?.blocked ? 'blocked' : 'allowed');
+        if (result?.verdict === 'blocked') {
+          setStatus('blocked');
+        } else if (result?.verdict === 'unverified') {
+          setReason(result.reason ?? 'check-api-error');
+          setStatus('unverified');
+        } else {
+          setStatus('allowed');
+        }
       })
       .catch(() => {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
-        setStatus('blocked');
+        setReason('network-error');
+        setStatus('unverified');
       })
       .finally(() => clearTimeout(checkTimeout));
 
@@ -322,13 +356,15 @@ export default function FingerprintGate({ children }) {
               to verify you.
             </h1>
             <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#ec4899' }}>This is usually caused by an ad blocker,</span><br />
-              <span style={{ color: '#a855f7' }}>privacy extension, or VPN.</span>
+              <span style={{ color: '#a855f7', fontWeight: 700 }}>Reason: </span>
+              <span style={{ color: '#ec4899' }}>{reasonLabel(reason)}</span>
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
-              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT</span><br />
-              <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
-            </p>
+            {reason === 'identify-timeout' && (
+              <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
+                <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT</span><br />
+                <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
+              </p>
+            )}
             <button
               onClick={() => window.location.reload()}
               className="fp-reload"
