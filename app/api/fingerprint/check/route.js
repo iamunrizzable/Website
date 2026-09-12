@@ -26,14 +26,25 @@ const RULESET_ID = 'rs_4ns6PcOeU2RspQ';
 // unchecked — that tradeoff was made deliberately, overriding this
 // route's prior fail-open design (which existed because fail-closed
 // caused a site-wide outage once before).
+//
+// The response distinguishes WHY someone is blocked, since a purposeful
+// block (device-blocklist match, ruleset says block) and an unverifiable
+// check (our own errors/timeouts) get different copy on the block page:
+//   verdict: 'allowed'    — passed the blocklist and the ruleset cleanly.
+//   verdict: 'blocked'    — a real, confirmed block (banned device, or
+//                           Fingerprint's ruleset flagged them).
+//   verdict: 'unverified' — we couldn't actually complete the check;
+//                           `reason` carries why, shown on the "unable to
+//                           verify you" screen instead of "Access Denied".
+//
 // Every verdict this route returns is logged here so a fail-closed block
 // (missing key, Redis error, Fingerprint API error/timeout) is
 // distinguishable in Vercel's function logs from a real ruleset/blocklist
 // block. Errors/misconfig use console.error so they're easy to filter
 // for; normal verdicts use console.log.
-function logVerdict(blocked, reason, { visitorId, eventId, isError } = {}) {
+function logVerdict(verdict, reason, { visitorId, eventId, isError } = {}) {
   const log = isError ? console.error : console.log;
-  log(`[fingerprint-check] ${blocked ? 'BLOCKED' : 'allowed'} reason=${reason} visitorId=${visitorId ?? '-'} eventId=${eventId ?? '-'}`);
+  log(`[fingerprint-check] ${verdict} reason=${reason} visitorId=${visitorId ?? '-'} eventId=${eventId ?? '-'}`);
 }
 
 export async function POST(request) {
@@ -43,25 +54,25 @@ export async function POST(request) {
     if (visitorId && typeof visitorId === 'string') {
       const blocked = await isVisitorIdBlocked(visitorId);
       if (blocked) {
-        logVerdict(true, 'device-blocklist', { visitorId, eventId });
-        return NextResponse.json({ blocked: true });
+        logVerdict('blocked', 'device-blocklist', { visitorId, eventId });
+        return NextResponse.json({ verdict: 'blocked' });
       }
     }
   } catch (err) {
-    logVerdict(true, 'device-blocklist-check-error', { visitorId, eventId, isError: true });
-    return NextResponse.json({ blocked: true });
+    logVerdict('unverified', 'device-blocklist-check-error', { visitorId, eventId, isError: true });
+    return NextResponse.json({ verdict: 'unverified', reason: 'device-blocklist-check-error' });
   }
 
   try {
     if (!eventId || typeof eventId !== 'string') {
-      logVerdict(true, 'no-event-id', { visitorId, eventId });
-      return NextResponse.json({ blocked: true });
+      logVerdict('unverified', 'no-event-id', { visitorId, eventId });
+      return NextResponse.json({ verdict: 'unverified', reason: 'no-event-id' });
     }
 
     const apiKey = process.env.FINGERPRINT_SERVER_API_KEY;
     if (!apiKey) {
-      logVerdict(true, 'missing-server-key', { visitorId, eventId, isError: true });
-      return NextResponse.json({ blocked: true });
+      logVerdict('unverified', 'missing-server-key', { visitorId, eventId, isError: true });
+      return NextResponse.json({ verdict: 'unverified', reason: 'missing-server-key' });
     }
 
     const url = `https://api.fpjs.io/v4/events/${encodeURIComponent(eventId)}?ruleset_id=${RULESET_ID}`;
@@ -71,17 +82,23 @@ export async function POST(request) {
     });
 
     if (!res.ok) {
-      logVerdict(true, `fingerprint-api-error-${res.status}`, { visitorId, eventId, isError: true });
-      return NextResponse.json({ blocked: true });
+      const reason = `fingerprint-api-error-${res.status}`;
+      logVerdict('unverified', reason, { visitorId, eventId, isError: true });
+      return NextResponse.json({ verdict: 'unverified', reason });
     }
 
     const event = await res.json();
     const rulesetBlocked = event?.rule_action?.type === 'block';
 
-    logVerdict(rulesetBlocked, rulesetBlocked ? 'ruleset' : 'ruleset-clear', { visitorId, eventId });
-    return NextResponse.json({ blocked: rulesetBlocked });
+    if (rulesetBlocked) {
+      logVerdict('blocked', 'ruleset', { visitorId, eventId });
+      return NextResponse.json({ verdict: 'blocked' });
+    }
+    logVerdict('allowed', 'ruleset-clear', { visitorId, eventId });
+    return NextResponse.json({ verdict: 'allowed' });
   } catch (err) {
-    logVerdict(true, `exception-${err?.name || 'unknown'}`, { visitorId, eventId, isError: true });
-    return NextResponse.json({ blocked: true });
+    const reason = `exception-${err?.name || 'unknown'}`;
+    logVerdict('unverified', reason, { visitorId, eventId, isError: true });
+    return NextResponse.json({ verdict: 'unverified', reason });
   }
 }
