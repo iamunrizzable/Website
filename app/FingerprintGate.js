@@ -13,10 +13,12 @@ import { useVisitorData } from '@fingerprint/react';
 const IDENTIFY_TIMEOUT_MS = 3000;
 
 // How long to wait for OUR OWN /api/fingerprint/check call, once an
-// event_id IS available, before giving up. This path fails OPEN — a
-// slow or down check API (Redis, Fingerprint's ruleset API, etc.) must
-// never block real visitors; that's a site outage, not a security
-// decision, and is exactly what this integration crashed on before.
+// event_id IS available, before giving up. This path now fails CLOSED,
+// per explicit instruction to block any activity that can't be verified
+// — a slow or down check API (Redis, Fingerprint's ruleset API, etc.) is
+// treated as unverified and blocked, not let through. (Previously this
+// failed open specifically to avoid a site outage; that tradeoff was
+// deliberately overridden.)
 const CHECK_TIMEOUT_MS = 5000;
 
 // Blocks the whole site for visitors whose identification event fails the
@@ -53,7 +55,7 @@ export default function FingerprintGate({ children }) {
     const checkTimeout = setTimeout(() => {
       if (!cancelled && !resolvedRef.current) {
         resolvedRef.current = true;
-        setStatus('allowed');
+        setStatus('blocked');
       }
     }, CHECK_TIMEOUT_MS);
 
@@ -62,7 +64,7 @@ export default function FingerprintGate({ children }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ eventId: data.event_id, visitorId: data.visitor_id }),
     })
-      .then((res) => (res.ok ? res.json() : { blocked: false }))
+      .then((res) => (res.ok ? res.json() : { blocked: true }))
       .then((result) => {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
@@ -71,7 +73,7 @@ export default function FingerprintGate({ children }) {
       .catch(() => {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
-        setStatus('allowed');
+        setStatus('blocked');
       })
       .finally(() => clearTimeout(checkTimeout));
 
