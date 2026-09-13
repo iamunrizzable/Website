@@ -44,17 +44,17 @@ export default function TikTokGuidelines() {
         <div className="overview">
           <p className="overview-title">Common violations tend to fall within the following 6 main policies within the Community Guidelines:</p>
           <ul className="overview-list">
-            <li><span className="overview-num">01</span> Hate Speech and Hateful Behaviors</li>
-            <li><span className="overview-num">02</span> Harassment and Bullying</li>
-            <li><span className="overview-num">03</span> Nudity, Body Exposure and Sexual Activity</li>
-            <li><span className="overview-num">04</span> Regulated Goods and Commercial Activity</li>
-            <li><span className="overview-num">05</span> Suicide, Self-Harm and Dangerous Activities</li>
-            <li><span className="overview-num">06</span> Minor/Youth Safety</li>
+            <li><a href="#section-1"><span className="overview-num">01</span> Hate Speech and Hateful Behaviors</a></li>
+            <li><a href="#section-2"><span className="overview-num">02</span> Harassment and Bullying</a></li>
+            <li><a href="#section-3"><span className="overview-num">03</span> Nudity, Body Exposure and Sexual Activity</a></li>
+            <li><a href="#section-4"><span className="overview-num">04</span> Regulated Goods and Commercial Activity</a></li>
+            <li><a href="#section-5"><span className="overview-num">05</span> Suicide, Self-Harm and Dangerous Activities</a></li>
+            <li><a href="#section-6"><span className="overview-num">06</span> Minor/Youth Safety</a></li>
           </ul>
         </div>
 
         {/* Section 1 */}
-        <div className="section">
+        <div className="section" id="section-1">
           <h2 className="section-title">1. Hate Speech and Hateful Behavior</h2>
           <p className="policy-text">
             Neither of us allows any hateful behavior, hate speech, or promotion of hateful ideologies. <span className="white">This includes content that attacks a person or group because of protected attributes.</span>
@@ -77,7 +77,7 @@ export default function TikTokGuidelines() {
         </div>
 
         {/* Section 2 */}
-        <div className="section">
+        <div className="section" id="section-2">
           <h2 className="section-title">2. Harassment and Bullying</h2>
           <p className="policy-text">Neither of us allows language or behavior that harasses, humiliates, or threatens anyone.</p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
@@ -96,7 +96,7 @@ export default function TikTokGuidelines() {
         </div>
 
         {/* Section 3 */}
-        <div className="section">
+        <div className="section" id="section-3">
           <h2 className="section-title">3. <span className="pink">Nudity, Body Exposure</span> and Sexual Activity</h2>
           <p className="policy-text">
             Neither of us allows nudity, including uncovered genitals and buttocks, as well as nipples and areolas of women and girls. <span className="white">Sheer and partially see-through clothing is not considered covered.</span>
@@ -125,7 +125,7 @@ export default function TikTokGuidelines() {
         </div>
 
         {/* Section 4 */}
-        <div className="section">
+        <div className="section" id="section-4">
           <h2 className="section-title">4. Regulated Goods and Commercial Activity</h2>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">
@@ -141,7 +141,7 @@ export default function TikTokGuidelines() {
         </div>
 
         {/* Section 5 */}
-        <div className="section">
+        <div className="section" id="section-5">
           <h2 className="section-title">5. <span className="pink">Suicide, Self-Harm</span> and Dangerous Activities</h2>
           <p className="policy-text">
             TikTok and TJB Management both want this to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. <span className="white">Neither of us allows showing, promoting, or sharing plans for suicide or self-harm.</span>
@@ -165,7 +165,7 @@ export default function TikTokGuidelines() {
         </div>
 
         {/* Section 6 */}
-        <div className="section">
+        <div className="section" id="section-6">
           <h2 className="section-title">6. <span className="pink">Minor/Youth</span> Safety</h2>
           <p className="policy-text">
             Youth safety is a priority for both of us. <span className="white">Neither of us allows content that may put young people at risk of exploitation, or psychological, physical, or developmental harm.</span>
