@@ -5,7 +5,7 @@
    logo shows; this also sidesteps the iOS 26 Safari bug where a
    position:fixed element won't paint behind the floating toolbar
    (Apple dev forum 800798) — that region is just the flat canvas. */
-html { background-color: #0f172a; }
+html { background-color: #0f172a; scroll-behavior: smooth; }
 body { background: transparent; }
 body::before {
   content: "";
@@ -78,16 +78,24 @@ body::before {
           margin: 0;
         }
         .overview-list li {
+          padding: 0;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .overview-list li:last-child { border-bottom: none; }
+        .overview-list li a {
           display: flex;
           align-items: center;
           gap: 16px;
           padding: 10px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
           color: #e2e8f0;
           font-size: 15px;
           font-weight: 500;
+          text-decoration: none;
+          transition: color 0.15s;
         }
-        .overview-list li:last-child { border-bottom: none; }
+        .overview-list li a:hover {
+          color: #d4a5ff;
+        }
         .overview-num {
           font-size: 13px;
           font-weight: 800;
@@ -97,6 +105,7 @@ body::before {
 
         /* Section cards */
         .section {
+          scroll-margin-top: 90px;
           background: rgba(15,23,42,0.55);
           border: 2px solid rgba(168,85,247,0.2);
           border-radius: 16px;
