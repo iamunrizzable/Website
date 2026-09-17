@@ -30,6 +30,15 @@ const s = {
 
 const suspectColor = (label) => (label === 'High' ? '#ef4444' : label === 'Medium' ? '#f59e0b' : '#22c55e');
 
+// Wide-ish bounding box around the marker so the embedded preview reads
+// like a regional map (nearby cities/provinces for context), not just a
+// tight street-level crop.
+const mapBbox = (lat, lon) => {
+  const lonOffset = 10;
+  const latOffset = 5;
+  return `${Number(lon) - lonOffset}%2C${Number(lat) - latOffset}%2C${Number(lon) + lonOffset}%2C${Number(lat) + latOffset}`;
+};
+
 export default function SecurityPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [adminKey, setAdminKey] = useState('');
@@ -215,14 +224,23 @@ export default function SecurityPage() {
                 <div style={s.detailValue}>{loc.city ?? '—'}, {loc.region ?? '—'}, {loc.country ?? '—'}</div>
                 <div style={s.detailSub}>{loc.postalCode ?? '—'} · {loc.timezone ?? '—'}</div>
                 {loc.lat && loc.lon && (
-                  <a
-                    href={`https://www.openstreetmap.org/?mlat=${loc.lat}&mlon=${loc.lon}#map=12/${loc.lat}/${loc.lon}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#a855f7', fontSize: 12 }}
-                  >
-                    View on map →
-                  </a>
+                  <>
+                    <iframe
+                      title="Approximate location"
+                      width="100%"
+                      height="220"
+                      style={{ border: 0, borderRadius: 8, marginTop: 8, display: 'block' }}
+                      src={`https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox(loc.lat, loc.lon)}&layer=mapnik&marker=${loc.lat}%2C${loc.lon}`}
+                    />
+                    <a
+                      href={`https://www.openstreetmap.org/?mlat=${loc.lat}&mlon=${loc.lon}#map=12/${loc.lat}/${loc.lon}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#a855f7', fontSize: 12, display: 'inline-block', marginTop: 6 }}
+                    >
+                      Open larger map →
+                    </a>
+                  </>
                 )}
               </>
             ) : <div style={s.detailSub}>Unknown</div>}

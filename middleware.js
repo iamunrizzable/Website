@@ -29,6 +29,12 @@ function buildCsp(nonce) {
     // allowlist, unlike the third-party SDK this replaced.
     "connect-src 'self'",
     "font-src 'self' data:",
+    // Only for the embedded location-map preview in /admin/security's
+    // detail view (app/admin/security/page.js) — OpenStreetMap's own
+    // official embed endpoint (the same "Share > Embeddable HTML" every
+    // osm.org page offers), not a third-party proxy. No API key, no
+    // account, first-party OSM domain only.
+    "frame-src https://www.openstreetmap.org",
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
