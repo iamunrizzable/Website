@@ -147,7 +147,7 @@ export default function SecurityPage() {
   const summarizeDevice = (d) => {
     const ua = d.userAgent ? d.userAgent.slice(0, 60) : 'Unknown browser';
     const when = d.bannedAt ? new Date(d.bannedAt).toLocaleDateString() : '—';
-    return `${ua} · ${d.country ?? '—'} · banned ${when}`;
+    return `${ua} · ${d.country ?? '—'} · ${d.ip ?? 'no IP captured'} · banned ${when}`;
   };
 
   return (
@@ -240,7 +240,7 @@ export default function SecurityPage() {
               <div key={n.id} style={{ ...s.row, flexDirection: 'column', alignItems: 'stretch', gap: 6 }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span style={{ fontSize: 13 }}>
-                    {n.userAgent ? n.userAgent.slice(0, 50) : 'Unknown browser'} · {n.country ?? '—'}
+                    {n.userAgent ? n.userAgent.slice(0, 50) : 'Unknown browser'} · {n.country ?? '—'} · {n.ip ?? 'no IP captured'}
                   </span>
                   <span style={{ color: '#f59e0b', fontSize: 12, fontWeight: 700 }}>
                     {Math.round((n.score ?? 0) * 100)}% match
