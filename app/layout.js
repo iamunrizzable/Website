@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/next';
 import DeviceGate from './DeviceGate';
 import DeviceIdDebug from './DeviceIdDebug';
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         <DeviceGate>
           {children}
         </DeviceGate>
+        <Analytics />
       </body>
     </html>
   );
