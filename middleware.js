@@ -23,18 +23,19 @@ function buildCsp(nonce) {
     // CDN hosts, an Akamai-fronted edge, and legacy Bytedance CDN domains)
     // beyond tiktokcdn.com/tiktok.com — enumerated here instead of a bare
     // 'https:' wildcard, which Aikido correctly flagged as too permissive.
-    "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.tiktokcdn-eu.com https://*.tiktokcdn-in.com https://*.tiktok.com https://*.tiktokv.com https://*.muscdn.com https://*.ibyteimg.com https://*.ibytedtos.com https://*.akamaized.net",
+    // https://tile.openstreetmap.org: raw map tile PNGs for the admin
+    // location-map preview (app/admin/security/page.js) — plain <img>
+    // requests, not a JS-driven embed, so it needs no frame-src (that
+    // was tried first, using osm.org's iframe embed, and swapped out for
+    // this precisely to remove the third-party-script-in-a-frame failure
+    // mode). No API key, no account, OSM's own tile server, within their
+    // documented acceptable-use policy for this volume.
+    "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.tiktokcdn-eu.com https://*.tiktokcdn-in.com https://*.tiktok.com https://*.tiktokv.com https://*.muscdn.com https://*.ibyteimg.com https://*.ibytedtos.com https://*.akamaized.net https://tile.openstreetmap.org",
     // Device fingerprinting (lib/fingerprint/) is entirely same-origin
     // bundled code now — no external CDN or identify-data endpoint to
     // allowlist, unlike the third-party SDK this replaced.
     "connect-src 'self'",
     "font-src 'self' data:",
-    // Only for the embedded location-map preview in /admin/security's
-    // detail view (app/admin/security/page.js) — OpenStreetMap's own
-    // official embed endpoint (the same "Share > Embeddable HTML" every
-    // osm.org page offers), not a third-party proxy. No API key, no
-    // account, first-party OSM domain only.
-    "frame-src https://www.openstreetmap.org",
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
