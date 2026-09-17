@@ -21,6 +21,7 @@ const s = {
   detailLabel: { color: '#64748b', fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 3 },
   detailValue: { color: '#e2e8f0', fontSize: 13, fontWeight: 600 },
   detailSub: { color: '#94a3b8', fontSize: 12 },
+  caveat: { color: '#f59e0b', fontSize: 11, lineHeight: 1.6, marginTop: 4, fontStyle: 'italic' },
   jsonBlock: { background: '#000', color: '#0f0', fontFamily: 'monospace', fontSize: 11, padding: 10, borderRadius: 6, marginTop: 8, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-all', maxHeight: 300, overflowY: 'auto' },
 };
 
@@ -87,7 +88,10 @@ export default function VisitorListPage() {
     if (!q) return visitors;
     return visitors.filter((v) => {
       const loc = formatLocation(v.lastLocation)?.toLowerCase() ?? '';
-      return v.visitorId.toLowerCase().includes(q) || (v.lastIp ?? '').includes(q) || loc.includes(q);
+      return v.id.toLowerCase().includes(q)
+        || (v.visitorId ?? '').toLowerCase().includes(q)
+        || (v.lastIp ?? '').includes(q)
+        || loc.includes(q);
     });
   }, [visitors, query]);
 
@@ -96,6 +100,13 @@ export default function VisitorListPage() {
   // Signals/Suspect Score/Velocity enrichment (lib/tokens.js only computes
   // that for near-misses and bans, never for ordinary allowed visits), so
   // there's nothing there to show, not a missing feature.
+  const copyToClipboard = (text) => {
+    navigator.clipboard?.writeText(text).then(() => {
+      setMsg('Copied to clipboard.');
+      setTimeout(() => setMsg(''), 2000);
+    }).catch(() => {});
+  };
+
   const renderDetail = (v) => {
     const { browser, os, device } = parseUserAgent(v.lastUserAgent);
     const loc = v.lastLocation;
@@ -104,21 +115,37 @@ export default function VisitorListPage() {
     return (
       <div style={s.detailPanel}>
         <div style={s.detailLabel}>Identification</div>
+        <div style={s.detailSub}>Device marker (unique per device)</div>
         <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
-          {v.visitorId}
+          {v.persistentMarker ?? v.id}
         </div>
         <button
-          style={{ ...s.btnGhost, marginTop: 6 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            navigator.clipboard?.writeText(v.visitorId).then(() => {
-              setMsg('Copied full ID to clipboard.');
-              setTimeout(() => setMsg(''), 2000);
-            }).catch(() => {});
-          }}
+          style={{ ...s.btnGhost, marginTop: 4 }}
+          onClick={(e) => { e.stopPropagation(); copyToClipboard(v.persistentMarker ?? v.id); }}
         >
-          Copy full ID
+          Copy device marker
         </button>
+
+        <div style={{ ...s.detailSub, marginTop: 10 }}>
+          Fingerprint (can match other devices of the same model — see below)
+        </div>
+        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
+          {v.visitorId ?? '—'}
+        </div>
+        {v.visitorId && (
+          <button
+            style={{ ...s.btnGhost, marginTop: 4 }}
+            onClick={(e) => { e.stopPropagation(); copyToClipboard(v.visitorId); }}
+          >
+            Copy fingerprint
+          </button>
+        )}
+        <p style={s.caveat}>
+          Two different phones of the same model/OS/browser can share this fingerprint — it&apos;s
+          used for ban-matching after a device clears storage, not as the unique row identity.
+          The device marker above is what actually distinguishes this row from another visitor.
+        </p>
+
         <div style={{ ...s.detailSub, marginTop: 8 }}>
           First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)} · {v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}
         </div>
@@ -153,11 +180,11 @@ export default function VisitorListPage() {
 
         <button
           style={{ ...s.btnGhost, marginTop: 14 }}
-          onClick={(e) => { e.stopPropagation(); toggleJson(v.visitorId); }}
+          onClick={(e) => { e.stopPropagation(); toggleJson(v.id); }}
         >
-          {showJson[v.visitorId] ? 'Hide JSON' : 'Show JSON'}
+          {showJson[v.id] ? 'Hide JSON' : 'Show JSON'}
         </button>
-        {showJson[v.visitorId] && <pre style={s.jsonBlock}>{JSON.stringify(v, null, 2)}</pre>}
+        {showJson[v.id] && <pre style={s.jsonBlock}>{JSON.stringify(v, null, 2)}</pre>}
       </div>
     );
   };
@@ -213,11 +240,11 @@ export default function VisitorListPage() {
               {filtered.map((v) => {
                 const { browser, os, device } = parseUserAgent(v.lastUserAgent);
                 const location = formatLocation(v.lastLocation);
-                const isExpanded = expandedId === v.visitorId;
+                const isExpanded = expandedId === v.id;
                 return (
-                  <div key={v.visitorId} style={s.row} onClick={() => toggleExpanded(v.visitorId)}>
+                  <div key={v.id} style={s.row} onClick={() => toggleExpanded(v.id)}>
                     <div style={s.visitorId}>
-                      {shortId(v.visitorId)}
+                      {shortId(v.id)}
                       <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
                     </div>
                     <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
