@@ -10,7 +10,7 @@ const s = {
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box', marginBottom: 16 },
   row: { padding: '12px 0', borderBottom: '1px solid #334155' },
-  visitorId: { fontFamily: 'monospace', fontSize: 13, color: '#e2e8f0', wordBreak: 'break-all' },
+  visitorId: { fontFamily: 'monospace', fontSize: 13, color: '#e2e8f0', wordBreak: 'break-all', cursor: 'pointer' },
   metaLine: { fontSize: 12, color: '#94a3b8', marginTop: 4 },
   countBadge: { display: 'inline-block', background: 'rgba(168,85,247,0.15)', color: '#d4a5ff', border: '1px solid rgba(168,85,247,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700, marginLeft: 8 },
   warnBanner: { background: '#3f1d1d', border: '1px solid #ef4444', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 13, color: '#fca5a5', lineHeight: 1.5 },
@@ -27,6 +27,13 @@ function formatLocation(loc) {
   if (!loc) return null;
   const parts = [loc.city, loc.region, loc.country].filter(Boolean);
   return parts.length ? parts.join(', ') : null;
+}
+
+// The full 64-char SHA-256 stays the actual matching/storage key — this
+// only shortens what's shown. Tap to copy the full ID since it's too long
+// to select by hand on a phone.
+function shortId(id) {
+  return `${id.slice(0, 10)}…${id.slice(-6)}`;
 }
 
 export default function VisitorListPage() {
@@ -125,8 +132,17 @@ export default function VisitorListPage() {
                 const location = formatLocation(v.lastLocation);
                 return (
                   <div key={v.visitorId} style={s.row}>
-                    <div style={s.visitorId}>
-                      {v.visitorId}
+                    <div
+                      style={s.visitorId}
+                      title={v.visitorId}
+                      onClick={() => {
+                        navigator.clipboard?.writeText(v.visitorId).then(() => {
+                          setMsg('Copied full ID to clipboard.');
+                          setTimeout(() => setMsg(''), 2000);
+                        }).catch(() => {});
+                      }}
+                    >
+                      {shortId(v.visitorId)}
                       <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
                     </div>
                     <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
