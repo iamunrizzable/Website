@@ -7,6 +7,10 @@
     {
       "path": "/api/cron/process-blocks",
       "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/sync-reputation",
+      "schedule": "0 2 * * *"
     }
   ]
 }

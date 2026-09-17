@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { getFingerprint } from '@/lib/fingerprint/collect';
 import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
+import { collectBotSignals } from '@/lib/fingerprint/botSignals';
+import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
 
 // How long to wait for our OWN local identification — the fingerprint
 // (canvas/WebGL/audio/font collection, lib/fingerprint/collect.js) AND the
@@ -66,8 +68,8 @@ export default function DeviceGate({ children }) {
       }
     }, IDENTIFY_TIMEOUT_MS);
 
-    Promise.all([getFingerprint(), getPersistentMarker()])
-      .then(([{ visitorId: id, components }, persistentMarker]) => {
+    Promise.all([getFingerprint(), getPersistentMarker(), collectBotSignals(), collectPrivacySignals()])
+      .then(([{ visitorId: id, components }, persistentMarker, botSignals, privacySignals]) => {
         if (cancelled || resolvedRef.current) return;
         clearTimeout(watchdog);
         setVisitorId(id);
@@ -83,7 +85,7 @@ export default function DeviceGate({ children }) {
         fetch('/api/fingerprint/check', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ visitorId: id, components, persistentMarker }),
+          body: JSON.stringify({ visitorId: id, components, persistentMarker, botSignals, privacySignals }),
         })
           .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
           .then((result) => {
