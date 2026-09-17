@@ -22,7 +22,9 @@ const VISITOR_ID_RE = /^[A-Za-z0-9]{10,64}$/;
 async function attachHistory(entries) {
   return Promise.all(entries.map(async (entry) => ({
     ...entry,
-    history: entry.visitorId ? await getVisitorHistory(entry.visitorId) : null,
+    history: (entry.visitorId || entry.persistentMarker)
+      ? await getVisitorHistory(entry.visitorId, entry.persistentMarker)
+      : null,
   })));
 }
 
