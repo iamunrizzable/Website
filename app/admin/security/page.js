@@ -292,11 +292,13 @@ export default function SecurityPage() {
 
           {!redisConfigured && (
             <div style={s.warnBanner}>
-              <strong>Blocking is not actually active yet.</strong> This requires Redis
-              (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN, or the Vercel-provisioned
-              KV_REST_API_* equivalents) to be configured — without it, IDs will save here
-              but visitors won&apos;t actually be blocked. Set that up in Vercel
-              (Storage → add a Redis database) and redeploy.
+              <strong>Blocking is not actually active yet.</strong> This requires the
+              TJB_MGMT_IP_BLACKLIST_UPSTASH integration&apos;s
+              TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_URL and
+              TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_TOKEN env vars to be set on this
+              deployment — without them, IDs will save here but visitors won&apos;t actually
+              be blocked. Check that integration is connected to this project in Vercel
+              (Storage → TJB_MGMT_IP_BLACKLIST_UPSTASH) and redeploy.
             </div>
           )}
 
