@@ -20,23 +20,25 @@ export default function SecurityPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [adminKey, setAdminKey] = useState('');
   const [redisConfigured, setRedisConfigured] = useState(true);
-  const [visitorIds, setVisitorIds] = useState([]);
+  const [devices, setDevices] = useState([]);
+  const [nearMisses, setNearMisses] = useState([]);
   const [newVisitorId, setNewVisitorId] = useState('');
   const [deviceMsg, setDeviceMsg] = useState('');
   const [tiktokSuspended, setTiktokSuspended] = useState(false);
   const [tiktokMsg, setTiktokMsg] = useState('');
   const [tiktokBusy, setTiktokBusy] = useState(false);
 
-  const fetchVisitorIds = useCallback(async (key) => {
+  const fetchDevices = useCallback(async (key) => {
     try {
       const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
       if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
       const data = await res.json();
-      setVisitorIds(data.visitorIds ?? []);
+      setDevices(data.devices ?? []);
+      setNearMisses(data.nearMisses ?? []);
       setRedisConfigured(!!data.redisConfigured);
       localStorage.setItem('admin_key', key);
     } catch (e) {
-      setDeviceMsg('Failed to load blocked IDs: ' + e.message);
+      setDeviceMsg('Failed to load blocked devices: ' + e.message);
     }
   }, []);
 
@@ -55,15 +57,15 @@ export default function SecurityPage() {
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
-      fetchVisitorIds(saved);
+      fetchDevices(saved);
       fetchTiktokSuspension(saved);
     } else {
       fetch('/api/admin/me')
         .then(r => r.json())
-        .then(({ key }) => { if (key) { setAdminKey(key); fetchVisitorIds(key); fetchTiktokSuspension(key); } })
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchDevices(key); fetchTiktokSuspension(key); } })
         .catch(() => {});
     }
-  }, [fetchVisitorIds, fetchTiktokSuspension]);
+  }, [fetchDevices, fetchTiktokSuspension]);
 
   const toggleTiktokSuspension = async () => {
     setTiktokMsg('');
@@ -97,22 +99,55 @@ export default function SecurityPage() {
       const data = await res.json();
       if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to block ID'); return; }
       setNewVisitorId('');
-      fetchVisitorIds(adminKey);
+      fetchDevices(adminKey);
     } catch (e) {
       setDeviceMsg('Failed to block ID: ' + e.message);
     }
   };
 
-  const removeVisitorId = async (visitorId) => {
+  const removeDevice = async (banId) => {
     try {
-      await fetch(`/api/admin/blocked-devices?visitorId=${encodeURIComponent(visitorId)}`, {
+      await fetch(`/api/admin/blocked-devices?banId=${encodeURIComponent(banId)}`, {
         method: 'DELETE',
         headers: { 'x-admin-key': adminKey },
       });
-      fetchVisitorIds(adminKey);
+      fetchDevices(adminKey);
     } catch (e) {
-      setDeviceMsg('Failed to remove ID: ' + e.message);
+      setDeviceMsg('Failed to remove device: ' + e.message);
     }
+  };
+
+  const promoteNearMiss = async (nearMissId) => {
+    try {
+      const res = await fetch('/api/admin/blocked-devices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify({ promoteNearMissId: nearMissId }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to confirm ban'); return; }
+      fetchDevices(adminKey);
+    } catch (e) {
+      setDeviceMsg('Failed to confirm ban: ' + e.message);
+    }
+  };
+
+  const dismissNearMiss = async (nearMissId) => {
+    try {
+      await fetch(`/api/admin/blocked-devices?nearMissId=${encodeURIComponent(nearMissId)}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-key': adminKey },
+      });
+      fetchDevices(adminKey);
+    } catch (e) {
+      setDeviceMsg('Failed to dismiss: ' + e.message);
+    }
+  };
+
+  const summarizeDevice = (d) => {
+    const ua = d.userAgent ? d.userAgent.slice(0, 60) : 'Unknown browser';
+    const when = d.bannedAt ? new Date(d.bannedAt).toLocaleDateString() : '—';
+    return `${ua} · ${d.country ?? '—'} · banned ${when}`;
   };
 
   return (
@@ -168,7 +203,7 @@ export default function SecurityPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <input
                 style={s.input}
-                placeholder="e.g. MiGaRxSTjSL0ADqniflW"
+                placeholder="paste a device id (e.g. from ?fpdebug=1)"
                 value={newVisitorId}
                 onChange={(e) => setNewVisitorId(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') addVisitorId(); }}
@@ -178,12 +213,46 @@ export default function SecurityPage() {
           </div>
 
           <div style={s.card}>
-            <div style={s.h2}>Blocked IDs ({visitorIds.length})</div>
-            {visitorIds.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No IDs blocked.</div>}
-            {visitorIds.map((visitorId) => (
-              <div key={visitorId} style={s.row}>
-                <span>{visitorId}</span>
-                <button style={s.btnDanger} onClick={() => removeVisitorId(visitorId)}>Remove</button>
+            <div style={s.h2}>Blocked Devices ({devices.length})</div>
+            {devices.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No devices blocked.</div>}
+            {devices.map((d) => (
+              <div key={d.id} style={{ ...s.row, flexDirection: 'column', alignItems: 'stretch', gap: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 13 }}>{summarizeDevice(d)}</span>
+                  <button style={s.btnDanger} onClick={() => removeDevice(d.id)}>Remove</button>
+                </div>
+                <span style={{ color: '#64748b', fontSize: 11 }}>
+                  {d.visitorId ? `id: ${d.visitorId.slice(0, 16)}…` : 'no exact id captured'}
+                  {d.note ? ` · ${d.note}` : ''}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div style={s.card}>
+            <div style={s.h2}>Near-Miss Review ({nearMisses.length})</div>
+            <p style={{ color: '#94a3b8', fontSize: 13, lineHeight: 1.6, marginBottom: 16 }}>
+              Visits whose device fingerprint scored close to a banned profile but weren&apos;t
+              automatically blocked. Confirm to add them as their own ban, or dismiss if unrelated.
+            </p>
+            {nearMisses.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No near-misses pending review.</div>}
+            {nearMisses.map((n) => (
+              <div key={n.id} style={{ ...s.row, flexDirection: 'column', alignItems: 'stretch', gap: 6 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 13 }}>
+                    {n.userAgent ? n.userAgent.slice(0, 50) : 'Unknown browser'} · {n.country ?? '—'}
+                  </span>
+                  <span style={{ color: '#f59e0b', fontSize: 12, fontWeight: 700 }}>
+                    {Math.round((n.score ?? 0) * 100)}% match
+                  </span>
+                </div>
+                <span style={{ color: '#64748b', fontSize: 11 }}>
+                  seen {n.seenAt ? new Date(n.seenAt).toLocaleString() : '—'}
+                </span>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button style={s.btn} onClick={() => promoteNearMiss(n.id)}>Confirm Ban</button>
+                  <button style={s.btnDanger} onClick={() => dismissNearMiss(n.id)}>Dismiss</button>
+                </div>
               </div>
             ))}
           </div>

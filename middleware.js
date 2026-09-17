@@ -10,29 +10,24 @@ import { timingSafeEqual } from './lib/auth.js';
 // IP-based blocking used to live here (checked against a blocklist managed
 // at /admin/security). Removed — IP is trivially rotated/spoofed (mobile
 // carrier CGNAT alone made it unreliable all session), so blocking now
-// happens purely on Fingerprint's visitor_id (see FingerprintGate.js /
-// app/api/fingerprint/check), which survives IP changes.
+// happens purely on our in-house device fingerprint (see DeviceGate.js /
+// app/api/fingerprint/check, lib/fingerprint/, lib/deviceMatch.js), which
+// survives IP changes.
 
 function buildCsp(nonce) {
   return [
     "default-src 'self'",
-    // fpnpmcdn.net: Fingerprint's agent loader, dynamically imported by
-    // FingerprintClient (app/layout.js). Covered by 'strict-dynamic' in
-    // modern browsers regardless, but listed explicitly as the fallback
-    // for browsers that don't support strict-dynamic.
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://fpnpmcdn.net`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
     "style-src 'self' 'unsafe-inline'",
     // TikTok's image CDN spans several distinct domain families (regional
     // CDN hosts, an Akamai-fronted edge, and legacy Bytedance CDN domains)
     // beyond tiktokcdn.com/tiktok.com — enumerated here instead of a bare
     // 'https:' wildcard, which Aikido correctly flagged as too permissive.
     "img-src 'self' data: blob: https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.tiktokcdn-eu.com https://*.tiktokcdn-in.com https://*.tiktok.com https://*.tiktokv.com https://*.muscdn.com https://*.ibyteimg.com https://*.ibytedtos.com https://*.akamaized.net",
-    // fpnpmcdn.net: loader domain (script-src above). api.fpjs.io: the
-    // actual identify-data request domain — confirmed via a live
-    // securitypolicyviolation report showing requests blocked to
-    // https://api.fpjs.io/... (not fpnpmcdn.net, which only serves the
-    // agent script itself).
-    "connect-src 'self' https://fpnpmcdn.net https://api.fpjs.io",
+    // Device fingerprinting (lib/fingerprint/) is entirely same-origin
+    // bundled code now — no external CDN or identify-data endpoint to
+    // allowlist, unlike the third-party SDK this replaced.
+    "connect-src 'self'",
     "font-src 'self' data:",
     "frame-ancestors 'none'",
     "object-src 'none'",
