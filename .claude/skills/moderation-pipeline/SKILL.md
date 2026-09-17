@@ -77,7 +77,7 @@ No TikTok API exists for blocking users, so:
 
 ## Email alerts (`lib/email/alerts.js`)
 
-Nodemailer → SMTP (Gmail defaults) → tyler@tjbmanagementinc.com, hardcoded. Skips silently when `SMTP_USER`/`SMTP_PASS` unset — so "no alert arrived" first check is env vars, second is score < 60. Minor detections get a special 🚨 subject + red banner.
+Nodemailer → SMTP (iCloud Mail only, not Gmail — `smtp.mail.me.com` default) → tyler@tjbmanagementinc.com, hardcoded. Skips silently when `SMTP_USER`/`SMTP_PASS` unset — so "no alert arrived" first check is env vars, second is score < 60. Minor detections get a special 🚨 subject + red banner.
 
 ## Crons (`vercel.json`)
 

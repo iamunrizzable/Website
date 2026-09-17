@@ -30,7 +30,7 @@ House rule: **never guess.** Reproduce or trace the failing path to a confirmed 
 
 ## No alert email arrived
 
-Order: ① score actually ≥ 60? (`POST /api/moderate` the exact text to check) ② `SMTP_USER`/`SMTP_PASS` set? (unset = silent skip, only a console.warn) ③ Gmail app-password valid / not rate-limited? ④ Recipient is hardcoded `tyler@tjbmanagementinc.com` in `lib/email/alerts.js`.
+Order: ① score actually ≥ 60? (`POST /api/moderate` the exact text to check) ② `SMTP_USER`/`SMTP_PASS` set? (unset = silent skip, only a console.warn) ③ iCloud app-specific password valid / not rate-limited? ④ Recipient is hardcoded `tyler@tjbmanagementinc.com` in `lib/email/alerts.js`.
 
 ## Block queue not processing
 
