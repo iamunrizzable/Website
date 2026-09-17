@@ -213,11 +213,11 @@ export default function VisitorListPage() {
 
           {!redisConfigured && (
             <div style={s.warnBanner}>
-              <strong>Storage is not actually configured yet.</strong> This requires the TJB_MGMT_IP_BLACKLIST_UPSTASH
-              integration&apos;s TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_URL and TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_TOKEN
-              env vars to be set on this deployment — without them this list resets on every cold start and only reflects
-              recent traffic to this one serverless instance. Check that integration is connected to this project in
-              Vercel (Storage → TJB_MGMT_IP_BLACKLIST_UPSTASH) and redeploy.
+              <strong>Storage is not actually configured yet.</strong> No Redis connection is
+              configured on this deployment — without one, this list resets on every cold
+              start and only reflects recent traffic to whichever serverless instance handled
+              it. Reconnect the Redis database to this project in Vercel (Storage → your
+              Redis database → Connect to Project), then redeploy.
             </div>
           )}
 
