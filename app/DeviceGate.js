@@ -1,121 +1,119 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useVisitorData } from '@fingerprint/react';
+import { getFingerprint } from '@/lib/fingerprint/collect';
 
-// How long to wait for Fingerprint's OWN script to identify the visitor
-// (i.e. for data.event_id to appear) before concluding identification
-// itself failed — most commonly an ad blocker or privacy extension
-// blocking fpnpmcdn.net/api.fpjs.io, rather than any policy violation.
-// This path fails CLOSED: if we can never even ask "is this visitor
-// banned," letting them through unconditionally would make blocking
-// this script an unintentional bypass of every device ban on the site.
-const IDENTIFY_TIMEOUT_MS = 3000;
+// How long to wait for our OWN local fingerprint computation (canvas/WebGL/
+// audio/font collection — see lib/fingerprint/collect.js) before concluding
+// it failed. There's no remote script/network round-trip anymore (everything
+// is bundled same-origin), so this is now just a watchdog against a hung or
+// blocked browser API (a locked-down privacy browser can still disable
+// Canvas/AudioContext outright). This path fails CLOSED: if we can never
+// even compute a fingerprint to check, letting the visitor through
+// unconditionally would make blocking those APIs an unintentional bypass of
+// every device ban on the site.
+const IDENTIFY_TIMEOUT_MS = 2000;
 
-// How long to wait for OUR OWN /api/fingerprint/check call, once an
-// event_id IS available, before giving up. This path now fails CLOSED,
-// per explicit instruction to block any activity that can't be verified
-// — a slow or down check API (Redis, Fingerprint's ruleset API, etc.) is
-// treated as unverified and blocked, not let through. (Previously this
-// failed open specifically to avoid a site outage; that tradeoff was
-// deliberately overridden.)
+// How long to wait for OUR OWN /api/fingerprint/check call once a
+// fingerprint IS available, before giving up. Fails CLOSED — any activity
+// this can't verify (Redis error, a slow response, a network failure) is
+// treated as unverified and blocked, not let through.
 const CHECK_TIMEOUT_MS = 5000;
 
 // Friendly labels for the 'unverified' screen's reason line. A purposeful
-// block (device-blocklist match, ruleset says block) shows 'blocked'
-// instead — this map only covers cases where we couldn't actually
-// complete verification. Falls back to the raw reason string for
-// dynamic/unmapped codes (fingerprint-api-error-*, exception-*).
+// block (device-blocklist match, or a high-confidence similarity match)
+// shows 'blocked' instead — this map only covers cases where we couldn't
+// actually complete verification.
 const REASON_LABELS = {
-  'identify-timeout': 'Your browser or an extension (ad blocker, privacy extension, or VPN) prevented us from identifying your device.',
+  'fingerprint-error': "We couldn't compute a device identifier in your browser.",
   'check-timeout': 'Our verification service took too long to respond.',
   'check-api-error': 'Our verification service returned an error.',
   'network-error': "We couldn't reach our verification service.",
   'device-blocklist-check-error': "We couldn't confirm your device's status.",
-  'no-event-id': 'Verification data was missing from your request.',
-  'missing-server-key': "Our verification service isn't configured correctly.",
+  'no-components': 'Verification data was missing from your request.',
 };
 
 function reasonLabel(reason) {
-  if (REASON_LABELS[reason]) return REASON_LABELS[reason];
-  if (reason?.startsWith('fingerprint-api-error-')) return 'Our verification provider returned an error.';
-  if (reason?.startsWith('exception-')) return 'An unexpected error occurred during verification.';
-  return reason || 'We were unable to complete verification.';
+  return REASON_LABELS[reason] ?? reason ?? 'We were unable to complete verification.';
 }
 
-// Blocks the whole site for visitors whose identification event fails the
-// Fingerprint ruleset (rs_4ns6PcOeU2RspQ — forbidden IPs, VPN detection,
-// etc) or matches the device blocklist at /admin/security ('blocked' —
-// a purposeful, confirmed block). Anything else we can't actually verify
-// — the browser never producing an identification event, our own check
-// call timing out/erroring, Fingerprint's API failing, a Redis error,
-// etc — shows the 'unverified' screen instead, with `reason` naming
-// specifically why, since none of those are us blocking someone on
-// purpose. The verdict is checked BEFORE showing any page content — a
-// loading screen covers the page until it resolves (or times out), so
-// nobody sees a flash of real content first.
-export default function FingerprintGate({ children }) {
-  const { data } = useVisitorData({ immediate: true });
+// Blocks the whole site for visitors whose device fingerprint matches the
+// blocklist at /admin/security — either exactly, or by weighted similarity
+// (lib/deviceMatch.js) when a signal has drifted since the ban ('blocked' —
+// a purposeful, confirmed block). Anything else we can't actually verify —
+// local fingerprint computation failing, our own check call timing out/
+// erroring, a Redis error, etc — shows the 'unverified' screen instead,
+// with `reason` naming specifically why, since none of those are us
+// blocking someone on purpose. The verdict is checked BEFORE showing any
+// page content — a loading screen covers the page until it resolves (or
+// times out), so nobody sees a flash of real content first.
+export default function DeviceGate({ children }) {
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const [reason, setReason] = useState(null);
+  const [visitorId, setVisitorId] = useState(null);
   const resolvedRef = useRef(false);
-  const identifiedRef = useRef(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!resolvedRef.current && !identifiedRef.current) {
+    let cancelled = false;
+
+    const watchdog = setTimeout(() => {
+      if (!cancelled && !resolvedRef.current) {
         resolvedRef.current = true;
-        setReason('identify-timeout');
+        setReason('fingerprint-error');
         setStatus('unverified');
       }
     }, IDENTIFY_TIMEOUT_MS);
-    return () => clearTimeout(timeout);
-  }, []);
 
-  useEffect(() => {
-    if (!data?.event_id) return;
-    identifiedRef.current = true;
-    let cancelled = false;
-
-    const checkTimeout = setTimeout(() => {
-      if (!cancelled && !resolvedRef.current) {
-        resolvedRef.current = true;
-        setReason('check-timeout');
-        setStatus('unverified');
-      }
-    }, CHECK_TIMEOUT_MS);
-
-    fetch('/api/fingerprint/check', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ eventId: data.event_id, visitorId: data.visitor_id }),
-    })
-      .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
-      .then((result) => {
+    getFingerprint()
+      .then(({ visitorId: id, components }) => {
         if (cancelled || resolvedRef.current) return;
-        resolvedRef.current = true;
-        if (result?.verdict === 'blocked') {
-          setStatus('blocked');
-        } else if (result?.verdict === 'unverified') {
-          setReason(result.reason ?? 'check-api-error');
-          setStatus('unverified');
-        } else {
-          setStatus('allowed');
-        }
+        clearTimeout(watchdog);
+        setVisitorId(id);
+
+        const checkTimeout = setTimeout(() => {
+          if (!cancelled && !resolvedRef.current) {
+            resolvedRef.current = true;
+            setReason('check-timeout');
+            setStatus('unverified');
+          }
+        }, CHECK_TIMEOUT_MS);
+
+        fetch('/api/fingerprint/check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ visitorId: id, components }),
+        })
+          .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
+          .then((result) => {
+            if (cancelled || resolvedRef.current) return;
+            resolvedRef.current = true;
+            if (result?.verdict === 'blocked') {
+              setStatus('blocked');
+            } else if (result?.verdict === 'unverified') {
+              setReason(result.reason ?? 'check-api-error');
+              setStatus('unverified');
+            } else {
+              setStatus('allowed');
+            }
+          })
+          .catch(() => {
+            if (cancelled || resolvedRef.current) return;
+            resolvedRef.current = true;
+            setReason('network-error');
+            setStatus('unverified');
+          })
+          .finally(() => clearTimeout(checkTimeout));
       })
       .catch(() => {
         if (cancelled || resolvedRef.current) return;
         resolvedRef.current = true;
-        setReason('network-error');
+        clearTimeout(watchdog);
+        setReason('fingerprint-error');
         setStatus('unverified');
-      })
-      .finally(() => clearTimeout(checkTimeout));
+      });
 
-    return () => {
-      cancelled = true;
-      clearTimeout(checkTimeout);
-    };
-  }, [data?.event_id]);
+    return () => { cancelled = true; clearTimeout(watchdog); };
+  }, []);
 
   if (status === 'checking') {
     return (
@@ -259,9 +257,9 @@ export default function FingerprintGate({ children }) {
               </span><br />
               <span style={{ color: '#ec4899' }}>for assistance.</span>
             </p>
-            {data?.visitor_id && (
+            {visitorId && (
               <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: '18px 0 0', color: '#06b6d4' }}>
-                Your ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{data.visitor_id}</span>
+                Your ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{visitorId}</span>
                 <br />
                 <span style={{ color: '#ec4899' }}>(make sure to include this in your email,</span><br />
                 <span style={{ color: '#ec4899' }}>otherwise we won&apos;t be able to identify you)</span>
@@ -359,12 +357,6 @@ export default function FingerprintGate({ children }) {
               <span style={{ color: '#a855f7', fontWeight: 700 }}>Reason: </span>
               <span style={{ color: '#ec4899' }}>{reasonLabel(reason)}</span>
             </p>
-            {reason === 'identify-timeout' && (
-              <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 12px' }}>
-                <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>PLEASE DISABLE IT</span><br />
-                <span style={{ color: '#d946ef', fontSize: 18, fontWeight: 700 }}>AND</span>
-              </p>
-            )}
             <button
               onClick={() => window.location.reload()}
               className="fp-reload"
