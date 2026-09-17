@@ -296,13 +296,14 @@ export default function SecurityPage() {
 
           {!redisConfigured && (
             <div style={s.warnBanner}>
-              <strong>Blocking is not actually active yet.</strong> This requires the
-              TJB_MGMT_IP_BLACKLIST_UPSTASH integration&apos;s
-              TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_URL and
-              TJB_MGMT_INC_IP_BLACKLIST_KV_REST_API_TOKEN env vars to be set on this
-              deployment — without them, IDs will save here but visitors won&apos;t actually
-              be blocked. Check that integration is connected to this project in Vercel
-              (Storage → TJB_MGMT_IP_BLACKLIST_UPSTASH) and redeploy.
+              <strong>Blocking is not actually active yet.</strong> No Redis connection is
+              configured on this deployment — without one, IDs will save here but visitors
+              won&apos;t actually be blocked, and nothing survives a redeploy. Reconnect the
+              Redis database to this project in Vercel (Storage → your Redis database →
+              Connect to Project), redeploy, and this banner should clear. If it still shows
+              a REDIS_URL env var after that, tell the person maintaining this site — the
+              database is on Redis Cloud and needs a plain REDIS_URL, not the
+              REST-API-style vars an Upstash integration would use.
             </div>
           )}
 
