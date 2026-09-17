@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { isValidAdminKey } from '@/lib/auth';
 import {
   getBlockedDevices, addBlockedDevice, removeBlockedDevice,
-  getNearMisses, promoteNearMiss, removeNearMiss, isRedisConfigured,
+  getNearMisses, promoteNearMiss, removeNearMiss, isRedisConfigured, getVisitorHistory,
 } from '@/lib/tokens';
 
 // Loose validation for the manual-entry path (an admin pasting a raw
@@ -12,9 +12,24 @@ import {
 // shorter/legacy-style ids without rejecting them outright.
 const VISITOR_ID_RE = /^[A-Za-z0-9]{10,64}$/;
 
+// Attaches each entry's Visitor History (first-seen/last-seen/visit count,
+// lib/tokens.js's recordVisitorHistory/getVisitorHistory — tracked for
+// every check, not just flagged ones) by visitorId, without duplicating
+// that data into the blocklist/near-miss storage itself. This is an
+// admin-only, infrequently-loaded endpoint, so the extra per-entry lookup
+// is a reasonable cost here even though the same pattern would be wrong
+// on the hot /api/fingerprint/check path.
+async function attachHistory(entries) {
+  return Promise.all(entries.map(async (entry) => ({
+    ...entry,
+    history: entry.visitorId ? await getVisitorHistory(entry.visitorId) : null,
+  })));
+}
+
 export async function GET(request) {
   if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const [devices, nearMisses] = await Promise.all([getBlockedDevices(), getNearMisses()]);
+  const [rawDevices, rawNearMisses] = await Promise.all([getBlockedDevices(), getNearMisses()]);
+  const [devices, nearMisses] = await Promise.all([attachHistory(rawDevices), attachHistory(rawNearMisses)]);
   return NextResponse.json({ devices, nearMisses, redisConfigured: isRedisConfigured() });
 }
 

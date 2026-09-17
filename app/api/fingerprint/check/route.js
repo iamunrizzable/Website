@@ -12,6 +12,13 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 // is what catches a banned device after a browser/OS update shifts its
 // canvas/WebGL output just enough to change the exact hash.
 //
+// Also threads through IP geolocation (free Vercel edge headers) and the
+// client's bot/privacy heuristic signals (lib/fingerprint/botSignals.js,
+// privacySignals.js) — lib/tokens.js only turns these into enrichment data
+// on a near-miss/block, never on an allowed visit, and none of it is ever
+// sent back in this route's response (the client-visible shape below is
+// unchanged either way).
+//
 // Fails CLOSED on any problem: missing/invalid components, or a Redis
 // error, both resolve to BLOCKED rather than skipping the check — per
 // explicit instruction, any activity this route can't actually verify is
@@ -35,7 +42,7 @@ function logVerdict(verdict, reason, { visitorId, isError, score } = {}) {
 }
 
 export async function POST(request) {
-  const { visitorId, components, persistentMarker } = await request.json().catch(() => ({}));
+  const { visitorId, components, persistentMarker, botSignals, privacySignals } = await request.json().catch(() => ({}));
 
   if (!components || typeof components !== 'object') {
     logVerdict('unverified', 'no-components', { visitorId });
@@ -47,9 +54,23 @@ export async function POST(request) {
     const country = request.headers.get('x-vercel-ip-country') || null;
     const userAgent = request.headers.get('user-agent') || null;
     const acceptLanguage = request.headers.get('accept-language') || null;
+    // Free at the edge on every request, no setup needed — see
+    // lib/reputation/enrich.js's Location panel in the admin detail view.
+    // Only ever attached to a near-miss/block record, never sent back to
+    // the client (the response shape below is unchanged).
+    const location = {
+      city: request.headers.get('x-vercel-ip-city') ? decodeURIComponent(request.headers.get('x-vercel-ip-city')) : null,
+      region: request.headers.get('x-vercel-ip-country-region') || null,
+      country,
+      lat: request.headers.get('x-vercel-ip-latitude') || null,
+      lon: request.headers.get('x-vercel-ip-longitude') || null,
+      postalCode: request.headers.get('x-vercel-ip-postal-code') || null,
+      timezone: request.headers.get('x-vercel-ip-timezone') || null,
+    };
 
     const result = await checkDeviceAgainstBlocklist({
       visitorId, components, persistentMarker, ip, country, userAgent, acceptLanguage,
+      location, botSignals, privacySignals,
     });
 
     if (result.verdict === 'blocked') {
