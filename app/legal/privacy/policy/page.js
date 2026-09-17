@@ -113,26 +113,25 @@ export default function PrivacyPolicy() {
             This Website is hosted on Vercel, which provides TJB Management with <strong>Vercel Analytics</strong> — a built-in traffic dashboard that shows a visitor's IP address and the time of each visit. This data remains visible to TJB Management for approximately 24 hours following a visit and is used only to understand site traffic; it is not sold, shared with advertisers, or used for cross-site tracking.
           </p>
           <p>
-            The Website also uses <strong>Fingerprint</strong>, a third-party device identification service, for security purposes — specifically, to detect and permanently block a device from accessing TJB Management&apos;s Website, social media accounts, and systems following a policy violation or abuse, independent of the visitor&apos;s IP address (which can change or be shared across devices). Fingerprint&apos;s own privacy practices are described at fingerprint.com.
+            The Website also computes a <strong>device identifier</strong> for security purposes — specifically, to detect and permanently block a device from accessing TJB Management&apos;s Website, social media accounts, and systems following a policy violation or abuse, independent of the visitor&apos;s IP address (which can change or be shared across devices). This identifier is computed entirely by TJB Management&apos;s own systems; it is not provided by, and this data is not shared with, any third-party identification service.
           </p>
           <p>
-            To build a device identifier, Fingerprint may examine signals including, without limitation:
-          </p>
-          <ul>
-            <li>Security and risk signals: jailbreak/root detection, GPS location spoofing, man-in-the-middle (MitM) detection, Tor and privacy-browser detection, iOS simulator/emulator detection, and VPN, proxy, or datacenter IP detection.</li>
-            <li>Device and browser signals: browser and operating system, user agent string, screen resolution and color depth, installed fonts, timezone and language settings, canvas, WebGL, and audio fingerprints, CPU and memory characteristics, touch-input support, and cookie identifiers.</li>
-          </ul>
-          <p>
-            <strong>By accessing or using the Website, you consent to TJB Management&apos;s and Fingerprint&apos;s collection and use of this device data for the purposes described above, and you agree that TJB Management may use, retain, and share this data as it sees fit</strong>, including with Fingerprint and other service providers, business partners, or successors, in connection with operating, securing, and improving the Website and TJB Management&apos;s social media accounts and systems.
+            To build a device identifier, the Website examines signals including, without limitation: browser and operating system, user agent string, screen resolution and color depth, installed fonts, timezone and language settings, canvas, WebGL, and audio fingerprints, and CPU, memory, and touch-input characteristics.
           </p>
           <p>
-            Beyond Vercel Analytics and Fingerprint, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
+            The Website also stores a randomly generated marker in multiple browser storage mechanisms (including local storage, IndexedDB, and the Cache API) so that a blocked device remains identifiable even if some, but not all, of that stored data is later cleared. This marker is used solely to enforce blocks against devices that have violated TJB Management&apos;s policies; it is not used for advertising, cross-site tracking, or any purpose beyond the security purpose described in this section.
+          </p>
+          <p>
+            <strong>By accessing or using the Website, you consent to TJB Management&apos;s collection and use of this device data for the purposes described above, and you agree that TJB Management may use, retain, and share this data as it sees fit</strong>, including with service providers, business partners, or successors, in connection with operating, securing, and improving the Website and TJB Management&apos;s social media accounts and systems.
+          </p>
+          <p>
+            Beyond Vercel Analytics and this device identification system, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
           </p>
           <p>
             The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
-            Beyond Vercel Analytics, Fingerprint device identification, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
+            Beyond Vercel Analytics, the device identification described above, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
           </p>
         </div>
 

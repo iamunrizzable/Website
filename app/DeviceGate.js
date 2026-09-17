@@ -2,16 +2,18 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { getFingerprint } from '@/lib/fingerprint/collect';
+import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
 
-// How long to wait for our OWN local fingerprint computation (canvas/WebGL/
-// audio/font collection — see lib/fingerprint/collect.js) before concluding
-// it failed. There's no remote script/network round-trip anymore (everything
-// is bundled same-origin), so this is now just a watchdog against a hung or
-// blocked browser API (a locked-down privacy browser can still disable
-// Canvas/AudioContext outright). This path fails CLOSED: if we can never
-// even compute a fingerprint to check, letting the visitor through
-// unconditionally would make blocking those APIs an unintentional bypass of
-// every device ban on the site.
+// How long to wait for our OWN local identification — the fingerprint
+// (canvas/WebGL/audio/font collection, lib/fingerprint/collect.js) AND the
+// persistent storage marker (lib/fingerprint/persistentMarker.js) — before
+// concluding it failed. There's no remote script/network round-trip anymore
+// (everything is bundled same-origin), so this is now just a watchdog
+// against a hung or blocked browser API (a locked-down privacy browser can
+// still disable Canvas/AudioContext/IndexedDB outright). This path fails
+// CLOSED: if we can never even compute an identity to check, letting the
+// visitor through unconditionally would make blocking those APIs an
+// unintentional bypass of every device ban on the site.
 const IDENTIFY_TIMEOUT_MS = 2000;
 
 // How long to wait for OUR OWN /api/fingerprint/check call once a
@@ -64,8 +66,8 @@ export default function DeviceGate({ children }) {
       }
     }, IDENTIFY_TIMEOUT_MS);
 
-    getFingerprint()
-      .then(({ visitorId: id, components }) => {
+    Promise.all([getFingerprint(), getPersistentMarker()])
+      .then(([{ visitorId: id, components }, persistentMarker]) => {
         if (cancelled || resolvedRef.current) return;
         clearTimeout(watchdog);
         setVisitorId(id);
@@ -81,7 +83,7 @@ export default function DeviceGate({ children }) {
         fetch('/api/fingerprint/check', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ visitorId: id, components }),
+          body: JSON.stringify({ visitorId: id, components, persistentMarker }),
         })
           .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
           .then((result) => {
