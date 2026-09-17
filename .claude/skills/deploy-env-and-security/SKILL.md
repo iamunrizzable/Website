@@ -28,7 +28,7 @@ description: Deployment workflow, complete environment-variable inventory, secur
 | `TIKTOK_BUSINESS_ID` | reference | Numeric Business Center ID `7632045808657368084` |
 | `TIKTOK_CLIENT_KEY` / `TIKTOK_CLIENT_SECRET` / `TIKTOK_REDIRECT_URI` | legacy Login Kit flow | dormant |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | lib/tokens.js, /api/agency | **Currently NOT configured** — everything falls back to in-memory + cookies |
-| `SMTP_HOST/PORT/SECURE/USER/PASS/FROM` | email alerts, agency form | iCloud Mail only (not Gmail) — `smtp.mail.me.com` default, app-specific password required; unset = emails silently skipped |
+| `SMTP_HOST/PORT/SECURE` + `ICLOUD_EMAIL_ADDRESS`/`ICLOUD_APP_PASSWORD` | email alerts (lib/email/alerts.js) | iCloud Mail only (not Gmail) — `smtp.mail.me.com` default, app-specific password required; unset = emails silently skipped |
 | `ANTHROPIC_API_KEY` | `/api/dm` | Hallie DM assistant (claude-sonnet-4-6) |
 | `CHROMIUM_PATH` | lib/tiktok/browser.js | Optional local override; Vercel uses @sparticuz/chromium |
 | `SITE_URL` | lib/site-url.js | Canonical origin for redirects; defaults to tjbmanagementinc.com in prod |
