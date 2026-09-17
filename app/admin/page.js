@@ -27,6 +27,11 @@ const TOOLS = [
     title: 'Security',
     desc: 'Permanently ban devices from the site by Fingerprint ID. Also has the TikTok Agency kill switch.',
   },
+  {
+    href: '/admin/visitor/list',
+    title: 'Site Visitors',
+    desc: 'Every visitor the site has identified, banned or not — first seen, last seen, visit count, IP, and location.',
+  },
 ];
 
 export default function AdminTools() {

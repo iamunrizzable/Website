@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: September 4, 2026
+          Effective Date: July 24, 2026 · Last Updated: September 17, 2026
         </p>
 
         <p className="disclaimer" style={{ marginBottom: 30 }}>
@@ -120,6 +120,9 @@ export default function PrivacyPolicy() {
           </p>
           <p>
             The Website also stores a randomly generated marker in multiple browser storage mechanisms (including local storage, IndexedDB, and the Cache API) so that a blocked device remains identifiable even if some, but not all, of that stored data is later cleared. This marker is used solely to enforce blocks against devices that have violated TJB Management&apos;s policies; it is not used for advertising, cross-site tracking, or any purpose beyond the security purpose described in this section.
+          </p>
+          <p>
+            The Website maintains a record, for every visitor and not only devices that have violated TJB Management&apos;s policies, of the device identifier described above together with the visitor&apos;s IP address, approximate location (city/region/country, derived from IP address), browser/operating system, first-seen date, most recent visit date, and total visit count. This record is used to operate and secure the Website — including distinguishing new from returning visitors and identifying devices for the security purposes described above — and is retained on a rolling basis for 90 days following a visitor&apos;s most recent visit, after which it is automatically deleted if that visitor does not return. It is viewable only by TJB Management&apos;s own authorized personnel through an internal, login-gated administrative tool and is not shared with, or accessible to, any third party.
           </p>
           <p>
             <strong>By accessing or using the Website, you consent to TJB Management&apos;s collection and use of this device data for the purposes described above, and you agree that TJB Management may use, retain, and share this data as it sees fit</strong>, including with service providers, business partners, or successors, in connection with operating, securing, and improving the Website and TJB Management&apos;s social media accounts and systems.
@@ -543,7 +546,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: September 1, 2026</p>
+          <p>Last Updated: September 17, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
