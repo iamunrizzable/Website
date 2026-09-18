@@ -9,7 +9,6 @@ export default function Contact() {
 
   const contacts = [
     { name: 'TJB MGMT TIKTOK AGENCY', href: '/agencies/tiktok', icon: '⚡' },
-    { name: 'Order TJB MERCH', href: '/agencies/tiktok/merch', icon: '👕' },
     { name: 'Contact me on Lark', href: 'https://www.larksuite.com/invitation/page/add_contact/?token=bc7j4483-4472-40fb-ac59-e118aat438m2&unique_id=MgzRHC3OpH2DUUZevnZMKQ==', icon: '💼' },
     { name: 'Phone', href: 'tel:+14086696123', icon: '📱' },
     { name: 'Email', href: 'mailto:tyler@tjbmanagementinc.com', icon: '✉️' },
@@ -18,9 +17,6 @@ export default function Contact() {
     { name: 'Instagram', href: 'https://instagram.com/iamunrizzable', icon: '📷' },
     { name: 'Snapchat', href: 'https://snapchat.com/add/iamunrizzabl3', icon: '👻' },
     { name: 'X', href: 'https://x.com/iamunrizzable', icon: '𝕏' },
-    { name: 'C2', href: 'https://r.c2live.co/iamunrizzable', icon: '😄' },
-    { name: 'C2 App Store', href: 'https://apps.apple.com/us/app/c2-live-live-streaming/id6520394603', icon: '🍎' },
-    { name: 'C2 Google Play', href: 'https://play.google.com/store/apps/details?id=co.c2live.c2live&pcampaignid=web_share', icon: '🤖' },
     { name: 'Buy TikTok Coins (Cheaper)', href: 'https://www.tiktok.com/coin/', icon: '🪙' },
     { name: 'Add me on PlayStation', href: 'https://profile.playstation.com/iamunrizzable', icon: '🎮' },
     { name: 'Hip Hop & R&B Apple Music Playlist', href: 'https://music.apple.com/us/playlist/hip-hop-r-b/pl.u-EdAVzMesDKZopjV', icon: '🎵' },
@@ -31,7 +27,7 @@ export default function Contact() {
     { name: 'Social Battery Recharge Playlist', href: 'https://music.apple.com/us/playlist/social-battery-recharge/pl.u-MDAWv8qTAK57EBN', icon: '🎵' },
   ];
 
-  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY', 'Order TJB MERCH'];
+  const internalLinks = ['Email', 'Phone', 'Buy TikTok Coins (Cheaper)', 'TJB MGMT TIKTOK AGENCY'];
 
   useEffect(() => {
 
