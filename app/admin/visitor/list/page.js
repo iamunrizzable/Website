@@ -39,11 +39,12 @@ function formatLocation(loc) {
   return parts.length ? parts.join(', ') : null;
 }
 
-// Just the first 8 chars — a glance-length label, not a unique key. The
-// full ID (whichever one is being shown) is still copyable in the
-// detail panel below.
+// Fingerprint IDs are now generated short (16 hex chars — see
+// lib/fingerprint/collect.js) so this just returns the value as-is; kept
+// as a named function since the device marker fallback (v.id) is still
+// the old 32-char format and callers don't need to know which they got.
 function shortId(id) {
-  return id.slice(0, 8);
+  return id;
 }
 
 export default function VisitorListPage() {
