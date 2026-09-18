@@ -25,12 +25,17 @@ const TOOLS = [
   {
     href: '/admin/security',
     title: 'Security',
-    desc: 'Permanently ban devices from the site by Fingerprint ID. Also has the TikTok Agency kill switch.',
+    desc: 'Permanently ban devices from the site by Fingerprint ID.',
   },
   {
     href: '/admin/visitor/list',
     title: 'Site Visitors',
     desc: 'Every visitor the site has identified, banned or not — first seen, last seen, visit count, IP, and location.',
+  },
+  {
+    href: '/admin/security/kill/switches',
+    title: 'Kill Switches',
+    desc: 'Shut off the TikTok Agency, the C2 Agency, or the entire site, instantly.',
   },
 ];
 

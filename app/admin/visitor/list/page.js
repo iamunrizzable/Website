@@ -18,6 +18,7 @@ const s = {
   msg: { fontSize: 12, color: '#f59e0b', marginBottom: 8, minHeight: 18 },
   btnGhost: { background: 'transparent', border: '1px solid #475569', color: '#94a3b8', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   btnDanger: { background: '#ef4444', color: '#fff', border: 'none', borderRadius: 6, padding: '8px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 700 },
+  btnDangerGhost: { background: 'transparent', border: '1px solid #ef4444', color: '#ef4444', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   bannedBadge: { display: 'inline-block', background: 'rgba(239,68,68,0.15)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700, marginLeft: 8 },
   detailPanel: { marginTop: 10, padding: 16, background: '#0f172a', borderRadius: 8, border: '1px solid #334155', fontFamily: 'system-ui,sans-serif' },
   detailLabel: { color: '#64748b', fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 3 },
@@ -58,6 +59,7 @@ export default function VisitorListPage() {
   const [showJson, setShowJson] = useState({});
   const [banned, setBanned] = useState({});
   const [banning, setBanning] = useState(null);
+  const [deleting, setDeleting] = useState(null);
 
   const toggleExpanded = (id) => setExpandedId((prev) => (prev === id ? null : id));
   const toggleJson = (id) => setShowJson((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -134,6 +136,27 @@ export default function VisitorListPage() {
       setMsg('Failed to ban device: ' + e.message);
     }
     setBanning(null);
+  };
+
+  // Manual per-row delete ("a manual button to delete single logs"). Auto-
+  // expiry (30 days, down from 90) handles the "logs I don't need" case by
+  // default; this is for deleting one immediately instead of waiting.
+  const deleteLog = async (v) => {
+    setDeleting(v.id);
+    setMsg('');
+    try {
+      const res = await fetch(`/api/admin/visitors?id=${encodeURIComponent(v.id)}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-key': adminKey },
+      });
+      const data = await res.json();
+      if (!res.ok) { setMsg(data.error ?? 'Failed to delete log'); setDeleting(null); return; }
+      setVisitors((prev) => prev.filter((x) => x.id !== v.id));
+      setExpandedId((prev) => (prev === v.id ? null : prev));
+    } catch (e) {
+      setMsg('Failed to delete log: ' + e.message);
+    }
+    setDeleting(null);
   };
 
   const renderDetail = (v) => {
@@ -219,12 +242,21 @@ export default function VisitorListPage() {
           </>
         ) : <div style={s.detailSub}>Unknown</div>}
 
-        <button
-          style={{ ...s.btnGhost, marginTop: 14 }}
-          onClick={(e) => { e.stopPropagation(); toggleJson(v.id); }}
-        >
-          {showJson[v.id] ? 'Hide JSON' : 'Show JSON'}
-        </button>
+        <div style={{ marginTop: 14, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <button
+            style={s.btnGhost}
+            onClick={(e) => { e.stopPropagation(); toggleJson(v.id); }}
+          >
+            {showJson[v.id] ? 'Hide JSON' : 'Show JSON'}
+          </button>
+          <button
+            style={{ ...s.btnDangerGhost, opacity: deleting === v.id ? 0.6 : 1 }}
+            disabled={deleting === v.id}
+            onClick={(e) => { e.stopPropagation(); deleteLog(v); }}
+          >
+            {deleting === v.id ? 'Deleting…' : 'Delete this log'}
+          </button>
+        </div>
         {showJson[v.id] && <pre style={s.jsonBlock}>{JSON.stringify(v, null, 2)}</pre>}
       </div>
     );
@@ -249,7 +281,7 @@ export default function VisitorListPage() {
             Site Visitors
           </h1>
           <p style={{ color: '#06b6d4', fontSize: 13, marginBottom: 20 }}>
-            Every device the site has identified, banned or not. Retained on a rolling 90-day window since last visit.
+            Every device the site has identified, banned or not. Retained on a rolling 30-day window since last visit — or delete a log immediately below.
           </p>
 
           {!redisConfigured && (

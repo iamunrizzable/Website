@@ -39,9 +39,6 @@ export default function SecurityPage() {
   const [nearMisses, setNearMisses] = useState([]);
   const [newVisitorId, setNewVisitorId] = useState('');
   const [deviceMsg, setDeviceMsg] = useState('');
-  const [tiktokSuspended, setTiktokSuspended] = useState(false);
-  const [tiktokMsg, setTiktokMsg] = useState('');
-  const [tiktokBusy, setTiktokBusy] = useState(false);
   const [expandedId, setExpandedId] = useState(null);
   const [showJson, setShowJson] = useState({});
 
@@ -59,49 +56,18 @@ export default function SecurityPage() {
     }
   }, []);
 
-  const fetchTiktokSuspension = useCallback(async (key) => {
-    try {
-      const res = await fetch('/api/admin/tiktok-suspension', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) return;
-      const data = await res.json();
-      setTiktokSuspended(!!data.suspended);
-    } catch (e) {
-      setTiktokMsg('Failed to load status: ' + e.message);
-    }
-  }, []);
-
   useEffect(() => {
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
       fetchDevices(saved);
-      fetchTiktokSuspension(saved);
     } else {
       fetch('/api/admin/me')
         .then(r => r.json())
-        .then(({ key }) => { if (key) { setAdminKey(key); fetchDevices(key); fetchTiktokSuspension(key); } })
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchDevices(key); } })
         .catch(() => {});
     }
-  }, [fetchDevices, fetchTiktokSuspension]);
-
-  const toggleTiktokSuspension = async () => {
-    setTiktokMsg('');
-    setTiktokBusy(true);
-    const next = !tiktokSuspended;
-    try {
-      const res = await fetch('/api/admin/tiktok-suspension', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-        body: JSON.stringify({ suspended: next }),
-      });
-      const data = await res.json();
-      if (!res.ok) { setTiktokMsg(data.error ?? 'Failed to update'); setTiktokBusy(false); return; }
-      setTiktokSuspended(next);
-    } catch (e) {
-      setTiktokMsg('Failed to update: ' + e.message);
-    }
-    setTiktokBusy(false);
-  };
+  }, [fetchDevices]);
 
   const addVisitorId = async () => {
     setDeviceMsg('');
@@ -306,26 +272,6 @@ export default function SecurityPage() {
               REST-API-style vars an Upstash integration would use.
             </div>
           )}
-
-          <div style={{ ...s.card, border: tiktokSuspended ? '2px solid rgba(239,68,68,0.5)' : s.card.border }}>
-            <div style={s.h2}>TikTok Agency Kill Switch</div>
-            {tiktokMsg && <div style={s.msg}>{tiktokMsg}</div>}
-            <p style={{ color: '#94a3b8', fontSize: 13, lineHeight: 1.6, marginBottom: 16 }}>
-              When on, every page under /agencies/tiktok shows a suspension notice instead of the real content.
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: tiktokSuspended ? '#ef4444' : '#06b6d4' }}>
-                {tiktokSuspended ? 'SUSPENDED' : 'Live'}
-              </span>
-              <button
-                style={{ ...(tiktokSuspended ? s.btnDanger : s.btn), opacity: tiktokBusy ? 0.6 : 1 }}
-                onClick={toggleTiktokSuspension}
-                disabled={tiktokBusy}
-              >
-                {tiktokSuspended ? 'Restore Access' : 'Suspend TikTok Agency'}
-              </button>
-            </div>
-          </div>
 
           <div style={s.card}>
             <div style={s.h2}>Block an ID</div>

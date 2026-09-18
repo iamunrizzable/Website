@@ -1,5 +1,9 @@
+import C2SuspensionGate from './C2SuspensionGate';
+
 export const metadata = {
   title: 'C2 Creator Network | TJB Management Inc.',
   description: 'TJB Management Inc. creator network on C2 Live — join through Tyler and download the app.',
 };
-export default function Layout({ children }) { return children; }
+export default function Layout({ children }) {
+  return <C2SuspensionGate>{children}</C2SuspensionGate>;
+}
