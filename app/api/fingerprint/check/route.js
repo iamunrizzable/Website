@@ -36,9 +36,10 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 //   verdict: 'unverified' — we couldn't actually complete the check;
 //                           `reason` carries why, shown on the "unable to
 //                           verify you" screen instead of "Access Denied".
-function logVerdict(verdict, reason, { visitorId, isError, score } = {}) {
+function logVerdict(verdict, reason, { visitorId, isError, score, errorDetail } = {}) {
   const log = isError ? console.error : console.log;
   log(`[fingerprint-check] ${verdict} reason=${reason} visitorId=${visitorId ?? '-'} score=${score ?? '-'}`);
+  if (errorDetail) log(`[fingerprint-check] error detail: ${errorDetail}`);
 }
 
 export async function POST(request) {
@@ -80,7 +81,7 @@ export async function POST(request) {
     logVerdict('allowed', 'blocklist-clear', { visitorId });
     return NextResponse.json({ verdict: 'allowed' });
   } catch (err) {
-    logVerdict('unverified', 'device-blocklist-check-error', { visitorId, isError: true });
+    logVerdict('unverified', 'device-blocklist-check-error', { visitorId, isError: true, errorDetail: err?.message ?? String(err) });
     return NextResponse.json({ verdict: 'unverified', reason: 'device-blocklist-check-error' });
   }
 }
