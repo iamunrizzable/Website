@@ -48,14 +48,24 @@ export async function POST(request) {
   }
 
   // Manual entry: an admin pasting a raw visitorId with no captured
-  // components. Exact-match fast path still works against this; similarity
-  // matching won't (no components to compare), which is an inherent
-  // limitation of a manually-typed ID rather than a captured visit.
+  // components, OR (from the /admin/visitor/list "Ban" button) the server
+  // already knows both the visitorId and persistentMarker for that row, so
+  // it sends both — a stronger ban than the fingerprint alone, since the
+  // persistentMarker match survives even the fingerprint drifting on a
+  // browser/OS update. Exact-match fast path works against either field;
+  // similarity matching won't (no components to compare), an inherent
+  // limitation of a manually-created ban rather than a captured visit.
   const visitorId = body.visitorId?.trim();
+  const persistentMarker = body.persistentMarker?.trim();
   if (!visitorId || !VISITOR_ID_RE.test(visitorId)) {
     return NextResponse.json({ error: 'Invalid visitor ID' }, { status: 400 });
   }
-  const banId = await addBlockedDevice({ visitorId, components: null, note: 'Manually entered' });
+  if (persistentMarker && !VISITOR_ID_RE.test(persistentMarker)) {
+    return NextResponse.json({ error: 'Invalid device marker' }, { status: 400 });
+  }
+  const banId = await addBlockedDevice({
+    visitorId, persistentMarker: persistentMarker || undefined, components: null, note: 'Manually entered',
+  });
   return NextResponse.json({ ok: true, banId });
 }
 
