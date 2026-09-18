@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import DeviceGate from './DeviceGate';
 import DeviceIdDebug from './DeviceIdDebug';
+import MaintenanceGate from './MaintenanceGate';
 
 // Force per-request rendering so Next.js applies the CSP nonce from
 // middleware to its inline scripts. Static prerendering would bake in
@@ -36,9 +37,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <DeviceIdDebug />
-        <DeviceGate>
-          {children}
-        </DeviceGate>
+        <MaintenanceGate>
+          <DeviceGate>
+            {children}
+          </DeviceGate>
+        </MaintenanceGate>
         <Analytics />
         <SpeedInsights />
       </body>
