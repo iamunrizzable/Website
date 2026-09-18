@@ -17,6 +17,8 @@ const s = {
   warnBanner: { background: '#3f1d1d', border: '1px solid #ef4444', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 13, color: '#fca5a5', lineHeight: 1.5 },
   msg: { fontSize: 12, color: '#f59e0b', marginBottom: 8, minHeight: 18 },
   btnGhost: { background: 'transparent', border: '1px solid #475569', color: '#94a3b8', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
+  btnDanger: { background: '#ef4444', color: '#fff', border: 'none', borderRadius: 6, padding: '8px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 700 },
+  bannedBadge: { display: 'inline-block', background: 'rgba(239,68,68,0.15)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700, marginLeft: 8 },
   detailPanel: { marginTop: 10, padding: 16, background: '#0f172a', borderRadius: 8, border: '1px solid #334155', fontFamily: 'system-ui,sans-serif' },
   detailLabel: { color: '#64748b', fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 3 },
   detailValue: { color: '#e2e8f0', fontSize: 13, fontWeight: 600 },
@@ -53,6 +55,8 @@ export default function VisitorListPage() {
   const [msg, setMsg] = useState('');
   const [expandedId, setExpandedId] = useState(null);
   const [showJson, setShowJson] = useState({});
+  const [banned, setBanned] = useState({});
+  const [banning, setBanning] = useState(null);
 
   const toggleExpanded = (id) => setExpandedId((prev) => (prev === id ? null : id));
   const toggleJson = (id) => setShowJson((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -107,6 +111,30 @@ export default function VisitorListPage() {
     }).catch(() => {});
   };
 
+  // Bans by BOTH the fingerprint and the device marker in one call — no
+  // copying an ID into another page's manual-entry field required. The
+  // marker match is the one that actually survives a browser/OS update
+  // drifting the fingerprint (see the caveat text below); sending both is
+  // strictly stronger than the old copy-paste-into-/admin/security flow,
+  // which only ever had the fingerprint to work with.
+  const banDevice = async (v) => {
+    setBanning(v.id);
+    setMsg('');
+    try {
+      const res = await fetch('/api/admin/blocked-devices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+        body: JSON.stringify({ visitorId: v.visitorId, persistentMarker: v.persistentMarker ?? v.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setMsg(data.error ?? 'Failed to ban device'); setBanning(null); return; }
+      setBanned((prev) => ({ ...prev, [v.id]: true }));
+    } catch (e) {
+      setMsg('Failed to ban device: ' + e.message);
+    }
+    setBanning(null);
+  };
+
   const renderDetail = (v) => {
     const { browser, os, device } = parseUserAgent(v.lastUserAgent);
     const loc = v.lastLocation;
@@ -114,6 +142,18 @@ export default function VisitorListPage() {
 
     return (
       <div style={s.detailPanel}>
+        {banned[v.id] ? (
+          <div style={{ color: '#ef4444', fontWeight: 700, fontSize: 14 }}>✓ Banned</div>
+        ) : (
+          <button
+            style={s.btnDanger}
+            disabled={banning === v.id}
+            onClick={(e) => { e.stopPropagation(); banDevice(v); }}
+          >
+            {banning === v.id ? 'Banning…' : 'Ban this device'}
+          </button>
+        )}
+
         <div style={s.detailLabel}>Identification</div>
         <div style={s.detailSub}>Fingerprint</div>
         <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
@@ -246,6 +286,7 @@ export default function VisitorListPage() {
                     <div style={s.visitorId}>
                       {shortId(v.visitorId ?? v.id)}
                       <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
+                      {banned[v.id] && <span style={s.bannedBadge}>BANNED</span>}
                     </div>
                     <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
                     <div style={s.metaLine}>
