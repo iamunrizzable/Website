@@ -37,11 +37,11 @@ function formatLocation(loc) {
   return parts.length ? parts.join(', ') : null;
 }
 
-// The full 64-char SHA-256 stays the actual matching/storage key — this
-// only shortens what's shown. Tap to copy the full ID since it's too long
-// to select by hand on a phone.
+// Just the first 8 chars — a glance-length label, not a unique key. The
+// full ID (whichever one is being shown) is still copyable in the
+// detail panel below.
 function shortId(id) {
-  return `${id.slice(0, 10)}…${id.slice(-6)}`;
+  return id.slice(0, 8);
 }
 
 export default function VisitorListPage() {
@@ -115,20 +115,7 @@ export default function VisitorListPage() {
     return (
       <div style={s.detailPanel}>
         <div style={s.detailLabel}>Identification</div>
-        <div style={s.detailSub}>Device marker (unique per device)</div>
-        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
-          {v.persistentMarker ?? v.id}
-        </div>
-        <button
-          style={{ ...s.btnGhost, marginTop: 4 }}
-          onClick={(e) => { e.stopPropagation(); copyToClipboard(v.persistentMarker ?? v.id); }}
-        >
-          Copy device marker
-        </button>
-
-        <div style={{ ...s.detailSub, marginTop: 10 }}>
-          Fingerprint (can match other devices of the same model — see below)
-        </div>
+        <div style={s.detailSub}>Fingerprint</div>
         <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
           {v.visitorId ?? '—'}
         </div>
@@ -140,6 +127,19 @@ export default function VisitorListPage() {
             Copy fingerprint
           </button>
         )}
+
+        <div style={{ ...s.detailSub, marginTop: 10 }}>
+          Device marker (this row&apos;s actual unique key — see below)
+        </div>
+        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
+          {v.persistentMarker ?? v.id}
+        </div>
+        <button
+          style={{ ...s.btnGhost, marginTop: 4 }}
+          onClick={(e) => { e.stopPropagation(); copyToClipboard(v.persistentMarker ?? v.id); }}
+        >
+          Copy device marker
+        </button>
         <p style={s.caveat}>
           Two different phones of the same model/OS/browser can share this fingerprint — it&apos;s
           used for ban-matching after a device clears storage, not as the unique row identity.
@@ -244,7 +244,7 @@ export default function VisitorListPage() {
                 return (
                   <div key={v.id} style={s.row} onClick={() => toggleExpanded(v.id)}>
                     <div style={s.visitorId}>
-                      {shortId(v.id)}
+                      {shortId(v.visitorId ?? v.id)}
                       <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
                     </div>
                     <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
