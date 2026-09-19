@@ -57,12 +57,14 @@ export default function VisitorListPage() {
   const [msg, setMsg] = useState('');
   const [expandedId, setExpandedId] = useState(null);
   const [showJson, setShowJson] = useState({});
-  const [banned, setBanned] = useState({});
+  const [bannedIds, setBannedIds] = useState(new Set());
   const [banning, setBanning] = useState(null);
   const [deleting, setDeleting] = useState(null);
 
   const toggleExpanded = (id) => setExpandedId((prev) => (prev === id ? null : id));
   const toggleJson = (id) => setShowJson((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  const isBanned = (v) => bannedIds.has(v.visitorId) || bannedIds.has(v.persistentMarker ?? v.id);
 
   const fetchVisitors = useCallback(async (key) => {
     try {
@@ -77,18 +79,41 @@ export default function VisitorListPage() {
     }
   }, []);
 
+  // Ban status has to be read back from the actual blocklist (the same
+  // source /admin/security uses), not just remembered in local state —
+  // local-only state reset to {} on every reload, which made a ban that
+  // genuinely wrote to Redis look like it "didn't save" once the page
+  // was refreshed.
+  const fetchBannedIds = useCallback(async (key) => {
+    try {
+      const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
+      if (!res.ok) return;
+      const data = await res.json();
+      const ids = new Set();
+      for (const d of data.devices ?? []) {
+        if (d.visitorId) ids.add(d.visitorId);
+        if (d.persistentMarker) ids.add(d.persistentMarker);
+      }
+      setBannedIds(ids);
+    } catch {
+      // Non-fatal — worst case the ban badge doesn't show, banDevice's
+      // 401 handling below already covers the auth-failure path.
+    }
+  }, []);
+
   useEffect(() => {
     const saved = localStorage.getItem('admin_key');
     if (saved) {
       setAdminKey(saved);
       fetchVisitors(saved);
+      fetchBannedIds(saved);
     } else {
       fetch('/api/admin/me')
         .then(r => r.json())
-        .then(({ key }) => { if (key) { setAdminKey(key); fetchVisitors(key); } })
+        .then(({ key }) => { if (key) { setAdminKey(key); fetchVisitors(key); fetchBannedIds(key); } })
         .catch(() => {});
     }
-  }, [fetchVisitors]);
+  }, [fetchVisitors, fetchBannedIds]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -131,7 +156,7 @@ export default function VisitorListPage() {
       });
       const data = await res.json();
       if (!res.ok) { setMsg(data.error ?? 'Failed to ban device'); setBanning(null); return; }
-      setBanned((prev) => ({ ...prev, [v.id]: true }));
+      await fetchBannedIds(adminKey);
     } catch (e) {
       setMsg('Failed to ban device: ' + e.message);
     }
@@ -166,7 +191,7 @@ export default function VisitorListPage() {
 
     return (
       <div style={s.detailPanel}>
-        {banned[v.id] ? (
+        {isBanned(v) ? (
           <div style={{ color: '#ef4444', fontWeight: 700, fontSize: 14 }}>✓ Banned</div>
         ) : (
           <button
@@ -319,7 +344,7 @@ export default function VisitorListPage() {
                     <div style={s.visitorId}>
                       {shortId(v.visitorId ?? v.id)}
                       <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
-                      {banned[v.id] && <span style={s.bannedBadge}>BANNED</span>}
+                      {isBanned(v) && <span style={s.bannedBadge}>BANNED</span>}
                     </div>
                     <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
                     <div style={s.metaLine}>
