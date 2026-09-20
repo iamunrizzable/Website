@@ -57,14 +57,19 @@ export default function VisitorListPage() {
   const [msg, setMsg] = useState('');
   const [expandedId, setExpandedId] = useState(null);
   const [showJson, setShowJson] = useState({});
-  const [bannedIds, setBannedIds] = useState(new Set());
+  const [bannedMap, setBannedMap] = useState(new Map());
   const [banning, setBanning] = useState(null);
+  const [unbanning, setUnbanning] = useState(null);
   const [deleting, setDeleting] = useState(null);
 
   const toggleExpanded = (id) => setExpandedId((prev) => (prev === id ? null : id));
   const toggleJson = (id) => setShowJson((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  const isBanned = (v) => bannedIds.has(v.visitorId) || bannedIds.has(v.persistentMarker ?? v.id);
+  // Maps visitorId/persistentMarker -> banId, not just a Set, because
+  // unbanning needs the actual banId (removeBlockedDevice's key) and this
+  // is the only place that ID is available on this page.
+  const getBanId = (v) => bannedMap.get(v.visitorId) ?? bannedMap.get(v.persistentMarker ?? v.id);
+  const isBanned = (v) => getBanId(v) !== undefined;
 
   const fetchVisitors = useCallback(async (key) => {
     try {
@@ -89,12 +94,12 @@ export default function VisitorListPage() {
       const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
       if (!res.ok) return;
       const data = await res.json();
-      const ids = new Set();
+      const map = new Map();
       for (const d of data.devices ?? []) {
-        if (d.visitorId) ids.add(d.visitorId);
-        if (d.persistentMarker) ids.add(d.persistentMarker);
+        if (d.visitorId) map.set(d.visitorId, d.id);
+        if (d.persistentMarker) map.set(d.persistentMarker, d.id);
       }
-      setBannedIds(ids);
+      setBannedMap(map);
     } catch {
       // Non-fatal — worst case the ban badge doesn't show, banDevice's
       // 401 handling below already covers the auth-failure path.
@@ -163,6 +168,29 @@ export default function VisitorListPage() {
     setBanning(null);
   };
 
+  const unbanDevice = async (v) => {
+    const banId = getBanId(v);
+    if (!banId) return;
+    setUnbanning(v.id);
+    setMsg('');
+    try {
+      const res = await fetch(`/api/admin/blocked-devices?banId=${encodeURIComponent(banId)}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-key': adminKey },
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setMsg(data.error ?? 'Failed to unban device');
+        setUnbanning(null);
+        return;
+      }
+      await fetchBannedIds(adminKey);
+    } catch (e) {
+      setMsg('Failed to unban device: ' + e.message);
+    }
+    setUnbanning(null);
+  };
+
   // Manual per-row delete ("a manual button to delete single logs"). Auto-
   // expiry (30 days, down from 90) handles the "logs I don't need" case by
   // default; this is for deleting one immediately instead of waiting.
@@ -192,7 +220,16 @@ export default function VisitorListPage() {
     return (
       <div style={s.detailPanel}>
         {isBanned(v) ? (
-          <div style={{ color: '#ef4444', fontWeight: 700, fontSize: 14 }}>✓ Banned</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <div style={{ color: '#ef4444', fontWeight: 700, fontSize: 14 }}>✓ Banned</div>
+            <button
+              style={s.btnGhost}
+              disabled={unbanning === v.id}
+              onClick={(e) => { e.stopPropagation(); unbanDevice(v); }}
+            >
+              {unbanning === v.id ? 'Unbanning…' : 'Unban this device'}
+            </button>
+          </div>
         ) : (
           <button
             style={s.btnDanger}
