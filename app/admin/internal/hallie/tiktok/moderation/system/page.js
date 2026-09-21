@@ -72,10 +72,9 @@ export default function AdminPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('business_connected')) setMsg('TikTok Business API (advertiser) connected successfully!');
     if (params.get('account_connected')) setMsg('TikTok Account Token connected successfully!');
     if (params.get('error')) setMsg('Error: ' + params.get('error'));
-    if (params.get('business_connected') || params.get('account_connected')) {
+    if (params.get('account_connected')) {
       setTimeout(() => setMsg(''), 4000);
     }
     const saved = localStorage.getItem('admin_key');
@@ -90,7 +89,6 @@ export default function AdminPage() {
     }
   }, [fetchStatus]);
 
-  const enabled = !!status?.business_connected;
   const accountEnabled = !!status?.account_connected;
 
   return (
@@ -116,19 +114,17 @@ export default function AdminPage() {
           <ConnectionCard
             adminKey={adminKey}
             status={status}
-            enabled={enabled}
             accountEnabled={accountEnabled}
           />
 
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
-          <CommentsPanel adminKey={adminKey} enabled={enabled} />
+          <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
-          <ExportTokenPanel adminKey={adminKey} enabled={enabled} />
           <TestPanel adminKey={adminKey} />
 
           {/* Recent Flagged Events */}
@@ -166,20 +162,18 @@ export default function AdminPage() {
 
 // ── Connection Card ───────────────────────────────────────────────────────────
 
-function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
+function ConnectionCard({ adminKey, status, accountEnabled }) {
   const [expanded, setExpanded] = useState(false);
 
-  const bothOk = enabled && accountEnabled;
-  const advExpiring = status?.business_expires_at && Date.now() > status.business_expires_at - 3600000;
   const acctExpiring = status?.account_expires_at && Date.now() > status.account_expires_at - 3600000;
-  const needsAttention = !enabled || !accountEnabled || advExpiring || acctExpiring;
+  const needsAttention = !accountEnabled || acctExpiring;
 
-  if (bothOk && !expanded) {
+  if (accountEnabled && !acctExpiring && !expanded) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#0f172a', borderRadius: 10, padding: '10px 16px', marginBottom: 20, border: '1px solid #1e293b' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-          <span style={{ fontSize: 13, color: '#06b6d4' }}>TikTok Business API connected</span>
+          <span style={{ fontSize: 13, color: '#06b6d4' }}>TikTok Account Token connected</span>
         </div>
         <button style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', padding: '2px 6px' }} onClick={() => setExpanded(true)}>
           manage
@@ -189,43 +183,26 @@ function ConnectionCard({ adminKey, status, enabled, accountEnabled }) {
   }
 
   return (
-    <div style={{ ...s.card, marginBottom: 20, borderColor: needsAttention && !bothOk ? '#7c3aed' : '#334155' }}>
-      {bothOk && (
+    <div style={{ ...s.card, marginBottom: 20, borderColor: needsAttention ? '#7c3aed' : '#334155' }}>
+      {accountEnabled && (
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
           <button style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer' }} onClick={() => setExpanded(false)}>
             collapse
           </button>
         </div>
       )}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: enabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
-            <div>
-              <span style={{ fontSize: 13, color: '#e2e8f0' }}>Advertiser Token</span>
-              {!enabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>comment management &amp; rules</span>}
-              {enabled && advExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
-            </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: accountEnabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
+          <div>
+            <span style={{ fontSize: 13, color: '#e2e8f0' }}>TikTok Account Token</span>
+            {!accountEnabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>account info, videos &amp; comments</span>}
+            {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
           </div>
-          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = '/auth/tiktok/business/login'; }}>
-            {enabled ? 'Reconnect' : 'Connect'}
-          </button>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: accountEnabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
-            <div>
-              <span style={{ fontSize: 13, color: '#e2e8f0' }}>TikTok Account Token</span>
-              {!accountEnabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>account info &amp; videos</span>}
-              {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
-              {accountEnabled && status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: {status.account_scope}</div>}
-              {accountEnabled && !status?.account_scope && <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>scopes: none stored</div>}
-            </div>
-          </div>
-          <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = '/auth/tiktok/account-login'; }}>
-            {accountEnabled ? 'Reconnect' : 'Connect'}
-          </button>
-        </div>
+        <button style={{ ...s.btnSm, whiteSpace: 'nowrap' }} onClick={() => { window.location.href = '/auth/tiktok/account-login'; }}>
+          {accountEnabled ? 'Reconnect' : 'Connect'}
+        </button>
       </div>
     </div>
   );
@@ -432,7 +409,7 @@ function CommentsPanel({ adminKey, enabled }) {
     <div style={s.card}>
       <h2 style={s.h2}>Comment Management</h2>
       {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect Business API to manage comments.</p>
+        <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to manage comments.</p>
       ) : (
         <>
           <p style={{ fontSize: 12, color: '#06b6d4', marginBottom: 10 }}>
@@ -1134,64 +1111,6 @@ function TrendingPanel({ adminKey, enabled }) {
               View raw API response
             </button>
           )}
-        </>
-      )}
-    </div>
-  );
-}
-
-// ── Export Advertiser Token ───────────────────────────────────────────────────
-
-function ExportTokenPanel({ adminKey, enabled }) {
-  const [token, setToken] = useState(null);
-  const [error, setError] = useState('');
-  const [copied, setCopied] = useState(false);
-
-  async function load() {
-    setError(''); setToken(null); setCopied(false);
-    try {
-      const res = await fetch('/api/admin/export-token', { headers: { 'x-admin-key': adminKey } });
-      const data = await res.json();
-      if (data.error) setError(data.error);
-      else setToken(data.token);
-    } catch (e) {
-      setError(e.message);
-    }
-  }
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(token);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
-  return (
-    <div style={s.card}>
-      <h2 style={s.h2}>Export Advertiser Token</h2>
-      <p style={{ fontSize: 13, color: '#06b6d4', marginBottom: 12 }}>
-        Copy this value and paste it as <code style={{ background: '#0f172a', padding: '1px 6px', borderRadius: 4, color: '#a855f7' }}>TIKTOK_ADVERTISER_TOKEN</code> in Vercel → Settings → Environment Variables. After that, no one ever needs to reconnect the advertiser token.
-      </p>
-      {!enabled ? (
-        <p style={{ fontSize: 13, color: '#475569' }}>Connect the Advertiser Token first, then export it.</p>
-      ) : token ? (
-        <>
-          <textarea
-            readOnly
-            value={token}
-            style={{ ...s.input, fontFamily: 'monospace', fontSize: 11, minHeight: 80, resize: 'vertical', marginBottom: 10, wordBreak: 'break-all' }}
-          />
-          <button style={{ ...s.btn, background: copied ? '#10b981' : '#a855f7' }} onClick={copy}>
-            {copied ? 'Copied!' : 'Copy to Clipboard'}
-          </button>
-        </>
-      ) : (
-        <>
-          {error && <p style={{ fontSize: 13, color: '#f59e0b', marginBottom: 8 }}>{error}</p>}
-          <button style={s.btn} onClick={load}>Show Token</button>
         </>
       )}
     </div>
