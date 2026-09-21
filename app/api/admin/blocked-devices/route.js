@@ -6,7 +6,7 @@ import {
 
 // Loose validation for the manual-entry path (an admin pasting a raw device
 // marker they got some other way, e.g. from a support email) — matches the
-// shape persistentMarker is actually generated in (32-char lowercase hex,
+// shape persistentMarker is actually generated in (16-char lowercase hex,
 // see lib/fingerprint/persistentMarker.js) but kept a little looser to also
 // accept other lengths without rejecting them outright.
 const DEVICE_MARKER_RE = /^[A-Za-z0-9]{10,64}$/;

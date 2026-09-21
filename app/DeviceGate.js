@@ -7,6 +7,7 @@ import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
 import { collectWebglFingerprint } from '@/lib/fingerprint/webgl';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
+import OpenInBrowserNotice from './OpenInBrowserNotice';
 
 // How long to wait for our OWN local identification — the persistent
 // storage marker (lib/fingerprint/persistentMarker.js), the sole device
@@ -192,5 +193,10 @@ export default function DeviceGate({ children }) {
     );
   }
 
-  return children;
+  return (
+    <>
+      <OpenInBrowserNotice />
+      {children}
+    </>
+  );
 }
