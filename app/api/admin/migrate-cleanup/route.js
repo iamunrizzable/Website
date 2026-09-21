@@ -22,7 +22,7 @@ function parse(raw) {
   return typeof raw === 'string' ? JSON.parse(raw) : raw;
 }
 
-export async function POST(request) {
+async function run(request) {
   if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const redis = getRedis();
@@ -92,4 +92,14 @@ export async function POST(request) {
   }
 
   return NextResponse.json({ ok: true, result });
+}
+
+// GET alias so this can be triggered with a plain URL fetch (this one-time
+// route is only ever invoked directly by an admin, not from any UI button).
+export async function GET(request) {
+  return run(request);
+}
+
+export async function POST(request) {
+  return run(request);
 }
