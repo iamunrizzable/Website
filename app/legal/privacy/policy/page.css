@@ -223,3 +223,4 @@ body::before {
         .toc a:hover { color: #c084fc; text-decoration: underline; }
 
         .disclaimer { font-size: 12px; color: #06b6d4; margin-top: 10px; line-height: 1.6; }
+        .disclaimer--intro { margin-bottom: 30px; }

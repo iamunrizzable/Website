@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import './DeviceIdDebug.css';
 import { getFingerprint } from '@/lib/fingerprint/collect';
 import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
 
@@ -38,21 +39,7 @@ export default function DeviceIdDebug() {
   if (!debug) return null;
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 999999,
-        background: '#000',
-        color: '#0f0',
-        fontFamily: 'monospace',
-        fontSize: 12,
-        padding: '8px 10px',
-        wordBreak: 'break-all',
-      }}
-    >
+    <div className="device-id-debug">
       {state.loading && 'DeviceId: computing...'}
       {!state.loading && state.error && `DeviceId error: ${state.error.message}`}
       {!state.loading && !state.error && state.visitorId && `visitorId: ${state.visitorId}`}

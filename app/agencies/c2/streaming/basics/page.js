@@ -140,7 +140,7 @@ export default function C2StreamingBasics() {
         <div className="section" id="rules">
           <h2>What You&apos;re Not Allowed to Do on LIVE</h2>
           <p>C2&apos;s User Content and Conduct Policy is part of its Terms, and it&apos;s strict — no nudity or hinting at it, no minors on stream (even your own kids), no promoting payment apps or OnlyFans, no drinking or drugs for gifts, no streaming while driving, and more. Violations can mean content removal, termination, legal action, or a report to law enforcement.</p>
-          <p><a href="/agencies/c2/community/guidelines" style={{ color: '#a855f7', textDecoration: 'none' }}>See the full breakdown of C2&apos;s Community Guidelines →</a></p>
+          <p><a href="/agencies/c2/community/guidelines" className="link-purple">See the full breakdown of C2&apos;s Community Guidelines →</a></p>
         </div>
 
         <div className="section" id="contact">

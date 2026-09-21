@@ -89,3 +89,4 @@ body::before {
         .calc-row input:focus { border-color: #a855f7; }
         .calc-result { color: #ec4899; font-size: 15px; margin-top: 4px; }
         .calc-result span { font-size: 26px; font-weight: 700; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .link-purple { color: #a855f7; text-decoration: none; }

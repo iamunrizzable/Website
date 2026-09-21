@@ -18,7 +18,27 @@ function buildCsp(nonce) {
   return [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
-    "style-src 'self' 'unsafe-inline'",
+    // No 'unsafe-inline' here (Aikido "CSP config allows inline CSS", risk
+    // 20). This is safe despite ~500 React style={{}} props across the
+    // app: every route is wrapped in DeviceGate (app/layout.js), which
+    // renders ONLY a loading spinner server-side and swaps in real content
+    // client-side once its own fingerprint check resolves — so no page's
+    // real content, inline styles included, is ever present in the raw
+    // server-rendered HTML the browser parses. style-src only restricts
+    // style set via markup parsed by the HTML parser (a literal
+    // style="..." attribute or a <style> element) and does NOT restrict
+    // style already-permitted script applies at runtime via the DOM
+    // (React's style prop reconciles through node.style, the same CSSOM
+    // path). Verified directly: zero securitypolicyviolation events with
+    // 'unsafe-inline' removed, across every major page (including both
+    // moderation panels) and real interactions (expand/collapse, menu
+    // toggles). There's also no dangerouslySetInnerHTML anywhere in this
+    // codebase, so there's no path for attacker-controlled markup to land
+    // an inline style in the first place. Converting style={{}} props to
+    // CSS classes (in progress piecemeal — see app/*.css colocated files)
+    // remains good hygiene/defense-in-depth in case a future route ever
+    // renders real content server-side, but is not required for this.
+    "style-src 'self'",
     // TikTok's image CDN spans several distinct domain families (regional
     // CDN hosts, an Akamai-fronted edge, and legacy Bytedance CDN domains)
     // beyond tiktokcdn.com/tiktok.com — enumerated here instead of a bare
