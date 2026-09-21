@@ -1,0 +1,168 @@
+@keyframes fpGlowPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3); }
+  50% { text-shadow: 0 0 40px rgba(239,68,68,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(168,85,247,0.5); }
+}
+@keyframes fpBorderGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.4), 0 0 30px rgba(239,68,68,0.2); }
+  50% { box-shadow: 0 0 25px rgba(239,68,68,0.7), 0 0 50px rgba(236,72,153,0.4); }
+}
+@keyframes fpPopIn {
+  0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fpGlowPulseAmber {
+  0%, 100% { text-shadow: 0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.3); }
+  50% { text-shadow: 0 0 40px rgba(245,158,11,1), 0 0 60px rgba(236,72,153,0.6), 0 0 80px rgba(168,85,247,0.4); }
+}
+@keyframes fpBorderGlowAmber {
+  0%, 100% { box-shadow: 0 0 15px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.2); }
+  50% { box-shadow: 0 0 25px rgba(245,158,11,0.7), 0 0 50px rgba(236,72,153,0.3); }
+}
+@keyframes fpBorderGlowHome {
+  0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.25), 0 0 30px rgba(168,85,247,0.12); }
+  50% { box-shadow: 0 0 25px rgba(168,85,247,0.5), 0 0 50px rgba(236,72,153,0.25); }
+}
+
+.fp-reload:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.5) !important;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.3);
+  filter: brightness(1.1);
+}
+
+.fp-screen {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  z-index: 999999;
+  overflow-y: auto;
+  display: flex;
+  padding: 40px 12px;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+.fp-screen-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url(/bg-main.jpeg);
+  background-position: center center;
+  background-size: 140%;
+  background-repeat: no-repeat;
+  mix-blend-mode: lighten;
+  opacity: 0.13;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.fp-card {
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  color: #e2e8f0;
+  background: rgba(15,23,42,0.6);
+  border-radius: 16px;
+  padding: 36px 12px;
+  position: relative;
+  z-index: 10;
+}
+
+.fp-card--blocked {
+  border: 2px solid rgba(239,68,68,0.35);
+  animation: fpPopIn 0.6s ease-out, fpBorderGlow 3s ease-in-out infinite;
+}
+
+.fp-card--unverified {
+  border: 2px solid rgba(245,158,11,0.35);
+  animation: fpPopIn 0.6s ease-out, fpBorderGlowAmber 3s ease-in-out infinite;
+}
+
+.fp-h1--blocked {
+  color: #ef4444;
+  font-size: 32px;
+  margin: 0 0 16px;
+  font-weight: 800;
+  animation: fpGlowPulse 3s ease-in-out infinite;
+}
+
+.fp-h1--unverified {
+  color: #f59e0b;
+  font-size: 32px;
+  margin: 0 0 16px;
+  font-weight: 800;
+  animation: fpGlowPulseAmber 3s ease-in-out infinite;
+}
+
+.fp-p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.fp-p--final {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.fp-p--small {
+  font-size: 12.5px;
+  line-height: 1.7;
+  margin: 0;
+  color: #06b6d4;
+}
+
+.fp-id-block {
+  font-size: 12.5px;
+  line-height: 1.7;
+  margin: 18px 0 0;
+  color: #06b6d4;
+}
+
+.fp-id-mono {
+  font-family: monospace;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.fp-reason-label {
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.fp-c-cyan { color: #06b6d4; }
+.fp-c-pink { color: #ec4899; }
+.fp-c-purple { color: #a855f7; }
+.fp-c-magenta { color: #d946ef; }
+
+.fp-email-wrap {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #06b6d4;
+}
+
+.fp-gradient-link {
+  background: linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.fp-reload {
+  background: #f59e0b;
+  color: #0f172a;
+  border: 2px solid rgba(168,85,247,0.25);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: all 0.3s ease;
+  animation: fpBorderGlowHome 3s ease-in-out infinite;
+}

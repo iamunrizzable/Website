@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import './GateSpinner.css';
 import MaintenanceNotice from './MaintenanceNotice';
 
 // Wraps the ENTIRE site (app/layout.js, outside DeviceGate) — unlike the
@@ -60,47 +61,10 @@ export default function MaintenanceGate({ children }) {
 
   if (status === 'checking') {
     return (
-      <>
-        <style>{`
-          @keyframes mgSpin { to { transform: rotate(360deg); } }
-        `}</style>
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: '#0f172a',
-            zIndex: 999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundImage: 'url(/bg-main.jpeg)',
-              backgroundPosition: 'center center',
-              backgroundSize: '140%',
-              backgroundRepeat: 'no-repeat',
-              mixBlendMode: 'lighten',
-              opacity: 0.13,
-              zIndex: -1,
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              border: '3px solid rgba(168,85,247,0.25)',
-              borderTopColor: '#a855f7',
-              animation: 'mgSpin 0.8s linear infinite',
-            }}
-          />
-        </div>
-      </>
+      <div className="gate-overlay">
+        <div className="gate-overlay-bg" />
+        <div className="gate-spinner" />
+      </div>
     );
   }
 

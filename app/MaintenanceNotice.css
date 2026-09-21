@@ -1,0 +1,68 @@
+@keyframes mnGlowPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.3); }
+  50% { text-shadow: 0 0 40px rgba(245,158,11,1), 0 0 60px rgba(236,72,153,0.6), 0 0 80px rgba(168,85,247,0.4); }
+}
+@keyframes mnBorderGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.2); }
+  50% { box-shadow: 0 0 25px rgba(245,158,11,0.7), 0 0 50px rgba(236,72,153,0.3); }
+}
+@keyframes mnPopIn {
+  0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.mn-screen {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  z-index: 999999;
+  overflow-y: auto;
+  display: flex;
+  padding: 40px 12px;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+.mn-screen-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url(/bg-main.jpeg);
+  background-position: center center;
+  background-size: 140%;
+  background-repeat: no-repeat;
+  mix-blend-mode: lighten;
+  opacity: 0.13;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.mn-card {
+  max-width: 520px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  color: #e2e8f0;
+  background: rgba(15,23,42,0.6);
+  border: 2px solid rgba(245,158,11,0.35);
+  border-radius: 16px;
+  padding: 48px 24px;
+  position: relative;
+  z-index: 10;
+  animation: mnPopIn 0.6s ease-out, mnBorderGlow 3s ease-in-out infinite;
+}
+
+.mn-h1 {
+  color: #f59e0b;
+  font-size: 28px;
+  line-height: 1.4;
+  margin: 0 0 16px;
+  font-weight: 800;
+  animation: mnGlowPulse 3s ease-in-out infinite;
+}
+
+.mn-p {
+  color: #94a3b8;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}

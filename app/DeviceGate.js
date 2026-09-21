@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import './GateSpinner.css';
+import './DeviceGate.css';
 import { getFingerprint } from '@/lib/fingerprint/collect';
 import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
@@ -121,286 +123,73 @@ export default function DeviceGate({ children }) {
 
   if (status === 'checking') {
     return (
-      <>
-        <style>{`
-          @keyframes fpSpin { to { transform: rotate(360deg); } }
-        `}</style>
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: '#0f172a',
-            zIndex: 999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundImage: 'url(/bg-main.jpeg)',
-              backgroundPosition: 'center center',
-              backgroundSize: '140%',
-              backgroundRepeat: 'no-repeat',
-              mixBlendMode: 'lighten',
-              opacity: 0.13,
-              zIndex: -1,
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              border: '3px solid rgba(168,85,247,0.25)',
-              borderTopColor: '#a855f7',
-              animation: 'fpSpin 0.8s linear infinite',
-            }}
-          />
-        </div>
-      </>
+      <div className="gate-overlay">
+        <div className="gate-overlay-bg" />
+        <div className="gate-spinner" />
+      </div>
     );
   }
 
   if (status === 'blocked') {
     return (
-      <>
-        <style>{`
-          @keyframes fpGlowPulse {
-            0%, 100% { text-shadow: 0 0 20px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.3); }
-            50% { text-shadow: 0 0 40px rgba(239,68,68,1), 0 0 60px rgba(236,72,153,0.8), 0 0 80px rgba(168,85,247,0.5); }
-          }
-          @keyframes fpBorderGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.4), 0 0 30px rgba(239,68,68,0.2); }
-            50% { box-shadow: 0 0 25px rgba(239,68,68,0.7), 0 0 50px rgba(236,72,153,0.4); }
-          }
-          @keyframes fpPopIn {
-            0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-          }
-        `}</style>
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: '#0f172a',
-            zIndex: 999999,
-            overflowY: 'auto',
-            display: 'flex',
-            padding: '40px 12px',
-            boxSizing: 'border-box',
-            fontFamily: 'system-ui, sans-serif',
-          }}
-        >
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundImage: 'url(/bg-main.jpeg)',
-              backgroundPosition: 'center center',
-              backgroundSize: '140%',
-              backgroundRepeat: 'no-repeat',
-              mixBlendMode: 'lighten',
-              opacity: 0.13,
-              zIndex: -1,
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              maxWidth: 480,
-              width: '100%',
-              margin: 'auto',
-              textAlign: 'center',
-              color: '#e2e8f0',
-              background: 'rgba(15,23,42,0.6)',
-              border: '2px solid rgba(239,68,68,0.35)',
-              borderRadius: 16,
-              padding: '36px 12px',
-              position: 'relative',
-              zIndex: 10,
-              animation: 'fpPopIn 0.6s ease-out, fpBorderGlow 3s ease-in-out infinite',
-            }}
-          >
-            <h1
-              style={{
-                color: '#ef4444',
-                fontSize: 32,
-                margin: '0 0 16px',
-                fontWeight: 800,
-                animation: 'fpGlowPulse 3s ease-in-out infinite',
-              }}
-            >
-              Access Denied
-            </h1>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#06b6d4' }}>You have been blocked from accessing</span><br />
-              <span style={{ color: '#ec4899' }}>TJB Management Inc.'s</span><br />
-              <span style={{ color: '#a855f7' }}>social media accounts and systems.</span>
+      <div className="fp-screen">
+        <div className="fp-screen-bg" />
+        <div className="fp-card fp-card--blocked">
+          <h1 className="fp-h1--blocked">Access Denied</h1>
+          <p className="fp-p">
+            <span className="fp-c-cyan">You have been blocked from accessing</span><br />
+            <span className="fp-c-pink">TJB Management Inc.'s</span><br />
+            <span className="fp-c-purple">social media accounts and systems.</span>
+          </p>
+          <p className="fp-p--final">
+            <span className="fp-c-magenta">If you believe this was done in error,</span><br />
+            <span className="fp-email-wrap">
+              email{' '}
+              <a href="mailto:support@tjbmanagementinc.com" className="fp-gradient-link">
+                support@tjbmanagementinc.com
+              </a>
+            </span><br />
+            <span className="fp-c-pink">for assistance.</span>
+          </p>
+          {visitorId && (
+            <p className="fp-id-block">
+              Your ID: <span className="fp-id-mono">{visitorId}</span>
+              <br />
+              <span className="fp-c-pink">(make sure to include this in your email,</span><br />
+              <span className="fp-c-pink">otherwise we won&apos;t be able to identify you)</span>
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-              <span style={{ color: '#d946ef' }}>If you believe this was done in error,</span><br />
-              <span style={{ display: 'inline-block', whiteSpace: 'nowrap', fontSize: 12.5, lineHeight: 1.7, color: '#06b6d4' }}>
-                email{' '}
-                <a
-                  href="mailto:support@tjbmanagementinc.com"
-                  style={{
-                    background: 'linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    fontWeight: 600,
-                    textDecoration: 'underline',
-                  }}
-                >
-                  support@tjbmanagementinc.com
-                </a>
-              </span><br />
-              <span style={{ color: '#ec4899' }}>for assistance.</span>
-            </p>
-            {visitorId && (
-              <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: '18px 0 0', color: '#06b6d4' }}>
-                Your ID: <span style={{ fontFamily: 'monospace', color: '#a855f7', fontWeight: 700 }}>{visitorId}</span>
-                <br />
-                <span style={{ color: '#ec4899' }}>(make sure to include this in your email,</span><br />
-                <span style={{ color: '#ec4899' }}>otherwise we won&apos;t be able to identify you)</span>
-              </p>
-            )}
-          </div>
+          )}
         </div>
-      </>
+      </div>
     );
   }
 
   if (status === 'unverified') {
     return (
-      <>
-        <style>{`
-          @keyframes fpGlowPulseAmber {
-            0%, 100% { text-shadow: 0 0 20px rgba(245,158,11,0.6), 0 0 40px rgba(245,158,11,0.3); }
-            50% { text-shadow: 0 0 40px rgba(245,158,11,1), 0 0 60px rgba(236,72,153,0.6), 0 0 80px rgba(168,85,247,0.4); }
-          }
-          @keyframes fpBorderGlowAmber {
-            0%, 100% { box-shadow: 0 0 15px rgba(245,158,11,0.4), 0 0 30px rgba(245,158,11,0.2); }
-            50% { box-shadow: 0 0 25px rgba(245,158,11,0.7), 0 0 50px rgba(236,72,153,0.3); }
-          }
-          @keyframes fpBorderGlowHome {
-            0%, 100% { box-shadow: 0 0 15px rgba(168,85,247,0.25), 0 0 30px rgba(168,85,247,0.12); }
-            50% { box-shadow: 0 0 25px rgba(168,85,247,0.5), 0 0 50px rgba(236,72,153,0.25); }
-          }
-          .fp-reload:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.5) !important;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 0 30px rgba(168,85,247,0.3);
-            filter: brightness(1.1);
-          }
-          @keyframes fpPopIn {
-            0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-          }
-        `}</style>
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: '#0f172a',
-            zIndex: 999999,
-            overflowY: 'auto',
-            display: 'flex',
-            padding: '40px 12px',
-            boxSizing: 'border-box',
-            fontFamily: 'system-ui, sans-serif',
-          }}
-        >
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundImage: 'url(/bg-main.jpeg)',
-              backgroundPosition: 'center center',
-              backgroundSize: '140%',
-              backgroundRepeat: 'no-repeat',
-              mixBlendMode: 'lighten',
-              opacity: 0.13,
-              zIndex: -1,
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              maxWidth: 480,
-              width: '100%',
-              margin: 'auto',
-              textAlign: 'center',
-              color: '#e2e8f0',
-              background: 'rgba(15,23,42,0.6)',
-              border: '2px solid rgba(245,158,11,0.35)',
-              borderRadius: 16,
-              padding: '36px 12px',
-              position: 'relative',
-              zIndex: 10,
-              animation: 'fpPopIn 0.6s ease-out, fpBorderGlowAmber 3s ease-in-out infinite',
-            }}
-          >
-            <h1
-              style={{
-                color: '#f59e0b',
-                fontSize: 32,
-                margin: '0 0 16px',
-                fontWeight: 800,
-                animation: 'fpGlowPulseAmber 3s ease-in-out infinite',
-              }}
-            >
-              We are unable<br />
-              to verify you.
-            </h1>
-            <p style={{ fontSize: 15, lineHeight: 1.7, margin: '0 0 14px' }}>
-              <span style={{ color: '#a855f7', fontWeight: 700 }}>Reason: </span>
-              <span style={{ color: '#ec4899' }}>{reasonLabel(reason)}</span>
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="fp-reload"
-              style={{
-                background: '#f59e0b',
-                color: '#0f172a',
-                border: '2px solid rgba(168,85,247,0.25)',
-                borderRadius: 999,
-                padding: '10px 24px',
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: 'pointer',
-                marginBottom: 18,
-                transition: 'all 0.3s ease',
-                animation: 'fpBorderGlowHome 3s ease-in-out infinite',
-              }}
-            >
-              reload this page.
-            </button>
-            <p style={{ fontSize: 12.5, lineHeight: 1.7, margin: 0, color: '#06b6d4' }}>
-              Still not working?<br />
-              Email{' '}
-              <a
-                href="mailto:support@tjbmanagementinc.com"
-                style={{
-                  background: 'linear-gradient(90deg, #d946ef 0%, #a855f7 25%, #3b82f6 50%, #06b6d4 75%, #d946ef 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  fontWeight: 600,
-                  textDecoration: 'underline',
-                }}
-              >
-                support@tjbmanagementinc.com
-              </a>
-              .
-            </p>
-          </div>
+      <div className="fp-screen">
+        <div className="fp-screen-bg" />
+        <div className="fp-card fp-card--unverified">
+          <h1 className="fp-h1--unverified">
+            We are unable<br />
+            to verify you.
+          </h1>
+          <p className="fp-p">
+            <span className="fp-reason-label">Reason: </span>
+            <span className="fp-c-pink">{reasonLabel(reason)}</span>
+          </p>
+          <button onClick={() => window.location.reload()} className="fp-reload">
+            reload this page.
+          </button>
+          <p className="fp-p--small">
+            Still not working?<br />
+            Email{' '}
+            <a href="mailto:support@tjbmanagementinc.com" className="fp-gradient-link">
+              support@tjbmanagementinc.com
+            </a>
+            .
+          </p>
         </div>
-      </>
+      </div>
     );
   }
 

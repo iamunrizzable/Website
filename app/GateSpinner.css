@@ -1,0 +1,38 @@
+/* Shared "checking" full-screen spinner overlay — used identically by
+   DeviceGate, MaintenanceGate, TikTokSuspensionGate, and C2SuspensionGate
+   while each is waiting on its own status check. Consolidated here instead
+   of duplicated per-file since the markup and styling are byte-for-byte
+   the same across all four; only which gate is checking differs. */
+@keyframes gateSpin { to { transform: rotate(360deg); } }
+
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gate-overlay-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url(/bg-main.jpeg);
+  background-position: center center;
+  background-size: 140%;
+  background-repeat: no-repeat;
+  mix-blend-mode: lighten;
+  opacity: 0.13;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gate-spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid rgba(168, 85, 247, 0.25);
+  border-top-color: #a855f7;
+  animation: gateSpin 0.8s linear infinite;
+}
