@@ -95,3 +95,65 @@ body {
 .menu-dropdown a:hover {
   background-color: rgba(168, 85, 247, 0.1);
 }
+
+/* Dense data table, modeled on Fingerprint's own "Identification" table —
+   small monospace text, single-line rows, real columns instead of stacked
+   multi-line cards. Horizontally scrolls on narrow phones rather than
+   wrapping, same as the reference: a table this dense has nowhere to
+   shrink to, and a forced wrap would make rows taller, not narrower. */
+.vt-scroll {
+  overflow-x: auto;
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+
+.vt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.vt-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 6px 12px 6px 0;
+  border-bottom: 1px solid #334155;
+  position: sticky;
+  top: 0;
+  background: #1e293b;
+}
+
+.vt-table td {
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid #1e293b;
+  color: #cbd5e1;
+  vertical-align: top;
+}
+
+.vt-row {
+  cursor: pointer;
+}
+
+.vt-row:hover td {
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.vt-row--expanded td {
+  background: rgba(168, 85, 247, 0.1);
+}
+
+.vt-id {
+  font-family: monospace;
+  color: #e2e8f0;
+}
+
+.vt-detail-cell {
+  padding: 0 !important;
+  border-bottom: 1px solid #334155;
+  white-space: normal;
+}

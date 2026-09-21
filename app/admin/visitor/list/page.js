@@ -2,7 +2,7 @@
 
 import './page.css';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { Fragment, useEffect, useState, useCallback, useMemo } from 'react';
 import { parseUserAgent } from '@/lib/deviceSignals';
 import { renderStaticMap } from '@/lib/staticMap';
 
@@ -10,10 +10,6 @@ const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box', marginBottom: 16 },
-  row: { padding: '12px 0', borderBottom: '1px solid #334155', cursor: 'pointer' },
-  visitorId: { fontFamily: 'monospace', fontSize: 13, color: '#e2e8f0', wordBreak: 'break-all' },
-  metaLine: { fontSize: 12, color: '#94a3b8', marginTop: 4 },
-  countBadge: { display: 'inline-block', background: 'rgba(168,85,247,0.15)', color: '#d4a5ff', border: '1px solid rgba(168,85,247,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700, marginLeft: 8 },
   warnBanner: { background: '#3f1d1d', border: '1px solid #ef4444', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 13, color: '#fca5a5', lineHeight: 1.5 },
   msg: { fontSize: 12, color: '#f59e0b', marginBottom: 8, minHeight: 18 },
   btnGhost: { background: 'transparent', border: '1px solid #475569', color: '#94a3b8', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
@@ -32,6 +28,14 @@ function formatWhen(iso) {
   if (!iso) return 'Unknown';
   const d = new Date(iso);
   return Number.isNaN(d.getTime()) ? 'Unknown' : d.toLocaleString();
+}
+
+// Short form for the dense table columns — the full timestamp is still
+// available in the expanded detail panel via formatWhen above.
+function formatDateShort(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? '—' : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: '2-digit' });
 }
 
 function formatLocation(loc) {
@@ -338,7 +342,7 @@ export default function VisitorListPage() {
       </div>
 
       <div style={s.page}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: '#d4a5ff', marginBottom: 4, animation: 'glowPulse 3s ease-in-out infinite' }}>
             Site Visitors
           </h1>
@@ -371,26 +375,50 @@ export default function VisitorListPage() {
               </p>
             )}
 
-            <div style={{ maxHeight: 600, overflowY: 'auto' }}>
-              {filtered.map((v) => {
-                const { browser, os, device } = parseUserAgent(v.lastUserAgent);
-                const location = formatLocation(v.lastLocation);
-                const isExpanded = expandedId === v.id;
-                return (
-                  <div key={v.id} style={s.row} onClick={() => toggleExpanded(v.id)}>
-                    <div style={s.visitorId}>
-                      {shortId(v.visitorId ?? v.id)}
-                      <span style={s.countBadge}>{v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}</span>
-                      {isBanned(v) && <span style={s.bannedBadge}>BANNED</span>}
-                    </div>
-                    <div style={s.metaLine}>First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)}</div>
-                    <div style={s.metaLine}>
-                      {browser} on {os} ({device}){v.lastIp ? ` · ${v.lastIp}` : ''}{location ? ` · ${location}` : ''}
-                    </div>
-                    {isExpanded && renderDetail(v)}
-                  </div>
-                );
-              })}
+            <div className="vt-scroll" style={{ maxHeight: 600, overflowY: 'auto' }}>
+              <table className="vt-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Visits</th>
+                    <th>First Seen</th>
+                    <th>Last Seen</th>
+                    <th>Client</th>
+                    <th>Location</th>
+                    <th>IP</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((v) => {
+                    const { browser, os } = parseUserAgent(v.lastUserAgent);
+                    const location = formatLocation(v.lastLocation);
+                    const isExpanded = expandedId === v.id;
+                    return (
+                      <Fragment key={v.id}>
+                        <tr
+                          className={`vt-row${isExpanded ? ' vt-row--expanded' : ''}`}
+                          onClick={() => toggleExpanded(v.id)}
+                        >
+                          <td className="vt-id">{shortId(v.visitorId ?? v.id)}</td>
+                          <td>{v.visitCount ?? 1}</td>
+                          <td>{formatDateShort(v.firstSeenAt)}</td>
+                          <td>{formatDateShort(v.lastSeenAt)}</td>
+                          <td>{browser} · {os}</td>
+                          <td>{location ?? '—'}</td>
+                          <td>{v.lastIp ?? '—'}</td>
+                          <td>{isBanned(v) && <span style={s.bannedBadge}>BANNED</span>}</td>
+                        </tr>
+                        {isExpanded && (
+                          <tr>
+                            <td className="vt-detail-cell" colSpan={8}>{renderDetail(v)}</td>
+                          </tr>
+                        )}
+                      </Fragment>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
