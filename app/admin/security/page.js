@@ -36,8 +36,7 @@ export default function SecurityPage() {
   const [adminKey, setAdminKey] = useState('');
   const [redisConfigured, setRedisConfigured] = useState(true);
   const [devices, setDevices] = useState([]);
-  const [nearMisses, setNearMisses] = useState([]);
-  const [newVisitorId, setNewVisitorId] = useState('');
+  const [newMarker, setNewMarker] = useState('');
   const [deviceMsg, setDeviceMsg] = useState('');
   const [expandedId, setExpandedId] = useState(null);
   const [showJson, setShowJson] = useState({});
@@ -48,7 +47,6 @@ export default function SecurityPage() {
       if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
       const data = await res.json();
       setDevices(data.devices ?? []);
-      setNearMisses(data.nearMisses ?? []);
       setRedisConfigured(!!data.redisConfigured);
       localStorage.setItem('admin_key', key);
     } catch (e) {
@@ -69,19 +67,19 @@ export default function SecurityPage() {
     }
   }, [fetchDevices]);
 
-  const addVisitorId = async () => {
+  const addMarker = async () => {
     setDeviceMsg('');
-    const visitorId = newVisitorId.trim();
-    if (!visitorId) return;
+    const persistentMarker = newMarker.trim();
+    if (!persistentMarker) return;
     try {
       const res = await fetch('/api/admin/blocked-devices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-        body: JSON.stringify({ visitorId }),
+        body: JSON.stringify({ persistentMarker }),
       });
       const data = await res.json();
       if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to block ID'); return; }
-      setNewVisitorId('');
+      setNewMarker('');
       fetchDevices(adminKey);
     } catch (e) {
       setDeviceMsg('Failed to block ID: ' + e.message);
@@ -100,33 +98,6 @@ export default function SecurityPage() {
     }
   };
 
-  const promoteNearMiss = async (nearMissId) => {
-    try {
-      const res = await fetch('/api/admin/blocked-devices', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-        body: JSON.stringify({ promoteNearMissId: nearMissId }),
-      });
-      const data = await res.json();
-      if (!res.ok) { setDeviceMsg(data.error ?? 'Failed to confirm ban'); return; }
-      fetchDevices(adminKey);
-    } catch (e) {
-      setDeviceMsg('Failed to confirm ban: ' + e.message);
-    }
-  };
-
-  const dismissNearMiss = async (nearMissId) => {
-    try {
-      await fetch(`/api/admin/blocked-devices?nearMissId=${encodeURIComponent(nearMissId)}`, {
-        method: 'DELETE',
-        headers: { 'x-admin-key': adminKey },
-      });
-      fetchDevices(adminKey);
-    } catch (e) {
-      setDeviceMsg('Failed to dismiss: ' + e.message);
-    }
-  };
-
   const summarizeDevice = (d) => {
     const ua = d.userAgent ? d.userAgent.slice(0, 60) : 'Unknown browser';
     const when = d.bannedAt ? new Date(d.bannedAt).toLocaleDateString() : '—';
@@ -138,10 +109,9 @@ export default function SecurityPage() {
 
   // Mirrors the old Fingerprint.com "Identification" event page as closely
   // as makes sense for what we actually have: enrichment (Location/ASN/
-  // Smart Signals/Suspect Score/Velocity) only exists for entries that went
-  // through the near-miss path (lib/tokens.js) — manual admin entries and
-  // immediate exact-match repeat blocks never compute it, and that's
-  // expected, not a bug (see checkDeviceAgainstBlocklist's comment).
+  // Smart Signals/Suspect Score/Velocity) is computed once per device on
+  // its first-ever visit history record — manual admin entries with no
+  // prior visit history won't have one, and that's expected, not a bug.
   const renderDetail = (entry) => {
     const { enrichment, history } = entry;
     const client = parseUserAgent(entry.userAgent);
@@ -155,11 +125,10 @@ export default function SecurityPage() {
       <div style={s.detailPanel}>
         <div style={s.detailLabel}>Identification</div>
         <div style={s.detailValue}>
-          Visitor ID: <span style={{ fontFamily: 'monospace', fontWeight: 400 }}>{entry.visitorId ? `${entry.visitorId.slice(0, 24)}…` : '—'}</span>
+          Device marker: <span style={{ fontFamily: 'monospace', fontWeight: 400 }}>{entry.persistentMarker ?? '—'}</span>
         </div>
         <div style={s.detailSub}>
-          Confidence {entry.score != null ? `${Math.round(entry.score * 100)}%` : '—'}
-          {' · '}First seen {history?.firstSeenAt ? new Date(history.firstSeenAt).toLocaleDateString() : 'unknown'}
+          First seen {history?.firstSeenAt ? new Date(history.firstSeenAt).toLocaleDateString() : 'unknown'}
           {' · '}Last seen {history?.lastSeenAt ? new Date(history.lastSeenAt).toLocaleString() : 'unknown'}
           {' · '}{history?.visitCount ?? '—'} visits
         </div>
@@ -279,12 +248,12 @@ export default function SecurityPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <input
                 style={s.input}
-                placeholder="paste a device id (e.g. from ?fpdebug=1)"
-                value={newVisitorId}
-                onChange={(e) => setNewVisitorId(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') addVisitorId(); }}
+                placeholder="paste a device marker (e.g. from ?fpdebug=1)"
+                value={newMarker}
+                onChange={(e) => setNewMarker(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') addMarker(); }}
               />
-              <button style={s.btn} onClick={addVisitorId}>Block</button>
+              <button style={s.btn} onClick={addMarker}>Block</button>
             </div>
           </div>
 
@@ -303,43 +272,11 @@ export default function SecurityPage() {
                   </div>
                 </div>
                 <span style={{ color: '#64748b', fontSize: 11 }}>
-                  {d.visitorId ? `id: ${d.visitorId.slice(0, 16)}…` : 'no exact id captured'}
+                  {d.persistentMarker ? `id: ${d.persistentMarker.slice(0, 16)}…` : 'no marker captured'}
                   {d.note ? ` · ${d.note}` : ''}
                   {d.matchCount ? ` · seen ${d.matchCount}×` : ''}
                 </span>
                 {expandedId === d.id && renderDetail(d)}
-              </div>
-            ))}
-          </div>
-
-          <div style={s.card}>
-            <div style={s.h2}>Near-Miss Review ({nearMisses.length})</div>
-            <p style={{ color: '#94a3b8', fontSize: 13, lineHeight: 1.6, marginBottom: 16 }}>
-              Visits whose device fingerprint scored close to a banned profile but weren&apos;t
-              automatically blocked. Confirm to add them as their own ban, or dismiss if unrelated.
-            </p>
-            {nearMisses.length === 0 && <div style={{ color: '#06b6d4', fontSize: 13 }}>No near-misses pending review.</div>}
-            {nearMisses.map((n) => (
-              <div key={n.id} style={{ ...s.row, flexDirection: 'column', alignItems: 'stretch', gap: 6 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 13 }}>
-                    {n.userAgent ? n.userAgent.slice(0, 50) : 'Unknown browser'} · {n.country ?? '—'} · {n.ip ?? 'no IP captured'}
-                  </span>
-                  <span style={{ color: '#f59e0b', fontSize: 12, fontWeight: 700 }}>
-                    {Math.round((n.score ?? 0) * 100)}% match
-                  </span>
-                </div>
-                <span style={{ color: '#64748b', fontSize: 11 }}>
-                  seen {n.seenAt ? new Date(n.seenAt).toLocaleString() : '—'}
-                </span>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button style={s.btn} onClick={() => promoteNearMiss(n.id)}>Confirm Ban</button>
-                  <button style={s.btnDanger} onClick={() => dismissNearMiss(n.id)}>Dismiss</button>
-                  <button style={s.btnGhost} onClick={() => toggleExpanded(n.id)}>
-                    {expandedId === n.id ? 'Hide details' : 'Details'}
-                  </button>
-                </div>
-                {expandedId === n.id && renderDetail(n)}
               </div>
             ))}
           </div>
