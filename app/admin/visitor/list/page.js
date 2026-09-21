@@ -68,10 +68,10 @@ export default function VisitorListPage() {
   const toggleExpanded = (id) => setExpandedId((prev) => (prev === id ? null : id));
   const toggleJson = (id) => setShowJson((prev) => ({ ...prev, [id]: !prev[id] }));
 
-  // Maps visitorId/persistentMarker -> banId, not just a Set, because
-  // unbanning needs the actual banId (removeBlockedDevice's key) and this
-  // is the only place that ID is available on this page.
-  const getBanId = (v) => bannedMap.get(v.visitorId) ?? bannedMap.get(v.persistentMarker ?? v.id);
+  // Maps persistentMarker -> banId, not just a Set, because unbanning needs
+  // the actual banId (removeBlockedDevice's key) and this is the only place
+  // that ID is available on this page.
+  const getBanId = (v) => bannedMap.get(v.persistentMarker ?? v.id);
   const isBanned = (v) => getBanId(v) !== undefined;
 
   const fetchVisitors = useCallback(async (key) => {
@@ -99,7 +99,6 @@ export default function VisitorListPage() {
       const data = await res.json();
       const map = new Map();
       for (const d of data.devices ?? []) {
-        if (d.visitorId) map.set(d.visitorId, d.id);
         if (d.persistentMarker) map.set(d.persistentMarker, d.id);
       }
       setBannedMap(map);
@@ -129,17 +128,11 @@ export default function VisitorListPage() {
     return visitors.filter((v) => {
       const loc = formatLocation(v.lastLocation)?.toLowerCase() ?? '';
       return v.id.toLowerCase().includes(q)
-        || (v.visitorId ?? '').toLowerCase().includes(q)
         || (v.lastIp ?? '').includes(q)
         || loc.includes(q);
     });
   }, [visitors, query]);
 
-  // Only Identification/Client/Location are shown — unlike /admin/security's
-  // detail view, a plain visitor-history record never gets ASN/Smart
-  // Signals/Suspect Score/Velocity enrichment (lib/tokens.js only computes
-  // that for near-misses and bans, never for ordinary allowed visits), so
-  // there's nothing there to show, not a missing feature.
   const copyToClipboard = (text) => {
     navigator.clipboard?.writeText(text).then(() => {
       setMsg('Copied to clipboard.');
@@ -147,12 +140,8 @@ export default function VisitorListPage() {
     }).catch(() => {});
   };
 
-  // Bans by BOTH the fingerprint and the device marker in one call — no
-  // copying an ID into another page's manual-entry field required. The
-  // marker match is the one that actually survives a browser/OS update
-  // drifting the fingerprint (see the caveat text below); sending both is
-  // strictly stronger than the old copy-paste-into-/admin/security flow,
-  // which only ever had the fingerprint to work with.
+  // Bans by device marker — no copying an ID into another page's
+  // manual-entry field required.
   const banDevice = async (v) => {
     setBanning(v.id);
     setMsg('');
@@ -160,7 +149,7 @@ export default function VisitorListPage() {
       const res = await fetch('/api/admin/blocked-devices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-        body: JSON.stringify({ visitorId: v.visitorId, persistentMarker: v.persistentMarker ?? v.id }),
+        body: JSON.stringify({ persistentMarker: v.persistentMarker ?? v.id }),
       });
       const data = await res.json();
       if (!res.ok) { setMsg(data.error ?? 'Failed to ban device'); setBanning(null); return; }
@@ -249,7 +238,7 @@ export default function VisitorListPage() {
         )}
 
         <div style={s.detailLabel}>Identification</div>
-        <div style={s.detailSub}>Device marker (this row&apos;s ID column — guaranteed unique per device)</div>
+        <div style={s.detailSub}>Device marker (this row&apos;s ID column — guaranteed unique per device, can never collide between two different real devices)</div>
         <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
           {v.id}
         </div>
@@ -259,27 +248,6 @@ export default function VisitorListPage() {
         >
           Copy device marker
         </button>
-
-        <div style={{ ...s.detailSub, marginTop: 10 }}>
-          Fingerprint (used for ban-matching after a device clears storage — see caveat below)
-        </div>
-        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
-          {v.visitorId ?? '—'}
-        </div>
-        {v.visitorId && (
-          <button
-            style={{ ...s.btnGhost, marginTop: 4 }}
-            onClick={(e) => { e.stopPropagation(); copyToClipboard(v.visitorId); }}
-          >
-            Copy fingerprint
-          </button>
-        )}
-        <p style={s.caveat}>
-          Two different phones of the same model/OS/browser can share this fingerprint — it&apos;s
-          not the unique row identity. The device marker above (this row&apos;s ID column) is what
-          actually distinguishes this row from another visitor, and can never collide between two
-          different real devices.
-        </p>
 
         <div style={{ ...s.detailSub, marginTop: 8 }}>
           First seen {formatWhen(v.firstSeenAt)} · Last seen {formatWhen(v.lastSeenAt)} · {v.visitCount ?? 1} visit{(v.visitCount ?? 1) === 1 ? '' : 's'}

@@ -3,21 +3,21 @@
 import { useEffect, useRef, useState } from 'react';
 import './GateSpinner.css';
 import './DeviceGate.css';
-import { getFingerprint } from '@/lib/fingerprint/collect';
 import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
+import { collectWebglFingerprint } from '@/lib/fingerprint/webgl';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
 
-// How long to wait for our OWN local identification — the fingerprint
-// (canvas/WebGL/audio/font collection, lib/fingerprint/collect.js) AND the
-// persistent storage marker (lib/fingerprint/persistentMarker.js) — before
-// concluding it failed. There's no remote script/network round-trip anymore
-// (everything is bundled same-origin), so this is now just a watchdog
-// against a hung or blocked browser API (a locked-down privacy browser can
-// still disable Canvas/AudioContext/IndexedDB outright). This path fails
-// CLOSED: if we can never even compute an identity to check, letting the
-// visitor through unconditionally would make blocking those APIs an
-// unintentional bypass of every device ban on the site.
+// How long to wait for our OWN local identification — the persistent
+// storage marker (lib/fingerprint/persistentMarker.js), the sole device
+// identity signal — before concluding it failed. There's no remote script/
+// network round-trip anymore (everything is bundled same-origin), so this
+// is now just a watchdog against a hung or blocked browser API (a locked-
+// down privacy browser can still disable localStorage/IndexedDB/the Cache
+// API outright). This path fails CLOSED: if we can never even compute an
+// identity to check, letting the visitor through unconditionally would make
+// blocking those APIs an unintentional bypass of every device ban on the
+// site.
 const IDENTIFY_TIMEOUT_MS = 2000;
 
 // How long to wait for OUR OWN /api/fingerprint/check call once a
@@ -36,18 +36,17 @@ const REASON_LABELS = {
   'check-api-error': 'Our verification service returned an error.',
   'network-error': "We couldn't reach our verification service.",
   'device-blocklist-check-error': "We couldn't confirm your device's status.",
-  'no-components': 'Verification data was missing from your request.',
+  'no-marker': 'Verification data was missing from your request.',
 };
 
 function reasonLabel(reason) {
   return REASON_LABELS[reason] ?? reason ?? 'We were unable to complete verification.';
 }
 
-// Blocks the whole site for visitors whose device fingerprint matches the
-// blocklist at /admin/security — either exactly, or by weighted similarity
-// (lib/deviceMatch.js) when a signal has drifted since the ban ('blocked' —
-// a purposeful, confirmed block). Anything else we can't actually verify —
-// local fingerprint computation failing, our own check call timing out/
+// Blocks the whole site for visitors whose persistentMarker matches the
+// blocklist at /admin/security — an exact match only ('blocked' — a
+// purposeful, confirmed block). Anything else we can't actually verify —
+// local marker computation failing, our own check call timing out/
 // erroring, a Redis error, etc — shows the 'unverified' screen instead,
 // with `reason` naming specifically why, since none of those are us
 // blocking someone on purpose. The verdict is checked BEFORE showing any
@@ -56,7 +55,7 @@ function reasonLabel(reason) {
 export default function DeviceGate({ children }) {
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const [reason, setReason] = useState(null);
-  const [visitorId, setVisitorId] = useState(null);
+  const [deviceMarker, setDeviceMarker] = useState(null);
   const resolvedRef = useRef(false);
 
   useEffect(() => {
@@ -70,11 +69,11 @@ export default function DeviceGate({ children }) {
       }
     }, IDENTIFY_TIMEOUT_MS);
 
-    Promise.all([getFingerprint(), getPersistentMarker(), collectBotSignals(), collectPrivacySignals()])
-      .then(([{ visitorId: id, components }, persistentMarker, botSignals, privacySignals]) => {
+    Promise.all([getPersistentMarker(), Promise.resolve(collectWebglFingerprint()), collectBotSignals(), collectPrivacySignals()])
+      .then(([persistentMarker, webgl, botSignals, privacySignals]) => {
         if (cancelled || resolvedRef.current) return;
         clearTimeout(watchdog);
-        setVisitorId(id);
+        setDeviceMarker(persistentMarker);
 
         const checkTimeout = setTimeout(() => {
           if (!cancelled && !resolvedRef.current) {
@@ -87,7 +86,7 @@ export default function DeviceGate({ children }) {
         fetch('/api/fingerprint/check', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ visitorId: id, components, persistentMarker, botSignals, privacySignals }),
+          body: JSON.stringify({ persistentMarker, webgl, botSignals, privacySignals }),
         })
           .then((res) => (res.ok ? res.json() : { verdict: 'unverified', reason: 'check-api-error' }))
           .then((result) => {
@@ -151,9 +150,9 @@ export default function DeviceGate({ children }) {
             </span><br />
             <span className="fp-c-pink">for assistance.</span>
           </p>
-          {visitorId && (
+          {deviceMarker && (
             <p className="fp-id-block">
-              Your ID: <span className="fp-id-mono">{visitorId}</span>
+              Your ID: <span className="fp-id-mono">{deviceMarker}</span>
               <br />
               <span className="fp-c-pink">(make sure to include this in your email,</span><br />
               <span className="fp-c-pink">otherwise we won&apos;t be able to identify you)</span>

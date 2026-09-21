@@ -10,9 +10,11 @@ import { timingSafeEqual } from './lib/auth.js';
 // IP-based blocking used to live here (checked against a blocklist managed
 // at /admin/security). Removed — IP is trivially rotated/spoofed (mobile
 // carrier CGNAT alone made it unreliable all session), so blocking now
-// happens purely on our in-house device fingerprint (see DeviceGate.js /
-// app/api/fingerprint/check, lib/fingerprint/, lib/deviceMatch.js), which
-// survives IP changes.
+// happens purely on the client's persistentMarker (see DeviceGate.js /
+// app/api/fingerprint/check, lib/fingerprint/persistentMarker.js), a
+// randomly-generated, client-stored value that survives IP changes and,
+// unlike a passive browser fingerprint, can never collide between two
+// different real devices.
 
 function buildCsp(nonce) {
   return [
