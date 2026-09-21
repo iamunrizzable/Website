@@ -48,6 +48,7 @@ const s = {
 export default function SystemPage() {
   const [connected, setConnected] = useState(null);
   const [msg, setMsg] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const checkStatus = useCallback(async () => {
     const res = await fetch('/api/system/status');
@@ -64,6 +65,17 @@ export default function SystemPage() {
 
   return (
     <>
+      <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
+      <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>
+        <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
+        <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
+        <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
+        <a href="/agencies" onClick={() => setMenuOpen(false)}>Creator Networks</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
+        <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
+        <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
+      </div>
+
       <div style={s.page}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
 
