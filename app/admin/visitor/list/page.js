@@ -22,7 +22,13 @@ const s = {
   detailSub: { color: '#94a3b8', fontSize: 12 },
   caveat: { color: '#f59e0b', fontSize: 11, lineHeight: 1.6, marginTop: 4, fontStyle: 'italic' },
   jsonBlock: { background: '#000', color: '#0f0', fontFamily: 'monospace', fontSize: 11, padding: 10, borderRadius: 6, marginTop: 8, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-all', maxHeight: 300, overflowY: 'auto' },
+  badge: { display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 999, fontSize: 11, fontWeight: 700 },
+  badgeOn: { background: 'rgba(239,68,68,0.15)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.4)' },
+  badgeOff: { background: 'rgba(100,116,139,0.15)', color: '#64748b', border: '1px solid rgba(100,116,139,0.3)' },
+  scoreBarTrack: { width: '100%', maxWidth: 240, height: 8, background: '#1e293b', borderRadius: 999, overflow: 'hidden', marginTop: 6 },
 };
+
+const suspectColor = (label) => (label === 'High' ? '#ef4444' : label === 'Medium' ? '#f59e0b' : '#22c55e');
 
 function formatWhen(iso) {
   if (!iso) return 'Unknown';
@@ -220,6 +226,11 @@ export default function VisitorListPage() {
     const { browser, os, device } = parseUserAgent(v.lastUserAgent);
     const loc = v.lastLocation;
     const location = formatLocation(loc);
+    const { enrichment } = v;
+    const asn = enrichment?.asn;
+    const signals = enrichment?.smartSignals;
+    const score = enrichment?.suspectScore;
+    const velocity = enrichment?.velocity;
 
     return (
       <div style={s.detailPanel}>
@@ -307,6 +318,54 @@ export default function VisitorListPage() {
             )}
           </>
         ) : <div style={s.detailSub}>Unknown</div>}
+
+        {!enrichment && (
+          <p style={{ color: '#64748b', fontSize: 12, marginTop: 14 }}>
+            No ASN/Smart Signals data was captured for this visitor — enrichment only started
+            computing for records created after this feature shipped; older logs won&apos;t have it
+            until they&apos;re recreated by a fresh visit.
+          </p>
+        )}
+
+        {enrichment && (
+          <>
+            <div style={s.detailLabel}>ASN</div>
+            <div style={s.detailValue}>
+              {asn ? `AS${asn.asn} — ${asn.name ?? 'Unknown name'} (${asn.country ?? '—'})` : 'Unknown ISP'}
+            </div>
+
+            <div style={s.detailLabel}>Smart Signals</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
+              <span style={{ ...s.badge, ...(signals?.tor ? s.badgeOn : s.badgeOff) }}>Tor {signals?.tor ? '✓' : '—'}</span>
+              <span style={{ ...s.badge, ...(signals?.vpnOrDatacenter ? s.badgeOn : s.badgeOff) }}>VPN/Datacenter {signals?.vpnOrDatacenter ? '✓' : '—'}</span>
+              <span style={{ ...s.badge, ...(signals?.vm?.detected ? s.badgeOn : s.badgeOff) }}>VM {signals?.vm?.detected ? '✓' : '—'}</span>
+              <span style={{ ...s.badge, ...(signals?.bot?.suspected ? s.badgeOn : s.badgeOff) }}>Bot {signals?.bot?.suspected ? '✓' : '—'}</span>
+              <span style={{ ...s.badge, ...(signals?.incognito?.suspected ? s.badgeOn : s.badgeOff) }}>Incognito {signals?.incognito?.suspected ? '✓' : '—'}</span>
+            </div>
+            <p style={s.caveat}>
+              Bot and Incognito are weak, easily-evaded signals — navigator.webdriver is defeated by a
+              single browser flag, and the classic incognito-detection technique was broken by Chrome&apos;s
+              2026 storage-quota changes. Treat both as corroborating context only, never as proof.
+            </p>
+
+            <div style={s.detailLabel}>Suspect Score</div>
+            {score ? (
+              <>
+                <div style={s.detailValue}>
+                  {score.value} — <span style={{ color: suspectColor(score.label) }}>{score.label}</span>
+                </div>
+                <div style={s.scoreBarTrack}>
+                  <div style={{ width: `${score.value}%`, height: '100%', background: suspectColor(score.label) }} />
+                </div>
+              </>
+            ) : <div style={s.detailSub}>—</div>}
+
+            <div style={s.detailLabel}>Velocity (24h snapshot at first-seen)</div>
+            {velocity ? (
+              <div style={s.detailValue}>{velocity.eventCount24h} events · {velocity.ipCount24h} IPs · {velocity.countryCount24h} countries</div>
+            ) : <div style={s.detailSub}>—</div>}
+          </>
+        )}
 
         <div style={{ marginTop: 14, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <button
