@@ -51,14 +51,6 @@ function formatLocation(loc) {
   return parts.length ? parts.join(', ') : null;
 }
 
-// Fingerprint IDs are now generated short (16 hex chars — see
-// lib/fingerprint/collect.js) so this just returns the value as-is; kept
-// as a named function since the device marker fallback (v.id) is still
-// the old 32-char format and callers don't need to know which they got.
-function shortId(id) {
-  return id;
-}
-
 export default function VisitorListPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [adminKey, setAdminKey] = useState('');
@@ -257,7 +249,20 @@ export default function VisitorListPage() {
         )}
 
         <div style={s.detailLabel}>Identification</div>
-        <div style={s.detailSub}>Fingerprint</div>
+        <div style={s.detailSub}>Device marker (this row&apos;s ID column — guaranteed unique per device)</div>
+        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
+          {v.id}
+        </div>
+        <button
+          style={{ ...s.btnGhost, marginTop: 4 }}
+          onClick={(e) => { e.stopPropagation(); copyToClipboard(v.id); }}
+        >
+          Copy device marker
+        </button>
+
+        <div style={{ ...s.detailSub, marginTop: 10 }}>
+          Fingerprint (used for ban-matching after a device clears storage — see caveat below)
+        </div>
         <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
           {v.visitorId ?? '—'}
         </div>
@@ -269,23 +274,11 @@ export default function VisitorListPage() {
             Copy fingerprint
           </button>
         )}
-
-        <div style={{ ...s.detailSub, marginTop: 10 }}>
-          Device marker (this row&apos;s actual unique key — see below)
-        </div>
-        <div style={{ ...s.detailValue, fontFamily: 'monospace', fontWeight: 400, wordBreak: 'break-all' }}>
-          {v.persistentMarker ?? v.id}
-        </div>
-        <button
-          style={{ ...s.btnGhost, marginTop: 4 }}
-          onClick={(e) => { e.stopPropagation(); copyToClipboard(v.persistentMarker ?? v.id); }}
-        >
-          Copy device marker
-        </button>
         <p style={s.caveat}>
           Two different phones of the same model/OS/browser can share this fingerprint — it&apos;s
-          used for ban-matching after a device clears storage, not as the unique row identity.
-          The device marker above is what actually distinguishes this row from another visitor.
+          not the unique row identity. The device marker above (this row&apos;s ID column) is what
+          actually distinguishes this row from another visitor, and can never collide between two
+          different real devices.
         </p>
 
         <div style={{ ...s.detailSub, marginTop: 8 }}>
@@ -460,7 +453,7 @@ export default function VisitorListPage() {
                           className={`vt-row${isExpanded ? ' vt-row--expanded' : ''}`}
                           onClick={() => toggleExpanded(v.id)}
                         >
-                          <td className="vt-id">{shortId(v.visitorId ?? v.id)}</td>
+                          <td className="vt-id">{v.id}</td>
                           <td>{v.visitCount ?? 1}</td>
                           <td>{formatDateShort(v.firstSeenAt)}</td>
                           <td>{formatDateShort(v.lastSeenAt)}</td>
