@@ -711,14 +711,18 @@ function MentionsPanel() {
   }
 
   async function removeHashtag(tag) {
+    setActionMsg('');
     try {
-      await fetch('/api/system/mentions', {
+      const res = await fetch('/api/system/mentions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag, username }),
       });
-      load('tracked_hashtags');
-    } catch {}
+      const d = await res.json();
+      if (d.code && d.code !== 0) setActionMsg(`Error: ${d.message ?? 'unknown'}`);
+      else if (d.error) setActionMsg(`Error: ${d.error}`);
+      else { setActionMsg('Hashtag removed.'); load('tracked_hashtags'); }
+    } catch (e) { setActionMsg('Error: ' + e.message); }
   }
 
   const TABS = [
