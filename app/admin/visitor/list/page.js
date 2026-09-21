@@ -16,6 +16,7 @@ const s = {
   btnDanger: { background: '#ef4444', color: '#fff', border: 'none', borderRadius: 6, padding: '8px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 700 },
   btnDangerGhost: { background: 'transparent', border: '1px solid #ef4444', color: '#ef4444', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   bannedBadge: { display: 'inline-block', background: 'rgba(239,68,68,0.15)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700, marginLeft: 8 },
+  allowedBadge: { display: 'inline-block', background: 'rgba(34,197,94,0.15)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700 },
   detailPanel: { marginTop: 10, padding: 16, background: '#0f172a', borderRadius: 8, border: '1px solid #334155', fontFamily: 'system-ui,sans-serif' },
   detailLabel: { color: '#64748b', fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 3 },
   detailValue: { color: '#e2e8f0', fontSize: 13, fontWeight: 600 },
@@ -466,7 +467,7 @@ export default function VisitorListPage() {
                           <td>{browser} · {os}</td>
                           <td>{location ?? '—'}</td>
                           <td>{v.lastIp ?? '—'}</td>
-                          <td>{isBanned(v) && <span style={s.bannedBadge}>BANNED</span>}</td>
+                          <td>{isBanned(v) ? <span style={s.bannedBadge}>BANNED</span> : <span style={s.allowedBadge}>ALLOWED</span>}</td>
                         </tr>
                         {isExpanded && (
                           <tr>
