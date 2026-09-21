@@ -889,14 +889,18 @@ function MentionsPanel({ adminKey, enabled }) {
   }
 
   async function removeHashtag(tag) {
+    setActionMsg('');
     try {
-      await fetch('/api/business/mentions', {
+      const res = await fetch('/api/business/mentions', {
         method: 'POST',
         headers: { 'x-admin-key': adminKey, 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag, username }),
       });
-      load('tracked_hashtags');
-    } catch {}
+      const d = await res.json();
+      if (d.code && d.code !== 0) setActionMsg(`Error: ${d.message ?? 'unknown'}`);
+      else if (d.error) setActionMsg(`Error: ${d.error}`);
+      else { setActionMsg('Hashtag removed.'); load('tracked_hashtags'); }
+    } catch (e) { setActionMsg('Error: ' + e.message); }
   }
 
   const TABS = [
