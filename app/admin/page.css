@@ -95,3 +95,11 @@ body::before {
         .menu-dropdown a:hover {
           background-color: rgba(168, 85, 247, 0.1);
         }
+
+.admin-page { min-height: 100vh; background: transparent; color: #e2e8f0; font-family: system-ui,sans-serif; padding: 32px 20px; position: relative; z-index: 10; }
+.admin-content { max-width: 600px; margin: 0 auto; }
+.admin-h1 { font-size: 24px; font-weight: 700; color: #d4a5ff; margin-bottom: 4px; animation: glowPulse 3s ease-in-out infinite; }
+.admin-subtitle { color: #06b6d4; font-size: 13px; margin-bottom: 28px; }
+.tool-card { display: block; background: #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 16px; border: 2px solid rgba(168,85,247,0.25); text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; animation: borderGlow 3s ease-in-out infinite; }
+.tool-title { font-size: 17px; font-weight: 700; color: #e2e8f0; margin-bottom: 6px; }
+.tool-desc { font-size: 13px; color: #d946ef; line-height: 1.5; }

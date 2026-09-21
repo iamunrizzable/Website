@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
           Effective Date: July 24, 2026 · Last Updated: September 17, 2026
         </p>
 
-        <p className="disclaimer" style={{ marginBottom: 30 }}>
+        <p className="disclaimer disclaimer--intro">
           This Privacy Policy brings together the privacy-related practices already described elsewhere on this
           website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
           <a href="/agencies/tiktok"><span className="rainbow">/agency</span></a> page, the{' '}

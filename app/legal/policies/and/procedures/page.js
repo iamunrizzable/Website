@@ -45,7 +45,7 @@ export default function PoliciesAndProcedures() {
           Last Updated: August 31, 2026
         </p>
 
-        <p className="disclaimer" style={{ marginBottom: 30 }}>
+        <p className="disclaimer disclaimer--intro">
           This page consolidates policies and procedures written by TJB Management Inc. that are also published in their
           original context elsewhere on this website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
           <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>,
