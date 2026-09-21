@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: September 17, 2026
+          Effective Date: July 24, 2026 · Last Updated: September 21, 2026
         </p>
 
         <p className="disclaimer disclaimer--intro">
@@ -116,13 +116,16 @@ export default function PrivacyPolicy() {
             The Website also computes a <strong>device identifier</strong> for security purposes — specifically, to detect and permanently block a device from accessing TJB Management&apos;s Website, social media accounts, and systems following a policy violation or abuse, independent of the visitor&apos;s IP address (which can change or be shared across devices). This identifier is computed entirely by TJB Management&apos;s own systems; it is not provided by, and this data is not shared with, any third-party identification service.
           </p>
           <p>
-            To build a device identifier, the Website examines signals including, without limitation: browser and operating system, user agent string, screen resolution and color depth, installed fonts, timezone and language settings, canvas, WebGL, and audio fingerprints, and CPU, memory, and touch-input characteristics.
+            To build a device identifier, the Website examines signals including, without limitation: browser and operating system, user agent string, screen resolution and color depth, installed fonts, timezone and language settings, canvas, WebGL, and audio fingerprints, CPU, memory, and touch-input characteristics, and a small number of browser-capability checks (for example, whether certain automation-related browser properties are present, and whether certain browser storage APIs are available) used only to help assess whether a visit may be automated or originating from a privacy-focused browsing mode.
           </p>
           <p>
             The Website also stores a randomly generated marker in multiple browser storage mechanisms (including local storage, IndexedDB, and the Cache API) so that a blocked device remains identifiable even if some, but not all, of that stored data is later cleared. This marker is used solely to enforce blocks against devices that have violated TJB Management&apos;s policies; it is not used for advertising, cross-site tracking, or any purpose beyond the security purpose described in this section.
           </p>
           <p>
-            The Website maintains a record, for every visitor and not only devices that have violated TJB Management&apos;s policies, of the device identifier described above together with the visitor&apos;s IP address, approximate location (city/region/country, derived from IP address), browser/operating system, first-seen date, most recent visit date, and total visit count. This record is used to operate and secure the Website — including distinguishing new from returning visitors and identifying devices for the security purposes described above — and is retained on a rolling basis for 90 days following a visitor&apos;s most recent visit, after which it is automatically deleted if that visitor does not return. It is viewable only by TJB Management&apos;s own authorized personnel through an internal, login-gated administrative tool and is not shared with, or accessible to, any third party.
+            The Website maintains a record, for every visitor and not only devices that have violated TJB Management&apos;s policies, of the device identifier described above together with the visitor&apos;s IP address, approximate location (city/region/country, derived from IP address), browser/operating system, first-seen date, most recent visit date, and total visit count. This record is used to operate and secure the Website — including distinguishing new from returning visitors and identifying devices for the security purposes described above — and is retained on a rolling basis for 30 days following a visitor&apos;s most recent visit, after which it is automatically deleted if that visitor does not return; TJB Management may also delete an individual record earlier, at its discretion. It is viewable only by TJB Management&apos;s own authorized personnel through an internal, login-gated administrative tool and is not shared with, or accessible to, any third party.
+          </p>
+          <p>
+            The first time a device is recorded, the Website additionally computes and stores, as part of that same record, a network and risk assessment derived from the visitor&apos;s IP address and the signals described above: the visitor&apos;s internet service provider or network operator (autonomous system information), whether the IP address appears on public Tor-exit-node or VPN/datacenter-hosting lists, whether the browser&apos;s reported graphics hardware resembles a virtual machine, whether the browser exhibits signals associated with automated ("bot") traffic or with a private/incognito browsing mode, a resulting numeric "suspect score," and a snapshot of how many distinct IP addresses and countries that same device identifier was associated with in the preceding 24 hours. This assessment is computed once per device — it is not recomputed on that device&apos;s later visits — and is used solely for the security purposes described in this section; it is not used to make any automated decision that blocks or otherwise limits a visitor&apos;s access to the Website, and it is viewable only by TJB Management&apos;s own authorized personnel through the same internal, login-gated administrative tool referenced above.
           </p>
           <p>
             <strong>By accessing or using the Website, you consent to TJB Management&apos;s collection and use of this device data for the purposes described above, and you agree that TJB Management may use, retain, and share this data as it sees fit</strong>, including with service providers, business partners, or successors, in connection with operating, securing, and improving the Website and TJB Management&apos;s social media accounts and systems.
@@ -546,7 +549,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: September 17, 2026</p>
+          <p>Last Updated: September 21, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
