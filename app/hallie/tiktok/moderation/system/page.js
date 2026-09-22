@@ -98,11 +98,11 @@ export default function SystemPage() {
             <>
               <AccountPanel />
               <VideosPanel />
-              <CommentsPanel />
               <CommentFiltersPanel />
               <SyncPanel />
-              <TestPanel />
+              <CommentsPanel />
               <AutomatedRulesPanel />
+              <TestPanel />
               <MentionsPanel />
               <TrendingPanel />
             </>
@@ -430,7 +430,7 @@ function SyncPanel() {
 
   return (
     <div style={s.card}>
-      <h2 style={s.h2}>Comment Sync</h2>
+      <h2 style={s.h2}>Comment Scanner</h2>
       <p style={{ fontSize: 13, color: '#06b6d4', marginBottom: 12 }}>
         Scores all new comments and auto-hides anything that triggers the filter.
       </p>

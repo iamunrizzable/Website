@@ -119,11 +119,11 @@ export default function AdminPage() {
 
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
-          <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
-          <TestPanel adminKey={adminKey} />
+          <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
+          <TestPanel adminKey={adminKey} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
 
@@ -539,7 +539,7 @@ function SyncPanel({ adminKey, enabled }) {
 
   return (
     <div style={s.card}>
-      <h2 style={s.h2}>Comment Sync</h2>
+      <h2 style={s.h2}>Comment Scanner</h2>
       {!enabled ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Connect TikTok Account Token to sync comments.</p>
       ) : (
