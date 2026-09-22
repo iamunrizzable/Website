@@ -120,9 +120,9 @@ export default function AdminPage() {
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
+          <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
-          <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
           <TestPanel adminKey={adminKey} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
