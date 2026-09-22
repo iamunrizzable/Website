@@ -44,6 +44,25 @@ function reasonLabel(reason) {
   return REASON_LABELS[reason] ?? reason ?? 'We were unable to complete verification.';
 }
 
+// Specific, user-facing reason shown on the 'blocked' screen — every
+// auto-ban (and manual bans going forward) carries one of these codes
+// (see lib/tokens.js's checkDeviceAgainstBlocklist / reasonCode), so a
+// blocked visitor sees exactly what triggered it instead of one generic
+// "Access Denied" for every kind of block. An older ban created before
+// this existed has no code, and blockReasonLabel returns null for it —
+// the screen just omits the reason line rather than fabricating one.
+const BLOCK_REASON_LABELS = {
+  'non-us': 'Our system detected that you are accessing this site from outside the United States.',
+  vpn: 'Our system detected that you are using a VPN.',
+  datacenter: 'Our system detected that you are connecting from a hosting/datacenter network, not a residential or mobile connection.',
+  tor: 'Our system detected that you are using the Tor network.',
+  manual: 'Your device was manually blocked by an administrator.',
+};
+
+function blockReasonLabel(reason) {
+  return BLOCK_REASON_LABELS[reason] ?? null;
+}
+
 // Blocks the whole site for visitors whose persistentMarker matches the
 // blocklist at /admin/security — an exact match only ('blocked' — a
 // purposeful, confirmed block). Anything else we can't actually verify —
@@ -56,6 +75,7 @@ function reasonLabel(reason) {
 export default function DeviceGate({ children }) {
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const [reason, setReason] = useState(null);
+  const [blockReason, setBlockReason] = useState(null);
   const [deviceMarker, setDeviceMarker] = useState(null);
   const resolvedRef = useRef(false);
 
@@ -103,6 +123,7 @@ export default function DeviceGate({ children }) {
               setPersistentMarker(result.reassignMarker);
             }
             if (result?.verdict === 'blocked') {
+              setBlockReason(result.reason ?? null);
               setStatus('blocked');
             } else if (result?.verdict === 'unverified') {
               setReason(result.reason ?? 'check-api-error');
@@ -150,6 +171,12 @@ export default function DeviceGate({ children }) {
             <span className="fp-c-pink">TJB Management Inc.'s</span><br />
             <span className="fp-c-purple">social media accounts and systems.</span>
           </p>
+          {blockReasonLabel(blockReason) && (
+            <p className="fp-p">
+              <span className="fp-reason-label">Reason: </span>
+              <span className="fp-c-pink">{blockReasonLabel(blockReason)}</span>
+            </p>
+          )}
           <p className="fp-p--final">
             <span className="fp-c-magenta">If you believe this was done in error,</span><br />
             <span className="fp-email-wrap">
