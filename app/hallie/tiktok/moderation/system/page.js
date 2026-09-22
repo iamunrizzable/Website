@@ -611,13 +611,6 @@ function CommentFiltersPanel() {
             Choose which kinds of comments get automatically hidden during Comment Sync. Unchecked categories are left alone even if they'd otherwise score high enough to hide.
           </p>
           {msg && <div style={s.inlineMsg(!msg.startsWith('Error'))}>{msg}</div>}
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderBottom: '1px solid #334155', marginBottom: 8, opacity: 0.7 }}>
-            <input type="checkbox" checked disabled style={{ marginTop: 3 }} />
-            <div>
-              <div style={{ fontSize: 14, color: '#e2e8f0', fontWeight: 600 }}>Potential Minor Detection <span style={{ fontSize: 11, color: '#f59e0b', fontWeight: 400 }}>— Always On</span></div>
-              <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>Age statements, school grades, "minor"/"underage" — cannot be disabled, tied to the account block-queue.</div>
-            </div>
-          </div>
           {data.categories.map(cat => (
             <label key={cat.key} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderBottom: '1px solid #334155', cursor: 'pointer' }}>
               <input
