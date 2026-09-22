@@ -35,6 +35,12 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 //   verdict: 'unverified' — we couldn't actually complete the check;
 //                           `reason` carries why, shown on the "unable to
 //                           verify you" screen instead of "Access Denied".
+//
+// `reassignMarker` (present only for a visitor whose browser still holds a
+// pre-shortening 32-char marker that's since been renamed — see
+// lib/tokens.js's resolveMarkerAlias) tells DeviceGate.js to overwrite its
+// own stored marker with this value, so the next visit sends the current
+// short ID directly instead of relying on the alias lookup again.
 function logVerdict(verdict, reason, { persistentMarker, isError, errorDetail } = {}) {
   const log = isError ? console.error : console.log;
   log(`[fingerprint-check] ${verdict} reason=${reason} marker=${persistentMarker ?? '-'}`);
@@ -73,10 +79,10 @@ export async function POST(request) {
 
     if (result.verdict === 'blocked') {
       logVerdict('blocked', 'device-blocklist', { persistentMarker });
-      return NextResponse.json({ verdict: 'blocked' });
+      return NextResponse.json({ verdict: 'blocked', reassignMarker: result.reassignMarker });
     }
     logVerdict('allowed', 'blocklist-clear', { persistentMarker });
-    return NextResponse.json({ verdict: 'allowed' });
+    return NextResponse.json({ verdict: 'allowed', reassignMarker: result.reassignMarker });
   } catch (err) {
     logVerdict('unverified', 'device-blocklist-check-error', { persistentMarker, isError: true, errorDetail: err?.message ?? String(err) });
     return NextResponse.json({ verdict: 'unverified', reason: 'device-blocklist-check-error' });

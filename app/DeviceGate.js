@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './GateSpinner.css';
 import './DeviceGate.css';
-import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
+import { getPersistentMarker, setPersistentMarker } from '@/lib/fingerprint/persistentMarker';
 import { collectWebglFingerprint } from '@/lib/fingerprint/webgl';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
@@ -93,6 +93,15 @@ export default function DeviceGate({ children }) {
           .then((result) => {
             if (cancelled || resolvedRef.current) return;
             resolvedRef.current = true;
+            // A visitor whose browser still holds a pre-shortening 32-char
+            // marker gets told the server-side rename via reassignMarker —
+            // overwrite local storage so future visits send the current
+            // short ID directly (see lib/tokens.js's resolveMarkerAlias).
+            // Fire-and-forget: never blocks showing the page.
+            if (result?.reassignMarker && result.reassignMarker !== persistentMarker) {
+              setDeviceMarker(result.reassignMarker);
+              setPersistentMarker(result.reassignMarker);
+            }
             if (result?.verdict === 'blocked') {
               setStatus('blocked');
             } else if (result?.verdict === 'unverified') {
