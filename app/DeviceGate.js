@@ -61,7 +61,7 @@ const GEO_BLOCK_REASONS = new Set(['non-us', 'vpn', 'datacenter', 'tor']);
 function blockReasonLabel(reason, countryName) {
   if (reason === 'manual') return 'Your device was manually blocked by an administrator.';
   if (GEO_BLOCK_REASONS.has(reason) && countryName) {
-    return `Our systems detected you are attempting to access them from ${countryName}.`;
+    return `Our systems permanently banned you because they detected you're attempting to access them from ${countryName}.`;
   }
   return null;
 }
@@ -172,7 +172,7 @@ export default function DeviceGate({ children }) {
         <div className="fp-card fp-card--blocked">
           <h1 className="fp-h1--blocked">Access Denied</h1>
           <p className="fp-p">
-            <span className="fp-c-cyan">You have been blocked from accessing</span><br />
+            <span className="fp-c-cyan">You have been permanently banned from accessing</span><br />
             <span className="fp-c-pink">TJB Management Inc.'s</span><br />
             <span className="fp-c-purple">social media accounts and systems.</span>
           </p>
