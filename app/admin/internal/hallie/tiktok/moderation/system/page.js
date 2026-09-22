@@ -784,6 +784,11 @@ function MentionsPanel({ adminKey, enabled }) {
   const [actionMsg, setActionMsg] = useState('');
   const [verifyMsg, setVerifyMsg] = useState('');
   const [verifyUsername, setVerifyUsername] = useState('');
+  // Temporary probe for the unwired hashtag/video/list endpoint — no
+  // confirmed request/response shape yet. Remove once confirmed and the
+  // real hashtag-click-through feature is built on the shown response.
+  const [hashtagVideosTest, setHashtagVideosTest] = useState('');
+  const [hashtagVideosMsg, setHashtagVideosMsg] = useState('');
 
   // Pull the connected account's own username from account info instead of
   // asking the operator to type it — hashtag/manage/list requires it as a
@@ -881,6 +886,19 @@ function MentionsPanel({ adminKey, enabled }) {
     } catch (e) { setVerifyMsg('Error: ' + e.message); }
   }
 
+  // Temporary probe — see hashtagVideosTest state comment.
+  async function testHashtagVideos() {
+    if (!hashtagVideosTest.trim()) return;
+    setHashtagVideosMsg('Checking…');
+    try {
+      const res = await fetch(`/api/business/mentions?${new URLSearchParams({ type: 'hashtag_videos', hashtag: hashtagVideosTest.trim() })}`, {
+        headers: { 'x-admin-key': adminKey },
+      });
+      const d = await res.json();
+      setHashtagVideosMsg(JSON.stringify(d, null, 2));
+    } catch (e) { setHashtagVideosMsg('Error: ' + e.message); }
+  }
+
   async function removeHashtag(tag) {
     setActionMsg('');
     try {
@@ -930,6 +948,20 @@ function MentionsPanel({ adminKey, enabled }) {
             </div>
           )}
           {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
+
+          {tab === 'top_hashtags' && (
+            <div style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+              <input
+                style={{ ...s.input, flex: 1, minWidth: 160 }}
+                placeholder="hashtag to test hashtag/video/list with (no #)…"
+                value={hashtagVideosTest}
+                onChange={e => setHashtagVideosTest(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && testHashtagVideos()}
+              />
+              <button style={{ ...s.btn, whiteSpace: 'nowrap', background: '#475569' }} onClick={testHashtagVideos}>Test hashtag→videos (debug)</button>
+            </div>
+          )}
+          {hashtagVideosMsg && <pre style={{ fontSize: 11, color: '#d946ef', whiteSpace: 'pre-wrap', wordBreak: 'break-all', marginBottom: 12 }}>{hashtagVideosMsg}</pre>}
 
           {tab === 'tracked_hashtags' && (
             <div style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center', flexWrap: 'wrap' }}>
