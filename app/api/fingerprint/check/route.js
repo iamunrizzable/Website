@@ -31,7 +31,14 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 // get different copy on the block page:
 //   verdict: 'allowed'    — no match against the blocklist.
 //   verdict: 'blocked'    — a real, confirmed block (exact persistentMarker
-//                           match against a banned profile).
+//                           match against a banned profile). `reason` (when
+//                           the ban carries a reasonCode — every auto-ban,
+//                           and manual bans going forward) is the specific
+//                           trigger — 'non-us', 'vpn', 'datacenter', 'tor',
+//                           or 'manual' — shown on the block screen instead
+//                           of a generic "Access Denied" for everyone. An
+//                           older ban with no reasonCode sends `reason: null`
+//                           rather than a fabricated one.
 //   verdict: 'unverified' — we couldn't actually complete the check;
 //                           `reason` carries why, shown on the "unable to
 //                           verify you" screen instead of "Access Denied".
@@ -79,7 +86,7 @@ export async function POST(request) {
 
     if (result.verdict === 'blocked') {
       logVerdict('blocked', 'device-blocklist', { persistentMarker });
-      return NextResponse.json({ verdict: 'blocked', reassignMarker: result.reassignMarker });
+      return NextResponse.json({ verdict: 'blocked', reassignMarker: result.reassignMarker, reason: result.blockReason });
     }
     logVerdict('allowed', 'blocklist-clear', { persistentMarker });
     return NextResponse.json({ verdict: 'allowed', reassignMarker: result.reassignMarker });

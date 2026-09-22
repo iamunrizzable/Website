@@ -45,7 +45,7 @@ export async function POST(request) {
   if (!persistentMarker || !DEVICE_MARKER_RE.test(persistentMarker)) {
     return NextResponse.json({ error: 'Invalid device marker' }, { status: 400 });
   }
-  const banId = await addBlockedDevice({ persistentMarker, note: 'Manually entered' });
+  const banId = await addBlockedDevice({ persistentMarker, reasonCode: 'manual', note: 'Manually entered' });
   return NextResponse.json({ ok: true, banId });
 }
 
