@@ -99,9 +99,9 @@ export default function SystemPage() {
               <AccountPanel />
               <VideosPanel />
               <CommentFiltersPanel />
+              <AutomatedRulesPanel />
               <SyncPanel />
               <CommentsPanel />
-              <AutomatedRulesPanel />
               <TestPanel />
               <MentionsPanel />
               <TrendingPanel />
