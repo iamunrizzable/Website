@@ -122,10 +122,10 @@ export default function AdminPage() {
           <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
+          <TestPanel adminKey={adminKey} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
-          <TestPanel adminKey={adminKey} />
 
           {/* Recent Flagged Events */}
           <div style={s.card}>
