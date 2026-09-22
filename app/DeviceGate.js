@@ -48,19 +48,27 @@ function reasonLabel(reason) {
 // auto-ban (and manual bans going forward) carries a reasonCode (see
 // lib/tokens.js's checkDeviceAgainstBlocklist), so a blocked visitor sees
 // a real reason instead of one generic "Access Denied" for every kind of
-// block. The four geo/network reasons (non-us/vpn/datacenter/tor) all
-// render the SAME phrasing naming only the country — never which
-// detection mechanism caught them, since telling a VPN user "we detected
-// your VPN" just tells them what to change next time. 'manual' is
-// genuinely a different situation (no country is "wrong" about it) and
-// gets its own message. An older ban with no reasonCode, or a geo/network
-// reason with no resolved country, omits the reason line rather than
-// fabricating one.
-const GEO_BLOCK_REASONS = new Set(['non-us', 'vpn', 'datacenter', 'tor']);
+// block. Each reason gets its own distinct wording — naming the country
+// for a plain non-US/CA visit is fine, but for vpn/datacenter/tor the
+// country shown can itself be US/CA (that's the whole point of the
+// "blanket VPN ban" — it catches a VPN/datacenter/Tor connection
+// regardless of what location it reports), so reusing the country-only
+// phrasing there just reads as "we banned you for being in an allowed
+// country," which is confusing, not more secure: the country name is, if
+// anything, MORE evasion-enabling than naming the mechanism, since it
+// tells a visitor exactly which location to fake next. An older ban with
+// no reasonCode, or a country-dependent reason with no resolved country,
+// omits the reason line rather than fabricating one.
+const BLOCK_REASON_LABELS = {
+  vpn: "Our automated systems permanently banned you because they detected you're using a VPN.",
+  datacenter: "Our automated systems permanently banned you because they detected you're connecting from a hosting/datacenter network, not a residential or mobile connection.",
+  tor: "Our automated systems permanently banned you because they detected you're using the Tor network.",
+  manual: 'Your device was manually blocked by an administrator.',
+};
 
 function blockReasonLabel(reason, countryName) {
-  if (reason === 'manual') return 'Your device was manually blocked by an administrator.';
-  if (GEO_BLOCK_REASONS.has(reason) && countryName) {
+  if (BLOCK_REASON_LABELS[reason]) return BLOCK_REASON_LABELS[reason];
+  if (reason === 'non-us' && countryName) {
     return `Our automated systems permanently banned you because they detected you're attempting to access them from ${countryName}.`;
   }
   return null;
