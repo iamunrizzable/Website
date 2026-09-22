@@ -99,9 +99,9 @@ export default function SystemPage() {
               <AccountPanel />
               <VideosPanel />
               <CommentsPanel />
+              <CommentFiltersPanel />
               <SyncPanel />
               <AutomatedRulesPanel />
-              <CommentFiltersPanel />
               <MentionsPanel />
               <TrendingPanel />
               <TestPanel />
@@ -448,7 +448,7 @@ function SyncPanel() {
         />
       )}
       <button style={{ ...s.btn, opacity: loading ? 0.6 : 1 }} onClick={runSync} disabled={loading}>
-        {loading ? 'Syncing…' : 'Sync Now'}
+        {loading ? 'Syncing…' : 'Auto Moderate Your Comments'}
       </button>
       {result && (
         <div style={{ marginTop: 12, fontSize: 13 }}>
