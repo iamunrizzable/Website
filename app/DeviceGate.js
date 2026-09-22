@@ -45,22 +45,25 @@ function reasonLabel(reason) {
 }
 
 // Specific, user-facing reason shown on the 'blocked' screen — every
-// auto-ban (and manual bans going forward) carries one of these codes
-// (see lib/tokens.js's checkDeviceAgainstBlocklist / reasonCode), so a
-// blocked visitor sees exactly what triggered it instead of one generic
-// "Access Denied" for every kind of block. An older ban created before
-// this existed has no code, and blockReasonLabel returns null for it —
-// the screen just omits the reason line rather than fabricating one.
-const BLOCK_REASON_LABELS = {
-  'non-us': 'Our system detected that you are accessing this site from outside the United States.',
-  vpn: 'Our system detected that you are using a VPN.',
-  datacenter: 'Our system detected that you are connecting from a hosting/datacenter network, not a residential or mobile connection.',
-  tor: 'Our system detected that you are using the Tor network.',
-  manual: 'Your device was manually blocked by an administrator.',
-};
+// auto-ban (and manual bans going forward) carries a reasonCode (see
+// lib/tokens.js's checkDeviceAgainstBlocklist), so a blocked visitor sees
+// a real reason instead of one generic "Access Denied" for every kind of
+// block. The four geo/network reasons (non-us/vpn/datacenter/tor) all
+// render the SAME phrasing naming only the country — never which
+// detection mechanism caught them, since telling a VPN user "we detected
+// your VPN" just tells them what to change next time. 'manual' is
+// genuinely a different situation (no country is "wrong" about it) and
+// gets its own message. An older ban with no reasonCode, or a geo/network
+// reason with no resolved country, omits the reason line rather than
+// fabricating one.
+const GEO_BLOCK_REASONS = new Set(['non-us', 'vpn', 'datacenter', 'tor']);
 
-function blockReasonLabel(reason) {
-  return BLOCK_REASON_LABELS[reason] ?? null;
+function blockReasonLabel(reason, countryName) {
+  if (reason === 'manual') return 'Your device was manually blocked by an administrator.';
+  if (GEO_BLOCK_REASONS.has(reason) && countryName) {
+    return `Our systems detected you are attempting to access this site from ${countryName}.`;
+  }
+  return null;
 }
 
 // Blocks the whole site for visitors whose persistentMarker matches the
@@ -76,6 +79,7 @@ export default function DeviceGate({ children }) {
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const [reason, setReason] = useState(null);
   const [blockReason, setBlockReason] = useState(null);
+  const [blockCountryName, setBlockCountryName] = useState(null);
   const [deviceMarker, setDeviceMarker] = useState(null);
   const resolvedRef = useRef(false);
 
@@ -124,6 +128,7 @@ export default function DeviceGate({ children }) {
             }
             if (result?.verdict === 'blocked') {
               setBlockReason(result.reason ?? null);
+              setBlockCountryName(result.countryName ?? null);
               setStatus('blocked');
             } else if (result?.verdict === 'unverified') {
               setReason(result.reason ?? 'check-api-error');
@@ -171,10 +176,10 @@ export default function DeviceGate({ children }) {
             <span className="fp-c-pink">TJB Management Inc.'s</span><br />
             <span className="fp-c-purple">social media accounts and systems.</span>
           </p>
-          {blockReasonLabel(blockReason) && (
+          {blockReasonLabel(blockReason, blockCountryName) && (
             <p className="fp-p">
               <span className="fp-reason-label">Reason: </span>
-              <span className="fp-c-pink">{blockReasonLabel(blockReason)}</span>
+              <span className="fp-c-pink">{blockReasonLabel(blockReason, blockCountryName)}</span>
             </p>
           )}
           <p className="fp-p--final">

@@ -35,10 +35,16 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 //                           the ban carries a reasonCode — every auto-ban,
 //                           and manual bans going forward) is the specific
 //                           trigger — 'non-us', 'vpn', 'datacenter', 'tor',
-//                           or 'manual' — shown on the block screen instead
-//                           of a generic "Access Denied" for everyone. An
-//                           older ban with no reasonCode sends `reason: null`
-//                           rather than a fabricated one.
+//                           or 'manual' — used to pick the block screen's
+//                           copy instead of a generic "Access Denied" for
+//                           everyone. For the geo/network reasons,
+//                           `countryName` (resolved server-side via Intl,
+//                           this visit's live geolocation) is shown instead
+//                           of naming the detection mechanism — telling a
+//                           VPN user "we detected your VPN" just tells them
+//                           what to change next time. An older ban with no
+//                           reasonCode sends `reason: null` rather than a
+//                           fabricated one.
 //   verdict: 'unverified' — we couldn't actually complete the check;
 //                           `reason` carries why, shown on the "unable to
 //                           verify you" screen instead of "Access Denied".
@@ -48,6 +54,20 @@ import { checkDeviceAgainstBlocklist } from '@/lib/tokens';
 // lib/tokens.js's resolveMarkerAlias) tells DeviceGate.js to overwrite its
 // own stored marker with this value, so the next visit sends the current
 // short ID directly instead of relying on the alias lookup again.
+// Resolves a 2-letter country code to its full display name (built into
+// Node's Intl, no new dependency) — used on the blocked screen so a
+// geo/network auto-ban shows a real place name ("Russia") instead of
+// naming the detection mechanism (VPN/Tor/datacenter) that caught it,
+// which would just tell them what to change next time.
+function countryName(code) {
+  if (!code) return null;
+  try {
+    return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) ?? null;
+  } catch {
+    return null;
+  }
+}
+
 function logVerdict(verdict, reason, { persistentMarker, isError, errorDetail } = {}) {
   const log = isError ? console.error : console.log;
   log(`[fingerprint-check] ${verdict} reason=${reason} marker=${persistentMarker ?? '-'}`);
@@ -86,7 +106,12 @@ export async function POST(request) {
 
     if (result.verdict === 'blocked') {
       logVerdict('blocked', 'device-blocklist', { persistentMarker });
-      return NextResponse.json({ verdict: 'blocked', reassignMarker: result.reassignMarker, reason: result.blockReason });
+      return NextResponse.json({
+        verdict: 'blocked',
+        reassignMarker: result.reassignMarker,
+        reason: result.blockReason,
+        countryName: countryName(result.blockCountry),
+      });
     }
     logVerdict('allowed', 'blocklist-clear', { persistentMarker });
     return NextResponse.json({ verdict: 'allowed', reassignMarker: result.reassignMarker });
