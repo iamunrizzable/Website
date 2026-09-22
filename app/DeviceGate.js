@@ -61,7 +61,7 @@ const GEO_BLOCK_REASONS = new Set(['non-us', 'vpn', 'datacenter', 'tor']);
 function blockReasonLabel(reason, countryName) {
   if (reason === 'manual') return 'Your device was manually blocked by an administrator.';
   if (GEO_BLOCK_REASONS.has(reason) && countryName) {
-    return `Our systems detected you are attempting to access this site from ${countryName}.`;
+    return `Our systems detected you are attempting to access them from ${countryName}.`;
   }
   return null;
 }

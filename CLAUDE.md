@@ -4,6 +4,7 @@
 - **NEVER change the apply link**: `https://www.tiktok.com/t/ZTkgQvTCb/`
 - **ALWAYS merge dev branch to main after every set of changes**
 - **ONLY make changes explicitly requested — nothing more.** This applies to conversation too, not just code: answer exactly what was asked, one version not several, no unsolicited alternatives/options/extra scope. If something outside the literal request seems worth doing, name it and ask — don't just do it.
+- **When the user gives exact user-facing wording (an error message, a screen's copy, a specific sentence), use it VERBATIM.** Do not paraphrase, "clean up," swap a word for a synonym, add/remove punctuation, or otherwise rewrite it, even slightly — not even if the substitute reads better. If the exact wording is genuinely unusable as given (breaks something, is ambiguous), say so and ask, don't silently substitute your own version.
 - **Don't ask clarifying questions unless truly blocked.** Default to the most reasonable reading and act. Only ask when no reasonable reading exists to proceed on.
 - **NEVER guess at a fix. If the root cause is not confirmed, ask first. Do not deploy speculative changes.**
 - **`/admin/internal/hallie/tiktok/moderation/system` and `/hallie/tiktok/moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + x-admin-key; system uses `/api/system/*` + acct_token cookie)
