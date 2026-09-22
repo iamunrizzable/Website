@@ -8,6 +8,7 @@ import {
   addTrackedHashtag,
   removeTrackedHashtag,
   verifyHashtag,
+  listMentionHashtagVideos,
 } from '@/lib/tiktok/business-api';
 
 import { isValidAdminKey as requireAdmin } from '@/lib/auth';
@@ -28,6 +29,11 @@ export async function GET(request) {
     if (type === 'verify_hashtag') {
       if (!username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
       return NextResponse.json(await verifyHashtag({ username }));
+    }
+    if (type === 'hashtag_videos') {
+      const hashtag = searchParams.get('hashtag') ?? '';
+      if (!hashtag) return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
+      return NextResponse.json(await listMentionHashtagVideos({ hashtag }));
     }
     return NextResponse.json(await listMentionVideos());
   } catch (err) {
