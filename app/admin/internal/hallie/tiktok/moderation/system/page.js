@@ -120,9 +120,9 @@ export default function AdminPage() {
           <AccountPanel adminKey={adminKey} enabled={accountEnabled} />
           <VideosPanel adminKey={adminKey} enabled={accountEnabled} />
           <CommentsPanel adminKey={adminKey} enabled={accountEnabled} />
+          <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
           <SyncPanel adminKey={adminKey} enabled={accountEnabled} />
           <AutomatedRulesPanel adminKey={adminKey} enabled={accountEnabled} />
-          <CommentFiltersPanel adminKey={adminKey} enabled={accountEnabled} />
           <MentionsPanel adminKey={adminKey} enabled={accountEnabled} />
           <TrendingPanel adminKey={adminKey} enabled={accountEnabled} />
           <TestPanel adminKey={adminKey} />
@@ -562,7 +562,7 @@ function SyncPanel({ adminKey, enabled }) {
             />
           )}
           <button style={{ ...s.btn, opacity: loading ? 0.6 : 1 }} onClick={runSync} disabled={loading}>
-            {loading ? 'Syncing…' : 'Sync Now'}
+            {loading ? 'Syncing…' : 'Auto Moderate Your Comments'}
           </button>
           {result && (
             <div style={{ marginTop: 12, fontSize: 13 }}>
