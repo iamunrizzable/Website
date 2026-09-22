@@ -171,8 +171,9 @@ export default function DeviceGate({ children }) {
         <div className="fp-screen-bg" />
         <div className="fp-card fp-card--blocked">
           <h1 className="fp-h1--blocked">Access Denied</h1>
+          <p className="fp-banned-line">You have been permanently banned</p>
           <p className="fp-p">
-            <span className="fp-c-cyan">You have been permanently banned from accessing</span><br />
+            <span className="fp-c-cyan">from accessing</span><br />
             <span className="fp-c-pink">TJB Management Inc.'s</span><br />
             <span className="fp-c-purple">social media accounts and systems.</span>
           </p>

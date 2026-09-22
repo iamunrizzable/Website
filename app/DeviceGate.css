@@ -86,6 +86,13 @@
   animation: fpGlowPulse 3s ease-in-out infinite;
 }
 
+.fp-banned-line {
+  color: #ef4444;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 14px;
+}
+
 .fp-h1--unverified {
   color: #f59e0b;
   font-size: 32px;
