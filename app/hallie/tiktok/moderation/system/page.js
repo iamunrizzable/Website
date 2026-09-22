@@ -101,10 +101,10 @@ export default function SystemPage() {
               <CommentsPanel />
               <CommentFiltersPanel />
               <SyncPanel />
+              <TestPanel />
               <AutomatedRulesPanel />
               <MentionsPanel />
               <TrendingPanel />
-              <TestPanel />
             </>
           )}
 
