@@ -66,3 +66,13 @@
   line-height: 1.6;
   margin: 0;
 }
+
+.mn-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.mn-link:hover { text-decoration: underline; }
