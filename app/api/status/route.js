@@ -31,11 +31,6 @@ async function checkModerationSystem() {
   }
 }
 
-function checkAdminPanel() {
-  if (!process.env.ADMIN_SECRET) return { status: 'down', label: 'Not configured' };
-  return { status: 'operational', label: 'Operational' };
-}
-
 async function checkTikTokAgency() {
   try {
     if (await isTikTokSuspended()) return { status: 'degraded', label: 'Suspended' };
@@ -78,7 +73,6 @@ export async function GET() {
         checkC2Agency(),
       ]);
   const website = maintenance ? MAINTENANCE : { status: 'operational', label: 'Operational' };
-  const admin = checkAdminPanel(); // exempt from maintenance mode, same as /system/status
 
   return NextResponse.json({
     checkedAt: new Date().toISOString(),
@@ -88,7 +82,6 @@ export async function GET() {
       { name: 'TikTok Moderation System', ...moderation },
       { name: 'TikTok Agency', ...tiktokAgency },
       { name: 'C2 Agency', ...c2Agency },
-      { name: 'Admin Panel', ...admin },
     ],
   });
 }
