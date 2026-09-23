@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getTikTokAccountToken, isSiteInMaintenance } from '@/lib/tokens';
+import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended } from '@/lib/tokens';
 
 // Public, unauthenticated status endpoint — deliberately returns only
 // Operational/Degraded/Down + a short label per service, never raw tokens,
@@ -50,11 +50,36 @@ async function checkWebsite() {
   return { status: 'operational', label: 'Operational' };
 }
 
+// TikTok Agency and C2 Agency each have their own independent kill switch
+// (/admin/security/kill/switches) gating their own subtree
+// (TikTokSuspensionGate / C2SuspensionGate) — separate from the site-wide
+// maintenance switch above. Same fail-open philosophy: a Redis hiccup
+// must never report a false suspension.
+async function checkTikTokAgency() {
+  try {
+    if (await isTikTokSuspended()) return { status: 'degraded', label: 'Suspended' };
+  } catch {
+    // fail open
+  }
+  return { status: 'operational', label: 'Operational' };
+}
+
+async function checkC2Agency() {
+  try {
+    if (await isC2Suspended()) return { status: 'degraded', label: 'Suspended' };
+  } catch {
+    // fail open
+  }
+  return { status: 'operational', label: 'Operational' };
+}
+
 export async function GET() {
-  const [website, hallie, moderation] = await Promise.all([
+  const [website, hallie, moderation, tiktokAgency, c2Agency] = await Promise.all([
     checkWebsite(),
     Promise.resolve(checkHallieWriter()),
     checkModerationSystem(),
+    checkTikTokAgency(),
+    checkC2Agency(),
   ]);
   const admin = checkAdminPanel();
 
@@ -64,6 +89,8 @@ export async function GET() {
       { name: 'Website', ...website },
       { name: 'Hallie™ Writer', ...hallie },
       { name: 'TikTok Moderation System', ...moderation },
+      { name: 'TikTok Agency', ...tiktokAgency },
+      { name: 'C2 Agency', ...c2Agency },
       { name: 'Admin Panel', ...admin },
     ],
   });
