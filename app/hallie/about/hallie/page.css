@@ -10,7 +10,7 @@ body::before {
   top: 0; left: 0;
   width: 100vw; height: 100lvh;
   background-image: linear-gradient(to bottom, #0f172a 0%, #0f172a 8%, rgba(15, 23, 42, 0.55) 20%, rgba(15, 23, 42, 0.55) 80%, #0f172a 92%, #0f172a 100%), url("/bg-hallie.png");
-  background-position: center center;
+  background-position: center center, center top;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -3;
