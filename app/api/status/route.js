@@ -8,6 +8,8 @@ import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Susp
 // on every page load, since this route is publicly reachable and repeat
 // visits shouldn't hit rate limits or cost money.
 
+const MAINTENANCE = { status: 'degraded', label: 'Maintenance mode' };
+
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
   return { status: 'operational', label: 'Operational' };
@@ -34,27 +36,6 @@ function checkAdminPanel() {
   return { status: 'operational', label: 'Operational' };
 }
 
-// The site-wide maintenance kill switch (/admin/security/kill/switches)
-// takes every regular page offline behind MaintenanceNotice — /system/status
-// is deliberately exempted from that gate so it stays checkable, but the
-// "Website" row itself must still reflect that state, not just its own
-// route responding. 'degraded' rather than 'down': the underlying
-// infrastructure is fine, it's an intentional, reversible visitor-facing
-// shutdown, not a failure.
-async function checkWebsite() {
-  try {
-    if (await isSiteInMaintenance()) return { status: 'degraded', label: 'Maintenance mode' };
-  } catch {
-    // fail open — a Redis hiccup here must never report a false outage
-  }
-  return { status: 'operational', label: 'Operational' };
-}
-
-// TikTok Agency and C2 Agency each have their own independent kill switch
-// (/admin/security/kill/switches) gating their own subtree
-// (TikTokSuspensionGate / C2SuspensionGate) — separate from the site-wide
-// maintenance switch above. Same fail-open philosophy: a Redis hiccup
-// must never report a false suspension.
 async function checkTikTokAgency() {
   try {
     if (await isTikTokSuspended()) return { status: 'degraded', label: 'Suspended' };
@@ -74,14 +55,30 @@ async function checkC2Agency() {
 }
 
 export async function GET() {
-  const [website, hallie, moderation, tiktokAgency, c2Agency] = await Promise.all([
-    checkWebsite(),
-    Promise.resolve(checkHallieWriter()),
-    checkModerationSystem(),
-    checkTikTokAgency(),
-    checkC2Agency(),
-  ]);
-  const admin = checkAdminPanel();
+  // The site-wide maintenance kill switch (/admin/security/kill/switches)
+  // takes every regular page offline behind MaintenanceNotice. /system/status
+  // and /admin are the only two routes exempted from that gate (see
+  // MaintenanceGate.js) — every other service below is a regular page a
+  // visitor genuinely cannot reach right now, so maintenance mode overrides
+  // each of their own checks rather than reporting them Operational just
+  // because their underlying config/connection happens to be fine.
+  let maintenance = false;
+  try {
+    maintenance = await isSiteInMaintenance();
+  } catch {
+    // fail open — a Redis hiccup here must never report a false outage
+  }
+
+  const [hallie, moderation, tiktokAgency, c2Agency] = maintenance
+    ? [MAINTENANCE, MAINTENANCE, MAINTENANCE, MAINTENANCE]
+    : await Promise.all([
+        Promise.resolve(checkHallieWriter()),
+        checkModerationSystem(),
+        checkTikTokAgency(),
+        checkC2Agency(),
+      ]);
+  const website = maintenance ? MAINTENANCE : { status: 'operational', label: 'Operational' };
+  const admin = checkAdminPanel(); // exempt from maintenance mode, same as /system/status
 
   return NextResponse.json({
     checkedAt: new Date().toISOString(),
