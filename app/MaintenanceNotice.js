@@ -15,7 +15,7 @@ export default function MaintenanceNotice() {
       <div className="mn-card">
         <h1 className="mn-h1">We have taken our systems offline for maintenance.</h1>
         <p className="mn-p">Thank you for your patience, we look forward to bringing our systems back online as soon as our system upgrades and maintenance are complete.</p>
-        <a href="/system/status" className="mn-link">System Status →</a>
+        <a href="/system/status" className="mn-cta-btn">System Status →</a>
       </div>
     </div>
   );
