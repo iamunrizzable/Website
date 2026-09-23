@@ -18,16 +18,28 @@ import MaintenanceNotice from './MaintenanceNotice';
 // (they're separate serverless functions, never touched by this
 // client-side layout gate), so the toggle itself was never actually at
 // risk — only the PAGE that calls it would have been unreachable.
+//
+// /system/status is also EXEMPTED (Tyler's explicit call) — it needs to
+// stay checkable during a declared maintenance window, not disappear
+// behind the same notice it would otherwise be reporting on. It still
+// sits inside DeviceGate below (see app/layout.js), so geo/VPN/Tor/
+// datacenter blocking still fully applies — only the maintenance check
+// is skipped.
+const EXEMPT_PATHS = ['/admin', '/system/status'];
 const CHECK_TIMEOUT_MS = 3000;
+
+function isExempt(pathname) {
+  return EXEMPT_PATHS.some((p) => pathname?.startsWith(p));
+}
 
 export default function MaintenanceGate({ children }) {
   const pathname = usePathname();
-  const isAdminRoute = pathname?.startsWith('/admin');
-  const [status, setStatus] = useState(isAdminRoute ? 'allowed' : 'checking');
-  const resolvedRef = useRef(isAdminRoute);
+  const exempt = isExempt(pathname);
+  const [status, setStatus] = useState(exempt ? 'allowed' : 'checking');
+  const resolvedRef = useRef(exempt);
 
   useEffect(() => {
-    if (isAdminRoute) return;
+    if (exempt) return;
     resolvedRef.current = false;
     setStatus('checking');
 
@@ -55,9 +67,9 @@ export default function MaintenanceGate({ children }) {
 
     return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAdminRoute]);
+  }, [exempt]);
 
-  if (isAdminRoute) return children;
+  if (exempt) return children;
 
   if (status === 'checking') {
     return (
