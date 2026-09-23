@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getTikTokAccountToken } from '@/lib/tokens';
+import { getTikTokAccountToken, isSiteInMaintenance } from '@/lib/tokens';
 
 // Public, unauthenticated status endpoint — deliberately returns only
 // Operational/Degraded/Down + a short label per service, never raw tokens,
@@ -34,8 +34,25 @@ function checkAdminPanel() {
   return { status: 'operational', label: 'Operational' };
 }
 
+// The site-wide maintenance kill switch (/admin/security/kill/switches)
+// takes every regular page offline behind MaintenanceNotice — /system/status
+// is deliberately exempted from that gate so it stays checkable, but the
+// "Website" row itself must still reflect that state, not just its own
+// route responding. 'degraded' rather than 'down': the underlying
+// infrastructure is fine, it's an intentional, reversible visitor-facing
+// shutdown, not a failure.
+async function checkWebsite() {
+  try {
+    if (await isSiteInMaintenance()) return { status: 'degraded', label: 'Maintenance mode' };
+  } catch {
+    // fail open — a Redis hiccup here must never report a false outage
+  }
+  return { status: 'operational', label: 'Operational' };
+}
+
 export async function GET() {
-  const [hallie, moderation] = await Promise.all([
+  const [website, hallie, moderation] = await Promise.all([
+    checkWebsite(),
     Promise.resolve(checkHallieWriter()),
     checkModerationSystem(),
   ]);
@@ -44,7 +61,7 @@ export async function GET() {
   return NextResponse.json({
     checkedAt: new Date().toISOString(),
     services: [
-      { name: 'Website', ...{ status: 'operational', label: 'Operational' } },
+      { name: 'Website', ...website },
       { name: 'Hallie™ Writer', ...hallie },
       { name: 'TikTok Moderation System', ...moderation },
       { name: 'Admin Panel', ...admin },
