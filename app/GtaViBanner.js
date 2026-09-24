@@ -13,7 +13,7 @@ export default function GtaViBanner() {
 
   return (
     <a href="/news/closed/for/grand/theft/auto/vi" className="gta-banner">
-      TJB Inc is closing soon for the release of GTA VI.
+      TJB Inc is closing soon for the release of GTA VI. <span className="gta-banner-cta">Learn more →</span>
     </a>
   );
 }

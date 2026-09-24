@@ -1,9 +1,14 @@
+/* Every page's own "☰ Menu" button is position:fixed; top:20px;
+   right:20px — independent of this banner's place in the document flow,
+   so it doesn't push down to make room. Extra top padding here (instead
+   of top:0) keeps the banner's own text clear of that button, rather
+   than sitting underneath it. */
 .gta-banner {
   position: sticky;
   top: 0;
   z-index: 99997;
   display: block;
-  padding: 10px 16px;
+  padding: 64px 16px 14px;
   background: rgba(234, 179, 8, 0.08);
   border-bottom: 1px solid rgba(234, 179, 8, 0.3);
   color: #eab308;
@@ -15,5 +20,7 @@
 }
 .gta-banner:hover {
   background: rgba(234, 179, 8, 0.14);
+}
+.gta-banner-cta {
   text-decoration: underline;
 }
