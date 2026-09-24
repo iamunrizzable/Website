@@ -7,9 +7,12 @@ import './GtaViBanner.css';
 // /news/closed/for/grand/theft/auto/vi). Shown on every page except
 // /admin, per Tyler's explicit scoping — /admin is his own internal tool
 // surface, not something a visitor needs this notice on.
+const LETTER_PATH = '/news/closed/for/grand/theft/auto/vi';
+
 export default function GtaViBanner() {
   const pathname = usePathname();
   if (pathname?.startsWith('/admin')) return null;
+  if (pathname === LETTER_PATH) return null;
 
   return (
     <a href="/news/closed/for/grand/theft/auto/vi" className="gta-banner">
