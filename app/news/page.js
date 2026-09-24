@@ -8,6 +8,12 @@ import { useState, useEffect } from 'react';
 // letters naturally sink toward the bottom of the page.
 const NEWSLETTERS = [
   {
+    date: 'September 24, 2026',
+    title: 'Closed for Grand Theft Auto VI.',
+    desc: 'TJB Management Inc. will close November 19–30 for the release of Grand Theft Auto VI. We return December 1.',
+    href: '/news/closed/for/grand/theft/auto/vi',
+  },
+  {
     date: 'September 10, 2026',
     title: 'Notice of Suspension of TikTok Services Withdrawn',
     desc: 'TikTok paid what they owe us — the proposed suspension of our TikTok servers, agency, and support is withdrawn.',
