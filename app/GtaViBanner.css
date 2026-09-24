@@ -1,0 +1,19 @@
+.gta-banner {
+  position: sticky;
+  top: 0;
+  z-index: 99997;
+  display: block;
+  padding: 10px 16px;
+  background: rgba(234, 179, 8, 0.08);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.3);
+  color: #eab308;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.gta-banner:hover {
+  background: rgba(234, 179, 8, 0.14);
+  text-decoration: underline;
+}

@@ -52,9 +52,9 @@ export default function Home() {
         <div className="nav-buttons section">
           <a href="/tyler" className="nav-button"><span>Tyler</span></a>
           <a href="/hallie" className="nav-button"><span>Hallie</span></a>
+          <a href="/news" className="nav-button"><span>Newsletters</span></a>
           <a href="/agencies" className="nav-button"><span>Creator Networks</span></a>
           <a href="/legal" className="nav-button"><span>Legal</span></a>
-          <a href="/news" className="nav-button"><span>Newsletters</span></a>
         </div>
 
         <div className="footer section">
