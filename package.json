@@ -13,7 +13,7 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "cheerio": "^1.2.0",
-    "imapflow": "^1.7.8",
+    "imapflow": "^2.0.5",
     "mailparser": "^3.9.28",
     "next": "^16.3.6",
     "nodemailer": "^10.0.9",
