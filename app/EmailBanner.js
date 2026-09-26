@@ -14,6 +14,7 @@ export default function EmailBanner() {
   const pathname = usePathname();
   if (pathname?.startsWith('/admin')) return null;
   if (pathname === LETTER_PATH) return null;
+  if (pathname === '/system/status') return null;
 
   return (
     <div className="email-banner">
