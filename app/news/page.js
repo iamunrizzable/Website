@@ -11,7 +11,7 @@ const NEWSLETTERS = [
     date: 'September 26, 2026',
     title: 'Some Email Services Are Currently Unavailable.',
     desc: "Some inbound and outbound email on the tjbmanagementinc.com domain is currently delayed or not delivered. We're actively working to resolve it.",
-    href: '/news/email/services/unavailable',
+    href: '/news/email/services/unavailable/announced/9/26/2026',
   },
   {
     date: 'September 24, 2026',

@@ -4,11 +4,11 @@ import { usePathname } from 'next/navigation';
 import './EmailBanner.css';
 
 // Site-wide notice for the ongoing email deliverability issue (full
-// letter at /news/email/services/unavailable). Standing in for
+// letter at /news/email/services/unavailable/announced/9/26/2026). Standing in for
 // GtaViBanner for now — GtaViBanner.js is untouched and still wired to
 // swap back in once email service is confirmed restored. Shown on every
 // page except /admin, matching GtaViBanner's scoping.
-const LETTER_PATH = '/news/email/services/unavailable';
+const LETTER_PATH = '/news/email/services/unavailable/announced/9/26/2026';
 
 export default function EmailBanner() {
   const pathname = usePathname();
