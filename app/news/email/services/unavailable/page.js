@@ -67,8 +67,9 @@ export default function EmailServicesUnavailable() {
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              <strong>What we know:</strong> the issue is on our email provider&apos;s side, tied to how our
-              custom email domain (tjbmanagementinc.com) is set up and verified with them — not a problem
+              <strong>What we know:</strong> Apple&apos;s iCloud mail servers are rejecting our outgoing mail
+              with <code style={{ color: '#eab308' }}>554 5.7.1 [HM08] Message rejected due to local policy</code>
+              — an anti-abuse/spam hold enforced entirely on Apple&apos;s own systems. It is not a problem
               with this website or our other systems.
             </p>
 
@@ -78,8 +79,8 @@ export default function EmailServicesUnavailable() {
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              <strong>What we&apos;re doing:</strong> we&apos;re actively working with our email provider to
-              resolve it. We don&apos;t have a confirmed timeline yet.
+              <strong>What we&apos;re doing:</strong> we have Apple&apos;s iCloud admin team directly engaged
+              and looking into the block. We don&apos;t have a confirmed timeline yet.
             </p>
 
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
