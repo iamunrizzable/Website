@@ -8,14 +8,16 @@ import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Susp
 // on every page load, since this route is publicly reachable and repeat
 // visits shouldn't hit rate limits or cost money.
 
-const MAINTENANCE = { status: 'degraded', label: 'Maintenance mode' };
+// Site-wide maintenance kill switch specifically — every service takes
+// this exact label while it's on.
+const MAINTENANCE = { status: 'degraded', label: 'Taken offline for maintenance' };
 
 // No email-sending infrastructure lives in this repo (Tyler sends via his
 // own iCloud+ custom domain, entirely outside this codebase), so there's
 // nothing here to live-check. This is a manually-set flag while he's
-// mid-repair on the domain's mail setup — flip back to Operational by hand
+// mid-repair on the domain's mail setup — flip back to Available by hand
 // once it's confirmed working again.
-const EMAIL_STATUS = { status: 'degraded', label: 'Maintenance' };
+const EMAIL_STATUS = { status: 'degraded', label: 'Some services are unavailable' };
 
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
@@ -40,7 +42,7 @@ async function checkModerationSystem() {
 
 async function checkTikTokAgency() {
   try {
-    if (await isTikTokSuspended()) return { status: 'degraded', label: 'Suspended' };
+    if (await isTikTokSuspended()) return { status: 'down', label: 'Unavailable' };
   } catch {
     // fail open
   }
@@ -49,7 +51,7 @@ async function checkTikTokAgency() {
 
 async function checkC2Agency() {
   try {
-    if (await isC2Suspended()) return { status: 'degraded', label: 'Suspended' };
+    if (await isC2Suspended()) return { status: 'down', label: 'Unavailable' };
   } catch {
     // fail open
   }
