@@ -10,6 +10,13 @@ import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Susp
 
 const MAINTENANCE = { status: 'degraded', label: 'Maintenance mode' };
 
+// No email-sending infrastructure lives in this repo (Tyler sends via his
+// own iCloud+ custom domain, entirely outside this codebase), so there's
+// nothing here to live-check. This is a manually-set flag while he's
+// mid-repair on the domain's mail setup — flip back to Operational by hand
+// once it's confirmed working again.
+const EMAIL_STATUS = { status: 'degraded', label: 'Maintenance' };
+
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
   return { status: 'operational', label: 'Operational' };
@@ -78,6 +85,7 @@ export async function GET() {
     checkedAt: new Date().toISOString(),
     services: [
       { name: 'Website', ...website },
+      { name: 'Email', ...EMAIL_STATUS },
       { name: 'Hallie™ Writer', ...hallie },
       { name: 'TikTok Moderation System', ...moderation },
       { name: 'TikTok Agency', ...tiktokAgency },

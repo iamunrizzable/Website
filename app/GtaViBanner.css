@@ -2,7 +2,14 @@
    right:20px — independent of this banner's place in the document flow,
    so it doesn't push down to make room. Extra top padding here (instead
    of top:0) keeps the banner's own text clear of that button, rather
-   than sitting underneath it. */
+   than sitting underneath it.
+
+   The outer box is pointer-events:none so its large top-padding area
+   (which visually overlaps the Menu button) never swallows clicks meant
+   for that button — only the inner link, sized to the visible text, is
+   actually clickable. Without this, the button would look clickable but
+   silently do nothing, because this box paints above it (higher z-index)
+   and DOM elements capture clicks based on paint order, not appearance. */
 .gta-banner {
   position: sticky;
   top: 0;
@@ -11,15 +18,23 @@
   padding: 64px 16px 14px;
   background: rgba(234, 179, 8, 0.08);
   border-bottom: 1px solid rgba(234, 179, 8, 0.3);
+  text-align: center;
+  pointer-events: none;
+}
+.gta-banner-link {
+  display: inline-block;
+  pointer-events: auto;
   color: #eab308;
   font-family: system-ui, sans-serif;
   font-size: 13px;
   font-weight: 700;
-  text-align: center;
   text-decoration: none;
 }
-.gta-banner:hover {
-  background: rgba(234, 179, 8, 0.14);
+.gta-banner-link:hover {
+  text-decoration: none;
+}
+.gta-banner-link:hover .gta-banner-cta {
+  text-decoration-thickness: 2px;
 }
 .gta-banner-cta {
   text-decoration: underline;

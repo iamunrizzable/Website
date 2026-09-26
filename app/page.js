@@ -37,6 +37,7 @@ export default function Home() {
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
+        <a href="/system/status" onClick={() => setMenuOpen(false)}>System Status</a>
       </div>
 
       <main>
@@ -54,6 +55,7 @@ export default function Home() {
           <a href="/hallie" className="nav-button"><span>Hallie</span></a>
           <a href="/news" className="nav-button"><span>Newsletters</span></a>
           <a href="/agencies" className="nav-button"><span>Creator Networks</span></a>
+          <a href="/system/status" className="nav-button"><span>System Status</span></a>
           <a href="/legal" className="nav-button"><span>Legal</span></a>
         </div>
 
