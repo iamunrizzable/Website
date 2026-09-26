@@ -15,8 +15,10 @@ export default function GtaViBanner() {
   if (pathname === LETTER_PATH) return null;
 
   return (
-    <a href="/news/closed/for/grand/theft/auto/vi" className="gta-banner">
-      TJB Inc is closing soon for the release of GTA VI. <span className="gta-banner-cta">Learn more →</span>
-    </a>
+    <div className="gta-banner">
+      <a href="/news/closed/for/grand/theft/auto/vi" className="gta-banner-link">
+        TJB Inc is closing soon for the release of GTA VI. <span className="gta-banner-cta">Learn more →</span>
+      </a>
+    </div>
   );
 }

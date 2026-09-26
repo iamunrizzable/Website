@@ -47,6 +47,7 @@ export default function AdminTools() {
         <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
+        <a href="/system/status" onClick={() => setMenuOpen(false)}>System Status</a>
       </div>
 
       <div className="admin-page">
