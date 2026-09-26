@@ -11,7 +11,7 @@ const STATUS_COLORS = {
 };
 
 const STATUS_TEXT = {
-  operational: 'Operational',
+  operational: 'Available',
   degraded: 'Degraded',
   down: 'Down',
 };
