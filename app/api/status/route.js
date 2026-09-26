@@ -19,7 +19,7 @@ const EMAIL_STATUS = { status: 'degraded', label: 'Maintenance' };
 
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
-  return { status: 'operational', label: 'Operational' };
+  return { status: 'operational', label: 'Available' };
 }
 
 async function checkModerationSystem() {
@@ -32,7 +32,7 @@ async function checkModerationSystem() {
     // but comment actions (hide/pin/reply) silently fail — see
     // tiktok-tokens-and-oauth skill.
     if (!token.business_id) return { status: 'degraded', label: 'Read-only connection' };
-    return { status: 'operational', label: 'Operational' };
+    return { status: 'operational', label: 'Available' };
   } catch {
     return { status: 'down', label: 'Unavailable' };
   }
@@ -44,7 +44,7 @@ async function checkTikTokAgency() {
   } catch {
     // fail open
   }
-  return { status: 'operational', label: 'Operational' };
+  return { status: 'operational', label: 'Available' };
 }
 
 async function checkC2Agency() {
@@ -53,7 +53,7 @@ async function checkC2Agency() {
   } catch {
     // fail open
   }
-  return { status: 'operational', label: 'Operational' };
+  return { status: 'operational', label: 'Available' };
 }
 
 export async function GET() {
@@ -79,14 +79,14 @@ export async function GET() {
         checkTikTokAgency(),
         checkC2Agency(),
       ]);
-  const website = maintenance ? MAINTENANCE : { status: 'operational', label: 'Operational' };
+  const website = maintenance ? MAINTENANCE : { status: 'operational', label: 'Available' };
 
   return NextResponse.json({
     checkedAt: new Date().toISOString(),
     services: [
       { name: 'Website', ...website },
       { name: 'Email', ...EMAIL_STATUS },
-      { name: 'Hallie™ Writer', ...hallie },
+      { name: 'Hallie™', ...hallie },
       { name: 'TikTok Moderation System', ...moderation },
       { name: 'TikTok Agency', ...tiktokAgency },
       { name: 'C2 Agency', ...c2Agency },
