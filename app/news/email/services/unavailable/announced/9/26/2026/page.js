@@ -62,8 +62,8 @@ export default function EmailServicesUnavailable() {
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
               If you&apos;ve recently emailed Tyler or another @tjbmanagementinc.com address and haven&apos;t
-              gotten a response, it&apos;s not being ignored — some inbound and outbound email on our domain
-              is currently being delayed or not delivered at all.
+              gotten a response, it&apos;s not being ignored — some inbound email on our domain is not
+              currently being delivered, and is being rejected with that policy message.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
