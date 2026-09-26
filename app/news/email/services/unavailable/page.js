@@ -94,12 +94,9 @@ export default function EmailServicesUnavailable() {
               <a href="/system/status" style={{ color: '#eab308', fontWeight: 600 }}>System Status</a>.
             </p>
 
-            <p style={{ color: '#94a3b8', margin: '0 0 24px' }}>
+            <p style={{ color: '#94a3b8', margin: 0 }}>
               We&apos;ll update this notice once email service is fully restored. Thank you for your patience.
             </p>
-
-            <p style={{ color: '#94a3b8', margin: '0 0 2px' }}>Tyler, Chief Executive Officer</p>
-            <p style={{ color: '#94a3b8', margin: 0 }}>TJB Management Inc.</p>
           </div>
         </div>
 
