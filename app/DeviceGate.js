@@ -8,7 +8,9 @@ import { collectWebglFingerprint } from '@/lib/fingerprint/webgl';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
 import OpenInBrowserNotice from './OpenInBrowserNotice';
-import GtaViBanner from './GtaViBanner';
+// GtaViBanner is temporarily swapped out for EmailBanner below while the
+// email deliverability issue is ongoing — swap back once it's resolved.
+import EmailBanner from './EmailBanner';
 
 // How long to wait for our OWN local identification — the persistent
 // storage marker (lib/fingerprint/persistentMarker.js), the sole device
@@ -246,7 +248,7 @@ export default function DeviceGate({ children }) {
 
   return (
     <>
-      <GtaViBanner />
+      <EmailBanner />
       <OpenInBrowserNotice />
       {children}
     </>
