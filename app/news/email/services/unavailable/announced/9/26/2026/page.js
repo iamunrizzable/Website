@@ -5,9 +5,8 @@ import './page.css';
 import { useState } from 'react';
 
 // Standalone permalink for this newsletter entry — same pattern as the
-// other single-letter pages under /news. Linked from the site-wide
-// EmailBanner while the underlying iCloud+ custom domain issue is
-// unresolved (see /system/status for live status of the Email row).
+// other single-letter pages under /news. Resolved September 27, 2026 —
+// see /system/status for live status of the Email row.
 export default function EmailServicesUnavailable() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,11 +43,11 @@ export default function EmailServicesUnavailable() {
           }}
         >
           <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 4px' }}>TJB Management Inc.</p>
-          <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 22px' }}>September 26, 2026</p>
+          <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 22px' }}>September 26, 2026 — Resolved September 27, 2026</p>
 
           <h1
             style={{
-              color: '#f59e0b',
+              color: '#10b981',
               fontSize: 24,
               lineHeight: 1.4,
               margin: '0 0 22px',
@@ -56,48 +55,41 @@ export default function EmailServicesUnavailable() {
               animation: 'euGlowPulse 3s ease-in-out infinite',
             }}
           >
-            Some Email Services Are Currently Unavailable.
+            Email Services Have Been Restored.
           </h1>
 
           <div style={{ fontSize: 15, lineHeight: 1.7, textAlign: 'left' }}>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              If you&apos;ve recently emailed Tyler or another @tjbmanagementinc.com address and haven&apos;t
-              gotten a response, it may not have reached us at all — some inbound email to our domain is
-              currently being rejected by Apple&apos;s iCloud mail servers.
+              This issue is resolved. If you emailed Tyler or another @tjbmanagementinc.com address during
+              this window and didn&apos;t get a response, please send it again — email is working normally now.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              <strong>What we know:</strong> Apple&apos;s iCloud mail servers are rejecting some of our incoming
-              emails with <code style={{ color: '#eab308' }}>554 5.7.1 [HM08] Message rejected due to local policy</code>
-              — an anti-abuse/spam hold enforced entirely on Apple&apos;s own systems. It&apos;s not a problem
-              with any of our systems and it&apos;s not something we can fix. We are actively engaging with
-              Apple to fix the issue.
+              <strong>What happened:</strong> Apple&apos;s iCloud mail servers were rejecting some inbound
+              email to our domain with{' '}
+              <code style={{ color: '#eab308' }}>554 5.7.1 [HM08] Message rejected due to local policy</code>
+              — an anti-abuse/spam hold enforced entirely on Apple&apos;s own systems. It was not a problem
+              with any of our systems.
             </p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>
-              <strong>What this is not:</strong> this is not a security incident. No accounts, data, or
-              systems were compromised. It is limited to email deliverability on our domain.
+              <strong>What this was not:</strong> this was not a security incident. No accounts, data, or
+              systems were compromised. It was limited to email deliverability on our domain.
             </p>
 
             <p style={{ color: '#a855f7', margin: '0 0 16px' }}>
-              <strong>What we&apos;re doing:</strong> we have Apple&apos;s iCloud admin team directly engaged
-              and looking into the block. We don&apos;t have a confirmed timeline yet.
-            </p>
-
-            <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>
-              <strong>How to reach us in the meantime:</strong> you can call Tyler directly at{' '}
-              <a href="tel:+14086696123" style={{ color: '#eab308', fontWeight: 600 }}>(408) 669-6123</a>, or
-              use any of the other contact methods on the{' '}
-              <a href="/tyler/contact/tyler" style={{ color: '#eab308', fontWeight: 600 }}>Connect with Tyler</a> page.
+              <strong>What caused it:</strong> Apple confirmed the hold was triggered by low-content test
+              emails (generic subject lines like &quot;Test,&quot; no real body content). Once a normal, real
+              email was sent, it went through cleanly.
             </p>
 
             <p style={{ color: '#ec4899', margin: '0 0 16px' }}>
-              You can also check the current status of email and our other tools anytime at{' '}
+              You can check the current status of email and our other tools anytime at{' '}
               <a href="/system/status" style={{ color: '#eab308', fontWeight: 600 }}>System Status</a>.
             </p>
 
             <p style={{ color: '#94a3b8', margin: 0 }}>
-              We&apos;ll update this notice once email service is fully restored. Thank you for your patience.
+              Thank you for your patience.
             </p>
           </div>
         </div>
