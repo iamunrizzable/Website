@@ -14,10 +14,10 @@ const MAINTENANCE = { status: 'degraded', label: 'Taken offline for maintenance'
 
 // No email-sending infrastructure lives in this repo (Tyler sends via his
 // own iCloud+ custom domain, entirely outside this codebase), so there's
-// nothing here to live-check. This is a manually-set flag while he's
-// mid-repair on the domain's mail setup — flip back to Available by hand
-// once it's confirmed working again.
-const EMAIL_STATUS = { status: 'degraded', label: 'Some services are unavailable' };
+// nothing here to live-check — this is set by hand. Confirmed working
+// again as of September 27, 2026 (Apple's HM08 content-based spam hold
+// was triggered by low-content "Test" emails, per Apple support).
+const EMAIL_STATUS = { status: 'operational', label: 'Available' };
 
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };

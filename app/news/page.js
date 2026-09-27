@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react';
 const NEWSLETTERS = [
   {
     date: 'September 26, 2026',
-    title: 'Some Email Services Are Currently Unavailable.',
-    desc: "Some inbound and outbound email on the tjbmanagementinc.com domain is currently delayed or not delivered. We're actively working to resolve it.",
+    title: 'Email Services Have Been Restored.',
+    desc: "Some inbound email to the tjbmanagementinc.com domain was briefly rejected by Apple's iCloud mail servers. It's resolved as of September 27, 2026.",
     href: '/news/email/services/unavailable/announced/9/26/2026',
   },
   {
