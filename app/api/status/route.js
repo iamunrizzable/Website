@@ -19,6 +19,14 @@ const MAINTENANCE = { status: 'degraded', label: 'Taken offline for maintenance'
 // was triggered by low-content "Test" emails, per Apple support).
 const EMAIL_STATUS = { status: 'operational', label: 'Available' };
 
+// Calling/iMessage/RCS/SMS/MMS are phone-carrier-level services with no
+// infrastructure in this repo to check — set by hand, same as Email.
+const CALLING_STATUS = { status: 'operational', label: 'Available' };
+const IMESSAGE_STATUS = { status: 'operational', label: 'Available' };
+const RCS_STATUS = { status: 'operational', label: 'Available' };
+const SMS_STATUS = { status: 'operational', label: 'Available' };
+const MMS_STATUS = { status: 'operational', label: 'Available' };
+
 function checkHallieWriter() {
   if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
   return { status: 'operational', label: 'Available' };
@@ -86,12 +94,17 @@ export async function GET() {
   return NextResponse.json({
     checkedAt: new Date().toISOString(),
     services: [
-      { name: 'Website', ...website },
+      { name: 'Calling', ...CALLING_STATUS },
+      { name: 'iMessage', ...IMESSAGE_STATUS },
+      { name: 'RCS', ...RCS_STATUS },
+      { name: 'SMS', ...SMS_STATUS },
+      { name: 'MMS', ...MMS_STATUS },
       { name: 'Email', ...EMAIL_STATUS },
       { name: 'Hallie™', ...hallie },
       { name: 'TikTok Moderation System', ...moderation },
       { name: 'TikTok Agency', ...tiktokAgency },
       { name: 'C2 Agency', ...c2Agency },
+      { name: 'Website', ...website },
     ],
   });
 }
