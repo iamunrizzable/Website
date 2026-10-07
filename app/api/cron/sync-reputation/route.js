@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { refreshTorList, refreshVpnLists } from '@/lib/reputation/ipLists';
+import { refreshTorList, refreshVpnLists, refreshPrivateRelayList } from '@/lib/reputation/ipLists';
 import { isValidCronSecret } from '@/lib/auth';
 
 export const maxDuration = 30;
@@ -17,7 +17,7 @@ export const maxDuration = 30;
 export async function GET(request) {
   if (!isValidCronSecret(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  const result = { tor: null, vpn: null, datacenter: null, errors: [] };
+  const result = { tor: null, vpn: null, datacenter: null, privateRelay: null, errors: [] };
 
   try {
     result.tor = await refreshTorList();
@@ -33,6 +33,12 @@ export async function GET(request) {
     result.errors.push(`vpn: ${err.message}`);
   }
 
-  console.log(`[sync-reputation] tor=${result.tor ?? '-'} vpn=${result.vpn ?? '-'} datacenter=${result.datacenter ?? '-'} errors=${result.errors.length}`);
+  try {
+    result.privateRelay = await refreshPrivateRelayList();
+  } catch (err) {
+    result.errors.push(`privateRelay: ${err.message}`);
+  }
+
+  console.log(`[sync-reputation] tor=${result.tor ?? '-'} vpn=${result.vpn ?? '-'} datacenter=${result.datacenter ?? '-'} privateRelay=${result.privateRelay ?? '-'} errors=${result.errors.length}`);
   return NextResponse.json(result);
 }
