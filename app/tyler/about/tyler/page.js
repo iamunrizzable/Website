@@ -43,7 +43,7 @@ export default function Tyler() {
       <main>
         <a href="/tyler" className="back-link">← Back to Tyler</a>
 
-        <h1>Tyler @ TJB Mgmt</h1>
+        <h1>Tyler @ TJB MGMT</h1>
 
         <div className="section">
           <h2>Straight to the point.</h2>
