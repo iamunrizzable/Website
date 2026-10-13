@@ -13,7 +13,12 @@
 .gta-banner {
   position: sticky;
   top: 0;
-  z-index: 99997;
+  /* Below .menu-button (100) and .menu-dropdown (99) so the open dropdown
+     — including its first item, which the sticky-positioned dropdown's
+     fixed top:70px otherwise lands behind a solid banner tall enough to
+     reach that far down — always paints on top, not hidden behind this
+     now-opaque banner. Still above .fade-top (50) and page content. */
+  z-index: 60;
   display: block;
   padding: 64px 16px 14px;
   background: #3f2d0f;
