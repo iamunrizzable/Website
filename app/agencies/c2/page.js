@@ -32,10 +32,10 @@ export default function C2Hub() {
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
         <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-        <a href="/agencies" onClick={() => setMenuOpen(false)}>Creator Networks</a>
-        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
+        <a href="/agencies" onClick={() => setMenuOpen(false)}>Creator Networks</a>
         <a href="/system/status" onClick={() => setMenuOpen(false)}>System Status</a>
+        <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
         <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
       </div>
 
