@@ -47,11 +47,11 @@ export default function Legal() {
         </div>
 
         <div className="grid">
-          <a href="/legal/agencies/agreements/c2" className="card section">
-            <span className="card-icon">📋</span>
-            <span className="card-title">C2 Agency Agreement</span>
-            <span className="card-desc">The full text of C2 Capital Group Inc.'s own C2 Live Streamer Agency Agreement — registration, commission structure, obligations, and termination.</span>
-            <span className="card-link">VIEW AGREEMENT →</span>
+          <a href="/legal/external/contracts" className="card section">
+            <span className="card-icon">📑</span>
+            <span className="card-title">External Contracts</span>
+            <span className="card-desc">The underlying contracts governing TJB Management's agency relationships — the TikTok Agency contract and C2 Capital Group Inc.'s Live Streamer Agency Agreement.</span>
+            <span className="card-link">VIEW CONTRACTS →</span>
           </a>
 
           <a href="/legal/policies/and/procedures" className="card section">
