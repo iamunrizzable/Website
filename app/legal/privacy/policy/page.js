@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
 
         <p className="disclaimer disclaimer--intro">
           This Privacy Policy brings together the privacy-related practices already described elsewhere on this
-          website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
+          website — the <a href="/legal/policies/and/procedures/tiktok/agency"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
           <a href="/agencies/tiktok"><span className="rainbow">/agency</span></a> page, the{' '}
           <a href="/legal/policies/and/procedures/communication/policy#general-acceptance"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
           <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security &amp; Privacy Policy</span></a>,
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
             TJB Management Inc. ("TJB Management," "we," "us") operates tjbmanagementinc.com (this "Website"). This Privacy Policy describes the data practices of the Website as a whole.
           </p>
           <p>
-            Where a more specific policy applies — such as the <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a> for Operators of the Hallie TikTok Account Automation Platform, or the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a> for signed or signing creators — that specific policy governs in addition to, and where it conflicts, takes precedence over, this general Privacy Policy.
+            Where a more specific policy applies — such as the <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a> for Operators of the Hallie TikTok Account Automation Platform, or the <a href="/legal/policies/and/procedures/tiktok/agency"><span className="rainbow">TikTok Agency Guidelines</span></a> for signed or signing creators — that specific policy governs in addition to, and where it conflicts, takes precedence over, this general Privacy Policy.
           </p>
         </div>
 
