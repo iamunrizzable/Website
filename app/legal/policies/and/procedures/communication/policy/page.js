@@ -230,7 +230,6 @@ export default function CommunicationPolicy() {
           <h2>4. Prohibited Conduct</h2>
           <p>The following are not permitted in any communication conducted on behalf of TJB Management Inc.:</p>
           <ul>
-            <li>Flirting, romantic advances, or sexual comments</li>
             <li>Harassment, threats, or intimidation of any kind</li>
             <li>Discriminatory language or conduct based on race, gender, religion, national origin, disability, sexual orientation, or any other protected class</li>
             <li>Profanity or abusive language directed at another person</li>
