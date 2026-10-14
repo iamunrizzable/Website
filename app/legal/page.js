@@ -47,13 +47,6 @@ export default function Legal() {
         </div>
 
         <div className="grid">
-          <a href="/legal/tiktok/agency/guidelines" className="card section">
-            <span className="card-icon">🏢</span>
-            <span className="card-title">TikTok Agency Guidelines</span>
-            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and contact information for TJB Management agency clients.</span>
-            <span className="card-link">VIEW GUIDELINES →</span>
-          </a>
-
           <a href="/legal/agencies/agreements/c2" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">C2 Agency Agreement</span>
