@@ -59,7 +59,23 @@ export default function PoliciesAndProcedures() {
         <div className="toc">
           <p>Table of Contents</p>
 
-          <p className="toc-part">Part I — TikTok Agency Policies & Procedures</p>
+          <p className="toc-part">Part I — General Legal Terms</p>
+          <ol>
+            <li><a href="#general-acceptance">Acceptance of Terms</a></li>
+            <li><a href="#general-use-of-site">Use of This Website</a></li>
+            <li><a href="#general-no-advice">No Professional Advice</a></li>
+            <li><a href="#general-ip">Intellectual Property</a></li>
+            <li><a href="#general-third-party">Third-Party Links & Services</a></li>
+            <li><a href="#general-conduct">User Conduct</a></li>
+            <li><a href="#general-warranties">Disclaimer of Warranties</a></li>
+            <li><a href="#general-liability">Limitation of Liability</a></li>
+            <li><a href="#general-indemnification">Indemnification</a></li>
+            <li><a href="#general-changes">Changes to These Terms</a></li>
+            <li><a href="#general-governing-law">Governing Law</a></li>
+            <li><a href="#general-contact">Contact Information</a></li>
+          </ol>
+
+          <p className="toc-part">Part II — TikTok Agency Policies & Procedures</p>
           <ol>
             <li><a href="#agency-about">About TJB Management Inc.</a></li>
             <li><a href="#agency-eligibility">Creator Eligibility Requirements</a></li>
@@ -75,7 +91,7 @@ export default function PoliciesAndProcedures() {
             <li><a href="#agency-corporate-policy">Corporate Policy: Inquiry Handling</a></li>
           </ol>
 
-          <p className="toc-part">Part II — Hallie Platform Data Security & Privacy Policy</p>
+          <p className="toc-part">Part III — Hallie Platform Data Security & Privacy Policy</p>
           <ol>
             <li><a href="#hallie-about">About the Platform</a></li>
             <li><a href="#hallie-definitions">Definitions</a></li>
@@ -99,22 +115,6 @@ export default function PoliciesAndProcedures() {
             <li><a href="#hallie-contact">Contact & Requests</a></li>
           </ol>
 
-          <p className="toc-part">Part III — General Legal Terms</p>
-          <ol>
-            <li><a href="#general-acceptance">Acceptance of Terms</a></li>
-            <li><a href="#general-use-of-site">Use of This Website</a></li>
-            <li><a href="#general-no-advice">No Professional Advice</a></li>
-            <li><a href="#general-ip">Intellectual Property</a></li>
-            <li><a href="#general-third-party">Third-Party Links & Services</a></li>
-            <li><a href="#general-conduct">User Conduct</a></li>
-            <li><a href="#general-warranties">Disclaimer of Warranties</a></li>
-            <li><a href="#general-liability">Limitation of Liability</a></li>
-            <li><a href="#general-indemnification">Indemnification</a></li>
-            <li><a href="#general-changes">Changes to These Terms</a></li>
-            <li><a href="#general-governing-law">Governing Law</a></li>
-            <li><a href="#general-contact">Contact Information</a></li>
-          </ol>
-
           <p className="toc-part">Part IV — Communication Policy</p>
           <ol>
             <li><a href="#comm-purpose">Purpose</a></li>
@@ -130,7 +130,103 @@ export default function PoliciesAndProcedures() {
         </div>
 
         {/* ══════════════════════════════════════════ PART I ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part I — TikTok Agency Policies & Procedures</h2>
+        <h2 className="part-heading">Part I — General Legal Terms</h2>
+
+        <div className="section" id="general-acceptance">
+          <h2>1. Acceptance of Terms</h2>
+          <p>
+            By accessing or using tjbmanagementinc.com (the "Website"), you agree to be bound by these General Terms of Use. If you do not agree to these terms, please do not use the Website.
+          </p>
+          <p>
+            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as the TikTok Agency Guidelines for signed or signing creators, or the Hallie Platform Data Security & Privacy Policy for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-use-of-site">
+          <h2>2. Use of This Website</h2>
+          <p>
+            This Website is provided to describe TJB Management Inc.'s services, including talent management, the Hallie automation platform, and related resources. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Website by, any other person.
+          </p>
+        </div>
+
+        <div className="section" id="general-no-advice">
+          <h2>3. No Professional Advice</h2>
+          <p>
+            Nothing on this Website constitutes legal, financial, tax, or other professional advice. Information is provided for general purposes only and should not be relied upon as a substitute for professional consultation.
+          </p>
+          <p>
+            Any specific representation, service, or engagement with TJB Management Inc. is governed exclusively by a signed agreement or the applicable policy referenced in Section 1, not by general statements made elsewhere on this Website.
+          </p>
+        </div>
+
+        <div className="section" id="general-ip">
+          <h2>4. Intellectual Property</h2>
+          <p>
+            The TJB Management Inc. name, logo, branding, website design, and all content published on this Website are the property of TJB Management Inc. and Tyler J. Beasley, unless otherwise noted. No part of this Website may be reproduced, copied, distributed, or used in any form without prior written consent. Unauthorized use will be pursued to the fullest extent permitted by law.
+          </p>
+        </div>
+
+        <div className="section" id="general-third-party">
+          <h2>5. Third-Party Links & Services</h2>
+          <p>
+            This Website may link to third-party websites and services, including TikTok, for reference and convenience. TJB Management Inc. does not control and is not responsible for the content, policies, or practices of any third-party site. Inclusion of a link does not imply endorsement.
+          </p>
+        </div>
+
+        <div className="section" id="general-conduct">
+          <h2>6. User Conduct</h2>
+          <p>
+            You agree not to use this Website to transmit any content that is unlawful, harmful, fraudulent, or infringing, or to attempt to gain unauthorized access to any portion of the Website or its underlying systems.
+          </p>
+        </div>
+
+        <div className="section" id="general-warranties">
+          <h2>7. Disclaimer of Warranties</h2>
+          <p>
+            This Website and its content are provided "as is" and "as available," without warranties of any kind, express or implied, including but not limited to accuracy, completeness, or fitness for a particular purpose. TJB Management Inc. does not guarantee uninterrupted or error-free operation of the Website.
+          </p>
+        </div>
+
+        <div className="section" id="general-liability">
+          <h2>8. Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, TJB Management Inc. is not liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of this Website.
+          </p>
+          <p>
+            This general limitation is in addition to, and does not replace, any liability terms set out in a specific agreement or policy governing a particular service.
+          </p>
+        </div>
+
+        <div className="section" id="general-indemnification">
+          <h2>9. Indemnification</h2>
+          <p>
+            You agree to indemnify and hold harmless TJB Management Inc., Tyler J. Beasley, and their officers, employees, and affiliates from any claims, damages, or expenses arising out of your use of this Website or your violation of these terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-changes">
+          <h2>10. Changes to These Terms</h2>
+          <p>
+            TJB Management Inc. may update these General Terms of Use at any time without prior notice. Continued use of the Website following any changes constitutes acceptance of the revised terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-governing-law">
+          <h2>11. Governing Law</h2>
+          <p>
+            These terms are governed by the laws of the State of Florida, without regard to conflict-of-law principles. Any dispute arising under these general terms shall be resolved in the applicable courts of the State of Florida.
+          </p>
+        </div>
+
+        <div className="section" id="general-contact">
+          <h2>12. Contact Information</h2>
+          <p>
+            Questions about these General Terms of Use can be directed to <span className="rainbow">support@tjbmanagementinc.com</span>.
+          </p>
+        </div>
+
+        {/* ══════════════════════════════════════════ PART II ══════════════════════════════════════════ */}
+        <h2 className="part-heading">Part II — TikTok Agency Policies & Procedures</h2>
 
         <div className="section" id="agency-about">
           <h2>1. About TJB Management Inc.</h2>
@@ -295,8 +391,8 @@ export default function PoliciesAndProcedures() {
           </p>
         </div>
 
-        {/* ══════════════════════════════════════════ PART II ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part II — Hallie Platform Data Security & Privacy Policy</h2>
+        {/* ══════════════════════════════════════════ PART III ══════════════════════════════════════════ */}
+        <h2 className="part-heading">Part III — Hallie Platform Data Security & Privacy Policy</h2>
 
         <div className="section" id="hallie-about">
           <h2>1. About the Platform</h2>
@@ -644,102 +740,6 @@ export default function PoliciesAndProcedures() {
           <p>We will respond to all privacy and security inquiries within 30 days. Critical security incidents will receive an acknowledgment within 48 hours.</p>
         </div>
 
-        {/* ══════════════════════════════════════════ PART III ══════════════════════════════════════════ */}
-        <h2 className="part-heading">Part III — General Legal Terms</h2>
-
-        <div className="section" id="general-acceptance">
-          <h2>1. Acceptance of Terms</h2>
-          <p>
-            By accessing or using tjbmanagementinc.com (the "Website"), you agree to be bound by these General Terms of Use. If you do not agree to these terms, please do not use the Website.
-          </p>
-          <p>
-            These general terms apply to all visitors to the Website. Where a more specific policy applies — such as the TikTok Agency Guidelines for signed or signing creators, or the Hallie Platform Data Security & Privacy Policy for operators of the Hallie automation platform — that specific policy governs in addition to, and where it conflicts, takes precedence over, these general terms.
-          </p>
-        </div>
-
-        <div className="section" id="general-use-of-site">
-          <h2>2. Use of This Website</h2>
-          <p>
-            This Website is provided to describe TJB Management Inc.'s services, including talent management, the Hallie automation platform, and related resources. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Website by, any other person.
-          </p>
-        </div>
-
-        <div className="section" id="general-no-advice">
-          <h2>3. No Professional Advice</h2>
-          <p>
-            Nothing on this Website constitutes legal, financial, tax, or other professional advice. Information is provided for general purposes only and should not be relied upon as a substitute for professional consultation.
-          </p>
-          <p>
-            Any specific representation, service, or engagement with TJB Management Inc. is governed exclusively by a signed agreement or the applicable policy referenced in Section 1, not by general statements made elsewhere on this Website.
-          </p>
-        </div>
-
-        <div className="section" id="general-ip">
-          <h2>4. Intellectual Property</h2>
-          <p>
-            The TJB Management Inc. name, logo, branding, website design, and all content published on this Website are the property of TJB Management Inc. and Tyler J. Beasley, unless otherwise noted. No part of this Website may be reproduced, copied, distributed, or used in any form without prior written consent. Unauthorized use will be pursued to the fullest extent permitted by law.
-          </p>
-        </div>
-
-        <div className="section" id="general-third-party">
-          <h2>5. Third-Party Links & Services</h2>
-          <p>
-            This Website may link to third-party websites and services, including TikTok, for reference and convenience. TJB Management Inc. does not control and is not responsible for the content, policies, or practices of any third-party site. Inclusion of a link does not imply endorsement.
-          </p>
-        </div>
-
-        <div className="section" id="general-conduct">
-          <h2>6. User Conduct</h2>
-          <p>
-            You agree not to use this Website to transmit any content that is unlawful, harmful, fraudulent, or infringing, or to attempt to gain unauthorized access to any portion of the Website or its underlying systems.
-          </p>
-        </div>
-
-        <div className="section" id="general-warranties">
-          <h2>7. Disclaimer of Warranties</h2>
-          <p>
-            This Website and its content are provided "as is" and "as available," without warranties of any kind, express or implied, including but not limited to accuracy, completeness, or fitness for a particular purpose. TJB Management Inc. does not guarantee uninterrupted or error-free operation of the Website.
-          </p>
-        </div>
-
-        <div className="section" id="general-liability">
-          <h2>8. Limitation of Liability</h2>
-          <p>
-            To the fullest extent permitted by law, TJB Management Inc. is not liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of this Website.
-          </p>
-          <p>
-            This general limitation is in addition to, and does not replace, any liability terms set out in a specific agreement or policy governing a particular service.
-          </p>
-        </div>
-
-        <div className="section" id="general-indemnification">
-          <h2>9. Indemnification</h2>
-          <p>
-            You agree to indemnify and hold harmless TJB Management Inc., Tyler J. Beasley, and their officers, employees, and affiliates from any claims, damages, or expenses arising out of your use of this Website or your violation of these terms.
-          </p>
-        </div>
-
-        <div className="section" id="general-changes">
-          <h2>10. Changes to These Terms</h2>
-          <p>
-            TJB Management Inc. may update these General Terms of Use at any time without prior notice. Continued use of the Website following any changes constitutes acceptance of the revised terms.
-          </p>
-        </div>
-
-        <div className="section" id="general-governing-law">
-          <h2>11. Governing Law</h2>
-          <p>
-            These terms are governed by the laws of the State of Florida, without regard to conflict-of-law principles. Any dispute arising under these general terms shall be resolved in the applicable courts of the State of Florida.
-          </p>
-        </div>
-
-        <div className="section" id="general-contact">
-          <h2>12. Contact Information</h2>
-          <p>
-            Questions about these General Terms of Use can be directed to <span className="rainbow">support@tjbmanagementinc.com</span>.
-          </p>
-        </div>
-
         {/* ══════════════════════════════════════════ PART IV ══════════════════════════════════════════ */}
         <h2 className="part-heading">Part IV — Communication Policy</h2>
 
@@ -828,7 +828,7 @@ export default function PoliciesAndProcedures() {
             Anyone who experiences or witnesses conduct that violates this policy in communication with TJB
             Management Inc. should report it using the contact information below. Reports are taken seriously, and
             a violation of this policy may result in termination of a creator&apos;s representation agreement or
-            other appropriate action, consistent with Part I, Section 7 (Leaving the Agency & Termination).
+            other appropriate action, consistent with Part II, Section 7 (Leaving the Agency & Termination).
           </p>
         </div>
 
