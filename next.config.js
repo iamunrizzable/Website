@@ -61,7 +61,8 @@ const nextConfig = {
     return [
       { source: '/tiktok/agency', destination: '/agencies/tiktok', permanent: true },
       { source: '/tiktok/agency/:path*', destination: '/agencies/tiktok/:path*', permanent: true },
-      { source: '/agencies/c2/agency-agreement', destination: '/legal/agencies/agreements/c2', permanent: true },
+      { source: '/agencies/c2/agency-agreement', destination: '/legal/external/contracts/c2/agency/contract', permanent: true },
+      { source: '/legal/agencies/agreements/c2', destination: '/legal/external/contracts/c2/agency/contract', permanent: true },
       { source: '/agencies/c2/streaming-basics', destination: '/agencies/c2/streaming/basics', permanent: true },
       { source: '/agencies/c2/join', destination: '/agencies/c2/about', permanent: true },
       { source: '/agencies/tiktok/streaming-basics', destination: '/agencies/tiktok/streaming/basics', permanent: true },
