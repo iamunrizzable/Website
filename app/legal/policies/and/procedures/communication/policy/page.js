@@ -274,12 +274,18 @@ export default function CommunicationPolicy() {
           <p>
             Anyone who experiences or witnesses conduct that violates this policy in communication with TJB
             Management Inc. should report it using the contact information below. Reports are taken seriously, and
-            a violation of this policy may result in termination of a creator&apos;s representation agreement or
-            other appropriate action, consistent with{' '}
+            this policy is enforced equally against anyone communicating on the company&apos;s behalf — Tyler,
+            staff, and any other representative — the same as it is against a signed creator.
+          </p>
+          <p>
+            A violation may result in whatever action is appropriate to the relationship involved — for a signed
+            creator, that includes termination of their representation agreement, consistent with{' '}
             <a href="/legal/policies/and/procedures/tiktok/agency#agency-leaving">
               <span className="rainbow">Section 7 (Leaving the Agency & Termination)</span>
             </a>{' '}
-            of our TikTok Agency Policies & Procedures.
+            of our TikTok Agency Policies & Procedures; for anyone communicating on the company&apos;s behalf,
+            including Tyler, that includes removal from any role or responsibility that involves communicating on
+            TJB Management Inc.&apos;s behalf. No one is exempt from this policy because of their position.
           </p>
         </div>
 
