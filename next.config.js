@@ -66,6 +66,7 @@ const nextConfig = {
       { source: '/agencies/c2/join', destination: '/agencies/c2/about', permanent: true },
       { source: '/agencies/tiktok/streaming-basics', destination: '/agencies/tiktok/streaming/basics', permanent: true },
       { source: '/legal/policies-and-procedures', destination: '/legal/policies/and/procedures', permanent: true },
+      { source: '/legal/general', destination: '/legal/policies/and/procedures', permanent: true },
       { source: '/legal/privacy-policy', destination: '/legal/privacy/policy', permanent: true },
       { source: '/legal/hallie-tiktok-moderation-system', destination: '/legal/hallie/tiktok/moderation/system', permanent: true },
       { source: '/admin/internal/hallie/tiktok-moderation/system', destination: '/admin/internal/hallie/tiktok/moderation/system', permanent: true },

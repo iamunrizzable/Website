@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
           This Privacy Policy brings together the privacy-related practices already described elsewhere on this
           website — the <a href="/legal/tiktok/agency/guidelines"><span className="rainbow">TikTok Agency Guidelines</span></a>, the{' '}
           <a href="/agencies/tiktok"><span className="rainbow">/agency</span></a> page, the{' '}
-          <a href="/legal/general"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
+          <a href="/legal/policies/and/procedures/communication/policy#general-acceptance"><span className="rainbow">General Legal Terms</span></a>, and the{' '}
           <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security &amp; Privacy Policy</span></a>,
           into a single reference. It does not replace those originals — where any difference exists, the original
           source page governs.

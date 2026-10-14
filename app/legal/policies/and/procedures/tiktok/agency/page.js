@@ -48,6 +48,25 @@ export default function TikTokAgencyPoliciesAndProcedures() {
 
         <div className="toc">
           <p>Table of Contents</p>
+
+          <p className="toc-part">General Legal Terms</p>
+          <ol>
+            <li><a href="#general-acceptance">Acceptance of Terms</a></li>
+            <li><a href="#general-use-of-site">Use of This Website</a></li>
+            <li><a href="#general-geo">Geographic Restrictions & Automated Access Controls</a></li>
+            <li><a href="#general-no-advice">No Professional Advice</a></li>
+            <li><a href="#general-ip">Intellectual Property</a></li>
+            <li><a href="#general-third-party">Third-Party Links & Services</a></li>
+            <li><a href="#general-conduct">User Conduct</a></li>
+            <li><a href="#general-warranties">Disclaimer of Warranties</a></li>
+            <li><a href="#general-liability">Limitation of Liability</a></li>
+            <li><a href="#general-indemnification">Indemnification</a></li>
+            <li><a href="#general-changes">Changes to These Terms</a></li>
+            <li><a href="#general-governing-law">Governing Law</a></li>
+            <li><a href="#general-contact">Contact Information</a></li>
+          </ol>
+
+          <p className="toc-part">TikTok Agency Policy</p>
           <ol>
             <li><a href="#agency-about">About TJB Management Inc.</a></li>
             <li><a href="#agency-eligibility">Creator Eligibility Requirements</a></li>
@@ -63,6 +82,116 @@ export default function TikTokAgencyPoliciesAndProcedures() {
             <li><a href="#agency-corporate-policy">Corporate Policy: Inquiry Handling</a></li>
           </ol>
         </div>
+
+        <h2 className="part-heading">General Legal Terms</h2>
+
+        <div className="section" id="general-acceptance">
+          <h2>1. Acceptance of Terms</h2>
+          <p>
+            By accessing or using tjbmanagementinc.com (the "Website"), you agree to be bound by these General Legal Terms. If you do not agree to these terms, please do not use the Website.
+          </p>
+          <p>
+            These general terms apply to all visitors to the Website. The TikTok Agency Policy below applies in addition to, and where it conflicts, takes precedence over, these general terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-use-of-site">
+          <h2>2. Use of This Website</h2>
+          <p>
+            This Website is provided to describe TJB Management Inc.'s services, including talent management, the Hallie automation platform, and related resources. You agree to use the Website only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Website by, any other person.
+          </p>
+        </div>
+
+        <div className="section" id="general-geo">
+          <h2>3. Geographic Restrictions & Automated Access Controls</h2>
+          <p>
+            This Website is available only to visitors located in the United States and Canada, as a permanent, site-wide policy. This restriction is enforced automatically: connections from outside the United States and Canada are blocked, and connections TJB Management Inc. detects as coming from a VPN, proxy, Tor exit node, or commercial datacenter/hosting IP — rather than a visitor's own residential or mobile connection — are automatically blocked as well, since those connections can be used to mask a visitor's true location.
+          </p>
+          <p>
+            Apple's iCloud Private Relay is not treated as a VPN for purposes of this policy and is not blocked solely for being Private Relay traffic.
+          </p>
+          <p>
+            These automated controls are a technical measure used to enforce the geographic restriction in this section and the eligibility requirements described in the TikTok Agency Policy below. They do not expand or limit any other right or obligation described elsewhere in these terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-no-advice">
+          <h2>4. No Professional Advice</h2>
+          <p>
+            Nothing on this Website constitutes legal, financial, tax, or other professional advice. Information is provided for general purposes only and should not be relied upon as a substitute for professional consultation.
+          </p>
+          <p>
+            Any specific representation, service, or engagement with TJB Management Inc. is governed exclusively by a signed agreement or the TikTok Agency Policy below, not by general statements made elsewhere on this Website.
+          </p>
+        </div>
+
+        <div className="section" id="general-ip">
+          <h2>5. Intellectual Property</h2>
+          <p>
+            The TJB Management Inc. name, logo, branding, website design, and all content published on this Website are the property of TJB Management Inc. and Tyler J. Beasley, unless otherwise noted. No part of this Website may be reproduced, copied, distributed, or used in any form without prior written consent. Unauthorized use will be pursued to the fullest extent permitted by law.
+          </p>
+        </div>
+
+        <div className="section" id="general-third-party">
+          <h2>6. Third-Party Links & Services</h2>
+          <p>
+            This Website may link to third-party websites and services, including TikTok, for reference and convenience. TJB Management Inc. does not control and is not responsible for the content, policies, or practices of any third-party site. Inclusion of a link does not imply endorsement.
+          </p>
+        </div>
+
+        <div className="section" id="general-conduct">
+          <h2>7. User Conduct</h2>
+          <p>
+            You agree not to use this Website to transmit any content that is unlawful, harmful, fraudulent, or infringing, or to attempt to gain unauthorized access to any portion of the Website or its underlying systems.
+          </p>
+        </div>
+
+        <div className="section" id="general-warranties">
+          <h2>8. Disclaimer of Warranties</h2>
+          <p>
+            This Website and its content are provided "as is" and "as available," without warranties of any kind, express or implied, including but not limited to accuracy, completeness, or fitness for a particular purpose. TJB Management Inc. does not guarantee uninterrupted or error-free operation of the Website.
+          </p>
+        </div>
+
+        <div className="section" id="general-liability">
+          <h2>9. Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, TJB Management Inc. is not liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of this Website.
+          </p>
+          <p>
+            This general limitation is in addition to, and does not replace, any liability terms set out in the TikTok Agency Policy below.
+          </p>
+        </div>
+
+        <div className="section" id="general-indemnification">
+          <h2>10. Indemnification</h2>
+          <p>
+            You agree to indemnify and hold harmless TJB Management Inc., Tyler J. Beasley, and their officers, employees, and affiliates from any claims, damages, or expenses arising out of your use of this Website or your violation of these terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-changes">
+          <h2>11. Changes to These Terms</h2>
+          <p>
+            TJB Management Inc. may update these General Legal Terms at any time without prior notice. Continued use of the Website following any changes constitutes acceptance of the revised terms.
+          </p>
+        </div>
+
+        <div className="section" id="general-governing-law">
+          <h2>12. Governing Law</h2>
+          <p>
+            These terms are governed by the laws of the State of Florida, without regard to conflict-of-law principles. Any dispute arising under these general terms shall be resolved in the applicable courts of the State of Florida.
+          </p>
+        </div>
+
+        <div className="section" id="general-contact">
+          <h2>13. Contact Information</h2>
+          <p>
+            Questions about these General Legal Terms can be directed to <span className="rainbow">support@tjbmanagementinc.com</span>.
+          </p>
+        </div>
+
+        <h2 className="part-heading">TikTok Agency Policy</h2>
 
         <div className="section" id="agency-about">
           <h2>1. About TJB Management Inc.</h2>
