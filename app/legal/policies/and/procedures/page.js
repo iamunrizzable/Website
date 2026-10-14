@@ -69,6 +69,13 @@ export default function PoliciesAndProcedures() {
             <span className="card-desc">The professional conduct standard for every business communication made on behalf of TJB Management Inc. — channels, response times, confidentiality, and enforcement.</span>
             <span className="card-link">VIEW POLICY →</span>
           </a>
+
+          <a href="/legal/privacy/policy" className="card section">
+            <span className="card-icon">🔒</span>
+            <span className="card-title">Privacy Policy</span>
+            <span className="card-desc">How tjbmanagementinc.com handles data — cookies in use, what creator data managers can see, third-party links, and the full Hallie Platform Data Security & Privacy Policy.</span>
+            <span className="card-link">VIEW PRIVACY POLICY →</span>
+          </a>
         </div>
 
         <footer>
