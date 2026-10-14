@@ -126,10 +126,13 @@ export default function HalliePlatformPoliciesAndProcedures() {
         <div className="section" id="general-no-advice">
           <h2>4. No Professional Advice</h2>
           <p>
-            Nothing on this Website constitutes legal, financial, tax, or other professional advice. Information is provided for general purposes only and should not be relied upon as a substitute for professional consultation.
+            Unless stated otherwise, Nothing on this Website constitutes legal, financial, tax, or other professional advice.
           </p>
           <p>
-            Any specific representation, service, or engagement with TJB Management Inc. is governed exclusively by a signed agreement or the Hallie Platform Policy below, not by general statements made elsewhere on this Website.
+            Unless stated otherwise to you, Information is provided for general purposes only and should not be relied upon as a substitute for professional consultation.
+          </p>
+          <p>
+            Any specific representation, service, or engagement with TJB Management Inc. is governed exclusively by our policies and procedures, located at (<a href="/legal/policies/and/procedures"><span className="rainbow">https://tjbmanagementinc.com/legal/policies/and/procedures</span></a>)
           </p>
         </div>
 
