@@ -54,13 +54,6 @@ export default function Legal() {
             <span className="card-link">VIEW AGREEMENT →</span>
           </a>
 
-          <a href="/legal/hallie/tiktok/moderation/system" className="card section">
-            <span className="card-icon">🛡️</span>
-            <span className="card-title">Hallie Platform — Data Security & Privacy</span>
-            <span className="card-desc">Full data security, privacy, and compliance documentation for the Hallie TikTok Account Automation Platform, including USDS and DSPR requirements.</span>
-            <span className="card-link">VIEW POLICY →</span>
-          </a>
-
           <a href="/legal/policies/and/procedures" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">Policies & Procedures</span>
