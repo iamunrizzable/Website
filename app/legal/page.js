@@ -47,13 +47,6 @@ export default function Legal() {
         </div>
 
         <div className="grid">
-          <a href="/legal/general" className="card section">
-            <span className="card-icon">📄</span>
-            <span className="card-title">General Legal Terms</span>
-            <span className="card-desc">General terms of use, intellectual property, liability, and contact information applicable to tjbmanagementinc.com as a whole.</span>
-            <span className="card-link">VIEW TERMS →</span>
-          </a>
-
           <a href="/legal/tiktok/agency/guidelines" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">TikTok Agency Guidelines</span>
@@ -78,7 +71,7 @@ export default function Legal() {
           <a href="/legal/policies/and/procedures" className="card section">
             <span className="card-icon">📋</span>
             <span className="card-title">Policies & Procedures</span>
-            <span className="card-desc">The policy library — one page per topic: general legal terms, TikTok agency policy, the Hallie data security policy, and the communication policy.</span>
+            <span className="card-desc">The policy library — one page per topic: TikTok agency policy, the Hallie data security policy, and the communication policy, each including the General Legal Terms that apply site-wide.</span>
             <span className="card-link">VIEW ALL POLICIES →</span>
           </a>
 

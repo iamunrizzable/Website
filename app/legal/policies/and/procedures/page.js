@@ -44,18 +44,11 @@ export default function PoliciesAndProcedures() {
 
         <div className="header section">
           <h1>Policies & Procedures</h1>
-          <p className="subtitle">TJB Management Inc. · The full policy library, one topic per page</p>
+          <p className="subtitle">TJB Management Inc. · The full policy library, one topic per page — each page includes the General Legal Terms that apply site-wide</p>
           <span className="badge">📋 Policy Library</span>
         </div>
 
         <div className="grid">
-          <a href="/legal/general" className="card section">
-            <span className="card-icon">📄</span>
-            <span className="card-title">General Legal Terms</span>
-            <span className="card-desc">General terms of use, intellectual property, liability, and contact information applicable to tjbmanagementinc.com as a whole.</span>
-            <span className="card-link">VIEW TERMS →</span>
-          </a>
-
           <a href="/legal/policies/and/procedures/tiktok/agency" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">TikTok Agency Policies & Procedures</span>
