@@ -49,7 +49,7 @@ export default function ExternalContracts() {
         </div>
 
         <div className="grid">
-          <a href="/legal/external/contracts/tiktok/agency/contract" className="card section">
+          <a href="/legal/contracts/tiktok-agency-contract.pdf" className="card section" target="_blank" rel="noopener noreferrer">
             <span className="card-icon">🏢</span>
             <span className="card-title">TikTok Agency Contract</span>
             <span className="card-desc">The TikTok Agency contract governing TJB Management Inc.'s participation in TikTok's agency program.</span>
