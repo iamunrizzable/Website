@@ -31,19 +31,13 @@ export default function TikTokAgencyContract() {
         </p>
 
         <div className="download-row">
-          <a href="/legal/contracts/tiktok-agency-contract.pdf" className="download-btn" download>⬇ Download PDF</a>
-        </div>
-
-        <div className="pdf-frame-wrap">
-          <iframe
-            src="/legal/contracts/tiktok-agency-contract.pdf"
-            className="pdf-frame"
-            title="TikTok Agency Contract"
-          />
+          <a href="/legal/contracts/tiktok-agency-contract.pdf" className="download-btn" target="_blank" rel="noopener noreferrer">📄 View PDF</a>
+          <a href="/legal/contracts/tiktok-agency-contract.pdf" className="download-btn download-btn--secondary" download>⬇ Download PDF</a>
         </div>
 
         <p className="pdf-fallback">
-          If the document above doesn't display in your browser, use the Download PDF button to view it directly.
+          View PDF opens the document in your browser's own PDF viewer — the most reliable way to read it on any
+          device, including Safari on iPhone and iPad. Download PDF saves a copy instead.
         </p>
 
         <footer>
