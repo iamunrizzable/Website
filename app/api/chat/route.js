@@ -2,24 +2,26 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction } from '@/lib/hallie-chat-tools';
+import { runToolChat, executeConfirmedAction, connectionReply } from '@/lib/hallie-chat-tools';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
 
-// The visitor's own connected TikTok account, if any — same parsing and
-// expiry check as /api/system/status. Returns the identity the confirm
-// tokens are bound to, or null (→ the unchanged relay path).
-async function connectedIdentity() {
+// The visitor's own TikTok connection — same parsing and expiry check as
+// /api/system/status. { state: 'none' } (no cookie → the unchanged relay
+// path), { state: 'expired' } (cookie present but expired or unreadable),
+// or { state: 'connected', identity } (what confirm tokens are bound to).
+async function connection() {
   const raw = (await cookies()).get('acct_token')?.value;
-  if (!raw) return null;
+  if (!raw) return { state: 'none' };
   try {
     const token = JSON.parse(raw);
     const expired = token.expires_at && Date.now() > token.expires_at;
-    if (expired) return null;
-    return String(token.open_id ?? token.business_id ?? '') || null;
+    const identity = String(token.open_id ?? token.business_id ?? '');
+    if (expired || !identity) return { state: 'expired' };
+    return { state: 'connected', identity };
   } catch {
-    return null;
+    return { state: 'expired' };
   }
 }
 
@@ -35,8 +37,11 @@ export async function POST(req) {
     // Confirm tap on a pending change from the tool-enabled path: run
     // exactly the signed action, only for the same connected account.
     if (confirm !== undefined) {
-      const identity = await connectedIdentity();
-      const verified = identity ? verifyPendingAction(confirm, identity) : { error: 'invalid' };
+      const conn = await connection();
+      if (conn.state !== 'connected') {
+        return NextResponse.json({ reply: connectionReply('not_connected') }, { status: 401 });
+      }
+      const verified = verifyPendingAction(confirm, conn.identity);
       if (verified.error) {
         const reply = verified.error === 'expired'
           ? 'That confirmation expired. Ask me again and I will set it up fresh.'
@@ -51,10 +56,16 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 });
     }
 
-    const identity = await connectedIdentity();
-    if (identity && hallieLLMConfigured()) {
+    const conn = await connection();
+    if (conn.state !== 'none' && hallieLLMConfigured()) {
       try {
-        const result = await runToolChat({ message, history, identity, llm: callHallieLLMWithTools });
+        const result = await runToolChat({
+          message,
+          history,
+          identity: conn.identity,
+          connectionExpired: conn.state === 'expired',
+          llm: callHallieLLMWithTools,
+        });
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
         return withCookies(NextResponse.json(body), result.setCookies);
