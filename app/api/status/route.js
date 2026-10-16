@@ -32,6 +32,28 @@ function checkHallieWriter() {
   return { status: 'operational', label: 'Available' };
 }
 
+// The Hallie chat widget talks to a relay on the VM through a Cloudflare
+// tunnel. If the relay, the tunnel, or the VM is down — or the relay's own
+// lockdown self-test has tripped (it then refuses all chats) — Hallie is
+// unavailable. Only /healthz is called; it's a tiny local response.
+async function checkHallieChat() {
+  const url = process.env.HALLIE_RELAY_URL;
+  if (!url) return null;
+  try {
+    const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
+    if (!res.ok) return { status: 'down', label: 'Unavailable' };
+    const health = await res.json();
+    if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
+    return null;
+  } catch {
+    return { status: 'down', label: 'Unavailable' };
+  }
+}
+
+async function checkHallie() {
+  return (await checkHallieChat()) ?? checkHallieWriter();
+}
+
 async function checkModerationSystem() {
   try {
     const token = await getTikTokAccountToken();
@@ -84,7 +106,7 @@ export async function GET() {
   const [hallie, moderation, tiktokAgency, c2Agency] = maintenance
     ? [MAINTENANCE, MAINTENANCE, MAINTENANCE, MAINTENANCE]
     : await Promise.all([
-        Promise.resolve(checkHallieWriter()),
+        checkHallie(),
         checkModerationSystem(),
         checkTikTokAgency(),
         checkC2Agency(),
