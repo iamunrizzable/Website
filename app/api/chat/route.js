@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
-const ERROR_REPLY = 'Connection error. Please try emailing me at hallie@tjbmanagementinc.com instead.';
+const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
 
 export async function POST(req) {
   try {
