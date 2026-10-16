@@ -48,12 +48,12 @@ export default function ChatWidget() {
       const data = await res.json();
 
       const pa = data.pendingAction;
-      addHallieMessage(
-        data.reply || 'I received your message.',
-        pa && typeof pa.id === 'string' && typeof pa.summary === 'string'
+      addHallieMessage(data.reply || 'I received your message.', {
+        ...(pa && typeof pa.id === 'string' && typeof pa.summary === 'string'
           ? { pending: { id: pa.id, summary: pa.summary }, pendingState: 'open' }
-          : {}
-      );
+          : {}),
+        connect: data.connect === true,
+      });
     } catch (err) {
       addHallieMessage('Connection error. Please try emailing me at hallie@tjbmanagementinc.com instead.');
     } finally {
@@ -77,7 +77,7 @@ export default function ChatWidget() {
       });
       const data = await res.json();
       setPendingState(msg.id, 'done');
-      addHallieMessage(data.reply || 'Done.');
+      addHallieMessage(data.reply || 'Done.', { connect: data.connect === true });
     } catch (err) {
       setPendingState(msg.id, 'open');
       addHallieMessage('Connection error. Please try again, or email support@tjbmanagementinc.com.');
@@ -138,6 +138,9 @@ export default function ChatWidget() {
                       <span className="chat-confirm-status">{msg.pendingState === 'done' ? 'Confirmed' : 'Cancelled'}</span>
                     )}
                   </div>
+                )}
+                {msg.connect && (
+                  <a className="chat-connect" href="/auth/tiktok/system-login">connect me to your tiktok</a>
                 )}
                 <span className="time">{msg.time}</span>
               </div>

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction, connectionReply } from '@/lib/hallie-chat-tools';
+import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect } from '@/lib/hallie-chat-tools';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -39,7 +39,7 @@ export async function POST(req) {
     if (confirm !== undefined) {
       const conn = await connection();
       if (conn.state !== 'connected') {
-        return NextResponse.json({ reply: connectionReply('not_connected') }, { status: 401 });
+        return NextResponse.json({ reply: connectionReply('not_connected'), connect: true }, { status: 401 });
       }
       const verified = verifyPendingAction(confirm, conn.identity);
       if (verified.error) {
@@ -49,7 +49,9 @@ export async function POST(req) {
         return NextResponse.json({ reply }, { status: 400 });
       }
       const result = await executeConfirmedAction(verified.tool, verified.args);
-      return withCookies(NextResponse.json({ reply: result.reply }), result.setCookies);
+      const body = { reply: result.reply };
+      if (result.connect) body.connect = true;
+      return withCookies(NextResponse.json(body), result.setCookies);
     }
 
     if (!message || typeof message !== 'string') {
@@ -68,6 +70,7 @@ export async function POST(req) {
         });
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
+        if (result.connect) body.connect = true;
         return withCookies(NextResponse.json(body), result.setCookies);
       } catch (err) {
         console.error('[chat] tool path failed:', err.message);
@@ -97,7 +100,11 @@ export async function POST(req) {
       return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
     }
     const data = await upstream.json();
-    return NextResponse.json({ reply: typeof data.reply === 'string' && data.reply ? data.reply : ERROR_REPLY });
+    if (typeof data.reply === 'string' && data.reply) {
+      const { reply, connect } = parseRelayConnect(data.reply);
+      return NextResponse.json(connect ? { reply, connect: true } : { reply });
+    }
+    return NextResponse.json({ reply: ERROR_REPLY });
   } catch (err) {
     return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
   }
