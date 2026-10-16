@@ -1,6 +1,8 @@
 'use client';
 
 import './page.css';
+
+import { useState, useEffect } from 'react';
 import ChatWidget from './ChatWidget';
 
 export default function HallieHub() {
