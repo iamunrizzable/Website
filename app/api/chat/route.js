@@ -12,8 +12,7 @@ export async function POST(req) {
     }
 
     const relayUrl = process.env.HALLIE_RELAY_URL;
-    const relaySecret = process.env.HALLIE_RELAY_SECRET;
-    if (!relayUrl || !relaySecret) {
+    if (!relayUrl) {
       return NextResponse.json({ reply: FALLBACK_REPLY });
     }
 
@@ -23,7 +22,6 @@ export async function POST(req) {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-relay-secret': relaySecret,
         'x-visitor-ip': ip,
       },
       body: JSON.stringify({ message }),
