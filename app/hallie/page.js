@@ -3,7 +3,6 @@
 import './page.css';
 
 import { useState, useEffect } from 'react';
-import ChatWidget from './ChatWidget';
 
 export default function HallieHub() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,8 +24,6 @@ export default function HallieHub() {
 
   return (
     <>
-      <ChatWidget />
-
       <div className="fade-top"></div>
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>

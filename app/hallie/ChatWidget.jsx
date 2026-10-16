@@ -1,5 +1,7 @@
 'use client';
 
+import './ChatWidget.css';
+
 import { useState, useEffect, useRef } from 'react';
 
 export default function ChatWidget() {
