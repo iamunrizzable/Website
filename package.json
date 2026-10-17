@@ -14,13 +14,13 @@
     "@vercel/speed-insights": "^2.0.0",
     "cheerio": "^1.2.0",
     "imapflow": "^1.7.8",
-    "mailparser": "^3.9.28",
+    "mailparser": "^3.9.38",
     "next": "^16.4.0",
     "nodemailer": "^10.0.13",
-    "puppeteer-core": "^25.11.0",
+    "puppeteer-core": "^25.13.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "redis": "^6.2.1",
+    "redis": "^6.3.0",
     "zod": "4.6.5"
   },
   "overrides": {
