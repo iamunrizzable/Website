@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next start"
   },
   "dependencies": {
+    "@aikidosec/firewall": "1.8.45",
     "@sparticuz/chromium": "^153.0.0",
     "@upstash/redis": "^1.39.0",
     "@vercel/analytics": "^2.0.1",
