@@ -3,7 +3,7 @@ import { syncComments } from '@/lib/sync';
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function POST(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   let maxVideos = null;
   try {
     const body = await request.json().catch(() => ({}));

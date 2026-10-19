@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function AdminLogin() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, code }),
       });
       if (res.ok) {
         router.push('/admin');
@@ -67,13 +68,29 @@ export default function AdminLogin() {
                 />
               </div>
 
-              <div className="field-group field-group-password">
+              <div className="field-group">
                 <label className="field-label">Password</label>
                 <input
                   type="password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   autoComplete="current-password"
+                  required
+                  className="field-input"
+                />
+              </div>
+
+              <div className="field-group field-group-password">
+                <label className="field-label">Authenticator code</label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  value={code}
+                  onChange={e => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  autoComplete="one-time-code"
+                  placeholder="6-digit code"
                   required
                   className="field-input"
                 />

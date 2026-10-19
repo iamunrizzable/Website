@@ -3,7 +3,7 @@ import { getBrowserCookies, setBrowserCookies, getBlockQueue } from '@/lib/token
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const cookies = await getBrowserCookies();
   const queue = await getBlockQueue();
   return NextResponse.json({
@@ -14,7 +14,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { cookies } = await request.json().catch(() => ({}));
   if (!Array.isArray(cookies) || cookies.length === 0) {
     return NextResponse.json({ error: 'cookies must be a non-empty array' }, { status: 400 });

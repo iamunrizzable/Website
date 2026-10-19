@@ -33,7 +33,7 @@ const MIN_SNIPPET_CHARS = 8; // drop "- Tyler" / empty-after-cleanup stubs — n
 // text-based heuristic only when a message has no HTML part at all.
 export async function POST(request) {
   const cookieStore = await cookies();
-  if (!isValidAdminKey(request) && !isAdminSessionValid(cookieStore)) {
+  if (!(await isValidAdminKey(request)) && !(await isAdminSessionValid(cookieStore))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

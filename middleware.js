@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { timingSafeEqual } from './lib/auth.js';
+import { verifyAdminSession } from './lib/auth.js';
 
 // CSP is built per-request so script-src can carry a fresh nonce instead of
 // 'unsafe-inline'. Next.js reads the Content-Security-Policy request header
@@ -122,8 +122,9 @@ export async function middleware(request) {
     pathname === '/api/admin/me' ||
     pathname.startsWith('/hallie/writer')
   ) {
-    const session = request.cookies.get('admin_session')?.value;
-    if (!session || !process.env.ADMIN_SECRET || !timingSafeEqual(session, process.env.ADMIN_SECRET)) {
+    // Signed session from password + authenticator-code login; expires
+    // (no sliding refresh), so a new code is needed at least weekly.
+    if (!(await verifyAdminSession(request.cookies.get('admin_session')?.value))) {
       if (pathname.startsWith('/api/')) {
         return withCsp(new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
           status: 401,
@@ -132,16 +133,7 @@ export async function middleware(request) {
       }
       return withCsp(NextResponse.redirect(new URL('/admin/login', request.url)));
     }
-    // Refresh cookie on every valid request so it never expires
-    const response = NextResponse.next({ request: { headers: requestHeaders } });
-    response.cookies.set('admin_session', process.env.ADMIN_SECRET, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 400,
-      path: '/',
-    });
-    return withCsp(response);
+    return withCsp(NextResponse.next({ request: { headers: requestHeaders } }));
   }
 
   return withCsp(NextResponse.next({ request: { headers: requestHeaders } }));

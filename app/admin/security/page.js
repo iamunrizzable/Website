@@ -44,18 +44,19 @@ export default function SecurityPage() {
   const fetchDevices = useCallback(async (key) => {
     try {
       const res = await fetch('/api/admin/blocked-devices', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
+      if (res.status === 401) return;
       const data = await res.json();
       setDevices(data.devices ?? []);
       setRedisConfigured(!!data.redisConfigured);
-      localStorage.setItem('admin_key', key);
     } catch (e) {
       setDeviceMsg('Failed to load blocked devices: ' + e.message);
     }
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem('admin_key');
+    // Old builds stored the admin secret here; sessions are cookie-only now.
+    localStorage.removeItem('admin_key');
+    const saved = null;
     if (saved) {
       setAdminKey(saved);
       fetchDevices(saved);
