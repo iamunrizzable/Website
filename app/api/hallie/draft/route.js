@@ -26,7 +26,7 @@ import { hallieLLMConfigured, callHallieLLM } from '@/lib/hallie-llm';
 // source.
 export async function POST(request) {
   const cookieStore = await cookies();
-  if (!isValidAdminKey(request) && !isAdminSessionValid(cookieStore)) {
+  if (!(await isValidAdminKey(request)) && !(await isAdminSessionValid(cookieStore))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

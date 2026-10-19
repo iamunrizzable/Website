@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { timingSafeEqual } from '@/lib/auth';
+import { timingSafeEqual, createAdminSession, adminSessionCookieOptions } from '@/lib/auth';
+import { verifyTotp } from '@/lib/totp';
 import { isLoginRateLimited, recordFailedLogin, clearLoginAttempts } from '@/lib/tokens';
 
 function clientIp(request) {
@@ -13,12 +14,21 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Too many attempts. Try again later.' }, { status: 429 });
   }
 
-  const { username, password } = await request.json();
+  const { username, password, code } = await request.json();
 
   const validUsername = !process.env.ADMIN_USERNAME || username === process.env.ADMIN_USERNAME;
   const validPassword = typeof password === 'string' && !!process.env.ADMIN_SECRET && timingSafeEqual(password, process.env.ADMIN_SECRET);
 
-  if (!validUsername || !validPassword) {
+  // Authenticator code is required; with no ADMIN_TOTP_SECRET set, admin
+  // login is closed rather than silently falling back to password-only.
+  let validCode = false;
+  try {
+    validCode = verifyTotp(typeof code === 'string' ? code : '');
+  } catch (err) {
+    console.error('[admin login] totp:', err.message);
+  }
+
+  if (!validUsername || !validPassword || !validCode) {
     await recordFailedLogin(ip);
     return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
   }
@@ -26,12 +36,6 @@ export async function POST(request) {
   await clearLoginAttempts(ip);
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set('admin_session', process.env.ADMIN_SECRET, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 365, // 1 year
-    path: '/',
-  });
+  response.cookies.set('admin_session', await createAdminSession(), adminSessionCookieOptions());
   return response;
 }

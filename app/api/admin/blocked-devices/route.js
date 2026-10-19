@@ -26,14 +26,14 @@ async function attachHistory(entries) {
 }
 
 export async function GET(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const rawDevices = await getBlockedDevices();
   const devices = await attachHistory(rawDevices);
   return NextResponse.json({ devices, redisConfigured: isRedisConfigured() });
 }
 
 export async function POST(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json().catch(() => ({}));
 
   // Manual entry: an admin pasting a raw device marker (from
@@ -50,7 +50,7 @@ export async function POST(request) {
 }
 
 export async function DELETE(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { searchParams } = new URL(request.url);
   const banId = searchParams.get('banId');
   if (!banId) return NextResponse.json({ error: 'Missing banId' }, { status: 400 });

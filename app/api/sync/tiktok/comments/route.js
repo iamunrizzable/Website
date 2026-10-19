@@ -3,7 +3,7 @@ import { getVideoList } from '@/lib/tiktok/api';
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function POST(request) {
-  if (!isValidAdminKey(request)) {
+  if (!(await isValidAdminKey(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

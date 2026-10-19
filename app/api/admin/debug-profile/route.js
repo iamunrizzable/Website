@@ -3,7 +3,7 @@ import { getProfileSignals } from '@/lib/tiktok/browser';
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!isValidAdminKey(request)) {
+  if (!(await isValidAdminKey(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

@@ -23,7 +23,7 @@ async function findFalsePositives() {
 
 // GET: dry run — lists what would be cleared, without deleting anything.
 export async function GET(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const falsePositives = await findFalsePositives();
   return NextResponse.json({
     count: falsePositives.length,
@@ -35,7 +35,7 @@ export async function GET(request) {
 
 // POST: actually removes every matched ban.
 export async function POST(request) {
-  if (!isValidAdminKey(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isValidAdminKey(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const falsePositives = await findFalsePositives();
   await Promise.all(falsePositives.map((d) => removeBlockedDevice(d.id)));
   return NextResponse.json({

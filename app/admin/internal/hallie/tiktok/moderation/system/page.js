@@ -60,9 +60,8 @@ export default function AdminPage() {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/status', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
+      if (res.status === 401) return;
       setStatus(await res.json());
-      localStorage.setItem('admin_key', key);
     } catch (e) {
       setMsg('Failed to load status: ' + e.message);
     } finally {
@@ -77,7 +76,9 @@ export default function AdminPage() {
     if (params.get('account_connected')) {
       setTimeout(() => setMsg(''), 4000);
     }
-    const saved = localStorage.getItem('admin_key');
+    // Old builds stored the admin secret here; sessions are cookie-only now.
+    localStorage.removeItem('admin_key');
+    const saved = null;
     if (saved) {
       setAdminKey(saved);
       fetchStatus(saved);

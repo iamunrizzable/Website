@@ -2,13 +2,10 @@ import { NextResponse } from 'next/server';
 import { getTikTokAccountAuthUrl } from '@/lib/tiktok/business-oauth';
 import { generateState } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
-import { isValidAdminKey, timingSafeEqual } from '@/lib/auth';
+import { isValidAdminKey } from '@/lib/auth';
 
 async function isAdmin(request) {
-  if (isValidAdminKey(request)) return true;
-  const { cookies } = await import('next/headers');
-  const session = (await cookies()).get('admin_session')?.value;
-  return !!session && !!process.env.ADMIN_SECRET && timingSafeEqual(session, process.env.ADMIN_SECRET);
+  return isValidAdminKey(request);
 }
 
 export async function GET(request) {

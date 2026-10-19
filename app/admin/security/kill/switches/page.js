@@ -111,7 +111,9 @@ export default function KillSwitchesPage() {
   const [adminKey, setAdminKey] = useState('');
 
   useEffect(() => {
-    const saved = localStorage.getItem('admin_key');
+    // Old builds stored the admin secret here; sessions are cookie-only now.
+    localStorage.removeItem('admin_key');
+    const saved = null;
     if (saved) {
       setAdminKey(saved);
     } else {

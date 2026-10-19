@@ -77,11 +77,10 @@ export default function VisitorListPage() {
   const fetchVisitors = useCallback(async (key) => {
     try {
       const res = await fetch('/api/admin/visitors', { headers: { 'x-admin-key': key } });
-      if (res.status === 401) { localStorage.removeItem('admin_key'); return; }
+      if (res.status === 401) return;
       const data = await res.json();
       setVisitors(data.visitors ?? []);
       setRedisConfigured(!!data.redisConfigured);
-      localStorage.setItem('admin_key', key);
     } catch (e) {
       setMsg('Failed to load visitors: ' + e.message);
     }
@@ -109,7 +108,9 @@ export default function VisitorListPage() {
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem('admin_key');
+    // Old builds stored the admin secret here; sessions are cookie-only now.
+    localStorage.removeItem('admin_key');
+    const saved = null;
     if (saved) {
       setAdminKey(saved);
       fetchVisitors(saved);

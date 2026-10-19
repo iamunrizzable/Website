@@ -34,7 +34,7 @@ export async function POST(request) {
   const event = { type, author, video_id, text, score, flags, action, suggested_reply: suggestedReply };
   await pushEvent(event);
 
-  if (send_alert && isValidAdminKey(request) && shouldAlert(score)) {
+  if (send_alert && (await isValidAdminKey(request)) && shouldAlert(score)) {
     await sendModerationAlert({
       type,
       content: text,
