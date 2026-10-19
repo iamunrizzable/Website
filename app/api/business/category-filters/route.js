@@ -8,14 +8,14 @@ function categoryList() {
 }
 
 export async function GET(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const stored = await getCategoryFilters();
   const enabled = stored ?? TOGGLEABLE_CATEGORIES;
   return NextResponse.json({ enabled, categories: categoryList() });
 }
 
 export async function POST(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
 
   if (!Array.isArray(body.enabled)) {

@@ -3,13 +3,13 @@ import { getCustomRules, storeCustomRules } from '@/lib/tokens';
 import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const rules = await getCustomRules();
   return NextResponse.json({ rules });
 }
 
 export async function POST(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
   const rules = await getCustomRules();
 

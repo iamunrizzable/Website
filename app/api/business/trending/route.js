@@ -4,7 +4,7 @@ import { searchTrending, getTrendingKeywords, getHashtagSuggestions, getBenchmar
 import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') ?? 'trending';
   const keyword = searchParams.get('keyword') ?? '';
