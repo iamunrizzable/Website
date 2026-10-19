@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended } from '@/lib/tokens';
+import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended, getLLMLog } from '@/lib/tokens';
+import { hallieChatStatus } from '@/lib/llm-health';
+import { hallieLLMConfigured } from '@/lib/hallie-llm';
 
 // Public, unauthenticated status endpoint — deliberately returns only
 // Operational/Degraded/Down + a short label per service, never raw tokens,
@@ -28,7 +30,7 @@ const SMS_STATUS = { status: 'operational', label: 'Available' };
 const MMS_STATUS = { status: 'operational', label: 'Available' };
 
 function checkHallieWriter() {
-  if (!process.env.GROQ_API_KEY) return { status: 'down', label: 'Not configured' };
+  if (!hallieLLMConfigured()) return { status: 'down', label: 'Not configured' };
   return { status: 'operational', label: 'Available' };
 }
 
@@ -36,18 +38,32 @@ function checkHallieWriter() {
 // tunnel. If the relay, the tunnel, or the VM is down — or the relay's own
 // lockdown self-test has tripped (it then refuses all chats) — Hallie is
 // unavailable. Only /healthz is called; it's a tiny local response.
+//
+// "Up" is not "working": the relay also reports how its last few chats went,
+// and the TikTok/admin tool chat logs every model call (lib/tokens.js). If
+// those have been failing, Hallie is shown as busy/degraded instead of
+// Available (see assessHealth in lib/llm-health.js).
 async function checkHallieChat() {
   const url = process.env.HALLIE_RELAY_URL;
-  if (!url) return null;
-  try {
-    const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
-    if (!res.ok) return { status: 'down', label: 'Unavailable' };
-    const health = await res.json();
-    if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
-    return null;
-  } catch {
-    return { status: 'down', label: 'Unavailable' };
+  let relayRecent = null;
+  if (url) {
+    try {
+      const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
+      if (!res.ok) return { status: 'down', label: 'Unavailable' };
+      const health = await res.json();
+      if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
+      relayRecent = Array.isArray(health.recent) ? health.recent : null;
+    } catch {
+      return { status: 'down', label: 'Unavailable' };
+    }
   }
+  let llmEntries = [];
+  try {
+    llmEntries = await getLLMLog(20);
+  } catch {
+    // fail open — a Redis hiccup must never report a false outage
+  }
+  return hallieChatStatus({ relayRecent, llmEntries });
 }
 
 async function checkHallie() {

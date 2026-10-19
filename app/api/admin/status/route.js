@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getEvents, getBusinessTokens, getTikTokAccountToken, isRedisConfigured } from '@/lib/tokens';
+import { getEvents, getBusinessTokens, getTikTokAccountToken, isRedisConfigured, getLLMLog } from '@/lib/tokens';
+import { assessHealth, summarizeToday } from '@/lib/llm-health';
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
@@ -7,10 +8,11 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const [events, businessTokens, accountTokens] = await Promise.all([
+  const [events, businessTokens, accountTokens, llmLog] = await Promise.all([
     getEvents(20),
     getBusinessTokens(),
     getTikTokAccountToken(),
+    getLLMLog().catch(() => []),
   ]);
 
   return NextResponse.json({
@@ -26,6 +28,8 @@ export async function GET(request) {
     account_scope: accountTokens?.scope ?? null,
     account_business_id: accountTokens?.business_id ?? null,
     redis_configured: isRedisConfigured(),
+    llm_health: assessHealth(llmLog).state,
+    llm_today: summarizeToday(llmLog),
     events,
   });
 }
