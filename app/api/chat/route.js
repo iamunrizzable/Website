@@ -51,6 +51,7 @@ export async function POST(req) {
       const result = await executeConfirmedAction(verified.tool, verified.args);
       const body = { reply: result.reply };
       if (result.connect) body.connect = true;
+      if (result.disconnected) body.disconnected = true;
       return withCookies(NextResponse.json(body), result.setCookies);
     }
 

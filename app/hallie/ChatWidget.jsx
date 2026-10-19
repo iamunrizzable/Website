@@ -21,6 +21,24 @@ export default function ChatWidget() {
     setMessages(prev => [...prev, { id: Date.now() + Math.random(), text, sender: 'hallie', time: now(), ...extra }]);
   };
 
+  // A page can ask Hallie to handle the TikTok login: it dispatches
+  // 'hallie:connect' and the chat opens with the connect button (once).
+  useEffect(() => {
+    const onConnect = () => {
+      setIsOpen(true);
+      setMessages(prev => (prev.some(m => m.connectPrompt) ? prev : [...prev, {
+        id: Date.now() + Math.random(),
+        text: "Connect your TikTok account and I'll run your moderation tools for you.",
+        sender: 'hallie',
+        time: now(),
+        connect: true,
+        connectPrompt: true,
+      }]));
+    };
+    window.addEventListener('hallie:connect', onConnect);
+    return () => window.removeEventListener('hallie:connect', onConnect);
+  }, []);
+
   // Last ~10 messages for the connected-account (tool) path; the server
   // ignores this on the relay path. Pending confirmations are described so
   // Hallie knows what's waiting or what was cancelled.
@@ -78,6 +96,7 @@ export default function ChatWidget() {
       const data = await res.json();
       setPendingState(msg.id, 'done');
       addHallieMessage(data.reply || 'Done.', { connect: data.connect === true });
+      if (data.disconnected === true) window.dispatchEvent(new Event('hallie:connection-changed'));
     } catch (err) {
       setPendingState(msg.id, 'open');
       addHallieMessage('Connection error. Please try again, or email support@tjbmanagementinc.com.');
