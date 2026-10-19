@@ -24,7 +24,10 @@ export default function AdminLogin() {
         body: JSON.stringify({ username, password, code }),
       });
       if (res.ok) {
-        router.push('/admin');
+        // ?next= lets Hallie's chat send the admin back to the page they
+        // were on. Same-site paths only (no //host, no scheme).
+        const next = new URLSearchParams(window.location.search).get('next');
+        router.push(next && /^\/(?!\/)[\w\-./]*$/.test(next) && !next.startsWith('/admin/login') ? next : '/admin');
       } else {
         const data = await res.json();
         setError(data.error || 'Invalid credentials');
