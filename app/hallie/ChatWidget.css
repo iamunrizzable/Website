@@ -253,6 +253,11 @@
 /* "connect me to your tiktok" button under a Hallie message (connect:true
    from /api/chat). Same pink-purple as the chat toggle; 44px tap target. */
 .chat-widget .chat-connect {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

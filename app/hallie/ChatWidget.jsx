@@ -140,7 +140,13 @@ export default function ChatWidget() {
                   </div>
                 )}
                 {msg.connect && (
-                  <a className="chat-connect" href="/auth/tiktok/system-login">connect me to your tiktok</a>
+                  <button
+                    type="button"
+                    className="chat-connect"
+                    onClick={() => window.location.assign('/auth/tiktok/system-login')}
+                  >
+                    connect me to your tiktok
+                  </button>
                 )}
                 <span className="time">{msg.time}</span>
               </div>
