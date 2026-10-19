@@ -9,7 +9,7 @@ import {
 import { isValidAdminKey as requireAdmin } from '@/lib/auth';
 
 export async function GET(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { searchParams } = new URL(request.url);
   const ruleId = searchParams.get('rule_id');
   try {
@@ -21,7 +21,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  if (!requireAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await requireAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const body = await request.json();
   try {
     if (body.action === 'update_status') {
