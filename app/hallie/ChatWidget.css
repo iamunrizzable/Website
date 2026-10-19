@@ -34,13 +34,17 @@
   right: 0;
   width: 340px;
   height: 480px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 2px solid rgba(168, 85, 247, 0.3);
+  /* Hallie's image under a dark tint, framed by the same purple→pink
+     gradient and glow as the "connect me to your tiktok" button. */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.78)) padding-box,
+    url("/bg-hallie.png") center / cover no-repeat padding-box,
+    linear-gradient(135deg, #a855f7, #ec4899) border-box;
   border-radius: 16px;
-  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4), 0 0 24px rgba(236, 72, 153, 0.35);
   animation: chatSlideIn 0.3s ease;
 }
 
@@ -278,4 +282,28 @@
 .chat-widget .chat-connect:hover,
 .chat-widget .chat-connect:active {
   box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Full-page chat (Contact Hallie page): the chat box fills the page
+   instead of floating. dvh keeps the input above Safari's toolbar. */
+.chat-widget.chat-page {
+  position: static;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.chat-widget.chat-page .chat-box {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  width: 100%;
+  height: calc(100vh - 320px);
+  height: calc(100dvh - 320px);
+  min-height: 380px;
+  animation: none;
+}
+
+.chat-widget.chat-page .chat-input input {
+  font-size: 16px; /* 16px+ stops iOS Safari zooming on focus */
 }
