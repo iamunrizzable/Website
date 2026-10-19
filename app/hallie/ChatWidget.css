@@ -191,3 +191,91 @@
   60% { content: '..'; }
   80%, 100% { content: '…'; }
 }
+
+/* Confirm / Cancel card for account changes on the connected-account path.
+   44px-tall buttons = Apple's minimum comfortable tap target. */
+.chat-widget .chat-confirm {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+.chat-widget .chat-confirm p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e2e8f0;
+  word-break: break-word;
+}
+
+.chat-widget .chat-confirm-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-widget .chat-confirm-buttons button {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+
+.chat-widget .chat-confirm-buttons .confirm {
+  background: #a855f7;
+  color: white;
+  border: none;
+}
+
+.chat-widget .chat-confirm-buttons .cancel {
+  background: transparent;
+  color: #d4a5ff;
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+.chat-widget .chat-confirm-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-widget .chat-confirm-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* "connect me to your tiktok" button under a Hallie message (connect:true
+   from /api/chat). Same pink-purple as the chat toggle; 44px tap target. */
+.chat-widget .chat-connect {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.chat-widget .chat-connect:hover,
+.chat-widget .chat-connect:active {
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
