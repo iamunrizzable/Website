@@ -34,12 +34,13 @@
   right: 0;
   width: 340px;
   height: 480px;
-  /* Hallie's image under a dark tint, framed by the same purple→pink
-     gradient and glow as the "connect me to your tiktok" button. */
+  /* Solid dark glass framed by the same purple→pink gradient and glow as
+     the "connect me to your tiktok" button. (The full-page chat below
+     swaps the fill for Hallie's photo; a floating chat must not, since
+     many pages already have their own photo behind it.) */
   border: 2px solid transparent;
   background:
-    linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.78)) padding-box,
-    url("/bg-hallie.png") center / cover no-repeat padding-box,
+    linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)) padding-box,
     linear-gradient(135deg, #a855f7, #ec4899) border-box;
   border-radius: 16px;
   display: flex;
@@ -289,21 +290,37 @@
 .chat-widget.chat-page {
   position: static;
   width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
 }
 
 .chat-widget.chat-page .chat-box {
+  /* Hallie's photo under a dark tint — the page's only background image */
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.78)) padding-box,
+    url("/bg-hallie.png") center top / cover no-repeat padding-box,
+    linear-gradient(135deg, #a855f7, #ec4899) border-box;
   position: relative;
   bottom: auto;
   right: auto;
   width: 100%;
-  height: calc(100vh - 320px);
-  height: calc(100dvh - 320px);
+  height: calc(100dvh - 140px); /* until measured; JS then fits it exactly */
   min-height: 380px;
   animation: none;
 }
 
 .chat-widget.chat-page .chat-input input {
   font-size: 16px; /* 16px+ stops iOS Safari zooming on focus */
+}
+
+.chat-widget.chat-page .chat-back {
+  color: #a855f7;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.chat-widget.chat-page .chat-back:hover {
+  color: #c084fc;
+  text-decoration: underline;
 }
