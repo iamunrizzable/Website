@@ -2,12 +2,15 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, TOOLS } from '@/lib/hallie-chat-tools';
+import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, selectVisitorTools, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools } from '@/lib/hallie-admin-tools';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
+// Every model I can reach is busy or out of quota: say that, not "connection error".
+const BUSY_REPLY = "I can't think straight for a minute — too many people talking to me at once. Ask me again in a moment.";
+const failureReply = (err) => (/All LLM providers failed/.test(err?.message ?? '') ? BUSY_REPLY : ERROR_REPLY);
 
 // The visitor's own TikTok connection — same parsing and expiry check as
 // /api/system/status. { state: 'none' } (no cookie → the unchanged relay
@@ -107,7 +110,7 @@ export async function POST(req) {
         return NextResponse.json(body);
       } catch (err) {
         console.error('[chat] admin tool path failed:', err.message);
-        return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
+        return NextResponse.json({ reply: failureReply(err) }, { status: 502 });
       }
     }
 
@@ -120,6 +123,10 @@ export async function POST(req) {
           identity: conn.identity,
           connectionExpired: conn.state === 'expired',
           llm: callHallieLLMWithTools,
+          tools: selectVisitorTools([
+            ...(Array.isArray(history) ? history.filter((m) => m?.role === 'user' && typeof m.content === 'string').map((m) => m.content) : []),
+            message,
+          ]),
         });
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
@@ -127,7 +134,7 @@ export async function POST(req) {
         return withCookies(NextResponse.json(body), result.setCookies);
       } catch (err) {
         console.error('[chat] tool path failed:', err.message);
-        return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
+        return NextResponse.json({ reply: failureReply(err) }, { status: 502 });
       }
     }
 
