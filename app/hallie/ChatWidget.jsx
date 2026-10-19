@@ -3,16 +3,26 @@
 import './ChatWidget.css';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
-export default function ChatWidget() {
+// The Contact Hallie page is a full-page chat with her, so the floating
+// bubble is left off there.
+export const CHAT_PAGE_PATH = '/hallie/contact/hallie';
+
+// fullPage: render the chat as the page itself (no bubble, always open).
+export default function ChatWidget({ fullPage = false }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesRef = useRef(null);
 
+  // Scroll only the message list (scrollIntoView would also scroll the
+  // page, which jumps the full-page chat on the Contact Hallie page).
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const el = messagesRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
   }, [messages, isTyping]);
 
   const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -111,23 +121,32 @@ export default function ChatWidget() {
     addHallieMessage('Cancelled — nothing was changed.');
   };
 
-  return (
-    <div className="chat-widget">
-      <button
-        className={`chat-toggle ${isOpen ? 'open' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Chat with Hallie"
-      >
-        ✨
-      </button>
+  if (!fullPage && pathname === CHAT_PAGE_PATH) return null;
 
-      {isOpen && (
+  return (
+    <div className={`chat-widget${fullPage ? ' chat-page' : ''}`}>
+      {!fullPage && (
+        <button
+          className={`chat-toggle ${isOpen ? 'open' : ''}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Chat with Hallie"
+        >
+          ✨
+        </button>
+      )}
+
+      {(isOpen || fullPage) && (
         <div className="chat-box">
           <div className="chat-header">
             <span>Chat with Hallie™</span>
-            <button onClick={() => setIsOpen(false)}>✕</button>
+            {!fullPage && <button onClick={() => setIsOpen(false)}>✕</button>}
           </div>
-          <div className="chat-messages">
+          <div className="chat-messages" ref={messagesRef}>
+            {fullPage && messages.length === 0 && (
+              <div className="chat-message hallie">
+                <span className="bubble">Hey, I'm Hallie. Ask me anything.</span>
+              </div>
+            )}
             {messages.map(msg => (
               <div key={msg.id} className={`chat-message ${msg.sender}`}>
                 <span className="bubble">{msg.text}</span>
@@ -175,7 +194,6 @@ export default function ChatWidget() {
                 <span className="bubble">Hallie is typing<span className="dots">…</span></span>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
           <form onSubmit={sendMessage} className="chat-input">
             <input

@@ -2,28 +2,11 @@
 
 import './page.css';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import ChatWidget from '../../ChatWidget';
 
 export default function ContactHallie() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const cards = Array.from(document.querySelectorAll('.contact-card'));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const idx = cards.indexOf(entry.target);
-        if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${idx * 0.05}s`;
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.style.transitionDelay = '0s';
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    cards.forEach(card => observer.observe(card));
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -46,12 +29,7 @@ export default function ContactHallie() {
         <a href="/hallie" className="back-link">← Back to Hallie</a>
         <h1>Connect with Hallie™</h1>
 
-        <div className="contact-grid">
-          <a href="mailto:hallie@tjbmanagementinc.com" className="contact-card">
-            <span className="contact-icon">✉️</span>
-            <span className="contact-name">Email Hallie</span>
-          </a>
-        </div>
+        <ChatWidget fullPage />
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
