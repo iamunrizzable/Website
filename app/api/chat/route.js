@@ -4,7 +4,7 @@ import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
 import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
-import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction } from '@/lib/hallie-admin-tools';
+import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools } from '@/lib/hallie-admin-tools';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -91,7 +91,13 @@ export async function POST(req) {
           history,
           identity: ADMIN_IDENTITY,
           llm: callHallieLLMWithTools,
-          tools: { web_search: TOOLS.web_search, ...ADMIN_TOOLS },
+          tools: {
+            web_search: TOOLS.web_search,
+            ...selectAdminTools([
+              ...(Array.isArray(history) ? history.filter((m) => m?.role === 'user' && typeof m.content === 'string').map((m) => m.content) : []),
+              message,
+            ]),
+          },
           systemPrompt: ADMIN_SYSTEM_PROMPT,
           maxIterations: 8,
         });
