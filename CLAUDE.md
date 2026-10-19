@@ -15,6 +15,11 @@
 - **Safari (desktop and mobile/iOS) is the targeted browser for all design and frontend work.** Tyler's primary browser is Safari on iPhone/iPad. Design, build, and test against Safari first — do not assume a Chrome-only pattern will behave the same way. In particular: mobile Safari does NOT reliably render embedded content (e.g. a PDF in an `<iframe>`) the way desktop browsers do — confirmed broken in production (blank frame) for a large embedded PDF. Prefer patterns that work natively in Safari (e.g. a direct link that opens in the browser's own viewer) over embedding/iframe tricks that may silently fail only on Safari/iOS.
 - Dev branch: `claude/general-session-v2pLH`
 
+## Admin auth (read before touching any admin/business route)
+- Admin login = username + password + 6-digit authenticator code (TOTP, `ADMIN_TOTP_SECRET`) → a signed, 7-day `admin_session` cookie (`lib/auth.js`: `createAdminSession` / `verifyAdminSession`). The raw `ADMIN_SECRET` is never a credential and is never sent to the browser; **`x-admin-key` / `?key=` no longer work** (older docs below that mention them are out of date).
+- `isValidAdminKey(request)` and `isAdminSessionValid(cookies)` are **async — always `await` them**, including under any alias (`isValidAdminKey as requireAdmin`). A missing `await` silently disables auth (a Promise is truthy); this shipped once and left `/api/business/*` open for ~17 min. After touching auth, test every route+method returns 401 without a session.
+- Hallie's chat admin tools (`lib/hallie-admin-tools.js`) exist only for a valid admin session, call these same route handlers in-process with the caller's session cookie, and every change needs an on-screen Confirm (pending actions are HMAC-signed for the `admin` identity). Never wire token export, cookie upload, or secrets into chat tools.
+
 ## TikTok Business API — Approved Endpoints
 
 **CRITICAL: ONLY use endpoints listed here. These are the ONLY ones authorized by TikTok. Never call any other endpoint.**

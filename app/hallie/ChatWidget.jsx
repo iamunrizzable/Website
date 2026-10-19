@@ -79,12 +79,11 @@ export default function ChatWidget({ fullPage = false }) {
     content: m.pending ? `${m.text}\n[${m.pendingState === 'cancelled' ? 'Cancelled' : m.pendingState === 'done' ? 'Confirmed' : 'Waiting for confirmation'}: ${m.pending.summary}]` : m.text,
   }));
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  const submitText = async (text) => {
+    if (!text.trim()) return;
 
     const history = buildHistory();
-    const userMessage = { id: Date.now(), text: input, sender: 'user', time: now() };
+    const userMessage = { id: Date.now(), text, sender: 'user', time: now() };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
@@ -93,7 +92,7 @@ export default function ChatWidget({ fullPage = false }) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input, history })
+        body: JSON.stringify({ message: text, history })
       });
       const data = await res.json();
 
@@ -103,6 +102,7 @@ export default function ChatWidget({ fullPage = false }) {
           ? { pending: { id: pa.id, summary: pa.summary }, pendingState: 'open' }
           : {}),
         connect: data.connect === true,
+        adminLogin: data.adminLogin === true,
       });
     } catch (err) {
       addHallieMessage('Connection error. Please try emailing me at hallie@tjbmanagementinc.com instead.');
@@ -110,6 +110,35 @@ export default function ChatWidget({ fullPage = false }) {
       setIsTyping(false);
     }
   };
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    submitText(input);
+  };
+
+  // Admin login: remember what the admin just asked for, send them through
+  // the login (password + authenticator code), and re-send it on return.
+  const goAdminLogin = () => {
+    const lastAsk = [...messages].reverse().find(m => m.sender === 'user')?.text;
+    try { if (lastAsk) sessionStorage.setItem('hallie:resume', lastAsk); } catch { /* storage blocked: they just ask again */ }
+    window.location.assign(`/admin/login?next=${encodeURIComponent(window.location.pathname)}`);
+  };
+
+  const resumed = useRef(false);
+  useEffect(() => {
+    if (resumed.current) return;
+    resumed.current = true;
+    let ask = null;
+    try {
+      ask = sessionStorage.getItem('hallie:resume');
+      sessionStorage.removeItem('hallie:resume');
+    } catch { /* ignore */ }
+    if (ask) {
+      setIsOpen(true);
+      submitText(ask);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setPendingState = (msgId, pendingState) => {
     setMessages(prev => prev.map(m => (m.id === msgId ? { ...m, pendingState } : m)));
@@ -127,7 +156,7 @@ export default function ChatWidget({ fullPage = false }) {
       });
       const data = await res.json();
       setPendingState(msg.id, 'done');
-      addHallieMessage(data.reply || 'Done.', { connect: data.connect === true });
+      addHallieMessage(data.reply || 'Done.', { connect: data.connect === true, adminLogin: data.adminLogin === true });
       if (data.disconnected === true) window.dispatchEvent(new Event('hallie:connection-changed'));
     } catch (err) {
       setPendingState(msg.id, 'open');
@@ -208,6 +237,11 @@ export default function ChatWidget({ fullPage = false }) {
                     onClick={() => window.location.assign('/auth/tiktok/system-login')}
                   >
                     connect me to your tiktok
+                  </button>
+                )}
+                {msg.adminLogin && (
+                  <button type="button" className="chat-connect" onClick={goAdminLogin}>
+                    log in as admin
                   </button>
                 )}
                 <span className="time">{msg.time}</span>

@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect } from '@/lib/hallie-chat-tools';
+import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, TOOLS } from '@/lib/hallie-chat-tools';
+import { isAdminSessionValid } from '@/lib/auth';
+import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction } from '@/lib/hallie-admin-tools';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -34,6 +36,29 @@ export async function POST(req) {
   try {
     const { message, history, confirm } = await req.json();
 
+    // Admin tools only exist for a logged-in admin session (password +
+    // authenticator code). Anyone else never gets them, whatever they say.
+    const admin = await isAdminSessionValid(await cookies());
+
+    // Confirm tap on a pending admin change: signed for the admin identity,
+    // and it only runs while the admin session is still valid.
+    if (confirm !== undefined) {
+      const adminPending = verifyPendingAction(confirm, ADMIN_IDENTITY);
+      if (!adminPending.error || adminPending.error === 'expired') {
+        if (adminPending.error === 'expired') {
+          return NextResponse.json({ reply: 'That confirmation expired. Ask me again and I will set it up fresh.' }, { status: 400 });
+        }
+        if (!admin) {
+          return NextResponse.json({ reply: 'Your admin session expired, so I did not run that. Log in again with the button below and ask me again.', adminLogin: true }, { status: 401 });
+        }
+        const done = await executeConfirmedAction(adminPending.tool, adminPending.args, ADMIN_TOOLS);
+        await logAdminAction(adminPending.tool, adminPending.args, done.ok ? {} : { error: true });
+        const body = { reply: done.reply };
+        if (done.adminLogin) body.adminLogin = true;
+        return NextResponse.json(body);
+      }
+    }
+
     // Confirm tap on a pending change from the tool-enabled path: run
     // exactly the signed action, only for the same connected account.
     if (confirm !== undefined) {
@@ -57,6 +82,27 @@ export async function POST(req) {
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 });
+    }
+
+    if (admin && hallieLLMConfigured()) {
+      try {
+        const result = await runToolChat({
+          message,
+          history,
+          identity: ADMIN_IDENTITY,
+          llm: callHallieLLMWithTools,
+          tools: { web_search: TOOLS.web_search, ...ADMIN_TOOLS },
+          systemPrompt: ADMIN_SYSTEM_PROMPT,
+          maxIterations: 8,
+        });
+        const body = { reply: result.reply };
+        if (result.pendingAction) body.pendingAction = result.pendingAction;
+        if (result.adminLogin) body.adminLogin = true;
+        return NextResponse.json(body);
+      } catch (err) {
+        console.error('[chat] admin tool path failed:', err.message);
+        return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
+      }
     }
 
     const conn = await connection();
@@ -102,8 +148,11 @@ export async function POST(req) {
     }
     const data = await upstream.json();
     if (typeof data.reply === 'string' && data.reply) {
-      const { reply, connect } = parseRelayConnect(data.reply);
-      return NextResponse.json(connect ? { reply, connect: true } : { reply });
+      const { reply, connect, adminLogin } = parseRelayConnect(data.reply);
+      const out = { reply };
+      if (connect) out.connect = true;
+      if (adminLogin) out.adminLogin = true;
+      return NextResponse.json(out);
     }
     return NextResponse.json({ reply: ERROR_REPLY });
   } catch (err) {
