@@ -1,21 +1,7 @@
-/* Photo backdrop: flat navy canvas fills the strips; the fixed
-   photo layer's tint fades to solid #0f172a at top/bottom edges so
-   it blends seamlessly into that canvas (and into the under-toolbar
-   region iOS won't paint the fixed layer into). */
+/* Hallie's photo is the chat itself on this page (see ChatWidget.css),
+   so there is no separate page backdrop for it to collide with. */
 html { background-color: #0f172a; }
 body { background: transparent; }
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100lvh;
-  background-image: linear-gradient(to bottom, #0f172a 0%, #0f172a 8%, rgba(15, 23, 42, 0.55) 20%, rgba(15, 23, 42, 0.55) 80%, #0f172a 92%, #0f172a 100%), url("/bg-hallie.png");
-  background-position: center center, center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -3;
-  pointer-events: none;
-}
         body {
           margin: 0;
           padding: 0;
@@ -30,9 +16,9 @@ body::before {
           }
         }
         main {
-          max-width: 900px;
+          max-width: 1100px;
           margin: 0 auto;
-          padding: 40px 20px;
+          padding: 12px 12px 40px;
           position: relative;
           z-index: 10;
         }

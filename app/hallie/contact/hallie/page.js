@@ -26,9 +26,6 @@ export default function ContactHallie() {
       </div>
 
       <main>
-        <a href="/hallie" className="back-link">← Back to Hallie</a>
-        <h1>Connect with Hallie™</h1>
-
         <ChatWidget fullPage />
 
         <div className="footer">

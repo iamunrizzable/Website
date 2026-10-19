@@ -17,6 +17,28 @@ export default function ChatWidget({ fullPage = false }) {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesRef = useRef(null);
+  const pageRef = useRef(null);
+  const [pageHeight, setPageHeight] = useState(null);
+
+  // Full-page chat: fill exactly the screen below whatever sits above it
+  // (banner, menu), and refit when that changes (banner loads, rotation).
+  useEffect(() => {
+    if (!fullPage) return undefined;
+    const fit = () => {
+      const el = pageRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      setPageHeight(Math.max(380, Math.round(window.innerHeight - top - 12)));
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(fit);
+    ro?.observe(document.body);
+    return () => {
+      window.removeEventListener('resize', fit);
+      ro?.disconnect();
+    };
+  }, [fullPage]);
 
   // Scroll only the message list (scrollIntoView would also scroll the
   // page, which jumps the full-page chat on the Contact Hallie page).
@@ -124,7 +146,7 @@ export default function ChatWidget({ fullPage = false }) {
   if (!fullPage && pathname === CHAT_PAGE_PATH) return null;
 
   return (
-    <div className={`chat-widget${fullPage ? ' chat-page' : ''}`}>
+    <div ref={pageRef} className={`chat-widget${fullPage ? ' chat-page' : ''}`}>
       {!fullPage && (
         <button
           className={`chat-toggle ${isOpen ? 'open' : ''}`}
@@ -136,10 +158,12 @@ export default function ChatWidget({ fullPage = false }) {
       )}
 
       {(isOpen || fullPage) && (
-        <div className="chat-box">
+        <div className="chat-box" style={fullPage && pageHeight ? { height: pageHeight } : undefined}>
           <div className="chat-header">
             <span>Chat with Hallie™</span>
-            {!fullPage && <button onClick={() => setIsOpen(false)}>✕</button>}
+            {fullPage
+              ? <a className="chat-back" href="/hallie">← Back to Hallie</a>
+              : <button onClick={() => setIsOpen(false)}>✕</button>}
           </div>
           <div className="chat-messages" ref={messagesRef}>
             {fullPage && messages.length === 0 && (
