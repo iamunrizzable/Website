@@ -5,7 +5,7 @@ import { verifyPendingAction } from '@/lib/hallie-chat-actions';
 import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
-import { countHit } from '@/lib/tokens';
+import { countHit, isHallieSuspended } from '@/lib/tokens';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -16,6 +16,8 @@ const BUSY_REPLY = "I can't think straight for a minute — too many people talk
 const CHAT_LIMITS = { perMinute: 10, perDayTool: 80, perDayRelay: 40 };
 const SLOW_REPLY = "You're going fast. Give me a few seconds and ask again.";
 const DAILY_REPLY = "That's all the chatting I can do with you today. Come back tomorrow, or email support@tjbmanagementinc.com.";
+// Hallie kill switch (/admin/security/kill/switches) is on.
+const OFF_REPLY = 'Hallie is offline right now. Please email support@tjbmanagementinc.com instead.';
 
 function clientIp(req) {
   return (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'unknown';
@@ -56,6 +58,12 @@ function withCookies(response, setCookies = []) {
 export async function POST(req) {
   try {
     const { message, history, confirm } = await req.json();
+
+    // Kill switch: before anything else, including admin tools and pending
+    // confirms. Fails open on a Redis error, like the other kill switches.
+    if (await isHallieSuspended().catch(() => false)) {
+      return NextResponse.json({ reply: OFF_REPLY }, { status: 503 });
+    }
 
     // Admin tools only exist for a logged-in admin session (password +
     // authenticator code). Anyone else never gets them, whatever they say.
