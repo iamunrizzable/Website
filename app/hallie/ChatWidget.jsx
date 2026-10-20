@@ -9,6 +9,14 @@ import { usePathname } from 'next/navigation';
 // bubble is left off there.
 export const CHAT_PAGE_PATH = '/hallie/chat';
 
+// The conversation is kept in this browser only (never sent to or stored on
+// our servers), so it survives the TikTok login redirect and page loads. It
+// expires after a day without use and is cleared when the TikTok account is
+// disconnected. Same key is cleared by the system page's Disconnect button.
+const CHAT_STORAGE_KEY = 'hallie:chat:v1';
+const CHAT_STORAGE_TTL_MS = 24 * 60 * 60 * 1000;
+const CHAT_STORAGE_MAX = 50;
+
 // fullPage: render the chat as the page itself (no bubble, always open).
 export default function ChatWidget({ fullPage = false }) {
   const pathname = usePathname();
@@ -19,6 +27,10 @@ export default function ChatWidget({ fullPage = false }) {
   const messagesRef = useRef(null);
   const pageRef = useRef(null);
   const [pageHeight, setPageHeight] = useState(null);
+  const [restored, setRestored] = useState(false);
+  // The floating widget stays mounted (but hidden) on the chat page; only the
+  // visible one may save, or its empty list would overwrite the real chat.
+  const hidden = !fullPage && pathname === CHAT_PAGE_PATH;
 
   // Full-page chat: fill exactly the screen below whatever sits above it
   // (banner, menu), and refit when that changes (banner loads, rotation).
@@ -124,6 +136,40 @@ export default function ChatWidget({ fullPage = false }) {
     window.location.assign(`/admin/login?next=${encodeURIComponent(window.location.pathname)}`);
   };
 
+  // Restore the saved conversation. Buttons that can't work any more are
+  // dropped: confirmations expire, and the connect / admin-login buttons
+  // are stale once the visitor has logged in.
+  useEffect(() => {
+    if (hidden) return;
+    try {
+      const saved = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY) ?? 'null');
+      if (saved && Date.now() - saved.savedAt < CHAT_STORAGE_TTL_MS && Array.isArray(saved.messages)) {
+        let msgs = saved.messages
+          .filter(m => m && typeof m.text === 'string' && (m.sender === 'user' || m.sender === 'hallie'))
+          .map(({ pending, pendingState, connect, connectPrompt, adminLogin, ...m }) => (
+            pending && pendingState === 'done' ? { ...m, pending, pendingState } : m
+          ));
+        // Admin login re-sends the last ask on return; drop its first copy.
+        const ask = sessionStorage.getItem('hallie:resume');
+        if (ask) {
+          const at = msgs.map(m => m.sender === 'user' && m.text === ask).lastIndexOf(true);
+          if (at !== -1) msgs = msgs.slice(0, at);
+        }
+        if (msgs.length) setMessages(msgs);
+      } else if (saved) {
+        localStorage.removeItem(CHAT_STORAGE_KEY);
+      }
+    } catch { /* storage blocked or unreadable: start blank */ }
+    setRestored(true);
+  }, [hidden]);
+
+  useEffect(() => {
+    if (!restored || hidden || messages.length === 0) return;
+    try {
+      localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify({ savedAt: Date.now(), messages: messages.slice(-CHAT_STORAGE_MAX) }));
+    } catch { /* storage full or blocked: chat still works, just not saved */ }
+  }, [messages, restored, hidden]);
+
   const resumed = useRef(false);
   useEffect(() => {
     if (resumed.current) return;
@@ -157,7 +203,12 @@ export default function ChatWidget({ fullPage = false }) {
       const data = await res.json();
       setPendingState(msg.id, 'done');
       addHallieMessage(data.reply || 'Done.', { connect: data.connect === true, adminLogin: data.adminLogin === true });
-      if (data.disconnected === true) window.dispatchEvent(new Event('hallie:connection-changed'));
+      if (data.disconnected === true) {
+        // Account data is deleted on disconnect, so the saved chat goes too.
+        try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
+        setMessages([{ id: Date.now() + Math.random(), text: data.reply || 'Done.', sender: 'hallie', time: now() }]);
+        window.dispatchEvent(new Event('hallie:connection-changed'));
+      }
     } catch (err) {
       setPendingState(msg.id, 'open');
       addHallieMessage('Connection error. Please try again, or email support@tjbmanagementinc.com.');
