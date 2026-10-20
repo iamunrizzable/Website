@@ -2,7 +2,7 @@
 
 import './ChatWidget.css';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
@@ -139,7 +139,9 @@ export default function ChatWidget({ fullPage = false }) {
   // Restore the saved conversation. Buttons that can't work any more are
   // dropped: confirmations expire, and the connect / admin-login buttons
   // are stale once the visitor has logged in.
-  useEffect(() => {
+  // Layout effect: runs before the browser paints, so the saved chat is
+  // already there on the first frame.
+  useLayoutEffect(() => {
     if (hidden) return;
     try {
       const saved = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY) ?? 'null');
