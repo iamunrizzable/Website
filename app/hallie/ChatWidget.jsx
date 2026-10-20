@@ -246,7 +246,7 @@ export default function ChatWidget({ fullPage = false }) {
               : <button onClick={() => setIsOpen(false)}>✕</button>}
           </div>
           <div className="chat-messages" ref={messagesRef}>
-            {fullPage && messages.length === 0 && (
+            {fullPage && restored && messages.length === 0 && (
               <div className="chat-message hallie">
                 <span className="bubble">Hey, I'm Hallie. Ask me anything.</span>
               </div>
