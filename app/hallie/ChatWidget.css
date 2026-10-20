@@ -34,12 +34,13 @@
   right: 0;
   width: 340px;
   height: 480px;
-  /* Same look as the full-page chat on /hallie/contact/hallie: Hallie's photo
-     under a dark tint, framed by the purple→pink gradient and glow. */
+  /* Solid dark glass framed by the same purple→pink gradient and glow as
+     the "connect me to your tiktok" button. (The full-page chat below
+     swaps the fill for Hallie's photo; a floating chat must not, since
+     many pages already have their own photo behind it.) */
   border: 2px solid transparent;
   background:
-    linear-gradient(rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.78)) padding-box,
-    url("/bg-hallie.png") center top / cover no-repeat padding-box,
+    linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)) padding-box,
     linear-gradient(135deg, #a855f7, #ec4899) border-box;
   border-radius: 16px;
   display: flex;
@@ -294,6 +295,10 @@
 }
 
 .chat-widget.chat-page .chat-box {
+  /* Hallie's photo, no blue tint — the page's only background image */
+  background:
+    url("/bg-hallie.png") center top / cover no-repeat padding-box,
+    linear-gradient(135deg, #a855f7, #ec4899) border-box;
   position: relative;
   bottom: auto;
   right: auto;
@@ -301,12 +306,6 @@
   height: calc(100dvh - 140px); /* until measured; JS then fits it exactly */
   min-height: 380px;
   animation: none;
-}
-
-/* Hallie's bubble takes the chat's own navy tint (the 0.62-0.78 gradient above)
-   instead of the purple wash, so it matches the background. */
-.chat-widget .chat-message.hallie .bubble {
-  background: rgba(15, 23, 42, 0.7);
 }
 
 .chat-widget.chat-page .chat-input input {
