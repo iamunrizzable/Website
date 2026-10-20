@@ -4,6 +4,7 @@ import { isValidAdminKey, isAdminSessionValid } from '@/lib/auth';
 import { HALLIE_SOUL } from '@/lib/hallie-soul';
 import { TYLER_VOICE_BASELINE } from '@/lib/tyler-voice-baseline';
 import { hallieLLMConfigured, callHallieLLM } from '@/lib/hallie-llm';
+import { isHallieSuspended } from '@/lib/tokens';
 
 // Tyler-only writing assistant, not a send-on-your-behalf integration.
 // Two personas, picked per request:
@@ -28,6 +29,10 @@ export async function POST(request) {
   const cookieStore = await cookies();
   if (!(await isValidAdminKey(request)) && !(await isAdminSessionValid(cookieStore))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  if (await isHallieSuspended().catch(() => false)) {
+    return NextResponse.json({ error: 'Hallie is shut off — turn her back on at /admin/security/kill/switches' }, { status: 503 });
   }
 
   if (!hallieLLMConfigured()) {

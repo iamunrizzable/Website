@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended, getLLMLog } from '@/lib/tokens';
+import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended, isHallieSuspended, getLLMLog } from '@/lib/tokens';
 import { hallieChatStatus } from '@/lib/llm-health';
 import { hallieLLMConfigured } from '@/lib/hallie-llm';
 
@@ -67,6 +67,11 @@ async function checkHallieChat() {
 }
 
 async function checkHallie() {
+  try {
+    if (await isHallieSuspended()) return { status: 'down', label: 'Unavailable' };
+  } catch {
+    // fail open
+  }
   return (await checkHallieChat()) ?? checkHallieWriter();
 }
 

@@ -34,6 +34,14 @@ const SWITCHES = [
     onLabel: 'Suspend C2 Agency',
   },
   {
+    key: 'hallie',
+    endpoint: '/api/admin/hallie-suspension',
+    field: 'suspended',
+    title: 'Hallie Kill Switch',
+    description: 'When on, Hallie stops answering on the website — the chat (admin tools included) and Hallie Writer — and System Status shows her as Unavailable. Discord and Telegram are not affected.',
+    onLabel: 'Shut Off Hallie',
+  },
+  {
     key: 'maintenance',
     endpoint: '/api/admin/maintenance',
     field: 'maintenance',
