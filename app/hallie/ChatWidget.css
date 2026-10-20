@@ -140,8 +140,9 @@
 }
 
 .chat-widget .chat-message.user .bubble {
-  background: #a855f7;
-  color: white;
+  background: rgba(168, 85, 247, 0.15);
+  color: #67e8f9;
+  border: 1px solid rgba(168, 85, 247, 0.3);
   border-bottom-right-radius: 2px;
 }
 
