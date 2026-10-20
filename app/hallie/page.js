@@ -57,7 +57,7 @@ export default function HallieHub() {
             <span className="card-icon">✉️</span>
             <span className="card-title">Chat with Hallie</span>
             <span className="card-desc">Chat with Hallie directly.</span>
-            <span className="card-link">CONNECT →</span>
+            <span className="card-link">CHAT →</span>
           </a>
 
           <a href="/hallie/tiktok/moderation/system" className="card section">
