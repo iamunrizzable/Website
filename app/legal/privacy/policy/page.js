@@ -135,7 +135,7 @@ export default function PrivacyPolicy() {
             Beyond Vercel Analytics and this device identification system, this Website does not install any additional third-party advertising or tracking scripts — no Google Analytics, Meta Pixel, or similar tools are used anywhere on the Website.
           </p>
           <p>
-            The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/contact/hallie</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
+            The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/chat</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
             Beyond Vercel Analytics, the device identification described above, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.

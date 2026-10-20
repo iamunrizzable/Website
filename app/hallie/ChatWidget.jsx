@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
 // bubble is left off there.
-export const CHAT_PAGE_PATH = '/hallie/contact/hallie';
+export const CHAT_PAGE_PATH = '/hallie/chat';
 
 // fullPage: render the chat as the page itself (no bubble, always open).
 export default function ChatWidget({ fullPage = false }) {

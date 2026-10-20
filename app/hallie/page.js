@@ -53,9 +53,9 @@ export default function HallieHub() {
             <span className="card-link">MEET HALLIE →</span>
           </a>
 
-          <a href="/hallie/contact/hallie" className="card section">
+          <a href="/hallie/chat" className="card section">
             <span className="card-icon">✉️</span>
-            <span className="card-title">Connect with Hallie</span>
+            <span className="card-title">Chat with Hallie</span>
             <span className="card-desc">Chat with Hallie directly.</span>
             <span className="card-link">CONNECT →</span>
           </a>

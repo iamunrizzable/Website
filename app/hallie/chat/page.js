@@ -3,7 +3,7 @@
 import './page.css';
 
 import { useState } from 'react';
-import ChatWidget from '../../ChatWidget';
+import ChatWidget from '../ChatWidget';
 
 export default function ContactHallie() {
   const [menuOpen, setMenuOpen] = useState(false);
