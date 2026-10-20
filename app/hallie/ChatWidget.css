@@ -34,19 +34,44 @@
   right: 0;
   width: 340px;
   height: 480px;
-  /* Solid dark glass framed by the same purple→pink gradient and glow as
-     the "connect me to your tiktok" button. (The full-page chat below
-     swaps the fill for Hallie's photo; a floating chat must not, since
-     many pages already have their own photo behind it.) */
+  /* Hallie's photo, translucent so the page's own background shows through
+     (the photo layer is ::before, the purple→pink frame is ::after). The
+     full-page chat paints its own opaque photo, see .chat-page below. */
   border: 2px solid transparent;
-  background:
-    linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)) padding-box,
-    linear-gradient(135deg, #a855f7, #ec4899) border-box;
+  isolation: isolate;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4), 0 0 24px rgba(236, 72, 153, 0.35);
   animation: chatSlideIn 0.3s ease;
+}
+
+.chat-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: url("/bg-hallie.png") center top / cover no-repeat;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.chat-box::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.chat-widget.chat-page .chat-box::before,
+.chat-widget.chat-page .chat-box::after {
+  display: none;
 }
 
 @keyframes chatSlideIn {
