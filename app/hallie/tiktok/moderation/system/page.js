@@ -97,7 +97,9 @@ export default function SystemPage() {
             <div style={{ ...s.card, textAlign: 'center', padding: 40 }}>
               <p style={{ color: '#06b6d4', fontSize: 14 }}>Loading…</p>
             </div>
-          ) : !connected ? null : (
+          ) : !connected ? (
+            <ConnectPrompt />
+          ) : (
             <>
               <AccountPanel />
               <VideosPanel />
@@ -117,11 +119,32 @@ export default function SystemPage() {
   );
 }
 
+// ── Connect Prompt ────────────────────────────────────────────────────────────
+
+function ConnectPrompt() {
+  return (
+    <div style={{ ...s.card, textAlign: 'center', padding: '48px 24px' }}>
+      <div style={{ fontSize: 48, marginBottom: 16 }}>🎵</div>
+      <h2 style={{ color: '#d4a5ff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Connect Your TikTok Account</h2>
+      <p style={{ color: '#06b6d4', fontSize: 14, marginBottom: 28, maxWidth: 400, margin: '0 auto 28px' }}>
+        Sign in with TikTok to start automating your account — comment moderation, sync, and more.
+      </p>
+      <a
+        href="/auth/tiktok/system-login"
+        style={{ ...s.btn, display: 'inline-block', textDecoration: 'none', padding: '14px 32px', fontSize: 15 }}
+      >
+        Connect with TikTok
+      </a>
+    </div>
+  );
+}
+
 // ── Account Info ──────────────────────────────────────────────────────────────
 
 function AccountPanel() {
   const [account, setAccount] = useState(undefined);
   const [error, setError] = useState('');
+  const [disconnecting, setDisconnecting] = useState(false);
 
   useEffect(() => {
     fetch('/api/system/account')
@@ -134,6 +157,13 @@ function AccountPanel() {
       })
       .catch(e => { setError(e.message); setAccount(null); });
   }, []);
+
+  async function disconnect() {
+    if (!confirm('Disconnect your TikTok account and delete all session data? You can reconnect at any time.')) return;
+    setDisconnecting(true);
+    await fetch('/api/system/disconnect', { method: 'POST' });
+    window.location.href = '/hallie/tiktok/moderation/system';
+  }
 
   return (
     <div style={s.card}>
@@ -153,6 +183,12 @@ function AccountPanel() {
               {account?.likes != null && <span>{account.likes.toLocaleString()} likes</span>}
               {account?.videos_count != null && <span>{account.videos_count.toLocaleString()} videos</span>}
             </div>
+          </div>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, flexShrink: 0 }}>
+            <a href="/auth/tiktok/system-login" style={{ ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
+            <button onClick={disconnect} disabled={disconnecting} style={{ ...s.btnDanger, fontSize: 11 }}>
+              {disconnecting ? 'Disconnecting…' : 'Disconnect'}
+            </button>
           </div>
         </div>
       )}
