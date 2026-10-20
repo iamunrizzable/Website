@@ -309,6 +309,12 @@
   animation: none;
 }
 
+/* Hallie's bubble takes the chat's own navy tint (the 0.62-0.78 gradient above)
+   instead of the purple wash, so it matches the background. Full page only. */
+.chat-widget.chat-page .chat-message.hallie .bubble {
+  background: rgba(15, 23, 42, 0.7);
+}
+
 .chat-widget.chat-page .chat-input input {
   font-size: 16px; /* 16px+ stops iOS Safari zooming on focus */
 }
