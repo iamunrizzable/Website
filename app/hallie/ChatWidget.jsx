@@ -228,7 +228,7 @@ export default function ChatWidget({ fullPage = false }) {
   if (!fullPage && pathname === CHAT_PAGE_PATH) return null;
 
   return (
-    <div ref={pageRef} className={`chat-widget${fullPage ? ' chat-page' : ''}`} style={fullPage && pageHeight ? { height: pageHeight } : undefined}>
+    <div ref={pageRef} className={`chat-widget${fullPage ? ' chat-page' : ''}`}>
       {!fullPage && (
         <button
           className={`chat-toggle ${isOpen ? 'open' : ''}`}
@@ -240,12 +240,7 @@ export default function ChatWidget({ fullPage = false }) {
       )}
 
       {(isOpen || fullPage) && (
-        <div className="chat-box">
-          {fullPage && (
-            <div className="chat-face">
-              <img src="/bg-hallie.png" alt="Hallie" decoding="async" />
-            </div>
-          )}
+        <div className="chat-box" style={fullPage && pageHeight ? { height: pageHeight } : undefined}>
           <div className="chat-header">
             <span>Chat with Hallie™</span>
             {fullPage
