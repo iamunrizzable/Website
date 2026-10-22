@@ -239,14 +239,13 @@ export default function ChatWidget({ fullPage = false }) {
         </button>
       )}
 
-      {fullPage && (
-        <div className="chat-face">
-          <img src="/bg-hallie.png" alt="Hallie" decoding="async" />
-        </div>
-      )}
-
       {(isOpen || fullPage) && (
         <div className="chat-box">
+          {fullPage && (
+            <div className="chat-face">
+              <img src="/bg-hallie.png" alt="Hallie" decoding="async" />
+            </div>
+          )}
           <div className="chat-header">
             <span>Chat with Hallie™</span>
             {fullPage
