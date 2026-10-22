@@ -316,27 +316,68 @@
   box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
 }
 
-/* Full-page chat (Contact Hallie page): the chat box fills the page
-   instead of floating. dvh keeps the input above Safari's toolbar. */
+/* Full-page chat (Contact Hallie page): Hallie's face on the left, the chat
+   beside it (stacked on narrow screens: face banner above the chat). The
+   container's height is set by JS to fit the screen; dvh keeps the input
+   above Safari's toolbar until then. */
 .chat-widget.chat-page {
   position: static;
+  display: grid;
+  grid-template-columns: minmax(240px, 36%) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
   width: 100%;
   max-width: none;
   margin: 0;
+  height: calc(100dvh - 140px);
+  min-height: 380px;
+}
+
+.chat-widget.chat-page .chat-face {
+  position: relative;
+  min-height: 0;
+  padding: 2px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4), 0 0 24px rgba(236, 72, 153, 0.35);
+}
+
+.chat-widget.chat-page .chat-face img {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 14px;
+  display: block;
 }
 
 .chat-widget.chat-page .chat-box {
-  /* Hallie's photo, no blue tint — the page's only background image */
+  /* Solid dark panel so the messages never sit on top of her face */
   background:
-    url("/bg-hallie.png") center top / cover no-repeat padding-box,
+    linear-gradient(rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.94)) padding-box,
     linear-gradient(135deg, #a855f7, #ec4899) border-box;
   position: relative;
   bottom: auto;
   right: auto;
   width: 100%;
-  height: calc(100dvh - 140px); /* until measured; JS then fits it exactly */
-  min-height: 380px;
+  height: auto;
+  min-height: 0;
   animation: none;
+}
+
+@media (max-width: 800px), (orientation: portrait) {
+  .chat-widget.chat-page {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: clamp(120px, 24dvh, 340px) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .chat-widget.chat-page .chat-face img {
+    object-position: center 48%;
+  }
 }
 
 .chat-widget.chat-page .chat-input input {
