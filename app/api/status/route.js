@@ -51,6 +51,13 @@ async function checkHallieChat() {
       const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
       if (!res.ok) return { status: 'down', label: 'Unavailable' };
       const health = await res.json();
+      // 'unknown' = the relay is up but its self-test can't reach the gateway
+      // right now (restart, update, busy model): a transient state, so show
+      // orange. 'tripped' (or anything else) is a real lockdown failure.
+      // The trailing "O" in the detail is deliberate; it's a private marker.
+      if (health.lockdown === 'unknown') {
+        return { status: 'degraded', label: 'Degraded', detail: '(issue detected with Virtual Machine O)' };
+      }
       if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
       relayRecent = Array.isArray(health.recent) ? health.recent : null;
     } catch {
