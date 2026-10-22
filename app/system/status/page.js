@@ -73,7 +73,10 @@ export default function SystemStatus() {
               {data.services.map((svc) => (
                 <div key={svc.name} className="status-row">
                   <span className="status-name">{svc.name}</span>
-                  <span style={statusBadge(svc.status)}>{svc.label ?? STATUS_TEXT[svc.status] ?? svc.status}</span>
+                  <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+                    <span style={statusBadge(svc.status)}>{svc.label ?? STATUS_TEXT[svc.status] ?? svc.status}</span>
+                    {svc.detail && <span style={{ fontSize: 12, color: '#94a3b8' }}>{svc.detail}</span>}
+                  </span>
                 </div>
               ))}
             </>
