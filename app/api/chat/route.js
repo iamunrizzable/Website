@@ -5,29 +5,17 @@ import { verifyPendingAction } from '@/lib/hallie-chat-actions';
 import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
-import { countHit, isHallieSuspended } from '@/lib/tokens';
+import { isHallieSuspended } from '@/lib/tokens';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
-// Every model I can reach is busy or out of quota: say that, not "connection error".
-const BUSY_REPLY = "I can't think straight for a minute — too many people talking to me at once. Ask me again in a moment.";
-// Per-visitor chat limits, so one person can't use up everyone's model
-// allowance (the free tiers are small and shared). The admin is exempt.
-const CHAT_LIMITS = { perMinute: 10, perDayTool: 80, perDayRelay: 40 };
-const SLOW_REPLY = "You're going fast. Give me a few seconds and ask again.";
-const DAILY_REPLY = "That's all the chatting I can do with you today. Come back tomorrow, or email support@tjbmanagementinc.com.";
+// Every model I can reach failed (busy, out of quota, or down): say that, not "connection error".
+const BUSY_REPLY = "I can't answer right now — my AI isn't responding. Ask me again in a moment.";
 // Hallie kill switch (/admin/security/kill/switches) is on.
 const OFF_REPLY = 'Hallie is offline right now. Please email support@tjbmanagementinc.com instead.';
 
 function clientIp(req) {
   return (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'unknown';
-}
-
-async function chatLimited(key, tool) {
-  if ((await countHit(`chat:${key}:m`, 60)) > CHAT_LIMITS.perMinute) return SLOW_REPLY;
-  const day = new Date().toISOString().slice(0, 10);
-  const used = await countHit(`chat:${key}:d:${day}`, 86400);
-  return used > (tool ? CHAT_LIMITS.perDayTool : CHAT_LIMITS.perDayRelay) ? DAILY_REPLY : null;
 }
 
 const failureReply = (err) => (/All LLM providers failed/.test(err?.message ?? '') ? BUSY_REPLY : ERROR_REPLY);
@@ -142,11 +130,6 @@ export async function POST(req) {
     }
 
     const conn = await connection();
-    const toolPath = conn.state !== 'none' && hallieLLMConfigured();
-    if (toolPath || process.env.HALLIE_RELAY_URL) {
-      const limited = await chatLimited(toolPath && conn.identity ? `acct:${conn.identity}` : `ip:${clientIp(req)}`, toolPath);
-      if (limited) return NextResponse.json({ reply: limited }, { status: 429 });
-    }
     if (conn.state !== 'none' && hallieLLMConfigured()) {
       try {
         const result = await runToolChat({
