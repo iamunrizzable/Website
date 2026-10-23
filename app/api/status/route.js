@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getTikTokAccountToken, isSiteInMaintenance, isTikTokSuspended, isC2Suspended, isHallieSuspended, getLLMLog } from '@/lib/tokens';
-import { hallieChatStatus } from '@/lib/llm-health';
+import { hallieChatStatus, assessHealth } from '@/lib/llm-health';
 import { hallieLLMConfigured } from '@/lib/hallie-llm';
 
 // Public, unauthenticated status endpoint — deliberately returns only
@@ -43,13 +43,25 @@ function checkHallieWriter() {
 // and the TikTok/admin tool chat logs every model call (lib/tokens.js). If
 // those have been failing, Hallie is shown as busy/degraded instead of
 // Available (see assessHealth in lib/llm-health.js).
+// Relay VM unreachable: Degraded (not Unavailable) while the fallback models
+// still answer; Unavailable only when they are down or not configured too.
+async function relayUnreachable() {
+  if (!hallieLLMConfigured()) return { status: 'down', label: 'Unavailable' };
+  try {
+    if (assessHealth(await getLLMLog(20)).state === 'bad') return { status: 'down', label: 'Unavailable' };
+  } catch {
+    // fail open — a Redis hiccup must never report a false outage
+  }
+  return { status: 'degraded', label: 'Degraded', detail: '(VM G OFFLINE)' };
+}
+
 async function checkHallieChat() {
   const url = process.env.HALLIE_RELAY_URL;
   let relayRecent = null;
   if (url) {
     try {
       const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
-      if (!res.ok) return { status: 'down', label: 'Unavailable' };
+      if (!res.ok) return relayUnreachable();
       const health = await res.json();
       // 'unknown' = the relay is up but its self-test can't reach the gateway
       // right now (restart, update, busy model): a transient state, so show
@@ -61,7 +73,7 @@ async function checkHallieChat() {
       if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
       relayRecent = Array.isArray(health.recent) ? health.recent : null;
     } catch {
-      return { status: 'down', label: 'Unavailable' };
+      return relayUnreachable();
     }
   }
   let llmEntries = [];
