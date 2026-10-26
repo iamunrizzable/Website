@@ -65,8 +65,8 @@ lib/
   tiktok/business-api.js ← main TikTok client (parseRes() fixes 19-digit ID corruption)
   tiktok/business-oauth.js ← auth URLs + token exchange + refresh
   tiktok/browser.js     ← Puppeteer user-blocking (no API exists for it)
-middleware.js           ← per-request CSP nonce + admin session gate
-next.config.js          ← static security headers (CSP lives in middleware.js); poweredByHeader:false
+proxy.js                ← per-request CSP nonce + admin session gate
+next.config.js          ← static security headers (CSP lives in proxy.js); poweredByHeader:false
 ```
 
 ## 5. The things that will bite you (all learned the hard way)
@@ -81,7 +81,7 @@ next.config.js          ← static security headers (CSP lives in middleware.js)
 - **No Redis in prod right now.** Durable state = cookies + env vars only. In-memory "works locally, gone in prod" is expected on serverless. This is why **automated user-blocking has never actually completed end-to-end**: `queueBlock` writes to memory, and the daily cron that drains the queue is a separate (cold-start) invocation that sees an empty queue. It needs `UPSTASH_REDIS_*` set to ever work.
 - **Puppeteer/@sparticuz/chromium needs bundler escape hatches.** `next.config.js` must have `serverExternalPackages: ['@sparticuz/chromium','puppeteer-core']` AND `outputFileTracingIncludes` copying `./node_modules/@sparticuz/chromium/**` into each route that uses `lib/tiktok/browser.js`. Missing the second → "input directory .../bin does not exist", a crash that ONLY appears on Vercel, never in local build. Add an `outputFileTracingIncludes` entry for any new browser-using route.
 - **The mobile background seam (three commits to solve).** Every page's fixed `body::before` background must be sized `top:-10lvh; height:120lvh` — oversized **large-viewport** units. `dvh` resizes with iOS Safari's toolbar and drags the background edge visibly during scroll ("zooms in and out"); a flat fallback color can't match a photo background; and Safari's translucent toolbar defeats theme-color alone. See frontend-conventions skill. You cannot verify Safari chrome in headless Chromium — confirm on a real phone.
-- **`middleware.js` stays named `middleware.js`.** Next 16 wants `proxy.js`; the rename was tried and reverted (an Aikido "CSP header not set" risk-91 finding landed right after, unconfirmable from the sandbox, plus documented Vercel ENOENT failures for that rename). The deprecation warning is harmless. Don't re-rename without a live post-deploy CSP-header check.
+- **The CSP/admin-gate file is `proxy.js` (exports `proxy`), renamed from `middleware.js` on 2026-10-26** to clear the Next 16 deprecation warning. An earlier attempt (July 2026) was reverted over an Aikido "CSP header not set" finding and Vercel ENOENT reports; this time a preview deploy and the live production deploy were both header-checked (CSP + nonce, no-store, /admin 307, /api/admin/me 401, /legal/tiktok 200) and matched the old behavior. If "CSP header not set" ever recurs, curl -I the live domain first.
 - **TikTok exposes no age or bot signal for any user** — not commenters, not even the connected account. "Detect if a commenter is a minor / a bot" is not API-answerable; minor detection is regex on what they literally type, and any bot heuristic must come from scraping their public profile (`getProfileSignals`, admin-debug only, unproven against TikTok's bot detection).
 - **Some TikTok endpoints need account-side setup we can't do in code.** `hashtag/add` (Mentions) only enables a hashtag already registered as a "brand hashtag" on the account — a TikTok-portal process, not our API. Five request-shape "fixes" failed before this was understood; the endpoint was never the bug. When docs are needed and the portal is login-walled (all `portal/*` URLs 403 anonymously), have Tyler paste the request example rather than guessing from the endpoint name.
 

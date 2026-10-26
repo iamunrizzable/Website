@@ -21,7 +21,7 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
-  // Content-Security-Policy is set per-request in middleware.js so
+  // Content-Security-Policy is set per-request in proxy.js so
   // script-src can use a nonce instead of 'unsafe-inline'.
 ];
 
