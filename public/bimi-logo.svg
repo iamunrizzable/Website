@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<title>TJB Inc.</title>
+<rect width="512" height="512" fill="#000000"/>
+<path d="M249.1,57.1 A199,199 0 0 0 57.0,259.5" fill="none" stroke="#ffffff" stroke-width="14"/>
+<path d="M262.9,57.1 A199,199 0 0 1 389.2,108.1" fill="none" stroke="#7fdcd8" stroke-width="14"/>
+<path d="M389.2,108.1 A199,199 0 0 1 428.3,156.5" fill="none" stroke="#d98795" stroke-width="14"/>
+<path d="M428.3,156.5 A199,199 0 0 1 454.5,242.1" fill="none" stroke="#e0465c" stroke-width="14"/>
+<path d="M454.5,269.9 A199,199 0 0 1 262.9,454.9" fill="none" stroke="#ffffff" stroke-width="14"/>
+<path d="M249.1,454.9 A199,199 0 0 1 133.5,412.8" fill="none" stroke="#7fdcd8" stroke-width="14"/>
+<path d="M133.5,412.8 A199,199 0 0 1 83.7,355.5" fill="none" stroke="#d98795" stroke-width="14"/>
+<path d="M83.7,355.5 A199,199 0 0 1 57.5,269.9" fill="none" stroke="#e0465c" stroke-width="14"/>
+<path fill="#ffffff" d="M97.3 187.7 H215.5 V215.5 H174.9 V328.5 H145.1 V215.5 H97.3 Z"/>
+<path fill="#ffffff" d="M221.9 187.7 H267.9 V294.4 Q267.9 328.5 230.4 328.5 H181.3 L197.1 301.2 H221.9 Q235.5 301.2 235.5 288.4 V215.5 H221.9 Z"/>
+<path fill="#ffffff" fill-rule="evenodd" d="M281.6 187.7 H375.5 Q430.9 187.7 430.9 228.3 Q430.9 252.6 410.5 258.6 Q431.8 266.2 431.8 295.3 Q431.8 328.5 379.7 328.5 H281.6 ZM308.1 214.2 V244.9 H361.0 Q376.3 244.9 376.3 229.5 Q376.3 214.2 361.0 214.2 ZM308.1 271.4 V302.1 H365.2 Q384.9 302.1 384.9 286.7 Q384.9 271.4 365.2 271.4 Z"/>
+<path d="M149.3,360.5 L187.7,360.5" fill="none" stroke="#ffffff" stroke-width="2.1"/>
+<path d="M326.4,360.5 L380.6,360.5" fill="none" stroke="#ffffff" stroke-width="2.1"/>
+<path d="M219.7,349.0 L219.7,372.1" fill="none" stroke="#ffffff" stroke-width="3.4"/>
+<path d="M244.1,372.1 L244.1,349.0 L263.7,372.1 L263.7,349.0" fill="none" stroke="#ffffff" stroke-width="3.4"/>
+<path d="M297.8,354.1 C277.3,341.3 277.3,379.7 297.8,367.8" fill="none" stroke="#ffffff" stroke-width="3.4"/>
+<circle cx="313.6" cy="369.5" r="2.6" fill="#ffffff"/>
+<path fill="#d9ad45" d="M187.7 408.7 L279.5 399.4 L296.5 384.0 L286.7 400.2 L335.4 401.5 L261.1 414.7 L241.5 427.5 L250.0 412.2 Z"/>
+</svg>
