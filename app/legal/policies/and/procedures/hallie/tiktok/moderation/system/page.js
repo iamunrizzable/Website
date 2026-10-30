@@ -43,7 +43,7 @@ export default function HalliePlatformPoliciesAndProcedures() {
         <h1>Hallie™ Platform — Data Security & Privacy Policy</h1>
         <p className="subtitle">
           TikTok Account Automation Platform · Powered by TJB Management Inc.<br />
-          Last Updated: October 13, 2026
+          Last Updated: October 30, 2026
         </p>
 
         <div className="toc">
@@ -283,9 +283,9 @@ export default function HalliePlatformPoliciesAndProcedures() {
           <h3>Why it is collected</h3>
           <p>Data is collected to power automated TikTok account management on behalf of Operators — including publishing content, moderating communities, monitoring brand mentions, discovering trending opportunities, and executing automated account rules. Processing is based on the legitimate interests of Operators in managing and growing their TikTok presence efficiently.</p>
           <h3>How data is used</h3>
-          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation. No Operator or End User data is sent to third-party AI, analytics, or advertising services. All API calls are back to TikTok on behalf of the Operator.</p>
+          <p>Account data is used to perform authorized automation actions: publishing or scheduling content, hiding or pinning comments, replying to comments, managing hashtag mentions, surfacing trending keywords, and executing Operator-defined automation rules. Comment text is analyzed by the Platform's rule-based scoring engine to identify content requiring moderation.</p>
           <h3>Where data is transferred</h3>
-          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States. No Operator or End User data is shared with, sold to, or transferred to any third party. The only outbound API calls are back to TikTok to perform actions authorized by the Operator.</p>
+          <p>Data travels between TikTok's servers and Platform infrastructure hosted on Vercel Inc. (a SOC 2 Type II certified provider) in the United States.</p>
           <h3>How data is protected</h3>
           <p>All data in transit is encrypted using TLS 1.2 or above. Session tokens are stored as HttpOnly cookies inaccessible to client-side scripts. Each Operator's admin interface is protected by a unique secret key accessible only to authorized personnel within that Operator's organization.</p>
           <h3>How long data is stored</h3>
@@ -421,8 +421,7 @@ export default function HalliePlatformPoliciesAndProcedures() {
             <li><strong>Data in Transit</strong> — All data transmitted between Operators, the Platform, and TikTok's API is encrypted using TLS 1.2 or above. This is enforced at the infrastructure level by Vercel and cannot be downgraded.</li>
             <li><strong>Data at Rest</strong> — The Platform does not maintain a persistent database. OAuth tokens stored in cookies are HttpOnly (inaccessible to JavaScript), Secure (HTTPS only), and SameSite=Strict. Environment variables including all secrets are encrypted at rest by Vercel's infrastructure using AES-256.</li>
             <li><strong>Secret Management</strong> — API keys, admin secrets, and OAuth credentials are stored exclusively as encrypted environment variables. They are never committed to source control, logged, or exposed in API responses.</li>
-            <li><strong>No Third-Party Data Sharing</strong> — Comment data is never transmitted to third-party analytics, advertising, AI training, or any other external service. The only outbound API calls are to TikTok's authorized API endpoints on behalf of each Operator.</li>
-          </ul>
+                      </ul>
         </div>
 
         <div className="section" id="hallie-access-control">
@@ -481,7 +480,7 @@ export default function HalliePlatformPoliciesAndProcedures() {
           <ul>
             <li><strong>Vercel Inc.</strong> — Hosting and serverless compute infrastructure. SOC 2 Type II certified. Headquartered in San Francisco, CA, USA. Data processed in the United States. <a href="https://vercel.com/legal/privacy-policy" className="rainbow">Privacy Policy</a></li>
             <li><strong>GitHub Inc. (Microsoft)</strong> — Private source code repository. SOC 2 Type II certified. No production data is stored in version control. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" className="rainbow">Privacy Policy</a></li>
-            <li><strong>TikTok for Business</strong> — Data source and action endpoint. All data originates from TikTok's API and moderation actions are returned to TikTok via authorized API calls. No TikTok user data is shared with any other subprocessor.</li>
+            <li><strong>TikTok for Business</strong> — Data source and action endpoint. All data originates from TikTok's API and moderation actions are returned to TikTok via authorized API calls.</li>
           </ul>
           <p>The Platform Provider does not use any other subprocessors that process Operator or End User data. This list is reviewed and updated whenever a new subprocessor is engaged. Operators will be notified of material changes to subprocessors.</p>
           <p>
@@ -551,7 +550,7 @@ export default function HalliePlatformPoliciesAndProcedures() {
         </div>
 
         <footer>
-          <p>Last Updated: October 13, 2026</p>
+          <p>Last Updated: October 30, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
