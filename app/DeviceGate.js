@@ -9,6 +9,7 @@ import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
 import OpenInBrowserNotice from './OpenInBrowserNotice';
 import GtaViBanner from './GtaViBanner';
+import { readConsent, writeConsent } from './consent';
 
 // How long to wait for our OWN local identification — the persistent
 // storage marker (lib/fingerprint/persistentMarker.js), the sole device
@@ -21,6 +22,27 @@ import GtaViBanner from './GtaViBanner';
 // blocking those APIs an unintentional bypass of every device ban on the
 // site.
 const IDENTIFY_TIMEOUT_MS = 2000;
+
+// Consent screen copy. Matches the data described in the Privacy Policy
+// (app/legal/privacy/policy/page.js, Section 2). Edit the text HERE only.
+const CONSENT_TEXT = {
+  title: 'Before you continue',
+  intro: 'TJB Management Inc. collects and uses the following data when you visit this website:',
+  items: [
+    'Your IP address and approximate location (city, region, country).',
+    "A device identifier built from your browser and device signals (browser, operating system, screen, fonts, timezone, language, graphics and audio characteristics), plus a random marker stored in your browser's local storage, IndexedDB and Cache.",
+    'A network and risk assessment (your network provider, and whether you appear to be using a VPN, Tor, a datacenter, a virtual machine, or automated or private browsing).',
+    "Your device's visit history on this website (first visit, most recent visit, and number of visits).",
+    'Traffic and performance analytics from Vercel Analytics and Speed Insights.',
+  ],
+  purpose: 'This data is used to operate and secure the website and to block devices that violate our policies. Visit records are deleted automatically 30 days after your most recent visit. It is not used for advertising.',
+  policyNote: 'The full Privacy Policy is at tjbmanagementinc.com/legal/privacy/policy.',
+  accept: 'I Consent',
+  decline: 'Decline',
+  declinedTitle: 'Consent required',
+  declinedBody: 'You cannot use this website without agreeing to the data collection described on the previous screen. No data has been collected from you.',
+  review: 'Review again',
+};
 
 // How long to wait for OUR OWN /api/fingerprint/check call once a
 // fingerprint IS available, before giving up. Fails CLOSED — any activity
@@ -85,6 +107,12 @@ function blockReasonLabel(reason, countryName) {
 // page content — a loading screen covers the page until it resolves (or
 // times out), so nobody sees a flash of real content first.
 export default function DeviceGate({ children }) {
+  // Consent comes BEFORE any data collection: nothing below (fingerprint,
+  // /api/fingerprint/check, IP/visit record) runs until the visitor has
+  // accepted — see app/consent.js. null = still reading storage,
+  // 'needed' = show the consent card, 'declined' = show the declined card,
+  // 'granted' = run the normal verification flow.
+  const [consent, setConsent] = useState(null);
   const [status, setStatus] = useState('checking'); // 'checking' | 'blocked' | 'unverified' | 'allowed'
   const [reason, setReason] = useState(null);
   const [blockReason, setBlockReason] = useState(null);
@@ -93,6 +121,11 @@ export default function DeviceGate({ children }) {
   const resolvedRef = useRef(false);
 
   useEffect(() => {
+    setConsent(readConsent() ? 'granted' : 'needed');
+  }, []);
+
+  useEffect(() => {
+    if (consent !== 'granted') return;
     let cancelled = false;
 
     const watchdog = setTimeout(() => {
@@ -163,7 +196,67 @@ export default function DeviceGate({ children }) {
       });
 
     return () => { cancelled = true; clearTimeout(watchdog); };
-  }, []);
+  }, [consent]);
+
+  if (consent === null) {
+    return (
+      <div className="gate-overlay">
+        <div className="gate-overlay-bg" />
+        <div className="gate-spinner" />
+      </div>
+    );
+  }
+
+  if (consent === 'needed' || consent === 'declined') {
+    return (
+      <div className="fp-screen">
+        <div className="fp-screen-bg" />
+        <div className="fp-card fp-card--consent">
+          {consent === 'needed' ? (
+            <>
+              <h1 className="fp-h1--consent">{CONSENT_TEXT.title}</h1>
+              <p className="fp-p">{CONSENT_TEXT.intro}</p>
+              <ul className="fp-consent-list">
+                {CONSENT_TEXT.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="fp-p">{CONSENT_TEXT.purpose}</p>
+              <p className="fp-p--small">{CONSENT_TEXT.policyNote}</p>
+              <div className="fp-consent-buttons">
+                <button
+                  className="fp-consent-accept"
+                  onClick={() => { writeConsent(); setConsent('granted'); }}
+                >
+                  {CONSENT_TEXT.accept}
+                </button>
+                <button className="fp-consent-decline" onClick={() => setConsent('declined')}>
+                  {CONSENT_TEXT.decline}
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h1 className="fp-h1--consent">{CONSENT_TEXT.declinedTitle}</h1>
+              <p className="fp-p">{CONSENT_TEXT.declinedBody}</p>
+              <div className="fp-consent-buttons">
+                <button className="fp-consent-accept" onClick={() => setConsent('needed')}>
+                  {CONSENT_TEXT.review}
+                </button>
+              </div>
+              <p className="fp-p--small">
+                Questions? Email{' '}
+                <a href="mailto:support@tjbmanagementinc.com" className="fp-gradient-link">
+                  support@tjbmanagementinc.com
+                </a>
+                .
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   if (status === 'checking') {
     return (

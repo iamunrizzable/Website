@@ -174,3 +174,78 @@
   transition: all 0.3s ease;
   animation: fpBorderGlowHome 3s ease-in-out infinite;
 }
+
+/* Consent card (DeviceGate) — shown before any data is collected. */
+.fp-card--consent {
+  max-width: 520px;
+  border: 2px solid rgba(168,85,247,0.35);
+  animation: fpPopIn 0.6s ease-out, fpBorderGlowHome 3s ease-in-out infinite;
+  text-align: left;
+  padding: 28px 20px;
+}
+
+.fp-h1--consent {
+  color: #e2e8f0;
+  font-size: 26px;
+  margin: 0 0 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.fp-consent-list {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+  padding-left: 20px;
+  color: #cbd5e1;
+}
+
+.fp-consent-list li {
+  margin-bottom: 8px;
+}
+
+.fp-card--consent .fp-p--small {
+  margin-bottom: 18px;
+}
+
+.fp-consent-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.fp-consent-accept,
+.fp-consent-decline {
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.fp-consent-accept {
+  background: #a855f7;
+  color: #ffffff;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+.fp-consent-decline {
+  background: transparent;
+  color: #cbd5e1;
+  border: 2px solid rgba(203,213,225,0.35);
+}
+
+.fp-consent-accept:hover,
+.fp-consent-decline:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+.fp-card--consent .fp-p--small {
+  text-align: center;
+}
+

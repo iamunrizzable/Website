@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import './DeviceIdDebug.css';
 import { getPersistentMarker } from '@/lib/fingerprint/persistentMarker';
+import { CONSENT_EVENT, readConsent } from './consent';
 
 // Mounted once inside app/layout.js — computes the device's persistentMarker
 // on every page load and logs it for verification. Renders nothing UNLESS
@@ -23,7 +24,18 @@ export default function DeviceIdDebug() {
     return () => document.removeEventListener('securitypolicyviolation', onViolation);
   }, [debug]);
 
+  // Computing the marker writes it to browser storage, so wait for consent
+  // (accepted in DeviceGate) before doing it.
+  const [consented, setConsented] = useState(false);
   useEffect(() => {
+    if (readConsent()) setConsented(true);
+    const onGranted = () => setConsented(true);
+    window.addEventListener(CONSENT_EVENT, onGranted);
+    return () => window.removeEventListener(CONSENT_EVENT, onGranted);
+  }, []);
+
+  useEffect(() => {
+    if (!consented) return;
     getPersistentMarker()
       .then((persistentMarker) => {
         console.log('[DeviceId] persistentMarker:', persistentMarker);
@@ -33,7 +45,7 @@ export default function DeviceIdDebug() {
         console.error('[DeviceId] error:', err.message);
         setState({ loading: false, error: err, persistentMarker: null });
       });
-  }, []);
+  }, [consented]);
 
   if (!debug) return null;
 

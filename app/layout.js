@@ -1,7 +1,6 @@
 import './globals.css';
 
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import ConsentAnalytics from './ConsentAnalytics';
 import DeviceGate from './DeviceGate';
 import DeviceIdDebug from './DeviceIdDebug';
 import MaintenanceGate from './MaintenanceGate';
@@ -44,8 +43,7 @@ export default function RootLayout({ children }) {
             <ChatWidget />
           </DeviceGate>
         </MaintenanceGate>
-        <Analytics />
-        <SpeedInsights />
+        <ConsentAnalytics />
       </body>
     </html>
   );
