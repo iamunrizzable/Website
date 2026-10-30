@@ -70,6 +70,13 @@ export default function PoliciesAndProcedures() {
             <span className="card-link">VIEW POLICY →</span>
           </a>
 
+          <a href="/legal/policies/and/procedures/hallie/terms" className="card section">
+            <span className="card-icon">🤖</span>
+            <span className="card-title">Hallie™ Terms of Use</span>
+            <span className="card-desc">The terms for chatting and corresponding with Hallie™, TJB Management's AI assistant — what she can and cannot do, how your messages are handled, and when conversations are shared.</span>
+            <span className="card-link">VIEW TERMS →</span>
+          </a>
+
           <a href="/legal/privacy/policy" className="card section">
             <span className="card-icon">🔒</span>
             <span className="card-title">Privacy Policy</span>

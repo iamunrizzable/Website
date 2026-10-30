@@ -316,6 +316,10 @@ export default function ChatWidget({ fullPage = false }) {
             />
             <button type="submit" disabled={!input.trim() || isTyping}>Send</button>
           </form>
+          <div className="chat-terms">
+            By chatting you agree to the{' '}
+            <a href="/legal/policies/and/procedures/hallie/terms" target="_blank" rel="noopener noreferrer">Hallie Terms</a>.
+          </div>
         </div>
       )}
     </div>

@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: September 21, 2026
+          Effective Date: July 24, 2026 · Last Updated: October 30, 2026
         </p>
 
         <p className="disclaimer disclaimer--intro">
@@ -138,7 +138,10 @@ export default function PrivacyPolicy() {
             The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/chat</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
           <p>
-            Beyond Vercel Analytics, the device identification described above, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
+            Separately, the Website includes a chat widget for talking to Hallie™, TJB Management&apos;s AI assistant. Messages you send in it, and recent earlier messages from the same conversation, are transmitted to TJB Management&apos;s systems and processed by an AI model to generate replies. Conversations are stored on those systems, and a copy of the chat history is saved in your browser&apos;s local storage. The <a href="/legal/policies/and/procedures/hallie/terms"><span className="rainbow">Hallie Terms of Use</span></a> describe how these conversations are handled.
+          </p>
+          <p>
+            Beyond Vercel Analytics, the device identification described above, the Hallie chat described above, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
           </p>
         </div>
 
@@ -550,7 +553,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: September 21, 2026</p>
+          <p>Last Updated: October 30, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
