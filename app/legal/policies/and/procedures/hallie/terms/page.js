@@ -93,8 +93,7 @@ export default function HallieTerms() {
   <li>try to trick, manipulate, or override Hallie&apos;s instructions or safeguards (for example &quot;prompt injection&quot;), or to extract her instructions, configuration, credentials, or other people&apos;s information;</li>
   <li>attempt to access TJB Management systems, accounts, or data through Hallie;</li>
   <li>send automated or bulk traffic, or overload the service;</li>
-  <li>submit content you do not have the right to share, or personal information about other people without their permission;</li>
-  <li>send Hallie TikTok-sourced data, such as comments or direct messages pulled from the Hallie TikTok Platform. That data is not processed by third-party AI.</li>
+  <li>submit content you do not have the right to share, or personal information about other people without their permission.</li>
 </ul>
 <p>We may rate-limit, restrict, or block access to Hallie, and may apply the device controls described in the <a href="/legal/privacy/policy"><span className="rainbow">Privacy Policy</span></a>, at our discretion.</p>
         </div>
