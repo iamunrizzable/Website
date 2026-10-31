@@ -54,6 +54,21 @@ const nextConfig = {
       },
     ];
   },
+  // Any URL that matches no real page, route, or file is sent to the home
+  // page instead of showing "page not found". A 'fallback' rewrite only runs
+  // after every real route and static file has been checked, so existing
+  // pages are untouched. /api/*, /_next/*, and /.well-known/* are excluded
+  // so API clients and verification files still get a genuine HTTP 404.
+  async rewrites() {
+    return {
+      fallback: [
+        {
+          source: '/:path((?!api(?:/|$)|_next(?:/|$)|\\.well-known(?:/|$)).*)',
+          destination: '/go-home',
+        },
+      ],
+    };
+  },
 };
 
 module.exports = nextConfig;

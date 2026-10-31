@@ -13,5 +13,7 @@ export async function GET(request, { params }) {
       headers: { 'Content-Type': 'text/plain' },
     });
   }
-  return new NextResponse('Not Found', { status: 404 });
+  // Unknown /legal/<anything>: send to the home page, matching the site-wide
+  // catch-all (app/[...slug]/page.js). The verification file above still wins.
+  return NextResponse.redirect(new URL('/', request.url));
 }
