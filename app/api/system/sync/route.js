@@ -76,7 +76,7 @@ export async function POST(request) {
           await fetch(`${BASE}/business/comment/hide/`, {
             method: 'POST',
             headers,
-            body: JSON.stringify({ business_id: businessId, comment_id: comment.comment_id, is_hidden: true, video_id: video.item_id }),
+            body: JSON.stringify({ business_id: businessId, comment_id: comment.comment_id, action: 'HIDE', video_id: video.item_id }),
           });
           hidden++;
           wasHidden = true;

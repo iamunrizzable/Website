@@ -41,7 +41,7 @@ export async function POST(request) {
   let endpoint, payload;
   if (action === 'hide' || action === 'show') {
     endpoint = `${BASE}/business/comment/hide/`;
-    payload = { business_id: businessId, comment_id, is_hidden: action === 'hide', video_id };
+    payload = { business_id: businessId, comment_id, action: action === 'hide' ? 'HIDE' : 'UNHIDE', video_id };
   } else if (action === 'delete') {
     endpoint = `${BASE}/business/comment/delete/`;
     payload = { business_id: businessId, comment_id, video_id };
