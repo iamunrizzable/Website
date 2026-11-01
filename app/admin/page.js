@@ -26,6 +26,11 @@ const TOOLS = [
     desc: 'Every visitor the site has identified, banned or not — first seen, last seen, visit count, IP, and location.',
   },
   {
+    href: '/api/admin/backup-download',
+    title: 'Backup Download',
+    desc: 'Download the Hallie VM migration backup (zip). Temporary — contains credentials.',
+  },
+  {
     href: '/admin/security/kill/switches',
     title: 'Kill Switches',
     desc: 'Shut off the TikTok Agency, the C2 Agency, or the entire site, instantly.',

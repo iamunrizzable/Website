@@ -11,6 +11,7 @@
     "@sparticuz/chromium": "^153.0.0",
     "@upstash/redis": "^1.39.0",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/blob": "^2.8.2",
     "@vercel/speed-insights": "^2.0.0",
     "cheerio": "^1.2.0",
     "imapflow": "^2.9.1",
