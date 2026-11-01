@@ -57,13 +57,13 @@ const nextConfig = {
   // Any URL that matches no real page, route, or file is sent to the home
   // page instead of showing "page not found". A 'fallback' rewrite only runs
   // after every real route and static file has been checked, so existing
-  // pages are untouched. /api/*, /_next/*, and /.well-known/* are excluded
-  // so API clients and verification files still get a genuine HTTP 404.
+  // pages are untouched. No path is excluded (Tyler: always redirect, no
+  // matter what), including /api/*, /_next/* and /.well-known/*.
   async rewrites() {
     return {
       fallback: [
         {
-          source: '/:path((?!api(?:/|$)|_next(?:/|$)|\\.well-known(?:/|$)).*)',
+          source: '/:path*',
           destination: '/go-home',
         },
       ],
