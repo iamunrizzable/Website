@@ -45,37 +45,47 @@ function checkHallieWriter() {
 // Available (see assessHealth in lib/llm-health.js).
 // Relay VM unreachable: Degraded (not Unavailable) while the fallback models
 // still answer; Unavailable only when they are down or not configured too.
-async function relayUnreachable() {
+async function relayUnreachable(why) {
   if (!hallieLLMConfigured()) return { status: 'down', label: 'Unavailable' };
   try {
     if (assessHealth(await getLLMLog(20)).state === 'bad') return { status: 'down', label: 'Unavailable' };
   } catch {
     // fail open — a Redis hiccup must never report a false outage
   }
-  return { status: 'degraded', label: 'Degraded', detail: '(VM G OFFLINE)' };
+  return { status: 'degraded', label: 'Degraded', detail: `(VM G OFFLINE${why ? ` ${why}` : ''})` };
+}
+
+async function readHealth(url) {
+  const res = await fetch(`${url.replace(/\/$/, '')}/healthz`, { signal: AbortSignal.timeout(8000), cache: 'no-store' });
+  if (!res.ok) return { error: `http ${res.status}` };
+  const health = await res.json();
+  return { health };
 }
 
 async function checkHallieChat() {
-  const url = process.env.HALLIE_RELAY_URL;
+  const candidates = [...new Set([process.env.HALLIE_RELAY_URL, 'https://hallie.tjbmanagementinc.com'].filter(Boolean))];
   let relayRecent = null;
-  if (url) {
+  let lastError = null;
+  let health = null;
+  for (const url of candidates) {
     try {
-      const res = await fetch(`${url}/healthz`, { signal: AbortSignal.timeout(4000), cache: 'no-store' });
-      if (!res.ok) return relayUnreachable();
-      const health = await res.json();
-      // 'unknown' = the relay is up but its self-test can't reach the gateway
-      // right now (restart, update, busy model): a transient state, so show
-      // orange. 'tripped' (or anything else) is a real lockdown failure.
-      // The trailing "O" in the detail is deliberate; it's a private marker.
-      if (health.lockdown === 'unknown') {
-        return { status: 'degraded', label: 'Degraded', detail: '(issue detected with Virtual Machine O)' };
-      }
-      if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
-      relayRecent = Array.isArray(health.recent) ? health.recent : null;
-    } catch {
-      return relayUnreachable();
+      const got = await readHealth(url);
+      if (got.health) { health = got.health; break; }
+      lastError = got.error;
+    } catch (err) {
+      lastError = err?.name === 'TimeoutError' ? 'timeout' : 'unreachable';
     }
   }
+  if (!health) return relayUnreachable(lastError);
+  // 'unknown' = the relay is up but its self-test can't reach the gateway
+  // right now (restart, update, busy model): a transient state, so show
+  // orange. 'tripped' (or anything else) is a real lockdown failure.
+  // The trailing "O" in the detail is deliberate; it's a private marker.
+  if (health.lockdown === 'unknown') {
+    return { status: 'degraded', label: 'Degraded', detail: '(issue detected with Virtual Machine O)' };
+  }
+  if (health.lockdown !== 'ok') return { status: 'down', label: 'Unavailable' };
+  relayRecent = Array.isArray(health.recent) ? health.recent : null;
   let llmEntries = [];
   try {
     llmEntries = await getLLMLog(20);
