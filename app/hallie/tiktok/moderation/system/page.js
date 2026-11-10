@@ -642,6 +642,17 @@ function CommentFiltersPanel() {
 
 // ── Mentions ──────────────────────────────────────────────────────────────────
 
+function buildMentionsUrl(baseUrl, type, username) {
+  try {
+    const url = new URL(baseUrl);
+    url.searchParams.set('type', type);
+    if (username) url.searchParams.set('username', username);
+    return url.href;
+  } catch {
+    throw new Error('Invalid URL');
+  }
+}
+
 function MentionsPanel() {
   const [tab, setTab] = useState('videos');
   const [data, setData] = useState(undefined);
@@ -681,9 +692,8 @@ function MentionsPanel() {
   function load(type) {
     setData(undefined);
     setError('');
-    const params = new URLSearchParams({ type });
-    if (type === 'tracked_hashtags' && username.trim()) params.set('username', username.trim());
-    fetch(`/api/system/mentions?${params}`)
+    const mentionsUsername = type === 'tracked_hashtags' && username.trim() ? username.trim() : undefined;
+    fetch(buildMentionsUrl(`${window.location.origin}/api/system/mentions`, type, mentionsUsername))
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
