@@ -57,8 +57,14 @@ export async function POST(request) {
 
   const body = await request.json();
   const { action, comment_id, video_id, content } = body;
-  const businessId = token.business_id ?? token.open_id;
+  const fromToken = String(token.business_id ?? token.open_id ?? '');
+  const fromEnv = String(process.env.TIKTOK_BUSINESS_ID ?? '');
+  const businessId = /^\d+$/.test(fromToken) ? fromToken : (/^\d+$/.test(fromEnv) ? fromEnv : fromToken);
   const headers = { 'Access-Token': token.access_token, 'Content-Type': 'application/json' };
+
+  if ((action === 'delete' || action === 'hide' || action === 'show' || action === 'pin' || action === 'reply') && (!comment_id || !video_id)) {
+    return NextResponse.json({ error: 'That delete needs both the comment and the video.' }, { status: 400 });
+  }
 
   let endpoint, payload;
   if (action === 'hide' || action === 'show') {
@@ -84,6 +90,8 @@ export async function POST(request) {
   }
 
   const res = await fetch(endpoint, { method: 'POST', headers, body: JSON.stringify(payload) });
-  const json = await res.json();
+  const text = await res.text();
+  let json;
+  try { json = text ? safeJson(text) : { code: 0 }; } catch { return NextResponse.json({ error: 'Unreadable response from TikTok' }, { status: 502 }); }
   return NextResponse.json(json);
 }
