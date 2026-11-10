@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
   listOptimizerRules,
+  getOptimizerRule,
   createOptimizerRule,
   updateOptimizerRuleStatus,
   listOptimizerRuleResults,
@@ -13,6 +14,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const ruleId = searchParams.get('rule_id');
   try {
+    if (ruleId && searchParams.get('view') === 'rule') return NextResponse.json(await getOptimizerRule({ ruleId }));
     if (ruleId) return NextResponse.json(await listOptimizerRuleResults({ ruleId }));
     return NextResponse.json(await listOptimizerRules());
   } catch (err) {

@@ -47,10 +47,16 @@ export async function POST(request) {
     payload = { business_id: businessId, comment_id, video_id };
   } else if (action === 'pin') {
     endpoint = `${BASE}/business/comment/pin/`;
-    payload = { business_id: businessId, comment_id, video_id };
+    payload = { business_id: businessId, comment_id, video_id, is_pinned: body.is_pinned !== false };
   } else if (action === 'reply') {
     endpoint = `${BASE}/business/comment/reply/create/`;
     payload = { business_id: businessId, comment_id, text: content, video_id };
+  } else if (action === 'like' || action === 'unlike') {
+    endpoint = `${BASE}/business/comment/like/`;
+    payload = { business_id: businessId, comment_id, action: action === 'like' ? 'LIKE' : 'UNLIKE' };
+  } else if (action === 'comment') {
+    endpoint = `${BASE}/business/comment/create/`;
+    payload = { business_id: businessId, video_id, text: content };
   } else {
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   }

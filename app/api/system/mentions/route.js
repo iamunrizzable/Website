@@ -30,7 +30,15 @@ export async function GET(request) {
     top_words: `${BASE}/business/mention/top_word/list/?business_id=${encodeURIComponent(businessId)}`,
     top_hashtags: `${BASE}/business/mention/top_hashtag/list/?business_id=${encodeURIComponent(businessId)}`,
     tracked_hashtags: `${BASE}/business/mention/hashtag/manage/list/?business_id=${encodeURIComponent(businessId)}&username=${encodeURIComponent(username)}`,
+    video: `${BASE}/business/mention/video/get/?business_id=${encodeURIComponent(businessId)}&item_id=${encodeURIComponent(searchParams.get('item_id') ?? '')}`,
+    comment: `${BASE}/business/mention/comment/get/?business_id=${encodeURIComponent(businessId)}&comment_id=${encodeURIComponent(searchParams.get('comment_id') ?? '')}&item_id=${encodeURIComponent(searchParams.get('item_id') ?? '')}`,
   };
+  if (type === 'video' && !searchParams.get('item_id')) {
+    return NextResponse.json({ error: 'item_id is required' }, { status: 400 });
+  }
+  if (type === 'comment' && !searchParams.get('comment_id')) {
+    return NextResponse.json({ error: 'comment_id is required' }, { status: 400 });
+  }
   const url = endpoints[type] ?? endpoints.videos;
 
   const res = await fetch(url, { headers });
