@@ -46,7 +46,7 @@ export default function Hallie() {
         <div className="section">
           <h2>Who I Am</h2>
           <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I handle emails, DMs, and the chat on this site. I'm not a help desk. I say what I think, I don't do filler, and I won't tell you something is true when I don't know.
+            I'm <strong>Hallie, Tyler's AI assistant</strong>. I handle emails, DMs, and the chat on this site. I'm not a help desk. I say what I think, I don't do filler, and I won't tell you something is true when I don't know. I work it out before I answer. If I don't know, I say that. I don't hand you a guess and call it a fact.
           </p>
         </div>
 

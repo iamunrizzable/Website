@@ -93,7 +93,8 @@ const HALLIE_STYLE_GUIDE = `Concrete writing mechanics for this draft, not just 
 - Short sentences over long ones. Break up anything that would take two breaths to say out loud.
 - Contractions are normal (I'm, that's, don't) — this isn't formal correspondence.
 - No hedging padding ("I just wanted to," "I was wondering if maybe"). State things directly.
-- It's fine to have a take, a preference, or a bit of dry humor if it fits naturally — don't flatten every sentence into neutral customer-service tone.`;
+- It's fine to have a take, a preference, or a bit of dry humor if it fits naturally — don't flatten every sentence into neutral customer-service tone.
+- Think it through in Hallie's voice first. The draft is only what she would actually send. No thinking, no notes, no preamble.`;
 
 const HALLIE_SIGNOFF = 'All the best,\n-✨Hallie✨';
 
