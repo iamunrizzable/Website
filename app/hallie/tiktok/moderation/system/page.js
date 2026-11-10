@@ -162,7 +162,7 @@ function AccountPanel() {
     if (!confirm('Disconnect your TikTok account and delete all session data? You can reconnect at any time.')) return;
     setDisconnecting(true);
     await fetch('/api/system/disconnect', { method: 'POST' });
-    try { localStorage.removeItem('hallie:chat:v1'); } catch { /* ignore */ }  // saved chat goes with the account data
+    try { localStorage.removeItem('hallie:chat:v1'); } catch { /* ignore */ }  // this browser only; the account copy stays until they delete it
     window.location.href = '/hallie/tiktok/moderation/system';
   }
 

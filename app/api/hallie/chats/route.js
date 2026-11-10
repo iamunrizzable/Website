@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import { getRedis } from '@/lib/tokens';
-import { normalizeChatCode, saveHallieChat, loadHallieChat, deleteHallieChat } from '@/lib/hallie-chats';
+import { accountIdFromToken, accountTag, saveHallieChat, loadHallieChat, deleteHallieChat } from '@/lib/hallie-chats';
 
 const WINDOW_SECONDS = 60 * 60;
-const MAX_TRIES = 40;
+const MAX_TRIES = 300;
 
 function clientIp(req) {
   return (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'unknown';
@@ -18,25 +19,51 @@ async function limited(ip) {
   return count > MAX_TRIES;
 }
 
-export async function POST(request) {
-  let body;
-  try { body = await request.json(); } catch { body = {}; }
-  const code = normalizeChatCode(body.code);
-  if (!code) return NextResponse.json({ error: 'That code is not valid.' }, { status: 400 });
+async function signedInAccount() {
+  const cookieStore = await cookies();
+  const raw = cookieStore.get('acct_token')?.value;
+  if (!raw) return null;
+  try {
+    const token = JSON.parse(raw);
+    if (token.expires_at && Date.now() > token.expires_at) return null;
+    return accountIdFromToken(token);
+  } catch {
+    return null;
+  }
+}
+
+export async function GET(request) {
   if (await limited(clientIp(request)).catch(() => false)) {
     return NextResponse.json({ error: 'Too many tries. Wait a while and try again.' }, { status: 429 });
   }
+  const accountId = await signedInAccount();
+  if (!accountId) return NextResponse.json({ connected: false });
+  try {
+    const chat = await loadHallieChat(accountId);
+    return NextResponse.json({ connected: true, tag: accountTag(accountId), ...chat });
+  } catch (err) {
+    return NextResponse.json({ error: err.message || 'Saving is unavailable right now.' }, { status: 503 });
+  }
+}
+
+export async function POST(request) {
+  if (await limited(clientIp(request)).catch(() => false)) {
+    return NextResponse.json({ error: 'Too many tries. Wait a while and try again.' }, { status: 429 });
+  }
+  const accountId = await signedInAccount();
+  if (!accountId) {
+    return NextResponse.json({ connected: false, error: 'Connect your TikTok account to save this chat.' }, { status: 401 });
+  }
+  let body;
+  try { body = await request.json(); } catch { body = {}; }
   try {
     if (body.action === 'save') {
-      const saved = await saveHallieChat(code, body.messages);
-      return NextResponse.json({ ok: true, ...saved });
-    }
-    if (body.action === 'load') {
-      return NextResponse.json({ ok: true, ...(await loadHallieChat(code)) });
+      const saved = await saveHallieChat(accountId, body.messages);
+      return NextResponse.json({ ok: true, connected: true, tag: accountTag(accountId), ...saved });
     }
     if (body.action === 'delete') {
-      await deleteHallieChat(code);
-      return NextResponse.json({ ok: true });
+      await deleteHallieChat(accountId);
+      return NextResponse.json({ ok: true, connected: true });
     }
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   } catch (err) {
