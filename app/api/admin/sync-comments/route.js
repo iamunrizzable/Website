@@ -22,6 +22,9 @@ export async function POST(request) {
         text: r.text ?? '',
         score: r.score,
         action: r.hidden ? 'hidden' : 'ok',
+        video_id: r.video_id ? String(r.video_id) : '',
+        video_caption: r.video_caption ?? '',
+        video_url: r.video_url ?? null,
       })),
     });
   } catch (err) {

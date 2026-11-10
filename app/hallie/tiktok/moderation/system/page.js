@@ -408,6 +408,23 @@ function CommentsPanel() {
 
 // ── Comment Sync ──────────────────────────────────────────────────────────────
 
+function VideoLine({ comment }) {
+  const label = comment.video_caption || (comment.video_id ? `Video ${comment.video_id}` : '');
+  if (!label && !comment.video_url) return null;
+  return (
+    <div style={{ color: '#06b6d4', fontSize: 12, marginBottom: 4, wordBreak: 'break-word' }}>
+      On{' '}
+      {comment.video_url ? (
+        <a href={comment.video_url} target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9' }}>
+          {label || 'this video'}
+        </a>
+      ) : (
+        <span>{label}</span>
+      )}
+    </div>
+  );
+}
+
 function SyncPanel() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -478,6 +495,7 @@ function SyncPanel() {
                   {c.action === 'hidden' ? 'Hidden' : 'OK'}
                 </span>
               </div>
+              <VideoLine comment={c} />
               <div style={{ color: '#e2e8f0', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#06b6d4' }}>(no text)</em>}</div>
             </div>
           ))}

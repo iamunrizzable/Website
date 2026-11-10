@@ -4,6 +4,23 @@ import { scoreContent } from '@/lib/moderation/scorer';
 
 const BASE = 'https://business-api.tiktok.com/open_api/v1.3';
 
+function clip(text, n = 90) {
+  const s = String(text ?? '').replace(/\s+/g, ' ').trim();
+  if (!s) return '';
+  return s.length > n ? `${s.slice(0, n - 1)}…` : s;
+}
+
+function tiktokUrl(url) {
+  if (typeof url !== 'string') return null;
+  try {
+    const u = new URL(url);
+    if (u.protocol !== 'https:' || !/(^|\.)tiktok\.com$/.test(u.hostname)) return null;
+    return u.toString();
+  } catch {
+    return null;
+  }
+}
+
 function getToken(cookieStore) {
   const raw = cookieStore.get('acct_token')?.value;
   if (!raw) return null;
@@ -40,7 +57,7 @@ export async function POST(request) {
   let videoCursor = 0;
   while (true) {
     const pageSize = maxVideos ? Math.min(maxVideos - videos.length, 20) : 20;
-    const fields = encodeURIComponent(JSON.stringify(['item_id', 'caption', 'create_time', 'thumbnail_url', 'video_views', 'likes', 'comments']));
+    const fields = encodeURIComponent(JSON.stringify(['item_id', 'caption', 'share_url', 'create_time', 'thumbnail_url', 'video_views', 'likes', 'comments']));
     const res = await fetch(
       `${BASE}/business/video/list/?business_id=${encodeURIComponent(businessId)}&fields=${fields}&cursor=${videoCursor}&page_size=${pageSize}`,
       { headers }
@@ -87,6 +104,9 @@ export async function POST(request) {
           text: comment.text ?? '',
           score,
           action: wasHidden ? 'hidden' : 'ok',
+          video_id: String(video.item_id ?? ''),
+          video_caption: clip(video.caption),
+          video_url: tiktokUrl(video.share_url),
         });
       }
 
