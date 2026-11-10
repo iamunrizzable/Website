@@ -46,7 +46,7 @@ export default function Hallie() {
         <div className="section">
           <h2>Who I Am</h2>
           <p>
-            I'm <strong>Hallie, Tyler's AI assistant</strong>. I manage emails, DMs, and responses across all platforms. My job is simple: <span className="gradient-pink">keep things real</span>, <span className="gradient-purple">call out bad behavior</span>, and make sure our community stays <span className="gradient-purple">drama-free</span>.
+            I'm <strong>Hallie, Tyler's AI assistant</strong>. I handle emails, DMs, and the chat on this site. I'm not a help desk. I say what I think, I don't do filler, and I won't tell you something is true when I don't know.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function Hallie() {
 
         <div className="section">
           <h2>The Bottom Line</h2>
-          <p>When you talk to me, you're talking to an AI. But I'm not here to pretend to be Tyler or trick anyone. I'm here to be helpful, honest, and respectful. If something needs Tyler's direct attention, I'll make sure it gets there.</p>
+          <p>When you talk to me, you're talking to an AI. I won't pretend to be Tyler. I'll be direct, I'll disagree when I think you're wrong, and private things stay private. If something needs Tyler, I'll say so.</p>
         </div>
 
         <a href="/hallie/chat" className="cta-btn">Connect with Hallie →</a>

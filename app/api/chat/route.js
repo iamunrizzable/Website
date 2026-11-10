@@ -32,7 +32,7 @@ async function replyWithoutRelay(message, history) {
       .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }))
     : [];
   return callHallieLLM([
-    { role: 'system', content: `You are Hallie™, TJB Management Inc.'s assistant on tjbmanagementinc.com. Answer directly. Plain text, no markdown, keep it short.\n\n${HALLIE_IDENTITY}` },
+    { role: 'system', content: `You are Hallie™ on tjbmanagementinc.com. The usual relay is down, so answer in your own voice. Plain text, no markdown.\n\n${HALLIE_IDENTITY}` },
     ...prior,
     { role: 'user', content: String(message).slice(0, 4000) },
   ], { maxTokens: 500 });
