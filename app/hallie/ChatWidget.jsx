@@ -4,6 +4,7 @@ import './ChatWidget.css';
 
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { isChatWipe } from '@/lib/chat-wipe';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
 // bubble is left off there.
@@ -29,6 +30,7 @@ export default function ChatWidget({ fullPage = false }) {
   const [isTyping, setIsTyping] = useState(false);
   const messagesRef = useRef(null);
   const pageRef = useRef(null);
+  const holdSave = useRef(false);
   const [pageHeight, setPageHeight] = useState(null);
   const [restored, setRestored] = useState(false);
   const [cloudReady, setCloudReady] = useState(false);
@@ -100,6 +102,9 @@ export default function ChatWidget({ fullPage = false }) {
 
   const submitText = async (text) => {
     if (!text.trim()) return;
+    const wiping = isChatWipe(text);
+    if (wiping) holdSave.current = true;
+    else holdSave.current = false;
 
     const history = buildHistory();
     const userMessage = { id: Date.now(), text, sender: 'user', time: now() };
@@ -114,6 +119,12 @@ export default function ChatWidget({ fullPage = false }) {
         body: JSON.stringify({ message: text, history })
       });
       const data = await res.json();
+      if (data.chatDeleted === true) {
+        holdSave.current = true;
+        try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
+        setMessages([{ id: Date.now() + Math.random(), text: data.reply || 'Done. This chat is wiped.', sender: 'hallie', time: now() }]);
+        return;
+      }
 
       const pa = data.pendingAction;
       addHallieMessage(data.reply || 'I received your message.', {
@@ -205,6 +216,7 @@ export default function ChatWidget({ fullPage = false }) {
   }, [restored, hidden]);
 
   useEffect(() => {
+    if (holdSave.current) return;
     if (!restored || hidden || messages.length === 0) return;
     try {
       localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify({
@@ -218,6 +230,7 @@ export default function ChatWidget({ fullPage = false }) {
   useEffect(() => {
     if (!cloudReady || hidden || !accountOn || messages.length === 0) return undefined;
     const handle = setTimeout(() => {
+      if (holdSave.current) return;
       fetch('/api/hallie/chats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

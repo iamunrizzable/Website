@@ -6,6 +6,8 @@ import { HALLIE_IDENTITY, runToolChat, executeConfirmedAction, executeConfirmedB
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
 import { isHallieSuspended } from '@/lib/tokens';
+import { deleteHallieChat } from '@/lib/hallie-chats';
+import { isChatWipe } from '@/lib/chat-wipe';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -74,6 +76,17 @@ export async function POST(req) {
     // confirms. Fails open on a Redis error, like the other kill switches.
     if (await isHallieSuspended().catch(() => false)) {
       return NextResponse.json({ reply: OFF_REPLY }, { status: 503 });
+    }
+
+    // Wiping the chat does not wait on the model. She was refusing this
+    // ("the platform manages the log") and the browser then saved it back.
+    if (typeof message === 'string' && isChatWipe(message)) {
+      const conn = await connection();
+      if (conn.state === 'connected') await deleteHallieChat(conn.identity).catch(() => {});
+      const reply = conn.state === 'connected'
+        ? 'Done. This chat is wiped, including the copy saved to your TikTok account.'
+        : 'Done. This chat is wiped on this device.';
+      return NextResponse.json({ reply, chatDeleted: true });
     }
 
     // Admin tools only exist for a logged-in admin session (password +
@@ -180,6 +193,7 @@ export async function POST(req) {
         if (result.pendingAction) body.pendingAction = result.pendingAction;
         if (result.connect) body.connect = true;
         if (result.disconnected) body.disconnected = true;
+        if (result.chatDeleted) body.chatDeleted = true;
         return withCookies(NextResponse.json(body), result.setCookies);
       } catch (err) {
         console.error('[chat] tool path failed:', err.message);
