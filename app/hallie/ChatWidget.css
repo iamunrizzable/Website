@@ -105,9 +105,61 @@
   padding: 0 4px;
 }
 
-.chat-header button:hover {
-  color: #c084fc;
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
 }
+
+.chat-header .chat-saved {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d4a5ff;
+}
+
+.chat-sync {
+  padding: 10px 14px 12px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f3e8ff;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.chat-sync p { margin: 0 0 8px; }
+
+.chat-sync input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  font: inherit;
+}
+
+.chat-sync button {
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-sync form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chat-sync form input { margin: 0; }
+
+.chat-sync-note { color: #f9a8d4; }
 
 .chat-messages {
   flex: 1;
