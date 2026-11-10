@@ -9,6 +9,11 @@ function getToken(cookieStore) {
   try { return JSON.parse(raw); } catch { return null; }
 }
 
+// TikTok's comment and video ids are longer than JS can hold as numbers.
+function safeJson(text) {
+  return JSON.parse(String(text).replace(/:\s*(\d{16,})(?=\s*[,}\]])/g, ': "$1"'));
+}
+
 export async function GET(request) {
   const cookieStore = await cookies();
   const token = getToken(cookieStore);
@@ -24,7 +29,8 @@ export async function GET(request) {
     `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(videoId)}&fields=${fields}`,
     { headers: { 'Access-Token': token.access_token } }
   );
-  const json = await res.json();
+  let json;
+  try { json = safeJson(await res.text()); } catch { return NextResponse.json({ error: 'Unreadable response from TikTok' }, { status: 502 }); }
   return NextResponse.json(json);
 }
 
