@@ -92,10 +92,8 @@ export default function ChatWidget({ fullPage = false }) {
     return () => window.removeEventListener('hallie:connect', onConnect);
   }, []);
 
-  // Last ~10 messages for the connected-account (tool) path; the server
-  // ignores this on the relay path. Pending confirmations are described so
-  // Hallie knows what's waiting or what was cancelled.
-  const buildHistory = () => messages.slice(-10).map(m => ({
+  // The whole conversation, so she is not answering from the last few lines.
+  const buildHistory = () => messages.slice(-40).map(m => ({
     role: m.sender === 'user' ? 'user' : 'assistant',
     content: m.pending ? `${m.text}\n[${m.pendingState === 'cancelled' ? 'Cancelled' : m.pendingState === 'done' ? 'Confirmed' : 'Waiting for confirmation'}: ${m.pending.summary}]` : m.text,
   }));

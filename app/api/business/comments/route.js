@@ -7,8 +7,10 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const videoId = searchParams.get('video_id');
   if (!videoId) return NextResponse.json({ error: 'Missing video_id' }, { status: 400 });
+  const cursor = searchParams.get('cursor') ?? '0';
+  const pageSize = Number(searchParams.get('page_size') ?? 20) || 20;
   try {
-    return NextResponse.json(await listComments({ videoId }));
+    return NextResponse.json(await listComments({ videoId, cursor, pageSize }));
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

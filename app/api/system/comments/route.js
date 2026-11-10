@@ -25,13 +25,29 @@ export async function GET(request) {
 
   const businessId = token.business_id ?? token.open_id;
   const fields = encodeURIComponent(JSON.stringify(['comment_id', 'text', 'username', 'create_time', 'like_count', 'status']));
-  const res = await fetch(
-    `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(videoId)}&fields=${fields}`,
-    { headers: { 'Access-Token': token.access_token } }
-  );
-  let json;
-  try { json = safeJson(await res.text()); } catch { return NextResponse.json({ error: 'Unreadable response from TikTok' }, { status: 502 }); }
-  return NextResponse.json(json);
+  const comments = [];
+  let cursor = 0;
+  let first = null;
+  for (let page = 0; page < 50; page++) {
+    const res = await fetch(
+      `${BASE}/business/comment/list/?business_id=${encodeURIComponent(businessId)}&video_id=${encodeURIComponent(videoId)}&fields=${fields}&cursor=${cursor}&page_size=20`,
+      { headers: { 'Access-Token': token.access_token } }
+    );
+    let json;
+    try { json = safeJson(await res.text()); } catch { return NextResponse.json({ error: 'Unreadable response from TikTok' }, { status: 502 }); }
+    if (page === 0) first = json;
+    if (json.code && json.code !== 0) {
+      if (page === 0) return NextResponse.json(json);
+      break;
+    }
+    const batch = json.data?.comments ?? [];
+    comments.push(...batch);
+    if (!json.data?.has_more || batch.length === 0) break;
+    const next = json.data.cursor;
+    if (next === cursor) break;
+    cursor = next;
+  }
+  return NextResponse.json({ ...first, data: { ...first?.data, comments, has_more: false } });
 }
 
 export async function POST(request) {
