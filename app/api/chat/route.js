@@ -151,6 +151,9 @@ export async function POST(req) {
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
         if (result.adminLogin) body.adminLogin = true;
+        for (const item of result.ran ?? []) {
+          await logAdminAction(item.tool, item.args, item.ok ? {} : { error: true });
+        }
         return NextResponse.json(body);
       } catch (err) {
         console.error('[chat] admin tool path failed:', err.message);
@@ -176,6 +179,7 @@ export async function POST(req) {
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
         if (result.connect) body.connect = true;
+        if (result.disconnected) body.disconnected = true;
         return withCookies(NextResponse.json(body), result.setCookies);
       } catch (err) {
         console.error('[chat] tool path failed:', err.message);
