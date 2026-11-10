@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
+import { runToolChat, executeConfirmedAction, executeConfirmedBatch, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
 import { isHallieSuspended } from '@/lib/tokens';
@@ -19,6 +19,11 @@ function clientIp(req) {
 }
 
 const failureReply = (err) => (/All LLM providers failed/.test(err?.message ?? '') ? BUSY_REPLY : ERROR_REPLY);
+
+async function runConfirmed(verified, tools) {
+  if (verified.tool === '__batch') return executeConfirmedBatch(verified.args?.actions, tools);
+  return executeConfirmedAction(verified.tool, verified.args, tools);
+}
 
 // The visitor's own TikTok connection — same parsing and expiry check as
 // /api/system/status. { state: 'none' } (no cookie → the unchanged relay
@@ -68,8 +73,14 @@ export async function POST(req) {
         if (!admin) {
           return NextResponse.json({ reply: 'Your admin session expired, so I did not run that. Log in again with the button below and ask me again.', adminLogin: true }, { status: 401 });
         }
-        const done = await executeConfirmedAction(adminPending.tool, adminPending.args, ADMIN_TOOLS);
-        await logAdminAction(adminPending.tool, adminPending.args, done.ok ? {} : { error: true });
+        const done = await runConfirmed(adminPending, ADMIN_TOOLS);
+        if (adminPending.tool === '__batch') {
+          for (const item of done.results ?? []) {
+            await logAdminAction(item.tool, item.args, item.ok ? {} : { error: true });
+          }
+        } else {
+          await logAdminAction(adminPending.tool, adminPending.args, done.ok ? {} : { error: true });
+        }
         const body = { reply: done.reply };
         if (done.adminLogin) body.adminLogin = true;
         return NextResponse.json(body);
@@ -90,7 +101,7 @@ export async function POST(req) {
           : "I couldn't confirm that action. Make sure your TikTok account is still connected and ask me again.";
         return NextResponse.json({ reply }, { status: 400 });
       }
-      const result = await executeConfirmedAction(verified.tool, verified.args);
+      const result = await runConfirmed(verified);
       const body = { reply: result.reply };
       if (result.connect) body.connect = true;
       if (result.disconnected) body.disconnected = true;

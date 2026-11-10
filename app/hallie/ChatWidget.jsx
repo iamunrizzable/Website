@@ -111,7 +111,7 @@ export default function ChatWidget({ fullPage = false }) {
       const pa = data.pendingAction;
       addHallieMessage(data.reply || 'I received your message.', {
         ...(pa && typeof pa.id === 'string' && typeof pa.summary === 'string'
-          ? { pending: { id: pa.id, summary: pa.summary }, pendingState: 'open' }
+          ? { pending: { id: pa.id, summary: pa.summary, count: Number(pa.count) || 1 }, pendingState: 'open' }
           : {}),
         connect: data.connect === true,
         adminLogin: data.adminLogin === true,
@@ -267,7 +267,7 @@ export default function ChatWidget({ fullPage = false }) {
                           onClick={() => confirmAction(msg)}
                           disabled={msg.pendingState !== 'open' || isTyping}
                         >
-                          {msg.pendingState === 'confirming' ? 'Working…' : 'Confirm'}
+                          {msg.pendingState === 'confirming' ? 'Working…' : ((msg.pending.count || 1) > 1 ? 'Confirm all' : 'Confirm')}
                         </button>
                         <button
                           type="button"
