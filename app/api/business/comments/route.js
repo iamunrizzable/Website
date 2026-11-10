@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { listComments, hideComment, replyToComment, deleteComment, pinComment } from '@/lib/tiktok/business-api';
+import { listComments, hideComment, replyToComment, deleteComment, pinComment, likeComment, createComment } from '@/lib/tiktok/business-api';
 import { isValidAdminKey } from '@/lib/auth';
 
 export async function GET(request) {
@@ -23,6 +23,9 @@ export async function POST(request) {
     if (body.action === 'reply') return NextResponse.json(await replyToComment({ videoId: body.video_id, commentId: body.comment_id, content: body.content }));
     if (body.action === 'delete') return NextResponse.json(await deleteComment({ commentId: body.comment_id, videoId: body.video_id }));
     if (body.action === 'pin') return NextResponse.json(await pinComment({ commentId: body.comment_id, isPinned: body.is_pinned ?? true, videoId: body.video_id }));
+    if (body.action === 'like') return NextResponse.json(await likeComment({ commentId: body.comment_id, like: true }));
+    if (body.action === 'unlike') return NextResponse.json(await likeComment({ commentId: body.comment_id, like: false }));
+    if (body.action === 'comment') return NextResponse.json(await createComment({ videoId: body.video_id, text: body.content }));
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -9,6 +9,8 @@ import {
   removeTrackedHashtag,
   verifyHashtag,
   listMentionHashtagVideos,
+  getMentionVideo,
+  getMentionComment,
 } from '@/lib/tiktok/business-api';
 
 import { isValidAdminKey as requireAdmin } from '@/lib/auth';
@@ -34,6 +36,16 @@ export async function GET(request) {
       const hashtag = searchParams.get('hashtag') ?? '';
       if (!hashtag) return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
       return NextResponse.json(await listMentionHashtagVideos({ hashtag }));
+    }
+    if (type === 'video') {
+      const itemId = searchParams.get('item_id') ?? '';
+      if (!itemId) return NextResponse.json({ error: 'item_id is required' }, { status: 400 });
+      return NextResponse.json(await getMentionVideo({ itemId }));
+    }
+    if (type === 'comment') {
+      const commentId = searchParams.get('comment_id') ?? '';
+      if (!commentId) return NextResponse.json({ error: 'comment_id is required' }, { status: 400 });
+      return NextResponse.json(await getMentionComment({ commentId, itemId: searchParams.get('item_id') ?? '' }));
     }
     return NextResponse.json(await listMentionVideos());
   } catch (err) {
