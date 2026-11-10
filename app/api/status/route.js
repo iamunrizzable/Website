@@ -82,7 +82,12 @@ async function checkHallieChat() {
   } catch {
     // fail open — a Redis hiccup must never report a false outage
   }
-  return hallieChatStatus({ relayRecent, llmEntries });
+  const reported = hallieChatStatus({ relayRecent, llmEntries });
+  // The relay records its own failed chats while lockdown is still ok.
+  // Public chat answers through the site models in that case, so this is
+  // not an outage. A health check that never connects still reports the VM down.
+  if (reported?.label === 'Busy right now' && hallieLLMConfigured()) return null;
+  return reported;
 }
 
 async function checkHallie() {

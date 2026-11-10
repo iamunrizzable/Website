@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { hallieLLMConfigured, callHallieLLMWithTools } from '@/lib/hallie-llm';
+import { hallieLLMConfigured, callHallieLLM, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { runToolChat, executeConfirmedAction, executeConfirmedBatch, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
+import { HALLIE_IDENTITY, runToolChat, executeConfirmedAction, executeConfirmedBatch, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
 import { isHallieSuspended } from '@/lib/tokens';
@@ -19,6 +19,24 @@ function clientIp(req) {
 }
 
 const failureReply = (err) => (/All LLM providers failed/.test(err?.message ?? '') ? BUSY_REPLY : ERROR_REPLY);
+
+// The VM relay answers /healthz but its POST /chat returns 502. When that
+// happens, answer with the same models the rest of the site uses so a dead
+// relay process does not take public Hallie down.
+async function replyWithoutRelay(message, history) {
+  if (!hallieLLMConfigured()) return null;
+  const prior = Array.isArray(history)
+    ? history
+      .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+      .slice(-6)
+      .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }))
+    : [];
+  return callHallieLLM([
+    { role: 'system', content: `You are Hallie™, TJB Management Inc.'s assistant on tjbmanagementinc.com. Answer directly. Plain text, no markdown, keep it short.\n\n${HALLIE_IDENTITY}` },
+    ...prior,
+    { role: 'user', content: String(message).slice(0, 4000) },
+  ], { maxTokens: 500 });
+}
 
 async function runConfirmed(verified, tools) {
   if (verified.tool === '__batch') return executeConfirmedBatch(verified.args?.actions, tools);
@@ -166,35 +184,44 @@ export async function POST(req) {
     }
 
     const relayUrl = process.env.HALLIE_RELAY_URL;
-    if (!relayUrl) {
-      return NextResponse.json({ reply: FALLBACK_REPLY });
-    }
-
     const ip = clientIp(req);
-
-    const upstream = await fetch(`${relayUrl}/chat`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-visitor-ip': ip,
-      },
-      body: JSON.stringify({ message }),
-      signal: AbortSignal.timeout(65_000),
-      cache: 'no-store',
-    });
-
-    if (!upstream.ok) {
-      return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
+    let upstream;
+    if (relayUrl) {
+      try {
+        upstream = await fetch(`${relayUrl}/chat`, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-visitor-ip': ip,
+          },
+          body: JSON.stringify({ message }),
+          signal: AbortSignal.timeout(65_000),
+          cache: 'no-store',
+        });
+      } catch (err) {
+        console.error('[chat] relay unreachable:', err.message);
+      }
     }
-    const data = await upstream.json();
-    if (typeof data.reply === 'string' && data.reply) {
-      const { reply, connect, adminLogin } = parseRelayConnect(data.reply);
-      const out = { reply };
-      if (connect) out.connect = true;
-      if (adminLogin) out.adminLogin = true;
-      return NextResponse.json(out);
+
+    if (upstream?.ok) {
+      const data = await upstream.json().catch(() => ({}));
+      if (typeof data.reply === 'string' && data.reply) {
+        const { reply, connect, adminLogin } = parseRelayConnect(data.reply);
+        const out = { reply };
+        if (connect) out.connect = true;
+        if (adminLogin) out.adminLogin = true;
+        return NextResponse.json(out);
+      }
     }
-    return NextResponse.json({ reply: ERROR_REPLY });
+
+    try {
+      const reply = await replyWithoutRelay(message, history);
+      if (reply) return NextResponse.json({ reply });
+    } catch (err) {
+      console.error('[chat] relay fallback failed:', err.message);
+      return NextResponse.json({ reply: failureReply(err) }, { status: 502 });
+    }
+    return NextResponse.json({ reply: relayUrl ? ERROR_REPLY : FALLBACK_REPLY }, { status: relayUrl ? 502 : 200 });
   } catch (err) {
     return NextResponse.json({ reply: ERROR_REPLY }, { status: 502 });
   }
