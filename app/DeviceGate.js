@@ -8,7 +8,6 @@ import { collectWebglFingerprint } from '@/lib/fingerprint/webgl';
 import { collectBotSignals } from '@/lib/fingerprint/botSignals';
 import { collectPrivacySignals } from '@/lib/fingerprint/privacySignals';
 import OpenInBrowserNotice from './OpenInBrowserNotice';
-import GtaViBanner from './GtaViBanner';
 import { readConsent, writeConsent } from './consent';
 
 // How long to wait for our OWN local identification — the persistent
@@ -339,7 +338,6 @@ export default function DeviceGate({ children }) {
 
   return (
     <>
-      <GtaViBanner />
       <OpenInBrowserNotice />
       {children}
     </>
