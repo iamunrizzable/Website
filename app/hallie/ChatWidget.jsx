@@ -101,7 +101,7 @@ export default function ChatWidget({ fullPage = false }) {
   const reopenAfterLogin = () => {
     try { sessionStorage.setItem('hallie:open', '1'); } catch { /* storage blocked: chat just starts closed */ }
   };
-  const goLogin = () => setSyncOpen(true);
+  const goLogin = () => startConnection('tiktok');
   const startConnection = (provider) => {
     reopenAfterLogin();
     const from = encodeURIComponent(window.location.pathname);
@@ -435,43 +435,41 @@ export default function ChatWidget({ fullPage = false }) {
           <div className="chat-header">
             <span>Chat with Hallie™</span>
             <span className="chat-header-actions">
-              <button type="button" className="chat-saved" onClick={() => setSyncOpen((open) => !open)}>
-                {accountOn ? 'Saved' : 'Account'}
-              </button>
-              <button type="button" className="chat-saved" onClick={accountOn ? logOut : goLogin} disabled={syncBusy}>
-                {accountOn ? 'Log out' : 'Log in'}
-              </button>
+              {accountOn && (
+                <button type="button" className="chat-saved" onClick={logOut} disabled={syncBusy}>
+                  Log out
+                </button>
+              )}
               {fullPage
                 ? <a className="chat-back" href="/hallie">← Back to Hallie</a>
                 : <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
             </span>
           </div>
-          {syncOpen && (
-            <div className="chat-sync">
-              <p>Sign in with Google, Apple, X, or TikTok. You can connect more than one. The chat is saved to this login, and any of those accounts opens it on another device.</p>
+          <div className="chat-sync">
+            <p>Sign in with any of these. You can connect more than one.</p>
+            <div className="chat-logins">
               {LOGIN_PROVIDERS.map((provider) => {
                 const connected = connections.find((c) => c.provider === provider.id);
                 return (
-                  <div className="chat-sync-row" key={provider.id}>
-                    <span>{connected ? `${provider.name} · ${connected.label}` : provider.name}</span>
-                    <button
-                      type="button"
-                      onClick={() => (connected ? unlink(provider.id) : startConnection(provider.id))}
-                      disabled={syncBusy}
-                    >
-                      {connected ? 'Remove' : 'Connect'}
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    key={provider.id}
+                    className={connected ? 'on' : ''}
+                    onClick={() => (connected ? unlink(provider.id) : startConnection(provider.id))}
+                    disabled={syncBusy}
+                  >
+                    {provider.name}{connected ? ' · connected' : ''}
+                  </button>
                 );
               })}
-              {accountOn && (
-                <button type="button" onClick={deleteSavedChat} disabled={syncBusy}>
-                  {syncBusy ? 'Deleting…' : 'Delete saved chat'}
-                </button>
-              )}
-              {syncNote && <p className="chat-sync-note">{syncNote}</p>}
             </div>
-          )}
+            {accountOn && (
+              <button type="button" className="chat-saved-delete" onClick={deleteSavedChat} disabled={syncBusy}>
+                {syncBusy ? 'Deleting…' : 'Delete saved chat'}
+              </button>
+            )}
+            {syncNote && <p className="chat-sync-note">{syncNote}</p>}
+          </div>
           <div className="chat-messages" ref={messagesRef}>
             {fullPage && restored && messages.length === 0 && (
               <div className="chat-message hallie">
