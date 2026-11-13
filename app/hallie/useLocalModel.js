@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const LOCAL_MODELS = {
+  mini: { id: 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC' },
   lite: { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC' },
   thinking: { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC' },
 };
@@ -11,12 +12,13 @@ const MODEL_OK = 'hallie:model-ok';
 const MODEL_BOOT = 'hallie:model-boot';
 
 export const MODEL_CHOICES = [
+  { key: 'mini', label: 'Hallie (mini)' },
   { key: 'lite', label: 'Hallie (lite)' },
   { key: 'thinking', label: 'Hallie (thinking)' },
 ];
 
 // iPhone and iPad kill the tab when the 3B model asks for its memory, so
-// they only get lite. iPadOS reports itself as a Mac with a touch screen.
+// they only get mini, with a smaller context window. iPadOS reports itself as a Mac with a touch screen.
 export function isApplePhoneOrTablet() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent || '';
@@ -24,7 +26,7 @@ export function isApplePhoneOrTablet() {
 }
 
 export function availableModelChoices() {
-  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'lite') : MODEL_CHOICES;
+  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'mini') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
 }
 
 export function readModelChoice() {
@@ -32,12 +34,12 @@ export function readModelChoice() {
   let bounced = false;
   if (isApplePhoneOrTablet()) {
     try { localStorage.removeItem(MODEL_BOOT); } catch { /* ignore */ }
-    return { key, bounced: false };
+    return { key: 'mini', bounced: false };
   }
   try {
     const boot = localStorage.getItem(MODEL_BOOT);
     const ok = localStorage.getItem(MODEL_OK);
-    if (boot === 'lite' || boot === 'thinking') {
+    if (boot === 'lite' || boot === 'thinking' || boot === 'mini') {
       localStorage.removeItem(MODEL_BOOT);
       bounced = true;
       key = (ok === 'lite' || ok === 'thinking') && ok !== boot ? ok : (boot === 'thinking' ? 'lite' : 'thinking');
@@ -103,13 +105,15 @@ export function useLocalModel(modelKey) {
           setStatus(report?.text || 'Downloading the model...');
           if (typeof report?.progress === 'number') setProgress(Math.max(0, Math.min(100, Math.round(report.progress * 100))));
         };
+        // A smaller context window reserves far less GPU memory on phones.
+        const chatOpts = isApplePhoneOrTablet() ? { context_window_size: 2048 } : undefined;
         let engine;
         try {
-          engine = await CreateMLCEngine(chosen.id, { initProgressCallback: onProgress });
+          engine = await CreateMLCEngine(chosen.id, { initProgressCallback: onProgress }, chatOpts);
         } catch (err) {
           if (!chosen.fallback || !/f16|shader/i.test(String(err?.message ?? err))) throw err;
           setStatus('This device needs the wider model build. Downloading that instead...');
-          engine = await CreateMLCEngine(chosen.fallback, { initProgressCallback: onProgress });
+          engine = await CreateMLCEngine(chosen.fallback, { initProgressCallback: onProgress }, chatOpts);
         }
         if (gen !== loadGen.current) {
           try { await engine?.unload?.(); } catch { /* a newer load owns the page */ }

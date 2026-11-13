@@ -6,7 +6,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { isChatWipe } from '@/lib/chat-wipe';
 import { HALLIE_LOCAL_PROMPT } from './local/prompt';
-import { MODEL_CHOICES, availableModelChoices, readModelChoice, useLocalModel } from './useLocalModel';
+import { MODEL_CHOICES, availableModelChoices, isApplePhoneOrTablet, readModelChoice, useLocalModel } from './useLocalModel';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
 // bubble is left off there.
@@ -71,7 +71,7 @@ export default function ChatWidget({ fullPage = false }) {
   // from under a reply that was still being written.
   const [everOpened, setEverOpened] = useState(false);
   useEffect(() => { if (isOpen) setEverOpened(true); }, [isOpen]);
-  const [modelChoices, setModelChoices] = useState(MODEL_CHOICES);
+  const [modelChoices, setModelChoices] = useState(MODEL_CHOICES.filter((m) => m.key !== 'mini'));
   useEffect(() => { setModelChoices(availableModelChoices()); }, []);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sessionsOpen, setSessionsOpen] = useState(false);
@@ -213,7 +213,7 @@ export default function ChatWidget({ fullPage = false }) {
   }, []);
 
   // The whole conversation, so she is not answering from the last few lines.
-  const buildHistory = () => messages.slice(-40).map(m => ({
+  const buildHistory = () => messages.slice(isApplePhoneOrTablet() ? -8 : -40).map(m => ({
     role: m.sender === 'user' ? 'user' : 'assistant',
     content: m.pending ? `${m.text}\n[${m.pendingState === 'cancelled' ? 'Cancelled' : m.pendingState === 'done' ? 'Confirmed' : 'Waiting for confirmation'}: ${m.pending.summary}]` : m.text,
   }));
