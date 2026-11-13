@@ -11,29 +11,24 @@ const MODEL_OK = 'hallie:model-ok';
 const MODEL_BOOT = 'hallie:model-boot';
 
 export const MODEL_CHOICES = [
-  { key: 'server', label: 'Hallie' },
   { key: 'lite', label: 'Hallie (lite)' },
   { key: 'thinking', label: 'Hallie (thinking)' },
 ];
 
-function knownModel(value) {
-  return MODEL_CHOICES.some((m) => m.key === value);
-}
-
 export function readModelChoice() {
-  let key = 'server';
+  let key = 'lite';
   let bounced = false;
   try {
     const boot = localStorage.getItem(MODEL_BOOT);
     const ok = localStorage.getItem(MODEL_OK);
-    if (boot && boot !== 'server') {
+    if (boot === 'lite' || boot === 'thinking') {
       localStorage.removeItem(MODEL_BOOT);
       bounced = true;
-      key = knownModel(ok) && ok !== boot ? ok : 'server';
-    } else if (knownModel(ok)) {
+      key = (ok === 'lite' || ok === 'thinking') && ok !== boot ? ok : (boot === 'thinking' ? 'lite' : 'thinking');
+    } else if (ok === 'lite' || ok === 'thinking') {
       key = ok;
     }
-  } catch { /* private mode stays on the server model */ }
+  } catch { /* private mode opens Hallie (lite) */ }
   return { key, bounced };
 }
 
@@ -46,18 +41,12 @@ export function useLocalModel(modelKey) {
 
   useEffect(() => {
     const gen = ++loadGen.current;
-    if (!modelKey || modelKey === 'server') {
+    if (!modelKey || !LOCAL_MODELS[modelKey]) {
       const previous = engineRef.current;
       engineRef.current = null;
       setReady(false);
       setProgress(0);
       setStatus('');
-      if (modelKey === 'server') {
-        try {
-          localStorage.setItem(MODEL_OK, 'server');
-          localStorage.removeItem(MODEL_BOOT);
-        } catch { /* ignore */ }
-      }
       if (previous?.unload) previous.unload().catch(() => {});
       return undefined;
     }
@@ -67,7 +56,7 @@ export function useLocalModel(modelKey) {
       setProgress(0);
       setStatus('Initializing WebGPU engine...');
       if (typeof navigator === 'undefined' || !navigator.gpu) {
-        setStatus('This browser cannot run a model on the device. Hallie on the server still works.');
+        setStatus('This browser cannot run Hallie on the device. It needs WebGPU.');
         return;
       }
       const chosen = LOCAL_MODELS[modelKey] ?? LOCAL_MODELS.lite;

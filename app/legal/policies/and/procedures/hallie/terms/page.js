@@ -78,7 +78,7 @@ export default function HallieTerms() {
           <h2>2. What Hallie Can and Cannot Do</h2>
           <ul>
   <li>Hallie can answer questions about TJB Management, point you to the right page or contact, and handle routine messages.</li>
-  <li>Hallie can be wrong. Her answers may be incomplete, out of date, or mistaken. That includes the smaller model that runs on your own device. Check anything important with us at support@tjbmanagementinc.com before relying on it.</li>
+  <li>Hallie can be wrong. Her answers may be incomplete, out of date, or mistaken. Check anything important with us at support@tjbmanagementinc.com before relying on it.</li>
   <li>Hallie does not give legal, financial, tax, medical, or other professional advice.</li>
   <li>Hallie cannot make binding offers, sign contracts, approve payments, grant access, or change any agreement or policy on behalf of TJB Management. Nothing she says is binding unless TJB Management or Tyler confirms it in writing.</li>
   <li>Hallie may decline, ignore, or end a conversation, and may refer you to a human.</li>
@@ -101,8 +101,7 @@ export default function HallieTerms() {
         <div className="section" id="hallie-data">
           <h2>4. Your Messages and Data</h2>
           <ul>
-  <li><strong>Website chat.</strong> When you chat with Hallie in the website chat, the message you send, and recent earlier messages from the same conversation, are transmitted to TJB Management's systems and processed by an AI model, provided by third-party AI providers acting as our service providers, to produce a reply.</li>
-  <li><strong>On this device.</strong> Choosing Hallie (lite) or Hallie (thinking) in the Hallie chat runs the reply in your browser. The reply is produced on your device. Those messages are not sent to TJB Management to generate the answer. The first time you open a model, your browser downloads the model weights from the public host published by the MLC WebLLM library and caches them on your device. Which model finished loading is remembered only in that browser, so the next visit opens the last one that worked. If a model does not finish loading, the page opens the last one that did. This page still depends on your browser supporting WebGPU and having enough storage. Mentions and trending are tools Hallie runs in the chat when TikTok is connected, not a separate panel. Those requests go to TJB Management's systems and TikTok, as described in the <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>. The reply is produced on the device, but the messages stay in the same chat, so a saved login copy includes them.</li>
+  <li><strong>Website chat.</strong> Hallie (lite) and Hallie (thinking) both run in your browser. The reply is produced on your device. Those messages are not sent to a third-party AI provider to generate the answer. The first time you open a model, your browser downloads the model weights from the public host published by the MLC WebLLM library and caches them on your device. Which model finished loading is remembered only in that browser, so the next visit opens the last one that worked. If a model does not finish loading, the page opens the other one. This still depends on your browser supporting WebGPU and having enough storage. A connected TikTok account can still send a tool request, such as mentions or trending, to TJB Management's systems and TikTok, as described in the <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>. The reply is produced on the device, but the messages stay in the same chat, so a saved login copy includes them.</li>
   <li><strong>Stored conversations.</strong> Website-chat conversations that you save to a Hallie login are stored on our systems. A login can hold up to 20 conversations. Each saved conversation is kept for 90 days from its last save, then deleted.</li>
   <li><strong>Your browser.</strong> A copy of the website chat is also saved in your own browser so a reload does not wipe it. That copy lasts one day. You can remove it by clearing this site's data in your browser. The model choice is remembered only in that browser.</li>
   <li><strong>Saved across devices.</strong> You can sign in with Google, Apple, X, TikTok, or more than one of them. Those connections belong to one Hallie login. Saved website chats belong to that login, not to a single app. They open on any device where you sign in with any account connected to the same login. A different login cannot open them. You can delete a saved conversation from the chat. Logging out of this browser does not delete the saved copy. If you never sign in, the website chat stays in that browser only.</li>
@@ -124,7 +123,7 @@ export default function HallieTerms() {
 
         <div className="section" id="hallie-availability">
           <h2>6. No Guarantee of Availability</h2>
-          <p>Hallie may be unavailable, slow, limited, changed, or withdrawn at any time, including for maintenance, outages, or provider limits. On-device Hallie may also fail to load when the device, browser, or stored model cannot run it. The models offered on that page may change.</p>
+          <p>Hallie may be unavailable, slow, limited, changed, or withdrawn at any time, including for maintenance or when the device, browser, or stored model cannot run it. The models offered may change.</p>
         </div>
 
         <div className="section" id="hallie-ip">

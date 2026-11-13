@@ -222,63 +222,30 @@ export default function ChatWidget({ fullPage = false }) {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
-    if (modelKey && modelKey !== 'server') {
-      if (!engineRef.current) {
-        addHallieMessage(modelStatus || 'That model is still loading on this device.');
-        return;
-      }
-      const id = Date.now() + Math.random();
-      setMessages(prev => [...prev, { id, text: '', sender: 'hallie', time: now() }]);
-      try {
-        let full = '';
-        const chunks = await engineRef.current.chat.completions.create({
-          messages: [
-            { role: 'system', content: HALLIE_LOCAL_PROMPT },
-            ...history,
-            { role: 'user', content: text },
-          ],
-          stream: true,
-        });
-        for await (const chunk of chunks) {
-          full += chunk.choices?.[0]?.delta?.content || '';
-          const shown = full;
-          setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: shown } : m)));
-        }
-        if (!full) setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'No reply.' } : m)));
-      } catch (err) {
-        setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'Error generating response: ' + (err?.message || 'unknown error') } : m)));
-      }
+    if (!engineRef.current) {
+      addHallieMessage(modelStatus || 'That model is still loading on this device.');
       return;
     }
-
-    setIsTyping(true);
-
+    const id = Date.now() + Math.random();
+    setMessages(prev => [...prev, { id, text: '', sender: 'hallie', time: now() }]);
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history })
+      let full = '';
+      const chunks = await engineRef.current.chat.completions.create({
+        messages: [
+          { role: 'system', content: HALLIE_LOCAL_PROMPT },
+          ...history,
+          { role: 'user', content: text },
+        ],
+        stream: true,
       });
-      const data = await res.json();
-      if (data.chatDeleted === true) {
-        holdSave.current = true;
-        try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
-        setMessages([{ id: Date.now() + Math.random(), text: data.reply || 'Done. This chat is wiped.', sender: 'hallie', time: now() }]);
-        return;
+      for await (const chunk of chunks) {
+        full += chunk.choices?.[0]?.delta?.content || '';
+        const shown = full;
+        setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: shown } : m)));
       }
-
-      const pa = data.pendingAction;
-      addHallieMessage(data.reply || 'I received your message.', {
-        ...(pa && typeof pa.id === 'string' && typeof pa.summary === 'string'
-          ? { pending: { id: pa.id, summary: pa.summary, count: Number(pa.count) || 1 }, pendingState: 'open' }
-          : {}),
-        connect: data.connect === true,
-        adminLogin: data.adminLogin === true,
-      });
+      if (!full) setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'No reply.' } : m)));
     } catch (err) {
-      addHallieMessage('Connection error. Please try emailing me at hallie@tjbmanagementinc.com instead.');
-    } finally {
-      setIsTyping(false);
+      setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'Error generating response: ' + (err?.message || 'unknown error') } : m)));
     }
   };
 
@@ -710,7 +677,7 @@ export default function ChatWidget({ fullPage = false }) {
             <label className="chat-model">
               Model
               <select
-                value={modelKey || 'server'}
+                value={modelKey || 'lite'}
                 onChange={(e) => { setModelNote(''); setModelKey(e.target.value); }}
                 disabled={!modelKey || isTyping}
               >
@@ -718,7 +685,7 @@ export default function ChatWidget({ fullPage = false }) {
               </select>
             </label>
             {(modelNote || modelStatus) && <p className="chat-model-status">{modelNote || modelStatus}</p>}
-            {modelKey && modelKey !== 'server' && modelProgress > 0 && modelProgress < 100 && (
+            {modelKey && modelProgress > 0 && modelProgress < 100 && (
               <div className="chat-model-bar" role="progressbar" aria-valuenow={modelProgress} aria-valuemin={0} aria-valuemax={100}>
                 <span style={{ width: `${modelProgress}%` }} />
               </div>
@@ -731,7 +698,7 @@ export default function ChatWidget({ fullPage = false }) {
               placeholder="Message Hallie…"
               disabled={isTyping}
             />
-            <button type="submit" disabled={!modelKey || !input.trim() || isTyping || (modelKey !== 'server' && !modelReady)}>Send</button>
+            <button type="submit" disabled={!modelKey || !input.trim() || isTyping || !modelReady}>Send</button>
           </form>
           </div>
           <div className="chat-terms">
