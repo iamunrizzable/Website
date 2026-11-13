@@ -1,7 +1,7 @@
 # TJB Management Inc. — Claude Context
 
 ## Critical Rules
-- **NEVER change the apply link**: `https://www.tiktok.com/t/ZTkgQvTCb/`
+- **NEVER change the apply link**: `https://www.tiktok.com/t/ZPL7uvxn7/`
 - **ALWAYS merge dev branch to main after every set of changes**
 - **ONLY make changes explicitly requested — nothing more. A suggestion is not permission.** You may propose alternatives/improvements in conversation, but you do NOT implement any of them — not wording, not UI, not design, not scope — until Tyler explicitly says yes. Say what you'd suggest and stop there; wait for a real answer, not silence, not your own judgment call, before touching anything beyond the literal ask. This applies everywhere: code, copy, and conversation.
 - **When the user gives exact user-facing wording (an error message, a screen's copy, a specific sentence), use it VERBATIM.** Do not paraphrase, "clean up," swap a word for a synonym, add/remove punctuation, or otherwise rewrite it, even slightly — not even if the substitute reads better. If the exact wording is genuinely unusable as given (breaks something, is ambiguous), say so and ask, don't silently substitute your own version.

@@ -3,11 +3,13 @@
 import './page.css';
 
 import { useState, useEffect } from 'react';
+import { TIKTOK_AGENCY_APPLY_URL } from '@/lib/agency-apply';
 
 export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
+    { name: 'Apply to Join the Agency', href: TIKTOK_AGENCY_APPLY_URL, icon: '✅' },
     { name: 'Email Our TikTok Agency', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
     { name: "Check Out Our TikTok Agency's TikTok Account", href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
     { name: "Check Out Our TikTok Agency's Instagram Account", href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },

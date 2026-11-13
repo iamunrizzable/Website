@@ -18,7 +18,7 @@ Stack: Next.js 16 App Router, React 19, Vercel serverless, no database (cookies 
 
 ## 2. The five laws (from CLAUDE.md — non-negotiable)
 
-1. **Never change the apply link** `https://www.tiktok.com/t/ZTkgQvTCb/`.
+1. **Never change the apply link** `https://www.tiktok.com/t/ZPL7uvxn7/`.
 2. **Everything ships to `main`** (which is production — Vercel deploys on push). Keep the dev branch `claude/general-session-v2pLH` synced to main after each push.
 3. **Only make changes explicitly requested.**
 4. **Never guess at a fix.** Confirm root cause by reproduction or trace, or ask. No speculative deploys.

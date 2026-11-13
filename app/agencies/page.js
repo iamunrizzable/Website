@@ -50,7 +50,7 @@ export default function AgenciesHub() {
           <a href="/agencies/tiktok" className="card section">
             <span className="card-icon">🎵</span>
             <span className="card-title">TikTok Agency</span>
-            <span className="card-desc">TJB Management's TikTok LIVE creator agency — guidelines, streaming resources, merch, and how to join.</span>
+            <span className="card-desc">One TikTok creator network. Apply to join, then guidelines, streaming, and merch.</span>
             <span className="card-link">VIEW TIKTOK AGENCY →</span>
           </a>
 

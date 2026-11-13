@@ -197,6 +197,7 @@
   border-radius: 12px;
   font-size: 14px;
   line-height: 1.5;
+  white-space: pre-wrap;
 }
 
 .chat-widget .chat-message.user .bubble {

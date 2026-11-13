@@ -3,6 +3,7 @@
 import './page.css';
 
 import { useState, useEffect } from 'react';
+import { TIKTOK_AGENCY_APPLY_URL } from '@/lib/agency-apply';
 
 export default function StreamingBasics() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -375,7 +376,7 @@ export default function StreamingBasics() {
           <p>Have a question that isn't answered here? <a href="/agencies/tiktok/connect" className="link-purple">Connect with the agency →</a></p>
         </div>
 
-        <a href="/agencies/tiktok" className="cta-btn">Learn About Joining TJB Management →</a>
+        <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join the Agency</a>
 
         <div className="footer">
           <p>© 2026 TJB Management Inc. All rights reserved.</p>

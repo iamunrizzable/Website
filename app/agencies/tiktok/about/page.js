@@ -3,6 +3,7 @@
 import './page.css';
 
 import { useState, useEffect } from 'react';
+import { TIKTOK_AGENCY_APPLY_URL } from '@/lib/agency-apply';
 
 export default function AgencyPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function AgencyPage() {
         <a href="/agencies/tiktok" className="back-link">← Back to TikTok Agency</a>
 
         <h1>TJB Management Inc.</h1>
-        <p className="subtitle">A TikTok LIVE Creator Agency — Founded by Tyler @ TJB Mgmt</p>
+        <p className="subtitle">One TikTok creator network — Founded by Tyler @ TJB Mgmt</p>
 
         <div className="section">
           <h2>What is TJB Management?</h2>
@@ -47,8 +48,9 @@ export default function AgencyPage() {
             TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok Backstage and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
           </p>
           <p>
-            Whether you're just getting started or already pulling serious numbers, TJB Management gives you the infrastructure, strategy, and protection to take your stream to the next level — and it costs you <span className="highlight">absolutely nothing to join</span>.
+            TJB Management's TikTok creators are now in one creator network. Joining is still free. Creators who want in apply on TikTok.
           </p>
+          <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join the Agency</a>
         </div>
 
         <div className="section">

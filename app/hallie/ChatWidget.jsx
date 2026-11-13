@@ -24,6 +24,18 @@ const LOGIN_PROVIDERS = [
   { id: 'tiktok', name: 'TikTok' },
 ];
 
+function bubbleParts(text) {
+  const lines = String(text ?? '').split('\n');
+  return lines.map((line, lineIndex) => {
+    const bits = line.split(/(\*\*[^*]+\*\*)/g).map((bit, bitIndex) => (
+      bit.startsWith('**') && bit.endsWith('**') && bit.length > 4
+        ? <strong key={bitIndex}>{bit.slice(2, -2)}</strong>
+        : bit
+    ));
+    return <span key={lineIndex}>{lineIndex > 0 && <br />}{bits}</span>;
+  });
+}
+
 function storableMessages(messages) {
   return messages.slice(-CHAT_STORAGE_MAX).map(({ id, text, sender, time }) => ({ id, text, sender, time }));
 }
@@ -468,7 +480,7 @@ export default function ChatWidget({ fullPage = false }) {
             )}
             {messages.map(msg => (
               <div key={msg.id} className={`chat-message ${msg.sender}`}>
-                <span className="bubble">{msg.text}</span>
+                <span className="bubble">{bubbleParts(msg.text)}</span>
                 {msg.pending && (
                   <div className="chat-confirm">
                     <p>{msg.pending.summary}</p>

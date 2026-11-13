@@ -3,6 +3,7 @@
 import './page.css';
 
 import { useState, useEffect } from 'react';
+import { TIKTOK_AGENCY_APPLY_URL } from '@/lib/agency-apply';
 
 export default function AgencyHub() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,11 +43,17 @@ export default function AgencyHub() {
       <main>
         <div className="header section">
           <h1>TikTok Agency</h1>
-          <p className="subtitle">TJB Management Inc. · Agency, Guidelines, Streaming Resources & TikTok Tools</p>
+          <p className="subtitle">TJB Management Inc. · One TikTok creator network</p>
           <span className="badge">⚡ Free to Join</span>
         </div>
 
         <div className="grid">
+          <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="card section">
+            <span className="card-icon">✅</span>
+            <span className="card-title">Apply to Join the Agency</span>
+            <span className="card-desc">TJB Management's TikTok creators are in one creator network. This is the application.</span>
+            <span className="card-link">APPLY ON TIKTOK →</span>
+          </a>
           <a href="/agencies/tiktok/about" className="card section">
             <span className="card-icon">🏢</span>
             <span className="card-title">About the TikTok Agency</span>
