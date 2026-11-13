@@ -2,11 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const PHONE_THINKING = {
-  id: 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',
-  fallback: null,
-};
-
 const LOCAL_MODELS = {
   lite: { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC' },
   thinking: { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC' },
@@ -23,13 +18,6 @@ export const MODEL_CHOICES = [
 
 function knownModel(value) {
   return MODEL_CHOICES.some((m) => m.key === value);
-}
-
-function isPhone() {
-  if (typeof navigator === 'undefined') return false;
-  const ua = navigator.userAgent || '';
-  if (/iPhone|iPad|iPod|Android/i.test(ua)) return true;
-  return navigator.maxTouchPoints > 1 && window.innerWidth < 900;
 }
 
 export function readModelChoice() {
@@ -82,9 +70,7 @@ export function useLocalModel(modelKey) {
         setStatus('This browser cannot run a model on the device. Hallie on the server still works.');
         return;
       }
-      const phone = isPhone();
-      const picked = LOCAL_MODELS[modelKey] ?? LOCAL_MODELS.lite;
-      const chosen = modelKey === 'thinking' && phone ? PHONE_THINKING : picked;
+      const chosen = LOCAL_MODELS[modelKey] ?? LOCAL_MODELS.lite;
       try {
         localStorage.setItem(MODEL_BOOT, modelKey);
       } catch { /* ignore */ }
@@ -106,7 +92,7 @@ export function useLocalModel(modelKey) {
         try {
           engine = await CreateMLCEngine(chosen.id, { initProgressCallback: onProgress });
         } catch (err) {
-          if (phone || !chosen.fallback || !/f16|shader/i.test(String(err?.message ?? err))) throw err;
+          if (!chosen.fallback || !/f16|shader/i.test(String(err?.message ?? err))) throw err;
           setStatus('This device needs the wider model build. Downloading that instead...');
           engine = await CreateMLCEngine(chosen.fallback, { initProgressCallback: onProgress });
         }
@@ -121,9 +107,7 @@ export function useLocalModel(modelKey) {
         } catch { /* ignore */ }
         setProgress(100);
         setReady(true);
-        setStatus(phone && modelKey === 'thinking'
-          ? 'On this phone, thinking uses the smaller build so Safari stays open.'
-          : 'Running on this device.');
+        setStatus('');
       } catch (err) {
         if (gen !== loadGen.current) return;
         setReady(false);
