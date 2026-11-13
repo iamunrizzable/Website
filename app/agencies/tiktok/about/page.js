@@ -88,7 +88,7 @@ export default function AgencyPage() {
             <li><strong>Removal by the network</strong> on TikTok.</li>
           </ul>
           <p className="disclaimer">
-            These are TikTok's rules, not ours. Details are on the Manage relationship page and the resolution procedures in LIVE Backstage. Creators who joined before October 29 and kept the original rules keep the earlier 30-day notice and 60-day wait.
+            These are TikTok's platform rules for all creator networks. Details are on the Manage relationship page and the resolution procedures in LIVE Backstage. Creators who joined before October 29 and kept the original rules keep the earlier 30-day notice and 60-day wait.
           </p>
         </div>
 
