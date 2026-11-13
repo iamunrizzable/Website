@@ -3,6 +3,10 @@ import {
   listOptimizerRules,
   getOptimizerRule,
   createOptimizerRule,
+  createOptimizerRules,
+  updateOptimizerRules,
+  bindOptimizerRules,
+  getOptimizerResult,
   updateOptimizerRuleStatus,
   listOptimizerRuleResults,
 } from '@/lib/tiktok/business-api';
@@ -16,6 +20,14 @@ export async function GET(request) {
   try {
     if (ruleId && searchParams.get('view') === 'rule') return NextResponse.json(await getOptimizerRule({ ruleId }));
     if (ruleId) return NextResponse.json(await listOptimizerRuleResults({ ruleId }));
+    if (searchParams.get('view') === 'result') {
+      let resultDetail;
+      try { resultDetail = JSON.parse(searchParams.get('result_detail') ?? ''); } catch { resultDetail = null; }
+      if (!Array.isArray(resultDetail) || !resultDetail.length) {
+        return NextResponse.json({ error: 'result_detail must be a non-empty array' }, { status: 400 });
+      }
+      return NextResponse.json(await getOptimizerResult({ resultDetail: resultDetail.slice(0, 20) }));
+    }
     return NextResponse.json(await listOptimizerRules());
   } catch (err) {
     return NextResponse.json({ error: err.message }, { status: 500 });
@@ -28,6 +40,18 @@ export async function POST(request) {
   try {
     if (body.action === 'update_status') {
       return NextResponse.json(await updateOptimizerRuleStatus({ ruleId: body.rule_id, status: body.status }));
+    }
+    if (body.action === 'create_rules') {
+      if (!Array.isArray(body.rules) || !body.rules.length) return NextResponse.json({ error: 'rules is required' }, { status: 400 });
+      return NextResponse.json(await createOptimizerRules({ rules: body.rules.slice(0, 5) }));
+    }
+    if (body.action === 'update') {
+      if (!Array.isArray(body.rules) || !body.rules.length) return NextResponse.json({ error: 'rules is required' }, { status: 400 });
+      return NextResponse.json(await updateOptimizerRules({ rules: body.rules.slice(0, 5) }));
+    }
+    if (body.action === 'batch_bind') {
+      if (!Array.isArray(body.bind_info) || !body.bind_info.length) return NextResponse.json({ error: 'bind_info is required' }, { status: 400 });
+      return NextResponse.json(await bindOptimizerRules({ bindInfo: body.bind_info.slice(0, 20) }));
     }
     if (body.action === 'create') {
       return NextResponse.json(await createOptimizerRule({

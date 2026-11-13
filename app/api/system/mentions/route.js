@@ -24,6 +24,20 @@ export async function GET(request) {
     return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
   }
 
+  if (type === 'verify_hashtag') {
+    if (!username) return NextResponse.json({ error: 'A TikTok username is required' }, { status: 400 });
+    const url = `${BASE}/business/mention/hashtag/verify/list/?business_id=${encodeURIComponent(businessId)}&username=${encodeURIComponent(username)}`;
+    const res = await fetch(url, { headers });
+    return NextResponse.json(await res.json());
+  }
+  if (type === 'hashtag_videos') {
+    const hashtag = searchParams.get('hashtag') ?? '';
+    if (!hashtag) return NextResponse.json({ error: 'A hashtag is required' }, { status: 400 });
+    const url = `${BASE}/business/mention/hashtag/video/list/?business_id=${encodeURIComponent(businessId)}&hashtag=${encodeURIComponent(hashtag)}`;
+    const res = await fetch(url, { headers });
+    return NextResponse.json(await res.json());
+  }
+
   const endpoints = {
     videos: `${BASE}/business/mention/video/list/?business_id=${encodeURIComponent(businessId)}`,
     comments: `${BASE}/business/mention/comment/list/?business_id=${encodeURIComponent(businessId)}`,
