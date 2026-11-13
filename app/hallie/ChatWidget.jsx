@@ -6,7 +6,6 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { isChatWipe } from '@/lib/chat-wipe';
 import { HALLIE_LOCAL_PROMPT } from './local/prompt';
-import { AccountPanels } from './AccountPanels';
 import { MODEL_CHOICES, readModelChoice, useLocalModel } from './useLocalModel';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
@@ -664,9 +663,6 @@ export default function ChatWidget({ fullPage = false }) {
                 <span className="bubble">Hallie is typing<span className="dots">…</span></span>
               </div>
             )}
-          </div>
-          <div className="chat-tools">
-            <AccountPanels />
           </div>
           <div className="chat-composer">
             <label className="chat-model">
