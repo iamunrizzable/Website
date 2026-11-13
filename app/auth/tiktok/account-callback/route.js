@@ -3,6 +3,7 @@ import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/
 import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
+import { safeReturnPath } from '@/lib/return-path';
 
 const ALLOWED_PATHS = ['/admin/internal/hallie/tiktok/moderation/system', '/hallie/tiktok/moderation/system', '/hallie/chat'];
 
@@ -85,8 +86,11 @@ export async function GET(request) {
       }
     }
 
+    // A login started from the Hallie chat goes back to the page it started on.
+    const returnTo = isSystem ? safeReturnPath(request.cookies.get('hallie_return')?.value) : null;
     const dest = isSystem ? '/hallie/chat' : '/admin/internal/hallie/tiktok/moderation/system?account_connected=1';
-    const response = safeRedirect(dest);
+    const response = returnTo ? NextResponse.redirect(absoluteUrl(returnTo)) : safeRedirect(dest);
+    if (isSystem) response.cookies.set('hallie_return', '', { maxAge: 0, path: '/' });
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
