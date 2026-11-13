@@ -130,7 +130,7 @@ function ConnectPrompt() {
         Sign in with TikTok to start automating your account — comment moderation, sync, and more.
       </p>
       <a
-        href="/auth/tiktok/system-login"
+        href="/auth/tiktok/system-login?from=/hallie/tiktok/moderation/system"
         style={{ ...s.btn, display: 'inline-block', textDecoration: 'none', padding: '14px 32px', fontSize: 15 }}
       >
         Connect with TikTok
@@ -186,7 +186,7 @@ function AccountPanel() {
             </div>
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, flexShrink: 0 }}>
-            <a href="/auth/tiktok/system-login" style={{ ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
+            <a href="/auth/tiktok/system-login?from=/hallie/tiktok/moderation/system" style={{ ...s.btnSm, textDecoration: 'none', display: 'inline-block' }}>Reconnect</a>
             <button onClick={disconnect} disabled={disconnecting} style={{ ...s.btnDanger, fontSize: 11 }}>
               {disconnecting ? 'Disconnecting…' : 'Disconnect'}
             </button>
