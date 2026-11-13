@@ -15,9 +15,25 @@ export const MODEL_CHOICES = [
   { key: 'thinking', label: 'Hallie (thinking)' },
 ];
 
+// iPhone and iPad kill the tab when the 3B model asks for its memory, so
+// they only get lite. iPadOS reports itself as a Mac with a touch screen.
+export function isApplePhoneOrTablet() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent || '';
+  return /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+}
+
+export function availableModelChoices() {
+  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'lite') : MODEL_CHOICES;
+}
+
 export function readModelChoice() {
   let key = 'lite';
   let bounced = false;
+  if (isApplePhoneOrTablet()) {
+    try { localStorage.removeItem(MODEL_BOOT); } catch { /* ignore */ }
+    return { key, bounced: false };
+  }
   try {
     const boot = localStorage.getItem(MODEL_BOOT);
     const ok = localStorage.getItem(MODEL_OK);
@@ -38,6 +54,16 @@ export function useLocalModel(modelKey) {
   const [status, setStatus] = useState('');
   const [progress, setProgress] = useState(0);
   const [ready, setReady] = useState(false);
+  const [nonce, setNonce] = useState(0);
+
+  // Throw the loaded engine away and load it again (used after an error).
+  const reload = () => {
+    const previous = engineRef.current;
+    engineRef.current = null;
+    setReady(false);
+    if (previous?.unload) previous.unload().catch(() => {});
+    setNonce((n) => n + 1);
+  };
 
   useEffect(() => {
     const gen = ++loadGen.current;
@@ -104,7 +130,7 @@ export function useLocalModel(modelKey) {
       }
     })();
     return undefined;
-  }, [modelKey]);
+  }, [modelKey, nonce]);
 
-  return { engineRef, status, progress, ready };
+  return { engineRef, status, progress, ready, reload };
 }

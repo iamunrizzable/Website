@@ -6,7 +6,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { isChatWipe } from '@/lib/chat-wipe';
 import { HALLIE_LOCAL_PROMPT } from './local/prompt';
-import { MODEL_CHOICES, readModelChoice, useLocalModel } from './useLocalModel';
+import { MODEL_CHOICES, availableModelChoices, readModelChoice, useLocalModel } from './useLocalModel';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
 // bubble is left off there.
@@ -66,12 +66,14 @@ export default function ChatWidget({ fullPage = false }) {
   const [syncNote, setSyncNote] = useState('');
   const [modelKey, setModelKey] = useState(null);
   const [modelNote, setModelNote] = useState('');
+  const [modelChoices, setModelChoices] = useState(MODEL_CHOICES);
+  useEffect(() => { setModelChoices(availableModelChoices()); }, []);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sessionsOpen, setSessionsOpen] = useState(false);
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
   const hidden = !fullPage && pathname === CHAT_PAGE_PATH;
-  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady } = useLocalModel((!fullPage && !isOpen) || hidden || !modelKey ? null : modelKey);
+  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady, reload: reloadModel } = useLocalModel((!fullPage && !isOpen) || hidden || !modelKey ? null : modelKey);
 
   // Full-page chat: fill exactly the screen below whatever sits above it
   // (banner, menu), and refit when that changes (banner loads, rotation).
@@ -245,7 +247,9 @@ export default function ChatWidget({ fullPage = false }) {
       }
       if (!full) setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'No reply.' } : m)));
     } catch (err) {
-      setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'Error generating response: ' + (err?.message || 'unknown error') } : m)));
+      const stack = String(err?.stack || '').split('\n').slice(0, 4).join(' | ').slice(0, 300);
+      const detail = `${err?.name || 'Error'}: ${err?.message || 'unknown error'}${stack ? ` [${stack}]` : ''}`;
+      setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'Error generating response: ' + detail, reloadModel: true } : m)));
     }
   };
 
@@ -275,7 +279,7 @@ export default function ChatWidget({ fullPage = false }) {
       if (saved && Date.now() - saved.savedAt < CHAT_STORAGE_TTL_MS && Array.isArray(saved.messages)) {
         let msgs = saved.messages
           .filter(m => m && typeof m.text === 'string' && (m.sender === 'user' || m.sender === 'hallie'))
-          .map(({ pending, pendingState, connect, connectPrompt, adminLogin, ...m }) => (
+          .map(({ pending, pendingState, connect, connectPrompt, adminLogin, reloadModel: _rm, ...m }) => (
             pending && pendingState === 'done' ? { ...m, pending, pendingState } : m
           ));
         // Admin login re-sends the last ask on return; drop its first copy.
@@ -659,6 +663,11 @@ export default function ChatWidget({ fullPage = false }) {
                     connect me to your tiktok
                   </button>
                 )}
+                {msg.reloadModel && (
+                  <button type="button" className="chat-connect" onClick={() => { setMessages(prev => prev.map((m) => (m.id === msg.id ? { ...m, reloadModel: false } : m))); reloadModel(); }}>
+                    reload model
+                  </button>
+                )}
                 {msg.adminLogin && (
                   <button type="button" className="chat-connect" onClick={goAdminLogin}>
                     log in as admin
@@ -681,7 +690,7 @@ export default function ChatWidget({ fullPage = false }) {
                 onChange={(e) => { setModelNote(''); setModelKey(e.target.value); }}
                 disabled={!modelKey || isTyping}
               >
-                {MODEL_CHOICES.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
+                {modelChoices.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
               </select>
             </label>
             {(modelNote || modelStatus) && <p className="chat-model-status">{modelNote || modelStatus}</p>}
