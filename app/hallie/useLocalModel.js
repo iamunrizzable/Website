@@ -26,15 +26,21 @@ export function isApplePhoneOrTablet() {
 }
 
 export function availableModelChoices() {
-  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'mini') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
+  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'mini' || m.key === 'lite') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
 }
 
 export function readModelChoice() {
   let key = 'lite';
   let bounced = false;
   if (isApplePhoneOrTablet()) {
-    try { localStorage.removeItem(MODEL_BOOT); } catch { /* ignore */ }
-    return { key: 'mini', bounced: false };
+    // Phones always open on mini; lite is only loaded when picked. If a pick
+    // closed the page last time, say so.
+    let crashed = false;
+    try {
+      crashed = localStorage.getItem(MODEL_BOOT) === 'lite';
+      localStorage.removeItem(MODEL_BOOT);
+    } catch { /* ignore */ }
+    return { key: 'mini', bounced: crashed };
   }
   try {
     const boot = localStorage.getItem(MODEL_BOOT);
