@@ -17,6 +17,13 @@ const CHAT_STORAGE_KEY = 'hallie:chat:v1';
 const CHAT_STORAGE_TTL_MS = 24 * 60 * 60 * 1000;
 const CHAT_STORAGE_MAX = 50;
 
+const LOGIN_PROVIDERS = [
+  { id: 'google', name: 'Google' },
+  { id: 'apple', name: 'Apple' },
+  { id: 'x', name: 'X' },
+  { id: 'tiktok', name: 'TikTok' },
+];
+
 function storableMessages(messages) {
   return messages.slice(-CHAT_STORAGE_MAX).map(({ id, text, sender, time }) => ({ id, text, sender, time }));
 }
@@ -36,6 +43,7 @@ export default function ChatWidget({ fullPage = false }) {
   const [cloudReady, setCloudReady] = useState(false);
   const [accountOn, setAccountOn] = useState(false);
   const [accountTag, setAccountTag] = useState(null);
+  const [connections, setConnections] = useState([]);
   const [syncOpen, setSyncOpen] = useState(false);
   const [syncBusy, setSyncBusy] = useState(false);
   const [syncNote, setSyncNote] = useState('');
@@ -81,13 +89,39 @@ export default function ChatWidget({ fullPage = false }) {
   const reopenAfterLogin = () => {
     try { sessionStorage.setItem('hallie:open', '1'); } catch { /* storage blocked: chat just starts closed */ }
   };
-  const goLogin = () => {
+  const goLogin = () => setSyncOpen(true);
+  const startConnection = (provider) => {
     reopenAfterLogin();
-    window.location.assign(`/auth/tiktok/system-login?from=${encodeURIComponent(window.location.pathname)}`);
+    const from = encodeURIComponent(window.location.pathname);
+    const path = provider === 'tiktok'
+      ? `/auth/tiktok/system-login?from=${from}`
+      : `/auth/hallie/${provider}?from=${from}`;
+    window.location.assign(path);
+  };
+  const unlink = async (provider) => {
+    setSyncBusy(true);
+    setSyncNote('');
+    try {
+      const res = await fetch('/api/hallie/chats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'unlink', provider }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not remove that connection');
+      setConnections(data.connections || []);
+      setAccountOn(Boolean(data.connected));
+      if (!data.connected) setAccountTag(null);
+      window.dispatchEvent(new Event('hallie:connection-changed'));
+    } catch (err) {
+      setSyncNote(err.message || 'Could not remove that connection.');
+    } finally {
+      setSyncBusy(false);
+    }
   };
 
-  // Log out: clears the TikTok connection (and an admin session, if any) in
-  // this browser. A chat saved to the TikTok account stays there.
+  // Log out: clears every connection in this browser. A saved chat stays
+  // on the login, and any of those accounts can open it again.
   const logOut = async () => {
     setSyncBusy(true);
     try {
@@ -95,6 +129,7 @@ export default function ChatWidget({ fullPage = false }) {
       await fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
       setAccountOn(false);
       setAccountTag(null);
+      setConnections([]);
       setSyncOpen(false);
       try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
       setMessages([{ id: Date.now() + Math.random(), text: "You're logged out.", sender: 'hallie', time: now() }]);
@@ -114,6 +149,13 @@ export default function ChatWidget({ fullPage = false }) {
         setIsOpen(true);
       }
     } catch { /* ignore */ }
+  }, []);
+
+  useEffect(() => {
+    const err = new URLSearchParams(window.location.search).get('error');
+    if (!err) return;
+    setSyncOpen(true);
+    setSyncNote(err);
   }, []);
 
   // A page can ask Hallie to handle the TikTok login: it dispatches
@@ -235,10 +277,12 @@ export default function ChatWidget({ fullPage = false }) {
         if (!res.ok || !data.connected) {
           setAccountOn(false);
           setAccountTag(null);
+          setConnections([]);
           return;
         }
         setAccountOn(true);
         setAccountTag(data.tag || null);
+        setConnections(Array.isArray(data.connections) ? data.connections : []);
         let local = null;
         try { local = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY) ?? 'null'); } catch { /* ignore */ }
         const wrongAccount = local?.tag && data.tag && local.tag !== data.tag;
@@ -392,20 +436,26 @@ export default function ChatWidget({ fullPage = false }) {
           </div>
           {syncOpen && (
             <div className="chat-sync">
-              {accountOn ? (
-                <>
-                  <p>This chat is saved to the TikTok account you connected. On another device, connect that same account and the chat opens there.</p>
-                  <button type="button" onClick={deleteSavedChat} disabled={syncBusy}>
-                    {syncBusy ? 'Deleting…' : 'Delete saved chat'}
-                  </button>
-                </>
-              ) : (
-                <>
-                  <p>Connect your TikTok account and this chat is saved to it. Sign in with that same account on another phone or computer and the chat is there. Someone else’s TikTok login cannot open it.</p>
-                  <button type="button" onClick={goLogin}>
-                    Connect TikTok
-                  </button>
-                </>
+              <p>Sign in with Google, Apple, X, or TikTok. You can connect more than one. The chat is saved to this login, and any of those accounts opens it on another device.</p>
+              {LOGIN_PROVIDERS.map((provider) => {
+                const connected = connections.find((c) => c.provider === provider.id);
+                return (
+                  <div className="chat-sync-row" key={provider.id}>
+                    <span>{connected ? `${provider.name} · ${connected.label}` : provider.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => (connected ? unlink(provider.id) : startConnection(provider.id))}
+                      disabled={syncBusy}
+                    >
+                      {connected ? 'Remove' : 'Connect'}
+                    </button>
+                  </div>
+                );
+              })}
+              {accountOn && (
+                <button type="button" onClick={deleteSavedChat} disabled={syncBusy}>
+                  {syncBusy ? 'Deleting…' : 'Delete saved chat'}
+                </button>
               )}
               {syncNote && <p className="chat-sync-note">{syncNote}</p>}
             </div>

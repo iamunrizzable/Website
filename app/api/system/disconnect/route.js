@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { clearSessionCookie } from '@/lib/hallie-identity';
 
 export async function POST() {
   const response = NextResponse.json({ ok: true });
@@ -9,5 +10,6 @@ export async function POST() {
     maxAge: 0,
     path: '/',
   });
+  clearSessionCookie(response);
   return response;
 }

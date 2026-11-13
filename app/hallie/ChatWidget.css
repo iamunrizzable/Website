@@ -129,6 +129,14 @@
 
 .chat-sync p { margin: 0 0 8px; }
 
+.chat-sync-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 .chat-sync input {
   width: 100%;
   box-sizing: border-box;

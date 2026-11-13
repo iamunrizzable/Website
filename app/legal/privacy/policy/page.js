@@ -153,6 +153,7 @@ export default function PrivacyPolicy() {
           <ul>
             <li><strong>tiktok_oauth_state</strong> — a short-lived cookie set during TikTok OAuth login flows to prevent cross-site request forgery. Expires after 10 minutes.</li>
             <li><strong>acct_token</strong> — stores an Operator's TikTok Account Login token for the Hallie Platform. HttpOnly, Secure. Expires after 30 days. See Part II for full detail.</li>
+            <li><strong>hallie_session</strong> — the Hallie login for this browser. It can hold a Google, Apple, X, and TikTok connection at the same time. HttpOnly, Secure. Expires after 90 days.</li>
             <li><strong>biz_token</strong> — stores an Operator's TikTok Business/Advertiser token used for the Hallie Platform's automated rules features. HttpOnly, Secure. Expires after 30 days.</li>
             <li><strong>custom_rules</strong> — stores an Operator's custom moderation-rule configuration for the Hallie Platform. HttpOnly, Secure. Expires after 30 days.</li>
             <li><strong>admin_session</strong> — an internal login-session cookie used exclusively by TJB Management's own personnel to access the Website's administrative dashboard. It is not set for, and does not apply to, general Website visitors. HttpOnly, Secure.</li>

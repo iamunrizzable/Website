@@ -4,6 +4,7 @@ import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
 import { absoluteUrl } from '@/lib/site-url';
 import { safeReturnPath } from '@/lib/return-path';
+import { SESSION_COOKIE, connectProvider, applySessionCookie } from '@/lib/hallie-identity';
 
 const ALLOWED_PATHS = ['/admin/internal/hallie/tiktok/moderation/system', '/hallie/tiktok/moderation/system', '/hallie/chat'];
 
@@ -98,6 +99,22 @@ export async function GET(request) {
       maxAge: 60 * 60 * 24 * 30,
       path: '/',
     });
+    if (isSystem) {
+      const subject = String(stored.business_id || stored.open_id || '');
+      if (subject) {
+        try {
+          const sessionId = await connectProvider({
+            currentId: request.cookies.get(SESSION_COOKIE)?.value,
+            provider: 'tiktok',
+            subject,
+            label: 'TikTok',
+          });
+          applySessionCookie(response, sessionId);
+        } catch (err) {
+          console.error('[account-callback] could not attach TikTok to the Hallie login:', err.message);
+        }
+      }
+    }
     return response;
   } catch (err) {
     console.error('[account-callback] Error:', err.message);
