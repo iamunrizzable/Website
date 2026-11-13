@@ -1,0 +1,114 @@
+.local-hallie {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #f8fafc;
+}
+
+.local-hallie h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.local-kicker {
+  margin: 0 0 8px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.local-kicker a { color: #d4a5ff; }
+
+.local-status {
+  margin: 8px 0 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.local-model {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.local-model select,
+.local-hallie input {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+}
+
+.local-bar {
+  margin-top: 12px;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.local-bar span {
+  display: block;
+  height: 100%;
+  background: #a855f7;
+}
+
+.local-log {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+  min-height: 240px;
+}
+
+.local-msg {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 82%;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.local-msg.user {
+  background: #2563eb;
+  align-self: flex-end;
+}
+
+.local-msg.assistant {
+  background: #1e293b;
+  border: 1px solid #334155;
+  align-self: flex-start;
+}
+
+.local-hallie form {
+  display: flex;
+  gap: 10px;
+}
+
+.local-hallie input { flex: 1; }
+
+.local-hallie button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.local-hallie button:disabled,
+.local-hallie input:disabled,
+.local-model select:disabled {
+  background: #475569;
+  cursor: not-allowed;
+}

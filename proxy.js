@@ -19,7 +19,7 @@ import { verifyAdminSession } from './lib/auth.js';
 function buildCsp(nonce) {
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'`,
     // No 'unsafe-inline' here (Aikido "CSP config allows inline CSS", risk
     // 20). This is safe despite ~500 React style={{}} props across the
     // app: every route is wrapped in DeviceGate (app/layout.js), which
@@ -56,7 +56,8 @@ function buildCsp(nonce) {
     // Device fingerprinting (lib/fingerprint/) is entirely same-origin
     // bundled code now — no external CDN or identify-data endpoint to
     // allowlist, unlike the third-party SDK this replaced.
-    "connect-src 'self'",
+    "connect-src 'self' https://huggingface.co https://*.huggingface.co https://*.hf.co https://raw.githubusercontent.com",
+    "worker-src 'self' blob:",
     "font-src 'self' data:",
     "frame-ancestors 'none'",
     "object-src 'none'",
