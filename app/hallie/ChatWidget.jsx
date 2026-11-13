@@ -76,6 +76,46 @@ export default function ChatWidget({ fullPage = false }) {
     setMessages(prev => [...prev, { id: Date.now() + Math.random(), text, sender: 'hallie', time: now(), ...extra }]);
   };
 
+  // Log in: remember that the chat was open so the login returns them to
+  // this page with the chat open again.
+  const reopenAfterLogin = () => {
+    try { sessionStorage.setItem('hallie:open', '1'); } catch { /* storage blocked: chat just starts closed */ }
+  };
+  const goLogin = () => {
+    reopenAfterLogin();
+    window.location.assign(`/auth/tiktok/system-login?from=${encodeURIComponent(window.location.pathname)}`);
+  };
+
+  // Log out: clears the TikTok connection (and an admin session, if any) in
+  // this browser. A chat saved to the TikTok account stays there.
+  const logOut = async () => {
+    setSyncBusy(true);
+    try {
+      await fetch('/api/system/disconnect', { method: 'POST' });
+      await fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
+      setAccountOn(false);
+      setAccountTag(null);
+      setSyncOpen(false);
+      try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
+      setMessages([{ id: Date.now() + Math.random(), text: "You're logged out.", sender: 'hallie', time: now() }]);
+      window.dispatchEvent(new Event('hallie:connection-changed'));
+    } catch {
+      addHallieMessage("I couldn't log you out. Please try again.");
+    } finally {
+      setSyncBusy(false);
+    }
+  };
+
+  // Back from a login that started in the chat: open it again.
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem('hallie:open') === '1') {
+        sessionStorage.removeItem('hallie:open');
+        setIsOpen(true);
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   // A page can ask Hallie to handle the TikTok login: it dispatches
   // 'hallie:connect' and the chat opens with the connect button (once).
   useEffect(() => {
@@ -151,6 +191,7 @@ export default function ChatWidget({ fullPage = false }) {
   const goAdminLogin = () => {
     const lastAsk = [...messages].reverse().find(m => m.sender === 'user')?.text;
     try { if (lastAsk) sessionStorage.setItem('hallie:resume', lastAsk); } catch { /* storage blocked: they just ask again */ }
+    reopenAfterLogin();
     window.location.assign(`/admin/login?next=${encodeURIComponent(window.location.pathname)}`);
   };
 
@@ -341,6 +382,9 @@ export default function ChatWidget({ fullPage = false }) {
               <button type="button" className="chat-saved" onClick={() => setSyncOpen((open) => !open)}>
                 {accountOn ? 'Saved' : 'Account'}
               </button>
+              <button type="button" className="chat-saved" onClick={accountOn ? logOut : goLogin} disabled={syncBusy}>
+                {accountOn ? 'Log out' : 'Log in'}
+              </button>
               {fullPage
                 ? <a className="chat-back" href="/hallie">← Back to Hallie</a>
                 : <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
@@ -358,7 +402,7 @@ export default function ChatWidget({ fullPage = false }) {
               ) : (
                 <>
                   <p>Connect your TikTok account and this chat is saved to it. Sign in with that same account on another phone or computer and the chat is there. Someone else’s TikTok login cannot open it.</p>
-                  <button type="button" onClick={() => window.location.assign('/auth/tiktok/system-login')}>
+                  <button type="button" onClick={goLogin}>
                     Connect TikTok
                   </button>
                 </>
@@ -406,7 +450,7 @@ export default function ChatWidget({ fullPage = false }) {
                   <button
                     type="button"
                     className="chat-connect"
-                    onClick={() => window.location.assign('/auth/tiktok/system-login')}
+                    onClick={goLogin}
                   >
                     connect me to your tiktok
                   </button>
