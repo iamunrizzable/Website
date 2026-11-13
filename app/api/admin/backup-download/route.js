@@ -21,6 +21,13 @@ export async function GET(request) {
       pathname: PATHNAME,
       validUntil,
     });
+    // ?link=1 shows the 10-minute link as plain text so it can be copied
+    // (Safari otherwise goes straight into the download).
+    if (new URL(request.url).searchParams.get('link') === '1') {
+      return new NextResponse(presignedUrl, {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' },
+      });
+    }
     const res = NextResponse.redirect(presignedUrl, 302);
     res.headers.set('Cache-Control', 'no-store');
     return res;
