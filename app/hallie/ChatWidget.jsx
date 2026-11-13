@@ -5,7 +5,6 @@ import './ChatWidget.css';
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { isChatWipe } from '@/lib/chat-wipe';
-import { loadHallieEngine, onEngineProgress, needsSiteTools, LOCAL_SYSTEM_PROMPT } from './localEngine';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
 // bubble is left off there.
@@ -39,9 +38,6 @@ export default function ChatWidget({ fullPage = false }) {
   const [accountTag, setAccountTag] = useState(null);
   const [syncOpen, setSyncOpen] = useState(false);
   const [syncBusy, setSyncBusy] = useState(false);
-  const [engineStatus, setEngineStatus] = useState('Initializing WebGPU engine...');
-  const engineRef = useRef(null);
-  const greeted = useRef(false);
   const [syncNote, setSyncNote] = useState('');
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
@@ -149,37 +145,6 @@ export default function ChatWidget({ fullPage = false }) {
     const wiping = isChatWipe(text);
     if (wiping) holdSave.current = true;
     else holdSave.current = false;
-
-    if (!needsSiteTools(text) && engineRef.current) {
-      const history = buildHistory();
-      const userMessage = { id: Date.now(), text, sender: 'user', time: now() };
-      const bubbleId = Date.now() + 1;
-      setMessages(prev => [...prev, userMessage, { id: bubbleId, text: '...', sender: 'hallie', time: now() }]);
-      setInput('');
-      setIsTyping(true);
-      const prior = history
-        .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && m.content)
-        .slice(-12)
-        .map((m) => ({ role: m.role, content: m.content.slice(0, 1500) }));
-      let full = '';
-      try {
-        const chunks = await engineRef.current.chat.completions.create({
-          messages: [{ role: 'system', content: LOCAL_SYSTEM_PROMPT }, ...prior, { role: 'user', content: text }],
-          stream: true,
-        });
-        for await (const chunk of chunks) {
-          full += chunk.choices?.[0]?.delta?.content || '';
-          const shown = full;
-          setMessages((prev) => prev.map((m) => (m.id === bubbleId ? { ...m, text: shown } : m)));
-        }
-        if (!full) setMessages((prev) => prev.map((m) => (m.id === bubbleId ? { ...m, text: "Sorry, I couldn't come up with an answer." } : m)));
-      } catch (err) {
-        setMessages((prev) => prev.map((m) => (m.id === bubbleId ? { ...m, text: 'Error generating response: ' + (err?.message || 'unknown error') } : m)));
-      } finally {
-        setIsTyping(false);
-      }
-      return;
-    }
 
     const history = buildHistory();
     const userMessage = { id: Date.now(), text, sender: 'user', time: now() };
@@ -339,32 +304,6 @@ export default function ChatWidget({ fullPage = false }) {
     }
   };
 
-  useEffect(() => {
-    if (!isOpen && !fullPage) return undefined;
-    let stop = false;
-    const unsub = onEngineProgress((text) => { if (!stop) setEngineStatus(text); });
-    loadHallieEngine()
-      .then((engine) => {
-        if (stop) return;
-        engineRef.current = engine;
-        setEngineStatus('Hallie is online (Running locally on your device)');
-      })
-      .catch((err) => {
-        if (stop) return;
-        engineRef.current = null;
-        setEngineStatus(err?.code === 'no-gpu'
-          ? 'Error: Your browser or device does not support WebGPU.'
-          : 'Failed to load model: ' + (err?.message || 'unknown error'));
-      });
-    return () => { stop = true; unsub(); };
-  }, [isOpen, fullPage]);
-
-  useEffect(() => {
-    if (!restored || greeted.current || !engineRef.current || messages.length) return;
-    greeted.current = true;
-    setMessages([{ id: 'hello', text: "Hi! I'm Hallie from TJB Management Inc. How can I help you today?", sender: 'hallie', time: now() }]);
-  }, [restored, messages.length, engineStatus]);
-
   const resumed = useRef(false);
   useEffect(() => {
     if (resumed.current) return;
@@ -451,7 +390,6 @@ export default function ChatWidget({ fullPage = false }) {
                 : <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
             </span>
           </div>
-          <div className="chat-engine">{engineStatus}</div>
           {syncOpen && (
             <div className="chat-sync">
               {accountOn ? (
