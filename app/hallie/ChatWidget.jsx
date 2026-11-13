@@ -67,10 +67,10 @@ export default function ChatWidget({ fullPage = false }) {
   const [syncNote, setSyncNote] = useState('');
   const [modelKey, setModelKey] = useState(null);
   const [modelNote, setModelNote] = useState('');
-  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady } = useLocalModel((!fullPage && !isOpen) || hidden || !modelKey ? null : modelKey);
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
   const hidden = !fullPage && pathname === CHAT_PAGE_PATH;
+  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady } = useLocalModel((!fullPage && !isOpen) || hidden || !modelKey ? null : modelKey);
 
   // Full-page chat: fill exactly the screen below whatever sits above it
   // (banner, menu), and refit when that changes (banner loads, rotation).
