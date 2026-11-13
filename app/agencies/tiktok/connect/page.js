@@ -9,14 +9,15 @@ export default function ContactAgency() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const contacts = [
-    { name: 'Apply to Join the Agency', href: TIKTOK_AGENCY_APPLY_URL, icon: '✅' },
-    { name: 'Email Our TikTok Agency', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: "Check Out Our TikTok Agency's TikTok Account", href: 'https://www.tiktok.com/@tjbmanagementinc?_r=1&_t=ZP-96UttEUm6TW', icon: '🎵' },
-    { name: "Check Out Our TikTok Agency's Instagram Account", href: 'https://www.instagram.com/tjbmanagementinc?igsh=MTNydjQ5cnF5cHBlOA==', icon: '📷' },
-    { name: 'Join Our TikTok Agency Discord', href: 'https://discord.gg/xznQZY7CeW', icon: '💬' },
+    { name: 'Apply to Join One Creator Network', href: TIKTOK_AGENCY_APPLY_URL, icon: '✅' },
+    { name: 'Email One Creator Network', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
+    { name: 'Check Out One Creator Network on TikTok', href: 'https://www.tiktok.com/@onecreatornetwork?lang=en', icon: '🎵' },
+    { name: 'Check Out One Creator Network on Instagram', href: 'https://www.instagram.com/onecreatornetwork/', icon: '📷' },
+    { name: 'Join the One Creator Network Discord', href: 'https://discord.gg/zbpGhtEhJn', icon: '💬' },
+    { name: 'Visit onecn.live', href: 'https://onecn.live', icon: '🌐' },
   ];
 
-  const internalLinks = ['Email Our TikTok Agency'];
+  const internalLinks = ['Email One Creator Network'];
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll('.contact-card'));
@@ -54,8 +55,8 @@ export default function ContactAgency() {
       </div>
 
       <main>
-        <a href="/agencies/tiktok" className="back-link">← Back to TikTok Agency</a>
-        <h1>Connect with TJB Management's TikTok Agency</h1>
+        <a href="/agencies/tiktok" className="back-link">← Back to One Creator Network</a>
+        <h1>Connect with One Creator Network</h1>
 
         <div className="contact-grid">
           {contacts.map((contact) => (

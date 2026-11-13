@@ -145,7 +145,7 @@ export default function TikTokGuidelines() {
         <div className="section" id="section-5">
           <h2 className="section-title">5. <span className="pink">Suicide, Self-Harm</span> and Dangerous Activities</h2>
           <p className="policy-text">
-            TikTok and TJB Management both want this to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. <span className="white">Neither of us allows showing, promoting, or sharing plans for suicide or self-harm.</span>
+            TikTok and One Creator Network both want this to be a place where people can discuss emotionally complex topics in a supportive way without increasing the risk of harm. <span className="white">Neither of us allows showing, promoting, or sharing plans for suicide or self-harm.</span>
           </p>
           <span className="badge badge-red">Some examples of what is <span className="not">NOT</span> allowed</span>
           <ul className="rule-list">

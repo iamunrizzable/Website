@@ -259,7 +259,7 @@ export default function StreamingBasics() {
           </p>
           <p><strong>How it works.</strong> Send a <span className="highlight">co-host request</span> to another creator while you're both live. Once they accept and you're in a co-host together, you can then send a battle request. If they accept, the battle starts — viewers pick a side by sending gifts, and a <span className="highlight">5-minute timer</span> counts down. Whoever has more gifts at the end wins.</p>
           <p><strong>Why it works.</strong> The competitive format makes viewers send more gifts than they normally would, and it pulls both creators' audiences into one stream — growing both accounts at the same time.</p>
-          <p><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. TJB Management can connect you with agency partners for battles, and TikTok runs exclusive agency-versus-agency battle events with <span className="highlight">cash prizes on top of normal gift earnings</span>.</p>
+          <p><strong>Agency advantages.</strong> Being in a creator network gives you a built-in pool of other creators to battle. One Creator Network can connect you with partner agencies for battles, and TikTok runs exclusive agency-versus-agency battle events with <span className="highlight">cash prizes on top of normal gift earnings</span>.</p>
           <p><strong>Losing a battle.</strong> Some creators agree beforehand that the loser completes a challenge — a game, a dare, etc. Entirely optional, but it adds entertainment value and gives viewers a reason to stay tuned.</p>
         </div>
 
