@@ -215,7 +215,7 @@ function Trending() {
 
 function Rows({ rows, error, empty, children }) {
   if (error === 'connect') {
-    return <p className="local-note"><a href="/auth/tiktok/system-login?from=/hallie/local">Connect TikTok</a> to use this.</p>;
+    return <p className="local-note"><a href="/auth/tiktok/system-login?from=/hallie/chat">Connect TikTok</a> to use this.</p>;
   }
   if (rows === null) return <p className="local-note">{empty}</p>;
   if (rows === undefined) return <p className="local-note">Loading…</p>;

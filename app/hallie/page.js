@@ -60,13 +60,6 @@ export default function HallieHub() {
             <span className="card-link">CHAT →</span>
           </a>
 
-          <a href="/hallie/local" className="card section">
-            <span className="card-icon">💻</span>
-            <span className="card-title">Hallie on your device</span>
-            <span className="card-desc">Runs in this browser. The first visit downloads the model. After that it stays on your device.</span>
-            <span className="card-link">OPEN →</span>
-          </a>
-
           <a href="/hallie/tiktok/moderation/system" className="card section">
             <span className="card-icon">🛡️</span>
             <span className="card-title">Hallie™ TikTok Moderation System</span>
