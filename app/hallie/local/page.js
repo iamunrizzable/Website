@@ -5,8 +5,8 @@ import { HALLIE_LOCAL_PROMPT } from './prompt';
 import './page.css';
 
 const MODELS = [
-  { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC', label: 'Llama 3.2 1B (faster)' },
-  { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC', label: 'Qwen 2.5 3B (stronger device)' },
+  { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC', label: 'Hallie (lite)' },
+  { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC', label: 'Hallie (thinking)' },
 ];
 
 export default function HallieLocalPage() {
