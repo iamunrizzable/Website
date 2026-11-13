@@ -403,7 +403,10 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding-top: 72px;
+}
+
+.chat-widget.chat-page .chat-header {
+  padding-right: 124px;
 }
 
 .chat-widget.chat-page .chat-box {

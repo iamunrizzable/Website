@@ -433,6 +433,7 @@ export default function ChatWidget({ fullPage = false }) {
       {(isOpen || fullPage) && (
         <div className="chat-box" style={fullPage && pageHeight ? { height: pageHeight } : undefined}>
           <div className="chat-header">
+            {fullPage && <a className="chat-back" href="/hallie">← Back</a>}
             <span>Chat with Hallie™</span>
             <span className="chat-header-actions">
               {accountOn && (
@@ -440,9 +441,7 @@ export default function ChatWidget({ fullPage = false }) {
                   Log out
                 </button>
               )}
-              {fullPage
-                ? <a className="chat-back" href="/hallie">← Back to Hallie</a>
-                : <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
+              {!fullPage && <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
             </span>
           </div>
           <div className="chat-sync">
