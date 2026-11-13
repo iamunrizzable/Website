@@ -1,13 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { cookies } from 'next/headers';
 import { hallieLLMConfigured, callHallieLLM, callHallieLLMWithTools } from '@/lib/hallie-llm';
 import { verifyPendingAction } from '@/lib/hallie-chat-actions';
-import { HALLIE_IDENTITY, runToolChat, executeConfirmedAction, executeConfirmedBatch, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
+import { HALLIE_IDENTITY, FRONT_DESK_TOOLS, FRONT_DESK_PROMPT, runToolChat, executeConfirmedAction, executeConfirmedBatch, connectionReply, parseRelayConnect, selectVisitorTools, visitorPrefetchPlan, TOOLS } from '@/lib/hallie-chat-tools';
 import { isAdminSessionValid } from '@/lib/auth';
 import { ADMIN_TOOLS, ADMIN_IDENTITY, ADMIN_SYSTEM_PROMPT, logAdminAction, selectAdminTools, adminPrefetchPlan } from '@/lib/hallie-admin-tools';
 import { isHallieSuspended } from '@/lib/tokens';
 import { deleteHallieChat } from '@/lib/hallie-chats';
 import { isChatWipe } from '@/lib/chat-wipe';
+import { auditChatMessage } from '@/lib/hallie-audit';
 
 const FALLBACK_REPLY = "I've received your message! I'll get back to you soon. You can also email me directly at hallie@tjbmanagementinc.com.";
 const ERROR_REPLY = 'Connection error. Please try emailing us at support@tjbmanagementinc.com instead.';
@@ -93,6 +94,13 @@ export async function POST(req) {
     // authenticator code). Anyone else never gets them, whatever they say.
     const admin = await isAdminSessionValid(await cookies());
 
+    // Her security log: an attempt to get at protected things is recorded
+    // and Tyler is emailed. Runs after the reply is sent, never for the admin.
+    if (!admin && typeof message === 'string' && message) {
+      const ip = clientIp(req);
+      after(() => auditChatMessage({ message, ip, surface: 'website chat' }));
+    }
+
     // Confirm tap on a pending admin change: signed for the admin identity,
     // and it only runs while the admin session is still valid.
     if (confirm !== undefined) {
@@ -174,8 +182,11 @@ export async function POST(req) {
       }
     }
 
+    // Everyone is answered here, by the site. A visitor who has not
+    // connected TikTok gets the front desk (site search + the log-in button).
     const conn = await connection();
-    if (conn.state !== 'none' && hallieLLMConfigured()) {
+    const frontDesk = conn.state === 'none';
+    if (hallieLLMConfigured()) {
       try {
         const result = await runToolChat({
           message,
@@ -183,11 +194,15 @@ export async function POST(req) {
           identity: conn.identity,
           connectionExpired: conn.state === 'expired',
           llm: callHallieLLMWithTools,
-          prefetchPlan: visitorPrefetchPlan,
-          tools: selectVisitorTools([
-            ...(Array.isArray(history) ? history.filter((m) => m?.role === 'user' && typeof m.content === 'string').map((m) => m.content) : []),
-            message,
-          ]),
+          ...(frontDesk
+            ? { tools: FRONT_DESK_TOOLS, systemPrompt: FRONT_DESK_PROMPT }
+            : {
+              prefetchPlan: visitorPrefetchPlan,
+              tools: selectVisitorTools([
+                ...(Array.isArray(history) ? history.filter((m) => m?.role === 'user' && typeof m.content === 'string').map((m) => m.content) : []),
+                message,
+              ]),
+            }),
         });
         const body = { reply: result.reply };
         if (result.pendingAction) body.pendingAction = result.pendingAction;
@@ -197,7 +212,8 @@ export async function POST(req) {
         return withCookies(NextResponse.json(body), result.setCookies);
       } catch (err) {
         console.error('[chat] tool path failed:', err.message);
-        return NextResponse.json({ reply: failureReply(err) }, { status: 502 });
+        // The front desk still has the old relay (if it is up) to fall back on.
+        if (!frontDesk) return NextResponse.json({ reply: failureReply(err) }, { status: 502 });
       }
     }
 

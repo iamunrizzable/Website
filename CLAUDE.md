@@ -20,6 +20,12 @@
 - `isValidAdminKey(request)` and `isAdminSessionValid(cookies)` are **async — always `await` them**, including under any alias (`isValidAdminKey as requireAdmin`). A missing `await` silently disables auth (a Promise is truthy); this shipped once and left `/api/business/*` open for ~17 min. After touching auth, test every route+method returns 401 without a session.
 - Hallie's chat admin tools (`lib/hallie-admin-tools.js`) exist only for a valid admin session, call these same route handlers in-process with the caller's session cookie, and every change needs an on-screen Confirm (pending actions are HMAC-signed for the `admin` identity). Never wire token export, cookie upload, or secrets into chat tools.
 
+## Hallie on the site (moved from her OpenClaw VM, Nov 2026)
+- **This repo is public.** Never commit anything private from Hallie's backups: no credentials, account or Discord IDs, private history, or details of Tyler's other projects. Private memory goes in through `/admin/internal/hallie/memory` (Import) and lives in Redis only.
+- **Her memory is Tyler's only.** `lib/hallie-memory.js` is reachable only through `/api/admin/hallie-memory` (admin session, awaited) and the admin chat tools in `lib/hallie-memory-tools.js`. Never expose memory to the visitor chat, and never add a public route for it. Anything that looks like a secret is redacted on write.
+- **Public chat is answered by the site**, not the VM: a visitor who has not connected TikTok gets `FRONT_DESK_TOOLS` + `FRONT_DESK_PROMPT` (`lib/hallie-chat-tools.js`). `web_search` searches the site's own pages first (`lib/site-knowledge.js`, index built by `scripts/build-site-knowledge.mjs` on every build); only off-site questions go to `HALLIE_RELAY_URL`, if it is set.
+- **Security log** (`lib/hallie-audit.js`): attempts in the public chat to get at protected things are logged (excerpt + IP-derived ID, as the Hallie Terms describe) and Tyler is emailed, rate-limited. It runs in `after()` and never for the admin.
+
 ## TikTok Business API — Approved Endpoints
 
 **CRITICAL: ONLY use endpoints listed here. These are the ONLY ones authorized by TikTok. Never call any other endpoint.**

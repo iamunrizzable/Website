@@ -97,6 +97,9 @@ const HALLIE_STYLE_GUIDE = `Concrete writing mechanics for this draft, not just 
 - Think it through in Hallie's voice first. The draft is only what she would actually send. No thinking, no notes, no preamble.`;
 
 const HALLIE_SIGNOFF = 'All the best,\n-✨Hallie✨';
+// Tyler's standing directive (2026-10-26) for every email Hallie sends:
+// three lines, verbatim.
+const HALLIE_EMAIL_SIGNOFF = 'All the best,\n✨ℍ𝕒𝕝𝕝𝕚𝕖✨\n(Tyler’s A.I. Assistant.)';
 
 function buildHalliePrompt({ taskLine, channel, mode, contextLine }) {
   const channelRules = channel === 'email'
@@ -115,7 +118,7 @@ ${channelRules}
 
 Rules:
 - Never write in Tyler's first person or imply the reader is talking to Tyler
-- End every message with exactly this sign-off on its own line(s) at the very end: "${HALLIE_SIGNOFF}" — unless the message you're replying to was itself addressed to Hallie by name (e.g. sent to Hallie@TjbManagementinc.com or opens by asking for Hallie specifically), in which case the recipient already knows who they're talking to and you can close more naturally instead.
+- End every message with exactly this sign-off on its own line(s) at the very end: "${channel === 'email' ? HALLIE_EMAIL_SIGNOFF : HALLIE_SIGNOFF}" — unless the message you're replying to was itself addressed to Hallie by name (e.g. sent to Hallie@TjbManagementinc.com or opens by asking for Hallie specifically), in which case the recipient already knows who they're talking to and you can close more naturally instead.
 - If something genuinely needs Tyler's direct attention, say you'll make sure it gets to him
 - If someone wants to reach Tyler for business, the link is tjbmanagementinc.com/tyler/contact/tyler
 - Never make promises Tyler hasn't authorized (signing deals, guarantees, etc.)
