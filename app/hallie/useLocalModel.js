@@ -92,7 +92,7 @@ export function useLocalModel(modelKey) {
         localStorage.setItem(MODEL_BOOT, modelKey);
       } catch { /* ignore */ }
       try {
-        const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
+        const { CreateMLCEngine, prebuiltAppConfig } = await import('@mlc-ai/web-llm');
         if (gen !== loadGen.current) return;
         const previous = engineRef.current;
         engineRef.current = null;
@@ -107,13 +107,19 @@ export function useLocalModel(modelKey) {
         };
         // A smaller context window reserves far less GPU memory on phones.
         const chatOpts = isApplePhoneOrTablet() ? { context_window_size: 2048 } : undefined;
+        // iPhone Safari saves the files into the Cache API but cannot read them
+        // back ("Cannot fetch ..."), so phones keep the model in IndexedDB.
+        const engineConfig = {
+          initProgressCallback: onProgress,
+          ...(isApplePhoneOrTablet() ? { appConfig: { ...prebuiltAppConfig, cacheBackend: 'indexeddb' } } : {}),
+        };
         let engine;
         try {
-          engine = await CreateMLCEngine(chosen.id, { initProgressCallback: onProgress }, chatOpts);
+          engine = await CreateMLCEngine(chosen.id, engineConfig, chatOpts);
         } catch (err) {
-          if (!chosen.fallback || !/f16|shader/i.test(String(err?.message ?? err))) throw err;
+          if (!chosen.fallback || !/shader-f16/i.test(String(err?.message ?? err))) throw err;
           setStatus('This device needs the wider model build. Downloading that instead...');
-          engine = await CreateMLCEngine(chosen.fallback, { initProgressCallback: onProgress }, chatOpts);
+          engine = await CreateMLCEngine(chosen.fallback, engineConfig, chatOpts);
         }
         if (gen !== loadGen.current) {
           try { await engine?.unload?.(); } catch { /* a newer load owns the page */ }
