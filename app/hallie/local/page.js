@@ -2,17 +2,31 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { HALLIE_LOCAL_PROMPT } from './prompt';
+import { AccountPanels } from './panels';
 import './page.css';
 
+const PHONE_THINKING = {
+  id: 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',
+  fallback: null,
+  label: 'Hallie (thinking)',
+};
+
 const MODELS = [
-  { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC', label: 'Hallie (lite)' },
-  { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC', label: 'Hallie (thinking)' },
+  { key: 'lite', id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC', label: 'Hallie (lite)' },
+  { key: 'thinking', id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC', label: 'Hallie (thinking)' },
 ];
+
+function isPhone() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod|Android/i.test(ua)) return true;
+  return navigator.maxTouchPoints > 1 && window.innerWidth < 900;
+}
 
 export default function HallieLocalPage() {
   const engineRef = useRef(null);
   const messagesRef = useRef([{ role: 'system', content: HALLIE_LOCAL_PROMPT }]);
-  const [modelId, setModelId] = useState(MODELS[0].id);
+  const [modelKey, setModelKey] = useState('lite');
   const [status, setStatus] = useState('Initializing WebGPU engine...');
   const [progress, setProgress] = useState(0);
   const [ready, setReady] = useState(false);
@@ -21,8 +35,10 @@ export default function HallieLocalPage() {
   const [chat, setChat] = useState([]);
   const boxRef = useRef(null);
 
+  const loadGen = useRef(0);
+
   useEffect(() => {
-    let stop = false;
+    const gen = ++loadGen.current;
     (async () => {
       setReady(false);
       setProgress(0);
@@ -31,36 +47,48 @@ export default function HallieLocalPage() {
         setStatus('Error: Your browser or device does not support WebGPU.');
         return;
       }
+      const phone = isPhone();
+      const picked = MODELS.find((m) => m.key === modelKey) ?? MODELS[0];
+      const chosen = picked.key === 'thinking' && phone ? PHONE_THINKING : picked;
       try {
         const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
-        const chosen = MODELS.find((m) => m.id === modelId) ?? MODELS[0];
+        if (gen !== loadGen.current) return;
+        const previous = engineRef.current;
+        engineRef.current = null;
+        if (previous?.unload) {
+          try { await previous.unload(); } catch { /* the next load replaces it */ }
+        }
+        if (gen !== loadGen.current) return;
         const onProgress = (report) => {
-          if (stop) return;
+          if (gen !== loadGen.current) return;
           setStatus(report?.text || 'Downloading the model...');
           if (typeof report?.progress === 'number') setProgress(Math.max(0, Math.min(100, Math.round(report.progress * 100))));
         };
-        const load = (id) => CreateMLCEngine(id, { initProgressCallback: onProgress });
+        let engine;
         try {
-          if (engineRef.current) await engineRef.current.reload(chosen.id);
-          else engineRef.current = await load(chosen.id);
+          engine = await CreateMLCEngine(chosen.id, { initProgressCallback: onProgress });
         } catch (err) {
-          if (!/f16|shader/i.test(String(err?.message ?? err))) throw err;
+          if (phone || !chosen.fallback || !/f16|shader/i.test(String(err?.message ?? err))) throw err;
           setStatus('This device needs the wider model build. Downloading that instead...');
-          if (engineRef.current) await engineRef.current.reload(chosen.fallback);
-          else engineRef.current = await load(chosen.fallback);
+          engine = await CreateMLCEngine(chosen.fallback, { initProgressCallback: onProgress });
         }
-        if (stop) return;
+        if (gen !== loadGen.current) {
+          try { await engine?.unload?.(); } catch { /* a newer load owns the page */ }
+          return;
+        }
+        engineRef.current = engine;
         setProgress(100);
         setReady(true);
-        setStatus('Hallie is online (running locally on your device)');
+        setStatus(phone && picked.key === 'thinking'
+          ? 'Hallie is online. This phone uses the smaller thinking build so Safari stays open.'
+          : 'Hallie is online (running locally on your device)');
       } catch (err) {
-        if (stop) return;
+        if (gen !== loadGen.current) return;
         setReady(false);
         setStatus('Failed to load model: ' + (err?.message || 'unknown error'));
       }
     })();
-    return () => { stop = true; };
-  }, [modelId]);
+  }, [modelKey]);
 
   useEffect(() => {
     if (boxRef.current) boxRef.current.scrollTop = boxRef.current.scrollHeight;
@@ -111,8 +139,8 @@ export default function HallieLocalPage() {
         <p className="local-status">{status}</p>
         <label className="local-model">
           Model
-          <select value={modelId} onChange={(e) => setModelId(e.target.value)} disabled={busy}>
-            {MODELS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+          <select value={modelKey} onChange={(e) => setModelKey(e.target.value)} disabled={busy}>
+            {MODELS.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
           </select>
         </label>
         <div className="local-bar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} role="progressbar">
@@ -137,6 +165,7 @@ export default function HallieLocalPage() {
         />
         <button type="submit" disabled={!ready || busy}>Send</button>
       </form>
+      <AccountPanels />
     </main>
   );
 }
