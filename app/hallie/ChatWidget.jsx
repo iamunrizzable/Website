@@ -73,7 +73,6 @@ export default function ChatWidget({ fullPage = false }) {
   useEffect(() => { if (isOpen) setEverOpened(true); }, [isOpen]);
   const [modelChoices, setModelChoices] = useState(MODEL_CHOICES.filter((m) => m.key !== 'mini'));
   useEffect(() => { setModelChoices(availableModelChoices()); }, []);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [sessionsOpen, setSessionsOpen] = useState(false);
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
@@ -540,20 +539,13 @@ export default function ChatWidget({ fullPage = false }) {
       {(isOpen || fullPage) && (
         <div className="chat-box" style={fullPage && pageHeight ? { height: pageHeight } : undefined}>
           <div className="chat-header">
-            <button
-              type="button"
-              className="chat-menu-btn"
-              onClick={() => { setMenuOpen((open) => !open); setSessionsOpen(false); }}
-            >
-              ☰ Menu
-            </button>
             {fullPage && <a className="chat-back" href="/hallie">← Back</a>}
             <span>Chat with Hallie™</span>
             <span className="chat-header-actions">
               <button
                 type="button"
                 className="chat-saved"
-                onClick={() => { setSessionsOpen((open) => !open); setMenuOpen(false); }}
+                onClick={() => { setSessionsOpen((open) => !open); }}
               >
                 Sessions
               </button>
@@ -568,38 +560,6 @@ export default function ChatWidget({ fullPage = false }) {
               {!fullPage && <button type="button" onClick={() => setIsOpen(false)} aria-label="Close chat">✕</button>}
             </span>
           </div>
-          {menuOpen && (
-            <div className="chat-menu">
-              <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-              <a href="/tyler" onClick={() => setMenuOpen(false)}>Tyler</a>
-              <a href="/hallie" onClick={() => setMenuOpen(false)}>Hallie™</a>
-              <a href="/hallie/about/hallie" onClick={() => setMenuOpen(false)}>About Hallie™</a>
-              <a href="/hallie/chat" onClick={() => setMenuOpen(false)}>Chat with Hallie</a>
-              <a href="/hallie/tiktok/moderation/system" onClick={() => setMenuOpen(false)}>TikTok Moderation</a>
-              <a href="/news" onClick={() => setMenuOpen(false)}>Newsletters</a>
-              <a href="/agencies" onClick={() => setMenuOpen(false)}>Creator Networks</a>
-              <a href="/system/status" onClick={() => setMenuOpen(false)}>System Status</a>
-              <a href="/legal" onClick={() => setMenuOpen(false)}>Legal</a>
-              <a href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</a>
-              <p>Sign in with any of these. You can connect more than one.</p>
-              <div className="chat-logins">
-                {LOGIN_PROVIDERS.map((provider) => {
-                  const connected = connections.find((c) => c.provider === provider.id);
-                  return (
-                    <button
-                      type="button"
-                      key={provider.id}
-                      className={connected ? 'on' : ''}
-                      onClick={() => (connected ? unlink(provider.id) : startConnection(provider.id))}
-                      disabled={syncBusy}
-                    >
-                      {provider.name}{connected ? ' · connected' : ''}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
           {sessionsOpen && (
             <div className="chat-sync">
               {accountOn ? (
@@ -618,8 +578,25 @@ export default function ChatWidget({ fullPage = false }) {
                   <button type="button" onClick={newChat} disabled={syncBusy}>New chat</button>
                 </div>
               ) : (
-                <p>Sign in from the menu to keep sessions on every device.</p>
+                <p>Sign in below to keep sessions on every device.</p>
               )}
+            <p>Sign in with any of these. You can connect more than one.</p>
+            <div className="chat-logins">
+              {LOGIN_PROVIDERS.map((provider) => {
+                const connected = connections.find((c) => c.provider === provider.id);
+                return (
+                  <button
+                    type="button"
+                    key={provider.id}
+                    className={connected ? 'on' : ''}
+                    onClick={() => (connected ? unlink(provider.id) : startConnection(provider.id))}
+                    disabled={syncBusy}
+                  >
+                    {provider.name}{connected ? ' · connected' : ''}
+                  </button>
+                );
+              })}
+            </div>
               {syncNote && <p className="chat-sync-note">{syncNote}</p>}
             </div>
           )}
