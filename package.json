@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aikidosec/firewall": "1.8.45",
+    "@mlc-ai/web-llm": "^0.2.88",
     "@sparticuz/chromium": "^153.0.0",
     "@upstash/redis": "^1.41.0",
     "@vercel/analytics": "^2.0.1",
