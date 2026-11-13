@@ -56,6 +56,9 @@ export default function ChatWidget({ fullPage = false }) {
   const [accountOn, setAccountOn] = useState(false);
   const [accountTag, setAccountTag] = useState(null);
   const [connections, setConnections] = useState([]);
+  const [chats, setChats] = useState([]);
+  const [activeChatId, setActiveChatId] = useState(null);
+  const chatIdRef = useRef(null);
   const [syncOpen, setSyncOpen] = useState(false);
   const [syncBusy, setSyncBusy] = useState(false);
   const [syncNote, setSyncNote] = useState('');
@@ -295,11 +298,17 @@ export default function ChatWidget({ fullPage = false }) {
         setAccountOn(true);
         setAccountTag(data.tag || null);
         setConnections(Array.isArray(data.connections) ? data.connections : []);
+        setChats(Array.isArray(data.chats) ? data.chats : []);
+        if (data.active) {
+          chatIdRef.current = data.active;
+          setActiveChatId(data.active);
+        }
         let local = null;
         try { local = JSON.parse(localStorage.getItem(CHAT_STORAGE_KEY) ?? 'null'); } catch { /* ignore */ }
         const wrongAccount = local?.tag && data.tag && local.tag !== data.tag;
         const sameAccount = local?.tag && data.tag && local.tag === data.tag;
-        if (wrongAccount) {
+        const switched = sameAccount && local?.chatId && data.active && local.chatId !== data.active;
+        if (wrongAccount || switched) {
           setMessages(Array.isArray(data.messages) ? data.messages : []);
         } else if (!sameAccount && data.messages?.length) {
           setMessages(data.messages);
@@ -319,6 +328,7 @@ export default function ChatWidget({ fullPage = false }) {
       localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify({
         savedAt: Date.now(),
         tag: accountTag || undefined,
+        chatId: chatIdRef.current || undefined,
         messages: storableMessages(messages),
       }));
     } catch { /* storage full or blocked: chat still works, just not saved */ }
@@ -331,13 +341,81 @@ export default function ChatWidget({ fullPage = false }) {
       fetch('/api/hallie/chats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'save', messages: storableMessages(messages) }),
-      }).then((res) => {
+        body: JSON.stringify({ action: 'save', chatId: chatIdRef.current, messages: storableMessages(messages) }),
+      }).then(async (res) => {
         if (res.status === 401) setAccountOn(false);
+        const data = await res.json().catch(() => null);
+        if (data?.active && !chatIdRef.current) {
+          chatIdRef.current = data.active;
+          setActiveChatId(data.active);
+        }
+        if (Array.isArray(data?.chats)) setChats(data.chats);
       }).catch(() => {});
     }, 800);
     return () => clearTimeout(handle);
   }, [messages, cloudReady, accountOn, hidden]);
+
+  const applyChatList = (data) => {
+    chatIdRef.current = data.active || null;
+    setActiveChatId(data.active || null);
+    setChats(Array.isArray(data.chats) ? data.chats : []);
+    setMessages(Array.isArray(data.messages) ? data.messages : []);
+  };
+
+  const openChat = async (chatId) => {
+    if (!chatId || chatId === chatIdRef.current) return;
+    setSyncBusy(true);
+    setSyncNote('');
+    try {
+      if (messages.length) {
+        await fetch('/api/hallie/chats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'save', chatId: chatIdRef.current, messages: storableMessages(messages) }),
+        });
+      }
+      const res = await fetch('/api/hallie/chats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'open', chatId }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not open that conversation');
+      applyChatList(data);
+    } catch (err) {
+      setSyncNote(err.message || 'Could not open that conversation.');
+    } finally {
+      setSyncBusy(false);
+    }
+  };
+
+  const newChat = async () => {
+    setSyncBusy(true);
+    setSyncNote('');
+    try {
+      if (messages.length) {
+        const saved = await fetch('/api/hallie/chats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'save', chatId: chatIdRef.current, messages: storableMessages(messages) }),
+        });
+        const savedData = await saved.json().catch(() => null);
+        if (savedData?.active) chatIdRef.current = savedData.active;
+      }
+      const res = await fetch('/api/hallie/chats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'new' }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not start a new conversation');
+      applyChatList(data);
+    } catch (err) {
+      setSyncNote(err.message || 'Could not start a new conversation.');
+    } finally {
+      setSyncBusy(false);
+    }
+  };
 
   const deleteSavedChat = async () => {
     setSyncBusy(true);
@@ -346,13 +424,13 @@ export default function ChatWidget({ fullPage = false }) {
       const res = await fetch('/api/hallie/chats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'delete' }),
+        body: JSON.stringify({ action: 'delete', chatId: chatIdRef.current }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Could not delete');
-      setMessages([]);
+      applyChatList(data);
       try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
-      setSyncNote('Deleted. It is gone on every device signed into this TikTok account.');
+      setSyncNote(data.chats?.length ? 'That conversation is deleted.' : 'Deleted. Nothing is saved on this login.');
     } catch (err) {
       setSyncNote(err.message || 'Could not delete.');
     } finally {
@@ -463,8 +541,24 @@ export default function ChatWidget({ fullPage = false }) {
               })}
             </div>
             {accountOn && (
+              <div className="chat-threads">
+                {chats.map((chat) => (
+                  <button
+                    type="button"
+                    key={chat.id}
+                    className={chat.id === activeChatId ? 'on' : ''}
+                    onClick={() => openChat(chat.id)}
+                    disabled={syncBusy}
+                  >
+                    {chat.title}
+                  </button>
+                ))}
+                <button type="button" onClick={newChat} disabled={syncBusy}>New chat</button>
+              </div>
+            )}
+            {accountOn && activeChatId && (
               <button type="button" className="chat-saved-delete" onClick={deleteSavedChat} disabled={syncBusy}>
-                {syncBusy ? 'Deleting…' : 'Delete saved chat'}
+                {syncBusy ? 'Deleting…' : 'Delete this chat'}
               </button>
             )}
             {syncNote && <p className="chat-sync-note">{syncNote}</p>}

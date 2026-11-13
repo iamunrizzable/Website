@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getRedis } from '@/lib/tokens';
-import { accountTag, saveHallieChat, loadHallieChat, deleteHallieChat, accountIdFromToken } from '@/lib/hallie-chats';
+import { accountTag, saveHallieChat, loadHallieChats, deleteHallieChat, createHallieChat, openHallieChat, accountIdFromToken } from '@/lib/hallie-chats';
 import {
   SESSION_COOKIE, connectProvider, readLogin, unlinkProvider, clearSessionCookie, applySessionCookie,
 } from '@/lib/hallie-identity';
@@ -61,7 +61,7 @@ export async function GET(request) {
   const login = await signedInAccount();
   if (!login) return NextResponse.json({ connected: false, connections: [] });
   try {
-    const chat = await loadHallieChat(login.accountId);
+    const chat = await loadHallieChats(login.accountId);
     return withSession({ connected: true, tag: accountTag(login.accountId), connections: login.connections, ...chat }, login);
   } catch (err) {
     return NextResponse.json({ error: err.message || 'Saving is unavailable right now.' }, { status: 503 });
@@ -80,12 +80,20 @@ export async function POST(request) {
   try { body = await request.json(); } catch { body = {}; }
   try {
     if (body.action === 'save') {
-      const saved = await saveHallieChat(login.accountId, body.messages);
+      const saved = await saveHallieChat(login.accountId, body.messages, body.chatId);
       return withSession({ ok: true, connected: true, tag: accountTag(login.accountId), connections: login.connections, ...saved }, login);
     }
+    if (body.action === 'new') {
+      const chat = await createHallieChat(login.accountId);
+      return withSession({ ok: true, connected: true, connections: login.connections, ...chat }, login);
+    }
+    if (body.action === 'open') {
+      const chat = await openHallieChat(login.accountId, body.chatId);
+      return withSession({ ok: true, connected: true, connections: login.connections, ...chat }, login);
+    }
     if (body.action === 'delete') {
-      await deleteHallieChat(login.accountId);
-      return withSession({ ok: true, connected: true, connections: login.connections }, login);
+      const chat = await deleteHallieChat(login.accountId, body.chatId);
+      return withSession({ ok: true, connected: true, connections: login.connections, ...chat }, login);
     }
     if (body.action === 'unlink') {
       const result = await unlinkProvider(login.id, body.provider);

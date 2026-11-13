@@ -141,7 +141,24 @@
   font-size: 15px;
 }
 
-.chat-logins button.on {
+.chat-threads {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-top: 10px;
+  padding-bottom: 2px;
+}
+
+.chat-threads button {
+  flex: 0 0 auto;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-logins button.on,
+.chat-threads button.on {
   outline: 2px solid #67e8f9;
 }
 
