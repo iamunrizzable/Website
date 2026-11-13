@@ -41,17 +41,17 @@ export default function AgenciesHub() {
 
       <main>
         <div className="header section">
-          <h1>Agencies</h1>
-          <p className="subtitle">TJB Management Inc. · Creator Agencies</p>
+          <h1>Creator Networks</h1>
+          <p className="subtitle">One Creator Network</p>
           <span className="badge">⚡ Free to Join</span>
         </div>
 
         <div className="grid">
           <a href="/agencies/tiktok" className="card section">
             <span className="card-icon">🎵</span>
-            <span className="card-title">TikTok Agency</span>
-            <span className="card-desc">One TikTok creator network. Apply to join, then guidelines, streaming, and merch.</span>
-            <span className="card-link">VIEW TIKTOK AGENCY →</span>
+            <span className="card-title">One Creator Network</span>
+            <span className="card-desc">The TikTok LIVE creator network. Apply to join, then guidelines and streaming.</span>
+            <span className="card-link">VIEW ONE CREATOR NETWORK →</span>
           </a>
 
           <a href="/agencies/c2" className="card section">

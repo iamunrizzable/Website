@@ -37,111 +37,54 @@ export default function AgencyPage() {
       </div>
 
       <main>
-        <a href="/agencies/tiktok" className="back-link">← Back to TikTok Agency</a>
+        <a href="/agencies/tiktok" className="back-link">← Back to One Creator Network</a>
 
-        <h1>TJB Management Inc.</h1>
-        <p className="subtitle">One TikTok creator network — Founded by Tyler @ TJB Mgmt</p>
+        <h1>One Creator Network</h1>
+        <p className="subtitle">One team · One family — a creator-first TikTok LIVE network</p>
 
         <div className="section">
-          <h2>What is TJB Management?</h2>
+          <h2>What is One Creator Network?</h2>
           <p>
-            TJB Management Inc. is a TikTok LIVE creator agency founded by <span className="highlight">Tyler</span> — a creator manager with <span className="highlight">5 years of experience</span> working inside TikTok Backstage and managing creators across multiple TikTok agencies. Tyler built TJB Management to give creators the direct, personalized support that most agencies simply don't deliver.
+            <span className="highlight">One Creator Network (OCN)</span> is a creator-first TikTok LIVE agency focused on helping creators grow their platforms, build communities, increase earnings, and connect with opportunities. It is led by co-founders <span className="highlight">Sam</span> and <span className="highlight">Jerry</span>.
           </p>
           <p>
-            TJB Management's TikTok creators are now in one creator network. Joining is still free. Creators who want in apply on TikTok.
+            TJB Management's TikTok creators are now part of One Creator Network, and Tyler is on its management team. Joining is free. Creators who want in apply on TikTok.
           </p>
-          <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join the Agency</a>
+          <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="cta-btn">Apply to Join One Creator Network</a>
         </div>
 
         <div className="section">
           <h2>What's in It for You?</h2>
           <ul>
-            <li>Access to an <strong>exclusive Creator Network</strong> with real industry connections</li>
-            <li>Personalized <strong>LIVE strategy plans</strong> built around your content and goals</li>
-            <li>Full <strong>ban assistance and violation protection</strong> — we go to bat for you</li>
-            <li>Exclusive <strong>agency campaigns, leaderboards, and tournaments</strong> with prizes</li>
-            <li><strong>Account takeovers, creator spotlights, and in-person meetups</strong> across the US</li>
-            <li>Elite-level <strong>live streaming education</strong> from one of the top creator managers in the industry</li>
-            <li>Access to our <strong>private, creator-only Discord server</strong></li>
-            <li>Help getting <strong>more views, more diamonds, and more exposure</strong> — with zero cost to you</li>
+            <li><strong>Mentorship</strong> — one-on-one guidance from experienced creators and industry professionals</li>
+            <li><strong>Growth strategies</strong> built around your content and goals, including the OCN LIVE Playbook</li>
+            <li><strong>Campaigns, battles, and tournaments</strong> with prizes</li>
+            <li><strong>Networking</strong> with creators, brands, and opportunities</li>
+            <li><strong>Community support</strong> through the OCN Discord</li>
+            <li><strong>Creator protection</strong> — advocacy and resources to protect your brand and content</li>
+            <li>Weekly <strong>community meetings</strong> and new creator orientation</li>
           </ul>
         </div>
 
         <div className="section">
-          <h2>Creator Tiers</h2>
-          <p>Perks and services scale with your performance. Here's how it breaks down:</p>
-          <div className="tier-grid">
-            <div className="tier-card diamond">
-              <div className="tier-name">💎 Diamond Tier</div>
-              <div className="tier-req">1M+ diamonds per month</div>
-            </div>
-            <div className="tier-card growing">
-              <div className="tier-name">📈 Growing Creator</div>
-              <div className="tier-req">250K – 1M diamonds per month</div>
-            </div>
-            <div className="tier-card community">
-              <div className="tier-name">🌐 Community Tier</div>
-              <div className="tier-req">100K+ diamonds per month</div>
-            </div>
-          </div>
-          <p className="disclaimer">
-            * To qualify for creator services, creators are expected to complete a minimum of 10 streamed days per month (at least 1 hour per session), accumulate 15 streamed hours per month, and earn a minimum of 10,000 diamonds per month. Creator perks are determined by tier level.
-          </p>
-        </div>
-
-        <div className="section">
-          <h2>What Managers Can See</h2>
+          <h2>Who Can Join?</h2>
           <p>
-            When you join TJB Management, your creator network managers are given access to certain account data through TikTok's agency dashboard. This is what allows us to support, protect, and advocate for you effectively. Managers have visibility into:
+            OCN welcomes creators at all levels. You need to be active on TikTok LIVE, have a positive attitude, and be committed to growth. OCN looks for passion and potential, not just follower counts. You must be 18 or older.
           </p>
-          <ul>
-            <li><strong>LIVE replays</strong> — managers can review past streams</li>
-            <li><strong>LIVE analytics</strong> — real-time and historical performance data from your streams</li>
-            <li><strong>Current violations</strong> — any active strikes or policy flags on your account</li>
-            <li><strong>Violation clips</strong> — the specific clip flagged for each violation</li>
-            <li><strong>Diamond count</strong> — your total diamonds earned</li>
-            <li><strong>LIVE time</strong> — your total hours streamed</li>
-            <li><strong>Follower count</strong></li>
-            <li><strong>Like count</strong></li>
-            <li><strong>Number of videos posted</strong></li>
-          </ul>
           <p>
-            This data is used solely to support your growth, monitor for violations we can help resolve, and qualify you for campaigns and opportunities within the network.
+            Applications are usually reviewed within 48 hours, and you'll hear back by email or Discord.
           </p>
-        </div>
-
-        <div className="section">
-          <h2>Ban Appeals</h2>
-          <p>
-            If your in-app ban appeal gets denied, your TJB Management creator network manager may appeal the ban on your behalf — <span className="highlight">at their discretion</span>. Not every ban is eligible for escalation, but when it is, we go to bat for you.
-          </p>
-        </div>
-
-        <div className="section">
-          <h2>Agency Eligibility & Leaving</h2>
-          <p>To be eligible to join TJB Management, you must meet all of the following:</p>
-          <ul>
-            <li>You are <span className="highlight">not currently signed to another agency</span> on this account or any account</li>
-            <li>You have <span className="highlight">not exceeded 500,000 diamonds</span> in the current calendar month or any of the 5 prior calendar months</li>
-            <li>You are located in the <span className="highlight">United States or Canada</span></li>
-          </ul>
-          <ul>
-            <li>When you first join, you are placed on a <span className="highlight">15-day trial period</span>. During this time, you can leave immediately with no waiting period.</li>
-            <li>After the trial ends, you can still leave at any time — however, your departure will take <span className="highlight">30 days</span> to process.</li>
-            <li>If you leave after the 15-day trial, there is an additional <span className="highlight">60-day waiting period</span> after the 30-day quit process before another agency can sign you, provided you still meet eligibility requirements.</li>
-            <li><strong>Rule Violations & Termination:</strong> If you violate TJB Management's rules or guidelines at any point, the creator network reserves the right to <span className="highlight">immediately terminate your relationship at any time, for any reason</span>, with no waiting period and no further obligation to you.</li>
-          </ul>
         </div>
 
         <div className="section">
           <h2>It Costs You Nothing</h2>
           <p>
-            Joining TJB Management is completely free — no fees, no contracts, no catches. There's nothing to lose and everything to gain. All we ask is that you show up and stream consistently.
+            Joining One Creator Network is completely free — no fees, no catches. All that's asked is that you show up and keep growing. Results aren't guaranteed, and OCN's family isn't meant to be your only gifting community: the network gives you the tools, education, and support to build your own.
           </p>
         </div>
 
         <p className="apply-followup">
-          <a href="/agencies/tiktok/connect" className="link-purple link-purple--small">Have questions first? Connect with the agency →</a>
+          <a href="/agencies/tiktok/connect" className="link-purple link-purple--small">Have questions first? Connect with One Creator Network →</a>
         </p>
 
         <div className="footer">

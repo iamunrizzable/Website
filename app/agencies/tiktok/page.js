@@ -42,23 +42,23 @@ export default function AgencyHub() {
 
       <main>
         <div className="header section">
-          <h1>TikTok Agency</h1>
-          <p className="subtitle">TJB Management Inc. · One TikTok creator network</p>
+          <h1>One Creator Network</h1>
+          <p className="subtitle">One team · One family · TikTok LIVE</p>
           <span className="badge">⚡ Free to Join</span>
         </div>
 
         <div className="grid">
           <a href={TIKTOK_AGENCY_APPLY_URL} target="_blank" rel="noopener noreferrer" className="card section">
             <span className="card-icon">✅</span>
-            <span className="card-title">Apply to Join the Agency</span>
-            <span className="card-desc">TJB Management's TikTok creators are in one creator network. This is the application.</span>
+            <span className="card-title">Apply to Join One Creator Network</span>
+            <span className="card-desc">The application for One Creator Network. Free to join.</span>
             <span className="card-link">APPLY ON TIKTOK →</span>
           </a>
           <a href="/agencies/tiktok/about" className="card section">
             <span className="card-icon">🏢</span>
-            <span className="card-title">About the TikTok Agency</span>
-            <span className="card-desc">Who TJB Management is, what we offer creators, and how to join — free, with real support from Tyler and Hallie.</span>
-            <span className="card-link">VIEW TIKTOK AGENCY →</span>
+            <span className="card-title">About One Creator Network</span>
+            <span className="card-desc">Who we are, what One Creator Network offers creators, and how to join — free.</span>
+            <span className="card-link">VIEW ABOUT →</span>
           </a>
 
           <a href="/agencies/tiktok/streaming/basics" className="card section">
@@ -77,22 +77,22 @@ export default function AgencyHub() {
 
           <a href="/legal/policies/and/procedures/tiktok/agency" className="card section">
             <span className="card-icon">📋</span>
-            <span className="card-title">TikTok Agency Guidelines</span>
-            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for TJB Management agency clients.</span>
+            <span className="card-title">One Creator Network Guidelines</span>
+            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for creators.</span>
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
           <a href="/agencies/tiktok/merch" className="card section">
             <span className="card-icon">👕</span>
             <span className="card-title">Merch</span>
-            <span className="card-desc">Official TJB Management merchandise.</span>
+            <span className="card-desc">TJB Management merchandise.</span>
             <span className="card-link">SHOP MERCH →</span>
           </a>
 
           <a href="/agencies/tiktok/connect" className="card section">
             <span className="card-icon">🤝</span>
-            <span className="card-title">Connect with TikTok Agency</span>
-            <span className="card-desc">Reach TJB Management on TikTok, Instagram, Discord, or email — and apply to join.</span>
+            <span className="card-title">Connect with One Creator Network</span>
+            <span className="card-desc">Reach One Creator Network on TikTok, Instagram, Discord, or email — and apply to join.</span>
             <span className="card-link">CONNECT →</span>
           </a>
 
