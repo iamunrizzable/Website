@@ -31,6 +31,11 @@ const TOOLS = [
     desc: 'Download the Hallie VM migration backup (zip). Temporary — contains credentials.',
   },
   {
+    href: '/api/admin/backup-download?link=1',
+    title: 'Backup Download Link',
+    desc: 'Show the 10-minute download link for the backup as text, to copy instead of downloading.',
+  },
+  {
     href: '/admin/security/kill/switches',
     title: 'Kill Switches',
     desc: 'Shut off the TikTok Agency, the C2 Agency, or the entire site, instantly.',
