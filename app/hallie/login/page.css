@@ -1,0 +1,17 @@
+html { background-color: #0f172a; }
+body { margin: 0; padding: 0; background: transparent; }
+main { max-width: 480px; margin: 0 auto; padding: 90px 16px 40px; position: relative; z-index: 10; }
+h1 { color: #d4a5ff; margin: 0 0 12px; font-size: 30px; }
+.login-note { color: #cbd5e1; margin: 0 0 24px; line-height: 1.5; }
+.login-error { color: #fda4af; margin: 0 0 16px; }
+.login-list { display: grid; gap: 12px; margin-bottom: 28px; }
+.login-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-radius: 12px; text-decoration: none;
+  color: #d4a5ff; background: rgba(15, 23, 42, 0.7);
+  border: 2px solid rgba(168, 85, 247, 0.35); font-size: 18px; font-weight: 600;
+}
+.login-btn.on { border-color: #a855f7; background: rgba(88, 28, 135, 0.45); }
+.login-btn small { color: #cbd5e1; font-weight: 400; font-size: 14px; }
+.back-link { display: inline-block; color: #a855f7; text-decoration: none; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
