@@ -43,7 +43,7 @@ export default function HallieTerms() {
         <h1>Hallie™ Terms of Use</h1>
         <p className="subtitle">
           TJB Management Inc. · Terms for chatting and corresponding with Hallie™, TJB Management&apos;s AI assistant<br />
-          Last Updated: October 30, 2026
+          Last Updated: November 13, 2026
         </p>
 
         <p className="disclaimer disclaimer--intro">
@@ -78,7 +78,7 @@ export default function HallieTerms() {
           <h2>2. What Hallie Can and Cannot Do</h2>
           <ul>
   <li>Hallie can answer questions about TJB Management, point you to the right page or contact, and handle routine messages.</li>
-  <li>Hallie can be wrong. Her answers may be incomplete, out of date, or mistaken. Check anything important with us at support@tjbmanagementinc.com before relying on it.</li>
+  <li>Hallie can be wrong. Her answers may be incomplete, out of date, or mistaken. That includes the smaller model that runs on your own device. Check anything important with us at support@tjbmanagementinc.com before relying on it.</li>
   <li>Hallie does not give legal, financial, tax, medical, or other professional advice.</li>
   <li>Hallie cannot make binding offers, sign contracts, approve payments, grant access, or change any agreement or policy on behalf of TJB Management. Nothing she says is binding unless TJB Management or Tyler confirms it in writing.</li>
   <li>Hallie may decline, ignore, or end a conversation, and may refer you to a human.</li>
@@ -101,10 +101,12 @@ export default function HallieTerms() {
         <div className="section" id="hallie-data">
           <h2>4. Your Messages and Data</h2>
           <ul>
-  <li><strong>Website chat.</strong> When you chat with Hallie on this website, the message you send, and recent earlier messages from the same conversation, are transmitted to TJB Management&apos;s systems and processed by an AI model, provided by third-party AI providers acting as our service providers, to produce a reply.</li>
-  <li><strong>Stored conversations.</strong> Conversations are stored on our systems for as long as we need them to operate and secure the service.</li>
-  <li><strong>Your browser.</strong> A copy of your chat history is also saved in your own browser (local storage) so the conversation can continue. You can remove it by clearing this site&apos;s data in your browser.</li>
-  <li><strong>Saved across devices.</strong> If you connect your TikTok account in the chat, that conversation is saved to that account for 90 days from the last message. It opens on any device where you sign in with the same TikTok account. Another TikTok account cannot open it. You can delete the saved copy from the chat. If you never connect TikTok, the chat stays in that browser only.</li>
+  <li><strong>Website chat.</strong> When you chat with Hallie in the website chat, the message you send, and recent earlier messages from the same conversation, are transmitted to TJB Management's systems and processed by an AI model, provided by third-party AI providers acting as our service providers, to produce a reply.</li>
+  <li><strong>On this device.</strong> The page at /hallie/local runs Hallie in your browser. The reply is produced on your device. Those messages are not sent to TJB Management to generate the answer. The first time you open a model, your browser downloads the model weights from the public host published by the MLC WebLLM library and caches them on your device. Which model finished loading is remembered only in that browser, so the next visit opens the last one that worked. If a model does not finish loading, the page opens the last one that did. This page still depends on your browser supporting WebGPU and having enough storage. The mentions and trending panels on that page are part of the Hallie Platform. If they are used, those requests go to TJB Management's systems and TikTok, as described in the <a href="/legal/hallie/tiktok/moderation/system"><span className="rainbow">Hallie Platform Data Security & Privacy Policy</span></a>. The on-device chat itself is not saved to a Hallie login.</li>
+  <li><strong>Stored conversations.</strong> Website-chat conversations that you save to a Hallie login are stored on our systems. A login can hold up to 20 conversations. Each saved conversation is kept for 90 days from its last save, then deleted.</li>
+  <li><strong>Your browser.</strong> A copy of the website chat is also saved in your own browser so a reload does not wipe it. That copy lasts one day. You can remove it by clearing this site's data in your browser. The on-device page does not keep its chat after you leave it, except for the model choice described above.</li>
+  <li><strong>Saved across devices.</strong> You can sign in with Google, Apple, X, TikTok, or more than one of them. Those connections belong to one Hallie login. Saved website chats belong to that login, not to a single app. They open on any device where you sign in with any account connected to the same login. A different login cannot open them. You can delete a saved conversation from the chat. Logging out of this browser does not delete the saved copy. If you never sign in, the website chat stays in that browser only.</li>
+  <li><strong>What sign-in stores.</strong> Signing in sends you to that company's own login page. We do not receive your password. We store, for 90 days from the connection, the provider name, that provider's account id, and a short label so you can recognize the connection: an email or name from Google or Apple when they provide one, or your X username. Google is asked for your basic profile and email. Apple is asked for your name and email. X is asked for permission to read the account, including the read-posts permission X requires to finish sign-in. We use that permission to read the account id and username. We do not read or post on your timeline. TikTok sign-in is the existing TikTok login and is limited to identifying the account. You can remove a connection without deleting the others.</li>
   <li><strong>Security logs.</strong> Our systems automatically log security events such as rate-limiting and attempts to manipulate Hallie or the service. These logs can include a short excerpt of the triggering message and an identifier derived from the connection&apos;s IP address.</li>
   <li><strong>Email and direct messages.</strong> Messages you send to Hallie by email or direct message are kept in the relevant mailbox or platform and are covered by these Terms.</li>
   <li><strong>Do not send sensitive data.</strong> Do not send passwords, payment details, government ID numbers, health information, or other sensitive information to Hallie.</li>
@@ -122,7 +124,7 @@ export default function HallieTerms() {
 
         <div className="section" id="hallie-availability">
           <h2>6. No Guarantee of Availability</h2>
-          <p>Hallie may be unavailable, slow, limited, changed, or withdrawn at any time, including for maintenance, outages, or provider limits.</p>
+          <p>Hallie may be unavailable, slow, limited, changed, or withdrawn at any time, including for maintenance, outages, or provider limits. On-device Hallie may also fail to load when the device, browser, or stored model cannot run it. The models offered on that page may change.</p>
         </div>
 
         <div className="section" id="hallie-ip">
@@ -151,7 +153,7 @@ export default function HallieTerms() {
         </div>
 
         <footer>
-          <p>Last Updated: October 30, 2026</p>
+          <p>Last Updated: November 13, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>

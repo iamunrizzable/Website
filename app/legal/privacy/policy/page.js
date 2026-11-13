@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
         <h1>Privacy Policy</h1>
         <p className="subtitle">
           TJB Management Inc. · Privacy Policy for tjbmanagementinc.com<br />
-          Effective Date: July 24, 2026 · Last Updated: October 30, 2026
+          Effective Date: July 24, 2026 · Last Updated: November 13, 2026
         </p>
 
         <p className="disclaimer disclaimer--intro">
@@ -137,8 +137,8 @@ export default function PrivacyPolicy() {
           <p>
             The Website's contact pages (<span className="rainbow">/agencies/tiktok/connect</span>, <span className="rainbow">/tyler/contact/tyler</span>, <span className="rainbow">/hallie/chat</span>) are directories of direct contact links — email and phone — and do not contain forms that collect or transmit visitor information to TJB Management.
           </p>
-          <p>
-            Separately, the Website includes a chat widget for talking to Hallie™, TJB Management&apos;s AI assistant. Messages you send in it, and recent earlier messages from the same conversation, are transmitted to TJB Management&apos;s systems and processed by an AI model to generate replies. Conversations are stored on those systems, and a copy of the chat history is saved in your browser&apos;s local storage. The <a href="/legal/policies/and/procedures/hallie/terms"><span className="rainbow">Hallie Terms of Use</span></a> describe how these conversations are handled.
+                    <p>
+            Separately, the Website includes a chat widget for talking to Hallie™, TJB Management's AI assistant. Messages you send in that widget, and recent earlier messages from the same conversation, are transmitted to TJB Management's systems and processed by an AI model to generate replies. A copy of that chat is saved in your browser for one day. If you sign in, saved conversations are stored on our systems for 90 days from the last save and can be opened from another device. The page at /hallie/local is different: the model runs in your browser, and those chat messages are not sent to us to produce the reply. The browser downloads and caches the model weights, and remembers which model last finished loading, only on that device. The <a href="/legal/policies/and/procedures/hallie/terms"><span className="rainbow">Hallie Terms of Use</span></a> describe both.
           </p>
           <p>
             Beyond Vercel Analytics, the device identification described above, the Hallie chat described above, and the operational cookies described in Section 3, the Website does not collect additional personal information from general visitors.
@@ -153,7 +153,9 @@ export default function PrivacyPolicy() {
           <ul>
             <li><strong>tiktok_oauth_state</strong> — a short-lived cookie set during TikTok OAuth login flows to prevent cross-site request forgery. Expires after 10 minutes.</li>
             <li><strong>acct_token</strong> — stores an Operator's TikTok Account Login token for the Hallie Platform. HttpOnly, Secure. Expires after 30 days. See Part II for full detail.</li>
-            <li><strong>hallie_session</strong> — the Hallie login for this browser. It can hold a Google, Apple, X, and TikTok connection at the same time. HttpOnly, Secure. Expires after 90 days.</li>
+            <li><strong>hallie_session</strong> — the Hallie login for this browser. It can hold a Google, Apple, X, and TikTok connection at the same time. The login record stores the provider, that provider's account id, and a short label (an email, a name, or an X username). HttpOnly, Secure. Expires after 90 days.</li>
+            <li><strong>hallie_return</strong> — where to send you back after Google, Apple, or X sign-in. HttpOnly, Secure. Expires after 10 minutes.</li>
+            <li><strong>hallie_pkce</strong> and <strong>hallie_x_state</strong> — set only during X sign-in, to confirm the sign-in was not forged. HttpOnly, Secure. Expire after 10 minutes.</li>
             <li><strong>biz_token</strong> — stores an Operator's TikTok Business/Advertiser token used for the Hallie Platform's automated rules features. HttpOnly, Secure. Expires after 30 days.</li>
             <li><strong>custom_rules</strong> — stores an Operator's custom moderation-rule configuration for the Hallie Platform. HttpOnly, Secure. Expires after 30 days.</li>
             <li><strong>admin_session</strong> — an internal login-session cookie used exclusively by TJB Management's own personnel to access the Website's administrative dashboard. It is not set for, and does not apply to, general Website visitors. HttpOnly, Secure.</li>
@@ -553,7 +555,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <footer>
-          <p>Last Updated: October 30, 2026</p>
+          <p>Last Updated: November 13, 2026</p>
           <p>© 2026 TJB Management Inc. All rights reserved.</p>
           <p>The TJB Management Inc. name, logo, website, and Hallie™ are the property of TJB Management Inc. and may not be copied, reproduced, or reused without prior written permission.</p>
           <p>All other logos and trademarks are the property of their respective owners and are not affiliated with or endorsed by TJB Management Inc.</p>
