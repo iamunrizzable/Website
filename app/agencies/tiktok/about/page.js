@@ -77,6 +77,22 @@ export default function AgencyPage() {
         </div>
 
         <div className="section">
+          <h2>Leaving a Creator Network</h2>
+          <p>
+            TikTok changed the quitting rules for creator networks, effective <span className="highlight">November 28, 2026</span> for existing creators (unless they chose to keep the original rules), and immediately for anyone who joined on or after <span className="highlight">October 29, 2026</span>. Under the updated rules, a creator can leave in one of these ways:
+          </p>
+          <ul>
+            <li><strong>Within the first 15 days of joining</strong> — free to quit.</li>
+            <li><strong>By mutual agreement</strong> — the creator asks the network to release them. The network has <span className="highlight">7 days</span> to respond, and a creator can submit this request only <span className="highlight">once every 30 days</span>.</li>
+            <li><strong>By platform resolution</strong> — if the network declines, within 7 days the creator can ask TikTok for help by showing evidence of extenuating circumstances (for example, if the network violates platform policies).</li>
+            <li><strong>Removal by the network</strong> on TikTok.</li>
+          </ul>
+          <p className="disclaimer">
+            These are TikTok's rules, not ours. Details are on the Manage relationship page and the resolution procedures in LIVE Backstage. Creators who joined before October 29 and kept the original rules keep the earlier 30-day notice and 60-day wait.
+          </p>
+        </div>
+
+        <div className="section">
           <h2>It Costs You Nothing</h2>
           <p>
             Joining One Creator Network is completely free — no fees, no catches. All that's asked is that you show up and keep growing. Results aren't guaranteed, and OCN's family isn't meant to be your only gifting community: the network gives you the tools, education, and support to build your own.

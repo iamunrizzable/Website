@@ -75,13 +75,6 @@ export default function AgencyHub() {
             <span className="card-link">VIEW GUIDELINES →</span>
           </a>
 
-          <a href="/legal/policies/and/procedures/tiktok/agency" className="card section">
-            <span className="card-icon">📋</span>
-            <span className="card-title">One Creator Network Guidelines</span>
-            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and legal terms for creators.</span>
-            <span className="card-link">VIEW GUIDELINES →</span>
-          </a>
-
           <a href="/agencies/tiktok/merch" className="card section">
             <span className="card-icon">👕</span>
             <span className="card-title">Merch</span>

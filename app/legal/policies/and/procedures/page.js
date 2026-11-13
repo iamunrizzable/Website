@@ -49,13 +49,6 @@ export default function PoliciesAndProcedures() {
         </div>
 
         <div className="grid">
-          <a href="/legal/policies/and/procedures/tiktok/agency" className="card section">
-            <span className="card-icon">🏢</span>
-            <span className="card-title">TikTok Agency Policies & Procedures</span>
-            <span className="card-desc">Creator eligibility, representation terms, non-compete policy, ban appeals, and contact information for TJB Management agency clients.</span>
-            <span className="card-link">VIEW POLICY →</span>
-          </a>
-
           <a href="/legal/policies/and/procedures/hallie/tiktok/moderation/system" className="card section">
             <span className="card-icon">🛡️</span>
             <span className="card-title">Hallie Platform — Data Security & Privacy Policy</span>

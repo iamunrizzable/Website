@@ -281,11 +281,7 @@ export default function CommunicationPolicy() {
           </p>
           <p>
             A violation may result in whatever action is appropriate to the relationship involved — for a signed
-            creator, that includes termination of their representation agreement, consistent with{' '}
-            <a href="/legal/policies/and/procedures/tiktok/agency#agency-leaving">
-              <span className="rainbow">Section 7 (Leaving the Agency & Termination)</span>
-            </a>{' '}
-            of our TikTok Agency Policies & Procedures; for anyone communicating on the company&apos;s behalf,
+            creator, that includes termination of their representation agreement, consistent with the rules of the creator network they belong to; for anyone communicating on the company&apos;s behalf,
             including Tyler, that includes removal from any role or responsibility that involves communicating on
             TJB Management Inc.&apos;s behalf. No one is exempt from this policy because of their position.
           </p>
