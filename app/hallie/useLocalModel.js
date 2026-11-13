@@ -95,7 +95,7 @@ export function useLocalModel(modelKey) {
         const previous = engineRef.current;
         engineRef.current = null;
         if (previous?.unload) {
-          try { await previous.unload(); } catch { /* the next load replaces it */ }
+          try { previous.interruptGenerate?.(); await previous.unload(); } catch { /* the next load replaces it */ }
         }
         if (gen !== loadGen.current) return;
         const onProgress = (report) => {

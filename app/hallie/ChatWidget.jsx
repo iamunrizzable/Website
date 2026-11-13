@@ -66,6 +66,11 @@ export default function ChatWidget({ fullPage = false }) {
   const [syncNote, setSyncNote] = useState('');
   const [modelKey, setModelKey] = useState(null);
   const [modelNote, setModelNote] = useState('');
+  // Load the model the first time the bubble opens, then keep it. Closing and
+  // reopening used to unload and reload it, which could pull the engine out
+  // from under a reply that was still being written.
+  const [everOpened, setEverOpened] = useState(false);
+  useEffect(() => { if (isOpen) setEverOpened(true); }, [isOpen]);
   const [modelChoices, setModelChoices] = useState(MODEL_CHOICES);
   useEffect(() => { setModelChoices(availableModelChoices()); }, []);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -73,7 +78,7 @@ export default function ChatWidget({ fullPage = false }) {
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
   const hidden = !fullPage && pathname === CHAT_PAGE_PATH;
-  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady, reload: reloadModel } = useLocalModel((!fullPage && !isOpen) || hidden || !modelKey ? null : modelKey);
+  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady, reload: reloadModel } = useLocalModel(hidden || !modelKey || (!fullPage && !everOpened) ? null : modelKey);
 
   // Full-page chat: fill exactly the screen below whatever sits above it
   // (banner, menu), and refit when that changes (banner loads, rotation).
@@ -224,7 +229,7 @@ export default function ChatWidget({ fullPage = false }) {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
-    if (!engineRef.current) {
+    if (!engineRef.current || !modelReady) {
       addHallieMessage(modelStatus || 'That model is still loading on this device.');
       return;
     }
