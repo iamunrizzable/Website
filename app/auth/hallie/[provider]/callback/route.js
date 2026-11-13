@@ -1,10 +1,12 @@
-import { finishLogin, LOGIN_PROVIDERS, redirectBack } from '@/lib/hallie-login';
+import { finishLogin, LOGIN_PROVIDERS, redirectBack, xStateMatches } from '@/lib/hallie-login';
 import { getStateType } from '@/lib/oauth-state';
 
 async function complete(request, provider, fields) {
   if (!LOGIN_PROVIDERS[provider]) return new Response('Not found', { status: 404 });
   if (fields.error) return redirectBack(request, { error: String(fields.error) });
-  if (getStateType(fields.state) !== `hallie-${provider}`) {
+  if (provider === 'x') {
+    if (!xStateMatches(request, fields.state)) return new Response('State mismatch', { status: 400 });
+  } else if (getStateType(fields.state) !== `hallie-${provider}`) {
     return new Response('State mismatch', { status: 400 });
   }
   let appleUser = null;

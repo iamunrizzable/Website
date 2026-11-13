@@ -16,6 +16,31 @@ const MODELS = [
   { key: 'thinking', id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC', label: 'Hallie (thinking)' },
 ];
 
+const MODEL_OK = 'hallie:model-ok';
+const MODEL_BOOT = 'hallie:model-boot';
+
+function knownModel(value) {
+  return MODELS.some((m) => m.key === value);
+}
+
+function modelToOpen() {
+  let key = 'lite';
+  let bounced = false;
+  try {
+    const boot = localStorage.getItem(MODEL_BOOT);
+    const ok = localStorage.getItem(MODEL_OK);
+    if (boot) {
+      localStorage.removeItem(MODEL_BOOT);
+      if (boot !== 'lite') {
+        bounced = true;
+        key = knownModel(ok) && ok !== boot ? ok : 'lite';
+      }
+    } else if (knownModel(ok)) {
+      key = ok;
+    }
+  } catch { /* private mode still gets the lite model */ }
+  return { key, bounced };
+}
 function isPhone() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent || '';
@@ -26,7 +51,8 @@ function isPhone() {
 export default function HallieLocalPage() {
   const engineRef = useRef(null);
   const messagesRef = useRef([{ role: 'system', content: HALLIE_LOCAL_PROMPT }]);
-  const [modelKey, setModelKey] = useState('lite');
+  const [modelKey, setModelKey] = useState(null);
+  const [notice, setNotice] = useState('');
   const [status, setStatus] = useState('Initializing WebGPU engine...');
   const [progress, setProgress] = useState(0);
   const [ready, setReady] = useState(false);
@@ -38,6 +64,13 @@ export default function HallieLocalPage() {
   const loadGen = useRef(0);
 
   useEffect(() => {
+    const choice = modelToOpen();
+    if (choice.bounced) setNotice('That model closed the page last time, so Hallie opened the last one that worked.');
+    setModelKey(choice.key);
+  }, []);
+
+  useEffect(() => {
+    if (!modelKey) return;
     const gen = ++loadGen.current;
     (async () => {
       setReady(false);
@@ -50,6 +83,9 @@ export default function HallieLocalPage() {
       const phone = isPhone();
       const picked = MODELS.find((m) => m.key === modelKey) ?? MODELS[0];
       const chosen = picked.key === 'thinking' && phone ? PHONE_THINKING : picked;
+      try {
+        localStorage.setItem(MODEL_BOOT, modelKey);
+      } catch { /* ignore */ }
       try {
         const { CreateMLCEngine } = await import('@mlc-ai/web-llm');
         if (gen !== loadGen.current) return;
@@ -77,6 +113,10 @@ export default function HallieLocalPage() {
           return;
         }
         engineRef.current = engine;
+        try {
+          localStorage.setItem(MODEL_OK, modelKey);
+          localStorage.removeItem(MODEL_BOOT);
+        } catch { /* ignore */ }
         setProgress(100);
         setReady(true);
         setStatus(phone && picked.key === 'thinking'
@@ -136,10 +176,11 @@ export default function HallieLocalPage() {
       <header>
         <p className="local-kicker"><a href="/hallie">Hallie™</a> · on this device</p>
         <h1>Hallie</h1>
+        {notice && <p className="local-status">{notice}</p>}
         <p className="local-status">{status}</p>
         <label className="local-model">
           Model
-          <select value={modelKey} onChange={(e) => setModelKey(e.target.value)} disabled={busy}>
+          <select value={modelKey || 'lite'} onChange={(e) => { setNotice(''); setModelKey(e.target.value); }} disabled={!modelKey || busy}>
             {MODELS.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
           </select>
         </label>
