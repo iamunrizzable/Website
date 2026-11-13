@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next dev",
-    "build": "next build",
+    "build": "node scripts/build-site-knowledge.mjs && next build",
     "start": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next start"
   },
   "dependencies": {

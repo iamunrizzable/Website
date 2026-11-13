@@ -36,6 +36,11 @@ const TOOLS = [
     desc: 'Show the 10-minute download link for the backup as text, to copy instead of downloading.',
   },
   {
+    href: '/admin/internal/hallie/memory',
+    title: 'Hallie Memory',
+    desc: "Hallie's long-term memory, daily log and security log. Add, edit, delete, or import from her backup. Only visible to you.",
+  },
+  {
     href: '/admin/security/kill/switches',
     title: 'Kill Switches',
     desc: 'Shut off the TikTok Agency, the C2 Agency, or the entire site, instantly.',
