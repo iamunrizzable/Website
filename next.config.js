@@ -52,6 +52,15 @@ const nextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      // Lets the CPU Hallie model use several threads. Only this one page is
+      // isolated, so embeds and sign-in on the rest of the site are untouched.
+      {
+        source: '/hallie/chat',
+        headers: [
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'require-corp' },
+        ],
+      },
     ];
   },
   // Any URL that matches no real page, route, or file is sent to the home
