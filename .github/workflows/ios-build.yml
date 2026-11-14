@@ -16,7 +16,10 @@ jobs:
       - name: Build for device (no signing)
         shell: bash
         run: |
-          set -o pipefail
+          set +e
           xcodebuild -project ios/Hallie.xcodeproj -scheme Hallie \
             -destination 'generic/platform=iOS' \
-            CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -60
+            CODE_SIGNING_ALLOWED=NO build > build.log 2>&1
+          status=$?
+          grep -E "error:|BUILD (SUCCEEDED|FAILED)" build.log | sort -u | head -40
+          exit $status
