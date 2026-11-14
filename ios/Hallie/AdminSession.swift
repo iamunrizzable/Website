@@ -37,7 +37,7 @@ final class AdminSession: ObservableObject {
                 let msg = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["error"] as? String
                 error = msg ?? "Sign-in failed (\(http.statusCode))."
             }
-        } catch { error = "Could not reach the site." }
+        } catch { self.error = "Could not reach the site." }
     }
 
     func signOut() {
