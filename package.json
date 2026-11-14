@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next dev",
-    "build": "node scripts/build-site-knowledge.mjs && next build",
+    "dev": "node scripts/copy-wllama.mjs && NODE_OPTIONS='-r @aikidosec/firewall/instrument' next dev",
+    "build": "node scripts/copy-wllama.mjs && node scripts/build-site-knowledge.mjs && next build",
     "start": "NODE_OPTIONS='-r @aikidosec/firewall/instrument' next start"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.8.2",
     "@vercel/speed-insights": "^2.1.0",
+    "@wllama/wllama": "^3.13.0",
     "cheerio": "^1.2.0",
     "imapflow": "^2.11.0",
     "mailparser": "^3.14.2",
