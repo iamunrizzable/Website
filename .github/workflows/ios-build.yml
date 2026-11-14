@@ -13,8 +13,10 @@ jobs:
         run: brew install xcodegen
       - name: Generate Xcode project
         run: cd ios && xcodegen generate
-      - name: Build for simulator (no signing)
+      - name: Build for device (no signing)
+        shell: bash
         run: |
+          set -o pipefail
           xcodebuild -project ios/Hallie.xcodeproj -scheme Hallie \
-            -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build | tail -60
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -60
