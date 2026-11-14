@@ -1,0 +1,32 @@
+name: Hallie
+options:
+  bundleIdPrefix: com.tjbmanagementinc
+  deploymentTarget:
+    iOS: "17.0"
+packages:
+  LlamaSwift:
+    url: https://github.com/mattt/llama.swift
+    from: 2.9999.0
+targets:
+  Hallie:
+    type: application
+    platform: iOS
+    sources: [Hallie]
+    dependencies:
+      - package: LlamaSwift
+        product: LlamaSwift
+    entitlements:
+      path: Hallie/Hallie.entitlements
+      properties:
+        com.apple.developer.kernel.increased-memory-limit: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tjbmanagementinc.hallie
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Hallie
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        SWIFT_VERSION: "5.0"

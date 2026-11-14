@@ -1,0 +1,20 @@
+name: iOS build
+on:
+  push:
+    branches: [main]
+    paths: ['ios/**', '.github/workflows/ios-build.yml']
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: cd ios && xcodegen generate
+      - name: Build for simulator (no signing)
+        run: |
+          xcodebuild -project ios/Hallie.xcodeproj -scheme Hallie \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build | tail -60
