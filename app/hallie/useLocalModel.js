@@ -26,7 +26,7 @@ export function isApplePhoneOrTablet() {
 }
 
 export function availableModelChoices() {
-  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'mini' || m.key === 'lite') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
+  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'lite') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
 }
 
 export function readModelChoice() {
@@ -40,7 +40,7 @@ export function readModelChoice() {
       crashed = localStorage.getItem(MODEL_BOOT) === 'lite';
       localStorage.removeItem(MODEL_BOOT);
     } catch { /* ignore */ }
-    return { key: 'mini', bounced: crashed };
+    return { key: 'lite', bounced: crashed };
   }
   try {
     const boot = localStorage.getItem(MODEL_BOOT);
