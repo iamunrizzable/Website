@@ -5,7 +5,7 @@ import './ChatWidget.css';
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { isChatWipe } from '@/lib/chat-wipe';
-import { HALLIE_LOCAL_PROMPT, HALLIE_LOCAL_EXAMPLES } from './local/prompt';
+import { HALLIE_LOCAL_PROMPT } from './local/prompt';
 import { MODEL_CHOICES, availableModelChoices, isApplePhoneOrTablet, readModelChoice, useLocalModel } from './useLocalModel';
 
 // The Contact Hallie page is a full-page chat with her, so the floating
@@ -239,7 +239,6 @@ export default function ChatWidget({ fullPage = false }) {
       const chunks = await engineRef.current.chat.completions.create({
         messages: [
           { role: 'system', content: HALLIE_LOCAL_PROMPT },
-          ...HALLIE_LOCAL_EXAMPLES,
           ...history,
           { role: 'user', content: text },
         ],
