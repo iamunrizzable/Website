@@ -112,7 +112,7 @@ export function useLocalModel(modelKey) {
           if (typeof report?.progress === 'number') setProgress(Math.max(0, Math.min(100, Math.round(report.progress * 100))));
         };
         // A smaller context window reserves far less GPU memory on phones.
-        const chatOpts = isApplePhoneOrTablet() ? { context_window_size: 4096, prefill_chunk_size: 256 } : undefined;
+        const chatOpts = isApplePhoneOrTablet() ? { context_window_size: 2048 } : undefined;
         // iPhone Safari saves the files into the Cache API but cannot read them
         // back ("Cannot fetch ..."), so phones keep the model in IndexedDB.
         const engineConfig = {
