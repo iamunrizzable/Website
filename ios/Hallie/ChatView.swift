@@ -8,18 +8,28 @@ final class ChatModel: ObservableObject {
     @Published var status = "Getting Hallie ready…"
     @Published var ready = false
     @Published var busy = false
+    @Published var failed = false
     let store = ModelStore()
     private let engine = LlamaEngine()
     private var task: Task<Void, Never>?
 
     func start() async {
+        status = "Getting Hallie ready…"
         do {
             let path = try await store.ensureModel()
             status = "Waking Hallie up…"
             try await engine.load(path: path.path)
-            ready = true; status = ""
-        } catch { status = error.localizedDescription }
+            ready = true; status = ""; failed = false
+        } catch { status = error.localizedDescription; failed = true }
     }
+
+    func newChat() {
+        task?.cancel()
+        bubbles = []
+        busy = false
+    }
+
+    func stop() { task?.cancel() }
 
     func send(_ text: String) {
         guard ready, !busy, !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
@@ -47,7 +57,15 @@ struct ChatView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Hallie").font(.headline).padding(10)
+            ZStack {
+                Text("Hallie").font(.headline)
+                HStack {
+                    Spacer()
+                    Button("New chat") { m.newChat() }
+                        .font(.footnote)
+                        .disabled(m.bubbles.isEmpty)
+                }
+            }.padding(10)
             ScrollViewReader { proxy in
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 10) {
@@ -71,11 +89,16 @@ struct ChatView: View {
                     if m.store.downloading { ProgressView(value: m.store.progress) }
                     Text(m.store.downloading ? "Downloading Hallie (one time, about 800 MB) \(Int(m.store.progress * 100))%" : m.status)
                         .font(.footnote).foregroundStyle(.secondary)
+                    if m.failed { Button("Try again") { Task { await m.start() } } }
                 }.padding()
             }
             HStack {
                 TextField("Message Hallie", text: $input).textFieldStyle(.roundedBorder).disabled(!m.ready)
-                Button("Send") { m.send(input); input = "" }.disabled(!m.ready || m.busy)
+                if m.busy {
+                    Button("Stop") { m.stop() }
+                } else {
+                    Button("Send") { m.send(input); input = "" }.disabled(!m.ready)
+                }
             }.padding()
         }
         .task { await m.start() }
