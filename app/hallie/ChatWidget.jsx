@@ -77,7 +77,7 @@ export default function ChatWidget({ fullPage = false }) {
   // The floating widget stays mounted (but hidden) on the chat page; only the
   // visible one may save, or its empty list would overwrite the real chat.
   const hidden = !fullPage && pathname === CHAT_PAGE_PATH;
-  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady, reload: reloadModel } = useLocalModel(hidden || !modelKey || (!fullPage && !everOpened) ? null : modelKey);
+  const { engineRef, status: modelStatus, progress: modelProgress, ready: modelReady, reload: reloadModel } = useLocalModel(null);
 
   // Full-page chat: fill exactly the screen below whatever sits above it
   // (banner, menu), and refit when that changes (banner loads, rotation).
@@ -228,32 +228,34 @@ export default function ChatWidget({ fullPage = false }) {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
-    if (!engineRef.current || !modelReady) {
-      addHallieMessage(modelStatus || 'That model is still loading on this device.');
-      return;
-    }
-    const id = Date.now() + Math.random();
-    setMessages(prev => [...prev, { id, text: '', sender: 'hallie', time: now() }]);
+    setIsTyping(true);
+
     try {
-      let full = '';
-      const chunks = await engineRef.current.chat.completions.create({
-        messages: [
-          { role: 'system', content: HALLIE_LOCAL_PROMPT },
-          ...history,
-          { role: 'user', content: text },
-        ],
-        stream: true,
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history })
       });
-      for await (const chunk of chunks) {
-        full += chunk.choices?.[0]?.delta?.content || '';
-        const shown = full;
-        setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: shown } : m)));
+      const data = await res.json();
+      if (data.chatDeleted === true) {
+        holdSave.current = true;
+        try { localStorage.removeItem(CHAT_STORAGE_KEY); } catch { /* ignore */ }
+        setMessages([{ id: Date.now() + Math.random(), text: data.reply || 'Done. This chat is wiped.', sender: 'hallie', time: now() }]);
+        return;
       }
-      if (!full) setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'No reply.' } : m)));
+
+      const pa = data.pendingAction;
+      addHallieMessage(data.reply || 'I received your message.', {
+        ...(pa && typeof pa.id === 'string' && typeof pa.summary === 'string'
+          ? { pending: { id: pa.id, summary: pa.summary, count: Number(pa.count) || 1 }, pendingState: 'open' }
+          : {}),
+        connect: data.connect === true,
+        adminLogin: data.adminLogin === true,
+      });
     } catch (err) {
-      const stack = String(err?.stack || '').split('\n').slice(0, 4).join(' | ').slice(0, 300);
-      const detail = `${err?.name || 'Error'}: ${err?.message || 'unknown error'}${stack ? ` [${stack}]` : ''}`;
-      setMessages(prev => prev.map((m) => (m.id === id ? { ...m, text: 'Error generating response: ' + detail, reloadModel: true } : m)));
+      addHallieMessage('Connection error. Please try emailing me at hallie@tjbmanagementinc.com instead.');
+    } finally {
+      setIsTyping(false);
     }
   };
 
@@ -665,22 +667,6 @@ export default function ChatWidget({ fullPage = false }) {
             )}
           </div>
           <div className="chat-composer">
-            <label className="chat-model">
-              Model
-              <select
-                value={modelKey || 'lite'}
-                onChange={(e) => { setModelNote(''); setModelKey(e.target.value); }}
-                disabled={!modelKey || isTyping}
-              >
-                {modelChoices.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
-              </select>
-            </label>
-            {(modelNote || modelStatus) && <p className="chat-model-status">{modelNote || modelStatus}</p>}
-            {modelKey && modelProgress > 0 && modelProgress < 100 && (
-              <div className="chat-model-bar" role="progressbar" aria-valuenow={modelProgress} aria-valuemin={0} aria-valuemax={100}>
-                <span style={{ width: `${modelProgress}%` }} />
-              </div>
-            )}
           <form onSubmit={sendMessage} className="chat-input">
             <input
               type="text"
@@ -689,7 +675,7 @@ export default function ChatWidget({ fullPage = false }) {
               placeholder="Message Hallie…"
               disabled={isTyping}
             />
-            <button type="submit" disabled={!modelKey || !input.trim() || isTyping || !modelReady}>Send</button>
+            <button type="submit" disabled={!input.trim() || isTyping}>Send</button>
           </form>
           </div>
           <div className="chat-terms">
