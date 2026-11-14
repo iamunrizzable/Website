@@ -26,6 +26,8 @@ final class ModelStore: NSObject, ObservableObject, URLSessionDownloadDelegate {
         }
         try? FileManager.default.removeItem(at: dest)
         try FileManager.default.moveItem(at: tmp, to: dest)
+        var values = URLResourceValues(); values.isExcludedFromBackup = true
+        var d = dest; try? d.setResourceValues(values)
         return dest
     }
 
