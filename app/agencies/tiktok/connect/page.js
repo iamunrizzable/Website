@@ -10,10 +10,11 @@ export default function ContactAgency() {
 
   const contacts = [
     { name: 'Apply to Join One Creator Network', href: TIKTOK_AGENCY_APPLY_URL, icon: '✅' },
-    { name: 'Email One Creator Network', href: 'mailto:support@tjbmanagementinc.com', icon: '✉️' },
-    { name: 'Check Out One Creator Network on TikTok', href: 'https://www.tiktok.com/@onecreatornetwork?lang=en', icon: '🎵' },
+    { name: 'Email One Creator Network', href: 'mailto:info@onecn.live', icon: '✉️' },
+    { name: 'Check Out One Creator Network on TikTok', href: 'https://www.tiktok.com/@onecreatornetwork', icon: '🎵' },
+    { name: 'Check Out One Creator Network Family Clips on TikTok', href: 'https://www.tiktok.com/@onecnclips', icon: '🎬' },
     { name: 'Check Out One Creator Network on Instagram', href: 'https://www.instagram.com/onecreatornetwork/', icon: '📷' },
-    { name: 'Join the One Creator Network Discord', href: 'https://discord.gg/zbpGhtEhJn', icon: '💬' },
+    { name: 'Join the One Creator Network Discord', href: 'https://discord.gg/jvyUYSKhQb', icon: '💬' },
     { name: 'Visit onecn.live', href: 'https://onecn.live', icon: '🌐' },
   ];
 
