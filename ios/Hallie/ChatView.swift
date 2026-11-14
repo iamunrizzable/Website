@@ -5,23 +5,9 @@ struct Bubble: Identifiable { let id = UUID(); let role: String; var text: Strin
 @MainActor
 final class ChatModel: ObservableObject {
     @Published var bubbles: [Bubble] = []
-    @Published var status = "Getting Hallie ready…"
-    @Published var ready = false
     @Published var busy = false
-    @Published var failed = false
-    let store = ModelStore()
-    private let engine = LlamaEngine()
+    var brain: Brain!
     private var task: Task<Void, Never>?
-
-    func start() async {
-        status = "Getting Hallie ready…"
-        do {
-            let path = try await store.ensureModel()
-            status = "Waking Hallie up…"
-            try await engine.load(path: path.path)
-            ready = true; status = ""; failed = false
-        } catch { status = error.localizedDescription; failed = true }
-    }
 
     func newChat() {
         task?.cancel()
@@ -32,7 +18,7 @@ final class ChatModel: ObservableObject {
     func stop() { task?.cancel() }
 
     func send(_ text: String) {
-        guard ready, !busy, !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        guard brain.ready, !busy, !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         bubbles.append(Bubble(role: "user", text: text))
         bubbles.append(Bubble(role: "assistant", text: ""))
         busy = true
@@ -42,7 +28,7 @@ final class ChatModel: ObservableObject {
         let idx = bubbles.count - 1
         task = Task {
             do {
-                try await engine.reply(to: turns) { piece in
+                try await brain.engine.reply(to: turns) { piece in
                     Task { @MainActor in self.bubbles[idx].text += piece }
                 }
             } catch { bubbles[idx].text = error.localizedDescription }
@@ -52,6 +38,7 @@ final class ChatModel: ObservableObject {
 }
 
 struct ChatView: View {
+    @ObservedObject var brain: Brain
     @StateObject private var m = ChatModel()
     @State private var input = ""
 
@@ -84,23 +71,23 @@ struct ChatView: View {
                     if let id = m.bubbles.last?.id { proxy.scrollTo(id, anchor: .bottom) }
                 }
             }
-            if !m.ready {
+            if !brain.ready {
                 VStack(spacing: 6) {
-                    if m.store.downloading { ProgressView(value: m.store.progress) }
-                    Text(m.store.downloading ? "Downloading Hallie (one time, about 800 MB) \(Int(m.store.progress * 100))%" : m.status)
+                    if brain.store.downloading { ProgressView(value: brain.store.progress) }
+                    Text(brain.store.downloading ? "Downloading Hallie (one time, about 800 MB) \(Int(brain.store.progress * 100))%" : brain.status)
                         .font(.footnote).foregroundStyle(.secondary)
-                    if m.failed { Button("Try again") { Task { await m.start() } } }
+                    if brain.failed { Button("Try again") { Task { await brain.start() } } }
                 }.padding()
             }
             HStack {
-                TextField("Message Hallie", text: $input).textFieldStyle(.roundedBorder).disabled(!m.ready)
+                TextField("Message Hallie", text: $input).textFieldStyle(.roundedBorder).disabled(!brain.ready)
                 if m.busy {
                     Button("Stop") { m.stop() }
                 } else {
-                    Button("Send") { m.send(input); input = "" }.disabled(!m.ready)
+                    Button("Send") { m.send(input); input = "" }.disabled(!brain.ready)
                 }
             }.padding()
         }
-        .task { await m.start() }
+        .onAppear { m.brain = brain }
     }
 }
