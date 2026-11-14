@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 const LOCAL_MODELS = {
   mini: { id: 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC' },
   lite: { id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC', fallback: 'Llama-3.2-1B-Instruct-q4f32_1-MLC' },
+  gemma: { id: 'gemma3-1b-it-q4f16_1-MLC', fallback: null },
   thinking: { id: 'Qwen2.5-3B-Instruct-q4f16_1-MLC', fallback: 'Qwen2.5-3B-Instruct-q4f32_1-MLC' },
 };
 
@@ -15,6 +16,7 @@ export const MODEL_CHOICES = [
   { key: 'mini', label: 'Hallie (mini)' },
   { key: 'lite', label: 'Hallie (lite)' },
   { key: 'thinking', label: 'Hallie (thinking)' },
+  { key: 'gemma', label: 'Hallie (thinking)' },
 ];
 
 // iPhone and iPad kill the tab when the 3B model asks for its memory, so
@@ -26,7 +28,7 @@ export function isApplePhoneOrTablet() {
 }
 
 export function availableModelChoices() {
-  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'lite') : MODEL_CHOICES.filter((m) => m.key !== 'mini');
+  return isApplePhoneOrTablet() ? MODEL_CHOICES.filter((m) => m.key === 'lite' || m.key === 'gemma') : MODEL_CHOICES.filter((m) => m.key !== 'mini' && m.key !== 'gemma');
 }
 
 export function readModelChoice() {
@@ -37,7 +39,8 @@ export function readModelChoice() {
     // closed the page last time, say so.
     let crashed = false;
     try {
-      crashed = localStorage.getItem(MODEL_BOOT) === 'lite';
+      const boot = localStorage.getItem(MODEL_BOOT);
+      crashed = boot === 'lite' || boot === 'gemma';
       localStorage.removeItem(MODEL_BOOT);
     } catch { /* ignore */ }
     return { key: 'lite', bounced: crashed };
