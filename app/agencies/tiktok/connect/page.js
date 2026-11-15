@@ -15,6 +15,7 @@ export default function ContactAgency() {
     { name: 'Check Out One Creator Network Family Clips on TikTok', href: 'https://www.tiktok.com/@onecnclips', icon: '🎬' },
     { name: 'Check Out King Sting on TikTok', href: 'https://www.tiktok.com/@king_sting?_r=1&_t=ZT-98KWSLiaSuE', icon: '👑' },
     { name: 'Check Out Sam LoBosco on TikTok', href: 'https://www.tiktok.com/@slobosco12?_r=1&_t=ZT-98KWPMPKFQM', icon: '⭐' },
+    { name: 'Check Out Tyler on TikTok', href: 'https://www.tiktok.com/@iamunrizzable?_r=1&_t=ZP-96V2zRaz8BS', icon: '🎵' },
     { name: 'Join the One Creator Network TikTok LIVE Share Group', href: 'https://tiktok.me/group/ZP8W25kY8/', icon: '🔁' },
     { name: 'Check Out One Creator Network on Instagram', href: 'https://www.instagram.com/onecreatornetwork/', icon: '📷' },
     { name: 'Join the One Creator Network Discord', href: 'https://discord.gg/jvyUYSKhQb', icon: '💬' },
