@@ -13,6 +13,9 @@ export default function ContactAgency() {
     { name: 'Email One Creator Network', href: 'mailto:info@onecn.live', icon: '✉️' },
     { name: 'Check Out One Creator Network on TikTok', href: 'https://www.tiktok.com/@onecreatornetwork', icon: '🎵' },
     { name: 'Check Out One Creator Network Family Clips on TikTok', href: 'https://www.tiktok.com/@onecnclips', icon: '🎬' },
+    { name: 'Check Out King Sting on TikTok', href: 'https://www.tiktok.com/@king_sting?_r=1&_t=ZT-98KWSLiaSuE', icon: '👑' },
+    { name: 'Check Out Sam LoBosco on TikTok', href: 'https://www.tiktok.com/@slobosco12?_r=1&_t=ZT-98KWPMPKFQM', icon: '⭐' },
+    { name: 'Join the One Creator Network TikTok LIVE Share Group', href: 'https://tiktok.me/group/ZP8W25kY8/', icon: '🔁' },
     { name: 'Check Out One Creator Network on Instagram', href: 'https://www.instagram.com/onecreatornetwork/', icon: '📷' },
     { name: 'Join the One Creator Network Discord', href: 'https://discord.gg/jvyUYSKhQb', icon: '💬' },
     { name: 'Visit onecn.live', href: 'https://onecn.live', icon: '🌐' },
@@ -58,6 +61,15 @@ export default function ContactAgency() {
       <main>
         <a href="/agencies/tiktok" className="back-link">← Back to One Creator Network</a>
         <h1>Connect with One Creator Network</h1>
+
+        <div style={{ maxWidth: 640, margin: '0 auto 24px', lineHeight: 1.6, textAlign: 'center' }}>
+          <h2>🎉 Welcome to One Creator Network (OCN)! 🎉</h2>
+          <p>Welcome to the OCN family! We’re excited to have you here.</p>
+          <p>Our mission is simple: help creators grow, connect, and succeed together. Whether you’re just starting your journey or already crushing it, you’ve got an entire community behind you.</p>
+          <p>Please tag @One Creator Network in your bio- this helps other creators in the agency know you are apart of OCN</p>
+          <p>We’re excited to have you on the team. Welcome to One Creator Network!</p>
+          <p>🚀 One Team. One Vision. One Creator Network.</p>
+        </div>
 
         <div className="contact-grid">
           {contacts.map((contact) => (
