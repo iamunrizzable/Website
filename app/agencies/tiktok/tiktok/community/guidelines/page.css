@@ -13,7 +13,7 @@ body::before {
   inset: 0;
   background-image: url("/bg-ocn-merger.jpeg");
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   mix-blend-mode: lighten;
   opacity: 0.13;
