@@ -46,7 +46,7 @@ body::before {
           overflow: hidden;
           transition: all 0.3s ease;
           cursor: pointer;
-          height: 140px;
+          min-height: 140px;
           display: flex;
           flex-direction: column;
           justify-content: center;
