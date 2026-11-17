@@ -12,7 +12,7 @@ const s = {
   page: { minHeight: '100vh', background: 'transparent', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 20, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)' },
   h2: { fontSize: 16, fontWeight: 600, color: '#d946ef', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
-  btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 16px', cursor: 'pointer', fontWeight: 600, fontSize: 14 },
+  btn: { background: '#a855f7', color: '#a5f3fc', border: 'none', borderRadius: 8, padding: '10px 16px', cursor: 'pointer', fontWeight: 600, fontSize: 14 },
   btnGhost: { background: 'transparent', border: '1px solid rgba(168,85,247,0.5)', color: '#d4a5ff', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 13 },
   btnDanger: { background: 'transparent', border: '1px solid #ef4444', color: '#ef4444', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 13 },
   input: { width: '100%', boxSizing: 'border-box', background: '#0f172a', color: '#e2e8f0', border: '1px solid rgba(168,85,247,0.35)', borderRadius: 8, padding: '10px 12px', fontSize: 16, marginBottom: 10, fontFamily: 'inherit' },

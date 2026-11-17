@@ -118,7 +118,7 @@ body::before {
         }
         .cta-btn {
           display: block; text-align: center; margin: 10px auto 30px;
-          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
+          padding: 18px 40px; color: #a5f3fc; font-size: 20px; font-weight: 700;
           text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
           border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
         }

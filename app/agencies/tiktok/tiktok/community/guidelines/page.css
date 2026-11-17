@@ -66,7 +66,7 @@ body::before {
           margin-bottom: 40px;
         }
         .overview-title {
-          color: #fff;
+          color: #a5f3fc;
           font-size: 17px;
           font-weight: 700;
           margin-bottom: 20px;
@@ -120,7 +120,7 @@ body::before {
         .section-title {
           font-size: 24px;
           font-weight: 800;
-          color: #fff;
+          color: #a5f3fc;
           margin: 0 0 14px;
         }
         .section-title .pink { color: #ec4899; }
@@ -133,7 +133,7 @@ body::before {
           line-height: 1.7;
           margin-bottom: 22px;
         }
-        .policy-text .white { color: #fff; }
+        .policy-text .white { color: #a5f3fc; }
 
         /* Badges */
         .badge {
@@ -144,10 +144,10 @@ body::before {
           font-weight: 700;
           margin-bottom: 16px;
         }
-        .badge-red { background: #ec4899; color: #fff; }
+        .badge-red { background: #ec4899; color: #a5f3fc; }
         .badge-cyan { background: transparent; border: 2px solid #06b6d4; color: #06b6d4; }
-        .badge-pink { background: #ec4899; color: #fff; }
-        .badge .not { color: #fff; font-weight: 900; text-decoration: underline; }
+        .badge-pink { background: #ec4899; color: #a5f3fc; }
+        .badge .not { color: #a5f3fc; font-weight: 900; text-decoration: underline; }
 
         /* Lists */
         .rule-list {
@@ -209,7 +209,7 @@ body::before {
         .quiz-label {
           display: inline-block;
           background: #ec4899;
-          color: #fff;
+          color: #a5f3fc;
           font-size: 13px;
           font-weight: 700;
           padding: 5px 14px;
@@ -217,7 +217,7 @@ body::before {
           margin-bottom: 14px;
         }
         .quiz-question {
-          color: #fff;
+          color: #a5f3fc;
           font-size: 17px;
           font-weight: 700;
           line-height: 1.5;
@@ -257,7 +257,7 @@ body::before {
         .gift-title {
           font-size: 24px;
           font-weight: 800;
-          color: #fff;
+          color: #a5f3fc;
           margin-bottom: 20px;
         }
         .gift-title .not { color: #ec4899; }
@@ -283,7 +283,7 @@ body::before {
         /* Menu */
         .menu-button {
           position: fixed; top: 20px; right: 20px;
-          background-color: #a855f7; color: #fff;
+          background-color: #a855f7; color: #a5f3fc;
           border: none; padding: 10px 15px; border-radius: 5px;
           cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px;
           transition: all 0.3s ease;

@@ -44,7 +44,7 @@ body::before {
         .badge {
           display: inline-block;
           background: #ec4899;
-          color: #fff;
+          color: #a5f3fc;
           font-size: 12px;
           font-weight: 700;
           padding: 5px 14px;
@@ -136,7 +136,7 @@ body::before {
         .section.visible { opacity: 1; transform: translateY(0); }
 
         .menu-button {
-          position: fixed; top: 20px; right: 20px; background: #a855f7; color: white;
+          position: fixed; top: 20px; right: 20px; background: #a855f7; color: #a5f3fc;
           border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;
           font-size: 16px; z-index: 100; transition: all 0.2s;
         }

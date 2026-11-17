@@ -59,7 +59,7 @@ body::before {
         .highlight { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         .cta-btn {
           display: block; text-align: center; margin: 10px auto 20px;
-          padding: 18px 40px; color: #fff; font-size: 20px; font-weight: 700;
+          padding: 18px 40px; color: #a5f3fc; font-size: 20px; font-weight: 700;
           text-decoration: none; background: linear-gradient(135deg, #a855f7, #ec4899);
           border-radius: 12px; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(168,85,247,0.4);
         }
@@ -68,7 +68,7 @@ body::before {
         .back-link:hover { text-decoration: underline; }
         .disclaimer { font-size: 12px; color: #06b6d4; margin-top: 10px; line-height: 1.6; }
         .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 12px; color: #ec4899; line-height: 1.8; }
-        .menu-button { position: fixed; top: 20px; right: 20px; background-color: #a855f7; color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px; transition: all 0.3s ease; }
+        .menu-button { position: fixed; top: 20px; right: 20px; background-color: #a855f7; color: #a5f3fc; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; z-index: 100; font-size: 16px; transition: all 0.3s ease; }
         .menu-button:hover { background-color: #9333ea; transform: scale(1.05); box-shadow: 0 0 20px rgba(168,85,247,0.6); }
         .menu-dropdown { display: none; position: fixed; top: 60px; right: 20px; background-color: #0f172a; border: 2px solid #a855f7; border-radius: 5px; padding: 10px 0; min-width: 200px; z-index: 101; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .menu-dropdown.active { display: block; }

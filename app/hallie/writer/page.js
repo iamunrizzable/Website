@@ -12,11 +12,11 @@ const s = {
   label: { display: 'block', fontSize: 13, fontWeight: 600, color: '#d946ef', marginBottom: 6, marginTop: 16 },
   textarea: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 100, resize: 'vertical', fontFamily: 'inherit' },
   input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#e2e8f0', fontSize: 14, width: '100%', boxSizing: 'border-box' },
-  btn: { background: '#a855f7', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 16 },
+  btn: { background: '#a855f7', color: '#a5f3fc', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 16 },
   btnSm: { background: '#334155', color: '#e2e8f0', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   segWrap: { display: 'inline-flex', background: '#0f172a', border: '1px solid #475569', borderRadius: 8, overflow: 'hidden' },
   seg: { background: 'none', border: 'none', color: '#d946ef', padding: '8px 18px', cursor: 'pointer', fontSize: 13, fontWeight: 600 },
-  segActive: { background: '#a855f7', color: '#fff' },
+  segActive: { background: '#a855f7', color: '#a5f3fc' },
 };
 
 export default function HallieWriter() {

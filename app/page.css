@@ -59,7 +59,7 @@ body::before {
         .badge {
           display: inline-block;
           background: #ec4899;
-          color: #fff;
+          color: #a5f3fc;
           font-size: 14px;
           font-weight: 700;
           padding: 6px 16px;
@@ -183,7 +183,7 @@ body::before {
           top: 20px;
           right: 20px;
           background-color: #a855f7;
-          color: #fff;
+          color: #a5f3fc;
           border: none;
           padding: 10px 20px;
           border-radius: 8px;
