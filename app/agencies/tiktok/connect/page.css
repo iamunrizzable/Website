@@ -133,3 +133,10 @@ body::before {
         .menu-dropdown a:last-child { border-bottom: none; }
         .menu-dropdown a:hover { background-color: rgba(168,85,247,0.1); }
         .fade-top { position: fixed; top: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent); z-index: 50; pointer-events: none; }
+
+        /* Streaming Basics palette: each row gets its own color */
+        .contact-card:nth-child(5n+1) .contact-name { color: #d4a5ff; -webkit-text-fill-color: #d4a5ff; }
+        .contact-card:nth-child(5n+2) .contact-name { color: #ec4899; -webkit-text-fill-color: #ec4899; }
+        .contact-card:nth-child(5n+3) .contact-name { color: #06b6d4; -webkit-text-fill-color: #06b6d4; }
+        .contact-card:nth-child(5n+4) .contact-name { color: #3b82f6; -webkit-text-fill-color: #3b82f6; }
+        .contact-card:nth-child(5n+5) .contact-name { color: #a855f7; -webkit-text-fill-color: #a855f7; }

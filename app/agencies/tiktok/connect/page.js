@@ -63,13 +63,13 @@ export default function ContactAgency() {
         <a href="/agencies/tiktok" className="back-link">← Back to One Creator Network</a>
         <h1>Connect with One Creator Network</h1>
 
-        <div style={{ maxWidth: 640, margin: '0 auto 24px', lineHeight: 1.6, textAlign: 'center', color: '#d4a5ff' }}>
-          <h2>🎉 Welcome to One Creator Network (OCN)! 🎉</h2>
+        <div style={{ maxWidth: 640, margin: '0 auto 24px', lineHeight: 1.6, textAlign: 'center', color: '#cbd5e1' }}>
+          <h2 style={{ color: '#a855f7' }}>🎉 Welcome to One Creator Network (OCN)! 🎉</h2>
           <p>Welcome to the OCN family! We’re excited to have you here.</p>
           <p>Our mission is simple: help creators grow, connect, and succeed together. Whether you’re just starting your journey or already crushing it, you’ve got an entire community behind you.</p>
-          <p>Please tag @One Creator Network in your bio- this helps other creators in the agency know you are apart of OCN</p>
+          <p style={{ color: '#06b6d4' }}>Please tag @One Creator Network in your bio- this helps other creators in the agency know you are apart of OCN</p>
           <p>We’re excited to have you on the team. Welcome to One Creator Network!</p>
-          <p>🚀 One Team. One Vision. One Creator Network.</p>
+          <p style={{ color: '#ec4899' }}>🚀 One Team. One Vision. One Creator Network.</p>
         </div>
 
         <div className="contact-grid">
