@@ -34,7 +34,7 @@ export default function ClosedForGtaVi() {
             width: '100%',
             margin: '40px auto 0',
             textAlign: 'center',
-            color: '#fbcfe8',
+            color: '#f472b6',
             background: 'rgba(15,23,42,0.6)',
             border: '2px solid rgba(168,85,247,0.35)',
             borderRadius: 16,
@@ -70,13 +70,13 @@ export default function ClosedForGtaVi() {
 
             <h2 style={{ color: '#d4a5ff', fontSize: 18, fontWeight: 700, margin: '0 0 14px' }}>Office hours</h2>
 
-            <p style={{ color: '#fbcfe8', margin: '0 0 2px', fontWeight: 600 }}>Wednesday, November 18</p>
+            <p style={{ color: '#f472b6', margin: '0 0 2px', fontWeight: 600 }}>Wednesday, November 18</p>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>Regular hours.</p>
 
-            <p style={{ color: '#fbcfe8', margin: '0 0 2px', fontWeight: 600 }}>Thursday, November 19 – Monday, November 30</p>
+            <p style={{ color: '#f472b6', margin: '0 0 2px', fontWeight: 600 }}>Thursday, November 19 – Monday, November 30</p>
             <p style={{ color: '#06b6d4', margin: '0 0 16px' }}>Closed.</p>
 
-            <p style={{ color: '#fbcfe8', margin: '0 0 2px', fontWeight: 600 }}>Tuesday, December 1</p>
+            <p style={{ color: '#f472b6', margin: '0 0 2px', fontWeight: 600 }}>Tuesday, December 1</p>
             <p style={{ color: '#06b6d4', margin: '0 0 24px' }}>We return.</p>
 
             <p style={{ color: '#d946ef', margin: '0 0 16px' }}>Urgent matters can wait until December 1.</p>

@@ -85,7 +85,7 @@ body::before {
         .calculator { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.25); border-radius: 10px; padding: 20px; margin-top: 15px; }
         .calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
         .calc-row label { color: #ec4899; font-size: 14px; min-width: 150px; }
-        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #fbcfe8; font-size: 15px; width: 160px; outline: none; }
+        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #f472b6; font-size: 15px; width: 160px; outline: none; }
         .calc-row input:focus { border-color: #a855f7; }
         .calc-result { color: #ec4899; font-size: 15px; margin-top: 4px; }
         .calc-result span { font-size: 26px; font-weight: 700; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }

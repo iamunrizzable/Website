@@ -7,9 +7,9 @@ import { parseUserAgent } from '@/lib/deviceSignals';
 import { renderStaticMap } from '@/lib/staticMap';
 
 const s = {
-  page: { minHeight: '100vh', background: 'transparent', color: '#fbcfe8', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
+  page: { minHeight: '100vh', background: 'transparent', color: '#f472b6', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
-  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#fbcfe8', fontSize: 14, width: '100%', boxSizing: 'border-box', marginBottom: 16 },
+  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#f472b6', fontSize: 14, width: '100%', boxSizing: 'border-box', marginBottom: 16 },
   warnBanner: { background: '#3f1d1d', border: '1px solid #ef4444', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 13, color: '#fca5a5', lineHeight: 1.5 },
   msg: { fontSize: 12, color: '#f59e0b', marginBottom: 8, minHeight: 18 },
   btnGhost: { background: 'transparent', border: '1px solid #475569', color: '#94a3b8', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
@@ -19,7 +19,7 @@ const s = {
   allowedBadge: { display: 'inline-block', background: 'rgba(34,197,94,0.15)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.4)', borderRadius: 999, padding: '2px 10px', fontSize: 11, fontWeight: 700 },
   detailPanel: { marginTop: 10, padding: 16, background: '#0f172a', borderRadius: 8, border: '1px solid #334155', fontFamily: 'system-ui,sans-serif' },
   detailLabel: { color: '#64748b', fontSize: 11, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 3 },
-  detailValue: { color: '#fbcfe8', fontSize: 13, fontWeight: 600 },
+  detailValue: { color: '#f472b6', fontSize: 13, fontWeight: 600 },
   detailSub: { color: '#94a3b8', fontSize: 12 },
   caveat: { color: '#f59e0b', fontSize: 11, lineHeight: 1.6, marginTop: 4, fontStyle: 'italic' },
   jsonBlock: { background: '#000', color: '#0f0', fontFamily: 'monospace', fontSize: 11, padding: 10, borderRadius: 6, marginTop: 8, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-all', maxHeight: 300, overflowY: 'auto' },

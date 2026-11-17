@@ -7,13 +7,13 @@ import { useState, useEffect } from 'react';
 const VOICE_KEY = 'tyler_writer_voice_examples';
 
 const s = {
-  page: { minHeight: '100vh', background: 'transparent', color: '#fbcfe8', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
+  page: { minHeight: '100vh', background: 'transparent', color: '#f472b6', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
   label: { display: 'block', fontSize: 13, fontWeight: 600, color: '#d946ef', marginBottom: 6, marginTop: 16 },
-  textarea: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#fbcfe8', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 100, resize: 'vertical', fontFamily: 'inherit' },
-  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#fbcfe8', fontSize: 14, width: '100%', boxSizing: 'border-box' },
+  textarea: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#f472b6', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 100, resize: 'vertical', fontFamily: 'inherit' },
+  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#f472b6', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#a5f3fc', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14, marginTop: 16 },
-  btnSm: { background: '#334155', color: '#fbcfe8', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
+  btnSm: { background: '#334155', color: '#f472b6', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   segWrap: { display: 'inline-flex', background: '#0f172a', border: '1px solid #475569', borderRadius: 8, overflow: 'hidden' },
   seg: { background: 'none', border: 'none', color: '#d946ef', padding: '8px 18px', cursor: 'pointer', fontSize: 13, fontWeight: 600 },
   segActive: { background: '#a855f7', color: '#a5f3fc' },
@@ -262,7 +262,7 @@ export default function HallieWriter() {
                 <p style={{ fontSize: 13, fontWeight: 600, color: '#a855f7', marginBottom: 8 }}>
                   {persona === 'hallie' ? "Hallie's draft" : "Draft (as you)"}
                 </p>
-                <p style={{ color: '#fbcfe8', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
+                <p style={{ color: '#f472b6', fontSize: 14, lineHeight: 1.6, background: '#0f172a', border: '1px solid #334155', borderRadius: 8, padding: '12px 16px', whiteSpace: 'pre-wrap' }}>
                   {draft}
                 </p>
                 <button onClick={handleCopy} style={{ ...s.btnSm, marginTop: 10 }}>

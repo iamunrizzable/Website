@@ -60,7 +60,7 @@
   width: 100%;
   margin: auto;
   text-align: center;
-  color: #fbcfe8;
+  color: #f472b6;
   background: rgba(15,23,42,0.6);
   border-radius: 16px;
   padding: 36px 12px;
@@ -185,7 +185,7 @@
 }
 
 .fp-h1--consent {
-  color: #fbcfe8;
+  color: #f472b6;
   font-size: 26px;
   margin: 0 0 14px;
   font-weight: 800;

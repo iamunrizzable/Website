@@ -28,12 +28,12 @@ function categoryLabel(code) {
 }
 
 const s = {
-  page: { minHeight: '100vh', background: 'transparent', color: '#fbcfe8', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
+  page: { minHeight: '100vh', background: 'transparent', color: '#f472b6', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10 },
   card: { background: '#1e293b', borderRadius: 12, padding: 24, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)', animation: 'borderGlow 3s ease-in-out infinite' },
   h2: { fontSize: 16, fontWeight: 600, color: '#d946ef', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
-  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#fbcfe8', fontSize: 14, width: '100%', boxSizing: 'border-box' },
+  input: { background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#f472b6', fontSize: 14, width: '100%', boxSizing: 'border-box' },
   btn: { background: '#a855f7', color: '#a5f3fc', border: 'none', borderRadius: 8, padding: '10px 20px', cursor: 'pointer', fontWeight: 600, fontSize: 14 },
-  btnSm: { background: '#334155', color: '#fbcfe8', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
+  btnSm: { background: '#334155', color: '#f472b6', border: 'none', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   btnDanger: { background: 'transparent', border: '1px solid #ef4444', color: '#ef4444', borderRadius: 6, padding: '6px 12px', cursor: 'pointer', fontSize: 12 },
   badge: (color) => ({ background: color + '22', color, border: `1px solid ${color}`, borderRadius: 4, padding: '2px 8px', fontSize: 11, fontWeight: 600 }),
   msg: { background: '#1e3a5f', border: '1px solid #3b82f6', borderRadius: 8, padding: '10px 14px', marginBottom: 16, fontSize: 13 },
@@ -196,7 +196,7 @@ function ConnectionCard({ adminKey, status, accountEnabled }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: accountEnabled ? '#10b981' : '#ef4444', display: 'inline-block', flexShrink: 0 }} />
           <div>
-            <span style={{ fontSize: 13, color: '#fbcfe8' }}>TikTok Account Token</span>
+            <span style={{ fontSize: 13, color: '#f472b6' }}>TikTok Account Token</span>
             {!accountEnabled && <span style={{ fontSize: 12, color: '#06b6d4', marginLeft: 8 }}>account info, videos &amp; comments</span>}
             {accountEnabled && acctExpiring && <span style={{ fontSize: 12, color: '#f59e0b', marginLeft: 8 }}>expiring soon</span>}
           </div>
@@ -241,7 +241,7 @@ function AccountPanel({ adminKey, enabled }) {
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
           <div>
-            <div style={{ fontSize: 16, fontWeight: 600, color: '#fbcfe8' }}>{account?.display_name ?? '—'}</div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: '#f472b6' }}>{account?.display_name ?? '—'}</div>
             <div style={{ fontSize: 13, color: '#06b6d4', marginTop: 4, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               {account?.username && <span>@{account.username}</span>}
               {account?.followers_count != null && <span>{account.followers_count.toLocaleString()} followers</span>}
@@ -302,7 +302,7 @@ function VideosPanel({ adminKey, enabled }) {
           <div key={v.id ?? i} style={{ display: 'flex', gap: 12, alignItems: 'center', borderBottom: '1px solid #334155', paddingBottom: 12, marginBottom: 12 }}>
             {v.cover_image_url && <img src={v.cover_image_url} alt="" style={{ width: 60, height: 80, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 14, color: '#fbcfe8', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <div style={{ fontSize: 14, color: '#f472b6', fontWeight: 600, marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {v.title ? v.title : <span style={{ color: '#475569', fontStyle: 'italic' }}>Untitled</span>}
               </div>
               <div style={{ fontSize: 12, color: '#06b6d4' }}>
@@ -450,7 +450,7 @@ function CommentsPanel({ adminKey, enabled }) {
               <div key={c.comment_id} style={{ borderBottom: '1px solid #0f172a', paddingBottom: 12, marginBottom: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, minWidth: 0 }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: '#fbcfe8' }}>@{c.username}</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: '#f472b6' }}>@{c.username}</span>
                     <span style={{ fontSize: 11, color: '#475569', whiteSpace: 'nowrap' }}>
                       {c.create_time ? new Date(c.create_time * 1000).toLocaleDateString() : ''}
                       {c.like_count ? ` · ♥ ${c.like_count}` : ''}
@@ -605,7 +605,7 @@ function SyncPanel({ adminKey, enabled }) {
                     </span>
                   </div>
                   <VideoLine comment={c} />
-                  <div style={{ color: '#fbcfe8', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#06b6d4' }}>(no text)</em>}</div>
+                  <div style={{ color: '#f472b6', wordBreak: 'break-word' }}>{c.text || <em style={{ color: '#06b6d4' }}>(no text)</em>}</div>
                 </div>
               ))}
             </div>
@@ -703,7 +703,7 @@ function AutomatedRulesPanel({ adminKey, enabled }) {
             rules.map((rule, i) => (
               <div key={rule.id ?? i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: 10, marginBottom: 10 }}>
                 <div>
-                  <div style={{ fontSize: 14, color: '#fbcfe8', fontWeight: 600 }}>{rule.name}</div>
+                  <div style={{ fontSize: 14, color: '#f472b6', fontWeight: 600 }}>{rule.name}</div>
                   <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{(rule.keywords ?? []).join(', ')}</div>
                 </div>
                 <button onClick={() => handleDelete(rule.id)} style={s.btnDanger}>Delete</button>
@@ -777,7 +777,7 @@ function CommentFiltersPanel({ adminKey, enabled }) {
                 style={{ marginTop: 3 }}
               />
               <div>
-                <div style={{ fontSize: 14, color: '#fbcfe8', fontWeight: 600 }}>{cat.label}</div>
+                <div style={{ fontSize: 14, color: '#f472b6', fontWeight: 600 }}>{cat.label}</div>
                 <div style={{ fontSize: 12, color: '#06b6d4', marginTop: 2 }}>{cat.description}</div>
               </div>
             </label>
@@ -1184,7 +1184,7 @@ function TestPanel({ adminKey }) {
     <div style={s.card}>
       <h2 style={s.h2}>Test Moderation</h2>
       <textarea
-        style={{ background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#fbcfe8', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 80, resize: 'vertical' }}
+        style={{ background: '#0f172a', border: '1px solid #475569', borderRadius: 8, padding: '10px 14px', color: '#f472b6', fontSize: 14, width: '100%', boxSizing: 'border-box', minHeight: 80, resize: 'vertical' }}
         value={text}
         onChange={e => setText(e.target.value)}
         placeholder="Paste a comment, DM, or LIVE chat message to score it…"

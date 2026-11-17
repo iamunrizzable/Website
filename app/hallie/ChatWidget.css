@@ -97,7 +97,7 @@
 .chat-header .chat-saved-delete {
   background: #4c1d95;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 14px;
@@ -153,7 +153,7 @@
 .chat-header .chat-saved-delete {
   background: #4c1d95;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 13px;
@@ -178,7 +178,7 @@
   padding: 10px 14px 12px;
   border-bottom: 1px solid rgba(168, 85, 247, 0.25);
   background: rgba(0, 0, 0, 0.35);
-  color: #f3e8ff;
+  color: #c084fc;
   font-size: 13px;
   line-height: 1.4;
 }
@@ -248,7 +248,7 @@
   appearance: none;
   background: #4c1d95;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 15px;
@@ -310,7 +310,7 @@
   background: rgba(0, 0, 0, 0.5);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  color: #f0dcff;
+  color: #c084fc;
   border: 1px solid rgba(168, 85, 247, 0.3);
   border-bottom-left-radius: 2px;
 }
@@ -400,7 +400,7 @@
   margin: 0 0 10px;
   font-size: 14px;
   line-height: 1.4;
-  color: #fbcfe8;
+  color: #f472b6;
   word-break: break-word;
 }
 
@@ -530,7 +530,7 @@
 }
 
 .chat-terms a {
-  color: #f5d0fe;
+  color: #c084fc;
   text-decoration: underline;
 }
 .chat-composer {
@@ -556,7 +556,7 @@
   min-height: 44px;
   background: #1e1b4b;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
   border-radius: 8px;
   padding: 8px 10px;
   font-size: 16px;
@@ -580,7 +580,7 @@
 .chat-model-bar span {
   display: block;
   height: 100%;
-  background: #f5d0fe;
+  background: #c084fc;
 }
 
 .chat-composer .chat-input {
@@ -595,14 +595,14 @@
   font-size: 16px;
   background: #1e293b;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
 }
 
 .chat-composer .chat-input button {
   min-height: 48px;
   background: #6d28d9;
   color: #a5f3fc;
-  border: 1px solid #f5d0fe;
+  border: 1px solid #c084fc;
   font-size: 16px;
   font-weight: 800;
 }

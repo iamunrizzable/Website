@@ -49,5 +49,5 @@ main p a, main li a { color: #06b6d4; text-decoration: underline; }
 
 /* Form fields and buttons don't inherit text color by default, which left
    them system white/black. Same Streaming Basics scheme; class rules win. */
-input, textarea, select, button { color: #fbcfe8; font-family: inherit; }
+input, textarea, select, button { color: #f472b6; font-family: inherit; }
 input::placeholder, textarea::placeholder { color: #a855f7; opacity: 0.8; }
