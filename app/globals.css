@@ -31,3 +31,18 @@ button {
   background: none;
   cursor: pointer;
 }
+
+/* Site-wide text colors: the Streaming Basics scheme. Element selectors
+   only, so any page or component that sets its own class color still wins. */
+main h1 { color: #d4a5ff; text-shadow: 0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.3); }
+main h2 { color: #a855f7; }
+main h3, main h4 { color: #ec4899; }
+main p, main li, main td { color: #cbd5e1; }
+main th { color: #06b6d4; }
+main strong, main b { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+main em { color: #a855f7; font-style: normal; }
+main li:nth-child(4n+2)::marker { color: #ec4899; }
+main li:nth-child(4n+3)::marker { color: #3b82f6; }
+main li:nth-child(4n)::marker { color: #06b6d4; }
+main li::marker { color: #a855f7; }
+main p a, main li a { color: #06b6d4; text-decoration: underline; }
