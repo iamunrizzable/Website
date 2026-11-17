@@ -87,7 +87,7 @@ body::before {
           align-items: center;
           gap: 16px;
           padding: 10px 0;
-          color: #e2e8f0;
+          color: #fbcfe8;
           font-size: 15px;
           font-weight: 500;
           text-decoration: none;
@@ -156,7 +156,7 @@ body::before {
           margin: 0 0 20px;
         }
         .rule-list li {
-          color: #cbd5e1;
+          color: #c4b5fd;
           font-size: 15px;
           line-height: 1.7;
           padding: 8px 0 8px 20px;
@@ -191,7 +191,7 @@ body::before {
         .practice-icon { font-size: 36px; margin-bottom: 12px; }
         .practice-text {
           font-size: 14px;
-          color: #cbd5e1;
+          color: #c4b5fd;
           line-height: 1.6;
         }
         .practice-text .cyan { color: #06b6d4; font-weight: 700; }
@@ -229,7 +229,7 @@ body::before {
           margin: 0 0 14px;
         }
         .quiz-options li {
-          color: #cbd5e1;
+          color: #c4b5fd;
           font-size: 15px;
           padding: 6px 0;
           line-height: 1.6;

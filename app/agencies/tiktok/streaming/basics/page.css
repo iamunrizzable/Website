@@ -33,8 +33,8 @@ body::before {
         h1 { color: #d4a5ff; margin-bottom: 10px; font-size: 36px; animation: glowPulse 3s ease-in-out infinite; }
         .subtitle { color: #ec4899; font-size: 16px; margin-bottom: 40px; }
         h2 { color: #a855f7; font-size: 20px; margin-bottom: 15px; animation: glowPulse 3s ease-in-out infinite; }
-        p { color: #cbd5e1; line-height: 1.8; margin-bottom: 15px; }
-        li { color: #cbd5e1; line-height: 1.8; margin-bottom: 8px; }
+        p { color: #c4b5fd; line-height: 1.8; margin-bottom: 15px; }
+        li { color: #c4b5fd; line-height: 1.8; margin-bottom: 8px; }
         strong { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         em { color: #a855f7; font-style: normal; }
         @keyframes borderGlow {
@@ -85,7 +85,7 @@ body::before {
         .calculator { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.25); border-radius: 10px; padding: 20px; margin-top: 15px; }
         .calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
         .calc-row label { color: #ec4899; font-size: 14px; min-width: 150px; }
-        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #e2e8f0; font-size: 15px; width: 160px; outline: none; }
+        .calc-row input { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.3); border-radius: 6px; padding: 8px 12px; color: #fbcfe8; font-size: 15px; width: 160px; outline: none; }
         .calc-row input:focus { border-color: #a855f7; }
         .calc-result { color: #ec4899; font-size: 15px; margin-top: 4px; }
         .calc-result span { font-size: 26px; font-weight: 700; background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }

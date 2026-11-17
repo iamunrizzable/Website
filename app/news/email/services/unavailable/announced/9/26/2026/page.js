@@ -33,7 +33,7 @@ export default function EmailServicesUnavailable() {
             width: '100%',
             margin: '40px auto 0',
             textAlign: 'center',
-            color: '#e2e8f0',
+            color: '#fbcfe8',
             background: 'rgba(15,23,42,0.6)',
             border: '2px solid rgba(245,158,11,0.35)',
             borderRadius: 16,

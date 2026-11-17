@@ -2,11 +2,11 @@
 
 // Admin-only: the proxy requires a valid admin session for everything under /admin.
 const s = {
-  page: { minHeight: '100vh', color: '#e2e8f0', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10, maxWidth: 720, margin: '0 auto' },
+  page: { minHeight: '100vh', color: '#fbcfe8', fontFamily: 'system-ui,sans-serif', padding: '32px 20px', position: 'relative', zIndex: 10, maxWidth: 720, margin: '0 auto' },
   card: { background: '#1e293b', borderRadius: 12, padding: 20, marginBottom: 20, border: '2px solid rgba(168,85,247,0.25)' },
   h1: { fontSize: 26, fontWeight: 700, marginBottom: 8 },
   h2: { fontSize: 16, fontWeight: 600, color: '#d946ef', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 },
-  p: { fontSize: 14, lineHeight: 1.7, color: '#cbd5e1', margin: '0 0 8px' },
+  p: { fontSize: 14, lineHeight: 1.7, color: '#c4b5fd', margin: '0 0 8px' },
   back: { color: '#d4a5ff', fontSize: 14, textDecoration: 'none' },
 };
 

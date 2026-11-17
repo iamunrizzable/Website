@@ -37,7 +37,7 @@ button {
 main h1 { color: #d4a5ff; text-shadow: 0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.3); }
 main h2 { color: #a855f7; }
 main h3, main h4 { color: #ec4899; }
-main p, main li, main td { color: #cbd5e1; }
+main p, main li, main td { color: #c4b5fd; }
 main th { color: #06b6d4; }
 main strong, main b { background: linear-gradient(90deg, #d946ef, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
 main em { color: #a855f7; font-style: normal; }

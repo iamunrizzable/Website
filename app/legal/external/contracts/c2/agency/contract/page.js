@@ -68,7 +68,7 @@ export default function C2AgencyAgreement() {
           </ol>
         </div>
 
-        <p style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 1.8, marginBottom: 30 }}>
+        <p style={{ color: '#c4b5fd', fontSize: 15, lineHeight: 1.8, marginBottom: 30 }}>
           This C2 Live Streamer Agency Agreement (the &quot;Agreement&quot;) outlines the terms and conditions for participation in the C2 Live Streamer Agency Program (the &quot;Program&quot;) and is a legally binding contract between you and C2 Capital Group Inc. (the &quot;Company&quot;). By registering as an Agency Owner or an Agency Member you agree to be bound by this Agreement and the C2 Terms available at https://c2live.co/terms.
         </p>
 
