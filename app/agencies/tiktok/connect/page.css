@@ -150,7 +150,7 @@ body::before {
 
 /* Dark backing panel so the text stays readable over the logo */
 .welcome-glow { background: rgba(8,12,30,0.78); border-radius: 16px; padding: 16px 14px; box-shadow: 0 0 24px rgba(8,12,30,0.9); }
-.welcome-glow p { color: #f0e6ff; font-weight: 500; }
+.welcome-glow p { color: #d8a8ff; font-weight: 500; }
 .welcome-glow p:nth-of-type(3) { color: #22d3ee; }
 .welcome-glow p:nth-of-type(5) { color: #f472b6; }
 h1 { text-shadow: 0 0 10px rgba(168,85,247,1), 0 0 24px rgba(168,85,247,0.8), 0 2px 4px rgba(0,0,0,0.9); }
