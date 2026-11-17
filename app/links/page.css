@@ -52,7 +52,7 @@ body::before {
           padding: 12px 16px 12px 56px;
           box-sizing: border-box;
           border-radius: 4px;
-          background-color: rgba(253, 248, 228, 0.5);
+          background-color: rgba(15, 23, 42, 0.55);
           background-image:
             linear-gradient(to right, transparent 44px, rgba(220, 80, 80, 0.65) 44px, rgba(220, 80, 80, 0.65) 46px, transparent 46px),
             linear-gradient(to bottom, transparent 35px, rgba(120, 175, 235, 0.7) 35px);
@@ -72,7 +72,7 @@ body::before {
           line-height: 36px;
           font-weight: 700;
           text-decoration: none;
-          color: #172554;
+          color: #d4a5ff;
           background: transparent;
           box-shadow: none;
           border-radius: 0;
@@ -83,7 +83,7 @@ body::before {
           flex: 0 0 auto;
           width: 14px;
           height: 14px;
-          border: 2px solid #374151;
+          border: 2px solid #a855f7;
           border-radius: 3px;
         }
         .btn:hover {
