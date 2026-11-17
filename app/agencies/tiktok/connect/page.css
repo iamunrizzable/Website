@@ -140,3 +140,10 @@ body::before {
         .contact-card:nth-child(5n+3) .contact-name { color: #06b6d4; -webkit-text-fill-color: #06b6d4; }
         .contact-card:nth-child(5n+4) .contact-name { color: #3b82f6; -webkit-text-fill-color: #3b82f6; }
         .contact-card:nth-child(5n+5) .contact-name { color: #a855f7; -webkit-text-fill-color: #a855f7; }
+
+/* Glow so text stays readable over the background image */
+.welcome-glow h2 { text-shadow: 0 0 8px rgba(168,85,247,1), 0 0 18px rgba(168,85,247,0.9), 0 0 36px rgba(168,85,247,0.7), 0 2px 4px rgba(0,0,0,0.9); }
+.welcome-glow p { text-shadow: 0 0 6px rgba(15,23,42,1), 0 0 14px rgba(168,85,247,0.95), 0 0 28px rgba(168,85,247,0.7), 0 2px 4px rgba(0,0,0,0.9); }
+.welcome-glow p:nth-of-type(3) { text-shadow: 0 0 6px rgba(15,23,42,1), 0 0 14px rgba(6,182,212,0.95), 0 0 28px rgba(6,182,212,0.7), 0 2px 4px rgba(0,0,0,0.9); }
+.welcome-glow p:nth-of-type(5) { text-shadow: 0 0 6px rgba(15,23,42,1), 0 0 14px rgba(236,72,153,0.95), 0 0 28px rgba(236,72,153,0.7), 0 2px 4px rgba(0,0,0,0.9); }
+.contact-card .contact-name { text-shadow: 0 0 8px rgba(168,85,247,0.9), 0 0 18px rgba(168,85,247,0.6), 0 1px 3px rgba(0,0,0,0.8); }
