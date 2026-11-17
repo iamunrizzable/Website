@@ -61,11 +61,10 @@ body::before {
           border-radius: 4px;
           background-color: rgba(15, 23, 42, 0.55);
           background-image:
-            linear-gradient(to right, transparent 44px, rgba(220, 80, 80, 0.65) 44px, rgba(220, 80, 80, 0.65) 46px, transparent 46px),
-            linear-gradient(to bottom, transparent 35px, rgba(120, 175, 235, 0.7) 35px);
-          background-size: 100% 100%, 100% 36px;
-          background-position: 0 0, 0 12px;
-          background-repeat: no-repeat, repeat-y;
+            linear-gradient(to right, transparent 44px, rgba(220, 80, 80, 0.65) 44px, rgba(220, 80, 80, 0.65) 46px, transparent 46px);
+          background-size: 100% 100%;
+          background-position: 0 0;
+          background-repeat: no-repeat;
           box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
           font-family: "Bradley Hand", "Segoe Print", "Marker Felt", "Comic Sans MS", cursive;
         }
@@ -86,8 +85,8 @@ body::before {
           text-align: left;
           cursor: pointer;
           opacity: 0;
-          transform: translateY(6px);
-          transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.2s ease;
         }
         .contact-card.visible {
           opacity: 1;
