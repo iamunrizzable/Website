@@ -46,3 +46,8 @@ main li:nth-child(4n+3)::marker { color: #3b82f6; }
 main li:nth-child(4n)::marker { color: #06b6d4; }
 main li::marker { color: #a855f7; }
 main p a, main li a { color: #06b6d4; text-decoration: underline; }
+
+/* Form fields and buttons don't inherit text color by default, which left
+   them system white/black. Same Streaming Basics scheme; class rules win. */
+input, textarea, select, button { color: #fbcfe8; font-family: inherit; }
+input::placeholder, textarea::placeholder { color: #a855f7; opacity: 0.8; }
