@@ -35,6 +35,8 @@ const out = [];
 for (const file of pages(APP)) {
   const rel = path.relative(APP, path.dirname(file)).split(path.sep).join('/');
   if (SKIP.test(rel) || rel.includes('[')) continue;
+  // Only ever read files that sit inside the app/ folder.
+  if (path.relative(APP, path.resolve(file)).startsWith('..')) continue;
   const src = fs.readFileSync(file, 'utf8');
   const text = textOf(src);
   if (text.length < 40) continue;

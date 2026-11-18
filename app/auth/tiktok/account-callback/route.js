@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { exchangeBusinessPortalAccountCode, exchangeTikTokAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
-import { absoluteUrl } from '@/lib/site-url';
+import { absoluteUrl, sameOriginUrl } from '@/lib/site-url';
 import { safeReturnPath } from '@/lib/return-path';
 import { SESSION_COOKIE, connectProvider, applySessionCookie } from '@/lib/hallie-identity';
 
@@ -90,7 +90,7 @@ export async function GET(request) {
     // A login started from the Hallie chat goes back to the page it started on.
     const returnTo = isSystem ? safeReturnPath(request.cookies.get('hallie_return')?.value) : null;
     const dest = isSystem ? '/hallie/chat' : '/admin/internal/hallie/tiktok/moderation/system?account_connected=1';
-    const response = returnTo ? NextResponse.redirect(absoluteUrl(returnTo)) : safeRedirect(dest);
+    const response = returnTo ? NextResponse.redirect(sameOriginUrl(returnTo, '/hallie/chat')) : safeRedirect(dest);
     if (isSystem) response.cookies.set('hallie_return', '', { maxAge: 0, path: '/' });
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,

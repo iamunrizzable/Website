@@ -28,6 +28,10 @@ export async function GET(request) {
         headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' },
       });
     }
+    // Only ever send the browser to an https storage link.
+    if (new URL(presignedUrl).protocol !== 'https:') {
+      return NextResponse.json({ error: 'Backup download is unavailable.' }, { status: 500 });
+    }
     const res = NextResponse.redirect(presignedUrl, 302);
     res.headers.set('Cache-Control', 'no-store');
     return res;
