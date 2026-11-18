@@ -2,13 +2,12 @@ import { NextResponse } from 'next/server';
 import { exchangeBusinessCode, exchangeBusinessPortalAccountCode } from '@/lib/tiktok/business-oauth';
 import { storeBusinessTokens, storeTikTokAccountToken } from '@/lib/tokens';
 import { verifyState, getStateType } from '@/lib/oauth-state';
-import { absoluteUrl } from '@/lib/site-url';
+import { knownPageUrl } from '@/lib/site-url';
 
 const ALLOWED_PATHS = ['/admin/internal/hallie/tiktok/moderation/system'];
 
 function safeRedirect(path) {
-  const ok = ALLOWED_PATHS.find(p => path === p || path.startsWith(p + '?'));
-  return NextResponse.redirect(absoluteUrl(ok ? path : '/admin/internal/hallie/tiktok/moderation/system'));
+  return NextResponse.redirect(knownPageUrl(path, ALLOWED_PATHS));
 }
 
 export async function GET(request) {
