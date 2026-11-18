@@ -8,7 +8,7 @@
 - **"Default to the most reasonable reading and act" (below) is ONLY for resolving genuine ambiguity in HOW to build the thing that was explicitly asked for** (e.g. which existing code pattern to follow). It is never license to add scope, change wording/design, or implement something the user didn't ask for because it seemed like a reasonable improvement.
 - **Ask only when the request could change real behavior or user-facing wording. Otherwise act on the most reasonable reading and say what was assumed.** This is the single rule for when to ask; it replaces both "don't ask unless truly blocked" and "if anything is unclear, ask." The "never guess a root cause" rule still applies on top of it.
 - **NEVER guess at a fix. If the root cause is not confirmed, ask first. Do not deploy speculative changes.**
-- **`/admin/internal/hallie/tiktok/moderation/system` and `/hallie/tiktok/moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + x-admin-key; system uses `/api/system/*` + acct_token cookie)
+- **`/admin/internal/hallie/tiktok/moderation/system` and `/hallie/tiktok/moderation/system` are mirrored UIs for real, usable features. Any feature/UI change to one MUST also be applied to the other** (admin uses `/api/admin/*` + the `admin_session` cookie; system uses `/api/system/*` + acct_token cookie)
 - **`/admin/internal/hallie/tiktok/moderation/system` is the internal testing surface; `/hallie/tiktok/moderation/system` is usable-features-only, always.** Debugging/diagnostic tooling (test buttons, raw-response dumps, exploratory API probes) goes on `/admin/internal/hallie/tiktok/moderation/system` ONLY — never on `/system`. This is an explicit exception to the mirror rule above: mirror shipped features, never debug scaffolding.
 - **`/admin` is now the tools hub** (lists Hallie Writer, the moderation system, and the Admin Panel) — the TikTok testing dashboard itself moved to `/admin/internal/hallie/tiktok/moderation/system`. Login redirects to `/admin`, not `/admin/internal/hallie/tiktok/moderation/system`.
 - **Every page is geo-restricted to the US + Canada, permanently, as a hard rule.** This is enforced structurally by `DeviceGate` wrapping the entire app in `app/layout.js` — every route inherits it automatically, with no per-page opt-in needed. NEVER add a page, route, or layout that renders outside `DeviceGate`, and never add a bypass/exception for any specific path. If a new top-level layout or root-level change is ever made, confirm `DeviceGate` still wraps it before shipping.
@@ -20,7 +20,7 @@
 - Dev branch: `claude/general-session-v2pLH`
 
 ## Admin auth (read before touching any admin/business route)
-- Admin login = username + password + 6-digit authenticator code (TOTP, `ADMIN_TOTP_SECRET`) → a signed, 7-day `admin_session` cookie (`lib/auth.js`: `createAdminSession` / `verifyAdminSession`). The raw `ADMIN_SECRET` is never a credential and is never sent to the browser; **`x-admin-key` / `?key=` no longer work** (older docs below that mention them are out of date).
+- Admin login = username + password + 6-digit authenticator code (TOTP, `ADMIN_TOTP_SECRET`) → a signed, 7-day `admin_session` cookie (`lib/auth.js`: `createAdminSession` / `verifyAdminSession`). The raw `ADMIN_SECRET` is never a credential and is never sent to the browser; **`x-admin-key` / `?key=` no longer work**.
 - `isValidAdminKey(request)` and `isAdminSessionValid(cookies)` are **async — always `await` them**, including under any alias (`isValidAdminKey as requireAdmin`). A missing `await` silently disables auth (a Promise is truthy); this shipped once and left `/api/business/*` open for ~17 min. After touching auth, test every route+method returns 401 without a session.
 - Hallie's chat admin tools (`lib/hallie-admin-tools.js`) exist only for a valid admin session, call these same route handlers in-process with the caller's session cookie, and every change needs an on-screen Confirm (pending actions are HMAC-signed for the `admin` identity). Never wire token export, cookie upload, or secrets into chat tools.
 
@@ -98,10 +98,7 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 
 ### 2. TikTok Account Token (`getTikTokAccountToken()`)
 - OAuth: `tiktok_account_authorization_url` env var (Business Portal) — preferred
-- **CURRENT VALUE (Login Kit — gives open_id, NOT numeric business_id):**
-  `https://www.tiktok.com/v2/auth/authorize?client_key=7654470451766231041&scope=user.info.basic%2Cuser.info.username%2Cuser.info.stats%2Cuser.info.profile%2Cuser.account.type%2Cuser.insights%2Cvideo.list%2Cvideo.insights%2Ccomment.list%2Ccomment.list.manage%2Cvideo.publish%2Cvideo.upload%2Cbiz.spark.auth%2Cdiscovery.search.words%2Cbiz.brand.insights&response_type=code&redirect_uri=https%3A%2F%2Ftjbmanagementinc.com%2Fauth%2Ftiktok%2Faccount-callback`
-- **PROBLEM**: Login Kit gives `open_id` = `-000yp9tW9MisgetpAczsWTyM_Z1VHZX70Aq` — works for READ endpoints, rejected by comment WRITE endpoints (hide/delete/pin/reply)
-- **FIX NEEDED**: Switch env var to Business Portal account URL → gives `auth_code` → numeric `business_id` → comment actions work
+- Login Kit (the fallback when no portal URL is set) gives `open_id`, not a numeric `business_id`. It works for READ endpoints but is rejected by comment WRITE endpoints (hide/delete/pin/reply). The Business Portal URL gives `auth_code` → numeric `business_id`, which comment actions need.
 - Callback receives: `auth_code` (Business Portal) or `code` (Login Kit fallback)
 - Token exchange if `auth_code`: `business-api.tiktok.com/open_api/v1.3/tt_user/oauth2/token/` (JSON, `app_id` + `secret`)
 - Token exchange if `code`: `open.tiktokapis.com/v2/oauth/token/` (form-encoded, `client_key` + `client_secret`)
@@ -114,10 +111,10 @@ Base URL: `https://business-api.tiktok.com/open_api/v1.3`
 ## Known Account Identifiers
 - TikTok Business Center ID (numeric): `7632045808657368084` — env var `TIKTOK_BUSINESS_ID`
 - Used as `business_id` for all comment action endpoints (hide/delete/pin/reply)
-- Login Kit `open_id` (`-000yp9tW9MisgetpAczsWTyM_Z1VHZX70Aq`) works for READ only
+- A Login Kit `open_id` works for READ only
 
 ## Token Persistence
-- No Upstash Redis configured — tokens use in-memory + cookie fallback
+- Tokens persist in Upstash Redis when it is configured (`lib/tokens.js`), with an in-memory + cookie fallback
 - Advertiser token: `biz_token` cookie (30-day HttpOnly)
 - Account token: `acct_token` cookie (30-day HttpOnly)
 - Both set during OAuth callback, read via `next/headers` cookies() in server context
