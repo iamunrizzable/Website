@@ -6,6 +6,14 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notice, setNotice] = useState('');
+
+  // Fixed messages only: the page never prints text taken from the URL.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('notice') === 'redirect-blocked') {
+      setNotice('We sent you home because the page you were being redirected to was not on this site, so it was blocked for your safety.');
+    }
+  }, []);
 
   useEffect(() => {
     const sections = document.querySelectorAll('.section');
@@ -27,6 +35,12 @@ export default function Home() {
     <>
 
       <div className="fade-top"></div>
+
+      {notice && (
+        <div role="alert" style={{ position: 'relative', zIndex: 50, margin: '70px 16px 0', padding: '12px 16px', borderRadius: 12, border: '1px solid #a855f7', background: '#1a0b2e', color: '#c4b5fd', fontSize: 14, textAlign: 'center' }}>
+          {notice}
+        </div>
+      )}
 
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>☰ Menu</button>
       <div className={`menu-dropdown${menuOpen ? ' active' : ''}`}>

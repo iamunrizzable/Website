@@ -90,7 +90,7 @@ export async function GET(request) {
     // A login started from the Hallie chat goes back to the page it started on.
     const returnTo = isSystem ? safeReturnPath(request.cookies.get('hallie_return')?.value) : null;
     const dest = isSystem ? '/hallie/chat' : '/admin/internal/hallie/tiktok/moderation/system?account_connected=1';
-    const response = returnTo ? NextResponse.redirect(sameOriginUrl(returnTo, '/hallie/chat')) : safeRedirect(dest);
+    const response = returnTo ? NextResponse.redirect(sameOriginUrl(returnTo)) : safeRedirect(dest);
     if (isSystem) response.cookies.set('hallie_return', '', { maxAge: 0, path: '/' });
     response.cookies.set('acct_token', JSON.stringify(stored), {
       httpOnly: true,
