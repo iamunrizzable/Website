@@ -31,13 +31,18 @@ function textOf(src) {
   return decode(body).split('\n').map((l) => l.replace(/\s+/g, ' ').trim()).filter((l) => l.length > 1).join('\n');
 }
 
+// Reads one file by its path inside app/. Anything outside app/ or with an
+// unexpected character is refused, so only the site's own pages are ever read.
+function readAppFile(rel) {
+  if (!/^[\w\-./\[\]()]+$/.test(rel) || rel.split(/[\\/]/).includes('..')) throw new Error('Refusing to read outside app/: ' + rel);
+  return fs.readFileSync(path.join(APP, rel), 'utf8');
+}
+
 const out = [];
 for (const file of pages(APP)) {
   const rel = path.relative(APP, path.dirname(file)).split(path.sep).join('/');
   if (SKIP.test(rel) || rel.includes('[')) continue;
-  // Only ever read files that sit inside the app/ folder.
-  if (path.relative(APP, path.resolve(file)).startsWith('..')) continue;
-  const src = fs.readFileSync(file, 'utf8');
+  const src = readAppFile(path.relative(APP, file));
   const text = textOf(src);
   if (text.length < 40) continue;
   const h1 = src.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);

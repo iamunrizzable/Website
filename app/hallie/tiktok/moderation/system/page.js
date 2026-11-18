@@ -660,11 +660,13 @@ function CommentFiltersPanel() {
 
 // ── Mentions ──────────────────────────────────────────────────────────────────
 
-function buildMentionsUrl(path, type, username) {
-  // Same-origin relative URL only: the browser keeps the host, user input is only ever an encoded query value.
-  const params = new URLSearchParams({ type });
-  if (username) params.set('username', username);
-  return `${path}?${params.toString()}`;
+// Fixed same-origin endpoint: the path is a literal, so the host can never change.
+// Only the type (lowercase letters and underscores) and an encoded username go in the query.
+function buildMentionsUrl(type, username) {
+  const params = new URLSearchParams();
+  params.set('type', /^[a-z_]{1,40}$/.test(type) ? type : 'videos');
+  if (username) params.set('username', String(username).slice(0, 100));
+  return '/api/system/mentions?' + params.toString();
 }
 
 function MentionsPanel() {
@@ -707,7 +709,7 @@ function MentionsPanel() {
     setData(undefined);
     setError('');
     const mentionsUsername = type === 'tracked_hashtags' && username.trim() ? username.trim() : undefined;
-    fetch(buildMentionsUrl('/api/system/mentions', type, mentionsUsername))
+    fetch(buildMentionsUrl(type, mentionsUsername))
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
