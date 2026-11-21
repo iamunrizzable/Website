@@ -109,6 +109,22 @@ export async function proxy(request) {
     return withCsp(NextResponse.next({ request: { headers: requestHeaders } }));
   }
 
+  // Costa City game build (admin-only). The game is one self-contained page
+  // with inline script/style, so it gets its own narrow CSP instead of the
+  // site's nonce CSP. Session is checked here and again in the route.
+  if (pathname === '/api/admin/costa-city') {
+    if (!(await verifyAdminSession(request.cookies.get('admin_session')?.value))) {
+      return withCsp(new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      }));
+    }
+    const res = NextResponse.next({ request: { headers: requestHeaders } });
+    res.headers.set('Content-Security-Policy', "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src data: blob:; worker-src blob:; base-uri 'none'; form-action 'none'; frame-ancestors 'self'");
+    res.headers.set('Cache-Control', 'no-store');
+    return res;
+  }
+
   // Protect /admin/*, /api/admin/me, and the Hallie writer page
   // (Tyler-only, not a mirrored multi-operator surface like the TikTok
   // system) with the same admin session cookie. Its API route

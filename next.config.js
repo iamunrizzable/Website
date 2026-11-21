@@ -10,10 +10,6 @@ const securityHeaders = [
     value: 'nosniff',
   },
   {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-  {
     key: 'Referrer-Policy',
     value: 'strict-origin-when-cross-origin',
   },
@@ -51,6 +47,17 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: securityHeaders,
+      },
+      // Clickjacking protection stays DENY everywhere except the one admin
+      // route that serves the Costa City game into the (admin-only) page's
+      // sandboxed iframe, which needs SAMEORIGIN.
+      {
+        source: '/((?!api/admin/costa-city$).*)',
+        headers: [{ key: 'X-Frame-Options', value: 'DENY' }],
+      },
+      {
+        source: '/api/admin/costa-city',
+        headers: [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }],
       },
       // Lets the CPU Hallie model use several threads. Only this one page is
       // isolated, so embeds and sign-in on the rest of the site are untouched.

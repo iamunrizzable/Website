@@ -1,0 +1,7 @@
+html { background-color: #0f172a; }
+body { background: #0f172a; margin: 0; }
+.cc-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; z-index: 20; display: flex; gap: 12px; align-items: center; padding: 0 14px; background: #1e293b; border-bottom: 1px solid rgba(168,85,247,0.35); font-family: system-ui, sans-serif; font-size: 13px; color: #f472b6; }
+.cc-bar a, .cc-bar label { color: #a5f3fc; cursor: pointer; text-decoration: none; font-weight: 600; }
+.cc-msg { color: #f59e0b; margin-left: auto; }
+.cc-frame { position: fixed; top: 44px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100% - 44px); border: 0; background: #0f172a; }
+.cc-empty { position: fixed; top: 44px; inset-inline: 0; padding: 40px 20px; font-family: system-ui, sans-serif; color: #f472b6; line-height: 1.6; }
