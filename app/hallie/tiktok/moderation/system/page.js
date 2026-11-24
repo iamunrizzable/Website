@@ -54,8 +54,6 @@ export default function SystemPage() {
     const res = await fetch('/api/system/status');
     const data = await res.json();
     setConnected(data.connected);
-    // Login goes through Hallie: not connected → open her chat with the connect button.
-    if (!data.connected) window.dispatchEvent(new Event('hallie:connect'));
   }, []);
 
   useEffect(() => {
@@ -98,7 +96,12 @@ export default function SystemPage() {
               <p style={{ color: '#06b6d4', fontSize: 14 }}>Loading…</p>
             </div>
           ) : !connected ? (
-            <ConnectPrompt />
+            <>
+              <ConnectPrompt />
+              <CommentFiltersPanel />
+              <AutomatedRulesPanel />
+              <TestPanel />
+            </>
           ) : (
             <>
               <AccountPanel />
@@ -127,7 +130,7 @@ function ConnectPrompt() {
       <div style={{ fontSize: 48, marginBottom: 16 }}>🎵</div>
       <h2 style={{ color: '#d4a5ff', fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Connect Your TikTok Account</h2>
       <p style={{ color: '#06b6d4', fontSize: 14, marginBottom: 28, maxWidth: 400, margin: '0 auto 28px' }}>
-        Sign in with TikTok to start automating your account — comment moderation, sync, and more.
+        Sign in with TikTok to use every tool — your account, videos, comments, sync, mentions and trending. Or use the tools below without signing in.
       </p>
       <a
         href="/auth/tiktok/system-login?from=/hallie/tiktok/moderation/system"

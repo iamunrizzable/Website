@@ -529,13 +529,13 @@ export default function ChatWidget({ fullPage = false }) {
   return (
     <div ref={pageRef} className={`chat-widget${fullPage ? ' chat-page' : ''}`}>
       {!fullPage && (
-        <button
-          className={`chat-toggle ${isOpen ? 'open' : ''}`}
-          onClick={() => setIsOpen(!isOpen)}
+        <a
+          className="chat-toggle"
+          href={CHAT_PAGE_PATH}
           aria-label="Chat with Hallie"
         >
           ✨
-        </button>
+        </a>
       )}
 
       {(isOpen || fullPage) && (
