@@ -98,9 +98,15 @@ export default function SystemPage() {
           ) : !connected ? (
             <>
               <ConnectPrompt />
+              <LoginRequiredPanel title="Account" />
+              <LoginRequiredPanel title="Videos" />
               <CommentFiltersPanel />
               <AutomatedRulesPanel />
+              <LoginRequiredPanel title="Comment Sync" />
+              <LoginRequiredPanel title="Comments" />
               <TestPanel />
+              <LoginRequiredPanel title="Mentions" />
+              <LoginRequiredPanel title="Trending" />
             </>
           ) : (
             <>
@@ -137,6 +143,24 @@ function ConnectPrompt() {
         style={{ ...s.btn, display: 'inline-block', textDecoration: 'none', padding: '14px 32px', fontSize: 15 }}
       >
         Connect with TikTok
+      </a>
+    </div>
+  );
+}
+
+// Shown in place of a tool that needs the TikTok account while logged out.
+function LoginRequiredPanel({ title }) {
+  return (
+    <div style={s.card}>
+      <h2 style={s.h2}>{title}</h2>
+      <p style={{ color: '#06b6d4', fontSize: 14, margin: '0 0 16px' }}>
+        Log in with TikTok to use this tool.
+      </p>
+      <a
+        href="/auth/tiktok/system-login?from=/hallie/tiktok/moderation/system"
+        style={{ ...s.btn, display: 'inline-block', textDecoration: 'none' }}
+      >
+        Log in with TikTok
       </a>
     </div>
   );
