@@ -2,7 +2,7 @@
 
 import './page.css';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 
 const ACTION_COLORS = { hide: '#ef4444', flag: '#f59e0b', review: '#3b82f6', allow: '#10b981' };
 
@@ -20,6 +20,17 @@ const BUSINESS_CATEGORIES = [
 ];
 function categoryLabel(code) {
   return code.split('_').map(w => (w === 'AND' ? '&' : w[0] + w.slice(1).toLowerCase())).join(' ');
+}
+
+// True inside a LoginGate (page shown without a TikTok login). The tools that
+// need the account never call TikTok then; they get a blank "Not connected".
+const LOGIN_MARK = 'TOOL_NEEDS_LOGIN';
+const LoggedOutContext = createContext(false);
+function useApiFetch() {
+  const loggedOut = useContext(LoggedOutContext);
+  return (url, opts) => (loggedOut
+    ? Promise.resolve(new Response(JSON.stringify({ code: -1, message: LOGIN_MARK, error: LOGIN_MARK }), { status: 401 }))
+    : fetch(url, opts));
 }
 
 const s = {
@@ -148,18 +159,19 @@ function ConnectPrompt() {
   );
 }
 
-// A tool that needs the TikTok account, shown while logged out: the tool stays
-// visible exactly as it looks, but it can't be used, and it prompts a log in.
+// A tool that needs the TikTok account, shown while logged out: it looks the
+// same, but it never calls TikTok. Where its API error would appear, it shows
+// a log-in prompt instead (see ApiError).
 function LoginGate({ children }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (el) el.setAttribute('inert', '');
-  }, []);
-  return (
-    <div style={{ marginBottom: 20 }}>
-      <div style={{ ...s.card, marginBottom: 8, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
-        <span style={{ color: '#06b6d4', fontSize: 13 }}>Log in with TikTok to use this tool.</span>
+  return <LoggedOutContext.Provider value={true}>{children}</LoggedOutContext.Provider>;
+}
+
+// Where a tool shows an API error. While logged out, that spot is the log-in prompt.
+function ApiError({ text }) {
+  if (String(text).includes(LOGIN_MARK)) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 13, color: '#06b6d4' }}>Tool is unavailable until you log in.</span>
         <a
           href="/auth/tiktok/system-login?from=/hallie/tiktok/moderation/system"
           style={{ ...s.btn, display: 'inline-block', textDecoration: 'none', padding: '8px 16px', fontSize: 13 }}
@@ -167,20 +179,21 @@ function LoginGate({ children }) {
           Log in with TikTok
         </a>
       </div>
-      <div ref={ref} style={{ opacity: 0.55 }}>{children}</div>
-    </div>
-  );
+    );
+  }
+  return <p style={{ fontSize: 13, color: '#f59e0b' }}>{text}</p>;
 }
 
 // ── Account Info ──────────────────────────────────────────────────────────────
 
 function AccountPanel() {
+  const apiFetch = useApiFetch();
   const [account, setAccount] = useState(undefined);
   const [error, setError] = useState('');
   const [disconnecting, setDisconnecting] = useState(false);
 
   useEffect(() => {
-    fetch('/api/system/account')
+    apiFetch('/api/system/account')
       .then(r => r.json())
       .then(d => {
         const errCode = d.error?.code;
@@ -205,7 +218,7 @@ function AccountPanel() {
       {account === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+        <ApiError text={error} />
       ) : (
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           {account?.profile_image && <img src={account.profile_image} alt="" style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover' }} />}
@@ -233,12 +246,13 @@ function AccountPanel() {
 // ── Videos ────────────────────────────────────────────────────────────────────
 
 function VideosPanel() {
+  const apiFetch = useApiFetch();
   const [videos, setVideos] = useState(undefined);
   const [error, setError] = useState('');
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch('/api/system/videos')
+    apiFetch('/api/system/videos')
       .then(r => r.json())
       .then(d => {
         const errCode = d.error?.code;
@@ -260,7 +274,7 @@ function VideosPanel() {
       {!collapsed && (videos === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+        <ApiError text={error} />
       ) : videos.length === 0 ? (
         <p style={{ fontSize: 13, color: '#475569' }}>No videos found.</p>
       ) : (
@@ -288,6 +302,7 @@ function VideosPanel() {
 // ── Comment Management ────────────────────────────────────────────────────────
 
 function CommentsPanel() {
+  const apiFetch = useApiFetch();
   const [videoId, setVideoId] = useState('');
   const [activeVideoId, setActiveVideoId] = useState('');
   const [comments, setComments] = useState(null);
@@ -318,7 +333,7 @@ function CommentsPanel() {
       setComments(null);
       setCommentsError('');
       try {
-        const r = await fetch(`/api/system/resolve-video?url=${encodeURIComponent(raw.trim())}`);
+        const r = await apiFetch(`/api/system/resolve-video?url=${encodeURIComponent(raw.trim())}`);
         const d = await r.json();
         if (d.error) { setCommentsError(`Could not resolve link: ${d.error}`); setCommentsLoading(false); return; }
         id = d.video_id;
@@ -339,7 +354,7 @@ function CommentsPanel() {
     setReplyText('');
     setCommentsLoading(true);
 
-    fetch(`/api/system/comments?video_id=${encodeURIComponent(id)}`)
+    apiFetch(`/api/system/comments?video_id=${encodeURIComponent(id)}`)
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setCommentsError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setComments([]); }
@@ -352,7 +367,7 @@ function CommentsPanel() {
   async function doAction(action, extra = {}) {
     setActionMsg('');
     try {
-      const res = await fetch('/api/system/comments', {
+      const res = await apiFetch('/api/system/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action, video_id: activeVideoId, ...extra }),
@@ -381,7 +396,7 @@ function CommentsPanel() {
       </div>
       {actionMsg && <div style={s.inlineMsg(!actionMsg.startsWith('Error'))}>{actionMsg}</div>}
       {commentsError ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{commentsError}</p>
+        <ApiError text={commentsError} />
       ) : comments === null ? null : comments.length === 0 ? (
         <p style={{ fontSize: 13, color: '#475569' }}>No comments found.</p>
       ) : (
@@ -459,6 +474,7 @@ function VideoLine({ comment }) {
 }
 
 function SyncPanel() {
+  const apiFetch = useApiFetch();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [mode, setMode] = useState('all');
@@ -474,7 +490,7 @@ function SyncPanel() {
     setResult(null);
     const maxVideos = mode === 'custom' ? parseInt(count, 10) || 20 : null;
     try {
-      const res = await fetch('/api/system/sync', {
+      const res = await apiFetch('/api/system/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ maxVideos }),
@@ -509,7 +525,7 @@ function SyncPanel() {
       {result && (
         <div style={{ marginTop: 12, fontSize: 13 }}>
           {result.error ? (
-            <span style={{ color: '#f59e0b' }}>Error: {result.error}</span>
+            <ApiError text={`Error: ${result.error}`} />
           ) : (
             <span style={{ color: '#10b981' }}>
               Done — {result.synced} comment{result.synced !== 1 ? 's' : ''} processed
@@ -703,6 +719,7 @@ function buildMentionsUrl(type, username) {
 }
 
 function MentionsPanel() {
+  const apiFetch = useApiFetch();
   const [tab, setTab] = useState('videos');
   const [data, setData] = useState(undefined);
   const [error, setError] = useState('');
@@ -714,7 +731,7 @@ function MentionsPanel() {
   // asking the operator to type it — hashtag/manage/list requires it as a
   // param but there's no reason to make a human supply data we already have.
   useEffect(() => {
-    fetch('/api/system/account')
+    apiFetch('/api/system/account')
       .then(r => r.json())
       .then(d => {
         const u = (d.data ?? d)?.username;
@@ -742,7 +759,7 @@ function MentionsPanel() {
     setData(undefined);
     setError('');
     const mentionsUsername = type === 'tracked_hashtags' && username.trim() ? username.trim() : undefined;
-    fetch(buildMentionsUrl(type, mentionsUsername))
+    apiFetch(buildMentionsUrl(type, mentionsUsername))
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
@@ -769,7 +786,7 @@ function MentionsPanel() {
     if (!hashtag.trim()) return;
     setActionMsg('');
     try {
-      const res = await fetch('/api/system/mentions', {
+      const res = await apiFetch('/api/system/mentions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'add_hashtag', hashtag: hashtag.trim(), username }),
@@ -783,7 +800,7 @@ function MentionsPanel() {
   async function removeHashtag(tag) {
     setActionMsg('');
     try {
-      const res = await fetch('/api/system/mentions', {
+      const res = await apiFetch('/api/system/mentions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'remove_hashtag', hashtag: tag, username }),
@@ -831,7 +848,7 @@ function MentionsPanel() {
       ) : data === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+        <ApiError text={error} />
       ) : data.length === 0 ? (
         <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
       ) : (
@@ -858,6 +875,7 @@ function MentionsPanel() {
 // ── Trending & Discovery ──────────────────────────────────────────────────────
 
 function TrendingPanel() {
+  const apiFetch = useApiFetch();
   const [tab, setTab] = useState('trending');
   const [keyword, setKeyword] = useState('');
   const [businessCategory, setBusinessCategory] = useState('');
@@ -884,7 +902,7 @@ function TrendingPanel() {
     const params = new URLSearchParams({ type: tab });
     if (keyword.trim()) params.set('keyword', keyword.trim());
     if (businessCategory.trim()) params.set('business_category', businessCategory.trim());
-    fetch(`/api/system/trending?${params}`)
+    apiFetch(`/api/system/trending?${params}`)
       .then(r => r.json())
       .then(d => {
         if (d.code && d.code !== 0) { setError(`API error ${d.code}: ${d.message ?? 'unknown'}`); setData([]); }
@@ -954,7 +972,7 @@ function TrendingPanel() {
       ) : data === undefined ? (
         <p style={{ fontSize: 13, color: '#475569' }}>Loading…</p>
       ) : error ? (
-        <p style={{ fontSize: 13, color: '#f59e0b' }}>{error}</p>
+        <ApiError text={error} />
       ) : data.length === 0 ? (
         <p style={{ fontSize: 13, color: '#475569' }}>No data found.</p>
       ) : (
